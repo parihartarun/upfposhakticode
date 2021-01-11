@@ -28,9 +28,13 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -126,6 +130,6 @@
   },
   "defaultProject": "upfpo-frontend-angular",
   "cli": {
-    "analytics": "09f367b0-a16f-425a-9e14-99e8aff71377"
+    "analytics": "443f05bf-2184-424f-b956-0891282dbbf6"
   }
 }
