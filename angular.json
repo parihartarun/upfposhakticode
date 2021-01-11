@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "upfpo-frontend-angular"
+  "defaultProject": "upfpo-frontend-angular",
+  "cli": {
+    "analytics": "09f367b0-a16f-425a-9e14-99e8aff71377"
+  }
 }
