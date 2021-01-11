@@ -17,64 +17,41 @@
   </div>
 </div>
 <div class="innerContent">
-  <nav class="navbar navbar-default">
-    <div class="">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bsnavbar-collapse" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">
-          <img src="/resources/assets/newdesign/img/logo.png" alt="logo" >
-        </a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      </div>
-      <div class="collapse navbar-collapse" id="bsnavbar-collapse">
-        <ul class="nav navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <div class="triangle-topright"></div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <img  class="nav-image" src="../../../assets/newdesign/img/language.png"/>
+            Language
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">English</a>
+            <a class="dropdown-item" href="#">Hindi</a>
 
-          <li class="nav-item dropdown">
-            <div class="triangle-topright"></div> <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-              <img src="/resources/assets/newdesign/img/language.png" style="height: 30px;" alt="logo"> Language
-              <img src="/resources/assets/newdesign/img/arrodwon.png" alt="logo" style="height: 12px;">
-            </a>
-            <ul class="dropdown-menu" style="top: 50px;background: #cdae01;">
-              <li><a id="lang_en" class="dropdown-item" href="" onclick="getURL('en');">English</a></li>
-              <li><a id="lang_hi" class="dropdown-item" href="" onclick="getURL('hi');">Hindi</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="/downloads1">
-              <img src="/resources/assets/newdesign/img/fpomenu.png" alt="logo" style="height: 30px;"> FPO Guidelines
-            </a>
-          </li>
-          <li>
-            <a href="/downloads">
-              <img src="/resources/assets/newdesign/img/scemenu.png" alt="logo" style="height: 30px;"> Schemes
-            </a>
-          </li>
-          <li>
-            <a href="/getLogin">
-              <img src="/resources/assets/newdesign/img/signup.png" alt="logo" style="height: 30px;">
-              Login
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-              <img src="/resources/assets/newdesign/img/usermenu.png" alt="logo" style="height: 30px;">
-              Sign Up
-              <img src="/resources/assets/newdesign/img/arrodwon.png" alt="logo" style="height: 12px;">
-            </a>
-            <ul class="dropdown-menu" style="background: #cdae01;">
+          </div>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#"> FPO Guidelines  <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Schemes</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign Up</a>
+        </li>
 
-              <li><a class="dropdown-item" href="#"><b>FPO</b></a></li>
-              <li><a class="dropdown-item" href="#">Farmer</a></li>
-              <li><a class="dropdown-item" href="#">Buyer/ Seller</a></li>
-              <li><a class="dropdown-item" href="#">Input Supplier</a></li>
-              <li><a class="dropdown-item" href="#">Equipment Centre</a></li>
-
-            </ul>
-          </li>
-        </ul>
-      </div>
+      </ul>
+     
     </div>
   </nav>
 </div>

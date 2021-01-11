@@ -28,3 +28,31 @@
   border-radius: 150px 0 0 0;
   box-shadow: 2px 2px 0px #fff;
 }
+.navbar-nav {
+  float: right;
+  margin: 0;
+  background: #926e00;
+  position: relative;
+  height: 50px;
+  width:51%;
+}
+
+.triangle-topright {
+  width: 0;
+  height: 0;
+  border-bottom: 50px solid #926e00;
+  border-left: 50px solid transparent;
+  float: left;
+  left: -50px;
+  position: absolute;
+}
+.nav-item {
+width:20%;
+text-align:center;
+}
+.nav-image {
+    width:25%;  
+}
+.nav-item.dropdown.show, .dropdown-menu.show {
+  background-color: #cdae01;
+}
