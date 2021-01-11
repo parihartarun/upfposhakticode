@@ -1,0 +1,30 @@
+ .header {
+  padding: 20px 0;
+  height: 110px;
+}
+ .header .parent {
+  font-size: 26px;
+  color: #ffffff;
+  font-weight: 900;
+}
+ .header .child {
+  font-size: 22px;
+  color: #ffffff;
+  font-weight: 400;
+}
+.header .gov {
+  font-size: 26px;
+  color: #ffffff;
+  font-weight: 900;
+}
+.header .up {
+  font-size: 22px;
+  color: #ffffff;
+  font-weight: 400;
+}
+.innerContent {
+  min-height: 70vh;
+  background: #ccc;
+  border-radius: 150px 0 0 0;
+  box-shadow: 2px 2px 0px #fff;
+}
