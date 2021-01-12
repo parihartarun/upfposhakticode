@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,8 +26,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    CarouselModule
-  ],
+    CarouselModule],
   declarations: [
     AppComponent,
     AdminLayoutComponent,

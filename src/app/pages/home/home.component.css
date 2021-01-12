@@ -161,16 +161,16 @@
   .col-md-12 {
     padding: 6%;
   }
-  .set_row_bg_image {
-    width: 100%;
-    height: auto;
-    background: linear-gradient( #e0d9a7bd, #f1f1f1);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    margin-left: 0px;
-    margin: 0px;
-    padding-bottom: 10px;
-  }
+.set_row_bg_image {
+  width: 100%;
+  height: auto;
+  background-color:#cfb000;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  margin-left: 0px;
+  margin: 0px;
+  padding-bottom: 10px;
+}
   .tileBoxRow {
     margin: auto auto;
     padding-left: 3%;
@@ -180,15 +180,16 @@
   .col-md-3.set_box_md4 {
     width: 23.3%;
     max-width: 23%;
+    padding-top:1%;
   }
   .set_box_md4 {
-    background-color: #cfb000;
+    background-color: #fff;
     height: 100%;
     border-radius: 10px;
     border: 3px solid #fff;
     margin-right: 17px;
     margin-top: 2%;
-    min-height: 132px;
+    min-height: 160px;
   }
   .set_span_titel_image {
       width:100%;
@@ -200,36 +201,36 @@
       width:100%;
   
   }
-  .tile_nember {
-    width: 100%;
-    padding-top: 3%;
-    text-align: center;
-    color: #fff;
-    font-size: 34px;
-    font-weight: 800;
-  }
-  .set_span_titel {
-    position: absolute;
-    margin-top: 2%;
-    width: 100%;
-    text-align: center;
-    color: #096309;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  .table_tile_text {
-    color: #f1f1f1;
-    font-size: 14px;
-    padding: 5px 0px 0px 5px;
-  }
-  
-  .table_tile_number {
-    color: #fff;
-    font-size: 14px;
-    text-align: right;
-    padding: 5px 5px 0px 0px;
-    font-weight: 800;
-  }
+.tile_nember {
+  width: 100%;
+  padding-top: 0%;
+  text-align: left;
+  color: #32325d;
+  font-size: 34px;
+  font-weight: 800;
+}
+.set_span_titel {
+  position: relative;
+  margin-top: 2%;
+  width: 100%;
+  text-align: left;
+  color: #8898aa;
+  font-size: 18px;
+  font-weight: bold;
+}
+.table_tile_text {
+  color: #32325d;
+  font-size: 14px;
+  padding: 5px 0px 0px 5px;
+}
+
+.table_tile_number {
+  color: #32325d;
+  font-size: 14px;
+  text-align: right;
+  padding: 5px 5px 0px 0px;
+  font-weight: 800;
+}
   .table_tile_tr {
     border-bottom: 2px double darkgray;
   }
@@ -243,7 +244,7 @@
   }
   
     .footer a,
-    .footer p {
+    .footer p { 
       color: rgb(238, 237, 237);
       font-weight: 500;
       font-size: 10px;
@@ -384,3 +385,13 @@ element.style {
   margin-left: 10px;
   font-size: 20px;
 }
+.news-item table {
+    margin-top:-4%
+}
+.set_notifications .panel-body {
+    padding:15px 15px 5px 15px;
+}
+.icon.icon-shape {
+    float:right;
+}
+
