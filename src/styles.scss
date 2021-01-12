@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+.bg-gradient-danger {
+    /* background: linear-gradient(87deg, #f5365c 0, #f56036 100%) !important; */
+    background-image: linear-gradient(315deg, #cfb000 0%, #cfb000 0%) !important;
+}
+body {
+    background-color: #cfb000;
+    background-image: linear-gradient(#cfb000, #b38f23);
+    font-family: 'Roboto', sans-serif;
+  }
