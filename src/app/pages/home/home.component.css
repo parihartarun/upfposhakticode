@@ -344,4 +344,43 @@
     border-radius: .25rem;
     background-color:#fff;
   }
+.btn-warning:hover, .btn-warning:active, .btn-warning:focus {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+
+element.style {
+  width: 100%;
+  pointer-events: all;
+}
+
+.btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active, .show > .btn-warning.dropdown-toggle {
   
+  background-color: #ec971f;
+ 
+}
+.btn-warning {
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.btn.btn-default.dropdown-toggle {
+  color: #000;
+  background-color: #fff;
+  border-color: #fff;
+}
+.form-control {
+    height: calc(1.5em + 0.7rem + 2px);
+}
+#searchin {
+    padding:5px;
+}
+.form-control-feedback.btn-warning {
+  height: 33px;
+}
+.searchFPO {
+  color: white;
+  margin-left: 10px;
+  font-size: 20px;
+}

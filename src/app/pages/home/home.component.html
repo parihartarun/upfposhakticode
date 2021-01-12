@@ -157,12 +157,15 @@
         </div>
         <div class="col-md-7 col-md-pull-3">
           <carousel [noWrap]="noWrapSlides" [showIndicators]="showIndicator">
-            <slide *ngFor="let slide of slides; let index=index">
-              <img [src]="slide.image" alt="image slide" style="display: block; width: 100%;">
-              <div class="carousel-caption">
-                <p>{{slide.text}}</p>
-              </div>
-            </slide>
+            <div *ngFor="let slide of slides; let index=index">
+              <slide>
+                <img [src]="slide.image" alt="image slide" style="display: block; width: 100%;">
+                <div class="carousel-caption">
+                  <p>{{slide.text}}</p>
+                </div>
+              </slide>
+
+            </div>
           </carousel>
           <div class="main" style="margin-top: 1%;">
             <div style="background-color: #cfb000;">
@@ -191,7 +194,7 @@
                 </div>
               </div>
               <div class="col-md-2" style="padding: 0px;">
-                <input type="button" value="🔍 Search" class="form-control-feedback btn-warning" style="">
+                <input type="button" value="🔍 Search" class="form-control-feedback btn-warning" style="width: 100%; pointer-events: all;">
               </div>
             </div>
           </div>
