@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    HomeDummyComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
