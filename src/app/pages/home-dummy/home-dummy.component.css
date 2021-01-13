@@ -1,12 +1,11 @@
-.header {
+.banner {
   padding: 20px 0;
- 
   position: relative;
   background-image: url('../../../assets/newdesign/img/slider/1.jpg');
   background-repeat: no-repeat;
   background-size: cover
 }
-  .header:before {
+  .banner:before {
     content: "";
     display: block;
     padding-top: 20%;
@@ -48,7 +47,7 @@
   width: 49%;
   margin: 0px auto;
   position: absolute;
-  top: 70%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%,-50%);
   -webkit-transform: translate(-50%,-50%);
@@ -387,7 +386,7 @@ element.style {
 }
 
 .form-control {
-  height: calc(1.5em + 1.5rem + 2px);
+  height: calc(1.5em + 1.5rem + 4px);
 }
 
 #searchin {
