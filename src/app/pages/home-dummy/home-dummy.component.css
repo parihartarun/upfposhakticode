@@ -9,7 +9,7 @@
   .header:before {
     content: "";
     display: block;
-    padding-top: 15%;
+    padding-top: 20%;
   }
 
 .logo {
@@ -105,7 +105,7 @@
 
 .navbar {
   padding: 0px;
-  top:20%;
+  top:17%;
   position: absolute;
   right: 0;
 }
@@ -445,21 +445,22 @@ element.style {
 }
 
 .form-control {
-  height: calc(1.5em + 0.7rem + 2px);
+  height: calc(1.5em + 1.5rem + 2px);
 }
 
 #searchin {
-  padding: 5px;
+  padding: 12px 5px 12px 5px;
 }
 
 .form-control-feedback.btn-warning {
-  height: 33px;
+  height: 48px;
 }
 
 .searchFPO {
   color: white;
   margin-left: 10px;
   font-size: 20px;
+  line-height:50px;
 }
 
 .news-item table {
@@ -473,9 +474,13 @@ element.style {
 .icon.icon-shape {
   float: right;
 }
-.middlleSection {
+
+.middleSection {
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+}
+.middleSection .row {
   margin: 0% auto;
   width: 80%;
   padding: 2% 0px;
-  
 }
