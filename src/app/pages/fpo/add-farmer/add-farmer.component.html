@@ -1,94 +1,416 @@
-<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
-    <div class="container-fluid">
-      <div class="header-body">
-        <!-- Card stats -->
-        <div class="row">
-          <div class="col-xl-3 col-lg-6">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-                    <span class="h2 font-weight-bold mb-0">350,897</span>
-                  </div>
-                  <div class="col-auto">
-                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                      <i class="fas fa-chart-bar"></i>
-                    </div>
-                  </div>
-                </div>
-                <p class="mt-3 mb-0 text-muted text-sm">
-                  <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                  <span class="text-nowrap">Since last month</span>
-                </p>
-              </div>
+<div class="header bg-gradient-danger pb-7 pt-5 pt-md-8">
+  <div class="container-fluid">
+  
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7 mp-7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">Add Farmer</h3>
             </div>
           </div>
-          <div class="col-xl-3 col-lg-6">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                    <span class="h2 font-weight-bold mb-0">2,356</span>
-                  </div>
-                  <div class="col-auto">
-                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                      <i class="fas fa-chart-pie"></i>
-                    </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Farmer Registration Number (UP Agri Pardarshi)</label>
+                    <input type="text" id="input-username" class="form-control form-control-alternative" value="lucky.jesse">
                   </div>
                 </div>
-                <p class="mt-3 mb-0 text-muted text-sm">
-                  <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                  <span class="text-nowrap">Since last week</span>
-                </p>
               </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-6">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                    <span class="h2 font-weight-bold mb-0">924</span>
-                  </div>
-                  <div class="col-auto">
-                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                      <i class="fas fa-users"></i>
-                    </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-username">Farmer's Name</label>
+                    <input type="text" id="input-username" class="form-control form-control-alternative" value="lucky.jesse">
                   </div>
                 </div>
-                <p class="mt-3 mb-0 text-muted text-sm">
-                  <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                  <span class="text-nowrap">Since yesterday</span>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-6">
-            <div class="card card-stats mb-4 mb-xl-0">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                    <span class="h2 font-weight-bold mb-0">49,65%</span>
-                  </div>
-                  <div class="col-auto">
-                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                      <i class="fas fa-percent"></i>
-                    </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">Father's/ Husband's Name</label>
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative" value="Lucky">
                   </div>
                 </div>
-                <p class="mt-3 mb-0 text-muted text-sm">
-                  <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                  <span class="text-nowrap">Since last month</span>
-                </p>
               </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Category</label><br/>
+                    <div class="custom-control custom-radio mb-3 ">
+                      <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio">
+                      <label class="custom-control-label" for="customRadio5">General</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <label class="custom-control-label" for="customRadio6">OBC</label>
+                    </div> 
+                    <div class="custom-control custom-radio mb-3">
+                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <label class="custom-control-label" for="customRadio6">SC</label>
+                    </div> 
+                    <div class="custom-control custom-radio mb-3">
+                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <label class="custom-control-label" for="customRadio6">ST</label>
+                    </div> 
+                    <div class="custom-control custom-radio mb-3">
+                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <label class="custom-control-label" for="customRadio6">OTHER</label>
+                    </div>                
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Gender</label><br/>
+                    <div class="custom-control custom-radio mb-3 ">
+                      <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio">
+                      <label class="custom-control-label" for="customRadio5">Male</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3">
+                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <label class="custom-control-label" for="customRadio6">Female</label>
+                    </div> 
+                    <div class="custom-control custom-radio mb-3">
+                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <label class="custom-control-label" for="customRadio6">Other</label>
+                    </div>                
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">District</label>
+                    <select class="custom-control custom-select mb-3">
+                      <option>A</option>
+                      <option>B</option>
+                      <option>C</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Block</label>
+                    <select class="custom-control custom-select mb-3">
+                      <option>A</option>
+                      <option>B</option>
+                      <option>C</option>
+                    </select>                  
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Gram Panchayat</label>
+                    <select class="custom-control custom-select mb-3">
+                      <option>A</option>
+                      <option>B</option>
+                      <option>C</option>
+                    </select>                  
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Village</label>
+                    <select class="custom-control custom-select mb-3">
+                      <option>A</option>
+                      <option>B</option>
+                      <option>C</option>
+                    </select>                  
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Pincode</label>
+                    <input type="text" id="input-email" class="form-control form-control-alternative" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Mobile</label>
+                    <input type="text" id="input-email" class="form-control form-control-alternative">
+                  </div>
+                </div>
+              </div>
+              
+              <hr/>
+              <h3>Bank Details:</h3>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Bank Name</label>
+                    <input type="text" id="input-email" class="form-control form-control-alternative" >
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">IFSC Code</label>
+                    <input type="text" id="input-email" class="form-control form-control-alternative">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Bank Account Number</label>
+                    <input type="text" id="input-email" class="form-control form-control-alternative" >
+                  </div>
+                </div>
+              </div>
+
             </div>
-          </div>
+          </form>
+        </div>
+        <div class="card-footer py-4 text-center">
+          <button class="btn btn-primary text-right">Save</button>
+          <button class="btn btn-warning text-right">Reset</button>
         </div>
       </div>
     </div>
   </div>
   
+  <br/>
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">Members</h3>
+            </div>
+            <!-- <div class="col-3 text-right">
+              <button class="btn btn-primary text-right">Add Member</button>
+            </div> -->
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Farmer's Name</th>
+                <th scope="col">Father/Husband Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Gender</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">Argon Design System</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                 v@gmail.com
+                </td>
+                <td>
+                 732843473464
+                </td>
+                <td>
+                  Female
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
+                      Actions
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">ABlack Dashboard</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                 v@gmail.com
+                </td>
+                <td>
+                 732843473464
+                </td>
+                <td>
+                  Female
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
+                      Actions
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">React Material Dashboard</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                 v@gmail.com
+                </td>
+                <td>
+                 732843473464
+                </td>
+                <td>
+                  Female
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
+                      Actions
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">Argon Design System</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                 v@gmail.com
+                </td>
+                <td>
+                 732843473464
+                </td>
+                <td>
+                  Female
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
+                      Actions
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">ABlack Dashboard</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                 v@gmail.com
+                </td>
+                <td>
+                 732843473464
+                </td>
+                <td>
+                  Female
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
+                      Actions
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">React Material Dashboard</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                 v@gmail.com
+                </td>
+                <td>
+                 732843473464
+                </td>
+                <td>
+                  Female
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
+                      Actions
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="javascript:void(0)">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0)">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

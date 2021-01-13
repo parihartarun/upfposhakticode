@@ -16,7 +16,6 @@ import { ComponentsModule } from './components/components.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
 
-
 @NgModule({
   imports: [
     BrowserModule,
