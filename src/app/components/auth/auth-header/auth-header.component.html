@@ -6,6 +6,7 @@
     <span class="headerMainText">Agriculture Department</span><br />
     <span class="headerState">Uttar Pradesh</span>
   </div>
+  
 
   <nav class="navbar navbar-expand-lg navbar-light">
 
@@ -17,7 +18,18 @@
       <ul class="navbar-nav ml-auto">
         <div class="triangle-topright"></div>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
+            <a class="languageText" ngbDropdownToggle>
+              <img class="nav-image nav-image1" src="../../../assets/newdesign/img/language.png" />
+              Language
+              <img src="../../../assets/newdesign/img/arrodwon.png" alt="logo" style="height: 12px;">
+            </a>
+            <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+              <a class="dropdown-item" href="javascript:void(0)">Hindi</a>
+              <a class="dropdown-item" href="javascript:void(0)">English</a>
+            </div>
+          </div>
+          <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img class="nav-image" src="../../../assets/newdesign/img/language.png" />
             Language
             <img src="../../../assets/newdesign/img/arrodwon.png" alt="logo" style="height: 12px;">
@@ -26,7 +38,7 @@
             <a class="dropdown-item" href="#">English</a>
             <a class="dropdown-item" href="#">Hindi</a>
 
-          </div>
+          </div>-->
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">

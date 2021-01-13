@@ -58,6 +58,7 @@
 .nav-item {
   width: 20%;
   text-align: center;
+  margin-top:1%
 }
 
 .nav-image {
@@ -66,6 +67,7 @@
 
 .nav-item.dropdown.show, .dropdown-menu.show {
   background-color: #cdae01;
+  min-width: 9rem;
 }
 
 .bg-light {
@@ -83,3 +85,16 @@
   margin-left: 11%;
   margin-top: -4.5%;
 }
+.menu_langauge_btn .nav-image1 {
+  width: 19%; margin-top: 3%;
+}
+.menu_langauge_btn a {
+    color:#fff ;
+}
+.menu_langauge_btn a:hover {
+  color: #000;
+}
+  .menu_langauge_btn a.languageText:hover {
+    color: #fff;
+
+  }

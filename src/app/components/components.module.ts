@@ -8,18 +8,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterCustumComponent } from './auth/footer/footerCustom.component';
 import { AuthHeaderComponent } from './auth/auth-header/auth-header.component';
 
+
+
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+   
   ],
   declarations: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
     FooterCustumComponent,
-    AuthHeaderComponent
+    AuthHeaderComponent,
+    
   ],
   exports: [
     FooterComponent,
