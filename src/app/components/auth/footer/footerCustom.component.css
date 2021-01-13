@@ -1,0 +1,21 @@
+.footerBox {
+  background-color: #cfb000;
+  background-image: linear-gradient(#fbd70f, #735d17,#4a3c0f);
+  height: 100px;
+}
+
+.footer {
+  padding: 20px 0;
+}
+
+  .footer a,
+  .footer p {
+    color: rgb(238, 237, 237);
+    font-weight: 500;
+    font-size: 10px;
+    margin: 0;
+  }
+
+  .footer a {
+    margin: 5px;
+  }

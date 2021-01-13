@@ -10,6 +10,7 @@ import { RegisterComponent } from '../../pages/register/register.component';
 import { HomeComponent } from '../../pages/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +22,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+ 
   ]
 })
 export class AuthLayoutModule { }
