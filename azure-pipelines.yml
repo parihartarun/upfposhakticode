@@ -22,7 +22,8 @@ steps:
   displayName: 'npm install and build'
 
 - task: PublishBuildArtifacts@1
-    inputs:
+  inputs:
       PathtoPublish: 'dist'
       ArtifactName: 'webapp'
       publishLocation: 'Container'
+  displayName: 'Artifacts'
