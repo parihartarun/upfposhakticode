@@ -15,6 +15,8 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
+import { ComplaintsComponent } from './pages/fpo/complaints/complaints.component';
+import { ServicesComponent } from './pages/fpo/services/services.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    HomeDummyComponent
+    HomeDummyComponent,
+    ComplaintsComponent,
+    ServicesComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

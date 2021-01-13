@@ -17,6 +17,8 @@ import { LandDetailsComponent } from '../../pages/fpo/land-details/land-details.
 import { AddFarmerComponent } from '../../pages/fpo/add-farmer/add-farmer.component';
 import { ProductionDetailsComponent } from '../../pages/fpo/production-details/production-details.component';
 import { CropShowingDetailsComponent } from '../../pages/fpo/crop-showing-details/crop-showing-details.component';
+import { ComplaintsComponent } from '../../pages/fpo/complaints/complaints.component';
+import { ServicesComponent } from '../../pages/fpo/services/services.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -34,4 +36,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'add-farmer',   component: AddFarmerComponent },
     { path: 'production-details',   component: ProductionDetailsComponent },
     { path: 'crop-showing-details',   component: CropShowingDetailsComponent},
+    { path: 'services',   component: ServicesComponent},
+    { path: 'complaints',   component: ComplaintsComponent},
 ];
