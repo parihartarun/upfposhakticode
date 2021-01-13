@@ -11,6 +11,25 @@
   max-width: 200px;
   max-height: 200px;
 }
+.headerText {
+  position: absolute;
+  top: 50%;
+  left: 6.5%;
+  transform: translateY(30%);
+  display: inline-block;
+}
+.headerMainText {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 900;
+}
+.headerState {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 400;
+  padding-left: 20px;
+  padding-right: 85px;
+}
 
 .logo-image {
   width: 40%;
