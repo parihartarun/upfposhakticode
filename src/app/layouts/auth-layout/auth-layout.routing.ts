@@ -6,8 +6,8 @@ import { HomeComponent } from '../../pages/home/home.component';
 import { HomeDummyComponent } from '../../pages/home-dummy/home-dummy.component';
 
 export const AuthLayoutRoutes: Routes = [
-    { path: 'home', component: HomeComponent },
+    { path: 'home-old', component: HomeComponent },
     { path: 'login',          component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home1', component: HomeDummyComponent },
+  { path: 'home', component: HomeDummyComponent },
 ];
