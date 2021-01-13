@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterCustumComponent } from './auth/footer/footerCustom.component';
+import { AuthHeaderComponent } from './auth/auth-header/auth-header.component';
 
 @NgModule({
   imports: [
@@ -17,13 +18,14 @@ import { FooterCustumComponent } from './auth/footer/footerCustom.component';
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    FooterCustumComponent
+    FooterCustumComponent,
+    AuthHeaderComponent
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    FooterCustumComponent
+    FooterCustumComponent, AuthHeaderComponent
   ]
 })
 export class ComponentsModule { }
