@@ -13,7 +13,7 @@ steps:
   inputs:
     command: custom
     verbose: false
-    customCommand: 'ng build --prod'
+    customCommand: 'run build-prod'
   condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
 
 - task: PublishBuildArtifacts@1
