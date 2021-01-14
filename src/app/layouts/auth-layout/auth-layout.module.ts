@@ -9,6 +9,7 @@ import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 import { HomeComponent } from '../../pages/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ProductsListComponent } from '../../pages/products-list/products-list.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     CommonModule,
     RouterModule.forChild(AuthLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     CarouselModule
     // NgbModule
   ],
@@ -23,7 +25,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
- 
+    ProductsListComponent
   ]
 })
 export class AuthLayoutModule { }

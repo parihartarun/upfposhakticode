@@ -1,0 +1,44 @@
+.masthead {
+    height: 300px;
+    min-height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../../../assets/image/img/slider/1.jpg');
+}
+  .search-text{
+      width: 80%;
+      float: left;
+      height: 50px;
+  }
+  .search-btn{
+      width: 20%;
+      float: left;
+  }
+.card{
+    padding:15px;
+}
+.card-title {
+    margin-bottom: 0.25rem;
+}
+.card-body{
+    padding: 0.7rem;
+}
+.horizontal-product img{
+    height: 120px;
+    object-fit: cover;
+}
+.filter-box{
+    display: inline-block;
+    padding: 5px 10px;
+}
+.filter-text{
+    background: #fff;
+    padding: 3px 10px;
+    border: 1px solid #dedada;
+}
+.filter-remove{
+    padding: 3px 10px;
+    background: #ca3d3d;
+    color: #fff;
+}
