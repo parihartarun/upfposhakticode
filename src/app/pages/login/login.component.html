@@ -51,5 +51,21 @@
     </div>
   </div>
 </div>
+<form *ngIf="loginForm" [formGroup]="loginForm">
+  <ngx-recaptcha2 #captchaElem
+    [siteKey]="siteKey"
+    (reset)="handleReset()"
+    (expire)="handleExpire()"
+    (error)="handleError()"
+    (load)="handleLoad()"
+    (success)="handleSuccess($event)"
+    [useGlobalDomain]="false"
+    [size]="size"
+    [hl]="lang"
+    [theme]="theme"
+    [type]="type"
+    formControlName="recaptcha">
+  </ngx-recaptcha2>
+</form>
 
 </div>

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -15,10 +15,9 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
-import { ComplaintsComponent } from './pages/fpo/complaints/complaints.component';
-import { ServicesComponent } from './pages/fpo/services/services.component';
 import { TranslateModule, TranslateLoader, TranslateCompiler, TranslateParser } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,12 +27,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
     NgbModule,
     RouterModule,
     AppRoutingModule,
     CarouselModule,
+    NgxCaptchaModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -47,9 +48,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    HomeDummyComponent,
-    ComplaintsComponent,
-    ServicesComponent
+    HomeDummyComponent
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent]
