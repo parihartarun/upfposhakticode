@@ -11,7 +11,10 @@
     padding-top: 30%;
   }
 
-
+.serachButton {
+    width:100%;
+    pointer-events:all;
+}
 
 .header .parent {
   font-size: 26px;
@@ -394,7 +397,12 @@ element.style {
 }
 
 #searchin {
+    width:100%;
   padding: 12px 5px 12px 5px;
+}
+.searchBox {
+  width: 100%;
+  background-color: #cfb000;
 }
 
 .form-control-feedback.btn-warning {
