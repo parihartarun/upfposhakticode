@@ -24,6 +24,8 @@ import { LandDetailsComponent } from '../../pages/fpo/land-details/land-details.
 import { AddFarmerComponent } from '../../pages/fpo/add-farmer/add-farmer.component';
 import { ProductionDetailsComponent } from '../../pages/fpo/production-details/production-details.component';
 import { CropShowingDetailsComponent } from '../../pages/fpo/crop-showing-details/crop-showing-details.component';
+import { ComplaintsComponent } from '../../pages/fpo/complaints/complaints.component';
+import { ServicesComponent } from '../../pages/fpo/services/services.component';
 
 
 @NgModule({
@@ -50,7 +52,9 @@ import { CropShowingDetailsComponent } from '../../pages/fpo/crop-showing-detail
     LandDetailsComponent,
     AddFarmerComponent,
     ProductionDetailsComponent,
-    CropShowingDetailsComponent
+    CropShowingDetailsComponent,
+    ComplaintsComponent,
+    ServicesComponent
   ]
 })
 

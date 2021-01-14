@@ -22,6 +22,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
 @NgModule({
   imports: [
     BrowserModule,

@@ -41,6 +41,14 @@
             ]
           },
           "configurations": {
+            "fr": {
+              "aot": true,
+              "outputPath": "dist/under-construction-fr/",
+              "i18nFile": "src/locale/messages.fr.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "fr",
+              "i18nMissingTranslation": "error"
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -68,6 +76,9 @@
           "configurations": {
             "production": {
               "browserTarget": "argon-dashboard-angular:build:production"
+            },
+            "fr": {
+              "browserTarget": "argon-dashboard-angular:build:fr"
             }
           }
         },

@@ -18,6 +18,14 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
+        <trans-unit id="730d4e9294e38b10f360ab89071aa1200c457702" datatype="html">
+        <source>Districts </source>
+        <target>Districts</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/pages/products-list/products-list.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>
