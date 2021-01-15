@@ -3,9 +3,10 @@ version: "3.4"
 services:
   angular:
     build:
-      context: "angular/"
+      context: "."
+      dockerfile: Dockerfile
     image: angular-app
     env_file:
-      - "./angular/.env"
+      - ".env"
     ports:
       - 80:3000
