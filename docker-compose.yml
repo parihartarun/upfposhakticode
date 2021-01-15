@@ -1,14 +1,11 @@
-version: "3.3"
+version: "3.4"
 
 services:
   angular:
     build:
-      context: .
-      dockerfile: Dockerfile
-    networks:
-      - frontend
+      context: "angular/"
+    image: angular-app
+    env_file:
+      - "./angular/.env"
     ports:
-      - 80:80
-    restart: always
-networks:
-  frontend:
+      - 80:3000
