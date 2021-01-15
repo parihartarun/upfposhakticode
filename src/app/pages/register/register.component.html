@@ -17,7 +17,7 @@
           <div class="text-center mb-4">
             <h1>Sign up</h1>
           </div>
-          <form role="form" [formGroup]="register">
+          <form role="form" [formGroup]="registerForm" (ngSubmit)="register()">
             <div class="form-group mb-3">
               <label class="input-label">Register As</label>
               <div class="input-group input-group-alternative">
@@ -40,7 +40,10 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="farmerName" >
+                  <input class="form-control" type="text" formControlName="farmerName">
+                </div>
+                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
+                  <div *ngIf="formControls.username.errors.required">username is required</div>
                 </div>
               </div>
               <div class="col-6">
@@ -52,6 +55,9 @@
                   </div>
                   <input class="form-control" type="text" formControlName="userName">
 
+                </div>
+                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
+                  <div *ngIf="formControls.username.errors.required">username is required</div>
                 </div>
 
               </div>
@@ -80,7 +86,7 @@
 
             <div class="form-group row mb-3">
               <div class="col-6">
-                <label class="input-label">farmer Lot Number <span class="required">*</span></label>
+                <label class="input-label">Farmer Lot Number <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
@@ -89,12 +95,12 @@
                 </div>
               </div>
               <div class="col-6">
-                <label class="input-label">farmer Mobile<span class="required">*</span></label>
+                <label class="input-label">Farmer Mobile<span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="farmerMob">
+                  <input class="form-control" type="number" formControlName="farmerMob">
                 </div>
               </div>
             </div>
@@ -128,7 +134,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="distRefId">
+                  <input class="form-control" type="number" formControlName="distRefId">
                 </div>
               </div>
               <div class="col-6">
@@ -142,24 +148,24 @@
               </div>
             </div>
             <div class="form-group row mb-3">
-             
+
               <div class="col-6">
                 <label class="input-label">Education Id <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="educationId">
+                  <input class="form-control" type="number" formControlName="educationId">
                 </div>
               </div>
-              
+
               <div class="col-6">
                 <label class="input-label">Fig Ref Id<span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="figRefId">
+                  <input class="form-control" type="number" formControlName="figRefId">
                 </div>
               </div>
             </div>
@@ -167,39 +173,30 @@
 
 
             <div class="form-group row mb-3">
-
-
               <div class="col-6">
                 <label class="input-label">User Reference Id<span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="userRefId">
+                  <input class="form-control" type="number" formControlName="userRefId">
                 </div>
               </div>
               <div class="col-6">
-                <label class="input-label">fpo Reference Id <span class="required">*</span></label>
+                <label class="input-label">FPO Reference Id<span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="userName">
+                  <input class="form-control" type="number" formControlName="fpoRefId">
                 </div>
               </div>
+
 
             </div>
             <div class="form-group row mb-3">
 
-              <div class="col-6">
-                <label class="input-label">FPO Reference fId<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="text" formControlName="fpoRefId">
-                </div>
-              </div>
+
               <div class="col-6">
                 <label class="input-label">Gender <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
@@ -214,9 +211,6 @@
                   </select>
                 </div>
               </div>
-            </div>
-            <div class="form-group row mb-3">
-
               <div class="col-6">
                 <label class="input-label">Pin Code<span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
@@ -226,6 +220,10 @@
                   <input class="form-control" type="text" formControlName="pincode">
                 </div>
               </div>
+            </div>
+            <div class="form-group row mb-3">
+
+
               <div class="col-6">
 
                 <label class="input-label">State reference <span class="required">*</span></label>
@@ -233,25 +231,32 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="stateref">
+                  <input class="form-control" type="number" formControlName="stateref">
                 </div>
               </div>
-            </div>
-
-           
-            <div class="form-group row mb-3">
               <div class="col-6">
 
                 <label class="input-label">Register Date<span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
+                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="registerDate">
+                  <input type="text"
+                         placeholder="Datepicker"
+                         class="form-control"
+                         bsDatepicker
+                         
+                         [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }">
                 </div>
 
+              
 
               </div>
+
+            </div>
+
+
+            <div class="form-group row mb-3">
 
               <div class="col-6">
                 <label class="input-label">sla Reference Id<span class="required">*</span></label>
@@ -259,25 +264,24 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="slaRefId">
+                  <input class="form-control" type="number" formControlName="slaRefId">
                 </div>
               </div>
-
-            </div>
-           
-            <div class="form-group row mb-3">
               <div class="col-6">
-
                 <label class="input-label">UP BSM Id<span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
                   <input class="form-control" type="text" formControlName="upBSMId">
-
                 </div>
 
               </div>
+
+            </div>
+
+            <div class="form-group row mb-3">
+
               <div class="col-6">
 
                 <label class="input-label">village Reference Id<span class="required">*</span></label>
@@ -285,55 +289,44 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="villRefId">
+                  <input class="form-control" type="number" formControlName="villRefId">
                 </div>
 
 
               </div>
-
-
-
-
-            </div>
-            <!--<div class="form-group row mb-3">
-              <div class="col-6">
-
-                <label class="input-label">update Date<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="text" formControlName="updateDate">
-                </div>
-
-
-              </div>
-
-              <div class="col-6">
-                <label class="input-label">Updated By<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="text" formControlName="updateby">
-                </div>
-              </div>
-
-            </div>-->
-
-            <div class="form-group row mb-3">
-            
               <div class="col-6">
                 <label class="input-label">village Panchayat Id<span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="villagePanchayatId">
+                  <input class="form-control" type="number" formControlName="villagePanchayatId">
                 </div>
               </div>
 
+
+
+
             </div>
+            
+            <div class="form-group row mb-3">
+    <div class="col-6">
+
+      <label class="input-label">KKC Number<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" formControlName="kccno">
+      </div>
+
+
+    </div>
+
+  
+  </div>
+
+
 
             <hr />
             <h3>Bank Details</h3>
@@ -344,7 +337,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="accountNo">
+                  <input class="form-control" type="number" formControlName="accountNo">
                 </div>
               </div>
               <div class="col-6">
@@ -358,7 +351,7 @@
               </div>
             </div>
             <div class="form-group row mb-3">
-             
+
               <div class="col-6">
                 <label class="input-label">Bank Refernce Id <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
@@ -371,7 +364,7 @@
             </div>
 
             <div class="text-center">
-              <button type="button" class="btn btn-login btn-yellow btn-primary my-4">Register</button>
+              <button type="submit" class="btn btn-login btn-yellow btn-primary my-4" >Register</button>
             </div>
           </form>
           <div class="row">

@@ -18,4 +18,10 @@ export class AuthService {
       return res;
     }));
   }
+  registerUser(data) {
+    alert()
+    return this.http.post<any>(this._url + 'register/farmer', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 }
