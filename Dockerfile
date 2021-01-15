@@ -11,6 +11,8 @@ WORKDIR /app
 
 COPY . .
 
+RUN npm install
+
 RUN ng build --prod
 
 COPY ./dist/ /usr/share/nginx/html/
