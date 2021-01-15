@@ -5,11 +5,13 @@ import { RegisterComponent } from '../../pages/register/register.component';
 import { HomeComponent } from '../../pages/home/home.component';
 import { HomeDummyComponent } from '../../pages/home-dummy/home-dummy.component';
 import { ProductsListComponent } from '../../pages/products-list/products-list.component';
+import { FarmerRegisterComponent } from '../../pages/farmer-register/farmer-register.component';
 
 export const AuthLayoutRoutes: Routes = [
     { path: 'home-old', component: HomeComponent },
     { path: 'login',          component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeDummyComponent },
-  { path : 'products', component:ProductsListComponent }
+  { path: 'products', component: ProductsListComponent },
+  { path: 'farmer-register', component: FarmerRegisterComponent },
 ];
