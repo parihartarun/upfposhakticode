@@ -10,6 +10,9 @@ import { RegisterComponent } from '../../pages/register/register.component';
 import { HomeComponent } from '../../pages/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ProductsListComponent } from '../../pages/products-list/products-list.component';
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+
 
 
 @NgModule({
@@ -18,7 +21,9 @@ import { ProductsListComponent } from '../../pages/products-list/products-list.c
     RouterModule.forChild(AuthLayoutRoutes),
     FormsModule,
     ReactiveFormsModule,
-    CarouselModule
+    CarouselModule,
+    BsDatepickerModule.forRoot(),
+
     // NgbModule
   ],
   declarations: [
@@ -26,6 +31,9 @@ import { ProductsListComponent } from '../../pages/products-list/products-list.c
     RegisterComponent,
     HomeComponent,
     ProductsListComponent
+  ],
+  providers: [
+    { provide: BsDatepickerConfig },
   ]
 })
 export class AuthLayoutModule { }

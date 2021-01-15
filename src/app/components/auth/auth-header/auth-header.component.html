@@ -22,23 +22,14 @@
             <a class="languageText" ngbDropdownToggle>
               <img class="nav-image nav-image1" src="../../../assets/image/img/language.png" />
               Language
-              <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo" >
+              <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
             </a>
             <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
               <a class="dropdown-item" (click)="useLanguage('hi')">Hindi</a>
               <a class="dropdown-item" (click)="useLanguage('en')">English</a>
             </div>
           </div>
-          <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="nav-image" src="../../../assets/image/img/language.png" />
-            Language
-            <img src="../../../assets/image/img/arrodwon.png" alt="logo" style="height: 12px;">
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">English</a>
-            <a class="dropdown-item" href="#">Hindi</a>
 
-          </div>-->
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">
@@ -52,22 +43,25 @@
             Schemes
           </a>
         </li>
-
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="nav-image" src="../../../assets/image/img/usermenu.png" />
-            Sign Up
-            <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#"><b>FPO</b></a>
-            <a class="dropdown-item" href="#">Farmer</a>
-            <a class="dropdown-item" href="#">Buyer/ Seller</a>
-            <a class="dropdown-item" href="#">Input Supplier</a>
-            <a class="dropdown-item" href="#">Equipment Centre</a>
-
+          <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
+            <a class="languageText" ngbDropdownToggle>
+              <img class="nav-image" src="../../../assets/image/img/usermenu.png" />
+              Sign Up
+              <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
+            </a>
+            <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+              <a class="dropdown-item" href="#"><b>FPO</b></a>
+              <a class="dropdown-item" href="#">Farmer</a>
+              <a class="dropdown-item" href="#">Buyer/ Seller</a>
+              <a class="dropdown-item" href="#">Input Supplier</a>
+              <a class="dropdown-item" href="#">Equipment Centre</a>
+            </div>
           </div>
+
         </li>
+
+       
         <li class="nav-item">
           <a class="nav-link" routerLink="/login">
             <img class="nav-image" src="../../../assets/image/img/signup.png" />
