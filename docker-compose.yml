@@ -10,6 +10,5 @@ services:
     ports:
       - 80:4200
     restart: always
-
 networks:
   frontend:

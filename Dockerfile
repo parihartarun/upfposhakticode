@@ -1,21 +1,19 @@
 FROM nginx
 
-RUN ["apt-get","update"]
+RUN apt-get update && apt-get install -y curl && apt-get clean
 
 RUN apt-get install nodejs -y
 RUN apt-get install npm -y
 RUN npm install -g yarn -y
-RUN npm install -g @angular/cli -y
 
+COPY ./nginx/config/default.conf /etc/nginx/conf.d/
+
+RUN mkdir -p /app
 WORKDIR /app
 
 COPY . .
 
 RUN npm install
+RUN npm run build --prod
 
-RUN ng build --prod
-
-RUN cp -R ./dist/ /usr/share/nginx/html/
-#COPY ./dist/ /usr/share/nginx/html/
-
-EXPOSE 4200
+RUN cp -R ./dist/* /usr/share/nginx/html/
