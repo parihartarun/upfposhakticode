@@ -2,8 +2,13 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common';
+
+import { ErrorInterceptor } from './_helpers/error.interceptor'
+import { AuthInterceptor } from './_helpers/auth.interceptor';
+import { AuthGuardService } from './_helpers/auth-guard.service';
 
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -15,8 +20,9 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
-import { TranslateModule, TranslateLoader, TranslateCompiler, TranslateParser } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 import { NgxCaptchaModule } from 'ngx-captcha';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -51,7 +57,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthLayoutComponent,
     HomeDummyComponent
   ],
-  providers: [HttpClient],
+  providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
