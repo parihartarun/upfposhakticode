@@ -15,7 +15,7 @@ RUN npm install
 
 RUN ng build --prod
 
-RUN cp -R ./dist/ /usr/share/nginx/html/
+RUN cp -r ./dist/* /usr/share/nginx/html/
 #COPY ./dist/ /usr/share/nginx/html/
 
 EXPOSE 4200
