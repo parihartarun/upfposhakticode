@@ -13,6 +13,7 @@ import { ProductsListComponent } from '../../pages/products-list/products-list.c
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FarmerRegisterComponent } from '../../pages/farmer-register/farmer-register.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { FpoRegisterComponent } from '../../pages/fpo-register/fpo-register.component';
 
 
 
@@ -34,7 +35,8 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     RegisterComponent,
     FarmerRegisterComponent,    
     HomeComponent,
-    ProductsListComponent
+    ProductsListComponent,
+    FpoRegisterComponent
   ],
   providers: [
     { provide: BsDatepickerConfig },

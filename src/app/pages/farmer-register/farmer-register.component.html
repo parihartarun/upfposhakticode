@@ -24,9 +24,10 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <select class="form-control">
-                    <option value="FPO">FPO</option>
+                  <select class="form-control" disabled>
+
                     <option value="Farmers">Farmers</option>
+                    <option value="FPO">FPO</option>
                     <option value="Buyer/Seller">Buyer/Seller</option>
                     <option value="Input Supplier">Input Supplier</option>
                     <option value="Equipment Center">Equipment Center</option>
@@ -128,9 +129,10 @@
                       <option value="other">Other</option>
 
                     </select>
-                    <div *ngIf="submitted && formControls.category.errors" class="text-danger">
-                      <div *ngIf="formControls.category.errors.required">category is required</div>
-                    </div>
+
+                  </div>
+                  <div *ngIf="submitted && formControls.category.errors" class="text-danger">
+                    <div *ngIf="formControls.category.errors.required">category is required</div>
                   </div>
                 </div>
 
@@ -146,9 +148,10 @@
                       <option value="female">female</option>
 
                     </select>
-                    <div *ngIf="submitted && formControls.gender.errors" class="text-danger">
-                      <div *ngIf="formControls.gender.errors.required">gender is required</div>
-                    </div>
+
+                  </div>
+                  <div *ngIf="submitted && formControls.gender.errors" class="text-danger">
+                    <div *ngIf="formControls.gender.errors.required">gender is required</div>
                   </div>
                 </div>
 
@@ -167,7 +170,7 @@
                     </select>
                   </div>
                   <div *ngIf="submitted && formControls.distRefId.errors" class="text-danger">
-                    <div *ngIf="formControls.distRefId.errors.required">category is required</div>
+                    <div *ngIf="formControls.distRefId.errors.required">district is required</div>
                   </div>
                 </div>
 
@@ -239,7 +242,7 @@
                     <input class="form-control" type="text" formControlName="pincode">
                   </div>
                   <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
-                    <div *ngIf="formControls.pincode.errors.required">farmer's father/ husband Name is required</div>
+                    <div *ngIf="formControls.pincode.errors.required">pin code is required</div>
                   </div>
                 </div>
 

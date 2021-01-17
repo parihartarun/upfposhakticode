@@ -22,8 +22,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { NgxCaptchaModule } from 'ngx-captcha';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
