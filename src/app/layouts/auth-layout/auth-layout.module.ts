@@ -12,6 +12,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ProductsListComponent } from '../../pages/products-list/products-list.component';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FarmerRegisterComponent } from '../../pages/farmer-register/farmer-register.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 
 
@@ -24,6 +25,7 @@ import { FarmerRegisterComponent } from '../../pages/farmer-register/farmer-regi
     ReactiveFormsModule,
     CarouselModule,
     BsDatepickerModule.forRoot(),
+    NgxCaptchaModule
 
     // NgbModule
   ],
