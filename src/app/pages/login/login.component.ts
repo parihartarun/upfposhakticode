@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      recaptcha: ['', Validators.required]
+      //recaptcha: ['', Validators.required]
     });
   }
 
@@ -34,14 +34,17 @@ export class LoginComponent implements OnInit {
   userLogin() {
     this.submitted = true;
     // stop here if form is invalid
+    console.log(this.loginForm);
     if (this.loginForm.invalid) {
         return;
     }
-
     this.api.userLogin(this.loginForm.value).subscribe(response => {
-      if (response != 0) {
-        sessionStorage.setItem('accessToken', response.token);
-        localStorage.setItem('userRole', response.role);
+      console.log(response);
+      if (response.accessToken != '') {
+        sessionStorage.setItem('accessToken', response.accessToken);
+        localStorage.setItem('username', response.username);
+        localStorage.setItem('userRole', response.userrole);
+        this.route.navigate(['/admin']);
       }
     },
       err => {

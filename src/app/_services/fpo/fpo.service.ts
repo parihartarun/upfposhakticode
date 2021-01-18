@@ -84,4 +84,28 @@ export class FpoService {
     }));
   }
 
+  getServices(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  addService(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  getPhotographs(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  addPhotograph(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
 }
