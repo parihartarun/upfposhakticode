@@ -269,7 +269,6 @@
 
               </div>
               <div class="form-group row mb-3">
-
                 <div class="col-6">
                   <label class="input-label"> Confrom Password <span class="required">*</span></label>
                   <div class="input-group input-group-alternative">
@@ -279,12 +278,9 @@
                     <input class="form-control" type="text" formControlName="confirmPassword">
                   </div>
                   <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
-                    <div *ngIf="formControls.confirmPassword.errors.required">password is required</div>
-                  
+                    <div *ngIf="formControls.confirmPassword.errors.required">password is required</div>                  
                   </div>
                 </div>
-               
-
               </div>
 
 
