@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-header',
@@ -8,7 +9,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AuthHeaderComponent implements OnInit {
 
-  constructor(public translate: TranslateService) {
+  isLoggeIn = false;
+  username = '';
+  constructor(public translate: TranslateService, private route: Router) {
     translate.addLangs(['en', 'fr']);
     translate.setDefaultLang('en');
 
@@ -20,6 +23,18 @@ export class AuthHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem('accessToken') != null){
+      this.isLoggeIn = true;
+      this.username = localStorage.getItem('username');
+    }
+  }
+
+  logout(){
+    sessionStorage.removeItem('accessToken');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userrole');
+    this.route.navigate(['/login']);
+    location.reload();
   }
 
 }
