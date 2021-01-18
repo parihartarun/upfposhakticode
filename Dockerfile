@@ -10,6 +10,7 @@ RUN ng build --prod
 # Stage 2 - Deploy with NGNIX
 FROM nginx:1.15.2-alpine
 
+COPY ./nginx/config/nginx.conf /etc/nginx/nginx.conf
 COPY ./nginx/config/default.conf /etc/nginx/conf.d/
 
 COPY --from=builder /usr/src/app/dist /var/www
