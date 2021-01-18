@@ -9,391 +9,208 @@
     </div>
   </div>
   <!-- Page content -->
-<div class="container mt-5 pb-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-12 col-md-7">
-      <div class="card shadow border-0">
-        <div class="card-body px-lg-5 py-lg-5">
-          <div class="text-center mb-4">
-            <h1>Sign up</h1>
-          </div>
-          <form role="form" [formGroup]="registerForm" (ngSubmit)="register()">
-            <div class="form-group mb-3">
-              <label class="input-label">Register As</label>
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"></span>
-                </div>
-                <select class="form-control">
-                  <option value="FPO">FPO</option>
-                  <option value="Farmers">Farmers</option>
-                  <option value="Buyer/Seller">Buyer/Seller</option>
-                  <option value="Input Supplier">Input Supplier</option>
-                  <option value="Equipment Center">Equipment Center</option>
-                </select>
-              </div>
+  <div class="container mt-5 pb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-12 col-md-7">
+        <div class="card shadow border-0">
+          <div class="card-body px-lg-5 py-lg-5">
+            <div class="text-center mb-4">
+              <h1>Sign up</h1>
             </div>
-            <div class="form-group row mb-3">
-              <div class="col-6">
-                <label class="input-label">Farmer Name <span class="required">*</span></label>
+            <form role="form">
+              <div class="form-group mb-3">
+                <label class="input-label">Register As</label>
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <input class="form-control" type="text" formControlName="farmerName">
-                </div>
-                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
-                  <div *ngIf="formControls.farmerName.errors.required">farmer name is required</div>
-                </div>
-              </div>
-              <div class="col-6">
-
-                <label class="input-label">User Name<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="text" formControlName="userName">
-
-                </div>
-                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
-                  <div *ngIf="formControls.username.errors.required">user name is required</div>
-                </div>
-
-              </div>
-
-            </div>
-            <div class="form-group row mb-3">
-              <div class="col-6">
-                <label class="input-label">Farmer Address <span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="text" formControlName="farmerAddress">
-                </div>
-                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
-                  <div *ngIf="formControls.farmerAddress.errors.required">farmer address is required</div>
-                </div>
-              </div>
-              <div class="col-6">
-                <label class="input-label">Farmer Adhaar<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="text" formControlName="farmerAdhaar">
-                </div>
-                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
-                  <div *ngIf="formControls.farmerAdhaar.errors.required">farmer adhaar is required</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row mb-3">
-              <div class="col-6">
-                <label class="input-label">Farmer Lot Number <span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="text" formControlName="farmerLotNo">
-                </div>
-                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
-                  <div *ngIf="formControls.farmerLotNo.errors.required">farmer lot number is required</div>
-                </div>
-              </div>
-              <div class="col-6">
-                <label class="input-label">Farmer Mobile<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="number" formControlName="farmerMob">
-                </div>
-                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
-                  <div *ngIf="formControls.farmerMob.errors.required">farmer mobile  is required</div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row mb-3">
-
-              <div class="col-6">
-                <label class="input-label">Agency <span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="text" formControlName="agency">
-                </div>
-                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
-                  <div *ngIf="formControls.farmerMob.errors.required">farmer mobile  is required</div>
-                </div>
-              </div>
-              <div class="col-6">
-                <label class="input-label">Category <span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="text" formControlName="category">
-                </div>
-                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
-                  <div *ngIf="formControls.farmerMob.errors.required">category is required</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row mb-3">
-
-              <div class="col-6">
-                <label class="input-label">Dist Refernce Id <span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="number" formControlName="distRefId">
-                </div>
-              </div>
-              <div class="col-6">
-                <label class="input-label">Distance From Fpc <span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="text" formControlName="distanceFromFpc">
-                </div>
-              </div>
-            </div>
-            <div class="form-group row mb-3">
-
-              <div class="col-6">
-                <label class="input-label">Education Id <span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="number" formControlName="educationId">
-                </div>
-              </div>
-
-              <div class="col-6">
-                <label class="input-label">Fig Ref Id<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="number" formControlName="figRefId">
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="form-group row mb-3">
-              <div class="col-6">
-                <label class="input-label">User Reference Id<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="number" formControlName="userRefId">
-                </div>
-              </div>
-              <div class="col-6">
-                <label class="input-label">FPO Reference Id<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="number" formControlName="fpoRefId">
-                </div>
-              </div>
-
-
-            </div>
-            <div class="form-group row mb-3">
-
-
-              <div class="col-6">
-                <label class="input-label">Gender <span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <select class="form-control" formControlName="gender">
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">female</option>
-
+                  <select class="form-control">
+                    <option value="FPO">FPO</option>
+                    <option value="Farmers">Farmers</option>
+                    <option value="Buyer/Seller">Buyer/Seller</option>
+                    <option value="Input Supplier">Input Supplier</option>
+                    <option value="Equipment Center">Equipment Center</option>
                   </select>
                 </div>
               </div>
-              <div class="col-6">
-                <label class="input-label">Pin Code<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
+              <div class="form-group row mb-3">
+                <div class="col-6">
+                  <label class="input-label">Agency (Associated with) <span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <select class="form-control">
+                      <option value="">Select Agency</option>
+                      <option value="FPO">FPO</option>
+                      <option value="Farmers">Farmers</option>
+                      <option value="Buyer/Seller">Buyer/Seller</option>
+                      <option value="Input Supplier">Input Supplier</option>
+                      <option value="Equipment Center">Equipment Center</option>
+                    </select>
                   </div>
-                  <input class="form-control" type="text" formControlName="pincode">
+                </div>
+                <div class="col-6">
+                  <label class="input-label">District <span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <select class="form-control">
+                      <option value="">Select District</option>
+                      <option value="FPO">FPO</option>
+                      <option value="Farmers">Farmers</option>
+                      <option value="Buyer/Seller">Buyer/Seller</option>
+                      <option value="Input Supplier">Input Supplier</option>
+                      <option value="Equipment Center">Equipment Center</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="form-group row mb-3">
-
-
-              <div class="col-6">
-
-                <label class="input-label">State reference <span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
+              <div class="form-group row mb-3">
+                <div class="col-6">
+                  <label class="input-label">Block <span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <select class="form-control">
+                      <option value="">Select Agency</option>
+                      <option value="FPO">FPO</option>
+                      <option value="Farmers">Farmers</option>
+                      <option value="Buyer/Seller">Buyer/Seller</option>
+                      <option value="Input Supplier">Input Supplier</option>
+                      <option value="Equipment Center">Equipment Center</option>
+                    </select>
                   </div>
-                  <input class="form-control" type="number" formControlName="stateref">
+                </div>
+                <div class="col-6">
+                  <label class="input-label">Pincode <span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" type="text">
+                  </div>
                 </div>
               </div>
-              <div class="col-6">
-
-                <label class="input-label">Register Date<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+              <div class="form-group row mb-3">
+                <div class="col-6">
+                  <label class="input-label">FPO Name <span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" type="text">
                   </div>
-                  <input type="text"
-                         placeholder="Datepicker"
-                         class="form-control"
-                         bsDatepicker
-                         
-                         [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }"formControlName="registerDate">
                 </div>
-
-              
-
-              </div>
-
-            </div>
-
-
-            <div class="form-group row mb-3">
-
-              <div class="col-6">
-                <label class="input-label">sla Reference Id<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
+                <div class="col-6">
+                  <label class="input-label">FPO Registration No. <span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" type="text">
                   </div>
-                  <input class="form-control" type="number" formControlName="slaRefId">
                 </div>
               </div>
-              <div class="col-6">
-                <label class="input-label">UP BSM Id<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
+              <div class="form-group row mb-3">
+                <div class="col-6">
+                  <label class="input-label">FPO Registration Date <span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" type="text">
                   </div>
-                  <input class="form-control" type="text" formControlName="upBSMId">
                 </div>
-
-              </div>
-
-            </div>
-
-            <div class="form-group row mb-3">
-
-              <div class="col-6">
-
-                <label class="input-label">village Reference Id<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
+                <div class="col-6">
+                  <label class="input-label">FPO Contact No. <span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" type="text">
                   </div>
-                  <input class="form-control" type="number" formControlName="villRefId">
-                </div>
-
-
-              </div>
-              <div class="col-6">
-                <label class="input-label">village Panchayat Id<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="number" formControlName="villagePanchayatId">
                 </div>
               </div>
-
-
-
-
-            </div>
-            
-            <div class="form-group row mb-3">
-    <div class="col-6">
-
-      <label class="input-label">KKC Number<span class="required">*</span></label>
-      <div class="input-group input-group-alternative">
-        <div class="input-group-prepend">
-          <span class="input-group-text"></span>
-        </div>
-        <input class="form-control" type="text" formControlName="kccno">
-      </div>
-
-
-    </div>
-
-  
-  </div>
-
-
-
-            <hr />
-            <h3>Bank Details</h3>
-            <div class="form-group row mb-3">
-              <div class="col-6">
-                <label class="input-label">Bank Account Number <span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
+              <div class="form-group row mb-3">
+                <div class="col-6">
+                  <label class="input-label">FPO Email <span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" type="text">
                   </div>
-                  <input class="form-control" type="number" formControlName="accountNo">
+                </div>
+                <div class="col-6">
+                  <label class="input-label">Username<span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" type="text">
+                  </div>
                 </div>
               </div>
-              <div class="col-6">
-                <label class="input-label">IFSC Code<span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
+              <div class="form-group row mb-3">
+                <div class="col-12">
+                  <label class="input-label">FPO Office Address <span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" type="text">
                   </div>
-                  <input class="form-control" type="text" formControlName="ifscCode">
                 </div>
               </div>
-            </div>
-            <div class="form-group row mb-3">
-
-              <div class="col-6">
-                <label class="input-label">Bank Refernce Id <span class="required">*</span></label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
+              <hr />
+              <h3>Bank Details</h3>
+              <div class="form-group row mb-3">
+                <div class="col-6">
+                  <label class="input-label">Bank Name<span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" type="text">
                   </div>
-                  <input class="form-control" type="text" formControlName="bankRefId">
+                </div>
+                <div class="col-6">
+                  <label class="input-label">IFSC Code<span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" type="text">
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div class="text-center">
-              <button type="submit" class="btn btn-login btn-yellow btn-primary my-4" >Register</button>
-            </div>
-          </form>
-          <div class="row">
-            <div class="col-12">
-              Already have an account? <a routerLink="/login" class=""><small>sign in here</small></a>
+              <div class="form-group row mb-3">
+                <div class="col-6">
+                  <label class="input-label">Bank Account Number <span class="required">*</span></label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <button type="button" class="btn btn-login btn-yellow btn-primary my-4">Register</button>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-12">
+                Already have an account? <a routerLink="/login" class=""><small>sign in here</small></a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 </div>
