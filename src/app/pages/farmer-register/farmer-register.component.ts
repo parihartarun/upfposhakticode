@@ -63,7 +63,8 @@ export class FarmerRegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {
-      validator: MustMatch('password', 'confirmPassword')
+        validator: MustMatch('password', 'confirmPassword'),
+        recaptcha: ['', Validators.required]
     })
 
 
@@ -91,4 +92,7 @@ export class FarmerRegisterComponent implements OnInit {
   }
 
 
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
+  }
 }
