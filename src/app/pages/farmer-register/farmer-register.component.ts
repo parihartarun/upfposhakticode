@@ -17,12 +17,16 @@ export class FarmerRegisterComponent implements OnInit {
   bsRangeValue: Date[];
   maxDate = new Date();
   districts = [
-    { id: 1, name: "mumbai" },
-    { id: 2, name: "pune" },
-    { id: 3, name: "nagpur" },
-    { id: 4, name: "Allhabad" },
-    { id: 5, name: "Delhi" }
+    { district_id: 1, district_name: "mumbai" },
+    { district_id: 2, district_name: "pune" },
+    { district_id: 3, district_name: "nagpur" },
+    { district_id: 4, district_name: "Allhabad" },
+    { district_id: 5, district_name: "Delhi" }
   ];
+  blocks = [{ district_id: 1, blockName: "mumbai" }];
+  panchayts = [{ panchayat_id: 1, panchayat_name: "mumbai1" }];
+  villages = [{ villageId: 1, villageName: "mumbai1" }];
+  banks = [{ bankId: 2, bankName: 'sbi', bankNameHi: "abc" }];
   constructor(private fb: FormBuilder, private api: AuthService) {
   }
 
@@ -35,10 +39,20 @@ export class FarmerRegisterComponent implements OnInit {
 
 
   }
-  selectDistrict(districtId: any) {
-
-    console.log(districtId.currentTarget.value);
+  selectDistrict(districtId: any) {   
     this.registerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
+  }
+  selectBlock(blockId: any) {    
+    this.registerForm.controls['bankRefId'].setValue(blockId.currentTarget.value);
+  }
+  selectGramPanchayat(gramPanchayatId: any) {    
+    this.registerForm.controls['villagePanchayatId'].setValue(gramPanchayatId.currentTarget.value);
+  }
+  selectVillage(villRefId: any) {
+    this.registerForm.controls['villRefId'].setValue(villRefId.currentTarget.value);
+  }
+  selectBanks(bankId: any) {
+    this.registerForm.controls['bankRefId'].setValue(bankId.currentTarget.value);
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
@@ -60,11 +74,12 @@ export class FarmerRegisterComponent implements OnInit {
       userRefId: ['', Validators.required],
       villRefId: ['', Validators.required],
       villagePanchayatId: ['', Validators.required],
+      recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {
         validator: MustMatch('password', 'confirmPassword'),
-        recaptcha: ['', Validators.required]
+       
     })
 
 

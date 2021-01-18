@@ -31,15 +31,21 @@ export class AuthService {
       return res;
     }));
   }
-  getBlock () {
+  getBlock(distId: number) {
   
-    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'block/getBlocksByDistrictId/'+{distId}).pipe(map((res: any) => {
       return res;
     }));
   }
-  getVillage () {
+  getGramPanchayat(blockId: number) {
+
+    return this.http.get<any>(this._url + 'panchayats/getPanchayatsByBlockId/' + { blockId}).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getVillage(panchayatId: number) {
    
-    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'villages/getVillagesByPanchayatId/' + { panchayatId}).pipe(map((res: any) => {
       return res;
     }));
   }
