@@ -10,6 +10,8 @@ RUN ng build --prod
 # Stage 2 - Deploy with NGNIX
 FROM nginx:1.15.2-alpine
 
+RUN apt-get update && apt-get -y install sudo
+
 RUN sudo apt-get install vim
 
 COPY ./nginx/config/default.conf /etc/nginx/nginx.conf
