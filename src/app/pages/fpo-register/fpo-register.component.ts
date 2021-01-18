@@ -49,7 +49,7 @@ export class FpoRegisterComponent implements OnInit {
       fpoOfficeAddress: ['', Validators.required],
       pincode: ['', Validators.required],
       userName: ['', Validators.required],
-      password: ['', Validators.required],      
+      password: ['', Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\\d@$!%*?&]{6}')],      
 
 
     });
@@ -57,6 +57,7 @@ export class FpoRegisterComponent implements OnInit {
   get formControls() {
     return this.fpoRegisterForm.controls;
   }
+ 
   register() {
     this.submitted = true;
     // stop here if form is invalid

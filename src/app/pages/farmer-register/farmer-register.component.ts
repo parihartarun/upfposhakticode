@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MustMatch } from '../../_helpers/constomMatchValidor';
 import { AuthService } from '../../_services/auth/auth.service';
+
 
 @Component({
   selector: 'app-farmer-register',
@@ -58,14 +60,21 @@ export class FarmerRegisterComponent implements OnInit {
       userRefId: ['', Validators.required],
       villRefId: ['', Validators.required],
       villagePanchayatId: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\\d@$!%*?&]{6}')],
+      confirmPassword: ['', Validators.required]
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+    })
 
 
-    });
+
   }
   get formControls() {
     return this.registerForm.controls;
   }
+  get password() {
+    return this.registerForm.get('password');
+  }  
   register() {
     this.submitted = true;
     // stop here if form is invalid
