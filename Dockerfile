@@ -20,6 +20,6 @@ COPY ./nginx/config/default.conf /etc/nginx/conf.d/
 #COPY ./nginx/cert /etc/ssl/admin/
 COPY ./dist /usr/share/nginx/html/
 
-EXPOSE 3000
+EXPOSE 80
 EXPOSE 4200
 
