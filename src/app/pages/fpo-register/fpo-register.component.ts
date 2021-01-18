@@ -34,22 +34,23 @@ export class FpoRegisterComponent implements OnInit {
   createFpoRegisterForm() {
     this.fpoRegisterForm = this.fb.group({
       agency: ['', Validators.required],
-      accountNo: ['', Validators.required],
-      bankRefId: ['', Validators.required],
+      fpoBankAccNo: ['', Validators.required],
+      fpoBankName: ['', Validators.required],
       blockRef: ['', Validators.required],
       fpoName: ['', Validators.required],
       distRefId: ['', Validators.required],
       fpoRegistrationNo: ['', Validators.required], 
       deleted: [true],   
-      fpoContactNo: ['', Validators.required],
+      fmbno: ['', Validators.required],
       fpoEmail: ['', Validators.required],
       fpoId: [''],
-      ifscCode: ['', Validators.required],
-      fpoRegistrationDate: ['', Validators.required],
-      fpoOfficeAddress: ['', Validators.required],
+      fpoIFSC: ['', Validators.required],
+      dateOfRegistration: ['', Validators.required],
+      fpoAddress: ['', Validators.required],
       pincode: ['', Validators.required],
       userName: ['', Validators.required],
-      password: ['', Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\\d@$!%*?&]{6}')],      
+      password: ['', Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\\d@$!%*?&]{6}')],
+      confirmPassword: ['', Validators.required]   
 
 
     });
