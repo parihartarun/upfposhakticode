@@ -10,7 +10,7 @@ RUN ng build --prod
 # Stage 2 - Deploy with NGNIX
 FROM nginx
 
-RUN sudo apt-get install vim
+RUN apt-get install vim
 
 COPY ./nginx/config/default.conf /etc/nginx/nginx.conf
 COPY ./nginx/config/default.conf /etc/nginx/conf.d/
