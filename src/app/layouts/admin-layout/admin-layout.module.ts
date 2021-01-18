@@ -11,6 +11,9 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ToastrModule } from 'ngx-toastr';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+
+
 import { BoardMembersComponent } from '../../pages/fpo/board-members/board-members.component';
 import { LicenseComponent } from '../../pages/fpo/license/license.component';
 import { MachinaryBankComponent } from '../../pages/fpo/machinary-bank/machinary-bank.component';
@@ -27,15 +30,16 @@ import { CropShowingDetailsComponent } from '../../pages/fpo/crop-showing-detail
 import { ComplaintsComponent } from '../../pages/fpo/complaints/complaints.component';
 import { ServicesComponent } from '../../pages/fpo/services/services.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    NgxPaginationModule
   ],
   declarations: [
     DashboardComponent,

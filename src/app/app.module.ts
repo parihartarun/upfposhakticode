@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { ErrorInterceptor } from './_helpers/error.interceptor'
 import { AuthInterceptor } from './_helpers/auth.interceptor';
@@ -42,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     CarouselModule,
     NgxCaptchaModule,
+    NgxPaginationModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           console.log(err);
           if (err.status === 401) {
             // auto logout if 401 response returned from api
-            localStorage.removeItem("userToken");
+            localStorage.removeItem("accessToken");
             this.router.navigate(["login"]);
           } else if (err.status == 500) {
             this.router.navigate(["error", 500]);

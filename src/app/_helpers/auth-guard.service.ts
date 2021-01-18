@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 //import { CommonSettings } from '../_services/CommonSettings';
 
 @Injectable()
-export class AuthGuardService implements CanActivate {
+export class AuthGuardService {
     userRole:number;
     department:number;
 
