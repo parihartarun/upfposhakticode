@@ -49,7 +49,7 @@ export class FpoRegisterComponent implements OnInit {
       fpoOfficeAddress: ['', Validators.required],
       pincode: ['', Validators.required],
       userName: ['', Validators.required],
-      
+      password: ['', Validators.required],      
 
 
     });
