@@ -7,6 +7,7 @@ import { HomeDummyComponent } from '../../pages/home-dummy/home-dummy.component'
 import { ProductsListComponent } from '../../pages/products-list/products-list.component';
 import { FarmerRegisterComponent } from '../../pages/farmer-register/farmer-register.component';
 import { FpoRegisterComponent } from '../../pages/fpo-register/fpo-register.component';
+import { ByerSellRegisterComponent } from '../../pages/byer-sell-register/byer-sell-register.component';
 
 export const AuthLayoutRoutes: Routes = [
     { path: 'home-old', component: HomeComponent },
@@ -16,4 +17,5 @@ export const AuthLayoutRoutes: Routes = [
   { path: 'products', component: ProductsListComponent },
   { path: 'farmer-register', component: FarmerRegisterComponent },
   { path: 'fpo-register', component: FpoRegisterComponent },
+  { path: 'bye-seller-register', component: ByerSellRegisterComponent },
 ];

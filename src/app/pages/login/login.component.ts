@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      recaptcha: ['', Validators.required]
     });
   }
 
@@ -47,5 +48,8 @@ export class LoginComponent implements OnInit {
         console.log(err)
       }
     );
+  }
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
   }
 }

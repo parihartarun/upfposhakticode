@@ -3,14 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../_helpers/constomMatchValidor';
 import { AuthService } from '../../_services/auth/auth.service';
 
-
 @Component({
-  selector: 'app-farmer-register',
-  templateUrl: './farmer-register.component.html',
-  styleUrls: ['./farmer-register.component.css']
+  selector: 'app-byer-sell-register',
+  templateUrl: './byer-sell-register.component.html',
+  styleUrls: ['./byer-sell-register.component.css']
 })
-export class FarmerRegisterComponent implements OnInit {
-
+export class ByerSellRegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   bsValue = new Date();
@@ -27,10 +25,7 @@ export class FarmerRegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.api.getDistrict().subscribe(d => {
-      d
-    }
-    )
+   
     this.createRegisterForm();
 
 
@@ -42,24 +37,23 @@ export class FarmerRegisterComponent implements OnInit {
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      accountNo: ['', Validators.required],
-      bankRefId: ['', Validators.required],
-      blockRef: ['', Validators.required],
-      category: ['', Validators.required],
-      distRefId: ['', Validators.required],
-      gender: ['', Validators.required],
-      deleted: [true],
-      enabled: [true],
-      farmerMob: ['', Validators.required],
-      farmerName: ['', Validators.required],
-      farmerId: ['', Validators.required],  
-      ifscCode: ['', Validators.required],
-      parantsName: ['', Validators.required],
+      area: ['', Validators.required],
+      buildingName: ['', Validators.required],
+      buyerSellerId: [''],
+      buyerSellerName: ['', Validators.required],
+      contactPerson: ['', Validators.required],
+      designationContactPerson: ['', Validators.required],
+      districtRefId: ['', Validators.required],
+      deleted: [true],     
+      email: ['', Validators.required],
+      mobileNumber: ['', Validators.required],
       pincode: ['', Validators.required],
+      ifscCode: ['', Validators.required],
+    
+      stateRefId: ['', Validators.required],
       userName: ['', Validators.required],
-      userRefId: ['', Validators.required],
-      villRefId: ['', Validators.required],
-      villagePanchayatId: ['', Validators.required],
+      streetName: ['', Validators.required],
+      webSite: [''], 
       password: ['', Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\\d@$!%*?&]{6}')],
       confirmPassword: ['', Validators.required]
     }, {
@@ -74,7 +68,7 @@ export class FarmerRegisterComponent implements OnInit {
   }
   get password() {
     return this.registerForm.get('password');
-  }  
+  }
   register() {
     this.submitted = true;
     // stop here if form is invalid
@@ -89,6 +83,7 @@ export class FarmerRegisterComponent implements OnInit {
     //    console.log(err)
     //  })
   }
+
 
 
 }
