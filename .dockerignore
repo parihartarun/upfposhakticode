@@ -1,8 +1,2 @@
-**/.classpath
-**/.dockerignore
-**/.git
-**/.gitignore
-**/docker-compose*
-**/Dockerfile*
 **/node_modules
 README.md
