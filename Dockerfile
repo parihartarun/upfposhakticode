@@ -11,7 +11,8 @@ RUN ng build --prod
 FROM nginx:1.15.2-alpine
 
 COPY --from=builder /usr/src/app/dist /var/www
-COPY ./nginx/config/nginx.conf /etc/nginx/nginx.conf
+
+COPY --from=builder /usr/src/app/nginx/config/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 3000
 
