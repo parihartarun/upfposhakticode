@@ -8,6 +8,7 @@ import { ProductsListComponent } from '../../pages/products-list/products-list.c
 import { FarmerRegisterComponent } from '../../pages/farmer-register/farmer-register.component';
 import { FpoRegisterComponent } from '../../pages/fpo-register/fpo-register.component';
 import { ByerSellRegisterComponent } from '../../pages/byer-sell-register/byer-sell-register.component';
+import { InputSupplierRegisterComponent } from '../../pages/input-supplier-register/input-supplier-register.component';
 
 export const AuthLayoutRoutes: Routes = [
     { path: 'home-old', component: HomeComponent },
@@ -18,4 +19,5 @@ export const AuthLayoutRoutes: Routes = [
   { path: 'farmer-register', component: FarmerRegisterComponent },
   { path: 'fpo-register', component: FpoRegisterComponent },
   { path: 'bye-seller-register', component: ByerSellRegisterComponent },
+  { path: 'input-suppler-register', component: InputSupplierRegisterComponent },
 ];
