@@ -24,4 +24,4 @@ COPY --from=builder /usr/src/app/dist /usr/share/nginx/html/
 EXPOSE 3000
 EXPOSE 4200
 
-#ENTRYPOINT ["nginx","-g","daemon off;"]
+ENTRYPOINT ["nginx","-g","daemon off;"]
