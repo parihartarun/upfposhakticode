@@ -17,41 +17,47 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form [formGroup]="storageUnitForm" (ngSubmit)="addStorageUnit()">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Type of Storage</label><br/>
                     <div class="custom-control custom-radio mb-3 ">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio">
+                      <input formControlName="storageType"  class="custom-control-input" id="customRadio5" type="radio">
                       <label class="custom-control-label" for="customRadio5">Cold Storage</label>
                     </div>
                     <div class="custom-control custom-radio mb-3">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <input formControlName="storageType"  class="custom-control-input" id="customRadio6" checked="" type="radio">
                       <label class="custom-control-label" for="customRadio6">Warehouse</label>
-                    </div>                
+                    </div> 
+                    <div *ngIf="submitted && formControls.storageType.errors" class="text-danger">
+                      <div *ngIf="formControls.storageType.errors.required">Storage Type is required</div>
+                    </div>                 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Facilities available</label>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                      <input class="custom-control-input" id="customCheck5" type="checkbox">
+                      <input formControlName="facilities"  class="custom-control-input" id="customCheck5" type="checkbox">
                       <label class="custom-control-label" for="customCheck5">Washing facility</label>
                     </div>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                      <input class="custom-control-input" id="customCheck6" type="checkbox" checked="">
+                      <input formControlName="facilities" class="custom-control-input" id="customCheck6" type="checkbox" checked="">
                       <label class="custom-control-label" for="customCheck6">Sorting machines</label>
                     </div>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                      <input class="custom-control-input" id="customCheck7" type="checkbox" >
+                      <input formControlName="facilities"  class="custom-control-input" id="customCheck7" type="checkbox" >
                       <label class="custom-control-label" for="customCheck7">Grading machines</label>
                     </div>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                      <input class="custom-control-input" id="customCheck8" type="checkbox" checked="" >
+                      <input formControlName="facilities"  class="custom-control-input" id="customCheck8" type="checkbox" checked="" >
                       <label class="custom-control-label" for="customCheck8">Packaging machines</label>
                     </div>
+                    <div *ngIf="submitted && formControls.facilities.errors" class="text-danger">
+                      <div *ngIf="formControls.facilities.errors.required">Facilities is required</div>
+                    </div>  
                   </div>
                 </div>
               </div>
@@ -59,20 +65,26 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Storage Capacity (In Mt.)</label>
-                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Storage Capacity" value="Jesse">
+                    <input formControlName="storageCapacity"  type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Storage Capacity" value="Jesse">
+                    <div *ngIf="submitted && formControls.storageCapacity.errors" class="text-danger">
+                      <div *ngIf="formControls.storageCapacity.errors.required">Storage Capacity is required</div>
+                    </div>  
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Do you have Seed Processing Unit? *</label><br/>
                     <div class="custom-control custom-radio mb-3 ">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio">
+                      <input formControlName="isProcessingUnit"  class="custom-control-input" id="customRadio5" type="radio">
                       <label class="custom-control-label" for="customRadio5">Yes</label>
                     </div>
                     <div class="custom-control custom-radio mb-3">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <input formControlName="isProcessingUnit"  class="custom-control-input" id="customRadio6" checked="" type="radio">
                       <label class="custom-control-label" for="customRadio6">No</label>
-                    </div>                
+                    </div>      
+                    <div *ngIf="submitted && formControls.isProcessingUnit.errors" class="text-danger">
+                      <div *ngIf="formControls.isProcessingUnit.errors.required">This Field is required</div>
+                    </div>            
                   </div>
                 </div>
               </div>
@@ -80,21 +92,27 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">District</label>
-                    <select class="custom-control custom-select mb-3">
+                    <select formControlName="district"  class="custom-control custom-select mb-3">
                       <option>A</option>
                       <option>B</option>
                       <option>C</option>
                     </select>
+                    <div *ngIf="submitted && formControls.district.errors" class="text-danger">
+                      <div *ngIf="formControls.district.errors.required">District is required</div>
+                    </div>  
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Block</label>
-                    <select class="custom-control custom-select mb-3">
+                    <select formControlName="block"  class="custom-control custom-select mb-3">
                       <option>A</option>
                       <option>B</option>
                       <option>C</option>
-                    </select>                  
+                    </select>  
+                    <div *ngIf="submitted && formControls.block.errors" class="text-danger">
+                      <div *ngIf="formControls.block.errors.required">Block is required</div>
+                    </div>                  
                   </div>
                 </div>
               </div>
@@ -102,16 +120,19 @@
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Address</label>
-                    <textarea class="form-control form-control-alternative" rows="3" placeholder="Address"></textarea>
+                    <textarea formControlName="address"  class="form-control form-control-alternative" rows="3" placeholder="Address"></textarea>
+                    <div *ngIf="submitted && formControls.address.errors" class="text-danger">
+                      <div *ngIf="formControls.address.errors.required">Address is required</div>
+                    </div>  
                   </div>
                 </div>
               </div>
+              <div class="card-footer py-4 text-center">
+                <button type="submit" class="btn btn-yellow btn-primary my-4">Add Storage Unit</button>
+                <button class="btn btn-warning text-right">Reset</button>
+              </div>
             </div>
           </form>
-        </div>
-        <div class="card-footer py-4 text-center">
-          <button class="btn btn-primary text-right">Save</button>
-          <button class="btn btn-warning text-right">Reset</button>
         </div>
       </div>
     </div>
@@ -144,167 +165,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
+              
+              <tr *ngFor="let unit of storageUnits | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                 v@gmail.com
+                 {{unit.storageType}}
+                 </td>
+                <td>
+                  {{unit.address}}, {{unit.block}}, {{unit.district}}
                 </td>
                 <td>
-                 732843473464
+                  {{unit.storageCapacity}}
                 </td>
                 <td>
-                  Female
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">ABlack Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">React Material Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">ABlack Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">React Material Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
+                  {{unit.facilities}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
@@ -322,28 +195,8 @@
           </table>
         </div>
         <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </nav>
         </div>
       </div>

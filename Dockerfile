@@ -1,19 +1,18 @@
-FROM nginx
+# Stage 1 - Build React App inside temporary Node container
+# FROM node:carbon-alpine as react-build
+FROM node:10-alpine as builder
 
-RUN apt-get update && apt-get install -y curl && apt-get clean
-
-RUN apt-get install nodejs -y
-RUN apt-get install npm -y
-RUN npm install -g yarn -y
-
-COPY ./nginx/config/default.conf /etc/nginx/conf.d/
-
-RUN mkdir -p /app
-WORKDIR /app
-
-COPY . .
-
+WORKDIR /usr/src/app
+COPY . ./
 RUN npm install
-RUN npm run build --prod
+RUN npm run ng build --prod
 
-RUN cp -R ./dist/* /usr/share/nginx/html/
+# Stage 2 - Deploy with NGNIX
+FROM nginx:1.15.2-alpine
+
+COPY --from=builder /usr/src/app/dist/angular-app /var/www
+COPY ./nginx/config/nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 3000
+
+ENTRYPOINT ["nginx","-g","daemon off;"]

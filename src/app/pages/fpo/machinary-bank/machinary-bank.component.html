@@ -17,33 +17,39 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form [formGroup]="machinaryBankForm" (ngSubmit)="addBoardMember()">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">Name of Equipment</label>
-                    <select class="form-control form-control-alternative">
+                    <select formControlName="equipName" class="form-control form-control-alternative">
                       <option value="">Select Equipment</option>
                       <option value="1"> Equipment 1</option>
                       <option value="2"> Equipment 2</option>
                       <option value="3"> Equipment 3</option>
-                    </select>                  
+                    </select>    
+                    <div *ngIf="submitted && formControls.equipName.errors" class="text-danger">
+                      <div *ngIf="formControls.equipName.errors.required">Name of Equipment is required</div>
+                    </div>                
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">No. of Equipment</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative">
+                    <input formControlName="equipNumber" type="text" id="input-first-name" class="form-control form-control-alternative">
+                    <div *ngIf="submitted && formControls.equipNumber.errors" class="text-danger">
+                      <div *ngIf="formControls.equipNumber.errors.required">No. of Equipment is required</div>
+                    </div>  
                   </div>
                 </div>
               </div>
+              <div class="card-footer py-4 text-center">
+                <button type="submit" class="btn btn-yellow btn-primary my-4">Add Equipment</button>
+                <button class="btn btn-warning text-right">Reset</button>
+              </div>
             </div>
           </form>
-        </div>
-        <div class="card-footer py-4 text-center">
-          <button class="btn btn-primary text-right">Save</button>
-          <button class="btn btn-warning text-right">Reset</button>
         </div>
       </div>
     </div>
@@ -74,137 +80,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
+              <tr *ngFor="let equipment of equipments | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                 v@gmail.com
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">ABlack Dashboard</span>
-                    </div>
-                  </div>
-                </th>
+                 {{equipment.equipName}}
+                 </td>
                 <td>
-                 v@gmail.com
+                  {{equipment.equipNumber}}
                 </td>
-               
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">React Material Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-               
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">ABlack Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">React Material Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-               
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
@@ -221,28 +103,8 @@
           </table>
         </div>
         <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </nav>
         </div>
       </div>

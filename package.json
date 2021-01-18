@@ -37,6 +37,7 @@
     "ngx-bootstrap": "^6.2.0",
     "ngx-captcha": "^8.0.1",
     "ngx-clipboard": "13.0.1",
+    "ngx-pagination": "^5.0.0",
     "ngx-toastr": "13.0.0",
     "nouislider": "14.6.2",
     "rxjs": "6.6.3",
