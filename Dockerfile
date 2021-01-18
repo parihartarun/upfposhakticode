@@ -1,7 +1,7 @@
 # Stage 1 - Build React App inside temporary Node container
 # FROM node:carbon-alpine as react-build
 FROM node:10-alpine as builder
-
+RUN npm install -g @angular/cli
 WORKDIR /usr/src/app
 COPY . ./
 RUN npm install
