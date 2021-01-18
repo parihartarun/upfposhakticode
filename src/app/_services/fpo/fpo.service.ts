@@ -60,4 +60,28 @@ export class FpoService {
     }));
   }
 
+  getFpoSalesInfo(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  addFpoSalesInfo(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  getComplaints(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  addComplaint(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
 }

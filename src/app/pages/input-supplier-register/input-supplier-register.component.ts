@@ -4,11 +4,12 @@ import { MustMatch } from '../../_helpers/constomMatchValidor';
 import { AuthService } from '../../_services/auth/auth.service';
 
 @Component({
-  selector: 'app-byer-sell-register',
-  templateUrl: './byer-sell-register.component.html',
-  styleUrls: ['./byer-sell-register.component.css']
+  selector: 'app-input-supplier-register',
+  templateUrl: './input-supplier-register.component.html',
+  styleUrls: ['./input-supplier-register.component.css']
 })
-export class ByerSellRegisterComponent implements OnInit {
+export class InputSupplierRegisterComponent implements OnInit {
+
   registerForm: FormGroup;
   submitted = false;
   bsValue = new Date();
@@ -25,7 +26,7 @@ export class ByerSellRegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+
     this.createRegisterForm();
 
 
@@ -37,23 +38,22 @@ export class ByerSellRegisterComponent implements OnInit {
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      area: ['', Validators.required],
-      buildingName: ['', Validators.required],
-      buyerSellerId: [''],
-      buyerSellerName: ['', Validators.required],
-      contactPerson: ['', Validators.required],
-      designationContactPerson: ['', Validators.required],
-      districtRefId: ['', Validators.required],
-      deleted: [true],     
-      email: ['', Validators.required],
-      mobileNumber: ['', Validators.required],
-      pincode: ['', Validators.required],
-      ifscCode: ['', Validators.required],
     
-      stateRefId: ['', Validators.required],
-      userName: ['', Validators.required],
-      streetName: ['', Validators.required],
-      webSite: [''], 
+      blockRefId: ['', Validators.required],
+      inputSupplierName: ['', Validators.required],
+      inputSupplierId: [''],
+      inputSupplierType: ['', Validators.required],
+      contactPerson: ['', Validators.required],
+      license_number: ['', Validators.required],
+      districtRefId: ['', Validators.required],
+      deleted: [true],
+      email: ['', Validators.required],
+      gstNumber: ['', Validators.required],     
+      mobile_number: ['', Validators.required],
+      pincode: ['', Validators.required],
+      seed_id: ['', Validators.required],
+      villageRefId: ['', Validators.required],
+      userName: ['', Validators.required],     
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {

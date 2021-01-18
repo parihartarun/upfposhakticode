@@ -25,6 +25,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ByerSellRegisterComponent } from './pages/byer-sell-register/byer-sell-register.component';
+import { InputSupplierRegisterComponent } from './pages/input-supplier-register/input-supplier-register.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -59,7 +60,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminLayoutComponent,
     AuthLayoutComponent,
     HomeDummyComponent,
-    ByerSellRegisterComponent
+    ByerSellRegisterComponent,
+    InputSupplierRegisterComponent
   ],
   providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
