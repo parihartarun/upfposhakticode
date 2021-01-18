@@ -58,6 +58,7 @@ export class FarmerRegisterComponent implements OnInit {
       userRefId: ['', Validators.required],
       villRefId: ['', Validators.required],
       villagePanchayatId: ['', Validators.required],
+      password: ['', Validators.required],
 
 
     });

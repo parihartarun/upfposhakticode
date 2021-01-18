@@ -17,19 +17,25 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form role="form" [formGroup]="memberForm" (ngSubmit)="addBoardMember()">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">Board Member Name</label>
-                    <input type="text" id="input-username" class="form-control form-control-alternative" >
+                    <input formControlName="name" type="text" id="input-username" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.name.errors" class="text-danger">
+                      <div *ngIf="formControls.name.errors.required">Board Member Name is required</div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">Father's/ Husband's Name</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" >
+                    <input formControlName="fatherName" type="text" id="input-first-name" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.fatherName.errors" class="text-danger">
+                      <div *ngIf="formControls.fatherName.errors.required">Father's/ Husband's Name is required</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -37,13 +43,20 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Email address</label>
-                    <input type="email" id="input-email" class="form-control form-control-alternative">
+                    <input formControlName="email" type="email" id="input-email" class="form-control form-control-alternative">
+                    <div *ngIf="submitted && formControls.email.errors" class="text-danger">
+                      <div *ngIf="formControls.email.errors.required">Email is required</div>
+                      <div *ngIf="formControls.email.errors.pattern">Invalid Email Address</div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Mobile</label>
-                    <input type="text" id="input-email" class="form-control form-control-alternative" >
+                    <input formControlName="mobile" type="number" id="input-email" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.mobile.errors" class="text-danger">
+                      <div *ngIf="formControls.mobile.errors.required">Mobile is required</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -51,24 +64,30 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Designation</label>
-                    <input type="text" id="input-last-name" class="form-control form-control-alternative" >
+                    <input formControlName="designation" type="text" id="input-last-name" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.designation.errors" class="text-danger">
+                      <div *ngIf="formControls.designation.errors.required">Designation is required</div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Gender</label><br/>
                     <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio">
+                      <input formControlName="gender" class="custom-control-input" id="customRadio5" type="radio">
                       <label class="custom-control-label" for="customRadio5">Male</label>
                     </div>
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <input formControlName="gender" class="custom-control-input" id="customRadio6" checked="" type="radio">
                       <label class="custom-control-label" for="customRadio6">Female</label>
                     </div>
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio7" type="radio">
+                      <input formControlName="gender" class="custom-control-input" id="customRadio7" type="radio">
                       <label class="custom-control-label" for="customRadio7">Other</label>
-                    </div>                 
+                    </div>  
+                    <div *ngIf="submitted && formControls.gender.errors" class="text-danger">
+                      <div *ngIf="formControls.gender.errors.required"> Gender is required</div>
+                    </div>               
                   </div>
                 </div>
               </div>
@@ -76,21 +95,27 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">District</label>
-                    <select class="custom-control custom-select mb-3">
+                    <select formControlName="district" class="custom-control custom-select">
                       <option>A</option>
                       <option>B</option>
                       <option>C</option>
                     </select>
+                    <div *ngIf="submitted && formControls.district.errors" class="text-danger">
+                      <div *ngIf="formControls.district.errors.required">District is required</div>
+                    </div>  
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Block</label>
-                    <select class="custom-control custom-select mb-3">
+                    <select formControlName="block" class="custom-control custom-select">
                       <option>A</option>
                       <option>B</option>
                       <option>C</option>
-                    </select>                  
+                    </select>  
+                    <div *ngIf="submitted && formControls.block.errors" class="text-danger">
+                      <div *ngIf="formControls.block.errors.required">Block is required</div>
+                    </div>                
                   </div>
                 </div>
               </div>
@@ -98,30 +123,37 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Gram Panchayat</label>
-                    <select class="custom-control custom-select mb-3">
+                    <select formControlName="grampanchayat" class="custom-control custom-select">
                       <option>A</option>
                       <option>B</option>
                       <option>C</option>
-                    </select>                  
+                    </select> 
+                    <div *ngIf="submitted && formControls.grampanchayat.errors" class="text-danger">
+                      <div *ngIf="formControls.grampanchayat.errors.required">Gram Panchayat is required</div>
+                    </div>                 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Village</label>
-                    <select class="custom-control custom-select mb-3">
+                    <select formControlName="village" class="custom-control custom-select">
                       <option>A</option>
                       <option>B</option>
                       <option>C</option>
-                    </select>                  
+                    </select>  
+                    <div *ngIf="submitted && formControls.village.errors" class="text-danger">
+                      <div *ngIf="formControls.village.errors.required">Village is required</div>
+                    </div>                
                   </div>
                 </div>
               </div>
+
+              <div class="card-footer py-4 text-center">
+                <button type="submit" class="btn btn-yellow btn-primary my-4">Add Member</button>
+                <button class="btn btn-warning text-right">Reset</button>
+              </div>
             </div>
           </form>
-        </div>
-        <div class="card-footer py-4 text-center">
-          <button class="btn btn-primary text-right">Save</button>
-          <button class="btn btn-warning text-right">Reset</button>
         </div>
       </div>
     </div>
@@ -147,174 +179,33 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">Member Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Mobile</th>
+                <th scope="col">Father's/Husband's Name</th>
                 <th scope="col">Gender</th>
+                <th scope="col">Designation</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Email</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
+              <tr *ngFor="let member of members | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                 v@gmail.com
+                 {{member.name}}
+                 </td>
+                <td>
+                  {{member.fatherName}}
                 </td>
                 <td>
-                 732843473464
+                  {{member.gender}}
                 </td>
                 <td>
-                  Female
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">ABlack Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
+                  {{member.designation}}
                 </td>
                 <td>
-                 732843473464
+                  {{member.mobile}}
                 </td>
                 <td>
-                  Female
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">React Material Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">ABlack Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">React Material Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
+                  {{member.email}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
@@ -332,28 +223,8 @@
           </table>
         </div>
         <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </nav>
         </div>
       </div>

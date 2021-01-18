@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -38,7 +38,10 @@ export class LoginComponent implements OnInit {
     }
 
     this.api.userLogin(this.loginForm.value).subscribe(response => {
-      console.log(response);
+      if (response != 0) {
+        sessionStorage.setItem('accessToken', response.token);
+        localStorage.setItem('userRole', response.role);
+      }
     },
       err => {
         console.log(err)
