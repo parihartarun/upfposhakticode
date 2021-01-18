@@ -62,7 +62,8 @@
                       <span class="input-group-text"></span>
                     </div>
                     <select class="form-control" formControlName="distRefId" (change)="selectDistrict($event)">
-                      <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
+                      <option value="">Select District</option>
+                      <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
                     </select>
                   </div>
                   <div *ngIf="submitted && formControls.distRefId.errors" class="text-danger">
@@ -71,25 +72,24 @@
                 </div>
               </div>
               <div class="form-group row mb-3">
-                <div class="col-6">
+            <div class="col-6">
                   <label class="input-label">Block <span class="required">*</span></label>
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"></span>
                     </div>
-                    <select class="form-control" formControlName="blockRef">
-                      <option value="">Select Block</option>
-                      <option value="FPO">FPO</option>
-                      <option value="Farmers">Farmers</option>
-                      <option value="Buyer/Seller">Buyer/Seller</option>
-                      <option value="Input Supplier">Input Supplier</option>
-                      <option value="Equipment Center">Equipment Center</option>
+                    <select class="form-control" formControlName="blockRef" (change)="selectBlock($event)">
+                      <option value="">Select Block </option>
+                      <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
+
+                     
                     </select>
                   </div>
-                  <div *ngIf="submitted && formControls.bankRefId.errors" class="text-danger">
-                    <div *ngIf="formControls.bankRefId.errors.required">block is required</div>
+                  <div *ngIf="submitted && formControls.blockRef.errors" class="text-danger">
+                    <div *ngIf="formControls.blockRef.errors.required">block is required</div>
                   </div>
                 </div>
+
                 <div class="col-6">
                   <label class="input-label">Pincode <span class="required">*</span></label>
                   <div class="input-group input-group-alternative">
@@ -248,14 +248,10 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"></span>
                     </div>
-                    <select class="form-control" formControlName="bankRefId">
-                      <option value="">Select Gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">female</option>
-                    </select>
+                    <input class="form-control" type="number" formControlName="fpoBankName">
                   </div>
-                  <div *ngIf="submitted && formControls.bankRefId.errors" class="text-danger">
-                    <div *ngIf="formControls.bankRefId.errors.required">bank name is required</div>
+                  <div *ngIf="submitted && formControls.bank_name.errors" class="text-danger">
+                    <div *ngIf="formControls.fpoBankName.errors.required"> bank Name is required</div>
                   </div>
                 </div>
 
@@ -282,10 +278,10 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"></span>
                     </div>
-                    <input class="form-control" type="text" formControlName="ifscCode">
+                    <input class="form-control" type="text" formControlName="fpoIFSC">
                   </div>
-                  <div *ngIf="submitted && formControls.ifscCode.errors" class="text-danger">
-                    <div *ngIf="formControls.ifscCode.errors.required"> ifsc code  is required</div>
+                  <div *ngIf="submitted && formControls.fpoIFSC.errors" class="text-danger">
+                    <div *ngIf="formControls.fpoIFSC.errors.required"> ifsc code  is required</div>
                   </div>
                 </div>
               </div>
