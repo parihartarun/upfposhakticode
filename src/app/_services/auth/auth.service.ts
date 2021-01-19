@@ -33,7 +33,7 @@ export class AuthService {
   }
   getBlock(distId: number) {
   
-    return this.http.get<any>(this._url + 'api/v1/block/getBlocksByDistrictId/'+{distId}).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/v1/block/getBlocksByDistrictId/'+distId).pipe(map((res: any) => {
       return res;
     }));
   }

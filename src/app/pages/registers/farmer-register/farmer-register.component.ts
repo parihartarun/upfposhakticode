@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MustMatch } from '../../_helpers/constomMatchValidor';
-import { AuthService } from '../../_services/auth/auth.service';
+import { MustMatch } from '../../../_helpers/constomMatchValidor';
+import { AuthService } from '../../../_services/auth/auth.service';
+
 
 
 @Component({
@@ -16,14 +17,8 @@ export class FarmerRegisterComponent implements OnInit {
   bsValue = new Date();
   bsRangeValue: Date[];
   maxDate = new Date();
-  districts = [
-    { district_id: 1, district_name: "mumbai" },
-    { district_id: 2, district_name: "pune" },
-    { district_id: 3, district_name: "nagpur" },
-    { district_id: 4, district_name: "Allhabad" },
-    { district_id: 5, district_name: "Delhi" }
-  ];
-  blocks = [{ district_id: 1, blockName: "mumbai" }];
+  districts = [];
+  blocks = [];
   panchayts = [{ panchayat_id: 1, panchayat_name: "mumbai1" }];
   villages = [{ villageId: 1, villageName: "mumbai1" }];
   banks = [{ bankId: 2, bankName: 'sbi', bankNameHi: "abc" }];
@@ -32,7 +27,7 @@ export class FarmerRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.api.getDistrict().subscribe(d => {
-      d
+      this.districts = d
     }
     )
     this.createRegisterForm();
@@ -40,7 +35,10 @@ export class FarmerRegisterComponent implements OnInit {
 
   }
   selectDistrict(districtId: any) {   
-    this.registerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
+    this.registerForm.controls['distRefId'].setValue(parseInt(districtId.currentTarget.value));
+    this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
+      this.blocks = block
+    })
   }
   selectBlock(blockId: any) {    
     this.registerForm.controls['bankRefId'].setValue(blockId.currentTarget.value);

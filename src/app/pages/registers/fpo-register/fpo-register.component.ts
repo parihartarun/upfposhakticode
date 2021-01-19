@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../_services/auth/auth.service';
+import { MustMatch } from '../../../_helpers/constomMatchValidor';
+import { AuthService } from '../../../_services/auth/auth.service';
+
 
 @Component({
   selector: 'app-fpo-register',
@@ -59,9 +61,9 @@ export class FpoRegisterComponent implements OnInit {
       pincode: ['', Validators.required],
       userName: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
-      confirmPassword: ['', Validators.required]   
-
-
+      confirmPassword: ['', Validators.required]
+    }, {
+      validator: MustMatch('password', 'confirmPassword'),
     });
   }
   get formControls() {
