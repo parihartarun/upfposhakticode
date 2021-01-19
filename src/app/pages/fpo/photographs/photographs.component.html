@@ -75,7 +75,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let Photograph of Photographs | paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr *ngFor="let photograph of photographs | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
                  {{Photograph.image_caption}}
                  </td>
