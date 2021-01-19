@@ -18,27 +18,33 @@ export class AuthService {
       return res;
     }));
   }
+
+  sendForgotPasswordEmail(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
   
   registerUser(data) {
-   
     return this.http.post<any>(this._url + 'register/farmer', data).pipe(map((res: any) => {
       return res;
     }));
   }
+
   getDistrict(): Observable<any>  {
    
     return this.http.get<any>(this._url + 'District/getDistricts' ).pipe(map((res: any) => {
       return res;
     }));
   }
+
   getBlock () {
-  
     return this.http.get<any>(this._url + '').pipe(map((res: any) => {
       return res;
     }));
   }
+
   getVillage () {
-   
     return this.http.get<any>(this._url + '').pipe(map((res: any) => {
       return res;
     }));
