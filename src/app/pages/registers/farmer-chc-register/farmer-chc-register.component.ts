@@ -17,6 +17,7 @@ export class FarmerChcRegisterComponent implements OnInit {
   maxDate = new Date();
   districts = [];
   blocks = [];
+  villages = [];
   inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
   isBulkSupplyingCompany: boolean = true
   constructor(private fb: FormBuilder, private api: AuthService) {
@@ -37,10 +38,13 @@ export class FarmerChcRegisterComponent implements OnInit {
   }
   selectBlock(blockId: any) {
     this.registerForm.controls['blockRefId'].setValue(blockId.currentTarget.value);
+    this.api.getVillageByBlock(parseInt(blockId.currentTarget.value)).subscribe(v => {
+      this.villages = v;
+    })
 
   }
   selectVillage(villRefId: any) {
-    this.registerForm.controls['villRefId'].setValue(villRefId.currentTarget.value);
+    this.registerForm.controls['villageRefId'].setValue(villRefId.currentTarget.value);
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
@@ -50,7 +54,7 @@ export class FarmerChcRegisterComponent implements OnInit {
       contactPerson: ['', Validators.required],      
       distRefId: ['', Validators.required],
       deleted: [true],
-      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      email: ['', [Validators.required, Validators.email]],
       firmRegistraionNumber: ['', Validators.required],
       mobile_number: ['', Validators.required],
       pincode: ['', Validators.required],
@@ -80,12 +84,12 @@ export class FarmerChcRegisterComponent implements OnInit {
       return;
     }
     this.registerForm.value
-    //this.api.registerUser(this.registerForm.value).subscribe(response => {
-    //  console.log(response);
-    //},
-    //  err => {
-    //    console.log(err)
-    //  })
+    this.api.registerCHCFmb(this.registerForm.value).subscribe(response => {
+      console.log(response);
+    },
+      err => {
+        console.log(err)
+      })
   }
 
 }

@@ -99,8 +99,8 @@
           <span class="input-group-text"></span>
         </div>
         <select class="form-control" formControlName="villageRefId" (change)="selectVillage($event)">
-          <option value="">Select Village </option>
-          <option *ngFor="let village of villages" [value]="village.villageId">{{village.villageName}}</option>
+          <option value="">Select Village</option>
+          <option *ngFor="let v of villages" [value]="v.villageId">{{v.villageName}}</option>
         </select>
       </div>
       <div *ngIf="submitted && formControls.villageRefId.errors" class="text-danger">
@@ -119,7 +119,7 @@
       </div>
       <div *ngIf="submitted && formControls.email.errors" class="text-danger">
         <div *ngIf="formControls.email.errors.required">email is required</div>
-        <div *ngIf="formControls.email.errors.pattern">Invalid Email Address</div>
+        <div *ngIf="formControls.email.errors.email">Invalid Email Address</div>
       </div>
     </div>
   </div>

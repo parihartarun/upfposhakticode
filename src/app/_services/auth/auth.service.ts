@@ -91,4 +91,10 @@ export class AuthService {
       return res;
     }));
   }
+  registerCHCFmb(data) {
+
+    return this.http.post<any>(this._url + 'register/chcFmb', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 }
