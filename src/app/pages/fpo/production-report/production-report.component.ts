@@ -26,10 +26,10 @@ export class ProductionReportComponent implements OnInit {
       financial_year: [''],
       season: ['']
     });
-    this.getBoardMembers();
+    this.getProduction();
   }
 
-  getBoardMembers(){
+  getProduction(){
     this.production = [
       { 
         name:'Vaishali Patil',
@@ -175,20 +175,8 @@ export class ProductionReportComponent implements OnInit {
     );
   }
 
-  addBoardMember() {
-    this.submitted = true;
-    // stop here if form is invalid
-    if (this.filterForm.invalid) {
-        return;
-    }
-
-    this.api.addBoardMember(this.filterForm.value).subscribe(response => {
-      console.log(response);
-    },
-      err => {
-        console.log(err)
-      }
-    );
+  filterProduction() {
+    this.getProduction();
   }
 
   get formControls(){

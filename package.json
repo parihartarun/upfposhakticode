@@ -7,6 +7,7 @@
     "start:fr": "ng serve --configuration=fr",
     "build": "ng build",
     "build-prod": "ng build --prod",
+    "deploy": "ng build --prod && docker-compose up --build",
     "build:fr": "ng build --configuration=fr",
     "test": "ng test",
     "lint": "ng lint",
