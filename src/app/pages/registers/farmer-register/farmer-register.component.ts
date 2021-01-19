@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
@@ -11,7 +11,7 @@ import { AuthService } from '../../../_services/auth/auth.service';
   styleUrls: ['./farmer-register.component.css']
 })
 export class FarmerRegisterComponent implements OnInit {
-
+  @Input() selectRegisterForm: string; // decorate the property with @Input()
   registerForm: FormGroup;
   submitted = false;
   bsValue = new Date();

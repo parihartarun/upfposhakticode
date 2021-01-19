@@ -21,11 +21,11 @@ import { ComplaintsComponent } from '../../pages/fpo/complaints/complaints.compo
 import { ServicesComponent } from '../../pages/fpo/services/services.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent },
-    { path: 'user-profile',      component: UserProfileComponent },
+    { path: 'dashboard',  component: DashboardComponent },
+    { path: 'user-profile', component: UserProfileComponent },
     { path: 'board-members',   component: BoardMembersComponent },
     { path: 'license',   component: LicenseComponent },
-    { path: 'machinary-bank',   component: MachinaryBankComponent },
+    { path: 'machinary-bank',component: MachinaryBankComponent },
     { path: 'storage-unit',   component: StorageUnitComponent },
     { path: 'crop-production',   component: CropProductionComponent },
     { path: 'sales-details',   component: SalesDetailsComponent },

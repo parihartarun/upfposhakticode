@@ -14,7 +14,7 @@ import { RegisterComponent } from '../../pages/registers/register.component';
 export const AuthLayoutRoutes: Routes = [
     { path: 'home-old', component: HomeComponent },
     { path: 'login',   component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register/:id', component: RegisterComponent },
   { path: 'home', component: HomeDummyComponent },
   { path: 'products', component: ProductsListComponent },
   { path: 'farmer-register', component: FarmerRegisterComponent },
