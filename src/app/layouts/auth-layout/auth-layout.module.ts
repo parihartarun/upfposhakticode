@@ -18,6 +18,7 @@ import { ByerSellRegisterComponent } from '../../pages/registers/byer-sell-regis
 import { InputSupplierRegisterComponent } from '../../pages/registers/input-supplier-register/input-supplier-register.component';
 import { RegisterComponent } from '../../pages/registers/register.component';
 import { EquipmentCentreRegisterComponent } from '../../pages/registers/equipment-centre-register/equipment-centre-register.component';
+import { FarmerChcRegisterComponent } from '../../pages/registers/farmer-chc-register/farmer-chc-register.component';
 
 
 
@@ -43,7 +44,8 @@ import { EquipmentCentreRegisterComponent } from '../../pages/registers/equipmen
     FpoRegisterComponent,
     ByerSellRegisterComponent,
     InputSupplierRegisterComponent,
-    EquipmentCentreRegisterComponent
+    EquipmentCentreRegisterComponent,
+    FarmerChcRegisterComponent
   ],
   providers: [
     { provide: BsDatepickerConfig },

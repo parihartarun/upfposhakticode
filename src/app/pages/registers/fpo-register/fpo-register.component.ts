@@ -17,12 +17,15 @@ export class FpoRegisterComponent implements OnInit {
   blocks = [{ district_id: 1, blockName: "mumbai" }];
   panchayts = [{ panchayat_id: 1, panchayat_name: "mumbai1" }];
   agencies = [{ villageId: 1, villageName: "mumbai1" }];
-  banks = [{ bankId: 2, bankName: 'sbi', bankNameHi: "abc" }];
+  banks = [];
   constructor(private fb: FormBuilder, private api: AuthService) { }
 
   ngOnInit(): void {
     this.api.getDistrict().subscribe(d => {
       this.districts = d
+    })
+    this.api.getBank().subscribe(d => {
+      this.banks = d
     })
     this.createFpoRegisterForm()
   }
@@ -39,7 +42,7 @@ export class FpoRegisterComponent implements OnInit {
     this.fpoRegisterForm.controls['agency'].setValue(districtId.currentTarget.value);
   }
   selectBanks(bankId: any) {
-    this.fpoRegisterForm.controls['bankRefId'].setValue(bankId.currentTarget.value);
+    this.fpoRegisterForm.controls['fpoBankName'].setValue(bankId.currentTarget.value);
   }
   createFpoRegisterForm() {
     this.fpoRegisterForm = this.fb.group({
@@ -52,7 +55,7 @@ export class FpoRegisterComponent implements OnInit {
       fpoRegistrationNo: ['', Validators.required], 
       deleted: [true],   
       fmbno: ['', Validators.required],
-      fpoEmail: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      fpoEmail: ['', [Validators.required, Validators.email]],
       
       fpoIFSC: ['', Validators.required],
       dateOfRegistration: ['', Validators.required],
