@@ -56,7 +56,8 @@ export class ByerSellRegisterComponent implements OnInit {
       stateRefId: ['', Validators.required],
       userName: ['', Validators.required],
       streetName: ['', Validators.required],
-      webSite: [''], 
+      webSite: [''],
+      recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {

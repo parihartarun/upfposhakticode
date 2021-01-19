@@ -233,6 +233,14 @@
         <div *ngIf="formControls.confirmPassword.errors.required">confirm password is required</div>
       </div>
     </div>
+    <div class="col-6">
+      <ngx-recaptcha2 #captchaElem
+                      [siteKey]="'6LeOZ4YUAAAAAJ8clQYNtOXNDHsd58KZHyJeILk6'"
+                      (success)="handleSuccess($event)"
+                      [useGlobalDomain]="false"
+                      formControlName="recaptcha">
+      </ngx-recaptcha2>
+    </div>
   </div>
   <div class="text-center">
     <button type="submit" class="btn btn-login btn-yellow btn-primary my-4">Register</button>

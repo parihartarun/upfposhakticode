@@ -59,6 +59,7 @@ export class FpoRegisterComponent implements OnInit {
       fpoAddress: ['', Validators.required],
       pincode: ['', Validators.required],
       userName: ['', Validators.required],
+      recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {
@@ -85,5 +86,8 @@ export class FpoRegisterComponent implements OnInit {
   }
   
 
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
+  }
 
 }

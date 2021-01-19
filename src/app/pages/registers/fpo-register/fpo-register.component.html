@@ -252,6 +252,14 @@
         <div *ngIf="formControls.fpoIFSC.errors.required"> ifsc code  is required</div>
       </div>
     </div>
+    <div class="col-6">
+      <ngx-recaptcha2 #captchaElem
+                      [siteKey]="'6LeOZ4YUAAAAAJ8clQYNtOXNDHsd58KZHyJeILk6'"
+                      (success)="handleSuccess($event)"
+                      [useGlobalDomain]="false"
+                      formControlName="recaptcha">
+      </ngx-recaptcha2>
+    </div>
   </div>
 
   <div class="text-center">

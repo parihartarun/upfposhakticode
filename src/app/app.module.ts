@@ -24,7 +24,6 @@ import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxCaptchaModule } from 'ngx-captcha';
-import { EquipmentCentreRegisterComponent } from './pages/registers/equipment-centre-register/equipment-centre-register.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -58,7 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminLayoutComponent,
     AuthLayoutComponent,
     HomeDummyComponent,
-    EquipmentCentreRegisterComponent
+  
   ],
   providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

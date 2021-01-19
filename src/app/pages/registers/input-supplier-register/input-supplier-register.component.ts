@@ -17,6 +17,8 @@ export class InputSupplierRegisterComponent implements OnInit {
   maxDate = new Date();
   districts = [];
   blocks = [];
+  inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
+  isBulkSupplyingCompany: boolean=true 
   constructor(private fb: FormBuilder, private api: AuthService) {
   }
 
@@ -35,16 +37,25 @@ export class InputSupplierRegisterComponent implements OnInit {
   }
   selectBlock(blockId: any) {
     this.registerForm.controls['blockRefId'].setValue(blockId.currentTarget.value);
+    
+  }
+  selectInputSupplierType(inputSupplierType: any) {
+    if (parseInt(inputSupplierType.currentTarget.value) == 1) {
+      this.isBulkSupplyingCompany = false;
+    } else {
+      this.isBulkSupplyingCompany = true;
+    }
+    this.registerForm.controls['inputSupplierType'].setValue(inputSupplierType.currentTarget.value);
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({    
-      blockRefId: ['', Validators.required],
+      blockRefId: [''],
       inputSupplierName: ['', Validators.required],
       inputSupplierId: [''],
       inputSupplierType: ['', Validators.required],
       contactPerson: ['', Validators.required],
       license_number: ['', Validators.required],
-      districtRefId: ['', Validators.required],
+      districtRefId: ['', ],
       deleted: [true],
       email:['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       gstNumber: ['', Validators.required],     
@@ -52,7 +63,8 @@ export class InputSupplierRegisterComponent implements OnInit {
       pincode: ['', Validators.required],
       seed_id: ['', Validators.required],
       villageRefId: ['', Validators.required],
-      userName: ['', Validators.required],     
+      userName: ['', Validators.required],
+      recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {

@@ -71,7 +71,7 @@ export class FarmerRegisterComponent implements OnInit {
       gender: ['', Validators.required],
       deleted: [true],
       enabled: [true],
-      farmerMob: ['', Validators.required],
+      farmerMob: ['', [Validators.required]],
       farmerName: ['', Validators.required],       
       ifscCode: ['', Validators.required],
       parantsName: ['', Validators.required],
