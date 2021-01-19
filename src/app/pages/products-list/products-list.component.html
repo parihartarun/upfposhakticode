@@ -17,7 +17,7 @@
       </div>
     </div>
   </header>
-  
+      
   <!-- Page Content -->
   <section class="py-5">
     <div class="container">
@@ -210,7 +210,7 @@
                                 <h4 class="mt-1">Quantity: 450 Kg</h4>
                               </div>
                               <div class="col-md-6 text-right">
-                                <a href="#" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
+                                <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
                               </div>
                             </div>
                         </div>
@@ -231,7 +231,7 @@
                                 <h4 class="mt-1">Quantity: 450 Kg</h4>
                               </div>
                               <div class="col-md-6 text-right">
-                                <a href="#" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
+                                <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
                               </div>
                             </div>
                         </div>
@@ -252,7 +252,7 @@
                                 <h4 class="mt-1">Quantity: 450 Kg</h4>
                               </div>
                               <div class="col-md-6 text-right">
-                                <a href="#" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
+                                <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
                               </div>
                             </div>
                         </div>
@@ -273,7 +273,7 @@
                                 <h4 class="mt-1">Quantity: 450 Kg</h4>
                               </div>
                               <div class="col-md-6 text-right">
-                                <a href="#" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
+                                <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
                               </div>
                             </div>
                         </div>
@@ -294,7 +294,7 @@
                               </div>
                               <div class="col-md-4">
                                 <h4 class="mt-1">Quantity: 450 Kg</h4>
-                                <a href="#" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
+                                <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
                               </div>
                             </div>
                         </div>
@@ -314,7 +314,7 @@
                               </div>
                               <div class="col-md-4">
                                 <h4 class="mt-1">Quantity: 450 Kg</h4>
-                                <a href="#" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
+                                <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
                               </div>
                             </div>
                         </div>
@@ -334,7 +334,7 @@
                               </div>
                               <div class="col-md-4">
                                 <h4 class="mt-1">Quantity: 450 Kg</h4>
-                                <a href="#" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
+                                <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
                               </div>
                             </div>
                         </div>
@@ -342,6 +342,48 @@
                 </div>
             </div>
         </div>
-       
     </div>
+
+    <ng-template #mymodal let-modal>
+      <div class="modal-header">
+        <h3 class="modal-title text-center">Enquiry Form</h3>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form role="form" >
+          <div class="form-group mb-3">
+            <label class="form-control-label" for="input-username">Your Full Name</label>
+            <div class="input-group input-group-alternative">
+              <input class="form-control" placeholder="Full Name" type="text">
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-control-label" for="input-username">Email Address</label>
+            <div class="input-group input-group-alternative">
+              <input class="form-control" placeholder="Email" type="text">
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-control-label" for="input-username">Quantity Required</label>
+            <div class="input-group input-group-alternative">
+              <input class="form-control" placeholder="Quantity" type="text">
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-control-label" for="input-username">Fulfilled Date</label>
+            <div class="input-group input-group-alternative">
+              <input class="form-control" placeholder="Fulfilled Date" type="date">
+            </div>
+          </div>
+  
+          <div class="text-center">
+            <button type="submit" class="btn btn-login btn-product-search btn-primary my-4">Send</button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
   </section>

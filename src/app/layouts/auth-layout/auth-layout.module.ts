@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthLayoutRoutes } from './auth-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { LoginComponent } from '../../pages/login/login.component';
+import { LoginComponent } from '../../pages/auth-pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 import { HomeComponent } from '../../pages/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -14,9 +14,7 @@ import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker
 import { FarmerRegisterComponent } from '../../pages/farmer-register/farmer-register.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { FpoRegisterComponent } from '../../pages/fpo-register/fpo-register.component';
-
-
-
+import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/forgot-password.component';
 
 @NgModule({
   imports: [
@@ -26,9 +24,8 @@ import { FpoRegisterComponent } from '../../pages/fpo-register/fpo-register.comp
     ReactiveFormsModule,
     CarouselModule,
     BsDatepickerModule.forRoot(),
-    NgxCaptchaModule
-
-    // NgbModule
+    NgxCaptchaModule,
+    NgbModule
   ],
   declarations: [
     LoginComponent,
@@ -36,7 +33,8 @@ import { FpoRegisterComponent } from '../../pages/fpo-register/fpo-register.comp
     FarmerRegisterComponent,    
     HomeComponent,
     ProductsListComponent,
-    FpoRegisterComponent
+    FpoRegisterComponent,
+    ForgotPasswordComponent
   ],
   providers: [
     { provide: BsDatepickerConfig },
