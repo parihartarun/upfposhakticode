@@ -102,7 +102,7 @@
         </div>
         <select class="form-control" formControlName="stateRefId" (change)="selectState($event)">
           <option value="">Select State</option>
-          <option *ngFor="let state of states" [value]="state.stateId">{{stateName.name}}</option>
+          <option *ngFor="let state of states" [value]="state.stateId">{{state.stateName}}</option>
         </select>
       </div>
       <div *ngIf="submitted && formControls.stateRefId.errors" class="text-danger">
@@ -155,6 +155,7 @@
       </div>
       <div *ngIf="submitted && formControls.email.errors" class="text-danger">
         <div *ngIf="formControls.email.errors.required">email is required</div>
+        <div *ngIf="formControls.email.errors.email">Invalid Email Address</div>
       </div>
     </div>
 

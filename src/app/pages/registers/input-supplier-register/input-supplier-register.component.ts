@@ -17,6 +17,7 @@ export class InputSupplierRegisterComponent implements OnInit {
   maxDate = new Date();
   districts = [];
   blocks = [];
+  villages = [];
   inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
   isBulkSupplyingCompany: boolean=true 
   constructor(private fb: FormBuilder, private api: AuthService) {
@@ -30,7 +31,7 @@ export class InputSupplierRegisterComponent implements OnInit {
 
   }
   selectDistrict(districtId: any) {
-    this.registerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
+    this.registerForm.controls['districtRefId'].setValue(districtId.currentTarget.value);
     this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(blocks => {
       this.blocks = blocks;
     })
@@ -61,8 +62,8 @@ export class InputSupplierRegisterComponent implements OnInit {
       gstNumber: ['', Validators.required],     
       mobile_number: ['', Validators.required],
       pincode: ['', Validators.required],
-      seed_id: ['', Validators.required],
-      villageRefId: ['', Validators.required],
+      seed_id: [''],
+      villageRefId: [''],
       userName: ['', Validators.required],
       recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],

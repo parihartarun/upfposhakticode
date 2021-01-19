@@ -30,12 +30,13 @@ export class ByerSellRegisterComponent implements OnInit {
   }
   selectState(stateId) {
     this.registerForm.controls['stateRefId'].setValue(stateId.currentTarget.value);
-  }
-  selectDistrict(stateId: any) {   
-    this.registerForm.controls['districtRefId'].setValue(stateId.currentTarget.value);
-    this.api.getDistrictByState(parseInt(stateId.currentTarget.value)).subscribe(d=> {
+    this.api.getDistrictByState(parseInt(stateId.currentTarget.value)).subscribe(d => {
       this.districts = d
     })
+  }
+  selectDistrict(districtRefId: any) {   
+    this.registerForm.controls['districtRefId'].setValue(districtRefId.currentTarget.value);
+    
    
   }
  
@@ -49,10 +50,10 @@ export class ByerSellRegisterComponent implements OnInit {
       designationContactPerson: ['', Validators.required],
       districtRefId: ['', Validators.required],
       deleted: [true],     
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]], 
       mobileNumber: ['', Validators.required],
       pincode: ['', Validators.required],
-      ifscCode: ['', Validators.required],    
+         
       stateRefId: ['', Validators.required],
       userName: ['', Validators.required],
       streetName: ['', Validators.required],
@@ -80,12 +81,12 @@ export class ByerSellRegisterComponent implements OnInit {
       return;
     }
     this.registerForm.value
-    //this.api.registerUser(this.registerForm.value).subscribe(response => {
-    //  console.log(response);
-    //},
-    //  err => {
-    //    console.log(err)
-    //  })
+    this.api.registerBuyerSeller(this.registerForm.value).subscribe(response => {
+     console.log(response);
+    },
+      err => {
+        console.log(err)
+     })
   }
 
 
