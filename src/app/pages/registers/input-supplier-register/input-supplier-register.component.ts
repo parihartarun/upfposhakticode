@@ -38,7 +38,13 @@ export class InputSupplierRegisterComponent implements OnInit {
   }
   selectBlock(blockId: any) {
     this.registerForm.controls['blockRefId'].setValue(blockId.currentTarget.value);
+    this.api.getVillageByBlock(parseInt(blockId.currentTarget.value)).subscribe(v => {
+      this.villages = v;
+    })
     
+  }
+  selectVillage(villRefId: any) {
+    this.registerForm.controls['villageRefId'].setValue(villRefId.currentTarget.value);
   }
   selectInputSupplierType(inputSupplierType: any) {
     if (parseInt(inputSupplierType.currentTarget.value) == 1) {
@@ -58,7 +64,7 @@ export class InputSupplierRegisterComponent implements OnInit {
       license_number: ['', Validators.required],
       districtRefId: ['', ],
       deleted: [true],
-      email:['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      email:['', [Validators.required, Validators.email]],
       gstNumber: ['', Validators.required],     
       mobile_number: ['', Validators.required],
       pincode: ['', Validators.required],
@@ -88,12 +94,12 @@ export class InputSupplierRegisterComponent implements OnInit {
       return;
     }
     this.registerForm.value
-    //this.api.registerUser(this.registerForm.value).subscribe(response => {
-    //  console.log(response);
-    //},
-    //  err => {
-    //    console.log(err)
-    //  })
+    this.api.registerInputSupplier(this.registerForm.value).subscribe(response => {
+      console.log(response);
+    },
+      err => {
+        console.log(err)
+      })
   }
 
 

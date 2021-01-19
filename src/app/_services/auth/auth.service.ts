@@ -85,4 +85,10 @@ export class AuthService {
       return res;
     }));
   }
+  getVillageByBlock(id: Number): Observable<any> {
+
+    return this.http.get<any>(this._url + 'api/v1/villages/getVillagesByBlocktId/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 }
