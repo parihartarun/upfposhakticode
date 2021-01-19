@@ -30,17 +30,23 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.routerParameterId = this._activatedroute.snapshot.paramMap.get("id");
-    if (this.routerParameterId == 1) {
-      this.selectRegisterForm = 'FPO';
-    }
-    else if (this.routerParameterId == 2) {
-      this.selectRegisterForm = 'Farmers'}
-    else if (this.routerParameterId == 3) {
-      this.selectRegisterForm = 'Buyer/Seller';
-    }
-    else if(this.routerParameterId == 4) {
-      this.selectRegisterForm = 'InputSupplier'
-    }
+    this._activatedroute.paramMap.subscribe(params => {
+      this.routerParameterId = params.get('id');
+      if (this.routerParameterId == 1) {
+        this.selectRegisterForm = 'FPO';
+      }
+      else if (this.routerParameterId == 2) {
+        this.selectRegisterForm = 'Farmers'
+      }
+      else if (this.routerParameterId == 3) {
+        this.selectRegisterForm = 'Buyer/Seller';
+      }
+      else if (this.routerParameterId == 4) {
+        this.selectRegisterForm = 'InputSupplier'
+      }
+    });
+
+   
     this.api.getDistrict().subscribe(d => {
       d
     }
@@ -80,7 +86,7 @@ export class RegisterComponent implements OnInit {
   }
   selectRegister(selectRegisterForm: any) {   
     this.selectRegisterForm = selectRegisterForm.currentTarget.value
-    this.registerForm.controls['selectform'].setValue(selectRegisterForm.currentTarget.value);
+    this.registerForm.controls['selectFormValue'].setValue(selectRegisterForm.currentTarget.value);
   }
 
 }
