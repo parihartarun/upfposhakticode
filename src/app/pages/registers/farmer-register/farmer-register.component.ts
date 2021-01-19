@@ -19,17 +19,19 @@ export class FarmerRegisterComponent implements OnInit {
   maxDate = new Date();
   districts = [];
   blocks = [];
-  panchayts = [{ panchayat_id: 1, panchayat_name: "mumbai1" }];
-  villages = [{ villageId: 1, villageName: "mumbai1" }];
-  banks = [{ bankId: 2, bankName: 'sbi', bankNameHi: "abc" }];
+  panchayts = [];
+  villages = [];
+  banks = [];
   constructor(private fb: FormBuilder, private api: AuthService) {
   }
 
   ngOnInit() {
     this.api.getDistrict().subscribe(d => {
       this.districts = d
-    }
-    )
+    })
+    this.api.getBank().subscribe(d => {
+      this.banks = d
+    })
     this.createRegisterForm();
 
 
@@ -40,11 +42,18 @@ export class FarmerRegisterComponent implements OnInit {
       this.blocks = block
     })
   }
-  selectBlock(blockId: any) {    
-    this.registerForm.controls['bankRefId'].setValue(blockId.currentTarget.value);
+  selectBlock(blockId: any) {
+    this.api.getGramPanchayat(parseInt(blockId.currentTarget.value)).subscribe(gp => {
+      this.panchayts = gp
+    })
+    this.registerForm.controls['blockRef'].setValue(blockId.currentTarget.value);
   }
-  selectGramPanchayat(gramPanchayatId: any) {    
-    this.registerForm.controls['villagePanchayatId'].setValue(gramPanchayatId.currentTarget.value);
+  selectGramPanchayat(villagePanchayatId: any) {
+
+    this.registerForm.controls['villagePanchayatId'].setValue(villagePanchayatId.currentTarget.value);
+    this.api.getVillage(parseInt(villagePanchayatId.currentTarget.value)).subscribe(v => {
+      this.villages = v
+    })
   }
   selectVillage(villRefId: any) {
     this.registerForm.controls['villRefId'].setValue(villRefId.currentTarget.value);
@@ -63,13 +72,12 @@ export class FarmerRegisterComponent implements OnInit {
       deleted: [true],
       enabled: [true],
       farmerMob: ['', Validators.required],
-      farmerName: ['', Validators.required],
-      farmerId: ['', Validators.required],  
+      farmerName: ['', Validators.required],       
       ifscCode: ['', Validators.required],
       parantsName: ['', Validators.required],
       pincode: ['', Validators.required],
       userName: ['', Validators.required],
-      userRefId: ['', Validators.required],
+      userRefId: [''],
       villRefId: ['', Validators.required],
       villagePanchayatId: ['', Validators.required],
       recaptcha: ['', Validators.required],
@@ -96,12 +104,12 @@ export class FarmerRegisterComponent implements OnInit {
       return;
     }
     this.registerForm.value
-    //this.api.registerUser(this.registerForm.value).subscribe(response => {
-    //  console.log(response);
-    //},
-    //  err => {
-    //    console.log(err)
-    //  })
+    this.api.registerUser(this.registerForm.value).subscribe(response => {
+      console.log(response);
+   },
+      err => {
+        console.log(err)
+      })
   }
 
 

@@ -12,12 +12,7 @@ import { AuthService } from '../../../_services/auth/auth.service';
 export class FpoRegisterComponent implements OnInit {
   fpoRegisterForm: FormGroup;
   submitted= false;
-  districts = [
-    { district_id: 1, district_name: "mumbai" },
-    { district_id: 2, district_name: "pune" },
-    { district_id: 3, district_name: "nagpur" },
-    { district_id: 4, district_name: "Allhabad" },
-    { district_id: 5, district_name: "Delhi" }
+  districts = [   
   ];
   blocks = [{ district_id: 1, blockName: "mumbai" }];
   panchayts = [{ panchayat_id: 1, panchayat_name: "mumbai1" }];
@@ -26,17 +21,21 @@ export class FpoRegisterComponent implements OnInit {
   constructor(private fb: FormBuilder, private api: AuthService) { }
 
   ngOnInit(): void {
+    this.api.getDistrict().subscribe(d => {
+      this.districts = d
+    })
     this.createFpoRegisterForm()
   }
   selectDistrict(districtId: any) {
     this.fpoRegisterForm.controls['distRefId'].setValue(districtId.currentTarget.value);
+    this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
+      this.blocks = block
+    })
   }
   selectBlock(blockId: any) {
-    this.fpoRegisterForm.controls['bankRefId'].setValue(blockId.currentTarget.value);
+    this.fpoRegisterForm.controls['blockRef'].setValue(blockId.currentTarget.value);
   }
-  selectAgency(districtId: any) {
-
-    console.log(districtId.currentTarget.value);
+  selectAgency(districtId: any) {   
     this.fpoRegisterForm.controls['agency'].setValue(districtId.currentTarget.value);
   }
   selectBanks(bankId: any) {
@@ -53,8 +52,8 @@ export class FpoRegisterComponent implements OnInit {
       fpoRegistrationNo: ['', Validators.required], 
       deleted: [true],   
       fmbno: ['', Validators.required],
-      fpoEmail: ['', Validators.required],
-      fpoId: [''],
+      fpoEmail: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      
       fpoIFSC: ['', Validators.required],
       dateOfRegistration: ['', Validators.required],
       fpoAddress: ['', Validators.required],
@@ -77,12 +76,12 @@ export class FpoRegisterComponent implements OnInit {
       return;
     }
     this.fpoRegisterForm.value
-    //this.api.registerUser(this.registerForm.value).subscribe(response => {
-    //  console.log(response);
-    //},
-    //  err => {
-    //    console.log(err)
-    //  })
+    this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
+     console.log(response);
+    },
+     err => {
+       console.log(err)
+      })
   }
   
 

@@ -15,30 +15,26 @@ export class InputSupplierRegisterComponent implements OnInit {
   bsValue = new Date();
   bsRangeValue: Date[];
   maxDate = new Date();
-  districts = [
-    { id: 1, name: "mumbai" },
-    { id: 2, name: "pune" },
-    { id: 3, name: "nagpur" },
-    { id: 4, name: "Allhabad" },
-    { id: 5, name: "Delhi" }
-  ];
+  districts = [];
+  blocks = [];
   constructor(private fb: FormBuilder, private api: AuthService) {
   }
 
   ngOnInit() {
-
+    this.api.getDistrict().subscribe(d => {
+      this.districts = d
+    })
     this.createRegisterForm();
-
 
   }
   selectDistrict(districtId: any) {
-
-    console.log(districtId.currentTarget.value);
     this.registerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
+    this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
+      this.blocks = block
+    })
   }
   createRegisterForm() {
-    this.registerForm = this.fb.group({
-    
+    this.registerForm = this.fb.group({    
       blockRefId: ['', Validators.required],
       inputSupplierName: ['', Validators.required],
       inputSupplierId: [''],
@@ -47,7 +43,7 @@ export class InputSupplierRegisterComponent implements OnInit {
       license_number: ['', Validators.required],
       districtRefId: ['', Validators.required],
       deleted: [true],
-      email: ['', Validators.required],
+      email:['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       gstNumber: ['', Validators.required],     
       mobile_number: ['', Validators.required],
       pincode: ['', Validators.required],

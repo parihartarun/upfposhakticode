@@ -16,26 +16,19 @@ export class ByerSellRegisterComponent implements OnInit {
   bsValue = new Date();
   bsRangeValue: Date[];
   maxDate = new Date();
-  districts = [
-    { id: 1, name: "mumbai" },
-    { id: 2, name: "pune" },
-    { id: 3, name: "nagpur" },
-    { id: 4, name: "Allhabad" },
-    { id: 5, name: "Delhi" }
-  ];
+  districts = [];
+  blocks = [];
   constructor(private fb: FormBuilder, private api: AuthService) {
   }
 
   ngOnInit() {
-   
-    this.createRegisterForm();
-
-
-  }
-  selectDistrict(districtId: any) {
-
-    console.log(districtId.currentTarget.value);
+    this.api.getDistrict().subscribe(d => {
+      this.districts = d
+    })
+    this.createRegisterForm();  }
+  selectDistrict(districtId: any) {   
     this.registerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
+   
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({

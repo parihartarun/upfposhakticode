@@ -95,8 +95,8 @@
         </div>
         <input class="form-control" type="number" formControlName="fpoRegistrationNo">
       </div>
-      <div *ngIf="submitted && formControls.fpoContactNo.errors" class="text-danger">
-        <div *ngIf="formControls.fpoContactNo.errors.required">fpo registration number  is required</div>
+      <div *ngIf="submitted && formControls.fpoRegistrationNo.errors" class="text-danger">
+        <div *ngIf="formControls.fpoRegistrationNo.errors.required">fpo registration number  is required</div>
       </div>
     </div>
   </div>
@@ -145,6 +145,7 @@
       </div>
       <div *ngIf="submitted && formControls.fpoEmail.errors" class="text-danger">
         <div *ngIf="formControls.fpoEmail.errors.required">fpo email is required</div>
+        <div *ngIf="formControls.fpoEmail.errors.pattern">Invalid Email Address</div>
       </div>
     </div>
     <div class="col-6">
@@ -215,9 +216,9 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="number" formControlName="fpoBankName">
+        <input class="form-control" type="text" formControlName="fpoBankName">
       </div>
-      <div *ngIf="submitted && formControls.bank_name.errors" class="text-danger">
+      <div *ngIf="submitted && formControls.fpoBankName.errors" class="text-danger">
         <div *ngIf="formControls.fpoBankName.errors.required"> bank Name is required</div>
       </div>
     </div>

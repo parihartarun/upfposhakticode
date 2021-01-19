@@ -31,6 +31,12 @@ export class AuthService {
       return res;
     }));
   }
+  getBank(): Observable<any> {
+
+    return this.http.get<any>(this._url + 'api/v1/Bank/getBanks').pipe(map((res: any) => {
+      return res;
+    }));
+  }
   getBlock(distId: number) {
   
     return this.http.get<any>(this._url + 'api/v1/block/getBlocksByDistrictId/'+distId).pipe(map((res: any) => {
@@ -39,13 +45,31 @@ export class AuthService {
   }
   getGramPanchayat(blockId: number) {
 
-    return this.http.get<any>(this._url + 'api/v1/panchayats/getPanchayatsByBlockId/' + { blockId}).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/v1/panchayats/getPanchayatsByBlockId/'+blockId).pipe(map((res: any) => {
       return res;
     }));
   }
   getVillage(panchayatId: number) {
    
-    return this.http.get<any>(this._url + 'api/v1/villages/getVillagesByPanchayatId/' + { panchayatId}).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/v1/villages/getVillagesByPanchayatId/'+panchayatId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  registerFPO(data) {
+
+    return this.http.post<any>(this._url + 'register/fpo', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  registerInputSupplier(data) {
+
+    return this.http.post<any>(this._url + 'register/inputSupplier', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  registerBuyerSeller(data) {
+
+    return this.http.post<any>(this._url + 'register/buyerSeller', data).pipe(map((res: any) => {
       return res;
     }));
   }
