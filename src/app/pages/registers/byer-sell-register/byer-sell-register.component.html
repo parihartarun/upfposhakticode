@@ -100,8 +100,9 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <select class="form-control" formControlName="stateRefId" (change)="selectDistrict($event)">
-          <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
+        <select class="form-control" formControlName="stateRefId" (change)="selectState($event)">
+          <option value="">Select State</option>
+          <option *ngFor="let state of states" [value]="state.stateId">{{stateName.name}}</option>
         </select>
       </div>
       <div *ngIf="submitted && formControls.stateRefId.errors" class="text-danger">
@@ -116,7 +117,8 @@
           <span class="input-group-text"></span>
         </div>
         <select class="form-control" formControlName="districtRefId" (change)="selectDistrict($event)">
-          <option *ngFor="let district of districts" [value]="district.id">{{district.name}}</option>
+          <option value="">Select District</option>
+          <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
         </select>
       </div>
       <div *ngIf="submitted && formControls.districtRefId.errors" class="text-danger">

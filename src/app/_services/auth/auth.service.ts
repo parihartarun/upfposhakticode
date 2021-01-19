@@ -73,4 +73,16 @@ export class AuthService {
       return res;
     }));
   }
+  getState(): Observable<any> {
+
+    return this.http.get<any>(this._url + 'api/v1/state/getStates').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getDistrictByState(id: Number): Observable<any> {
+
+    return this.http.get<any>(this._url + 'api/v1/District/getDistrictsByStateId/'+id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 }

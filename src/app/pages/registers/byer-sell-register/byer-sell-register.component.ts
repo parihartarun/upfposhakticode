@@ -16,20 +16,29 @@ export class ByerSellRegisterComponent implements OnInit {
   bsValue = new Date();
   bsRangeValue: Date[];
   maxDate = new Date();
+  states = [];
   districts = [];
   blocks = [];
   constructor(private fb: FormBuilder, private api: AuthService) {
   }
 
   ngOnInit() {
-    this.api.getDistrict().subscribe(d => {
+    this.api.getState().subscribe(s => {
+      this.states = s
+    })
+    this.createRegisterForm();
+  }
+  selectState(stateId) {
+    this.registerForm.controls['stateRefId'].setValue(stateId.currentTarget.value);
+  }
+  selectDistrict(stateId: any) {   
+    this.registerForm.controls['districtRefId'].setValue(stateId.currentTarget.value);
+    this.api.getDistrictByState(parseInt(stateId.currentTarget.value)).subscribe(d=> {
       this.districts = d
     })
-    this.createRegisterForm();  }
-  selectDistrict(districtId: any) {   
-    this.registerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
    
   }
+ 
   createRegisterForm() {
     this.registerForm = this.fb.group({
       area: ['', Validators.required],
@@ -43,8 +52,7 @@ export class ByerSellRegisterComponent implements OnInit {
       email: ['', Validators.required],
       mobileNumber: ['', Validators.required],
       pincode: ['', Validators.required],
-      ifscCode: ['', Validators.required],
-    
+      ifscCode: ['', Validators.required],    
       stateRefId: ['', Validators.required],
       userName: ['', Validators.required],
       streetName: ['', Validators.required],

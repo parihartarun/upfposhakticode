@@ -29,9 +29,12 @@ export class InputSupplierRegisterComponent implements OnInit {
   }
   selectDistrict(districtId: any) {
     this.registerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
-    this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
-      this.blocks = block
+    this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(blocks => {
+      this.blocks = blocks;
     })
+  }
+  selectBlock(blockId: any) {
+    this.registerForm.controls['blockRefId'].setValue(blockId.currentTarget.value);
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({    
