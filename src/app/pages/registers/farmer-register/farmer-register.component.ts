@@ -107,10 +107,7 @@ export class FarmerRegisterComponent implements OnInit {
     this.registerForm.value
     this.api.registerUser(this.registerForm.value).subscribe(response => {
       alert(response.message);
-      if (response.message == "SuccessFully Saved!") {
-        this._router.navigate(['/login'])
-      }
-      console.log(response);
+     
    },
       err => {
         console.log(err);
