@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="licenseForm" (ngSubmit)="addLicense()">
+          <form [formGroup]="licenseForm" >
             <div class="pl-lg-4">
               <div class="row">
                 <input type="hidden" formControlName="id">
@@ -76,10 +76,10 @@
               </div>
 
               <div class="card-footer py-4 text-center">
-                <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="addLicense()">
+                <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addLicense()">
                   Add License
                 </button>
-                <button *ngIf="edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateLicense()">
+                <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateLicense()">
                   Update License
                 </button>
                 <button class="btn btn-warning text-right" (click)="resetForm()">Reset</button>

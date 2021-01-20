@@ -44,13 +44,13 @@ export class FpoService {
   }
 
   updateLicense(data){
-    return  this.http.put<any>(this._url+'api/fpo/license/:'+data.id, data).pipe(map((res:any)=>{
+    return  this.http.put<any>(this._url+'api/fpo/license/'+data.id, data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   deleteLicense(id){
-    return  this.http.delete<any>(this._url+'api/fpo/license/:'+id).pipe(map((res:any)=>{
+    return  this.http.delete<any>(this._url+'api/fpo/license/'+id).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -62,6 +62,12 @@ export class FpoService {
     }));
   }
 
+  getEquipments(){
+    return  this.http.get<any>(this._url+'api/equipments').pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
   addMachinaryBank(data){
     return  this.http.post<any>(this._url+'api/farm/machinery/banks', data).pipe(map((res:any)=>{
       return res;
@@ -69,13 +75,13 @@ export class FpoService {
   }
 
   updateMachinaryBank(data){
-    return  this.http.put<any>(this._url+'api/farm/machinery/banks/:'+data.id, data).pipe(map((res:any)=>{
+    return  this.http.put<any>(this._url+'api/farm/machinery/banks/'+data.id, data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   deleteMachinaryBank(id){
-    return  this.http.delete<any>(this._url+'api/farm/machinery/banks/:'+id).pipe(map((res:any)=>{
+    return  this.http.delete<any>(this._url+'api/farm/machinery/banks/'+id).pipe(map((res:any)=>{
       return res;
     }));
   }
