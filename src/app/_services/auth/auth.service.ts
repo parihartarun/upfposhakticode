@@ -25,7 +25,7 @@ export class AuthService {
     }));
   }
   
-  registerUser(data) {
+ 
   
   registerUser(data): Observable<any>  {
    
