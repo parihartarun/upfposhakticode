@@ -25,6 +25,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxCaptchaModule } from 'ngx-captcha';
 
+import { ToastrModule } from 'ngx-toastr';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -44,6 +45,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     CarouselModule,
     NgxCaptchaModule,
     NgxPaginationModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
