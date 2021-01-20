@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
-
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class FarmerRegisterComponent implements OnInit {
   panchayts = [];
   villages = [];
   banks = [];
-  constructor(private fb: FormBuilder, private api: AuthService) {
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router) {
   }
 
   ngOnInit() {
@@ -106,6 +106,7 @@ export class FarmerRegisterComponent implements OnInit {
     this.registerForm.value
     this.api.registerUser(this.registerForm.value).subscribe(response => {
       alert(response);
+      this._router.navigate['/login']
    },
       err => {      
         alert(err);
