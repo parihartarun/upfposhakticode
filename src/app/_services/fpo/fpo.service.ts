@@ -26,25 +26,31 @@ export class FpoService {
 
   /************************** License **********************************/
   getLicense(){
+    return  this.http.get<any>(this._url+'api/fpo/license').pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  getLicenseTypes(){
     return  this.http.get<any>(this._url+'api/licenses').pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addLicense(data){
-    return  this.http.post<any>(this._url+'api/licenses', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   updateLicense(data){
-    return  this.http.put<any>(this._url+'api/licenses/:'+data.id, data).pipe(map((res:any)=>{
+    return  this.http.put<any>(this._url+'api/fpo/license/:'+data.id, data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   deleteLicense(id){
-    return  this.http.delete<any>(this._url+'api/licenses/:'+id).pipe(map((res:any)=>{
+    return  this.http.delete<any>(this._url+'api/fpo/license/:'+id).pipe(map((res:any)=>{
       return res;
     }));
   }
