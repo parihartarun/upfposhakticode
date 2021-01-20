@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../../_services/auth/auth.service';
+import { FarmerService } from '../../../_services/farmer/farmer.service';
 
 @Component({
   selector: 'app-add-farmer',
@@ -22,10 +23,13 @@ export class AddFarmerComponent implements OnInit {
   panchayts = [];
   villages = [];
   banks = [];
-  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router) {
+  constructor(private fb: FormBuilder, private _farmerService: FarmerService, private api: AuthService) {
   }
 
   ngOnInit() {
+    this._farmerService.getFarmers().subscribe(f => {
+      f
+    })
     this.api.getDistrict().subscribe(d => {
       this.districts = d
     })

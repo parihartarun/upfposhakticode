@@ -112,10 +112,8 @@ export class FarmerRegisterComponent implements OnInit {
       err => {
         console.log(err);
         alert(err);
-      }),
-      err => {
-        err.error.message
-      }
+      })
+     
   }
 
 
