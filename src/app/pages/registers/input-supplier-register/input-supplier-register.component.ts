@@ -109,5 +109,7 @@ export class InputSupplierRegisterComponent implements OnInit {
   }
 
 
-
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
+  }
 }

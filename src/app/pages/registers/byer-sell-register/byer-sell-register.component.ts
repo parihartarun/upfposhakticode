@@ -95,6 +95,8 @@ export class ByerSellRegisterComponent implements OnInit {
       })
   }
 
-
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
+  }
 
 }

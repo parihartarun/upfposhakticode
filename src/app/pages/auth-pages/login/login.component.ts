@@ -52,4 +52,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
+  } 
 }

@@ -97,5 +97,8 @@ export class FarmerChcRegisterComponent implements OnInit {
         alert(err);
       })
   }
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
+  }
 
 }
