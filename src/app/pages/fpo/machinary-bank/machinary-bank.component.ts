@@ -15,6 +15,7 @@ export class MachinaryBankComponent implements OnInit {
   submitted = false;
   equipments:Array<any>=[];
   p:number = 1;
+  edit = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,77 +27,119 @@ export class MachinaryBankComponent implements OnInit {
     this.machinaryBankForm = this.formBuilder.group({
       equipName: ['', [Validators.required]],
       equipNumber: ['', [Validators.required]],
+      id: [''],
     });
     this.getMachinaryBanks();
   }
 
   getMachinaryBanks(){
+    this.api.getMachinaryBanks().subscribe(response => {
+      console.log(response);
+    },
+      err => {
+        console.log(err)
+      }
+    );
     this.equipments = [
       { 
-        equipName:'tractor',
+        equipName:'Equipment 1',
         equipNumber:'21',
+        id:[1]
       },
       { 
-        equipName:'tractor',
-        equipNumber:'21',
+        equipName:'Equipment 1',
+        equipNumber:'24',
+        id:[2]
       },
       { 
-        equipName:'tractor',
+        equipName:'Equipment 1',
         equipNumber:'21',
+        id:[3]
       },{ 
-        equipName:'tractor',
+        equipName:'Equipment 1',
         equipNumber:'21',
       },
       { 
-        equipName:'tractor',
+        equipName:'Equipment 1',
         equipNumber:'21',
       },
       { 
-        equipName:'tractor',
+        equipName:'Equipment 1',
         equipNumber:'21',
       },
       { 
-        equipName:'tractor',
+        equipName:'Equipment 1',
         equipNumber:'21',
       },
       { 
-        equipName:'tractor',
+        equipName:'Equipment 1',
         equipNumber:'21',
       },
       { 
-        equipName:'tractor',
+        equipName:'Equipment 1',
         equipNumber:'21',
       },
       { 
-        equipName:'tractor',
+        equipName:'Equipment 1',
         equipNumber:'21',
       },
       { 
-        equipName:'tractor',
+        equipName:'Equipment 1',
         equipNumber:'21',
       },
       { 
-        equipName:'tractor',
+        equipName:'Equipment 1',
         equipNumber:'21',
       }
 
   ]
 }
 
-addBoardMember() {
+addMachinaryBank() {
   this.submitted = true;
   // stop here if form is invalid
   if (this.machinaryBankForm.invalid) {
       return;
   }
 
-  this.api.addBoardMember(this.machinaryBankForm.value).subscribe(response => {
+  this.api.addMachinaryBank(this.machinaryBankForm.value).subscribe(response => {
     console.log(response);
   },
     err => {
       console.log(err)
     }
   );
+}
+
+editMachinaryBank(equipment){
+  this.machinaryBankForm.setValue(equipment);
+  this.edit = true;
+}
+
+updateMachinaryBank(equipment){
+  this.api.updateMachinaryBank(equipment).subscribe(response => {
+    console.log(response);
+  },
+    err => {
+      console.log(err)
+    }
+  );
+}
+
+confirmDelete(equipmentId){
+  if(confirm("Are you sure to delete "+name)) {
+    this.api.deleteMachinaryBank(equipmentId).subscribe(response => {
+      console.log(response);
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+}
+
+resetForm(){
+  this.machinaryBankForm.reset();
 }
 
 get formControls(){

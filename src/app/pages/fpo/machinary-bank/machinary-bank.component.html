@@ -20,14 +20,15 @@
           <form [formGroup]="machinaryBankForm" (ngSubmit)="addBoardMember()">
             <div class="pl-lg-4">
               <div class="row">
+                <input type="hidden" formControlName="id">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">Name of Equipment</label>
                     <select formControlName="equipName" class="form-control form-control-alternative">
                       <option value="">Select Equipment</option>
-                      <option value="1"> Equipment 1</option>
-                      <option value="2"> Equipment 2</option>
-                      <option value="3"> Equipment 3</option>
+                      <option value="Equipment 1"> Equipment 1</option>
+                      <option value="Equipment 2"> Equipment 2</option>
+                      <option value="Equipment 3"> Equipment 3</option>
                     </select>    
                     <div *ngIf="submitted && formControls.equipName.errors" class="text-danger">
                       <div *ngIf="formControls.equipName.errors.required">Name of Equipment is required</div>
@@ -45,8 +46,13 @@
                 </div>
               </div>
               <div class="card-footer py-4 text-center">
-                <button type="submit" class="btn btn-yellow btn-primary my-4">Add Equipment</button>
-                <button class="btn btn-warning text-right">Reset</button>
+                <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="addMachinaryBank()">
+                  Add Equipment
+                </button>
+                <button *ngIf="edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateMachinaryBank()">
+                  Update Equipment
+                </button>
+                <button class="btn btn-warning text-right" (click)="resetForm()">Reset</button>
               </div>
             </div>
           </form>
@@ -93,8 +99,8 @@
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editMachinaryBank(equipment)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(equipment)">Delete</a>
                     </div>
                   </div>
                 </td>
