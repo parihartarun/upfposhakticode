@@ -180,5 +180,27 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
+ /************************** FPO's STORAGE UNITS A.K.A Collection Center **********************************/
+
+  addCollectionCenters(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+    deleteCollectionCenters(data){
+      return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+        return res;
+      }));
+    }
+updateCollectionCenters(data){
+return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+          return res;
+        }));
+      }
+getCollectionCenterById(data){
+  return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+            return res;
+          }));
+        }
 
 }

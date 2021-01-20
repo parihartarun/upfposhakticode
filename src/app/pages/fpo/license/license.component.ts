@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
@@ -82,10 +82,13 @@ editLicense(license){
     licenceIssuedBy: [license.licenceIssuedBy, [Validators.required]],
     liceneceNumber: [license.liceneceNumber, [Validators.required]],
     issuedate: [formatDate(license.issuedate, 'yyyy-MM-dd', 'en'), [Validators.required]],
-    licenceValidTill: [formatDate(license.licenceValidTill, 'yyyy-MM-dd', 'en'), [Validators.required]],
+    //licenceValidTill: [formatDate(license.licenceValidTill, 'yyyy-MM-dd', 'en'), [Validators.required]],
     id:[license.id]
   });
+  
   this.edit = true;
+  window.scroll(0,0);
+
 }
 
 updateLicense(){
