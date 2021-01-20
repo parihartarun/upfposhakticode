@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 @Component({
@@ -97,7 +98,7 @@ export class FarmerRegisterComponent implements OnInit {
   get password() {
     return this.registerForm.get('password');
   }  
-  register() {
+  register(): Observable<any>  {
     this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
@@ -105,10 +106,14 @@ export class FarmerRegisterComponent implements OnInit {
     }
     this.registerForm.value
     this.api.registerUser(this.registerForm.value).subscribe(response => {
-      alert(response);
-      this._router.navigate['/login']
+      alert(response.message);
+      if (response.message == "SuccessFully Saved!") {
+        this._router.navigate(['/login'])
+      }
+      console.log(response);
    },
-      err => {      
+      err => {
+        console.log(err);
         alert(err);
       })
   }

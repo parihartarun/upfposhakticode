@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 
@@ -19,7 +20,7 @@ export class ByerSellRegisterComponent implements OnInit {
   states = [];
   districts = [];
   blocks = [];
-  constructor(private fb: FormBuilder, private api: AuthService) {
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router) {
   }
 
   ngOnInit() {
@@ -82,11 +83,16 @@ export class ByerSellRegisterComponent implements OnInit {
     }
     this.registerForm.value
     this.api.registerBuyerSeller(this.registerForm.value).subscribe(response => {
-      alert(response);
+      alert(response.message);
+      if (response.message == "SuccessFully Saved!") {
+        this._router.navigate(['/login'])
+      }
+      console.log(response);
     },
-    err => {
-      alert(err);
-    })
+      err => {
+        console.log(err);
+        alert(err);
+      })
   }
 
 

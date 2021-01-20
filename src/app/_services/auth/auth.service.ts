@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient  } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { environment }  from '../../../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -19,11 +19,11 @@ export class AuthService {
     }));
   }
   
-  registerUser(data) {
+  registerUser(data): Observable<any>  {
    
     return this.http.post<any>(this._url + 'register/farmer', data).pipe(map((res: any) => {
       return res;
-    }));
+    }) );
   }
   getDistrict(): Observable<any>  {
    

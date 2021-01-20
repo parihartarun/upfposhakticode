@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 
@@ -18,7 +19,7 @@ export class FpoRegisterComponent implements OnInit {
   panchayts = [{ panchayat_id: 1, panchayat_name: "mumbai1" }];
   agencies = [{ villageId: 1, villageName: "mumbai1" }];
   banks = [];
-  constructor(private fb: FormBuilder, private api: AuthService) { }
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router) { }
 
   ngOnInit(): void {
     this.api.getDistrict().subscribe(d => {
@@ -81,11 +82,16 @@ export class FpoRegisterComponent implements OnInit {
     }
     this.fpoRegisterForm.value
     this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
-      alert(response);
+      alert(response.message);
+      if (response.message == "SuccessFully Saved!") {
+        this._router.navigate(['/login'])
+      }
+      console.log(response);
     },
-    err => {
-      alert(err);
-    })
+      err => {
+        console.log(err);
+        alert(err);
+      })
   }
   
 
