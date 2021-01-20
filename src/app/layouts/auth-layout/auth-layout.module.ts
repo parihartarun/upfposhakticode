@@ -4,8 +4,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthLayoutRoutes } from './auth-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from '../../pages/login/login.component';
 
+import { LoginComponent } from '../../pages/auth-pages/login/login.component';
+import { RegisterComponent } from '../../pages/register/register.component';
 import { HomeComponent } from '../../pages/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ProductsListComponent } from '../../pages/products-list/products-list.component';
@@ -19,8 +20,6 @@ import { InputSupplierRegisterComponent } from '../../pages/registers/input-supp
 import { RegisterComponent } from '../../pages/registers/register.component';
 
 
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -29,9 +28,8 @@ import { RegisterComponent } from '../../pages/registers/register.component';
     ReactiveFormsModule,
     CarouselModule,
     BsDatepickerModule.forRoot(),
-    NgxCaptchaModule
-
-    // NgbModule
+    NgxCaptchaModule,
+    NgbModule
   ],
   declarations: [
     LoginComponent,
