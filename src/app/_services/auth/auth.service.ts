@@ -18,6 +18,14 @@ export class AuthService {
       return res;
     }));
   }
+
+  sendForgotPasswordEmail(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+  
+  registerUser(data) {
   
   registerUser(data): Observable<any>  {
    
@@ -25,6 +33,7 @@ export class AuthService {
       return res;
     }) );
   }
+
   getDistrict(): Observable<any>  {
    
     return this.http.get<any>(this._url + 'api/v1/District/getDistricts' ).pipe(map((res: any) => {

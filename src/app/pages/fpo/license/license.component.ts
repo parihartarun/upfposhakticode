@@ -15,6 +15,7 @@ export class LicenseComponent implements OnInit {
   submitted = false;
   licenses:Array<any>=[];
   p:number = 1;
+  edit = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,91 +29,104 @@ export class LicenseComponent implements OnInit {
       licenseIssuedBy: ['', [Validators.required]],
       licenseNumber: ['', [Validators.required]],
       issuedDate: ['', [Validators.required]],
-      validTill: ['', [Validators.required]]
+      validTill: ['', [Validators.required]],
+      id:['']
     });
     this.getLicense();
   }
 
   getLicense(){
+    console.log(sessionStorage.getItem('accessToken'));
+    this.api.getLicense().subscribe(response => {
+      console.log(response);
+    },
+      err => {
+        console.log(err)
+      }
+    );
     this.licenses = [
       { 
-        licenseType:'Nursery License',
+        licenseType:'License 1',
+        licenseIssuedBy:'Vaishali Patil',
+        licenseNumber:'JDJD324833',
+        issuedDate:'23/02/2020',
+        validTill:'23/02/2024',
+        id:[4]
+      },
+      { 
+        licenseType:'License 1',
+        licenseIssuedBy:'Vaishali Patil',
+        licenseNumber:'JDJD324833',
+        issuedDate:'23/20/2020',
+        validTill:'23/20/2024',
+        id:[5]
+      },
+      { 
+        licenseType:'License 1',
+        licenseIssuedBy:'Vaishali Patil',
+        licenseNumber:'JDJD324833',
+        issuedDate:'23/20/2020',
+        validTill:'23/20/2024',
+        id:[6]
+      },
+      { 
+        licenseType:'License 1',
         licenseIssuedBy:'Vaishali Patil',
         licenseNumber:'JDJD324833',
         issuedDate:'23/20/2020',
         validTill:'23/20/2024',
       },
       { 
-        licenseType:'Nursery License',
+        licenseType:'License 1',
         licenseIssuedBy:'Vaishali Patil',
         licenseNumber:'JDJD324833',
         issuedDate:'23/20/2020',
         validTill:'23/20/2024',
       },
       { 
-        licenseType:'Nursery License',
+        licenseType:'License 1',
         licenseIssuedBy:'Vaishali Patil',
         licenseNumber:'JDJD324833',
         issuedDate:'23/20/2020',
         validTill:'23/20/2024',
       },
       { 
-        licenseType:'Nursery License',
+        licenseType:'License 1',
         licenseIssuedBy:'Vaishali Patil',
         licenseNumber:'JDJD324833',
         issuedDate:'23/20/2020',
         validTill:'23/20/2024',
       },
       { 
-        licenseType:'Nursery License',
+        licenseType:'License 1',
         licenseIssuedBy:'Vaishali Patil',
         licenseNumber:'JDJD324833',
         issuedDate:'23/20/2020',
         validTill:'23/20/2024',
       },
       { 
-        licenseType:'Nursery License',
+        licenseType:'License 1',
         licenseIssuedBy:'Vaishali Patil',
         licenseNumber:'JDJD324833',
         issuedDate:'23/20/2020',
         validTill:'23/20/2024',
       },
       { 
-        licenseType:'Nursery License',
+        licenseType:'License 1',
         licenseIssuedBy:'Vaishali Patil',
         licenseNumber:'JDJD324833',
         issuedDate:'23/20/2020',
         validTill:'23/20/2024',
       },
       { 
-        licenseType:'Nursery License',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-      },
-      { 
-        licenseType:'Nursery License',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-      },
-      { 
-        licenseType:'Nursery License',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-      },
-      { 
-        licenseType:'Nursery License',
+        licenseType:'License 1',
         licenseIssuedBy:'Vaishali Patil',
         licenseNumber:'JDJD324833',
         issuedDate:'23/20/2020',
         validTill:'23/20/2024',
       }
-  ]
+  ];
+
 }
 
 addLicense() {
@@ -131,9 +145,39 @@ addLicense() {
   );
 }
 
+editLicense(license){
+  this.licenseForm.setValue(license);
+  this.edit = true;
+}
+
+updateLicense(license){
+  this.api.updateLicense(license).subscribe(response => {
+    console.log(response);
+  },
+    err => {
+      console.log(err)
+    }
+  );
+}
+
+confirmDelete(licenseId){
+  if(confirm("Are you sure to delete "+name)) {
+    this.api.deleteLicense(licenseId).subscribe(response => {
+      console.log(response);
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+}
+
+resetForm(){
+  this.licenseForm.reset();
+}
+
 get formControls(){
   return this.licenseForm.controls;
 }
-
 
 }

@@ -77,10 +77,10 @@
             <tbody>
               <tr *ngFor="let photograph of photographs | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                 {{Photograph.image_caption}}
+                 {{photograph.image_caption}}
                  </td>
                 <td>
-                  <a href="" download >{{Photograph.file}}</a>
+                  <a href="" download >{{photograph.file}}</a>
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">

@@ -21,7 +21,7 @@ export class PhotographsComponent implements OnInit {
     private api: FpoService,
     private route: Router
   ) {}
-
+x
   ngOnInit(): void {
     this.photographForm = this.formBuilder.group({
       image_caption: ['', [Validators.required]],

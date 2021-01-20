@@ -24,18 +24,57 @@ export class FpoService {
     }));
   }
 
-  getLicense(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+  /************************** License **********************************/
+  getLicense(){
+    return  this.http.get<any>(this._url+'api/licenses').pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addLicense(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/licenses', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
+  updateLicense(data){
+    return  this.http.put<any>(this._url+'api/licenses/:'+data.id, data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  deleteLicense(id){
+    return  this.http.delete<any>(this._url+'api/licenses/:'+id).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  /************************** Machinary banks **********************************/
+  getMachinaryBanks(){
+    return  this.http.get<any>(this._url+'api/farm/machinery/banks').pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  addMachinaryBank(data){
+    return  this.http.post<any>(this._url+'api/farm/machinery/banks', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  updateMachinaryBank(data){
+    return  this.http.put<any>(this._url+'api/farm/machinery/banks/:'+data.id, data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  deleteMachinaryBank(id){
+    return  this.http.delete<any>(this._url+'api/farm/machinery/banks/:'+id).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  /************************** FPO's Crop Production **********************************/
   getCropProduction(data){
     return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
       return res;
