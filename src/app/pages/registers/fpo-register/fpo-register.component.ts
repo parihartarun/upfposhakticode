@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 
@@ -12,35 +13,37 @@ import { AuthService } from '../../../_services/auth/auth.service';
 export class FpoRegisterComponent implements OnInit {
   fpoRegisterForm: FormGroup;
   submitted= false;
-  districts = [
-    { district_id: 1, district_name: "mumbai" },
-    { district_id: 2, district_name: "pune" },
-    { district_id: 3, district_name: "nagpur" },
-    { district_id: 4, district_name: "Allhabad" },
-    { district_id: 5, district_name: "Delhi" }
+  districts = [   
   ];
   blocks = [{ district_id: 1, blockName: "mumbai" }];
   panchayts = [{ panchayat_id: 1, panchayat_name: "mumbai1" }];
   agencies = [{ villageId: 1, villageName: "mumbai1" }];
-  banks = [{ bankId: 2, bankName: 'sbi', bankNameHi: "abc" }];
-  constructor(private fb: FormBuilder, private api: AuthService) { }
+  banks = [];
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router) { }
 
   ngOnInit(): void {
+    this.api.getDistrict().subscribe(d => {
+      this.districts = d
+    })
+    this.api.getBank().subscribe(d => {
+      this.banks = d
+    })
     this.createFpoRegisterForm()
   }
   selectDistrict(districtId: any) {
     this.fpoRegisterForm.controls['distRefId'].setValue(districtId.currentTarget.value);
+    this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
+      this.blocks = block
+    })
   }
   selectBlock(blockId: any) {
-    this.fpoRegisterForm.controls['bankRefId'].setValue(blockId.currentTarget.value);
+    this.fpoRegisterForm.controls['blockRef'].setValue(blockId.currentTarget.value);
   }
-  selectAgency(districtId: any) {
-
-    console.log(districtId.currentTarget.value);
+  selectAgency(districtId: any) {   
     this.fpoRegisterForm.controls['agency'].setValue(districtId.currentTarget.value);
   }
   selectBanks(bankId: any) {
-    this.fpoRegisterForm.controls['bankRefId'].setValue(bankId.currentTarget.value);
+    this.fpoRegisterForm.controls['fpoBankName'].setValue(bankId.currentTarget.value);
   }
   createFpoRegisterForm() {
     this.fpoRegisterForm = this.fb.group({
@@ -53,13 +56,14 @@ export class FpoRegisterComponent implements OnInit {
       fpoRegistrationNo: ['', Validators.required], 
       deleted: [true],   
       fmbno: ['', Validators.required],
-      fpoEmail: ['', Validators.required],
-      fpoId: [''],
+      fpoEmail: ['', [Validators.required, Validators.email]],
+      
       fpoIFSC: ['', Validators.required],
       dateOfRegistration: ['', Validators.required],
       fpoAddress: ['', Validators.required],
       pincode: ['', Validators.required],
       userName: ['', Validators.required],
+      recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {
@@ -77,14 +81,22 @@ export class FpoRegisterComponent implements OnInit {
       return;
     }
     this.fpoRegisterForm.value
-    //this.api.registerUser(this.registerForm.value).subscribe(response => {
-    //  console.log(response);
-    //},
-    //  err => {
-    //    console.log(err)
-    //  })
+    this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
+      alert(response.message);
+      if (response.message == "SuccessFully Saved!") {
+        this._router.navigate(['/login'])
+      }
+      console.log(response);
+    },
+      err => {
+        console.log(err);
+        alert(err);
+      })
   }
   
 
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
+  }
 
 }

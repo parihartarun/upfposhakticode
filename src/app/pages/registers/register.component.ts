@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../_services/auth/auth.service';
 
 @Component({
@@ -13,6 +14,8 @@ export class RegisterComponent implements OnInit {
   bsValue = new Date();
   bsRangeValue: Date[];
   maxDate = new Date();
+  routerParameterId: any;
+  selectRegisterForm = 'FPO'
   districts = [
     { id: 1, name: "mumbai" },
     { id: 2, name: "pune" },
@@ -20,10 +23,33 @@ export class RegisterComponent implements OnInit {
     { id: 4, name: "Allhabad" },
     { id: 5, name: "Delhi" }
   ];
-  constructor(private fb: FormBuilder, private api: AuthService) {
+  constructor(private fb: FormBuilder, private api: AuthService, private _activatedroute: ActivatedRoute) {
+   
+
   }
 
   ngOnInit() {
+    this.routerParameterId = this._activatedroute.snapshot.paramMap.get("id");
+    this._activatedroute.paramMap.subscribe(params => {
+      this.routerParameterId = params.get('id');
+      if (this.routerParameterId == 1) {
+        this.selectRegisterForm = 'FPO';
+      }
+      else if (this.routerParameterId == 2) {
+        this.selectRegisterForm = 'Farmers'
+      }
+      else if (this.routerParameterId == 3) {
+        this.selectRegisterForm = 'Buyer/Seller';
+      }
+      else if (this.routerParameterId == 4) {
+        this.selectRegisterForm = 'InputSupplier'
+      }
+      else if (this.routerParameterId == 5) {
+        this.selectRegisterForm = 'FarmerCHC'
+      }
+    });
+
+   
     this.api.getDistrict().subscribe(d => {
       d
     }
@@ -39,23 +65,8 @@ export class RegisterComponent implements OnInit {
 }
   createRegisterForm(){
   this.registerForm = this.fb.group({
-    accountNo: ['', Validators.required],
-    bankRefId: ['', Validators.required],
-    blockRef: ['', Validators.required],
-    category: ['', Validators.required],
-    distRefId: ['', Validators.required],
-    gender: ['', Validators.required],
-    deleted: [true],
-    enabled: [true],
-    farmerMob: ['', Validators.required],
-    farmerName: ['', Validators.required],
-    ifscCode: ['', Validators.required],
-    parantsName: ['', Validators.required],
-    pincode: ['', Validators.required],
-    userName: ['', Validators.required],
-    userRefId: ['', Validators.required],
-    villRefId: ['', Validators.required],
-    villagePanchayatId: ['', Validators.required],
+    selectFormValue: [this.selectRegisterForm],
+
 
   });
 }
@@ -75,6 +86,10 @@ export class RegisterComponent implements OnInit {
     //  err => {
     //    console.log(err)
     //  })
+  }
+  selectRegister(selectRegisterForm: any) {   
+    this.selectRegisterForm = selectRegisterForm.currentTarget.value
+    this.registerForm.controls['selectFormValue'].setValue(selectRegisterForm.currentTarget.value);
   }
 
 }

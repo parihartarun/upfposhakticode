@@ -5,11 +5,11 @@ import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 
 @Component({
-  selector: 'app-input-supplier-register',
-  templateUrl: './input-supplier-register.component.html',
-  styleUrls: ['./input-supplier-register.component.css']
+  selector: 'app-farmer-chc-register',
+  templateUrl: './farmer-chc-register.component.html',
+  styleUrls: ['./farmer-chc-register.component.css']
 })
-export class InputSupplierRegisterComponent implements OnInit {
+export class FarmerChcRegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
@@ -20,7 +20,7 @@ export class InputSupplierRegisterComponent implements OnInit {
   blocks = [];
   villages = [];
   inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
-  isBulkSupplyingCompany: boolean=true 
+  isBulkSupplyingCompany: boolean = true
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router) {
   }
 
@@ -32,7 +32,7 @@ export class InputSupplierRegisterComponent implements OnInit {
 
   }
   selectDistrict(districtId: any) {
-    this.registerForm.controls['districtRefId'].setValue(districtId.currentTarget.value);
+    this.registerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
     this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(blocks => {
       this.blocks = blocks;
     })
@@ -42,35 +42,25 @@ export class InputSupplierRegisterComponent implements OnInit {
     this.api.getVillageByBlock(parseInt(blockId.currentTarget.value)).subscribe(v => {
       this.villages = v;
     })
-    
+
   }
   selectVillage(villRefId: any) {
     this.registerForm.controls['villageRefId'].setValue(villRefId.currentTarget.value);
   }
-  selectInputSupplierType(inputSupplierType: any) {
-    if (parseInt(inputSupplierType.currentTarget.value) == 1) {
-      this.isBulkSupplyingCompany = false;
-    } else {
-      this.isBulkSupplyingCompany = true;
-    }
-    this.registerForm.controls['inputSupplierType'].setValue(inputSupplierType.currentTarget.value);
-  }
   createRegisterForm() {
-    this.registerForm = this.fb.group({    
-      blockRefId: [''],
-      inputSupplierName: ['', Validators.required],
-      inputSupplierId: [''],
-      inputSupplierType: ['', Validators.required],
-      contactPerson: ['', Validators.required],
-      license_number: ['', Validators.required],
-      districtRefId: ['', ],
+    this.registerForm = this.fb.group({
+      allotmentNo: ['', Validators.required],
+      blockRefId: ['', Validators.required],     
+      chcFmbName: ['', Validators.required],
+      contactPerson: ['', Validators.required],      
+      distRefId: ['', Validators.required],
       deleted: [true],
-      email:['', [Validators.required, Validators.email]],
-      gstNumber: ['', Validators.required],     
+      email: ['', [Validators.required, Validators.email]],
+      firmRegistraionNumber: ['', Validators.required],
       mobile_number: ['', Validators.required],
       pincode: ['', Validators.required],
-      seed_id: [''],
-      villageRefId: [''],
+      shopEstablishmentNumber: ['', Validators.required],
+      villageRefId: ['', Validators.required],
       userName: ['', Validators.required],
       recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
@@ -95,7 +85,7 @@ export class InputSupplierRegisterComponent implements OnInit {
       return;
     }
     this.registerForm.value
-    this.api.registerInputSupplier(this.registerForm.value).subscribe(response => {
+    this.api.registerCHCFmb(this.registerForm.value).subscribe(response => {
       alert(response.message);
       if (response.message == "SuccessFully Saved!") {
         this._router.navigate(['/login'])
@@ -107,7 +97,5 @@ export class InputSupplierRegisterComponent implements OnInit {
         alert(err);
       })
   }
-
-
 
 }

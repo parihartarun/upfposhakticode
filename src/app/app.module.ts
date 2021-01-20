@@ -25,6 +25,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxCaptchaModule } from 'ngx-captcha';
 
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -56,7 +57,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    HomeDummyComponent
+    HomeDummyComponent,
+    
+  
   ],
   providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

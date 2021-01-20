@@ -1,304 +1,271 @@
-<div class="header bg-gradient-yellow py-7 py-lg-8">
-  <div class="container">
-    <div class="header-body text-center">
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-6">
-          <h1 class="text-white">Welcome!</h1>
+<form role="form" [formGroup]="fpoRegisterForm">
+  
+  <div class="form-group row mb-3">
+
+    <div class="col-6">
+      <label class="input-label">Agency (Associated with) <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
         </div>
+        <select class="form-control" formControlName="agency" (change)="selectAgency($event)">
+          <option value="">
+            Select agency
+          </option>
+          <option value="NABARD">NABARD</option>
+          <option value="SFAC">SFAC</option>
+          <option value="UPBSN">UPBSN</option>
+          <option value="UP State Bio-Energy Development Board">UP State Bio-Energy Development Board</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.agency.errors" class="text-danger">
+        <div *ngIf="formControls.agency.errors.required">agency is required</div>
+      </div>
+    </div>
+    <div class="col-6">
+      <label class="input-label">District <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="distRefId" (change)="selectDistrict($event)">
+          <option value="">Select District</option>
+          <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.distRefId.errors" class="text-danger">
+        <div *ngIf="formControls.distRefId.errors.required">district is required</div>
       </div>
     </div>
   </div>
-  <!-- Page content -->
-  <div class="container mt-5 pb-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-12 col-md-7">
-        <div class="card shadow border-0">
-          <div class="card-body px-lg-5 py-lg-5">
-            <div class="text-center mb-4">
-              <h1>Sign up</h1>
-            </div>
-            <form role="form" [formGroup]="fpoRegisterForm">
-              <div class="form-group mb-3">
-                <label class="input-label">Register As</label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <select class="form-control" disabled>
-                    <option value="FPO">FPO</option>
-                    <option value="Farmers">Farmers</option>
-                    <option value="Buyer/Seller">Buyer/Seller</option>
-                    <option value="Input Supplier">Input Supplier</option>
-                    <option value="Equipment Center">Equipment Center</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row mb-3">
-
-                <div class="col-6">
-                  <label class="input-label">Agency (Associated with) <span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <select class="form-control" formControlName="agency" (change)="selectAgency($event)">
-                      <option value="">
-                        Select agency
-                      </option>
-                      <option value="NABARD">NABARD</option>
-                      <option value="SFAC">SFAC</option>
-                      <option value="UPBSN">UPBSN</option>
-                      <option value="UP State Bio-Energy Development Board">UP State Bio-Energy Development Board</option>
-                    </select>
-                  </div>
-                  <div *ngIf="submitted && formControls.agency.errors" class="text-danger">
-                    <div *ngIf="formControls.agency.errors.required">agency is required</div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <label class="input-label">District <span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <select class="form-control" formControlName="distRefId" (change)="selectDistrict($event)">
-                      <option value="">Select District</option>
-                      <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
-                    </select>
-                  </div>
-                  <div *ngIf="submitted && formControls.distRefId.errors" class="text-danger">
-                    <div *ngIf="formControls.distRefId.errors.required">district is required</div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row mb-3">
-            <div class="col-6">
-                  <label class="input-label">Block <span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <select class="form-control" formControlName="blockRef" (change)="selectBlock($event)">
-                      <option value="">Select Block </option>
-                      <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
-
-                     
-                    </select>
-                  </div>
-                  <div *ngIf="submitted && formControls.blockRef.errors" class="text-danger">
-                    <div *ngIf="formControls.blockRef.errors.required">block is required</div>
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <label class="input-label">Pincode <span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="number" formControlName="pincode">
-                  </div>
-                  <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
-                    <div *ngIf="formControls.pincode.errors.required">pin code is required</div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row mb-3">
-
-                <div class="col-6">
-
-                  <label class="input-label">FPO Name.<span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="text" formControlName="fpoName">
-                  </div>
-                  <div *ngIf="submitted && formControls.fpoName.errors" class="text-danger">
-                    <div *ngIf="formControls.fpoName.errors.required">fpo name is required</div>
-                  </div>
-                </div>
-
-                <div class="col-6">
-
-                  <label class="input-label">FPO Registration No.<span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="number" formControlName="fpoRegistrationNo">
-                  </div>
-                  <div *ngIf="submitted && formControls.fpoContactNo.errors" class="text-danger">
-                    <div *ngIf="formControls.fpoContactNo.errors.required">fpo registration number  is required</div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row mb-3">
-
-                <div class="col-6">
-                  <label class="input-label">FPO Registration Date<span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                    </div>
-                    <input type="text"
-                           placeholder="Datepicker"
-                           class="form-control"
-                           bsDatepicker
-                           [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }" formControlName="dateOfRegistration">
-                  </div>
-                  <div *ngIf="submitted && formControls.dateOfRegistration.errors" class="text-danger">
-                    <div *ngIf="formControls.dateOfRegistration.errors.required">fpo registration date is required</div>
-                  </div>
-                </div>
-
-                <div class="col-6">
-
-                  <label class="input-label">FPO Contact No.<span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="number" formControlName="fmbno">
-                  </div>
-                  <div *ngIf="submitted && formControls.fmbno.errors" class="text-danger">
-                    <div *ngIf="formControls.fmbno.errors.required">fpo contact  is required</div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row mb-3">
-                <div class="col-6">
-
-                  <label class="input-label">FPO Email<span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="text" formControlName="fpoEmail">
-                  </div>
-                  <div *ngIf="submitted && formControls.fpoEmail.errors" class="text-danger">
-                    <div *ngIf="formControls.fpoEmail.errors.required">fpo email is required</div>
-                  </div>
-                </div>
-                <div class="col-6">
-
-                  <label class="input-label">User Name<span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="text" formControlName="userName">
-                  </div>
-                  <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
-                    <div *ngIf="formControls.userName.errors.required">user name is required</div>
-                  </div>
-
-                </div>
-              </div>
-              <div class="form-group row mb-3">
-                <div class="col-6">
-                  <label class="input-label">FPO Office Address <span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="text" formControlName="fpoAddress">
-                  </div>
-                  <div *ngIf="submitted && formControls.fpoAddress.errors" class="text-danger">
-                    <div *ngIf="formControls.fpoAddress.errors.required">fpo office address is required</div>
-                  </div>
-                </div>
-                <div class="col-6">
-
-                  <label class="input-label">Password <span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="text" formControlName="password">
-                  </div>
-                  <div *ngIf="submitted && formControls.password.errors" class="text-danger">
-                    <div *ngIf="formControls.password.errors.required">password is required</div>
-                  </div>
-                  <div *ngIf="fpoRegisterForm.controls['password'].invalid">
-                    please atleast 8 character one upper,one lower case letter,one digit,one special characher
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row mb-3">
-                <div class="col-6">
-                  <label class="input-label"> Confrom Password <span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="text" formControlName="confirmPassword">
-                  </div>
-                  <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
-                    <div *ngIf="formControls.confirmPassword.errors.required"> confirm password is required</div>
-                  </div>
-                </div>
-              </div>
-              <hr />
-              <h3>Bank Details</h3>
-              <div class="form-group row mb-3">
-                <div class="col-6">
-                  <label class="input-label">Bank Name <span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="number" formControlName="fpoBankName">
-                  </div>
-                  <div *ngIf="submitted && formControls.bank_name.errors" class="text-danger">
-                    <div *ngIf="formControls.fpoBankName.errors.required"> bank Name is required</div>
-                  </div>
-                </div>
-
-                <div class="col-6">
-                  <label class="input-label">Bank Account Number <span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="number" formControlName="fpoBankAccNo">
-                  </div>
-                  <div *ngIf="submitted && formControls.fpoBankAccNo.errors" class="text-danger">
-                    <div *ngIf="formControls.fpoBankAccNo.errors.required"> bank account Number is required</div>
-                  </div>
-                </div>
-
-
-              </div>
-              <div class="form-group row mb-3">
-
-                <div class="col-6">
-                  <label class="input-label">IFSC Code<span class="required">*</span></label>
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
-                    </div>
-                    <input class="form-control" type="text" formControlName="fpoIFSC">
-                  </div>
-                  <div *ngIf="submitted && formControls.fpoIFSC.errors" class="text-danger">
-                    <div *ngIf="formControls.fpoIFSC.errors.required"> ifsc code  is required</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="text-center">
-                <button type="button" class="btn btn-login btn-yellow btn-primary my-4" (click)="register()">Register</button>
-              </div>
-            </form>
-            <div class="row">
-              <div class="col-12">
-                Already have an account? <a routerLink="/login" class=""><small>sign in here</small></a>
-              </div>
-            </div>
-          </div>
+  <div class="form-group row mb-3">
+    <div class="col-6">
+      <label class="input-label">Block <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
         </div>
+        <select class="form-control" formControlName="blockRef" (change)="selectBlock($event)">
+          <option value="">Select Block </option>
+          <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
+
+
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.blockRef.errors" class="text-danger">
+        <div *ngIf="formControls.blockRef.errors.required">block is required</div>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <label class="input-label">Pincode <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="number" formControlName="pincode">
+      </div>
+      <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
+        <div *ngIf="formControls.pincode.errors.required">pin code is required</div>
       </div>
     </div>
   </div>
+  <div class="form-group row mb-3">
 
-</div>
+    <div class="col-6">
+
+      <label class="input-label">FPO Name.<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" formControlName="fpoName">
+      </div>
+      <div *ngIf="submitted && formControls.fpoName.errors" class="text-danger">
+        <div *ngIf="formControls.fpoName.errors.required">fpo name is required</div>
+      </div>
+    </div>
+
+    <div class="col-6">
+
+      <label class="input-label">FPO Registration No.<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="number" formControlName="fpoRegistrationNo">
+      </div>
+      <div *ngIf="submitted && formControls.fpoRegistrationNo.errors" class="text-danger">
+        <div *ngIf="formControls.fpoRegistrationNo.errors.required">fpo registration number  is required</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+
+    <div class="col-6">
+      <label class="input-label">FPO Registration Date<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+        </div>
+        <input type="text"
+               placeholder="Datepicker"
+               class="form-control"
+               bsDatepicker
+               [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }" formControlName="dateOfRegistration">
+      </div>
+      <div *ngIf="submitted && formControls.dateOfRegistration.errors" class="text-danger">
+        <div *ngIf="formControls.dateOfRegistration.errors.required">fpo registration date is required</div>
+      </div>
+    </div>
+
+    <div class="col-6">
+
+      <label class="input-label">FPO Contact No.<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="number" formControlName="fmbno">
+      </div>
+      <div *ngIf="submitted && formControls.fmbno.errors" class="text-danger">
+        <div *ngIf="formControls.fmbno.errors.required">fpo contact  is required</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <div class="col-6">
+
+      <label class="input-label">FPO Email<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" formControlName="fpoEmail">
+      </div>
+      <div *ngIf="submitted && formControls.fpoEmail.errors" class="text-danger">
+        <div *ngIf="formControls.fpoEmail.errors.required">fpo email is required</div>
+        <div *ngIf="formControls.fpoEmail.errors.email">Invalid Email Address</div>
+      </div>
+    </div>
+    <div class="col-6">
+
+      <label class="input-label">User Name<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" formControlName="userName">
+      </div>
+      <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
+        <div *ngIf="formControls.userName.errors.required">user name is required</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <div class="col-6">
+      <label class="input-label">FPO Office Address <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" formControlName="fpoAddress">
+      </div>
+      <div *ngIf="submitted && formControls.fpoAddress.errors" class="text-danger">
+        <div *ngIf="formControls.fpoAddress.errors.required">fpo office address is required</div>
+      </div>
+    </div>
+    <div class="col-6">
+
+      <label class="input-label">Password <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" formControlName="password">
+      </div>
+      <div *ngIf="submitted && formControls.password.errors" class="text-danger">
+        <div *ngIf="formControls.password.errors.required">password is required</div>
+      </div>
+      <div *ngIf="fpoRegisterForm.controls['password'].invalid">
+        please atleast 8 character one upper,one lower case letter,one digit,one special characher
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <div class="col-6">
+      <label class="input-label"> Confrom Password <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" formControlName="confirmPassword">
+      </div>
+      <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
+        <div *ngIf="formControls.confirmPassword.errors.required"> confirm password is required</div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <h3>Bank Details</h3>
+  <div class="form-group row mb-3">
+    <div class="col-6">
+      <label class="input-label">Bank Name <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="fpoBankName" (change)="selectBanks($event)">
+          <option value="">Select Bank Name</option>
+          <option *ngFor="let bank of banks" [value]="bank.bankId">{{bank.bankName}}</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.fpoBankName.errors" class="text-danger">
+        <div *ngIf="formControls.fpoBankName.errors.required">bank name is required</div>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <label class="input-label">Bank Account Number <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="number" formControlName="fpoBankAccNo">
+      </div>
+      <div *ngIf="submitted && formControls.fpoBankAccNo.errors" class="text-danger">
+        <div *ngIf="formControls.fpoBankAccNo.errors.required"> bank account Number is required</div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="form-group row mb-3">
+
+    <div class="col-6">
+      <label class="input-label">IFSC Code<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" formControlName="fpoIFSC">
+      </div>
+      <div *ngIf="submitted && formControls.fpoIFSC.errors" class="text-danger">
+        <div *ngIf="formControls.fpoIFSC.errors.required"> ifsc code  is required</div>
+      </div>
+    </div>
+    <div class="col-6">
+      <ngx-recaptcha2 #captchaElem
+                      [siteKey]="'6LeOZ4YUAAAAAJ8clQYNtOXNDHsd58KZHyJeILk6'"
+                      (success)="handleSuccess($event)"
+                      [useGlobalDomain]="false"
+                      formControlName="recaptcha">
+      </ngx-recaptcha2>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <button type="button" class="btn btn-login btn-yellow btn-primary my-4" (click)="register()">Register</button>
+  </div>
+</form>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 
@@ -16,27 +17,30 @@ export class ByerSellRegisterComponent implements OnInit {
   bsValue = new Date();
   bsRangeValue: Date[];
   maxDate = new Date();
-  districts = [
-    { id: 1, name: "mumbai" },
-    { id: 2, name: "pune" },
-    { id: 3, name: "nagpur" },
-    { id: 4, name: "Allhabad" },
-    { id: 5, name: "Delhi" }
-  ];
-  constructor(private fb: FormBuilder, private api: AuthService) {
+  states = [];
+  districts = [];
+  blocks = [];
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router) {
   }
 
   ngOnInit() {
-   
+    this.api.getState().subscribe(s => {
+      this.states = s
+    })
     this.createRegisterForm();
-
-
   }
-  selectDistrict(districtId: any) {
-
-    console.log(districtId.currentTarget.value);
-    this.registerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
+  selectState(stateId) {
+    this.registerForm.controls['stateRefId'].setValue(stateId.currentTarget.value);
+    this.api.getDistrictByState(parseInt(stateId.currentTarget.value)).subscribe(d => {
+      this.districts = d
+    })
   }
+  selectDistrict(districtRefId: any) {   
+    this.registerForm.controls['districtRefId'].setValue(districtRefId.currentTarget.value);
+    
+   
+  }
+ 
   createRegisterForm() {
     this.registerForm = this.fb.group({
       area: ['', Validators.required],
@@ -47,15 +51,15 @@ export class ByerSellRegisterComponent implements OnInit {
       designationContactPerson: ['', Validators.required],
       districtRefId: ['', Validators.required],
       deleted: [true],     
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]], 
       mobileNumber: ['', Validators.required],
       pincode: ['', Validators.required],
-      ifscCode: ['', Validators.required],
-    
+         
       stateRefId: ['', Validators.required],
       userName: ['', Validators.required],
       streetName: ['', Validators.required],
-      webSite: [''], 
+      webSite: [''],
+      recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {
@@ -78,12 +82,17 @@ export class ByerSellRegisterComponent implements OnInit {
       return;
     }
     this.registerForm.value
-    //this.api.registerUser(this.registerForm.value).subscribe(response => {
-    //  console.log(response);
-    //},
-    //  err => {
-    //    console.log(err)
-    //  })
+    this.api.registerBuyerSeller(this.registerForm.value).subscribe(response => {
+      alert(response.message);
+      if (response.message == "SuccessFully Saved!") {
+        this._router.navigate(['/login'])
+      }
+      console.log(response);
+    },
+      err => {
+        console.log(err);
+        alert(err);
+      })
   }
 
 
