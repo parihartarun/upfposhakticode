@@ -24,23 +24,21 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">License Type</label>
-                    <select formControlName="licenseType" class="form-control form-control-alternative">
+                    <select formControlName="licenceType" class="form-control form-control-alternative">
                       <option value="">Select License Type</option>
-                      <option value="License 1"> License 1</option>
-                      <option value="License 2"> License 2</option>
-                      <option value="License 3"> License 3</option>
+                      <option value="{{licensesType.licenseName}}" *ngFor="let licensesType of licensesTypes">{{licensesType.licenseName}}</option>
                     </select>
-                    <div *ngIf="submitted && formControls.licenseType.errors" class="text-danger">
-                      <div *ngIf="formControls.licenseType.errors.required">License Type is required</div>
+                    <div *ngIf="submitted && formControls.licenceType.errors" class="text-danger">
+                      <div *ngIf="formControls.licenceType.errors.required">License Type is required</div>
                     </div>   
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">License Issued By</label>
-                    <input formControlName="licenseIssuedBy" type="text" id="input-first-name" class="form-control form-control-alternative" >
-                    <div *ngIf="submitted && formControls.licenseIssuedBy.errors" class="text-danger">
-                      <div *ngIf="formControls.licenseIssuedBy.errors.required">License Issued By is required</div>
+                    <input formControlName="licenceIssuedBy" type="text" id="input-first-name" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.licenceIssuedBy.errors" class="text-danger">
+                      <div *ngIf="formControls.licenceIssuedBy.errors.required">License Issued By is required</div>
                     </div>   
                   </div>
                 </div>
@@ -49,18 +47,18 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">License Number</label>
-                    <input formControlName="licenseNumber" type="text" id="input-email" class="form-control form-control-alternative" >
-                    <div *ngIf="submitted && formControls.licenseNumber.errors" class="text-danger">
-                      <div *ngIf="formControls.licenseNumber.errors.required">License Number is required</div>
+                    <input formControlName="liceneceNumber" type="text" id="input-email" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.liceneceNumber.errors" class="text-danger">
+                      <div *ngIf="formControls.liceneceNumber.errors.required">License Number is required</div>
                     </div>   
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">License Issued Date</label>
-                    <input formControlName="issuedDate" type="date" id="input-email" class="form-control form-control-alternative" >
-                    <div *ngIf="submitted && formControls.issuedDate.errors" class="text-danger">
-                      <div *ngIf="formControls.issuedDate.errors.required">Issued Date is required</div>
+                    <input formControlName="issuedate" type="date" id="input-email" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.issuedate.errors" class="text-danger">
+                      <div *ngIf="formControls.issuedate.errors.required">Issued Date is required</div>
                     </div>   
                   </div>
                 </div>
@@ -69,9 +67,9 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">License Valid Till</label>
-                    <input formControlName="validTill" type="date" id="input-last-name" class="form-control form-control-alternative" >
-                    <div *ngIf="submitted && formControls.validTill.errors" class="text-danger">
-                      <div *ngIf="formControls.validTill.errors.required">Valid till Date is required</div>
+                    <input formControlName="licenceValidTill" type="date" id="input-last-name" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.licenceValidTill.errors" class="text-danger">
+                      <div *ngIf="formControls.licenceValidTill.errors.required">Valid till Date is required</div>
                     </div>   
                   </div>
                 </div>
@@ -123,19 +121,19 @@
             <tbody>
               <tr *ngFor="let license of licenses | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                 {{license.licenseType}}
+                 {{license.licenceType}}
                  </td>
                 <td>
-                  {{license.licenseIssuedBy}}
+                  {{license.licenceIssuedBy}}
                 </td>
                 <td>
-                  {{license.licenseNumber}}
+                  {{license.liceneceNumber}}
                 </td>
                 <td>
-                  {{license.issuedDate}}
+                  {{license.issuedate}}
                 </td>
                 <td>
-                  {{license.validTill}}
+                  {{license.licenceValidTill}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
@@ -144,7 +142,7 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="editLicense(license)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(license)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(license.id)">Delete</a>
                     </div>
                   </div>
                 </td>

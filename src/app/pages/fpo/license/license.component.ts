@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
@@ -16,6 +17,7 @@ export class LicenseComponent implements OnInit {
   licenses:Array<any>=[];
   p:number = 1;
   edit = false;
+  licensesTypes:Array<any> = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,109 +27,38 @@ export class LicenseComponent implements OnInit {
 
   ngOnInit(): void {
     this.licenseForm = this.formBuilder.group({
-      licenseType: ['', [Validators.required]],
-      licenseIssuedBy: ['', [Validators.required]],
-      licenseNumber: ['', [Validators.required]],
-      issuedDate: ['', [Validators.required]],
-      validTill: ['', [Validators.required]],
+      licenceType: ['', [Validators.required]],
+      licenceIssuedBy: ['', [Validators.required]],
+      liceneceNumber: ['', [Validators.required]],
+      issuedate: ['', [Validators.required]],
+      licenceValidTill: ['', [Validators.required]],
       id:['']
     });
     this.getLicense();
+    this.getLicenseTypes();
   }
 
   getLicense(){
-    console.log(sessionStorage.getItem('accessToken'));
-    this.api.getLicense().subscribe(response => {
+      this.api.getLicense().subscribe(response => {
+        console.log(response);
+        this.licenses = response;
+      },
+        err => {
+          console.log(err)
+        }
+      );
+  }
+
+  getLicenseTypes(){
+    this.api.getLicenseTypes().subscribe(response => {
       console.log(response);
+      this.licensesTypes = response;
     },
       err => {
         console.log(err)
       }
     );
-    this.licenses = [
-      { 
-        licenseType:'License 1',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/02/2020',
-        validTill:'23/02/2024',
-        id:[4]
-      },
-      { 
-        licenseType:'License 1',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-        id:[5]
-      },
-      { 
-        licenseType:'License 1',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-        id:[6]
-      },
-      { 
-        licenseType:'License 1',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-      },
-      { 
-        licenseType:'License 1',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-      },
-      { 
-        licenseType:'License 1',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-      },
-      { 
-        licenseType:'License 1',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-      },
-      { 
-        licenseType:'License 1',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-      },
-      { 
-        licenseType:'License 1',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-      },
-      { 
-        licenseType:'License 1',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-      },
-      { 
-        licenseType:'License 1',
-        licenseIssuedBy:'Vaishali Patil',
-        licenseNumber:'JDJD324833',
-        issuedDate:'23/20/2020',
-        validTill:'23/20/2024',
-      }
-  ];
-
-}
+  }
 
 addLicense() {
   this.submitted = true;
@@ -146,13 +77,25 @@ addLicense() {
 }
 
 editLicense(license){
-  this.licenseForm.setValue(license);
+  this.licenseForm = this.formBuilder.group({
+    licenceType: [license.licenceType, [Validators.required]],
+    licenceIssuedBy: [license.licenceIssuedBy, [Validators.required]],
+    liceneceNumber: [license.liceneceNumber, [Validators.required]],
+    issuedate: [formatDate(license.issuedate, 'yyyy-MM-dd', 'en'), [Validators.required]],
+    licenceValidTill: [formatDate(license.licenceValidTill, 'yyyy-MM-dd', 'en'), [Validators.required]],
+    id:[license.id]
+  });
   this.edit = true;
 }
 
-updateLicense(license){
-  this.api.updateLicense(license).subscribe(response => {
-    console.log(response);
+updateLicense(){
+  this.submitted = true;
+  // stop here if form is invalid
+  if (this.licenseForm.invalid) {
+      return;
+  }
+  this.api.updateLicense(this.licenseForm.value).subscribe(response => {
+    this.getLicense();
   },
     err => {
       console.log(err)
