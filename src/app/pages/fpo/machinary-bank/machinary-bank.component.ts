@@ -15,6 +15,7 @@ export class MachinaryBankComponent implements OnInit {
   submitted = false;
   equipments:Array<any>=[];
   p:number = 1;
+  equiplist: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,6 +29,7 @@ export class MachinaryBankComponent implements OnInit {
       equipNumber: ['', [Validators.required]],
     });
     this.getMachinaryBanks();
+this.getEquipmentList();
   }
 
   getMachinaryBanks(){
@@ -82,7 +84,13 @@ export class MachinaryBankComponent implements OnInit {
 
   ]
 }
-
+getEquipmentList()
+{
+  this.api.getEquipList().subscribe(data=>{
+  console.log(JSON.stringify(data));  
+  this.equiplist = data;
+  })
+}
 addBoardMember() {
   this.submitted = true;
   // stop here if form is invalid
