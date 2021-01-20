@@ -82,11 +82,11 @@ export class ByerSellRegisterComponent implements OnInit {
     }
     this.registerForm.value
     this.api.registerBuyerSeller(this.registerForm.value).subscribe(response => {
-     console.log(response);
+      alert(response);
     },
-      err => {
-        console.log(err)
-     })
+    err => {
+      alert(err);
+    })
   }
 
 

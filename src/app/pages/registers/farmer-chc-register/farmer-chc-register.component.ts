@@ -85,11 +85,11 @@ export class FarmerChcRegisterComponent implements OnInit {
     }
     this.registerForm.value
     this.api.registerCHCFmb(this.registerForm.value).subscribe(response => {
-      console.log(response);
+      alert(response);
     },
-      err => {
-        console.log(err)
-      })
+    err => {
+      alert(err);
+    })
   }
 
 }

@@ -81,11 +81,11 @@ export class FpoRegisterComponent implements OnInit {
     }
     this.fpoRegisterForm.value
     this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
-     console.log(response);
+      alert(response);
     },
-     err => {
-       console.log(err)
-      })
+    err => {
+      alert(err);
+    })
   }
   
 

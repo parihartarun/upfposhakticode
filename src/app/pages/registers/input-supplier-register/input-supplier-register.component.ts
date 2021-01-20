@@ -95,11 +95,11 @@ export class InputSupplierRegisterComponent implements OnInit {
     }
     this.registerForm.value
     this.api.registerInputSupplier(this.registerForm.value).subscribe(response => {
-      console.log(response);
+      alert(response);
     },
-      err => {
-        console.log(err)
-      })
+    err => {
+      alert(err);
+    })
   }
 
 

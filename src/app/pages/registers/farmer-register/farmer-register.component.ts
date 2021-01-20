@@ -105,10 +105,10 @@ export class FarmerRegisterComponent implements OnInit {
     }
     this.registerForm.value
     this.api.registerUser(this.registerForm.value).subscribe(response => {
-      console.log(response);
+      alert(response);
    },
-      err => {
-        console.log(err)
+      err => {      
+        alert(err);
       })
   }
 
