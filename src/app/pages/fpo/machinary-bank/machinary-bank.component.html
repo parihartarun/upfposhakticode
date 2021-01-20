@@ -17,39 +17,37 @@
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="machinaryBankForm" (ngSubmit)="addBoardMember()">
+          <form [formGroup]="machinaryBankForm">
             <div class="pl-lg-4">
               <div class="row">
                 <input type="hidden" formControlName="id">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">Name of Equipment</label>
-                    <select formControlName="equipName" class="form-control form-control-alternative">
+                    <select formControlName="equpment_name" class="form-control form-control-alternative">
                       <option value="">Select Equipment</option>
-                      <option value="Equipment 1"> Equipment 1</option>
-                      <option value="Equipment 2"> Equipment 2</option>
-                      <option value="Equipment 3"> Equipment 3</option>
+                      <option value="{{equip.equpmentname}}" *ngFor="let equip of equipmentList">{{equip.equpmentname}}</option>
                     </select>    
-                    <div *ngIf="submitted && formControls.equipName.errors" class="text-danger">
-                      <div *ngIf="formControls.equipName.errors.required">Name of Equipment is required</div>
+                    <div *ngIf="submitted && formControls.equpment_name.errors" class="text-danger">
+                      <div *ngIf="formControls.equpment_name.errors.required">Name of Equipment is required</div>
                     </div>                
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">No. of Equipment</label>
-                    <input formControlName="equipNumber" type="text" id="input-first-name" class="form-control form-control-alternative">
-                    <div *ngIf="submitted && formControls.equipNumber.errors" class="text-danger">
-                      <div *ngIf="formControls.equipNumber.errors.required">No. of Equipment is required</div>
+                    <input formControlName="equpment_no" type="text" id="input-first-name" class="form-control form-control-alternative">
+                    <div *ngIf="submitted && formControls.equpment_no.errors" class="text-danger">
+                      <div *ngIf="formControls.equpment_no.errors.required">No. of Equipment is required</div>
                     </div>  
                   </div>
                 </div>
               </div>
               <div class="card-footer py-4 text-center">
-                <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="addMachinaryBank()">
+                <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addMachinaryBank()">
                   Add Equipment
                 </button>
-                <button *ngIf="edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateMachinaryBank()">
+                <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateMachinaryBank()">
                   Update Equipment
                 </button>
                 <button class="btn btn-warning text-right" (click)="resetForm()">Reset</button>
@@ -88,10 +86,10 @@
             <tbody>
               <tr *ngFor="let equipment of equipments | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                 {{equipment.equipName}}
+                 {{equipment.equpment_name}}
                  </td>
                 <td>
-                  {{equipment.equipNumber}}
+                  {{equipment.equpment_no}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
@@ -100,7 +98,7 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="editMachinaryBank(equipment)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(equipment)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(equipment.id)">Delete</a>
                     </div>
                   </div>
                 </td>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
@@ -17,93 +18,46 @@ export class MachinaryBankComponent implements OnInit {
   p:number = 1;
   equiplist: any;
   edit = false;
+  equipmentList:Array<any>=[];
 
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
-    private route: Router
+    private route: Router,
+    private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
     this.machinaryBankForm = this.formBuilder.group({
-      equipName: ['', [Validators.required]],
-      equipNumber: ['', [Validators.required]],
+      equpment_name: ['', [Validators.required]],
+      equpment_no: ['', [Validators.required]],
       id: [''],
     });
     this.getMachinaryBanks();
-this.getEquipmentList();
+    this.getEquipments();
   }
 
-  getMachinaryBanks(){
-    this.api.getMachinaryBanks().subscribe(response => {
+  getEquipments(){
+    this.api.getEquipments().subscribe(response => {
       console.log(response);
+      this.equipmentList = response;
     },
       err => {
         console.log(err)
       }
     );
-    this.equipments = [
-      { 
-        equipName:'Equipment 1',
-        equipNumber:'21',
-        id:[1]
-      },
-      { 
-        equipName:'Equipment 1',
-        equipNumber:'24',
-        id:[2]
-      },
-      { 
-        equipName:'Equipment 1',
-        equipNumber:'21',
-        id:[3]
-      },{ 
-        equipName:'Equipment 1',
-        equipNumber:'21',
-      },
-      { 
-        equipName:'Equipment 1',
-        equipNumber:'21',
-      },
-      { 
-        equipName:'Equipment 1',
-        equipNumber:'21',
-      },
-      { 
-        equipName:'Equipment 1',
-        equipNumber:'21',
-      },
-      { 
-        equipName:'Equipment 1',
-        equipNumber:'21',
-      },
-      { 
-        equipName:'Equipment 1',
-        equipNumber:'21',
-      },
-      { 
-        equipName:'Equipment 1',
-        equipNumber:'21',
-      },
-      { 
-        equipName:'Equipment 1',
-        equipNumber:'21',
-      },
-      { 
-        equipName:'Equipment 1',
-        equipNumber:'21',
+  }
+
+  getMachinaryBanks(){
+    this.api.getMachinaryBanks().subscribe(response => {
+      console.log(response);
+      this.equipments = response;
+    },
+      err => {
+        console.log(err)
       }
-
-  ]
-}
-getEquipmentList()
-{
-  this.api.getEquipList().subscribe(data=>{
-  console.log(JSON.stringify(data));  
-  this.equiplist = data;
-  })
-}
-
+    );
+  }
 
 addMachinaryBank() {
   this.submitted = true;
@@ -114,6 +68,13 @@ addMachinaryBank() {
 
   this.api.addMachinaryBank(this.machinaryBankForm.value).subscribe(response => {
     console.log(response);
+    if(response.id != ''){
+      this.toastr.success('Machinary bank added successfully.');
+      this.submitted = false;
+      this.machinaryBankForm.reset();
+    }else{
+        this.toastr.error('Error! While adding Machinary Bank.');
+    }
   },
     err => {
       console.log(err)
@@ -122,13 +83,31 @@ addMachinaryBank() {
 }
 
 editMachinaryBank(equipment){
-  this.machinaryBankForm.setValue(equipment);
+  this.machinaryBankForm = this.formBuilder.group({
+    equpment_name: [equipment.equpment_name, [Validators.required]],
+    equpment_no: [equipment.equpment_no, [Validators.required]],
+    id:[equipment.id]
+  });
   this.edit = true;
+  window.scroll(0,0);  
 }
 
-updateMachinaryBank(equipment){
-  this.api.updateMachinaryBank(equipment).subscribe(response => {
+updateMachinaryBank(){
+  this.submitted = true;
+  // stop here if form is invalid
+  if (this.machinaryBankForm.invalid) {
+      return;
+  }
+  this.api.updateMachinaryBank(this.machinaryBankForm.value).subscribe(response => {
     console.log(response);
+    if(response.id != ''){
+      this.toastr.success('Machinary bank updated successfully.');
+      this.submitted = false;
+      this.edit = false;
+      this.machinaryBankForm.reset();
+    }else{
+        this.toastr.error('Error! While updating Machinary Bank.');
+    }
   },
     err => {
       console.log(err)
@@ -137,9 +116,14 @@ updateMachinaryBank(equipment){
 }
 
 confirmDelete(equipmentId){
-  if(confirm("Are you sure to delete "+name)) {
+  if(confirm("Are you sure to delete this item.")) {
     this.api.deleteMachinaryBank(equipmentId).subscribe(response => {
       console.log(response);
+      if(response == true){
+        this.toastr.success('Machinary Bank Deleted successfully.');
+      }else{
+          this.toastr.error('Error! While Deleting Machinary Bank.');
+      }
     },
       err => {
         console.log(err)

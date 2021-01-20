@@ -2,6 +2,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
@@ -22,7 +23,8 @@ export class LicenseComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
-    private route: Router
+    private route: Router,
+    private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +63,7 @@ export class LicenseComponent implements OnInit {
   }
 
 addLicense() {
+  console.log(this.licenseForm);
   this.submitted = true;
   // stop here if form is invalid
   if (this.licenseForm.invalid) {
@@ -68,7 +71,14 @@ addLicense() {
   }
 
   this.api.addLicense(this.licenseForm.value).subscribe(response => {
-    console.log(response);
+    console.log(response)
+    if(response.id != ''){
+        this.toastr.success('License Added successfully.');
+        this.submitted = false;
+        this.licenseForm.reset();
+    }else{
+        this.toastr.error('Error! While Adding License.');
+    }
   },
     err => {
       console.log(err)
@@ -82,13 +92,12 @@ editLicense(license){
     licenceIssuedBy: [license.licenceIssuedBy, [Validators.required]],
     liceneceNumber: [license.liceneceNumber, [Validators.required]],
     issuedate: [formatDate(license.issuedate, 'yyyy-MM-dd', 'en'), [Validators.required]],
-    //licenceValidTill: [formatDate(license.licenceValidTill, 'yyyy-MM-dd', 'en'), [Validators.required]],
+    licenceValidTill: ['', [Validators.required]],
     id:[license.id]
   });
   
   this.edit = true;
   window.scroll(0,0);
-
 }
 
 updateLicense(){
@@ -98,6 +107,14 @@ updateLicense(){
       return;
   }
   this.api.updateLicense(this.licenseForm.value).subscribe(response => {
+    if(response.id != ''){
+      this.toastr.success('License Updated successfully.');
+      this.submitted = false;
+      this.edit = false;
+      this.licenseForm.reset();
+    }else{
+        this.toastr.error('Error! While Updating License.');
+    }
     this.getLicense();
   },
     err => {
@@ -107,9 +124,13 @@ updateLicense(){
 }
 
 confirmDelete(licenseId){
-  if(confirm("Are you sure to delete "+name)) {
+  if(confirm("Are you sure to delete this item")) {
     this.api.deleteLicense(licenseId).subscribe(response => {
-      console.log(response);
+      if(response == true){
+        this.toastr.success('License Deleted successfully.');
+      }else{
+          this.toastr.error('Error! While Deleting License.');
+      }
     },
       err => {
         console.log(err)
