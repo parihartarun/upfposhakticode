@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MustMatch } from '../../_helpers/constomMatchValidor';
-import { AuthService } from '../../_services/auth/auth.service';
+import { MustMatch } from '../../../_helpers/constomMatchValidor';
+import { AuthService } from '../../../_services/auth/auth.service';
+
 
 
 @Component({
@@ -16,29 +17,40 @@ export class FarmerRegisterComponent implements OnInit {
   bsValue = new Date();
   bsRangeValue: Date[];
   maxDate = new Date();
-  districts = [
-    { id: 1, name: "mumbai" },
-    { id: 2, name: "pune" },
-    { id: 3, name: "nagpur" },
-    { id: 4, name: "Allhabad" },
-    { id: 5, name: "Delhi" }
-  ];
+  districts = [];
+  blocks = [];
+  panchayts = [{ panchayat_id: 1, panchayat_name: "mumbai1" }];
+  villages = [{ villageId: 1, villageName: "mumbai1" }];
+  banks = [{ bankId: 2, bankName: 'sbi', bankNameHi: "abc" }];
   constructor(private fb: FormBuilder, private api: AuthService) {
   }
 
   ngOnInit() {
     this.api.getDistrict().subscribe(d => {
-      d
+      this.districts = d
     }
     )
     this.createRegisterForm();
 
 
   }
-  selectDistrict(districtId: any) {
-
-    console.log(districtId.currentTarget.value);
-    this.registerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
+  selectDistrict(districtId: any) {   
+    this.registerForm.controls['distRefId'].setValue(parseInt(districtId.currentTarget.value));
+    this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
+      this.blocks = block
+    })
+  }
+  selectBlock(blockId: any) {    
+    this.registerForm.controls['bankRefId'].setValue(blockId.currentTarget.value);
+  }
+  selectGramPanchayat(gramPanchayatId: any) {    
+    this.registerForm.controls['villagePanchayatId'].setValue(gramPanchayatId.currentTarget.value);
+  }
+  selectVillage(villRefId: any) {
+    this.registerForm.controls['villRefId'].setValue(villRefId.currentTarget.value);
+  }
+  selectBanks(bankId: any) {
+    this.registerForm.controls['bankRefId'].setValue(bankId.currentTarget.value);
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
@@ -60,10 +72,12 @@ export class FarmerRegisterComponent implements OnInit {
       userRefId: ['', Validators.required],
       villRefId: ['', Validators.required],
       villagePanchayatId: ['', Validators.required],
+      recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {
-      validator: MustMatch('password', 'confirmPassword')
+        validator: MustMatch('password', 'confirmPassword'),
+       
     })
 
 
@@ -91,4 +105,7 @@ export class FarmerRegisterComponent implements OnInit {
   }
 
 
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
+  }
 }

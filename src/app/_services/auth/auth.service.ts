@@ -33,19 +33,25 @@ export class AuthService {
 
   getDistrict(): Observable<any>  {
    
-    return this.http.get<any>(this._url + 'District/getDistricts' ).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/v1/District/getDistricts' ).pipe(map((res: any) => {
       return res;
     }));
   }
-
-  getBlock () {
-    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+  getBlock(distId: number) {
+  
+    return this.http.get<any>(this._url + 'api/v1/block/getBlocksByDistrictId/'+distId).pipe(map((res: any) => {
       return res;
     }));
   }
+  getGramPanchayat(blockId: number) {
 
-  getVillage () {
-    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/v1/panchayats/getPanchayatsByBlockId/' + { blockId}).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getVillage(panchayatId: number) {
+   
+    return this.http.get<any>(this._url + 'api/v1/villages/getVillagesByPanchayatId/' + { panchayatId}).pipe(map((res: any) => {
       return res;
     }));
   }

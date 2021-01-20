@@ -37,8 +37,10 @@ export class LoginComponent implements OnInit {
         return;
     }
     this.api.userLogin(this.loginForm.value).subscribe(response => {
+      console.log(response);
       if (response.accessToken != '') {
         sessionStorage.setItem('accessToken', response.accessToken);
+        sessionStorage.setItem('tokenType', response.tokenType);
         localStorage.setItem('username', response.username);
         localStorage.setItem('userRole', response.userrole);
         this.route.navigate(['/admin']);

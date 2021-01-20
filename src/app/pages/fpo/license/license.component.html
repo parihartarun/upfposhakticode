@@ -20,14 +20,15 @@
           <form [formGroup]="licenseForm" (ngSubmit)="addLicense()">
             <div class="pl-lg-4">
               <div class="row">
+                <input type="hidden" formControlName="id">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">License Type</label>
                     <select formControlName="licenseType" class="form-control form-control-alternative">
                       <option value="">Select License Type</option>
-                      <option value="1"> License 1</option>
-                      <option value="2"> License 2</option>
-                      <option value="3"> License 3</option>
+                      <option value="License 1"> License 1</option>
+                      <option value="License 2"> License 2</option>
+                      <option value="License 3"> License 3</option>
                     </select>
                     <div *ngIf="submitted && formControls.licenseType.errors" class="text-danger">
                       <div *ngIf="formControls.licenseType.errors.required">License Type is required</div>
@@ -77,8 +78,13 @@
               </div>
 
               <div class="card-footer py-4 text-center">
-                <button type="submit" class="btn btn-yellow btn-primary my-4">Add License</button>
-                <button class="btn btn-warning text-right">Reset</button>
+                <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="addLicense()">
+                  Add License
+                </button>
+                <button *ngIf="edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateLicense()">
+                  Update License
+                </button>
+                <button class="btn btn-warning text-right" (click)="resetForm()">Reset</button>
               </div>
             </div>
           </form>
@@ -137,8 +143,8 @@
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editLicense(license)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(license)">Delete</a>
                     </div>
                   </div>
                 </td>

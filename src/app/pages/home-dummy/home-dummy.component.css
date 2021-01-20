@@ -12,8 +12,9 @@
   }
 
 .serachButton {
-    width:100%;
-    pointer-events:all;
+  width: 100%;
+  pointer-events: all;
+  line-height: 19px;
 }
 
 .header .parent {
