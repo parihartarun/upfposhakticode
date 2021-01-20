@@ -25,8 +25,7 @@ export class AuthService {
     }));
   }
   
-  registerUser(data) {
-  
+
   registerUser(data): Observable<any>  {
    
     return this.http.post<any>(this._url + 'register/farmer', data).pipe(map((res: any) => {
