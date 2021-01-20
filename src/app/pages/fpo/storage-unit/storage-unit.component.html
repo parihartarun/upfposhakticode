@@ -23,13 +23,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Type of Storage</label><br/>
-                    <div class="custom-control custom-radio mb-3 ">
-                      <input formControlName="storageType"  class="custom-control-input" id="customRadio5" type="radio">
-                      <label class="custom-control-label" for="customRadio5">Cold Storage</label>
+                    <div class="custom-control custom-radio mb-3">
+                      <input formControlName="storageType"  class="custom-control-input" id="coldstorageradio" value ="Cold Storage" type="radio">
+                      <label class="custom-control-label" for="coldstorageradio">Cold Storage</label>
                     </div>
                     <div class="custom-control custom-radio mb-3">
-                      <input formControlName="storageType"  class="custom-control-input" id="customRadio6" checked="" type="radio">
-                      <label class="custom-control-label" for="customRadio6">Warehouse</label>
+                      <input formControlName="storageType" value ="Warehouse"  class="custom-control-input" id="warehouseradio" checked="" type="radio">
+                      <label class="custom-control-label" for="warehouseradio">Warehouse</label>
                     </div> 
                     <div *ngIf="submitted && formControls.storageType.errors" class="text-danger">
                       <div *ngIf="formControls.storageType.errors.required">Storage Type is required</div>
@@ -75,11 +75,11 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Do you have Seed Processing Unit? *</label><br/>
                     <div class="custom-control custom-radio mb-3 ">
-                      <input formControlName="isProcessingUnit"  class="custom-control-input" id="customRadio5" type="radio">
+                      <input formControlName="isProcessingUnit"  value="Yes"  class="custom-control-input" id="customRadio5" type="radio">
                       <label class="custom-control-label" for="customRadio5">Yes</label>
                     </div>
                     <div class="custom-control custom-radio mb-3">
-                      <input formControlName="isProcessingUnit"  class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <input formControlName="isProcessingUnit"  value="No" class="custom-control-input" id="customRadio6"  type="radio">
                       <label class="custom-control-label" for="customRadio6">No</label>
                     </div>      
                     <div *ngIf="submitted && formControls.isProcessingUnit.errors" class="text-danger">
