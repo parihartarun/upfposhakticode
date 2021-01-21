@@ -73,6 +73,7 @@ export class InputSupplierRegisterComponent implements OnInit {
       villageRefId: [''],
       userName: ['', Validators.required],
       recaptcha: ['', Validators.required],
+      userInputSeller:[],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {
@@ -95,6 +96,14 @@ export class InputSupplierRegisterComponent implements OnInit {
       return;
     }
     this.registerForm.value
+    let user = {
+      userName: this.registerForm.value.userName,
+      password: this.registerForm.value.password
+    }
+    delete this.registerForm.value.password;
+    delete this.registerForm.value.userName;
+    delete this.registerForm.value.confirmPassword;
+    this.registerForm.value.userInputSeller = user;
     this.api.registerInputSupplier(this.registerForm.value).subscribe(response => {
       alert(response.message);
       if (response.message == "SuccessFully Saved!") {
