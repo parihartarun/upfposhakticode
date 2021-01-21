@@ -239,6 +239,7 @@
       </div>
       <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
         <div *ngIf="formControls.confirmPassword.errors.required">confirm password is required</div>
+        <div *ngIf="formControls.confirmPassword.errors.MustMatch">password is not match</div>
       </div>
     </div>
     <div class="col-6">
