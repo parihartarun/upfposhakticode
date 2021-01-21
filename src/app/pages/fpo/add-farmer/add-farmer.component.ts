@@ -24,6 +24,7 @@ export class AddFarmerComponent implements OnInit {
   villages = [];
   banks = [];
   farmerDetails = [];
+  p: number = 1;
   constructor(private fb: FormBuilder, private _farmerService: FarmerService, private api: AuthService) {
   }
 
