@@ -23,12 +23,13 @@ export class AddFarmerComponent implements OnInit {
   panchayts = [];
   villages = [];
   banks = [];
+  farmerDetails = [];
   constructor(private fb: FormBuilder, private _farmerService: FarmerService, private api: AuthService) {
   }
 
   ngOnInit() {
     this._farmerService.getFarmers().subscribe(f => {
-      f
+      this.farmerDetails=f
     })
     this.api.getDistrict().subscribe(d => {
       this.districts = d
@@ -98,14 +99,20 @@ export class AddFarmerComponent implements OnInit {
       return;
     }
     this._farmerForm.value
-    this.api.registerUser(this._farmerForm.value).subscribe(response => {      
-      console.log(response);
-    },
-      err => {
-        console.log(err);        
-      })
+   //this.api.registerUser(this._farmerForm.value).subscribe(response => {      
+   //   console.log(response);
+   // },
+   //   err => {
+   //     console.log(err);        
+   //   })
   }
   reset() {
     this.createRegisterForm()
+  }
+/************************************edit Famer****************************************/
+  editFarmer(fd) {
+    this._farmerService.getFarmersDetils(fd).subscribe(fd => {
+      
+    })
   }
 }

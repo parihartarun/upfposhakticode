@@ -18,5 +18,11 @@ export class FarmerService {
       return res;
     }));
   }
+  getFarmersDetils(farmerId: number): Observable<any> {
+
+    return this.http.get<any>(this._url + '' + farmerId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
  
 }

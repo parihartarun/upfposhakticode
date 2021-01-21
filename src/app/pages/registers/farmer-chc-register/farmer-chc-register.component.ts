@@ -57,7 +57,7 @@ export class FarmerChcRegisterComponent implements OnInit {
       deleted: [true],
       email: ['', [Validators.required, Validators.email]],
       firmRegistraionNumber: ['', Validators.required],
-      mobile_number: ['', Validators.required],
+      mobileNumber: ['', Validators.required],
       pincode: ['', Validators.required],
       shopEstablishmentNumber: ['', Validators.required],
       villageRefId: ['', Validators.required],
@@ -99,7 +99,7 @@ export class FarmerChcRegisterComponent implements OnInit {
       distRefId: '',
       email: '',
       firmRegistraionNumber: '',
-      mobile_number: '',
+      mobileNumber: '',
       pincode: '',
       recaptcha: '',
       shopEstablishmentNumber: "",
@@ -115,7 +115,7 @@ export class FarmerChcRegisterComponent implements OnInit {
     famerCHCFmb.shopEstablishmentNumber = this.registerForm.value.shopEstablishmentNumber,    
     famerCHCFmb.distRefId = this.registerForm.value.distRefId;
     famerCHCFmb.email = this.registerForm.value.email;
-    famerCHCFmb.mobile_number = this.registerForm.value.mobile_number;
+    famerCHCFmb.mobileNumber = this.registerForm.value.mobileNumber;
     famerCHCFmb.pincode = this.registerForm.value.pincode;
     famerCHCFmb.recaptcha = this.registerForm.value.recaptcha;
     famerCHCFmb.user = user;
