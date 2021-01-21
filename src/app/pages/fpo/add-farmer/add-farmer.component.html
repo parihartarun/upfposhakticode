@@ -272,36 +272,36 @@
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
+                      <span class="mb-0 text-sm">{{fd.farmerName}}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  v@gmail.com
+                  {{fd.parantsName}}
                 </td>
                 <td>
-                  732843473464
+                  {{fd.category}}
                 </td>
                 <td>
-                  Female
+                  {{fd.gender}}
                 </td>
                 <td>
-                  928324732643
+                  {{fd.farmerMob}}
                 </td>
                 <td>
-                  <a class="btn btn-sm btn-primary mb-1">
+                  <a class="btn btn-sm btn-primary mb-1" routerLink="/land-details">
                     Land
                   </a><br />
-                  <a class="btn btn-sm btn-primary mb-1">
+                  <a class="btn btn-sm btn-primary mb-1" routerLink="/crop-showing-details">
                     Crop Showing
                   </a><br />
-                  <a class="btn btn-sm btn-primary mb-1">
+                  <a class="btn btn-sm btn-primary mb-1" routerLink="/production-details">
                     Production
                   </a><br />
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle >
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">

@@ -110,9 +110,23 @@ export class AddFarmerComponent implements OnInit {
     this.createRegisterForm()
   }
 /************************************edit Famer****************************************/
-  editFarmer(fd) {
-    this._farmerService.getFarmersDetils(fd).subscribe(fd => {
-      
+  editFarmer(farmerDetial:any) {
+    this._farmerForm = this.fb.group({
+      accountNo: [farmerDetial.accountNo],
+      bankRefId: [farmerDetial.bankRefId],
+      blockRef: ['', Validators.required],
+      category: ['', Validators.required],
+      distRefId: ['', Validators.required],
+      gender: ['', Validators.required],
+      deleted: [true],
+      enabled: [true],
+      farmerMob: ['',],
+      farmerName: ['', Validators.required],
+      ifscCode: [''],
+      parantsName: ['',],
+      pincode: [''],
+      villRefId: ['', Validators.required],
+      villagePanchayatId: ['', Validators.required]
     })
   }
 }
