@@ -83,6 +83,7 @@ export class FarmerRegisterComponent implements OnInit {
       villagePanchayatId: ['', Validators.required],
       recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
+      userFar: [],
       confirmPassword: ['', Validators.required]
     }, {
         validator: MustMatch('password', 'confirmPassword'),
@@ -105,17 +106,49 @@ export class FarmerRegisterComponent implements OnInit {
       return;
     }
     this.registerForm.value
+   
+    let user = {
+      userName: this.registerForm.value.userName,
+      password: this.registerForm.value.password
+    }
+    delete this.registerForm.value.password;
+    delete this.registerForm.value.userName;
+    delete this.registerForm.value.confirmPassword;
+    this.registerForm.value.userFar = user;
+    //let famerRegister = {
+    //  accountNo: '',
+    //  bankRefId: '',
+    //  blockRef: '',
+    //  category: '',
+    //  confirmPassword: '',
+    //  deleted: true,
+    //  distRefId: '',
+    //  enabled: true,
+    //  farmerMob:'',
+    //  farmerName: '',
+    //  gender:'',
+    //  ifscCode: '',
+    //  parantsName: '',
+    //   password: '',
+    //  pincode: '',
+    //  recaptcha:'',
+    //  user: user,
+    //  userRefId: "",
+    //  villRefId: "",
+    //  villagePanchayatId: ""
+    //}
+    //famerRegister.accountNo=
+    
+
     this.api.registerUser(this.registerForm.value).subscribe(response => {
       alert(response.message);
-      if (response.message == "SuccessFully Saved!") {
-        this._router.navigate(['/login'])
-      }
-      console.log(response);
+     
    },
       err => {
         console.log(err);
         alert(err);
       })
+     
   }
 
 

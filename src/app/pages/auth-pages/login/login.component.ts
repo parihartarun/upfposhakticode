@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
+      recaptcha: ['', [Validators.required]]
     });
   }
 
@@ -51,4 +52,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
+  } 
 }

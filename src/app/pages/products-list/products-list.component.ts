@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ProductService } from '../../_services/product/product.service';
 
 @Component({
   selector: 'app-products-list',
@@ -8,11 +9,10 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductsListComponent implements OnInit {
 
-  title = 'appBootstrap';
-  
+  title = 'appBootstrap';  
   closeResult: string;
-  
-  constructor(private modalService: NgbModal) {}
+  serachResult: [];
+  constructor(private modalService: NgbModal, private _productService: ProductService) { }
     
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -32,8 +32,10 @@ export class ProductsListComponent implements OnInit {
     }
   }
 
-  ngOnInit(){
-    
+  ngOnInit() {
+    this._productService.getSearchResult().subscribe(s => {
+      this.serachResult = s;
+    })
   }
 
 }

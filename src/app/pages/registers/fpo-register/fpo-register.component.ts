@@ -56,14 +56,14 @@ export class FpoRegisterComponent implements OnInit {
       fpoRegistrationNo: ['', Validators.required], 
       deleted: [true],   
       fmbno: ['', Validators.required],
-      fpoEmail: ['', [Validators.required, Validators.email]],
-      
+      fpoEmail: ['', [Validators.required, Validators.email]],      
       fpoIFSC: ['', Validators.required],
       dateOfRegistration: ['', Validators.required],
       fpoAddress: ['', Validators.required],
       pincode: ['', Validators.required],
       userName: ['', Validators.required],
       recaptcha: ['', Validators.required],
+      userFpo:[],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {
@@ -80,7 +80,14 @@ export class FpoRegisterComponent implements OnInit {
     if (this.fpoRegisterForm.invalid) {
       return;
     }
-    this.fpoRegisterForm.value
+    let user = {
+      userName: this.fpoRegisterForm.value.userName,
+      password: this.fpoRegisterForm.value.password
+    }
+    delete this.fpoRegisterForm.value.password;
+    delete this.fpoRegisterForm.value.userName;
+    delete this.fpoRegisterForm.value.confirmPassword;
+    this.fpoRegisterForm.value.userFpo = user;
     this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
       alert(response.message);
       if (response.message == "SuccessFully Saved!") {
