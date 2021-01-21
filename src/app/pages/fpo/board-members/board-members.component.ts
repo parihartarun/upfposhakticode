@@ -47,6 +47,17 @@ export class BoardMembersComponent implements OnInit {
     );
   }
 
+  deleteBoardMember(id){
+    this.api.deleteBoardMember(id).subscribe(response => {
+      this.getBoardMembers();
+      console.log(response);
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
   addBoardMember() {
     this.submitted = true;
     // stop here if form is invalid
@@ -55,6 +66,7 @@ export class BoardMembersComponent implements OnInit {
     }
 
     this.api.addBoardMember(this.memberForm.value).subscribe(response => {
+      this.getBoardMembers();
       console.log(response);
     },
       err => {
