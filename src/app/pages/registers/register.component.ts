@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
         this.selectRegisterForm = 'InputSupplier'
       }
       else if (this.routerParameterId == 5) {
-        this.selectRegisterForm = 'FarmerCHC'
+        this.selectRegisterForm = 'FarmerCHC/FMB'
       }
     });
 

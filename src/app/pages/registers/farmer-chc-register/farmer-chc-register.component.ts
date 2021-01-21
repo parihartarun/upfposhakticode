@@ -57,13 +57,14 @@ export class FarmerChcRegisterComponent implements OnInit {
       deleted: [true],
       email: ['', [Validators.required, Validators.email]],
       firmRegistraionNumber: ['', Validators.required],
-      mobile_number: ['', Validators.required],
+      mobileNumber: ['', Validators.required],
       pincode: ['', Validators.required],
       shopEstablishmentNumber: ['', Validators.required],
       villageRefId: ['', Validators.required],
       userName: ['', Validators.required],
       recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
+      user: [],
       confirmPassword: ['', Validators.required]
     }, {
       validator: MustMatch('password', 'confirmPassword')
@@ -84,8 +85,42 @@ export class FarmerChcRegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.registerForm.value
-    this.api.registerCHCFmb(this.registerForm.value).subscribe(response => {
+    let user = {
+      userName: this.registerForm.value.userName,
+      password: this.registerForm.value.password
+    }
+    this.registerForm.value.user = user;
+    let famerCHCFmb = {
+      allotmentNo: '',
+      blockRefId: '',
+      chcFmbName: '',
+      contactPerson: '',
+      deleted: true,
+      distRefId: '',
+      email: '',
+      firmRegistraionNumber: '',
+      mobileNumber: '',
+      pincode: '',
+      recaptcha: '',
+      shopEstablishmentNumber: "",
+      user: user,     
+      villageRefId: '',
+    }
+    famerCHCFmb.allotmentNo = this.registerForm.value.allotmentNo;
+    famerCHCFmb.blockRefId = this.registerForm.value.blockRefId;
+    famerCHCFmb.chcFmbName = this.registerForm.value.chcFmbName;
+    famerCHCFmb.contactPerson = this.registerForm.value.contactPerson;
+    famerCHCFmb.deleted = this.registerForm.value.deleted;
+    famerCHCFmb.firmRegistraionNumber = this.registerForm.value.firmRegistraionNumber,
+    famerCHCFmb.shopEstablishmentNumber = this.registerForm.value.shopEstablishmentNumber,    
+    famerCHCFmb.distRefId = this.registerForm.value.distRefId;
+    famerCHCFmb.email = this.registerForm.value.email;
+    famerCHCFmb.mobileNumber = this.registerForm.value.mobileNumber;
+    famerCHCFmb.pincode = this.registerForm.value.pincode;
+    famerCHCFmb.recaptcha = this.registerForm.value.recaptcha;
+    famerCHCFmb.user = user;
+    famerCHCFmb.villageRefId = this.registerForm.value.villageRefId;
+    this.api.registerCHCFmb(famerCHCFmb).subscribe(response => {
       alert(response.message);
       if (response.message == "SuccessFully Saved!") {
         this._router.navigate(['/login'])
@@ -96,6 +131,9 @@ export class FarmerChcRegisterComponent implements OnInit {
         console.log(err);
         alert(err);
       })
+  }
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
   }
 
 }
