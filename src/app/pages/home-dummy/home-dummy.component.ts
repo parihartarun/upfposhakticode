@@ -10,6 +10,9 @@ export class HomeDummyComponent implements OnInit {
   slides = [];
   noWrapSlides = false;
   showIndicator = true;
+  searchValue: string ='tomato'
+  searchType: any = 'Any';
+  data = { searchValue: this.searchValue , searchType: this.searchType }
 
   ngOnInit(): void {
     this.slides = [
@@ -17,6 +20,10 @@ export class HomeDummyComponent implements OnInit {
       { image: '../../../assets/newdesign/img/slider/3.jpg', text: 'Get information about FPO registration' },
       { image: '../../../assets/newdesign/img/slider/4.jpg', text: 'Get information about seeds, fertilizers, agricultural implements etc' }
     ];
+  }
+  selectSearchType(searchType: any) {
+    this.searchType=searchType.currentTarget.value
+    this.data.searchType = searchType.currentTarget.value
   }
 
 }

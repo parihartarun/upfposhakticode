@@ -14,8 +14,8 @@ export class ProductService {
     this._url = environment.baseUrl;
   }
   //------------api for getting search ------------------------------
-  getSearchResult() {
-    return this.http.get<any>(this._url + 'home/search?in=Any&val=tomato').pipe(map((res: any) => {
+  getSearchProduct(val:any,searchType:any) {
+    return this.http.get<any>(this._url + 'home/search?in=' + searchType + '&val=' + val).pipe(map((res: any) => {
       return res;
     }));
   }
