@@ -125,7 +125,7 @@ this.getBlocks();
   getDitricts()
   {
     this.api.getDistricts().subscribe(data => {
-   this.districtlist  = JSON.parse(data); 
+   this.districtlist  = data; 
    console.log("First value = "+this.blocklist[0].district_name)   
    console.log("Data structure districts = "+JSON.parse(JSON.stringify(data)));    
 })
