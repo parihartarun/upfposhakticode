@@ -88,7 +88,17 @@
           </div>
         </div>
       </form>
-
+        <h6 class="navbar-heading">Sales Details</h6>
+        <ul class="navbar-nav">
+          <li *ngFor="let menuItem of menuItemsCrops" class="{{menuItem.class}} nav-item">
+              <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
+                  <i class="ni {{menuItem.icon}}"></i>
+                  {{menuItem.title}}
+              </a>
+          </li>
+        </ul>
+        <hr class="my-3">
+      <h6 class="navbar-heading">FPO Details</h6>
       <ul class="navbar-nav">
           <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
               <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
@@ -97,7 +107,8 @@
               </a>
           </li>
         </ul>
-          <hr class="my-3">
+        
+        <hr class="my-3">
         <!-- Heading -->
         <h6 class="navbar-heading">Farmer Details</h6>
         <ul class="navbar-nav">
