@@ -14,13 +14,15 @@ export class NavbarComponent implements OnInit {
   public location: Location;
   isLoggeIn = false;
   username = '';
-
+userstring=""
   constructor(location: Location,  private element: ElementRef, private router: Router) {
     this.location = location;
   }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
+ 
+ this.userstring = localStorage.getItem('username');;
     if(sessionStorage.getItem('accessToken') != null){
       this.isLoggeIn = true;
       this.username = localStorage.getItem('username');
