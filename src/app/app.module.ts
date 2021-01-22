@@ -63,7 +63,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    ByerSellRegisterComponent,
     HomeDummyComponent,
     LoginComponent
   ],
