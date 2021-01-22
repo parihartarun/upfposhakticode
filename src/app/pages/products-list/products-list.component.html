@@ -186,7 +186,7 @@
        
         <hr>
         <div class="row">
-          <div class="col-md-6" *ngFor="let product of serachProduct">
+          <div class="col-md-6" *ngFor="let product of serachProduct| slice:0:8">
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
                 <div class="row">
