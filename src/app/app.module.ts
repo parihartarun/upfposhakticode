@@ -28,6 +28,7 @@ import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
 import { LoginComponent } from './pages/auth-pages/login/login.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { ProductsListComponent } from './pages/products-list/products-list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -63,7 +64,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    ByerSellRegisterComponent,
+    ProductsListComponent,
     HomeDummyComponent,
     LoginComponent
   ],
