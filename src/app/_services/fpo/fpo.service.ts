@@ -11,15 +11,55 @@ export class FpoService {
   constructor(private http: HttpClient) { 
     this._url = environment.baseUrl;
   }
+//======================== apis added by kaustubh =====================================
+//------------api for getting equipment list ------------------------------
+getEquipList(){
+  return  this.http.get<any>(this._url+'api/equipments').pipe(map((res:any)=>{
+    return res;
+  }));
+}
 
+getFarmerMachineryBankList(){
+  return  this.http.get<any>(this._url+'signin').pipe(map((res:any)=>{
+    return res;
+  }));
+}
+addFarmerMachineryBank(data:any){
+  return  this.http.get<any>(this._url+'signin').pipe(map((res:any)=>{
+    return res;
+  }));
+}
+deleteFarmerMachineryBankList(id:number){
+  return  this.http.get<any>(this._url+'signin').pipe(map((res:any)=>{
+    return res;
+  }));
+}
+updateFarmerMachineryBankList(id:number,data:any){
+  return  this.http.get<any>(this._url+'signin').pipe(map((res:any)=>{
+    return res;
+  }));
+}
+//=====================================================================================
   getBoardMembers(data){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+    return  this.http.get<any>(this._url+'api/fpos/boardmember').pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addBoardMember(data){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpos/boardmember', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  updateBoardMember(data){
+    return  this.http.post<any>(this._url+'api/fpos/boardmember/'+data.id, data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  deleteBoardMember(data){
+    return  this.http.post<any>(this._url+'api/fpos/boardmember/'+data.id, data).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -171,5 +211,27 @@ export class FpoService {
       return res;
     }));
   }
+ /************************** FPO's STORAGE UNITS A.K.A Collection Center **********************************/
+
+  addCollectionCenters(data){
+    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+    deleteCollectionCenters(data){
+      return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+        return res;
+      }));
+    }
+updateCollectionCenters(data){
+return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+          return res;
+        }));
+      }
+getCollectionCenterById(data){
+  return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+            return res;
+          }));
+        }
 
 }

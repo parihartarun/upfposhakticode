@@ -8,26 +8,28 @@
       <div class="form-group has-feedback">
         <div class="form-group">
           <div id="filterDate2">
-            <input type="text" id="homesearch" class="form-control" placeholder="Type here to search">
+            <input type="text" id="homesearch" class="form-control" placeholder="Type here to search" [(ngModel)]="searchValue">
           </div>
         </div>
       </div>
 
     </div>
-    <div class="col-md-2 p-0" >
+    <div class="col-md-2 p-0">
       <div class="dropdown searchDropDown ">
-        <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" >
-          <option value="any">{{'Any' | translate }}</option>
-          <option value="crop">{{'Crop' | translate }}</option>
+        <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" (change)=selectSearchType($event)>
+          <option value="Any">{{'Any' | translate }}</option>
+          <option value="Crop">{{'Crop' | translate }}</option>
           <option value="district">{{'District' | translate }}</option>
-          <option value="fpo_name">{{'FPO' | translate }}</option>
+          <option value="FPO">{{'FPO' | translate }}</option>
           <option value="services">{{'Services/ Products' | translate }}</option>
         </select>
       </div>
     </div>
-    <div class="col-md-2 p-0" >
-      <input type="button" value="{{'Search' | translate}}" class="form-control-feedback btn-warning serachButton" >
+    
+    <div class="col-md-2 p-0" *ngIf="data.searchType">
+      <a [routerLink]="['/products',data.searchValue,data.searchType]"  routerLinkActive="active" class="btn btn-primary serachButton btn-block btn-lg btn-product-search active search-btn" role="button" aria-pressed="true">{{'Search' | translate}}</a>
     </div>
+    
   </div>
 </div>
 
@@ -363,3 +365,4 @@
     </div>
   </div>
 </div>
+ </div>

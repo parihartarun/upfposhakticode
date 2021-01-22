@@ -71,24 +71,22 @@
                   </div>
                 </div>
                 <div class="col-lg-6">
-                  <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Gender</label><br/>
                     <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
-                      <input formControlName="gender" class="custom-control-input" id="customRadio5" type="radio">
+                      <input name="custom-radio-2" formControlName="gender" value="Male" class="custom-control-input" id="customRadio5" type="radio">
                       <label class="custom-control-label" for="customRadio5">Male</label>
                     </div>
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input formControlName="gender" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <input name="custom-radio-2" formControlName="gender" value="Female" class="custom-control-input" id="customRadio6" checked="" type="radio">
                       <label class="custom-control-label" for="customRadio6">Female</label>
-                    </div>
+                    </div> 
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input formControlName="gender" class="custom-control-input" id="customRadio7" type="radio">
+                      <input name="custom-radio-2" formControlName="gender" class="custom-control-input" id="customRadio7" type="radio">
                       <label class="custom-control-label" for="customRadio7">Other</label>
-                    </div>  
+                    </div>
                     <div *ngIf="submitted && formControls.gender.errors" class="text-danger">
                       <div *ngIf="formControls.gender.errors.required"> Gender is required</div>
                     </div>               
-                  </div>
                 </div>
               </div>
               <div class="row">
@@ -149,7 +147,7 @@
               </div>
 
               <div class="card-footer py-4 text-center">
-                <button type="submit" class="btn btn-yellow btn-primary my-4">Add Member</button>
+                <button type="submit" class="btn btn-yellow btn-primary my-4" (click)="addBoardMember()">Add Member</button>
                 <button class="btn btn-warning text-right">Reset</button>
               </div>
             </div>
@@ -213,8 +211,8 @@
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editBoardMember(member)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteBoardMember(member.id)">Delete</a>
                     </div>
                   </div>
                 </td>

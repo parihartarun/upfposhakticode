@@ -6,14 +6,22 @@ import { AuthLayoutRoutes } from './auth-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RegisterComponent } from '../../pages/register/register.component';
+import { LoginComponent } from '../../pages/auth-pages/login/login.component';
 import { HomeComponent } from '../../pages/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ProductsListComponent } from '../../pages/products-list/products-list.component';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { FarmerRegisterComponent } from '../../pages/farmer-register/farmer-register.component';
+
 import { NgxCaptchaModule } from 'ngx-captcha';
-import { FpoRegisterComponent } from '../../pages/fpo-register/fpo-register.component';
+import { FpoRegisterComponent } from '../../pages/registers/fpo-register/fpo-register.component';
+import { FarmerRegisterComponent } from '../../pages/registers/farmer-register/farmer-register.component';
+import { ByerSellRegisterComponent } from '../../pages/registers/byer-sell-register/byer-sell-register.component';
+import { InputSupplierRegisterComponent } from '../../pages/registers/input-supplier-register/input-supplier-register.component';
+import { RegisterComponent } from '../../pages/registers/register.component';
+import { EquipmentCentreRegisterComponent } from '../../pages/registers/equipment-centre-register/equipment-centre-register.component';
+import { FarmerChcRegisterComponent } from '../../pages/registers/farmer-chc-register/farmer-chc-register.component';
 import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/forgot-password.component';
+
 
 @NgModule({
   imports: [
@@ -32,7 +40,10 @@ import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/
     HomeComponent,
     ProductsListComponent,
     FpoRegisterComponent,
-    ForgotPasswordComponent
+    ByerSellRegisterComponent,
+    InputSupplierRegisterComponent,
+    EquipmentCentreRegisterComponent,
+    FarmerChcRegisterComponent, ForgotPasswordComponent
   ],
   providers: [
     { provide: BsDatepickerConfig },

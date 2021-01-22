@@ -16,6 +16,7 @@ export class MachinaryBankComponent implements OnInit {
   submitted = false;
   equipments:Array<any>=[];
   p:number = 1;
+  equiplist: any;
   edit = false;
   equipmentList:Array<any>=[];
 

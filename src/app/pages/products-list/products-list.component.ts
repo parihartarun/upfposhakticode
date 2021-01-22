@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ProductService } from '../../_services/product/product.service';
 
 @Component({
   selector: 'app-products-list',
@@ -8,11 +10,11 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductsListComponent implements OnInit {
 
-  title = 'appBootstrap';
-  
+  title = 'appBootstrap';  
   closeResult: string;
-  
-  constructor(private modalService: NgbModal) {}
+  serachProduct: [];
+  routerParameter = '';
+  constructor(private modalService: NgbModal, private _productService: ProductService, private _activatedroute: ActivatedRoute) { }
     
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -32,7 +34,15 @@ export class ProductsListComponent implements OnInit {
     }
   }
 
-  ngOnInit(){
+  ngOnInit() {
+   
+    this._activatedroute.paramMap.subscribe(params => {
+      let val = params.get('val');
+      let searchType = params.get('searchType');
+      this._productService.getSearchProduct(val, searchType).subscribe(s => {
+        this.serachProduct = s;
+      })
+    });
     
   }
 

@@ -23,7 +23,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxCaptchaModule } from 'ngx-captcha';
-import { ByerSellRegisterComponent } from './pages/byer-sell-register/byer-sell-register.component';
 
 import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
 import { LoginComponent } from './pages/auth-pages/login/login.component';

@@ -38,137 +38,18 @@ export class BoardMembersComponent implements OnInit {
   }
 
   getBoardMembers(){
-    this.members = [
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        gender:'Female',
-        designation:'Software Developer',
-        mobile:'9877655556',
-        email:'vsbdh@gmail.com'
-      },
-    ]
-    this.api.getBoardMembers(this.memberForm.value).subscribe(response => {
+    this.api.getBoardMembers(this.memberForm.value).subscribe(data => {
+      this.members = data;
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
+  deleteBoardMember(id){
+    this.api.deleteBoardMember(id).subscribe(response => {
+      this.getBoardMembers();
       console.log(response);
     },
       err => {
@@ -185,6 +66,7 @@ export class BoardMembersComponent implements OnInit {
     }
 
     this.api.addBoardMember(this.memberForm.value).subscribe(response => {
+      this.getBoardMembers();
       console.log(response);
     },
       err => {
