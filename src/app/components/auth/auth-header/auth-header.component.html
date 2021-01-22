@@ -3,8 +3,8 @@
     <img class="logo-image" src="../../../assets/image/img/logo.png" />
   </div>
   <div class="headerText">
-    <span class="headerMainText">Agriculture Department</span><br />
-    <span class="headerState">Uttar Pradesh</span>
+    <span class="headerMainText">{{'Agriculture Department' | translate}}</span><br />
+    <span class="headerState">{{'Uttar Pradesh' | translate}}</span>
   </div>
   
 
@@ -21,12 +21,12 @@
           <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
             <a class="languageText" ngbDropdownToggle>
               <img class="nav-image nav-image1" src="../../../assets/image/img/language.png" />
-              Language
+              {{'Language' | translate}}
               <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
             </a>
             <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
-              <a class="dropdown-item" (click)="useLanguage('hi')">Hindi</a>
-              <a class="dropdown-item" (click)="useLanguage('en')">English</a>
+              <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
+              <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
             </div>
           </div>
 
@@ -34,42 +34,40 @@
         <li class="nav-item">
           <a class="nav-link" href="#">
             <img class="nav-image" src="../../../assets/image/img/fpomenu.png" />
-            FPO <span class="sr-only">(current)</span>
+            {{'FPO' | translate}} <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/login">
             <img class="nav-image" src="../../../assets/image/img/scemenu.png" />
-            Schemes <span class="sr-only">(current)</span>
+            {{'Schemes' | translate}} <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item" *ngIf="!isLoggeIn">
           <a class="nav-link" routerLink="/login">
             <img class="nav-image" src="../../../assets/image/img/signup.png" />
-            Login <span class="sr-only">(current)</span>
+            {{'Login' | translate}} <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item" *ngIf="isLoggeIn">
           <a class="nav-link" href="javascript:void(0)" (click)="logout()">
             <img class="nav-image" src="../../../assets/image/img/signup.png" />
-            Logout <span class="sr-only">(current)</span>
+            {{'Logout' | translate}} <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item dropdown" *ngIf="!isLoggeIn">
           <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
             <a class="languageText" ngbDropdownToggle>
               <img class="nav-image" src="../../../assets/image/img/usermenu.png" />
-              Sign Up
+              {{'Sign Up' | translate}}
               <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
             </a>
             <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
-              <a class="dropdown-item" routerLink="/register/1" routerLinkActive="active"><b>FPO</b></a>
-              <a class="dropdown-item" routerLink="/register/2" routerLinkActive="active">Farmer</a>
-              <a class="dropdown-item" routerLink="/register/3" routerLinkActive="active">Buyer/ Seller</a>
-              <a class="dropdown-item" routerLink="/register/4" routerLinkActive="active">Input Supplier</a>
-              <a class="dropdown-item" routerLink="/register/5" routerLinkActive="active">Farmer CHC</a>
-
-              <a class="dropdown-item" href="#">Equipment Centre</a>
+              <a class="dropdown-item" routerLink="/register/1" routerLinkActive="active"><b>{{'FPO' | translate}}</b></a>
+              <a class="dropdown-item" routerLink="/register/2" routerLinkActive="active">{{'Farmer' | translate}}</a>
+              <a class="dropdown-item" routerLink="/register/3" routerLinkActive="active">{{'Buyer/ Seller' | translate}}</a>
+              <a class="dropdown-item" routerLink="/register/4" routerLinkActive="active">{{'Input Supplier' | translate}}</a>
+              <a class="dropdown-item" routerLink="/register/5" routerLinkActive="active">{{'Equipment Centre' | translate}}</a>
             </div>
           </div>
         </li>
