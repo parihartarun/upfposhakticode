@@ -6,6 +6,7 @@ import { AuthLayoutRoutes } from './auth-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RegisterComponent } from '../../pages/registers/register.component';
+import { LoginComponent } from '../../pages/auth-pages/login/login.component';
 import { HomeComponent } from '../../pages/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ProductsListComponent } from '../../pages/products-list/products-list.component';
@@ -35,8 +36,7 @@ import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/
   declarations: [
     RegisterComponent,
     FarmerRegisterComponent,    
-    HomeComponent,
-    ProductsListComponent,
+    HomeComponent,    
     FpoRegisterComponent,
     ByerSellRegisterComponent,
     InputSupplierRegisterComponent,
