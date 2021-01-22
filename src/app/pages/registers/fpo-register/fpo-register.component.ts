@@ -55,7 +55,7 @@ export class FpoRegisterComponent implements OnInit {
       distRefId: ['', Validators.required],
       fpoRegistrationNo: ['', Validators.required], 
       deleted: [true],   
-      fmbno: ['', Validators.required],
+      fpolandLine: ['', Validators.required],
       fpoEmail: ['', [Validators.required, Validators.email]],      
       fpoIFSC: ['', Validators.required],
       dateOfRegistration: ['', Validators.required],
