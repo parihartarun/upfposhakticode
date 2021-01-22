@@ -32,7 +32,8 @@ export class BoardMembersComponent implements OnInit {
       district: ['', [Validators.required]],
       block: ['', [Validators.required]],
       grampanchayat: ['', [Validators.required]],
-      village: ['', [Validators.required]]
+      village: ['', [Validators.required]],
+      masterId:localStorage.getItem('masterId')
     });
     this.getBoardMembers();
   }

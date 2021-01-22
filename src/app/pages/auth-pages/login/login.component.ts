@@ -42,6 +42,8 @@ export class LoginComponent implements OnInit {
       if (response.accessToken != '') {
         sessionStorage.setItem('accessToken', response.accessToken);
         sessionStorage.setItem('tokenType', response.tokenType);
+        localStorage.setItem('userId', response.userId);
+        localStorage.setItem('masterId', response.masterId);
         localStorage.setItem('username', response.username);
         localStorage.setItem('userRole', response.userrole);
         this.route.navigate(['/admin']);

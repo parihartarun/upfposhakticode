@@ -30,7 +30,9 @@ export class StorageUnitComponent implements OnInit {
       isProcessingUnit: ['', [Validators.required]],
       district: ['', [Validators.required]],
       block: ['', [Validators.required]],
-      address: ['', [Validators.required]]
+      address: ['', [Validators.required]],
+      fpoRefId:localStorage.getItem('masterId'),
+      masterId:localStorage.getItem('masterId')
     });
     this.getStorageUnits();
   }

@@ -17,24 +17,35 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form [formGroup]="landDetailForm" >
             <div class="pl-lg-4">
               <div class="row">
+              <input type="hidden" formControlName="id">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">Farmer Name</label>
-                    <select class="form-control form-control-alternative">
+                    <!-- <select class="form-control form-control-alternative">
                       <option value="">Select Farmer</option>
                       <option value="1"> crop 1</option>
                       <option value="2"> crop 2</option>
                       <option value="3"> crop 3</option>
-                    </select>   
+                    </select>    -->
+                    <select formControlName="farmerName" class="form-control form-control-alternative">
+                      <option value="">Select farmer</option>
+                      <option value="{{farmerList.farmerName}}" *ngFor="let farmerList of FarmerLists">{{farmerList.farmerName}}</option>
+                    </select>
+                    <div *ngIf="submitted && formControls.farmerList.errors" class="text-danger">
+                      <div *ngIf="formControls.farmerList.errors.required">farmer is required</div>
+                    </div> 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">Father's/ Husband's Name</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative">
+                    <input formControlName="fatherHusbandName" type="text" id="father-Husband-name" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.fatherHusbandName.errors" class="text-danger">
+                      <div *ngIf="formControls.fatherHusbandName.errors.required">Father's/ Husband's Name is required</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -42,18 +53,22 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Type of Ownership</label>
-                    <select class="form-control form-control-alternative">
+                    <select formControlName="ownerShip" class="form-control form-control-alternative">
                       <option value="">Select Ownership</option>
-                      <option value="1"> crop 1</option>
-                      <option value="2"> crop 2</option>
-                      <option value="3"> crop 3</option>
-                    </select>   
+                      <option value="{{ownerShip.ownerName}}" *ngFor="let ownerShip of ownerShipList">{{ownerShip.ownerName}}</option>
+                    </select>
+                    <div *ngIf="submitted && formControls.ownerShip.errors" class="text-danger">
+                      <div *ngIf="formControls.ownerShip.errors.required">License Type is required</div>
+                    </div> 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Area of Farm (in hectare)</label>
-                    <input type="text" id="input-email" class="form-control form-control-alternative" >
+                    <input formControlName="areaFarm" type="text" id="area-farm" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.areaFarm.errors" class="text-danger">
+                      <div *ngIf="formControls.areaFarm.errors.required">Area of Farm (in hectare) is required</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -72,13 +87,17 @@
                   </div>
                 </div>
               </div>
-             
+              <div class="card-footer py-4 text-center">
+                  <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addLandDetail()">
+                    Add Land Detail
+                  </button>
+                  <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateLandDetail()">
+                    Update Land Detail
+                  </button>
+                  <button class="btn btn-warning text-right" (click)="resetForm()">Reset</button>
+              </div>
             </div>
           </form>
-        </div>
-        <div class="card-footer py-4 text-center">
-          <button class="btn btn-primary text-right">Save</button>
-          <button class="btn btn-warning text-right">Reset</button>
         </div>
       </div>
     </div>
@@ -112,192 +131,25 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-2.6                </td> <td>
-                  No
-                </td>
-                
+              <tr *ngFor="let landDetail of landDetails | paginate: { itemsPerPage: 10, currentPage: p }">
+                <td>{{landDetail.farmerId}}</td>
+                <td>{{landDetail.guardianName}}</td>
+                <td></td>
+                <td>{{landDetail.land_area}}</td>
+                <td>{{landDetail.isorganc}}</td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editLandDetail(landDetail)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(landDetail.landId)">Delete</a>
                     </div>
                   </div>
                 </td>
               </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">ABlack Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-2.6                </td> <td>
-                  No
-                </td> 
-               
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">React Material Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-2.6                </td> <td>
-                  No
-                </td> 
-               
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-2.6                </td> <td>
-                  No
-                </td>
-               
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">ABlack Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-2.6                </td> <td>
-                  No
-                </td>
-               
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">React Material Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-2.6                </td> <td>
-                  No
-                </td>
-              
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+    
             </tbody>
           </table>
         </div>

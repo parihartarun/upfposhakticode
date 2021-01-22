@@ -25,7 +25,8 @@ export class ComplaintsComponent implements OnInit {
     this.complaintForm = this.formBuilder.group({
       category: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      file: ['', [Validators.required]]
+      file: ['', [Validators.required]],
+      fpoId:localStorage.getItem('masterId')
     });
     this.getComplaints();
   }

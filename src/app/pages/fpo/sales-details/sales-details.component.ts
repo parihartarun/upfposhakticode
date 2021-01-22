@@ -27,7 +27,8 @@ export class SalesDetailsComponent implements OnInit {
       season: ['', [Validators.required]],
       cropName: ['', [Validators.required]],
       cropVariety: ['', [Validators.required]],
-      quantity_sold: ['', [Validators.required]]
+      quantity_sold: ['', [Validators.required]],
+      fpoId:localStorage.getItem('masterId')
     });
     this.getFpoSalesInfo();
   }

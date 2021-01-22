@@ -28,7 +28,8 @@ export class CropProductionComponent implements OnInit {
       cropName: ['', [Validators.required]],
       cropVariety: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       actualProduction: ['', [Validators.required]],
-      marketableSurplus: ['', [Validators.required]]
+      marketableSurplus: ['', [Validators.required]],
+      //seasonRefId:localStorage.getItem('masterId')
     });
     this.getCropProduction();
   }

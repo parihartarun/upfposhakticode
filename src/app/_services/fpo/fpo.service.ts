@@ -221,4 +221,49 @@ getCollectionCenterById(data){
           }));
         }
 
+/****************************************fpo land details************************************ */
+getLandDetailList(){
+  return  this.http.get<any>(this._url+'api/fpos/land').pipe(map((res:any)=>{
+    return res;
+  }));
+}
+
+getFarmerListsByFpoId(id:number){
+  return  this.http.get<any>(this._url+'api/fpos/land/farmer/'+id).pipe(map((res:any)=>{
+    return res;
+  }));
+}
+
+addLandDetails(data:any){
+  return  this.http.post<any>(this._url+'api/fpos/land',data).pipe(map((res:any)=>{
+    return res;
+  }));
+}
+
+deletelandDetailById(id:number){
+  alert(id)
+  return  this.http.delete<any>(this._url+'api/fpos/land/'+id).pipe(map((res:any)=>{
+    return res;
+  }));
+}
+updateLandDetail(data:any){
+  return  this.http.put<any>(this._url+'api/fpos/land/'+data.id, data).pipe(map((res:any)=>{
+    return res;
+  }));
+}
+
+/**************************fpo farmer apis************************ */
+
+// getFarmerLists(){
+//   return  this.http.get<any>(this._url+'api/fpos/land/farmer/'+id).pipe(map((res:any)=>{
+//     return res;
+//   }));
+// }
+
+registerFarmerByFpo(data:any){
+   return  this.http.post<any>(this._url+'register/farmer',data).pipe(map((res:any)=>{
+    return res;
+  }));
+}
+
 }
