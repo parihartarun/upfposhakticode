@@ -150,7 +150,7 @@
     </div>
     <div class="col-6">
 
-      <label class="input-label">User Name<span class="required">*</span></label>
+      <label class="input-label">Username<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -158,7 +158,7 @@
         <input class="form-control" type="text" formControlName="userName">
       </div>
       <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
-        <div *ngIf="formControls.userName.errors.required">user name is required</div>
+        <div *ngIf="formControls.userName.errors.required">username is required</div>
       </div>
 
     </div>
@@ -178,7 +178,7 @@
     </div>
     <div class="col-6">
 
-      <label class="input-label">Password <span class="required">*</span></label>
+      <label class="input-label">Create Password <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -189,13 +189,13 @@
         <div *ngIf="formControls.password.errors.required">password is required</div>
       </div>
       <div *ngIf="fpoRegisterForm.controls['password'].invalid">
-        please atleast 8 character one upper,one lower case letter,one digit,one special characher
+        Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character
       </div>
     </div>
   </div>
   <div class="form-group row mb-3">
     <div class="col-6">
-      <label class="input-label"> Confrom Password <span class="required">*</span></label>
+      <label class="input-label"> Confirm Password <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -212,7 +212,7 @@
   <h3>Bank Details</h3>
   <div class="form-group row mb-3">
     <div class="col-6">
-      <label class="input-label">Bank Name <span class="required">*</span></label>
+      <label class="input-label">Bank Name</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -228,7 +228,7 @@
     </div>
 
     <div class="col-6">
-      <label class="input-label">Bank Account Number <span class="required">*</span></label>
+      <label class="input-label">Bank Account Number</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -245,7 +245,7 @@
   <div class="form-group row mb-3">
 
     <div class="col-6">
-      <label class="input-label">IFSC Code<span class="required">*</span></label>
+      <label class="input-label">IFSC</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -256,15 +256,18 @@
         <div *ngIf="formControls.fpoIFSC.errors.required"> ifsc code  is required</div>
       </div>
     </div>
-    <div class="col-6">
-      <ngx-recaptcha2 #captchaElem
-                      [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
-                      (success)="handleSuccess($event)"
-                      [useGlobalDomain]="false"
-                      formControlName="recaptcha">
-      </ngx-recaptcha2>
-    </div>
+    
   </div>
+  <center>
+    <div class="col-6">
+    <ngx-recaptcha2 #captchaElem
+                    [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
+                    (success)="handleSuccess($event)"
+                    [useGlobalDomain]="false"
+                    formControlName="recaptcha">
+    </ngx-recaptcha2>
+  </div>
+</center>
 
   <div class="text-center">
     <button type="button" class="btn btn-login btn-yellow btn-primary my-4" (click)="register()">Register</button>
