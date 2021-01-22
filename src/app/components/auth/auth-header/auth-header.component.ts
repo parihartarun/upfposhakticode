@@ -12,11 +12,11 @@ export class AuthHeaderComponent implements OnInit {
   isLoggeIn = false;
   username = '';
   constructor(public translate: TranslateService, private route: Router) {
-    translate.addLangs(['en', 'fr']);
-    translate.setDefaultLang('en');
+    translate.addLangs(['en', 'hi']);
+    translate.setDefaultLang('hi');
 
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|hi/) ? browserLang : 'en');
+    translate.use(browserLang.match(/en|hi/) ? browserLang : 'hi');
   }
   useLanguage(language: string) {
     this.translate.use(language);

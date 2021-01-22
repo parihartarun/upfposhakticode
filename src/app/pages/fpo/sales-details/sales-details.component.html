@@ -12,12 +12,12 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Add FPO's Crop Production</h3>
+              <h3 class="mb-0">Add FPO's Sales Info</h3>
             </div>
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="salesForm" (ngSubmit)="addFpoSalesInfo()">
+          <form [formGroup]="salesForm">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
@@ -75,8 +75,13 @@
                 </div>
               </div>
               <div class="card-footer py-4 text-center">
-                <button type="submit" class="btn btn-yellow btn-primary my-4">Add Crop Production</button>
-                <button class="btn btn-warning text-right">Reset</button>
+                <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addFpoSalesInfo()">
+                  Add Crop Production
+                </button>
+                <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateFpoSalesInfo()">
+                  Update Crop Production
+                </button>
+                <button class="btn btn-warning text-right" (click)="resetForm()">Reset</button>
               </div>
             </div>
           </form>
@@ -93,7 +98,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">FPO's Crop Productions</h3>
+              <h3 class="mb-0">FPO's Sales Info</h3>
             </div>
             <!-- <div class="col-3 text-right">
               <button class="btn btn-primary text-right">Add Member</button>
@@ -131,8 +136,8 @@
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editFpoSalesInfo(sale)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(sale.id)">Delete</a>
                     </div>
                   </div>
                 </td>
