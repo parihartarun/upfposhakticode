@@ -32,8 +32,8 @@ export class LicenseComponent implements OnInit {
       licenceType: ['', [Validators.required]],
       licenceIssuedBy: ['', [Validators.required]],
       liceneceNumber: ['', [Validators.required]],
-      issuedate: ['', [Validators.required]],
-      licenceValidTill: ['', [Validators.required]],
+      issuedate: [''],
+      licenceValidTill: [''],
       id:['']
     });
     this.getLicense();
@@ -91,8 +91,8 @@ editLicense(license){
     licenceType: [license.licenceType, [Validators.required]],
     licenceIssuedBy: [license.licenceIssuedBy, [Validators.required]],
     liceneceNumber: [license.liceneceNumber, [Validators.required]],
-    issuedate: [formatDate(license.issuedate, 'yyyy-MM-dd', 'en'), [Validators.required]],
-    licenceValidTill: ['', [Validators.required]],
+    issuedate: [formatDate(license.issuedate, 'yyyy-MM-dd', 'en')],
+    licenceValidTill: [''],
     id:[license.id]
   });
   

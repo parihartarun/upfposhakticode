@@ -22,7 +22,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-username">Season</label>
+                    <label class="form-control-label" for="input-username">Season<span class="required">*</span></label>
                     <select formControlName="season" class="form-control form-control-alternative">
                       <option value="">Select Season</option>
                       <option value="1"> Rabi</option>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">Crop Name</label>
+                    <label class="form-control-label" for="input-first-name">Crop Name<span class="required">*</span></label>
                     <select formControlName="cropName" class="form-control form-control-alternative">
                       <option value="">Select Crop</option>
                       <option value="1"> crop 1</option>
@@ -52,7 +52,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">Crop variety</label>
+                    <label class="form-control-label" for="input-email">Crop variety<span class="required">*</span></label>
                     <select formControlName="cropVariety" class="form-control form-control-alternative">
                       <option value="">Select variety</option>
                       <option value="1"> variety 1</option>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">Actual Production (in Qt.)</label>
+                    <label class="form-control-label" for="input-email">Actual Production (in Qt.)<span class="required">*</span></label>
                     <input formControlName="actualProduction" type="text" id="input-email" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.actualProduction.errors" class="text-danger">
                       <div *ngIf="formControls.actualProduction.errors.required">Actual Production is required</div>
@@ -77,7 +77,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Marketable Surplus (in Qt.)</label>
+                    <label class="form-control-label" for="input-last-name">Marketable Surplus (in Qt.)<span class="required">*</span></label>
                     <input formControlName="marketableSurplus" type="text" id="input-last-name" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.marketableSurplus.errors" class="text-danger">
                       <div *ngIf="formControls.marketableSurplus.errors.required">Marketable Surplus is required</div>

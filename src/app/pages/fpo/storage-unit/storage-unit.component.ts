@@ -38,7 +38,7 @@ export class StorageUnitComponent implements OnInit {
   ngOnInit(): void {
     this.storageUnitForm = this.formBuilder.group({
       storageType: ['', [Validators.required]],
-      facilities: ['', [Validators.required]],
+      facilities: [''],
       storageCapacity: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       isProcessingUnit: ['', [Validators.required]],
       district: [, [Validators.required]],

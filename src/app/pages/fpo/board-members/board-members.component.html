@@ -22,7 +22,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-username">Board Member Name</label>
+                    <label class="form-control-label" for="input-username">Board Member Name<span class="required">*</span></label>
                     <input formControlName="name" type="text" id="input-username" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.name.errors" class="text-danger">
                       <div *ngIf="formControls.name.errors.required">Board Member Name is required</div>
@@ -37,6 +37,35 @@
                       <div *ngIf="formControls.fatherName.errors.required">Father's/ Husband's Name is required</div>
                     </div>
                   </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">Designation<span class="required">*</span></label>
+                    <input formControlName="designation" type="text" id="input-last-name" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.designation.errors" class="text-danger">
+                      <div *ngIf="formControls.designation.errors.required">Designation is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                    <label class="form-control-label" for="input-last-name">Gender<span class="required">*</span></label><br/>
+                    <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
+                      <input name="custom-radio-2" formControlName="gender" value="Male" class="custom-control-input" id="customRadio5" type="radio">
+                      <label class="custom-control-label" for="customRadio5">Male</label>
+                    </div>
+                    <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
+                      <input name="custom-radio-2" formControlName="gender" value="Female" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <label class="custom-control-label" for="customRadio6">Female</label>
+                    </div> 
+                    <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
+                      <input name="custom-radio-2" formControlName="gender" class="custom-control-input" id="customRadio7" type="radio">
+                      <label class="custom-control-label" for="customRadio7">Other</label>
+                    </div>
+                    <div *ngIf="submitted && formControls.gender.errors" class="text-danger">
+                      <div *ngIf="formControls.gender.errors.required"> Gender is required</div>
+                    </div>               
                 </div>
               </div>
               <div class="row">
@@ -58,35 +87,6 @@
                       <div *ngIf="formControls.mobile.errors.required">Mobile is required</div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Designation</label>
-                    <input formControlName="designation" type="text" id="input-last-name" class="form-control form-control-alternative" >
-                    <div *ngIf="submitted && formControls.designation.errors" class="text-danger">
-                      <div *ngIf="formControls.designation.errors.required">Designation is required</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                    <label class="form-control-label" for="input-last-name">Gender</label><br/>
-                    <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
-                      <input name="custom-radio-2" formControlName="gender" value="Male" class="custom-control-input" id="customRadio5" type="radio">
-                      <label class="custom-control-label" for="customRadio5">Male</label>
-                    </div>
-                    <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input name="custom-radio-2" formControlName="gender" value="Female" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                      <label class="custom-control-label" for="customRadio6">Female</label>
-                    </div> 
-                    <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input name="custom-radio-2" formControlName="gender" class="custom-control-input" id="customRadio7" type="radio">
-                      <label class="custom-control-label" for="customRadio7">Other</label>
-                    </div>
-                    <div *ngIf="submitted && formControls.gender.errors" class="text-danger">
-                      <div *ngIf="formControls.gender.errors.required"> Gender is required</div>
-                    </div>               
                 </div>
               </div>
               <div class="row">
