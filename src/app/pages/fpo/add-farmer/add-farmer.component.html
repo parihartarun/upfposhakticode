@@ -17,165 +17,223 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-username">Farmer Registration Number (UP Agri Pardarshi)</label>
-                    <input type="text" id="input-username" class="form-control form-control-alternative" >
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-username">Farmer's Name</label>
-                    <input type="text" id="input-username" class="form-control form-control-alternative">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">Father's/ Husband's Name</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Category</label><br/>
-                    <div class="custom-control custom-radio mb-3 ">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio">
-                      <label class="custom-control-label" for="customRadio5">General</label>
-                    </div>
-                    <div class="custom-control custom-radio mb-3">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                      <label class="custom-control-label" for="customRadio6">OBC</label>
-                    </div> 
-                    <div class="custom-control custom-radio mb-3">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                      <label class="custom-control-label" for="customRadio6">SC</label>
-                    </div> 
-                    <div class="custom-control custom-radio mb-3">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                      <label class="custom-control-label" for="customRadio6">ST</label>
-                    </div> 
-                    <div class="custom-control custom-radio mb-3">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                      <label class="custom-control-label" for="customRadio6">OTHER</label>
-                    </div>                
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Gender</label><br/>
-                    <div class="custom-control custom-radio mb-3 ">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio">
-                      <label class="custom-control-label" for="customRadio5">Male</label>
-                    </div>
-                    <div class="custom-control custom-radio mb-3">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                      <label class="custom-control-label" for="customRadio6">Female</label>
-                    </div> 
-                    <div class="custom-control custom-radio mb-3">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
-                      <label class="custom-control-label" for="customRadio6">Other</label>
-                    </div>                
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">District</label>
-                    <select class="custom-control custom-select mb-3">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Block</label>
-                    <select class="custom-control custom-select mb-3">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
-                    </select>                  
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Gram Panchayat</label>
-                    <select class="custom-control custom-select mb-3">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
-                    </select>                  
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Village</label>
-                    <select class="custom-control custom-select mb-3">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
-                    </select>                  
-                  </div>
-                </div>
-              </div>
+          <form role="form" [formGroup]="_farmerForm">
 
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-email">Pincode</label>
-                    <input type="text" id="input-email" class="form-control form-control-alternative" >
+            <div class="form-group row mb-3">
+              <div class="col-6">
+                <label class="input-label">Farmer Registration Number (UP Agri Pardarshi) </label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
                   </div>
+                  <input class="form-control" type="text">
                 </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-email">Mobile</label>
-                    <input type="text" id="input-email" class="form-control form-control-alternative">
-                  </div>
-                </div>
+
               </div>
-              
-              <hr/>
-              <h3>Bank Details:</h3>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-email">Bank Name</label>
-                    <input type="text" id="input-email" class="form-control form-control-alternative" >
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-email">IFSC Code</label>
-                    <input type="text" id="input-email" class="form-control form-control-alternative">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-email">Bank Account Number</label>
-                    <input type="text" id="input-email" class="form-control form-control-alternative" >
-                  </div>
+              <div class="col-4">
+
+                <div class="text-center mt-2">
+                  <button type="submit" class="btn btn-login btn-yellow btn-primary my-4">Fetch from UP Agri Pardashi</button>
                 </div>
               </div>
 
             </div>
+            <div class="form-group row mb-3">
+              <div class="col-6">
+                <label class="input-label">Farmer Name  <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="text" formControlName="farmerName">
+                </div>
+                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
+                  <div *ngIf="formControls.farmerName.errors.required">farmer name is required</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="input-label">Farmer's Father/ Husband Name</label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="text" formControlName="parantsName">
+                </div>
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+              <div class="col-6">
+                <label class="input-label">Category <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="category">
+                    <option value="">Select Category</option>
+                    <option value="Genereal">Genereal</option>
+                    <option value="obc">OBC</option>
+                    <option value="sc">SC</option>
+                    <option value="st">st</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.category.errors" class="text-danger">
+                  <div *ngIf="formControls.category.errors.required">category is required</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="input-label">Gender <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="gender">
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">female</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.gender.errors" class="text-danger">
+                  <div *ngIf="formControls.gender.errors.required">gender is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+              <div class="col-6">
+                <label class="input-label">District <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="distRefId" (change)="selectDistrict($event)">
+                    <option value="">Select District</option>
+                    <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.distRefId.errors" class="text-danger">
+                  <div *ngIf="formControls.distRefId.errors.required">district is required</div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <label class="input-label">Block <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="blockRef" (change)="selectBlock($event)">
+                    <option value="">Select Block </option>
+                    <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.blockRef.errors" class="text-danger">
+                  <div *ngIf="formControls.blockRef.errors.required">block is required</div>
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group row mb-3">
+
+              <div class="col-6">
+                <label class="input-label">Gram Panchayat <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="villagePanchayatId" (change)="selectGramPanchayat($event)">
+                    <option value="">Select Gram Panchayat  </option>
+                    <option *ngFor="let panchayat of panchayts" [value]="panchayat.panchayat_id">{{panchayat.panchayat_name}}</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.villagePanchayatId.errors" class="text-danger">
+                  <div *ngIf="formControls.villagePanchayatId.errors.required">gram panchayat is required</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="input-label">Village <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="villRefId" (change)="selectVillage($event)">
+                    <option value="">Select Village </option>
+                    <option *ngFor="let village of villages" [value]="village.villageId">{{village.villageName}}</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.villRefId.errors" class="text-danger">
+                  <div *ngIf="formControls.villRefId.errors.required">Village is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+
+              <div class="col-6">
+
+                <label class="input-label">Mobile Number</label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="number" formControlName="farmerMob">
+                </div>                
+              </div>
+              <div class="col-6">
+                <label class="input-label">PIN Code</label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="number" formControlName="pincode">
+                </div>                
+              </div>
+            </div>
+            <hr />
+            <h3>Bank Details</h3>
+            <div class="form-group row mb-3">
+
+              <div class="col-6">
+                <label class="input-label">Bank Name <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="bankRefId" (change)="selectBanks($event)">
+                    <option value="">Select Bank Name</option>
+                    <option *ngFor="let bank of banks" [value]="bank.bankId">{{bank.bankName}}</option>
+                  </select>
+                </div>
+                
+              </div>
+              <div class="col-6">
+                <label class="input-label">Bank Account Number <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="number" formControlName="accountNo">
+                </div>
+                
+              </div>
+            </div>
+
+            <div class="form-group row mb-3">
+
+              <div class="col-6">
+                <label class="input-label">IFSC Code<span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="text" formControlName="ifscCode">
+                </div>
+                
+              </div>
+            </div>
           </form>
         </div>
         <div class="card-footer py-4 text-center">
-          <button class="btn btn-primary text-right">Save</button>
-          <button class="btn btn-warning text-right">Reset</button>
+          <button class="btn btn-primary text-right" (Click)="saveFarmer()">Save</button>
+          <button class="btn btn-warning text-right" (Click)="reset()">Reset</button>
         </div>
       </div>
     </div>
@@ -192,8 +250,8 @@
               <h3 class="mb-0">Farmer details</h3>
             </div>
             <!-- <div class="col-3 text-right">
-              <button class="btn btn-primary text-right">Add Member</button>
-            </div> -->
+        <button class="btn btn-primary text-right">Add Member</button>
+      </div> -->
           </div>
         </div>
         <div class="table-responsive">
@@ -210,284 +268,56 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let fd of farmerDetails | paginate: { itemsPerPage: 10, currentPage: p }">
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
+                      <span class="mb-0 text-sm">{{fd.farmerName}}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                 v@gmail.com
+                  {{fd.parantsName}}
                 </td>
                 <td>
-                 732843473464
+                  {{fd.category}}
                 </td>
                 <td>
-                  Female
-                </td><td>
-                  928324732643
+                  {{fd.gender}}
                 </td>
                 <td>
-                  <a class="btn btn-sm btn-primary mb-1" >
+                  {{fd.farmerMob}}
+                </td>
+                <td>
+                  <a class="btn btn-sm btn-primary mb-1" routerLink="/land-details">
                     Land
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
+                  </a><br />
+                  <a class="btn btn-sm btn-primary mb-1" routerLink="/crop-showing-details">
                     Crop Showing
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
+                  </a><br />
+                  <a class="btn btn-sm btn-primary mb-1" routerLink="/production-details">
                     Production
-                  </a><br/>
+                  </a><br />
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle >
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
+                      <a class="dropdown-item" (click)="editFarmer(fd)">Edit</a>
                       <a class="dropdown-item" href="javascript:void(0)">Delete</a>
                     </div>
                   </div>
                 </td>
               </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">ABlack Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td><td>
-                  928324732643
-                </td>
-                <td>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Land
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Crop Showing
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Production
-                  </a><br/>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">React Material Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td><td>
-                  928324732643
-                </td>
-                <td>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Land
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Crop Showing
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Production
-                  </a><br/>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td><td>
-                  928324732643
-                </td>
-                <td>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Land
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Crop Showing
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Production
-                  </a><br/>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">ABlack Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td><td>
-                  928324732643
-                </td>
-                <td>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Land
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Crop Showing
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Production
-                  </a><br/>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">React Material Dashboard</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                 v@gmail.com
-                </td>
-                <td>
-                 732843473464
-                </td>
-                <td>
-                  Female
-                </td><td>
-                  928324732643
-                </td>
-                <td>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Land
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Crop Showing
-                  </a><br/>
-                  <a class="btn btn-sm btn-primary mb-1" >
-                    Production
-                  </a><br/>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+
             </tbody>
           </table>
         </div>
         <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </nav>
         </div>
       </div>

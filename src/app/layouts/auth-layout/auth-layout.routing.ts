@@ -14,6 +14,7 @@ export const AuthLayoutRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register/:id', component: RegisterComponent },
     { path: 'home', component: HomeDummyComponent },
+    { path: 'products/:val/:searchType', component: ProductsListComponent },
     { path: 'products', component: ProductsListComponent },
     { path: 'farmer-register', component: FarmerRegisterComponent },
     { path: 'fpo-register', component: FpoRegisterComponent },

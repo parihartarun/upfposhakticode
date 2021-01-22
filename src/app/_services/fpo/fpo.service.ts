@@ -48,13 +48,25 @@ updateFarmerMachineryBankList(id:number,data:any){
 }
 //=====================================================================================
   getBoardMembers(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.get<any>(this._url+'api/fpos/boardmember').pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addBoardMember(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpos/boardmember', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  updateBoardMember(data){
+    return  this.http.post<any>(this._url+'api/fpos/boardmember/'+data.id, data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  deleteBoardMember(data){
+    return  this.http.post<any>(this._url+'api/fpos/boardmember/'+data.id, data).pipe(map((res:any)=>{
       return res;
     }));
   }

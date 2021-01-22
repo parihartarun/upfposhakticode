@@ -61,6 +61,7 @@ export class ByerSellRegisterComponent implements OnInit {
       webSite: [''],
       recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
+      userBuyerSeller: [],
       confirmPassword: ['', Validators.required]
     }, {
       validator: MustMatch('password', 'confirmPassword')
@@ -81,7 +82,15 @@ export class ByerSellRegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    this.registerForm.value
+    
+    let user = {
+      userName: this.registerForm.value.userName,
+      password: this.registerForm.value.password
+    }
+    delete this.registerForm.value.password;
+    delete this.registerForm.value.userName;
+    delete this.registerForm.value.confirmPassword;
+    this.registerForm.value.userBuyerSeller = user;
     this.api.registerBuyerSeller(this.registerForm.value).subscribe(response => {
       alert(response.message);
       if (response.message == "SuccessFully Saved!") {
@@ -95,6 +104,8 @@ export class ByerSellRegisterComponent implements OnInit {
       })
   }
 
-
+  handleSuccess(e) {
+    console.log("ReCaptcha", e);
+  }
 
 }
