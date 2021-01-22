@@ -41,13 +41,13 @@ export class StorageUnitComponent implements OnInit {
       facilities: [''],
       storageCapacity: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       isProcessingUnit: ['', [Validators.required]],
-      district: [, [Validators.required]],
-      block: [undefined, [Validators.required]],
-      address: ['', [Validators.required]],
-      washingfacility:[false, [Validators.required]],  
-      sortingmachines:[false, [Validators.required]], 
-      gradingmachines:[false, [Validators.required]], 
-      packagingmachines:[false, [Validators.required]],
+      district: [''],
+      block: [''],
+      address: [''],
+      washingfacility:[false],  
+      sortingmachines:[false], 
+      gradingmachines:[false], 
+      packagingmachines:[false],
     });  
     
     this.getStorageUnits();

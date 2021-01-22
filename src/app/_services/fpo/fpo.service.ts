@@ -106,13 +106,13 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   updateLicense(data){
-    return  this.http.put<any>(this._url+'api/fpo/licenses/updateLicense/'+data.id, data).pipe(map((res:any)=>{
+    return  this.http.put<any>(this._url+'api/fpo/license/updateLicense/'+data.id, data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   deleteLicense(id){
-    return  this.http.delete<any>(this._url+'api/fpo/licenses/deleteLicense/'+id).pipe(map((res:any)=>{
+    return  this.http.delete<any>(this._url+'api/fpo/license/deleteLicense/'+id).pipe(map((res:any)=>{
       return res;
     }));
   }
