@@ -22,7 +22,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Type of Storage</label><br/>
+                    <label class="form-control-label" for="input-last-name">Type of Storage<span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3">
                       <input formControlName="storageType"  class="custom-control-input" id="coldstorageradio" value ="Cold Storage" type="radio">
                       <label class="custom-control-label" for="coldstorageradio">Cold Storage</label>
@@ -40,20 +40,20 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Facilities available</label>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                      <input formControlName="facilities"  class="custom-control-input" id="customCheck5" type="checkbox">
-                      <label class="custom-control-label" for="customCheck5">Washing facility</label>
+                      <input formControlName="washingfacility"  class="custom-control-input" id="washingfacilitycheck" type="checkbox">
+                      <label class="custom-control-label" for="washingfacilitycheck">Washing facility</label> 
                     </div>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                      <input formControlName="facilities" class="custom-control-input" id="customCheck6" type="checkbox" checked="">
-                      <label class="custom-control-label" for="customCheck6">Sorting machines</label>
+                      <input formControlName="sortingmachines" class="custom-control-input" id="sortingmachinescheck"  type="checkbox" >
+                      <label class="custom-control-label" for="sortingmachinescheck">Sorting machines</label>
                     </div>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                      <input formControlName="facilities"  class="custom-control-input" id="customCheck7" type="checkbox" >
-                      <label class="custom-control-label" for="customCheck7">Grading machines</label>
+                      <input formControlName="gradingmachines"  class="custom-control-input" id="gradingmachinescheck" value="Grading machines" type="checkbox" >
+                      <label class="custom-control-label" for="gradingmachinescheck">Grading machines</label>
                     </div>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
-                      <input formControlName="facilities"  class="custom-control-input" id="customCheck8" type="checkbox" checked="" >
-                      <label class="custom-control-label" for="customCheck8">Packaging machines</label>
+                      <input formControlName="packagingmachines"  class="custom-control-input" id="packagingmachinescheck" value="Packaging machines" type="checkbox" checked="" >
+                      <label class="custom-control-label" for="packagingmachinescheck">Packaging machines</label>
                     </div>
                     <div *ngIf="submitted && formControls.facilities.errors" class="text-danger">
                       <div *ngIf="formControls.facilities.errors.required">Facilities is required</div>
@@ -64,7 +64,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Storage Capacity (In Mt.)</label>
+                    <label class="form-control-label" for="input-last-name">Storage Capacity (In Mt.)<span class="required">*</span></label>
                     <input formControlName="storageCapacity"  type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Storage Capacity" value="Jesse">
                     <div *ngIf="submitted && formControls.storageCapacity.errors" class="text-danger">
                       <div *ngIf="formControls.storageCapacity.errors.required">Storage Capacity is required</div>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Do you have Seed Processing Unit? *</label><br/>
+                    <label class="form-control-label" for="input-last-name">Do you have Seed Processing Unit? <span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3 ">
                       <input formControlName="isProcessingUnit"  value="Yes"  class="custom-control-input" id="customRadio5" type="radio">
                       <label class="custom-control-label" for="customRadio5">Yes</label>
@@ -92,10 +92,10 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">District</label>
-                    <select formControlName="district"  class="custom-control custom-select">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
+                    <select formControlName="district" id="districtselect" class="custom-control custom-select">
+                      <option name="opt" [value]="undefined" selected disabled>Please Select District</option>
+                      <option *ngFor="let district of districtlist" [value]="district.district_id">{{district.district_name}}</option>
+                      
                     </select>
                     <div *ngIf="submitted && formControls.district.errors" class="text-danger">
                       <div *ngIf="formControls.district.errors.required">District is required</div>
@@ -105,10 +105,10 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Block</label>
-                    <select formControlName="block"  class="custom-control custom-select">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
+                    <select formControlName="block"  id="blk" class="custom-control custom-select">
+                      <option name="opt2" [value]="undefined" selected disabled>Please Select Block</option>
+                      <option *ngFor="let block of blocklist" [value]="block.id">{{block.blockName}}</option>
+                      
                     </select>  
                     <div *ngIf="submitted && formControls.block.errors" class="text-danger">
                       <div *ngIf="formControls.block.errors.required">Block is required</div>
@@ -129,7 +129,7 @@
               </div>
               <div class="card-footer py-4 text-center">
                 <button type="submit" class="btn btn-yellow btn-primary my-4">Add Storage Unit</button>
-                <button class="btn btn-warning text-right">Reset</button>
+                <button class="btn btn-warning text-right" (click)="reset()">Reset</button>
               </div>
             </div>
           </form>
@@ -168,7 +168,7 @@
               
               <tr *ngFor="let unit of storageUnits | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                 {{unit.storageType}}
+                 {{unit?.storageType?unit.storageType:'N/A'}}
                  </td>
                 <td>
                   {{unit.address}}, {{unit.block}}, {{unit.district}}
@@ -177,7 +177,7 @@
                   {{unit.storageCapacity}}
                 </td>
                 <td>
-                  {{unit.facilities}}
+                  {{unit?.facilities?unit.facilities:'N/A'}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
@@ -185,8 +185,8 @@
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editCollectionCenter(unit)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(unit.id)">Delete</a>
                     </div>
                   </div>
                 </td>

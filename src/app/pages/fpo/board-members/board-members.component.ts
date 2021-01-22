@@ -25,14 +25,14 @@ export class BoardMembersComponent implements OnInit {
     this.memberForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       fatherName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      mobile: ['', [Validators.required]],
+      email: ['', [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      mobile: [''],
       designation: ['', [Validators.required]],
-      gender: ['', [Validators.required]],
-      district: ['', [Validators.required]],
-      block: ['', [Validators.required]],
-      grampanchayat: ['', [Validators.required]],
-      village: ['', [Validators.required]],
+      gender: [''],
+      district: [''],
+      block: [''],
+      grampanchayat: [''],
+      village: [''],
       masterId:localStorage.getItem('masterId')
     });
     this.getBoardMembers();

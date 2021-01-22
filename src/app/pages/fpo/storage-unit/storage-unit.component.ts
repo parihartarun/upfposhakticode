@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/_services/auth/auth.service';
+import { StorageUnitService } from 'src/app/_services/storage_units/storage_units.service';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
@@ -15,246 +18,211 @@ export class StorageUnitComponent implements OnInit {
   submitted = false;
   storageUnits:Array<any>=[];
   p:number = 1;
+  districtlist: any;
+  fpoProfile: any;
+  blocklist: any;
+  edit: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
-    private route: Router
-  ) {}
+    private authservice:AuthService,
+    private route: Router,
+    private toastr:ToastrService,
+    private storageunitservice:StorageUnitService
+  ) {
+
+
+  }
 
   ngOnInit(): void {
     this.storageUnitForm = this.formBuilder.group({
       storageType: ['', [Validators.required]],
-      facilities: ['', [Validators.required]],
+      facilities: [''],
       storageCapacity: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       isProcessingUnit: ['', [Validators.required]],
-      district: ['', [Validators.required]],
-      block: ['', [Validators.required]],
-      address: ['', [Validators.required]],
+      district: [''],
+      block: [''],
+      address: [''],
+      washingfacility:[false],  
+      sortingmachines:[false], 
+      gradingmachines:[false], 
+      packagingmachines:[false],
       fpoRefId:localStorage.getItem('masterId'),
       masterId:localStorage.getItem('masterId')
-    });
+    });  
+    
     this.getStorageUnits();
+    this.getDistricts();
+    
+
+this.getFpoProfile()
+  }
+
+
+  reset()
+  {
+    this.storageUnitForm.reset();
+    this.storageUnitForm.markAsPristine();
+    this.storageUnitForm.markAsUntouched();
+  }
+
+
+
+prepareString(str:string,appendValue:string)
+{
+  return   (str.trim().length==0 || str.trim()=="")?str+appendValue:str+","+appendValue;
+}
+
+ public bindFacilities():string
+{
+  var facilities = "";
+if(this.storageUnitForm.get("packagingmachines")){ facilities = this.prepareString(facilities,"Packaging Machines")}
+if(this.storageUnitForm.get("gradingmachines")){ facilities = this.prepareString(facilities,"Grading Machines")}
+if(this.storageUnitForm.get("washingfacility")){ facilities = this.prepareString(facilities,"Washing Facility")}
+if(this.storageUnitForm.get("sortingmachines")){ facilities = this.prepareString(facilities,"Sorting Machines")}
+return facilities;
+}
+
+  getBlocksByDistrictId()
+  {
+    this.storageunitservice.getBlocksById(this.storageUnitForm.get("district").value).subscribe(data=>{
+this.blocklist  = data;    
+    })
+  }
+
+  public getFpoProfile()
+  {
+    
+    var username = localStorage.getItem('username');
+    
+this.storageunitservice.getFpoProfileByUsername(username).subscribe(data=>{
+  this.fpoProfile = data;
+  this.storageUnitForm.get("district").setValue(this.fpoProfile.distRefId);
+  this.getBlocksByDistrictId();
+})
+
+  }
+  getDistricts() {
+    this.storageunitservice.getDistrictsByStateId().subscribe(data=>{    
+    this.districtlist = data;
+    });
   }
 
   getStorageUnits(){
-    this.storageUnits = [
-      { 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },{ 
-        storageType:'Cold Storage',
-        facilities:'Washing facility,Sorting machines',
-        storageCapacity:'23',
-        isProcessingUnit:'1',
-        district:'pune',
-        block:'B1',
-        address:'pune'
-      },
-  ]
+
+    this.storageunitservice.getStorageUnits().subscribe(data=>{    
+      this.storageUnits = data;
+      console.log("Dta oF Storage units"+JSON.stringify(data))
+      });
+  
 }
 
+confirmDelete(equipmentId){
+  if(confirm("Are you sure to delete this item.")) {
+    this.storageunitservice.deleteStrotageUnit(equipmentId).subscribe(response => {
+      console.log(response);
+      if(response == true){
+        this.toastr.success('Storage Unit Deleted successfully.');
+      }else{
+          this.toastr.error('Error! While Deleting Storage Unit.');
+      }
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+}
+editCollectionCenter(equipment){
+  
+console.log(JSON.stringify(equipment))  
+
+
+// //{"id":2,
+// "stateId":9,
+// "distId":148,
+// "blockId":1175,
+// "storageCapacity":100,
+// "distanceFromFPC":null,
+// "fpoRefId":3,
+// "updatedBy":"ROLE_FPC",
+// "address":"55/2, Road 23, Amwa Village, Chargawan 273003, Uttar Pradesh",
+// "lattitude":"26.8066878",
+// "longitude":"83.3818885000001",
+// "masterId":8,
+// "createDate":"2020-07-28",
+// "updateDate":null,
+// "deleteDate":null,
+// "fascilities":"Washing facility,Sorting machines,Grading machines",
+// "storageType":null,
+// "isseedprocessingunit":null,
+// "deleted":false}
+
+  this.storageUnitForm = this.formBuilder.group({
+    storageType: [equipment.storageType, [Validators.required]],
+    facilities: ['', [Validators.required]],
+    storageCapacity: [equipment.storageCapacity, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+    isProcessingUnit: [equipment.isseedprocessingunit, [Validators.required]],
+    district: [equipment.distId , [Validators.required]],
+    block: [equipment.blockId, [Validators.required]],
+    address: [equipment.address, [Validators.required]],
+    washingfacility:[false, [Validators.required]],  
+    sortingmachines:[false, [Validators.required]], 
+    gradingmachines:[false, [Validators.required]], 
+    packagingmachines:[false, [Validators.required]],
+  });
+  this.splitString(equipment.fascilities)
+
+  this.edit = true;
+  window.scroll(0,0);  
+}
+
+
+
+splitString(str)
+{
+ 
+ let stt:string=""
+ console.log(str.split(","))
+ str.split(",").forEach(data=>{
+ if(data =="")
+ {
+
+ }
+ if(data =="")
+ {
+
+ }
+ if(data =="")
+ {
+
+ }
+ if(data =="")
+ {
+
+ }
+  stt = this.prepareString(stt,data);
+ })
+
+console.log("Prepared stt = "+stt);
+}
 addStorageUnit() {
   this.submitted = true;
   // stop here if form is invalid
-  if (this.storageUnitForm.invalid) {
-      return;
-  }
+  console.log(JSON.stringify(this.storageUnitForm.value))
+  console.log("Prepared Facilities to dispatch = "+this.bindFacilities())
+  // if (this.storageUnitForm.invalid) {
+  //     return;
+  // }
 
-  this.api.addStorageUnit(this.storageUnitForm.value).subscribe(response => {
+
+  
+  this.storageunitservice.addStrotageUnit(this.storageUnitForm.value).subscribe(response => {
     console.log(response);
   },
     err => {
-      console.log(err)
+    console.log(err)
     }
   );
 }

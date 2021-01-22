@@ -137,12 +137,12 @@ export class AddFarmerComponent implements OnInit {
       return;
     }
     let user = {
-      userName: this.registerForm.value.userName,
-      password: this.registerForm.value.password
+      userName: this.fpoAddFarmerForm.value.userName,
+      password: this.fpoAddFarmerForm.value.password
     }
-    delete this.registerForm.value.password;
-    delete this.registerForm.value.userName;
-    delete this.registerForm.value.confirmPassword;
+    delete this.fpoAddFarmerForm.value.password;
+    delete this.fpoAddFarmerForm.value.userName;
+    delete this.fpoAddFarmerForm.value.confirmPassword;
   
     this.fpoAddFarmerForm.value.userFar = user;
 

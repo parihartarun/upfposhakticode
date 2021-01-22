@@ -26,6 +26,10 @@ export class ComplaintsComponent implements OnInit {
       category: ['', [Validators.required]],
       description: ['', [Validators.required]],
       file: ['', [Validators.required]],
+      status: [''],
+      desc: ['', [Validators.required]],
+      message: ['', [Validators.required]],
+      title: ['', [Validators.required]],
       fpoId:localStorage.getItem('masterId')
     });
     this.getComplaints();
@@ -159,22 +163,20 @@ export class ComplaintsComponent implements OnInit {
         file:'sed.jpg'
       },
     ]
-    this.api.getComplaints(this.complaintForm.value).subscribe(response => {
-      console.log(response);
-    },
-      err => {
-        console.log(err)
-      }
-    );
+    //this.api.getComplaints(this.complaintForm.value).subscribe(response => {
+    //  console.log(response);
+    //},
+    //  err => {
+    //    console.log(err)
+    //  }
+    //);
   }
 
   addComplaint() {
     this.submitted = true;
-    // stop here if form is invalid
     if (this.complaintForm.invalid) {
         return;
     }
-
     this.api.addComplaint(this.complaintForm.value).subscribe(response => {
       console.log(response);
     },

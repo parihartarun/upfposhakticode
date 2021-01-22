@@ -23,8 +23,13 @@
               <input type="hidden" formControlName="id">
                 <div class="col-lg-6">
                   <div class="form-group">
+<<<<<<< HEAD
                     <label class="form-control-label" for="input-username">Farmer Name</label>
                     <!-- <select class="form-control form-control-alternative">
+=======
+                    <label class="form-control-label" for="input-username">Farmer Name<span class="required">*</span></label>
+                    <select class="form-control form-control-alternative">
+>>>>>>> 7b5f591dbfb4f4a048f475334d6beff49e14ecb4
                       <option value="">Select Farmer</option>
                       <option value="1"> crop 1</option>
                       <option value="2"> crop 2</option>
@@ -52,8 +57,13 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
+<<<<<<< HEAD
                     <label class="form-control-label" for="input-email">Type of Ownership</label>
                     <select formControlName="ownerShip" class="form-control form-control-alternative">
+=======
+                    <label class="form-control-label" for="input-email">Type of Ownership<span class="required">*</span></label>
+                    <select class="form-control form-control-alternative">
+>>>>>>> 7b5f591dbfb4f4a048f475334d6beff49e14ecb4
                       <option value="">Select Ownership</option>
                       <option value="{{ownerShip.ownerName}}" *ngFor="let ownerShip of ownerShipList">{{ownerShip.ownerName}}</option>
                     </select>
@@ -64,18 +74,23 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
+<<<<<<< HEAD
                     <label class="form-control-label" for="input-email">Area of Farm (in hectare)</label>
                     <input formControlName="areaFarm" type="text" id="area-farm" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.areaFarm.errors" class="text-danger">
                       <div *ngIf="formControls.areaFarm.errors.required">Area of Farm (in hectare) is required</div>
                     </div>
+=======
+                    <label class="form-control-label" for="input-email">Area of Farm (in hectare)<span class="required">*</span></label>
+                    <input type="text" id="input-email" class="form-control form-control-alternative" >
+>>>>>>> 7b5f591dbfb4f4a048f475334d6beff49e14ecb4
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">If farmer is doing organic farming?</label><br/>
+                    <label class="form-control-label" for="input-last-name">If farmer is doing organic farming?<span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
                       <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio">
                       <label class="custom-control-label" for="customRadio5">Yes</label>

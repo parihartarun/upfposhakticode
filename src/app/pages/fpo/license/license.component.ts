@@ -32,8 +32,8 @@ export class LicenseComponent implements OnInit {
       licenceType: ['', [Validators.required]],
       licenceIssuedBy: ['', [Validators.required]],
       liceneceNumber: ['', [Validators.required]],
-      issuedate: ['', [Validators.required]],
-      licenceValidTill: ['', [Validators.required]],
+      issuedate: [''],
+      licenceValidTill: [''],
       id:['']
     });
     this.getLicense();
@@ -91,8 +91,8 @@ editLicense(license){
     licenceType: [license.licenceType, [Validators.required]],
     licenceIssuedBy: [license.licenceIssuedBy, [Validators.required]],
     liceneceNumber: [license.liceneceNumber, [Validators.required]],
-    issuedate: [formatDate(license.issuedate, 'yyyy-MM-dd', 'en'), [Validators.required]],
-    licenceValidTill: ['', [Validators.required]],
+    issuedate: [''],
+    licenceValidTill: [''],
     id:[license.id]
   });
   
@@ -107,6 +107,7 @@ updateLicense(){
       return;
   }
   this.api.updateLicense(this.licenseForm.value).subscribe(response => {
+    console.log(response);
     if(response.id != ''){
       this.toastr.success('License Updated successfully.');
       this.submitted = false;
@@ -126,8 +127,10 @@ updateLicense(){
 confirmDelete(licenseId){
   if(confirm("Are you sure to delete this item")) {
     this.api.deleteLicense(licenseId).subscribe(response => {
+      console.log(response);
       if(response == true){
         this.toastr.success('License Deleted successfully.');
+        this.getLicense();
       }else{
           this.toastr.error('Error! While Deleting License.');
       }
