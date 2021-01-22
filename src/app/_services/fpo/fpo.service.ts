@@ -7,13 +7,28 @@ import { environment }  from '../../../environments/environment';
   providedIn: 'root'
 })
 export class FpoService {
+ 
+  getBlocks()
+  {
+    return  this.http.get<any>(this._url+`api/v1/block/getBlocks`).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+  //------------api for getting equipment list ------------------------------
+  getDistricts(){
+    return  this.http.get<any>(this._url+'api/v1/District/getDistricts').pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
   _url: string;
   constructor(private http: HttpClient) { 
     this._url = environment.baseUrl;
   }
 //======================== apis added by kaustubh =====================================
-getFpoDetailsByUserName(username:string){
-  return  this.http.get<any>(this._url+'api/fpos/').pipe(map((res:any)=>{
+getFpoProfileByUsername(username)
+{
+  return  this.http.get<any>(this._url+`api/fpos/getByUsername/${username}`).pipe(map((res:any)=>{
     return res;
   }));
 }
