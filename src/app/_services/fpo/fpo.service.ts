@@ -12,6 +12,13 @@ export class FpoService {
     this._url = environment.baseUrl;
   }
 //======================== apis added by kaustubh =====================================
+getFpoDetailsByUserName(username:string){
+  return  this.http.get<any>(this._url+'api/fpos/').pipe(map((res:any)=>{
+    return res;
+  }));
+}
+
+
 //------------api for getting equipment list ------------------------------
 getEquipList(){
   return  this.http.get<any>(this._url+'api/equipments').pipe(map((res:any)=>{
