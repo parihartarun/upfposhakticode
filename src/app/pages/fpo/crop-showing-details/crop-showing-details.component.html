@@ -12,7 +12,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Add Crop Sowing Details</h3>
+              <h3 class="mb-0">Crop Sowing Details</h3>
             </div>
           </div>
         </div>
@@ -70,18 +70,17 @@
                   </div>
                 </div>
               </div>
-
-
             </div>
             <div class="row">
               <div class="col">
+                <div class="col-lg-12 py-2 text-right">
+                  <button class="btn btn-primary text-right">Add Sowing</button>
+                </div>
                 <div class="card shadow">
-                
                   <div class="table-responsive">
                     <table class="table align-items-center table-flush">
                       <thead class="thead-light">
                         <tr>
-                          <th scope="col">Select</th>
                           <th scope="col">Sowing Area (in Ha.)*
                           </th>
                           <th scope="col">Crop*</th>                         
@@ -89,13 +88,11 @@
                             Crop Variety  *
                           </th>
                           <th>Expected Yield (in Qt.) *</th>
+                          <th>Actual Production (in Qt.) *</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>
-                            <input type="checkbox" id="input-check" class="form-control form-control-alternative" value="">
-                          </td>
                           <td>
                             <input type="text" id="sowing_Area" class="form-control form-control-alternative" value="Sowing Area ">
                           </td>
@@ -104,7 +101,6 @@
                               <option value="">Select Crop</option>
                               <option value="">1</option>
                               <option value="">2</option>
-
                             </select>
                           </td>
                           <td>
@@ -112,17 +108,15 @@
                               <option value="">Select Variety</option>
                               <option value="">1</option>
                               <option value="">2</option>
-
                             </select>
                           </td>
                           <td>
                             <input type="number" id="expected_Yield" class="form-control form-control-alternative" value="Expected Yield (in Qt.) ">
                           </td>
-
+                          <td>
+                            <input type="number" id="actual_production" class="form-control form-control-alternative" value="Actual Production (in Qt.) ">
+                          </td>
                         </tr>
-                      
-
-
                       </tbody>
                     </table>
                   </div>
