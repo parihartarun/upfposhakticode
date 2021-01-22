@@ -346,7 +346,7 @@ confirmDelete(equipmentId){
 }
 editStorageUnit(equipment){
   
-  
+console.log(JSON.stringify(equipment))  
   this.storageUnitForm = this.formBuilder.group({
     storageType: ['', [Validators.required]],
     facilities: ['', [Validators.required]],
@@ -361,7 +361,7 @@ editStorageUnit(equipment){
     packagingmachines:[false, [Validators.required]],
   });
 
-  
+
   this.edit = true;
   window.scroll(0,0);  
 }
