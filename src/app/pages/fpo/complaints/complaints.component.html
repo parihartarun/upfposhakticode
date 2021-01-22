@@ -23,35 +23,53 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-username">Complaints/ Suggestions Category</label>
-                      <select formControlName="category" class="form-control form-control-alternative">
-                        <option value="">Select Crop</option>
-                        <option value="1"> crop 1</option>
-                        <option value="2"> crop 2</option>
-                        <option value="3"> crop 3</option>
-                      </select>   
-                      <div *ngIf="submitted && formControls.category.errors" class="text-danger">
-                        <div *ngIf="formControls.category.errors.required">Complaints/ Suggestions category is required</div>
-                      </div>                  
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-username">Complaints/ Suggestions Description</label>
-                      <textarea formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
-                      <div *ngIf="submitted && formControls.description.errors" class="text-danger">
-                        <div *ngIf="formControls.description.errors.required">Complaints/ Suggestions description is required</div>
+                      <label class="form-control-label">Title <span class="required">*</span></label>
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"></span>
+                        </div>
+                        <input class="form-control" type="text" formControlName="title">
+                      </div>
+                      <div *ngIf="submitted && formControls.title.errors" class="text-danger">
+                        <div *ngIf="formControls.title.errors.required">title is required</div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-first-name">Attach File 
-                    </label>
-                      <input formControlName="file" type="file" id="input-first-name" class="form-control form-control-alternative">
-                      <div *ngIf="submitted && formControls.file.errors" class="text-danger">
-                        <div *ngIf="formControls.file.errors.required">File is required</div>
+                      <label class="form-control-label">Message <span class="required">*</span></label>
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"></span>
+                        </div>
+                        <input class="form-control" type="text" formControlName="message">
                       </div>
+                      <div *ngIf="submitted && formControls.message.errors" class="text-danger">
+                        <div *ngIf="formControls.message.errors.required">message is required</div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="">Complaints/ Suggestions Description<span class="required">*</span></label>
+                      <textarea formControlName="desc" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
+
+                      <div *ngIf="submitted && formControls.desc.errors" class="text-danger">
+                        <div *ngIf="formControls.desc.errors.required">Complaints/ Suggestions description is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="input-label">Status</label>
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"></span>
+                        </div>
+                        <input class="form-control" type="text" formControlName="status">
+                      </div>
+                      
                     </div>
                   </div>
 
@@ -127,4 +145,3 @@
       </div>
     </div>
   </div>
-  

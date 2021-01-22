@@ -1,8 +1,18 @@
 {
-  "header": {
-    "headerMainText": "Agriculture Department",
-    "headerState": "Uttar Pradesh"
-  },
+    "Agriculture Department":"कृषि विभाग",
+    "Uttar Pradesh":"उत्तर प्रदेश",
+    "Language":"भाषा",
+    "Hindi":"हिन्दी",
+    "English":"अंग्रेज़ी",
+    "Schemes":"योजनाओं",
+    "Login":"लॉग इन करें",
+    "Logout":"लॉग आउट",
+    "Sign Up":"साइन अप करें",
+    "Farmer":"किसान",
+    "Buyer/ Seller":"खरीदार विक्रेता",
+    "Input Supplier":"इनपुट आपूर्तिकर्ता",
+    "Equipment Centre":"उपकरण केंद्र",
+
     "bannerSearchText": "नाम / जिले / फसल / सेवाओं / उत्पादों द्वारा खोज एफपीओ",
     "Any": "Any",
     "Crop":"Crop",
@@ -31,5 +41,7 @@
     "Zayd":"ज़ैद",
     "Kharif":"खरीफ",
     "Farm Machinery Bank":"फार्म मशीनरी बैंक",
-    "Warehouse / Cold Storage":"गोदाम / कोल्ड स्टोरेज"
+    "Warehouse / Cold Storage":"गोदाम / कोल्ड स्टोरेज",
+
+    "Welcome":"स्वागत हे"
 }
