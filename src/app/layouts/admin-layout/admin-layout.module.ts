@@ -10,6 +10,9 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ToastrModule } from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -30,6 +33,11 @@ import { CropShowingDetailsComponent } from '../../pages/fpo/crop-showing-detail
 import { ComplaintsComponent } from '../../pages/fpo/complaints/complaints.component';
 import { ServicesComponent } from '../../pages/fpo/services/services.component';
 
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 @NgModule({
   imports: [
     CommonModule,
@@ -39,7 +47,14 @@ import { ServicesComponent } from '../../pages/fpo/services/services.component';
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     DashboardComponent,

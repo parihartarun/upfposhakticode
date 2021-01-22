@@ -20,10 +20,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxCaptchaModule } from 'ngx-captcha';
+
+import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
+import { LoginComponent } from './pages/auth-pages/login/login.component';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -61,9 +63,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+    ByerSellRegisterComponent,
     HomeDummyComponent,
-    
-  
+    LoginComponent
   ],
   providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
