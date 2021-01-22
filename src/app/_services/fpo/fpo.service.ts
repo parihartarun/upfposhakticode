@@ -16,7 +16,7 @@ export class FpoService {
   }
   //------------api for getting equipment list ------------------------------
   getDistricts(){
-    return  this.http.get<any>(this._url+'api/v1/District/getDistricts').pipe(map((res:any)=>{
+    return this.http.get<any>(this._url + 'api/v1/District/getDistricts' ).pipe(map((res: any) => {
       return res;
     }));
   }

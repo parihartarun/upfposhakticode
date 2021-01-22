@@ -125,15 +125,15 @@ this.getBlocks();
   getDitricts()
   {
     this.api.getDistricts().subscribe(data => {
-   this.blocklist  = data; 
+   this.districtlist  = JSON.parse(data); 
    console.log("First value = "+this.blocklist[0].district_name)   
-   console.log("Data structure districts = "+JSON.stringify(data));    
+   console.log("Data structure districts = "+JSON.parse(JSON.stringify(data)));    
 })
   }
   getBlocks() {
     this.api.getBlocks().subscribe(data => {    
-    this.districtlist = data;
-    console.log("Data structure blocks = "+JSON.stringify(data));
+    this.blocklist = data;
+    console.log("Data structure blocks = "+data);
     });
   }
 }
