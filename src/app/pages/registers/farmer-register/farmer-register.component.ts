@@ -4,6 +4,7 @@ import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class FarmerRegisterComponent implements OnInit {
   panchayts = [];
   villages = [];
   banks = [];
-  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router) {
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -113,35 +114,17 @@ export class FarmerRegisterComponent implements OnInit {
     }
     delete this.registerForm.value.password;
     delete this.registerForm.value.userName;
-    delete this.registerForm.value.confirmPassword;
-    this.registerForm.value.userFar = user;
-    //let famerRegister = {
-    //  accountNo: '',
-    //  bankRefId: '',
-    //  blockRef: '',
-    //  category: '',
-    //  confirmPassword: '',
-    //  deleted: true,
-    //  distRefId: '',
-    //  enabled: true,
-    //  farmerMob:'',
-    //  farmerName: '',
-    //  gender:'',
-    //  ifscCode: '',
-    //  parantsName: '',
-    //   password: '',
-    //  pincode: '',
-    //  recaptcha:'',
-    //  user: user,
-    //  userRefId: "",
-    //  villRefId: "",
-    //  villagePanchayatId: ""
-    //}
-    //famerRegister.accountNo=
-    
+    delete this.registerForm.value.confirmPassword;  
 
     this.api.registerUser(this.registerForm.value).subscribe(response => {
-      alert(response.message);
+      if (response.message == "SuccessFully Saved!") {
+        this.toastr.success(response.message);
+        this.registerForm.reset();
+        this._router.navigate(['/login'])
+      }
+      else {
+        this.toastr.error(response.message);
+      }
      
    },
       err => {

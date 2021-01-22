@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 
@@ -21,7 +22,7 @@ export class FarmerChcRegisterComponent implements OnInit {
   villages = [];
   inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
   isBulkSupplyingCompany: boolean = true
-  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router) {
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -121,11 +122,14 @@ export class FarmerChcRegisterComponent implements OnInit {
     famerCHCFmb.user = user;
     famerCHCFmb.villageRefId = this.registerForm.value.villageRefId;
     this.api.registerCHCFmb(famerCHCFmb).subscribe(response => {
-      alert(response.message);
       if (response.message == "SuccessFully Saved!") {
+        this.toastr.success(response.message);
+        this.registerForm.reset();
         this._router.navigate(['/login'])
       }
-      console.log(response);
+      else {
+        this.toastr.error(response.message);
+      }
     },
       err => {
         console.log(err);
