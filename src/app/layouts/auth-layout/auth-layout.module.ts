@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthLayoutRoutes } from './auth-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { LoginComponent } from '../../pages/auth-pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 import { HomeComponent } from '../../pages/home/home.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -28,7 +27,6 @@ import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/
     NgbModule
   ],
   declarations: [
-    LoginComponent,
     RegisterComponent,
     FarmerRegisterComponent,    
     HomeComponent,

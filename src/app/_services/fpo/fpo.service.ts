@@ -13,13 +13,13 @@ export class FpoService {
   }
 
   getBoardMembers(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addBoardMember(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -88,25 +88,25 @@ export class FpoService {
 
   /************************** FPO's Crop Production **********************************/
   getCropProduction(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addCropProduction(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   getStorageUnits(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addStorageUnit(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -137,37 +137,37 @@ export class FpoService {
   }
   
   getComplaints(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addComplaint(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   getServices(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addService(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   getPhotographs(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addPhotograph(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
