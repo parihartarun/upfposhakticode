@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
     this.api.userLogin(this.loginForm.value).subscribe(response => {
       console.log(response);
       if (response.accessToken != '') {
-        sessionStorage.setItem('token', response.accessToken);
-        localStorage.setItem('userId', response.userId);
+        sessionStorage.setItem('accessToken', response.token);
+        localStorage.setItem('userId', response.user.userId);
         localStorage.setItem('masterId', response.masterId);
-        localStorage.setItem('username', response.username);
-        localStorage.setItem('userRole', response.userrole);
+        localStorage.setItem('username', response.user.username);
+        localStorage.setItem('userrole', response.userRole);
         this.route.navigate(['/admin']);
       }
     },
