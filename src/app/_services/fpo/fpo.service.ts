@@ -176,19 +176,7 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
   
-  getComplaints(data){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
-      return res;
-    }));
-  }
-
-  addComplaint(data){
-    return  this.http.post<any>(this._url+'', data).pipe(map((res:any)=>{
-      return res;
-    }));
-  }
-
-  getServices(data){
+   getServices(data){
     return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
@@ -232,6 +220,30 @@ getCollectionCenterById(data){
   return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
             return res;
           }));
-        }
-
+  }
+/************************** FPO's  Complaints/ Suggestions **********************************/
+  getComplaints_Suggestions() {
+    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  uopladFile(file:any) {
+    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getComplaints() {
+    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  addComplaint(data) {
+    return this.http.post<any>(this._url + '', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 }
+
+
+
+

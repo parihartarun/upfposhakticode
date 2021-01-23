@@ -24,32 +24,17 @@
                   <div class="col-lg-12">
                     <div class="form-group">
                       <label class="form-control-label">Title <span class="required">*</span></label>
-                      <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"></span>
-                        </div>
-                        <input class="form-control" type="text" formControlName="title">
-                      </div>
+                    
+                      <select class="form-control" formControlName="title" (change)="selectComplaint($event)">
+                        <option value="">Select Complaint/Suggestions</option>
+                        <option *ngFor="let cc of complaintsCatageriy" [value]="cc">{{cc}}</option>
+
+                      </select>
                       <div *ngIf="submitted && formControls.title.errors" class="text-danger">
                         <div *ngIf="formControls.title.errors.required">title is required</div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <label class="form-control-label">Message <span class="required">*</span></label>
-                      <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"></span>
-                        </div>
-                        <input class="form-control" type="text" formControlName="message">
-                      </div>
-                      <div *ngIf="submitted && formControls.message.errors" class="text-danger">
-                        <div *ngIf="formControls.message.errors.required">message is required</div>
-                      </div>
-
-                    </div>
-                  </div>
+                  </div>               
                   <div class="col-lg-12">
                     <div class="form-group">
                       <label class="form-control-label" for="">Complaints/ Suggestions Description<span class="required">*</span></label>
@@ -62,15 +47,16 @@
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="input-label">Status</label>
-                      <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"></span>
-                        </div>
-                        <input class="form-control" type="text" formControlName="status">
-                      </div>
-                      
+                      <label class="form-control-label" for="input-first-name">
+                        Attach File
+                      </label>
+                      <small class="">
+                        (File format should be .jpg, .png, .jpeg and .pdf)
+                      </small>
+                      <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)" />
+                      <div *ngIf="checkfileFormat" class="text-danger">in correct file format </div>
                     </div>
+                   
                   </div>
 
                   <div class="card-footer py-4 text-center">
