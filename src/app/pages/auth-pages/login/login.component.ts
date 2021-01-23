@@ -12,7 +12,7 @@ import { AuthService } from '../../../_services/auth/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
-
+  userRole: any;
   constructor(
     private formBuilder: FormBuilder,
     private api: AuthService,
@@ -43,8 +43,13 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('accessToken', response.accessToken);
         sessionStorage.setItem('tokenType', response.tokenType);
         localStorage.setItem('username', response.username);
-        localStorage.setItem('userRole', response.userrole);
-        this.route.navigate(['/admin']);
+        localStorage.setItem('userRole', 'ROLE_MIN');
+        this.userRole = localStorage.getItem('userRole');
+        if (this.userRole == 'ROLE_FPC') {
+          this.route.navigate(['/fpo/dashboard']);
+        } else {
+          this.route.navigate(['/department/dashboard']);
+        }
       }
     },
       err => {

@@ -32,6 +32,16 @@ import { ProductionDetailsComponent } from '../../pages/fpo/production-details/p
 import { CropShowingDetailsComponent } from '../../pages/fpo/crop-showing-details/crop-showing-details.component';
 import { ComplaintsComponent } from '../../pages/fpo/complaints/complaints.component';
 import { ServicesComponent } from '../../pages/fpo/services/services.component';
+import { DepartmentDashboardComponent } from '../../pages/department/dashboard/departmentDashboard.component';
+import { DepartmentAllUsersComponent } from '../../pages/department/department-all-users/department-all-users.component';
+import { DepartmentUserManagementComponent } from '../../pages/department/department-user-management/department-user-management.component';
+import { DepartmentComplaintsComponent } from '../../pages/department/department-complaints/department-complaints.component';
+import { DepartmentUplaodCircularComponent } from '../../pages/department/department-uplaod-circular/department-uplaod-circular.component';
+import { DepartmentReportComponent } from '../../pages/department/department-report/department-report.component';
+import { DepartmentProductionReportComponent } from '../../pages/department/department-production-report/department-production-report.component';
+import { DepartmentSalesReportComponent } from '../../pages/department/department-sales-report/department-sales-report.component';
+import { DepartmentCircularsComponent } from '../../pages/department/department-circulars/department-circulars.component';
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -73,7 +83,18 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProductionDetailsComponent,
     CropShowingDetailsComponent,
     ComplaintsComponent,
-    ServicesComponent
+    ServicesComponent,
+    DepartmentDashboardComponent,
+   
+    DepartmentSalesReportComponent,
+    DepartmentCircularsComponent,
+    DepartmentSalesReportComponent,
+    DepartmentProductionReportComponent,
+    DepartmentReportComponent ,  
+    DepartmentUplaodCircularComponent,
+    DepartmentComplaintsComponent,
+    DepartmentUserManagementComponent,
+    DepartmentAllUsersComponent
   ]
 })
 
