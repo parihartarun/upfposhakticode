@@ -10,7 +10,7 @@ export class AuthGuardService {
     constructor(private router:Router){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-        if(sessionStorage.getItem("accessToken") !== null) {
+        if(sessionStorage.getItem("token") !== null) {
             return true;
         }else{
             this.router.navigate(['/']);

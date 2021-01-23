@@ -40,8 +40,7 @@ export class LoginComponent implements OnInit {
     this.api.userLogin(this.loginForm.value).subscribe(response => {
       console.log(response);
       if (response.accessToken != '') {
-        sessionStorage.setItem('accessToken', response.accessToken);
-        sessionStorage.setItem('tokenType', response.tokenType);
+        sessionStorage.setItem('token', response.accessToken);
         localStorage.setItem('userId', response.userId);
         localStorage.setItem('masterId', response.masterId);
         localStorage.setItem('username', response.username);
