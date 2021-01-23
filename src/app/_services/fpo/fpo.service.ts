@@ -223,7 +223,7 @@ getCollectionCenterById(data){
   }
 /************************** FPO's  Complaints/ Suggestions **********************************/
   getComplaints_Suggestions() {
-    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'complaint/complaintcatgories').pipe(map((res: any) => {
       return res;
     }));
   }
@@ -233,7 +233,7 @@ getCollectionCenterById(data){
     }));
   }
   getComplaints() {
-    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'complaint/getall').pipe(map((res: any) => {
       return res;
     }));
   }

@@ -27,7 +27,7 @@
                     
                       <select class="form-control" formControlName="title" (change)="selectComplaint($event)">
                         <option value="">Select Complaint/Suggestions</option>
-                        <option *ngFor="let cc of complaintsCatageriy" [value]="cc">{{cc}}</option>
+                        <option *ngFor="let cc of complaintsCatageriy" [value]="cc.comp_type_id">{{cc.comp_type_en}}</option>
 
                       </select>
                       <div *ngIf="submitted && formControls.title.errors" class="text-danger">
