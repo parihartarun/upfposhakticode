@@ -25,6 +25,7 @@
       </div>
       <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
         <div *ngIf="formControls.userName.errors.required">user name is required</div>
+        <div *ngIf="formControls.userName.errors.pattern">user name should be 6 to 20 character</div>
       </div>
 
     </div>
@@ -54,7 +55,7 @@
       </div>
       <div *ngIf="submitted && formControls.mobileNumber.errors" class="text-danger">
         <div *ngIf="formControls.mobileNumber.errors.required">mobile number is required</div>
-        <div *ngIf="formControls.mobileNumber.errors.max"> mobile number should be 10 digit</div>
+        <div *ngIf="formControls.mobileNumber.errors.pattern"> mobile number should be 10 digit</div>
       </div>
     </div>
   </div>
@@ -178,7 +179,7 @@
       </div>
       <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
         <div *ngIf="formControls.pincode.errors.required">pin code is required</div>
-        <div *ngIf="formControls.pincode.errors.max"> maximun 6 digit is required</div>
+        <div *ngIf="formControls.pincode.errors.pattern"> maximun 6 digit is required</div>
       </div>
     </div>
   </div>
