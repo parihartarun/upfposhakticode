@@ -7,24 +7,39 @@ declare interface RouteInfo {
     icon: string;
     class: string;
 }
-export const FPOROUTES: RouteInfo[] = [
-    { path: 'fpo/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-white', class: '' },
-  { path: 'fpo/board-members', title: 'Board Member',  icon: 'fa fa-users text-white', class: '' },
-  { path: 'fpo/license', title: 'License',  icon: 'fa fa-id-card text-white', class: '' },
-  { path: 'fpo/machinary-bank', title: 'Machinary Bank',  icon: 'fa fa-university text-white', class: '' },
-  { path: 'fpo/storage-unit', title: 'Storage Unit',  icon: 'fa fa-archive text-white', class: '' },
-  { path: 'fpo/crop-production', title: "FPO's Crop Production",  icon: 'fa fa-id-card text-white', class: '' },
+export const ROUTES_MANAGE_SALES: RouteInfo[] = [
+  { path: 'fpo/dashboard', title: 'Dashboard', icon: 'ni-tv-2 text-white', class: '' },
+  { path: 'fpo/crop-production', title: "FPO's Crop Production", icon: 'fa fa-id-card text-white', class: '' },
   { path: 'fpo/sales-details', title: "FPO's Sales Details", icon: 'ni-tv-2 text-white', class: '' },
-  { path: 'fpo/complaints', title: 'Complaints/Suggestions',  icon: 'fa fa-archive text-white', class: '' },
-  { path: 'fpo/production-report', title: 'Farmer-wise Production Report',  icon: 'fa fa-plus-square text-white', class: '' },
-  { path: 'fpo/photographs', title: 'Upload Photographs',  icon: 'fa fa-university text-white', class: '' },
-  { path: 'fpo/services', title: 'Service/Products',  icon: 'fa fa-archive text-white', class: '' },
-
-    /* { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
-    { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
-    { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }*/
+  { path: 'fpo/production-report', title: 'Farmer-wise Production Report', icon: 'fa fa-plus-square text-white', class: '' },
 ];
+export const FPOROUTES: RouteInfo[] = [
+  { path: 'fpo/board-members', title: 'Board Member', icon: 'fa fa-users text-white', class: '' },
+  { path: 'fpo/license', title: 'License', icon: 'fa fa-id-card text-white', class: '' },
+  { path: 'fpo/machinary-bank', title: 'Machinary Bank', icon: 'fa fa-university text-white', class: '' },
+  { path: 'fpo/storage-unit', title: 'Storage Unit', icon: 'fa fa-archive text-white', class: '' },
+  { path: 'fpo/photographs', title: 'Upload Photographs', icon: 'fa fa-university text-white', class: '' },
+  { path: 'fpo/services', title: 'Service/Products', icon: 'fa fa-archive text-white', class: '' },
+  { path: 'fpo/complaints', title: 'Complaints', icon: 'fa fa-archive text-white', class: '' },
+  ]
+//export const FPOROUTES: RouteInfo[] = [
+//    { path: 'fpo/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-white', class: '' },
+//  { path: 'fpo/board-members', title: 'Board Member',  icon: 'fa fa-users text-white', class: '' },
+//  { path: 'fpo/license', title: 'License',  icon: 'fa fa-id-card text-white', class: '' },
+//  { path: 'fpo/machinary-bank', title: 'Machinary Bank',  icon: 'fa fa-university text-white', class: '' },
+//  { path: 'fpo/storage-unit', title: 'Storage Unit',  icon: 'fa fa-archive text-white', class: '' },
+//  { path: 'fpo/crop-production', title: "FPO's Crop Production",  icon: 'fa fa-id-card text-white', class: '' },
+//  { path: 'fpo/sales-details', title: "FPO's Sales Details", icon: 'ni-tv-2 text-white', class: '' },
+//  { path: 'fpo/complaints', title: 'Complaints/Suggestions',  icon: 'fa fa-archive text-white', class: '' },
+//  { path: 'fpo/production-report', title: 'Farmer-wise Production Report',  icon: 'fa fa-plus-square text-white', class: '' },
+//  { path: 'fpo/photographs', title: 'Upload Photographs',  icon: 'fa fa-university text-white', class: '' },
+//  { path: 'fpo/services', title: 'Service/Products',  icon: 'fa fa-archive text-white', class: '' },
+
+//    /* { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
+//    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
+//    { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
+//    { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }*/
+//];
 export const departmentROUTES: RouteInfo[] = [
   { path: 'department/dashboard', title: 'Dashboard', icon: 'ni-tv-2 text-white', class: '' },
   { path: 'department/reports', title: 'Reports', icon: 'fa fa-users text-white', class: '' },  {
@@ -60,6 +75,10 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.userRole = localStorage.getItem('userRole');
     if (this.userRole == 'ROLE_FPC') {
+      this.menuItemsCrops = ROUTES_MANAGE_SALES.filter(menuItem => menuItem);
+      this.router.events.subscribe((event) => {
+        this.isCollapsed = true;
+      });
       this.menuItems = FPOROUTES.filter(menuItem => menuItem);
       this.router.events.subscribe((event) => {
         this.isCollapsed = true;
