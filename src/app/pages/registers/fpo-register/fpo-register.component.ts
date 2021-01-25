@@ -92,7 +92,8 @@ export class FpoRegisterComponent implements OnInit {
     delete this.fpoRegisterForm.value.confirmPassword;
     this.fpoRegisterForm.value.userFpo = user;
     let date = new Date(this.fpoRegisterForm.value.dateOfRegistration);
-    this.fpoRegisterForm.value.dateOfRegistration=this.datePipe.transform(date, 'dd-mm-yyyy'); //whatever format you need. 
+    //let newdate = this.newUYDate(date);
+    this.fpoRegisterForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd-mm-yy'); //whatever format you need. 
     this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
       
       if (response.message == "SuccessFully Saved!") {
@@ -115,5 +116,17 @@ export class FpoRegisterComponent implements OnInit {
   handleSuccess(e) {
     console.log("ReCaptcha", e);
   }
+  newUYDate(pDate) {
+  let dd = pDate.split("/")[0].padStart(2, "0");
+  let mm = pDate.split("/")[1].padStart(2, "0");
+  let yyyy = pDate.split("/")[2].split(" ")[0];
+  let hh = pDate.split("/")[2].split(" ")[1].split(":")[0].padStart(2, "0");
+  let mi = pDate.split("/")[2].split(" ")[1].split(":")[1].padStart(2, "0");
+  let secs = pDate.split("/")[2].split(" ")[1].split(":")[2].padStart(2, "0");
+
+  mm = (parseInt(mm) - 1).toString(); // January is 0
+
+  return new Date(dd-mm-yyyy);
+}
 
 }

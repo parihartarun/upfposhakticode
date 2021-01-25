@@ -65,7 +65,7 @@
                   <div class="card-footer py-4 text-center">                    
                       <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateComplaint()">Add Complaint/Suggestion</button>                 
                     <button  *ngIf="edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateComplaint()">updateComplaint/Suggestion</button>
-                    <button class="btn btn-warning text-right">Reset</button>
+                    <button class="btn btn-warning text-right" (click)="reset()">Reset</button>
                   </div>
                 </div>              
               </div>

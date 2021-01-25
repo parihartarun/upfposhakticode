@@ -163,17 +163,18 @@ export class ComplaintsComponent implements OnInit {
       }
     );
   }
-  editComplaint(complaint) {    
-    this.complaintForm = this.formBuilder.group({
-      id: [complaint.id],
-      title: [complaint.title, [Validators.required]],
-      desc: [complaint.desc, [Validators.required]],
-    
-    });
-    this.complaintForm.controls['title'].setValue(complaint.title);
-    this.complaintForm.get('title').setValue(complaint.title);
+  editComplaint(complaint) {
     this.edit = true;
     window.scroll(0, 0);
+    this.complaintForm = this.formBuilder.group({
+      id: [complaint.id],
+      title: [complaint.title, Validators.required],
+      desc: [complaint.desc, Validators.required],
+    
+    });
+    this.complaintForm.controls['title'].patchValue(complaint.title);
+    this.complaintForm.get('title').patchValue(complaint.title);
+    
   }
   updateComplaint() {
     this.submitted = true;
@@ -201,6 +202,9 @@ export class ComplaintsComponent implements OnInit {
   /* Return true or false if it is the selected */
   compareByOptionId(idFist, idSecond) {
     return idFist && idSecond && idFist.id == idSecond.id;
+  }
+  reset() {
+    this.complaintForm.reset();
   }
 }
 
