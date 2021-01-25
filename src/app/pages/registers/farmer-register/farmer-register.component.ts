@@ -4,6 +4,7 @@ import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class FarmerRegisterComponent implements OnInit {
   panchayts = [];
   villages = [];
   banks = [];
-  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router) {
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router,private toastr:ToastrService) {
   }
 
   ngOnInit() {
@@ -144,7 +145,14 @@ export class FarmerRegisterComponent implements OnInit {
     
     console.log(JSON.stringify(this.registerForm.value));
     this.api.registerUser(this.registerForm.value).subscribe(response => {
-      alert(response.message);
+     if (response.message == "SuccessFully Saved!") {
+        this.toastr.success(response.message);
+        this.registerForm.reset();
+        this._router.navigate(['/login'])
+      }
+      else {
+        this.toastr.error(response.message);
+      }
      
    },
       err => {
