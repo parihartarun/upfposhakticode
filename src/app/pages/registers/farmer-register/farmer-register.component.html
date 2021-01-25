@@ -14,7 +14,7 @@
     <div class="col-4">
 
       <div class="text-center mt-2">
-        <button type="button" class="btn btn-login btn-yellow btn-primary my-4">Fetch from UP Agri Pardashi</button>
+        <button type="submit" class="btn btn-login btn-yellow btn-primary my-4">Fetch from UP Agri Pardashi</button>
       </div>
     </div>
 
@@ -43,7 +43,6 @@
       </div>
       <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
         <div *ngIf="formControls.userName.errors.required">username is required</div>
-        <div *ngIf="formControls.userName.errors.pattern">user name should be 6 to 20 character</div>
       </div>
 
     </div>
@@ -73,7 +72,6 @@
       </div>
       <div *ngIf="submitted && formControls.farmerMob.errors" class="text-danger">
         <div *ngIf="formControls.farmerMob.errors.required">mobile number is required</div>
-        <div *ngIf="formControls.farmerMob.errors.pattern">mobile number should be 10 digit</div>
       </div>
 
     </div>
@@ -209,7 +207,6 @@
       </div>
       <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
         <div *ngIf="formControls.pincode.errors.required">pin code is required</div>
-        <div *ngIf="formControls.pincode.errors.pattern"> maximun 6 digit is required</div>
       </div>
     </div>
     <div class="col-6">
