@@ -208,6 +208,38 @@
                     <div *ngIf="formControls.accountNo.errors.required">Bank Account Number is required</div>
                   </div>
                 </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-userName">Username<span class="required">*</span></label>
+                    <input class="form-control" type="text" formControlName="userName" id="input-userName">
+                  </div>
+                  <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
+                    <div *ngIf="formControls.userName.errors.required">username is required</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-password">Create Password<span class="required">*</span></label>
+                    <input type="text" formControlName="password" id="input-password" class="form-control" >
+                  </div>
+                  <div *ngIf="submitted && formControls.password.errors" class="text-danger">
+                    <div *ngIf="formControls.password.errors.required">password is required</div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-confirmPassword">Confirm Password<span class="required">*</span></label>
+                    <input class="form-control" type="text" formControlName="confirmPassword" id="input-confirmPassword">
+                  </div>
+                  <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
+                    <div *ngIf="formControls.confirmPassword.errors.required">confirm password is required</div>
+                  </div>
+                </div>
               </div>
 
             </div>

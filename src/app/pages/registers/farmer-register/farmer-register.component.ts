@@ -24,7 +24,7 @@ export class FarmerRegisterComponent implements OnInit {
   panchayts = [];
   villages = [];
   banks = [];
-  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router,private toastr:ToastrService) {
   }
 
   ngOnInit() {
@@ -71,14 +71,15 @@ export class FarmerRegisterComponent implements OnInit {
       category: ['', Validators.required],
       distRefId: ['', Validators.required],
       gender: ['', Validators.required],
+      createdBy:'ROLE_FARMER' ,
       deleted: [true],
       enabled: [true],
-      farmerMob: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
+      farmerMob: 0,
       farmerName: ['', Validators.required],       
       ifscCode: ['', Validators.required],
       parantsName: ['', Validators.required],
-      pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
-      userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
+      pincode: ['', Validators.required],
+      userName: ['', Validators.required],
       userRefId: [''],
       villRefId: ['', Validators.required],
       villagePanchayatId: ['', Validators.required],
@@ -101,6 +102,8 @@ export class FarmerRegisterComponent implements OnInit {
     return this.registerForm.get('password');
   }  
   register(): Observable<any>  {
+    alert("ddfgdfgdh")
+    console.log(JSON.stringify(this.registerForm.value));
     this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
@@ -114,10 +117,35 @@ export class FarmerRegisterComponent implements OnInit {
     }
     delete this.registerForm.value.password;
     delete this.registerForm.value.userName;
-    delete this.registerForm.value.confirmPassword;  
-
+    delete this.registerForm.value.confirmPassword;
+    this.registerForm.value.userFar = user;
+    //let famerRegister = {
+    //  accountNo: '',
+    //  bankRefId: '',
+    //  blockRef: '',
+    //  category: '',
+    //  confirmPassword: '',
+    //  deleted: true,
+    //  distRefId: '',
+    //  enabled: true,
+    //  farmerMob:'',
+    //  farmerName: '',
+    //  gender:'',
+    //  ifscCode: '',
+    //  parantsName: '',
+    //   password: '',
+    //  pincode: '',
+    //  recaptcha:'',
+    //  user: user,
+    //  userRefId: "",
+    //  villRefId: "",
+    //  villagePanchayatId: ""
+    //}
+    //famerRegister.accountNo=
+    
+    console.log(JSON.stringify(this.registerForm.value));
     this.api.registerUser(this.registerForm.value).subscribe(response => {
-      if (response.message == "SuccessFully Saved!") {
+     if (response.message == "SuccessFully Saved!") {
         this.toastr.success(response.message);
         this.registerForm.reset();
         this._router.navigate(['/login'])
@@ -129,7 +157,7 @@ export class FarmerRegisterComponent implements OnInit {
    },
       err => {
         console.log(err);
-       
+        alert(err);
       })
      
   }

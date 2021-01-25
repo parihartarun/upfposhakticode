@@ -63,7 +63,7 @@ export class AddFarmerComponent implements OnInit {
         bankRefId: ['', Validators.required],
         blockRef:['', Validators.required],
         category: ['', Validators.required],
-        //createdBy: ['', Validators.required],
+        createdBy:localStorage.getItem('userrole') ,
         deleted: true,
         distRefId: ['', Validators.required],
         educationId: 0,
@@ -84,7 +84,7 @@ export class AddFarmerComponent implements OnInit {
         stateref: 0,
         //updateDate: ['', Validators.required],
         //updatedBy: ['', Validators.required],
-        userName: localStorage.getItem('username'),
+        userName: ['', Validators.required],
         userFar: [],
         userRefId: localStorage.getItem('userId'),
         villRefId: ['', Validators.required],
@@ -130,12 +130,12 @@ export class AddFarmerComponent implements OnInit {
   }
  
   register() {
-    alert("dgdfg fhdf f");
+    alert(JSON.stringify(this.fpoAddFarmerForm.value));
     this.submitted = true;
     // stop here if form is invalid
-    if (this.fpoAddFarmerForm.invalid) {
-      return;
-    }
+    // if (this.fpoAddFarmerForm.invalid) {
+    //   return;
+    // }
     let user = {
       userName: this.fpoAddFarmerForm.value.userName,
       password: this.fpoAddFarmerForm.value.password
