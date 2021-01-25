@@ -40,10 +40,10 @@ export class LoginComponent implements OnInit {
     this.api.userLogin(this.loginForm.value).subscribe(response => {
       console.log(response);
       if (response.accessToken != '') {
-        sessionStorage.setItem('accessToken', response.accessToken);
-        sessionStorage.setItem('tokenType', response.tokenType);
-        localStorage.setItem('username', response.username);
-        localStorage.setItem('userRole', 'ROLE_MIN');
+        sessionStorage.setItem('accessToken', response.token);
+        sessionStorage.setItem('tokenType', response.token);
+        localStorage.setItem('username', response.user.userName);
+        localStorage.setItem('userRole', 'ROLE_FPC');
         this.userRole = localStorage.getItem('userRole');
         if (this.userRole == 'ROLE_FPC') {
           this.route.navigate(['/fpo/dashboard']);
