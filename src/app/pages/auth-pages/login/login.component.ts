@@ -12,7 +12,7 @@ import { AuthService } from '../../../_services/auth/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
-
+  userRole: any;
   constructor(
     private formBuilder: FormBuilder,
     private api: AuthService,
@@ -40,11 +40,16 @@ export class LoginComponent implements OnInit {
     this.api.userLogin(this.loginForm.value).subscribe(response => {
       console.log(response);
       if (response.accessToken != '') {
-        sessionStorage.setItem('accessToken', response.accessToken);
-        sessionStorage.setItem('tokenType', response.tokenType);
-        localStorage.setItem('username', response.username);
-        localStorage.setItem('userRole', response.userrole);
-        this.route.navigate(['/admin']);
+        sessionStorage.setItem('accessToken', response.token);
+        sessionStorage.setItem('tokenType', response.token);
+        localStorage.setItem('username', response.user.userName);
+        localStorage.setItem('userRole', 'ROLE_FPC');
+        this.userRole = localStorage.getItem('userRole');
+        if (this.userRole == 'ROLE_FPC') {
+          this.route.navigate(['/fpo/dashboard']);
+        } else {
+          this.route.navigate(['/department/dashboard']);
+        }
       }
     },
       err => {

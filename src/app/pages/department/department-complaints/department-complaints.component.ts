@@ -1,20 +1,19 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
 @Component({
-  selector: 'app-complaints',
-  templateUrl: './complaints.component.html',
-  styleUrls: ['./complaints.component.css']
+  selector: 'app-department-complaints',
+  templateUrl: './department-complaints.component.html',
+  styleUrls: ['./department-complaints.component.css']
 })
-export class ComplaintsComponent implements OnInit {
+export class DepartmentComplaintsComponent implements OnInit {
   complaintForm: FormGroup;
   submitted = false;
   complaintsCatageriy: Array<any> = [];
   complaints: Array<any> = [];
-  
+
   p: number = 1;
   checkfileFormat: boolean = false;
   @ViewChild('myInput')
@@ -33,7 +32,7 @@ export class ComplaintsComponent implements OnInit {
       title: ['', [Validators.required]],
       desc: ['', [Validators.required]],
       filePath: [''],
-      uploadFile:['']
+      uploadFile: ['']
     });
     this.getComplaints();
   }
@@ -209,18 +208,18 @@ export class ComplaintsComponent implements OnInit {
     console.log(files)
     var formData = new FormData();
     formData.append('file', this.complaintForm.controls['uploadFile'].value);
-   
+
     this.api.uopladFile(formData).subscribe(event => {
-     
-     });
-    
+
+    });
+
   }
   selectComplaint(complaint) {
     this.complaintForm.controls['title'].setValue(complaint.currentTarget.value);
   }
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj"||ext.toLowerCase() == "jpeg" || ext.toLowerCase()=="pdf") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj" || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
       return true;
     }
     else {
@@ -228,5 +227,3 @@ export class ComplaintsComponent implements OnInit {
     }
   }
 }
-
-

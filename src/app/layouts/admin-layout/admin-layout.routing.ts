@@ -19,23 +19,41 @@ import { ProductionDetailsComponent } from '../../pages/fpo/production-details/p
 import { CropShowingDetailsComponent } from '../../pages/fpo/crop-showing-details/crop-showing-details.component';
 import { ComplaintsComponent } from '../../pages/fpo/complaints/complaints.component';
 import { ServicesComponent } from '../../pages/fpo/services/services.component';
+import { DepartmentDashboardComponent } from '../../pages/department/dashboard/departmentDashboard.component';
+import { DepartmentReportComponent } from '../../pages/department/department-report/department-report.component';
+import { DepartmentProductionReportComponent } from '../../pages/department/department-production-report/department-production-report.component';
+import { DepartmentSalesReportComponent } from '../../pages/department/department-sales-report/department-sales-report.component';
+import { DepartmentCircularsComponent } from '../../pages/department/department-circulars/department-circulars.component';
+import { DepartmentUplaodCircularComponent } from '../../pages/department/department-uplaod-circular/department-uplaod-circular.component';
+import { DepartmentComplaintsComponent } from '../../pages/department/department-complaints/department-complaints.component';
+import { DepartmentUserManagementComponent } from '../../pages/department/department-user-management/department-user-management.component';
+import { DepartmentAllUsersComponent } from '../../pages/department/department-all-users/department-all-users.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',  component: DashboardComponent },
-    { path: 'user-profile', component: UserProfileComponent },
-    { path: 'board-members',   component: BoardMembersComponent },
-    { path: 'license',   component: LicenseComponent },
-    { path: 'machinary-bank',component: MachinaryBankComponent },
-    { path: 'storage-unit',   component: StorageUnitComponent },
-    { path: 'crop-production',   component: CropProductionComponent },
-    { path: 'sales-details',   component: SalesDetailsComponent },
-    { path: 'production-report',   component: ProductionReportComponent },
-    { path: 'photographs',   component: PhotographsComponent },
-    { path: 'farmer-details',   component: FarmerDetailsComponent },
-    { path: 'land-details',   component: LandDetailsComponent },
-    { path: 'add-farmer',   component: AddFarmerComponent },
-    { path: 'production-details',   component: ProductionDetailsComponent },
-    { path: 'crop-showing-details',   component: CropShowingDetailsComponent},
-    { path: 'services',   component: ServicesComponent},
-    { path: 'complaints',   component: ComplaintsComponent},
-];
+  { path: 'fpo/dashboard', component: DashboardComponent },
+  { path: 'fpo/user-profile', component: UserProfileComponent },
+  { path: 'fpo/board-members', component: BoardMembersComponent },
+  { path: 'fpo/license', component: LicenseComponent },
+  { path: 'fpo/machinary-bank', component: MachinaryBankComponent },
+  { path: 'fpo/storage-unit', component: StorageUnitComponent },
+  { path: 'fpo/crop-production', component: CropProductionComponent },
+  { path: 'fpo/sales-details', component: SalesDetailsComponent },
+  { path: 'fpo/production-report', component: ProductionReportComponent },
+  { path: 'fpo/photographs', component: PhotographsComponent },
+  { path: 'fpo/farmer-details', component: FarmerDetailsComponent },
+  { path: 'fpo/land-details', component: LandDetailsComponent },
+  { path: 'fpo/add-farmer', component: AddFarmerComponent },
+  { path: 'fpo/production-details', component: ProductionDetailsComponent },
+  { path: 'fpo/crop-showing-details', component: CropShowingDetailsComponent },
+  { path: 'fpo/services', component: ServicesComponent },
+  { path: 'fpo/complaints', component: ComplaintsComponent },
+  { path: 'department/dashboard', component: DepartmentDashboardComponent },
+  { path: 'department/reports', component: DepartmentReportComponent },
+  { path: 'department/production-report', component: DepartmentProductionReportComponent },
+  { path: 'department/sales-report', component: DepartmentSalesReportComponent },
+  { path: 'department/circulars', component: DepartmentCircularsComponent },
+  { path: 'department/upload-circulars', component: DepartmentUplaodCircularComponent },
+  { path: 'department/complaints', component: DepartmentComplaintsComponent },
+  { path: 'department/user-management', component: DepartmentUserManagementComponent },
+  { path: 'department/all-users', component: DepartmentAllUsersComponent }];
+

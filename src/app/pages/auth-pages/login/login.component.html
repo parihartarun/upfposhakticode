@@ -50,6 +50,9 @@
                                   formControlName="recaptcha">
                   </ngx-recaptcha2>
                 </div>
+                <div *ngIf="submitted && formControls.recaptcha.errors" class="text-danger">
+                  <div *ngIf="formControls.recaptcha.errors.required">recaptcha is required</div>
+                </div>
               </div>
               
             </div>

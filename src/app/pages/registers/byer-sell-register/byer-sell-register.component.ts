@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 
@@ -20,7 +21,7 @@ export class ByerSellRegisterComponent implements OnInit {
   states = [];
   districts = [];
   blocks = [];
-  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router) {
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -92,11 +93,14 @@ export class ByerSellRegisterComponent implements OnInit {
     delete this.registerForm.value.confirmPassword;
     this.registerForm.value.userBuyerSeller = user;
     this.api.registerBuyerSeller(this.registerForm.value).subscribe(response => {
-      alert(response.message);
       if (response.message == "SuccessFully Saved!") {
+        this.toastr.success(response.message);
+        this.registerForm.reset();
         this._router.navigate(['/login'])
       }
-      console.log(response);
+      else {
+        this.toastr.error(response.message);
+      }
     },
       err => {
         console.log(err);
