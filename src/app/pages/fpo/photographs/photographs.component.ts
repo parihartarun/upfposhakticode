@@ -145,7 +145,7 @@ export class PhotographsComponent implements OnInit {
     this.fileToUpload = files.item(0);
   }
 
-  addService() {
+  addPhotograph() {
     this.submitted = true;
     // stop here if form is invalid
     if (this.photographForm.invalid) {
