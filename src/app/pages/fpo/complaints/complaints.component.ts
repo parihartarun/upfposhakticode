@@ -1,6 +1,8 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
@@ -13,16 +15,20 @@ export class ComplaintsComponent implements OnInit {
   complaintForm: FormGroup;
   submitted = false;
   complaintsCatageriy: Array<any> = [];
-  complaints: Array<any> = [];
-  
+  complaints: Array<any> = [];  
   p: number = 1;
   checkfileFormat: boolean = false;
   @ViewChild('myInput')
   myInputVariable: ElementRef;
+  edit = false;
+  percentDone: number;
+  uploadSuccess: boolean;
+
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
-    private route: Router
+    private route: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -43,130 +49,34 @@ export class ComplaintsComponent implements OnInit {
   getComplaints() {
     this.complaints = [
       {
-        category: 'Scheme Benefits',
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        file: 'sed.jpg'
+      }, {
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        file: 'sed.jpg'
+      }, {
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        file: 'sed.jpg'
+      }, {
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        file: 'sed.jpg'
+      }, {
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        file: 'sed.jpg'
+      }, {
+        title: 'Scheme Benefits',
         description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
         file: 'sed.jpg'
       }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
         file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      },
+      }, 
     ]
     this.api.getComplaints().subscribe(response => {
       console.log(response);
@@ -185,12 +95,21 @@ export class ComplaintsComponent implements OnInit {
       return;
     }
     this.api.addComplaint(this.complaintForm.value).subscribe(response => {
-      console.log(response);
-    },
+      if (response.id != '') {
+        this.toastr.success(response);
+        this.submitted = false;
+        this.edit = false;
+        this.complaintForm.reset();
+      } else {
+        this.toastr.error('Error! While Updating License.');
+      }
+    },      
       err => {
         console.log(err)
       }
     );
+    
+    
   }
 
   get formControls() {
@@ -213,6 +132,11 @@ export class ComplaintsComponent implements OnInit {
     formData.append('file', this.complaintForm.controls['uploadFile'].value);
    
     this.api.uopladFile(formData).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.percentDone = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+        this.uploadSuccess = true;
+      }
      
      });
     
@@ -229,7 +153,7 @@ export class ComplaintsComponent implements OnInit {
       return false;
     }
   }
-  deleteBoardMember(id) {
+  deleteCompliant(id) {
     this.api.deleteCompliant(id).subscribe(response => {
       this.getComplaints();
       console.log(response);
@@ -238,6 +162,49 @@ export class ComplaintsComponent implements OnInit {
         console.log(err)
       }
     );
+  }
+  editComplaint(complaint) {
+    this.edit = true;
+    window.scroll(0, 0);
+    this.complaintForm = this.formBuilder.group({
+      id: [complaint.id],
+      title: [complaint.title, Validators.required],
+      desc: [complaint.desc, Validators.required],
+    
+    });
+    this.complaintForm.controls['title'].patchValue(complaint.title);
+    this.complaintForm.get('title').patchValue(complaint.title);
+    
+  }
+  updateComplaint() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.complaintForm.invalid) {
+      return;
+    }
+    this.api.updateComplaint(this.complaintForm.value).subscribe(response => {
+      console.log(response);
+      if (response.id != '') {
+        this.toastr.success('complians successfully.');
+        this.submitted = false;
+        this.edit = false;
+        this.complaintForm.reset();
+      } else {
+        this.toastr.error('Error! While Updating License.');
+      }
+      this.getComplaints();
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+  /* Return true or false if it is the selected */
+  compareByOptionId(idFist, idSecond) {
+    return idFist && idSecond && idFist.id == idSecond.id;
+  }
+  reset() {
+    this.complaintForm.reset();
   }
 }
 
