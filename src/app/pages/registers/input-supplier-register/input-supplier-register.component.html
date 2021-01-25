@@ -25,6 +25,7 @@
       </div>
       <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
         <div *ngIf="formControls.userName.errors.required">user name is required</div>
+        <div *ngIf="formControls.userName.errors.pattern">user name should be 6 to 20 character</div>
       </div>
 
     </div>
