@@ -76,6 +76,7 @@ export class FpoRegisterComponent implements OnInit {
   }
  
   register() {
+    console.log(this.fpoRegisterForm.value);
     this.submitted = true;
     // stop here if form is invalid
     if (this.fpoRegisterForm.invalid) {
