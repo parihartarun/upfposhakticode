@@ -144,21 +144,21 @@
       <div class="card bg-gradient-default shadow">
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
-            <div class="col">
-              <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
+            <div class="col-md-5">
+              <h6 class="text-uppercase text-light ls-1 mb-1">Total Crops</h6>
               <h2 class="text-white mb-0">Sales value</h2>
             </div>
-            <div class="col">
+            <div class="col-md-7">
               <ul class="nav nav-pills justify-content-end">
                 <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[0];updateOptions()">
                   <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
-                    <span class="d-none d-md-block">Month</span>
+                    <span class="d-none d-md-block">Markatable Surplus</span>
                     <span class="d-md-none">M</span>
                   </a>
                 </li>
                 <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[1];updateOptions()">
                   <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
-                    <span class="d-none d-md-block">Week</span>
+                    <span class="d-none d-md-block">Productions</span>
                     <span class="d-md-none">W</span>
                   </a>
                 </li>
@@ -181,7 +181,7 @@
           <div class="row align-items-center">
             <div class="col">
               <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-              <h2 class="mb-0">Total crops</h2>
+              <h2 class="mb-0">Total Indents</h2>
             </div>
           </div>
         </div>

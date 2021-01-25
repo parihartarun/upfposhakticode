@@ -11,11 +11,11 @@ export class AuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // add authorization header with jwt token if available
     let currentUser = sessionStorage.getItem("accessToken");
-    let tokenType = sessionStorage.getItem('tokenType');
+    //let tokenType = sessionStorage.getItem('tokenType');
     if (currentUser) {
       request = request.clone({
         setHeaders: {
-          Authorization: tokenType + " " + currentUser
+          Authorization:  "Bearer " + currentUser
         }
       });
     }

@@ -30,10 +30,11 @@ export class ComplaintsComponent implements OnInit {
       this.complaintsCatageriy = cs
     })
     this.complaintForm = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      desc: ['', [Validators.required]],
-      filePath: [''],
-      uploadFile:['']
+        title: ['', [Validators.required]],
+        desc: ['', [Validators.required]],
+        filePath: [''],
+        uploadFile: ['']
+      fpoId:localStorage.getItem('masterId')
     });
     this.getComplaints();
   }

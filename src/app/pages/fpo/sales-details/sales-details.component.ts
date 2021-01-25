@@ -31,6 +31,7 @@ export class SalesDetailsComponent implements OnInit {
       cropName: ['', [Validators.required]],
       cropVariety: ['', [Validators.required]],
       quantity_sold: ['', [Validators.required]],
+      fpoId:localStorage.getItem('masterId'),
       id:['']
     });
     this.getFpoSalesInfo();

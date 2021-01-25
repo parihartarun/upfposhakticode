@@ -32,6 +32,8 @@ export class MachinaryBankComponent implements OnInit {
       equpment_name: ['', [Validators.required]],
       equpment_no: ['', [Validators.required]],
       id: [''],
+      FpoRefId:localStorage.getItem('masterId'),
+      MasterId:localStorage.getItem('masterId')
     });
     this.getMachinaryBanks();
     this.getEquipments();

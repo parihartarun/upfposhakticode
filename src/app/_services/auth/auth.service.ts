@@ -105,4 +105,11 @@ export class AuthService {
       return res;
     }));
   }
+
+  registerFarmerByFpo(data) {
+    alert(JSON.stringify(data))
+    return this.http.post<any>(this._url + 'register/fpo', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 }

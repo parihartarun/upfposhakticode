@@ -22,7 +22,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Type of Storage</label><br/>
+                    <label class="form-control-label" for="input-last-name">Type of Storage<span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3">
                       <input formControlName="storageType"  class="custom-control-input" id="coldstorageradio" value ="Cold Storage" type="radio">
                       <label class="custom-control-label" for="coldstorageradio">Cold Storage</label>
@@ -64,7 +64,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Storage Capacity (In Mt.)</label>
+                    <label class="form-control-label" for="input-last-name">Storage Capacity (In Mt.)<span class="required">*</span></label>
                     <input formControlName="storageCapacity"  type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Storage Capacity" value="Jesse">
                     <div *ngIf="submitted && formControls.storageCapacity.errors" class="text-danger">
                       <div *ngIf="formControls.storageCapacity.errors.required">Storage Capacity is required</div>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Do you have Seed Processing Unit? *</label><br/>
+                    <label class="form-control-label" for="input-last-name">Do you have Seed Processing Unit? <span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3 ">
                       <input formControlName="isProcessingUnit"  value="Yes"  class="custom-control-input" id="customRadio5" type="radio">
                       <label class="custom-control-label" for="customRadio5">Yes</label>
