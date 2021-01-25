@@ -13,6 +13,7 @@ import { FpoService } from '../../../_services/fpo/fpo.service';
 })
 export class LandDetailsComponent implements OnInit {
 
+  p:number;
   //landDetailForm: FormGroup;
 
   landDetailForm = this.formBuilder.group({

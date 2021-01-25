@@ -136,4 +136,8 @@ this.getBlocks();
     console.log("Data structure blocks = "+data);
     });
   }
+
+  saveInfo(){
+    
+  }
 }
