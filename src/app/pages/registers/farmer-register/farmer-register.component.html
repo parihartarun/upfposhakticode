@@ -222,9 +222,9 @@
       </div>
       <div *ngIf="submitted && formControls.password.errors" class="text-danger">
         <div *ngIf="formControls.password.errors.required">password is required</div>
-      </div>
-      <div *ngIf="registerForm.controls['password'].invalid">
+         <div *ngIf="registerForm.controls['password'].invalid">
         Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character
+      </div>
       </div>
     </div>
   </div>

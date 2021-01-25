@@ -24,6 +24,7 @@ export class FarmerRegisterComponent implements OnInit {
   panchayts = [];
   villages = [];
   banks = [];
+
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
   }
 
@@ -71,6 +72,8 @@ export class FarmerRegisterComponent implements OnInit {
       category: ['', Validators.required],
       distRefId: ['', Validators.required],
       gender: ['', Validators.required],
+      createdBy:'ROLE_FARMER' ,
+      roleRefId: 6,
       deleted: [true],
       enabled: [true],
       farmerMob: ['', [[Validators.required], Validators.max(10)]],
@@ -91,8 +94,6 @@ export class FarmerRegisterComponent implements OnInit {
        
     })
 
-
-
   }
   get formControls() {
     return this.registerForm.controls;
@@ -110,7 +111,8 @@ export class FarmerRegisterComponent implements OnInit {
    
     let user = {
       userName: this.registerForm.value.userName,
-      password: this.registerForm.value.password
+      password: this.registerForm.value.password,
+      roleRefId: 6,
     }
     delete this.registerForm.value.password;
     delete this.registerForm.value.userName;
@@ -125,7 +127,6 @@ export class FarmerRegisterComponent implements OnInit {
       else {
         this.toastr.error(response.message);
       }
-     
    },
       err => {
         console.log(err);
