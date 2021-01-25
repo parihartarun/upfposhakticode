@@ -101,9 +101,8 @@ export class FarmerRegisterComponent implements OnInit {
   get password() {
     return this.registerForm.get('password');
   }  
-  register(): Observable<any>  {
-    alert("ddfgdfgdh")
-    console.log(JSON.stringify(this.registerForm.value));
+  register(): Observable<any>  {    
+    
     this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
@@ -155,9 +154,8 @@ export class FarmerRegisterComponent implements OnInit {
       }
      
    },
-      err => {
-        console.log(err);
-        alert(err);
+      err => {       
+        this.toastr.error(err);
       })
      
   }
