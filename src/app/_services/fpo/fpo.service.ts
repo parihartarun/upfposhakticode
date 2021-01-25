@@ -265,6 +265,11 @@ getCollectionCenterById(data){
       return res;
     }));
   }
+  deleteCompliant(data) {
+    return this.http.delete<any>(this._url + 'complaint/delete1/', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
   /****************************************fpo land details************************************ */
   getLandDetailList() {
     return this.http.get<any>(this._url + 'api/fpos/land').pipe(map((res: any) => {

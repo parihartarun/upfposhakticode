@@ -229,6 +229,16 @@ export class ComplaintsComponent implements OnInit {
       return false;
     }
   }
+  deleteBoardMember(id) {
+    this.api.deleteCompliant(id).subscribe(response => {
+      this.getComplaints();
+      console.log(response);
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
 }
 
 

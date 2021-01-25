@@ -72,7 +72,7 @@
       </div>
       <div *ngIf="submitted && formControls.farmerMob.errors" class="text-danger">
         <div *ngIf="formControls.farmerMob.errors.required">mobile number is required</div>
-        <div *ngIf="formControls.farmerMob.errors.maxLength"> mobile number should be 10 digit</div>
+        <div *ngIf="formControls.farmerMob.errors.max"> mobile number should be 10 digit</div>
       </div>
 
     </div>
@@ -208,7 +208,7 @@
       </div>
       <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
         <div *ngIf="formControls.pincode.errors.required">pin code is required</div>
-        <div *ngIf="formControls.pincode.errors.maxLength"> maximun 6 digit is required</div>
+        <div *ngIf="formControls.pincode.errors.max"> maximun 6 digit is required</div>
       </div>
     </div>
     <div class="col-6">
