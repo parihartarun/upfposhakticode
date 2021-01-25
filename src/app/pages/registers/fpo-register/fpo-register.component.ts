@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -20,7 +21,7 @@ export class FpoRegisterComponent implements OnInit {
   panchayts = [{ panchayat_id: 1, panchayat_name: "mumbai1" }];
   agencies = [{ villageId: 1, villageName: "mumbai1" }];
   banks = [];
-  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.api.getDistrict().subscribe(d => {
@@ -56,13 +57,13 @@ export class FpoRegisterComponent implements OnInit {
       distRefId: ['', Validators.required],
       fpoRegistrationNo: ['', Validators.required], 
       deleted: [true],
-      fpolandLine: ['', [Validators.required, Validators.max(10)]],
+      fpolandLine: ['', [Validators.required, Validators.pattern("[0-9 ]{12}")]],
       fpoEmail: ['', [Validators.required, Validators.email]],      
       fpoIFSC: ['', Validators.required],
       dateOfRegistration: ['', Validators.required],
       fpoAddress: ['', Validators.required],
-      pincode: ['', [Validators.required, Validators.max(6)]],
-      userName: ['', Validators.required],
+      pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
+      userName: ['', [Validators.required, Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,20}$")]],
       recaptcha: ['', Validators.required],
       userFpo:[],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
@@ -90,6 +91,8 @@ export class FpoRegisterComponent implements OnInit {
     delete this.fpoRegisterForm.value.userName;
     delete this.fpoRegisterForm.value.confirmPassword;
     this.fpoRegisterForm.value.userFpo = user;
+    let date = new Date(this.fpoRegisterForm.value.dateOfRegistration);
+    this.fpoRegisterForm.value.dateOfRegistration=this.datePipe.transform(date, 'dd-mm-yyyy'); //whatever format you need. 
     this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
       
       if (response.message == "SuccessFully Saved!") {
