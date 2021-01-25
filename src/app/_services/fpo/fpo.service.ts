@@ -75,13 +75,13 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   updateBoardMember(data){
-    return  this.http.post<any>(this._url+'api/fpos/boardmember/'+data.id, data).pipe(map((res:any)=>{
+    return  this.http.put<any>(this._url+'api/fpos/boardmember/'+data.id, data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
-  deleteBoardMember(data){
-    return  this.http.post<any>(this._url+'api/fpos/boardmember/'+data.id, data).pipe(map((res:any)=>{
+  deleteBoardMember(id){
+    return  this.http.delete<any>(this._url+'api/fpos/boardmember/'+id).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -211,6 +211,14 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
 
+  updateService(data){
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+   /************************** FPO's Photographs **********************************/
+
   getPhotographs(data){
     return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
@@ -222,28 +230,13 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
- /************************** FPO's STORAGE UNITS A.K.A Collection Center **********************************/
 
-  addCollectionCenters(data){
-    return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
+  updatePhotograph(data){
+    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
-    deleteCollectionCenters(data){
-      return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
-        return res;
-      }));
-    }
-updateCollectionCenters(data){
-return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
-          return res;
-        }));
-      }
-getCollectionCenterById(data){
-  return  this.http.post<any>(this._url+'signin', data).pipe(map((res:any)=>{
-            return res;
-          }));
-  }
+
 /************************** FPO's  Complaints/ Suggestions **********************************/
   getComplaints_Suggestions() {
     return this.http.get<any>(this._url + 'complaint/complaintcatgories').pipe(map((res: any) => {

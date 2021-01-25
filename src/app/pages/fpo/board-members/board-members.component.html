@@ -32,9 +32,9 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">Father's/ Husband's Name</label>
-                    <input formControlName="fatherName" type="text" id="input-first-name" class="form-control form-control-alternative" >
-                    <div *ngIf="submitted && formControls.fatherName.errors" class="text-danger">
-                      <div *ngIf="formControls.fatherName.errors.required">Father's/ Husband's Name is required</div>
+                    <input formControlName="guardianName" type="text" id="input-first-name" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.guardianName.errors" class="text-danger">
+                      <div *ngIf="formControls.guardianName.errors.required">Father's/ Husband's Name is required</div>
                     </div>
                   </div>
                 </div>
@@ -52,15 +52,15 @@
                 <div class="col-lg-6">
                     <label class="form-control-label" for="input-last-name">Gender<span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
-                      <input name="custom-radio-2" formControlName="gender" value="Male" class="custom-control-input" id="customRadio5" type="radio">
+                      <input  formControlName="gender" value="Male" class="custom-control-input" id="customRadio5" type="radio">
                       <label class="custom-control-label" for="customRadio5">Male</label>
                     </div>
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input name="custom-radio-2" formControlName="gender" value="Female" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <input  formControlName="gender" value="Female" class="custom-control-input" id="customRadio6" checked="" type="radio">
                       <label class="custom-control-label" for="customRadio6">Female</label>
                     </div> 
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input name="custom-radio-2" formControlName="gender" class="custom-control-input" id="customRadio7" type="radio">
+                      <input formControlName="gender" class="custom-control-input" id="customRadio7" type="radio">
                       <label class="custom-control-label" for="customRadio7">Other</label>
                     </div>
                     <div *ngIf="submitted && formControls.gender.errors" class="text-danger">
@@ -82,9 +82,9 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Mobile</label>
-                    <input formControlName="mobile" type="number" id="input-email" class="form-control form-control-alternative" >
-                    <div *ngIf="submitted && formControls.mobile.errors" class="text-danger">
-                      <div *ngIf="formControls.mobile.errors.required">Mobile is required</div>
+                    <input formControlName="contactNo" type="number" id="input-email" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.contactNo.errors" class="text-danger">
+                      <span *ngIf="formControls.contactNo.errors.pattern"> mobile number should be 10 digit</span>
                     </div>
                   </div>
                 </div>
@@ -93,26 +93,24 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">District</label>
-                    <select formControlName="district" class="custom-control custom-select">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
+                    <select formControlName="distId" class="custom-control custom-select" (change)="selectDistrict($event)">
+                      <option name="opt" [value]="undefined" selected disabled>Select District</option>
+                      <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
                     </select>
-                    <div *ngIf="submitted && formControls.district.errors" class="text-danger">
-                      <div *ngIf="formControls.district.errors.required">District is required</div>
+                    <div *ngIf="submitted && formControls.distId.errors" class="text-danger">
+                      <div *ngIf="formControls.distId.errors.required">District is required</div>
                     </div>  
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Block</label>
-                    <select formControlName="block" class="custom-control custom-select">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
+                    <select formControlName="blockId" class="custom-control custom-select" (change)="selectBlock($event)">
+                      <option name="opt" [value]="undefined" selected disabled>Select Block</option>
+                      <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
                     </select>  
-                    <div *ngIf="submitted && formControls.block.errors" class="text-danger">
-                      <div *ngIf="formControls.block.errors.required">Block is required</div>
+                    <div *ngIf="submitted && formControls.blockId.errors" class="text-danger">
+                      <div *ngIf="formControls.blockId.errors.required">Block is required</div>
                     </div>                
                   </div>
                 </div>
@@ -121,33 +119,36 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Gram Panchayat</label>
-                    <select formControlName="grampanchayat" class="custom-control custom-select">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
+                    <select formControlName="panchayatId" class="custom-control custom-select" (change)="selectPanchayat($event)">
+                      <option name="opt" [value]="undefined" selected disabled>Select Gram Panchayat</option>
+                      <option *ngFor="let panchayat of panchayats" [value]="panchayat.panchayat_id">{{panchayat.panchayat_name}}</option>
                     </select> 
-                    <div *ngIf="submitted && formControls.grampanchayat.errors" class="text-danger">
-                      <div *ngIf="formControls.grampanchayat.errors.required">Gram Panchayat is required</div>
+                    <div *ngIf="submitted && formControls.panchayatId.errors" class="text-danger">
+                      <div *ngIf="formControls.panchayatId.errors.required">Gram Panchayat is required</div>
                     </div>                 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Village</label>
-                    <select formControlName="village" class="custom-control custom-select">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
+                    <select formControlName="villageId" class="custom-control custom-select">
+                      <option name="opt" [value]="undefined" selected disabled >Select Village</option>
+                      <option *ngFor="let village of villages" [value]="village.villageId">{{village.villageName}}</option>
                     </select>  
-                    <div *ngIf="submitted && formControls.village.errors" class="text-danger">
-                      <div *ngIf="formControls.village.errors.required">Village is required</div>
+                    <div *ngIf="submitted && formControls.villageId.errors" class="text-danger">
+                      <div *ngIf="formControls.villageId.errors.required">Village is required</div>
                     </div>                
                   </div>
                 </div>
               </div>
 
               <div class="card-footer py-4 text-center">
-                <button type="submit" class="btn btn-yellow btn-primary my-4" (click)="addBoardMember()">Add Member</button>
+                <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addBoardMember()">
+                  Add Board member
+                </button>
+                <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateBoardMember()">
+                  Update Board member
+                </button>
                 <button class="btn btn-warning text-right">Reset</button>
               </div>
             </div>
@@ -212,7 +213,7 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="editBoardMember(member)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteBoardMember(member.id)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(member.id)">Delete</a>
                     </div>
                   </div>
                 </td>

@@ -51,7 +51,7 @@ getStorageUnits(){
 updateStrotageUnit(data,id){
    let header = new HttpHeaders()
    header.append('contentType',"application/json")
-  return  this.http.put<any>(this._url+`api/collectioncenters/${id}`,data,{headers:header}).pipe(map((res:any)=>{
+  return  this.http.put<any>(this._url+`api/collectioncenters/:`+id,data,{headers:header}).pipe(map((res:any)=>{
     return res;
   }));
 }
@@ -64,6 +64,12 @@ addStrotageUnit(data){
   let header = new HttpHeaders()
    header.append('contentType',"application/json")
   return  this.http.post<any>(this._url+'api/collectioncenters',data,{headers:header}).pipe(map((res:any)=>{
+    return res;
+  }));
+}
+
+getDsitrictById(id){
+  return  this.http.get<any>(this._url+`api/v1/District/getDistricts/${id}`).pipe(map((res:any)=>{
     return res;
   }));
 }

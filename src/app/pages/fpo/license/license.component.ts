@@ -40,6 +40,10 @@ export class LicenseComponent implements OnInit {
     this.getLicenseTypes();
   }
 
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+ }
+
   getLicense(){
       this.api.getLicense().subscribe(response => {
         console.log(response);
@@ -76,6 +80,7 @@ addLicense() {
         this.toastr.success('License Added successfully.');
         this.submitted = false;
         this.licenseForm.reset();
+        this.getLicense();
     }else{
         this.toastr.error('Error! While Adding License.');
     }
@@ -87,6 +92,7 @@ addLicense() {
 }
 
 editLicense(license){
+  console.log(license);
   this.licenseForm = this.formBuilder.group({
     licenceType: [license.licenceType, [Validators.required]],
     licenceIssuedBy: [license.licenceIssuedBy, [Validators.required]],

@@ -56,7 +56,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">License Issued Date</label>
-                    <input formControlName="issuedate" type="date" id="input-email" class="form-control form-control-alternative" >
+                    <input formControlName="issuedate" type="date" [max]="getToday()" id="input-email" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.issuedate.errors" class="text-danger">
                       <div *ngIf="formControls.issuedate.errors.required">Issued Date is required</div>
                     </div>   
@@ -67,7 +67,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">License Valid Till</label>
-                    <input formControlName="licenceValidTill" type="date" id="input-last-name" class="form-control form-control-alternative" >
+                    <input formControlName="licenceValidTill" type="date" [min]="getToday()" id="input-last-name" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.licenceValidTill.errors" class="text-danger">
                       <div *ngIf="formControls.licenceValidTill.errors.required">Valid till Date is required</div>
                     </div>   

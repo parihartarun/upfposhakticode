@@ -26,106 +26,147 @@ export class StorageUnitComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
-    private authservice:AuthService,
     private route: Router,
     private toastr:ToastrService,
     private storageunitservice:StorageUnitService
-  ) {
-
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.storageUnitForm = this.formBuilder.group({
       storageType: ['', [Validators.required]],
-      facilities: [''],
-      storageCapacity: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      isProcessingUnit: ['', [Validators.required]],
-      district: [''],
-      block: [''],
+      fascilities: [''],
+      storageCapacity: ['', [Validators.required]],
+      isseedprocessingunit: ['', [Validators.required]],
+      distId: [''],
+      blockId: [''],
+      stateId:[''],
       address: [''],
       washingfacility:[false],  
       sortingmachines:[false], 
       gradingmachines:[false], 
       packagingmachines:[false],
       fpoRefId:localStorage.getItem('masterId'),
-      masterId:localStorage.getItem('masterId')
+      masterId:localStorage.getItem('masterId'),
+      id:['']
     });  
     
     this.getStorageUnits();
     this.getDistricts();
-    
-
-this.getFpoProfile()
   }
 
-
-  reset()
-  {
+  reset(){
     this.storageUnitForm.reset();
     this.storageUnitForm.markAsPristine();
     this.storageUnitForm.markAsUntouched();
   }
 
+  prepareString(str:string,appendValue:string){
+    return   (str.trim().length==0 || str.trim()=="")?str+appendValue:str+","+appendValue;
+  }
 
+  public bindFacilities():string{
+    var fascilities = "";
+    if(this.storageUnitForm.get("packagingmachines").value){ fascilities = this.prepareString(fascilities,"Packaging machines")}
+    if(this.storageUnitForm.get("gradingmachines").value){ fascilities = this.prepareString(fascilities,"Grading machines")}
+    if(this.storageUnitForm.get("washingfacility").value){ fascilities = this.prepareString(fascilities,"Washing facility")}
+    if(this.storageUnitForm.get("sortingmachines").value){ fascilities = this.prepareString(fascilities,"Sorting machines")}
+    return fascilities;
+  }
 
-prepareString(str:string,appendValue:string)
-{
-  return   (str.trim().length==0 || str.trim()=="")?str+appendValue:str+","+appendValue;
-}
+  getBlocksByDistrictId(distId = null){
+    var districtId;
+    if(distId != null){
+      districtId = distId;
+    }else{
+      districtId = this.storageUnitForm.get("distId").value;
+    }
+    console.log(districtId);
 
- public bindFacilities():string
-{
-  var facilities = "";
-if(this.storageUnitForm.get("packagingmachines")){ facilities = this.prepareString(facilities,"Packaging Machines")}
-if(this.storageUnitForm.get("gradingmachines")){ facilities = this.prepareString(facilities,"Grading Machines")}
-if(this.storageUnitForm.get("washingfacility")){ facilities = this.prepareString(facilities,"Washing Facility")}
-if(this.storageUnitForm.get("sortingmachines")){ facilities = this.prepareString(facilities,"Sorting Machines")}
-return facilities;
-}
-
-  getBlocksByDistrictId()
-  {
-    this.storageunitservice.getBlocksById(this.storageUnitForm.get("district").value).subscribe(data=>{
-this.blocklist  = data;    
+    this.storageunitservice.getDsitrictById(districtId).subscribe(res=>{
+      this.storageUnitForm.patchValue({
+        stateId: res.state_id, 
+      });
+    })
+    this.storageunitservice.getBlocksById(districtId).subscribe(data=>{
+      console.log(data);
+      this.blocklist  = data;    
     })
   }
 
-  public getFpoProfile()
-  {
-    
-    var username = localStorage.getItem('username');
-    
-this.storageunitservice.getFpoProfileByUsername(username).subscribe(data=>{
-  this.fpoProfile = data;
-  this.storageUnitForm.get("district").setValue(this.fpoProfile.distRefId);
-  this.getBlocksByDistrictId();
-})
-
-  }
   getDistricts() {
-    this.storageunitservice.getDistrictsByStateId().subscribe(data=>{    
-    this.districtlist = data;
+    this.storageunitservice.getDistrictsByStateId().subscribe(data=>{   
+      console.log(data); 
+      this.districtlist = data;
     });
   }
 
   getStorageUnits(){
-
     this.storageunitservice.getStorageUnits().subscribe(data=>{    
       this.storageUnits = data;
-      console.log("Dta oF Storage units"+JSON.stringify(data))
-      });
-  
-}
+      console.log(data)
+    });
+  }
 
-confirmDelete(equipmentId){
-  if(confirm("Are you sure to delete this item.")) {
-    this.storageunitservice.deleteStrotageUnit(equipmentId).subscribe(response => {
+  confirmDelete(equipmentId){
+    if(confirm("Are you sure to delete this item.")) {
+      this.storageunitservice.deleteStrotageUnit(equipmentId).subscribe(response => {
+        console.log(response);
+        if(response == true){
+          this.toastr.success('Storage Unit Deleted successfully.');
+        }else{
+            this.toastr.error('Error! While Deleting Storage Unit.');
+        }
+      },
+        err => {
+          console.log(err)
+        }
+      );
+    }
+  }
+
+  editCollectionCenter(equipment){
+    this.getBlocksByDistrictId(equipment.distId);
+    console.log(equipment);
+    this.storageUnitForm = this.formBuilder.group({
+      storageType: [equipment.storageType, [Validators.required]],
+      fascilities: ['', [Validators.required]],
+      storageCapacity: [equipment.storageCapacity, [Validators.required]],
+      isseedprocessingunit: [equipment.isseedprocessingunit, [Validators.required]],
+      distId: [equipment.distId , [Validators.required]],
+      blockId: [equipment.blockId, [Validators.required]],
+      stateId:[equipment.stateId,],
+      address: [equipment.address, [Validators.required]],
+      washingfacility:[false, [Validators.required]],  
+      sortingmachines:[false, [Validators.required]], 
+      gradingmachines:[false, [Validators.required]], 
+      packagingmachines:[false, [Validators.required]],
+      id:[equipment.id],
+    });
+    this.splitString(equipment.fascilities)
+    this.edit = true;
+    window.scroll(0,0);  
+  }
+
+  updateStrotageUnit(){
+    this.submitted = true;
+    // stop here if form is invalid
+    console.log(this.bindFacilities());
+    this.storageUnitForm.patchValue({
+      fascilities: this.bindFacilities(), 
+    });
+    if (this.storageUnitForm.invalid) {
+        return;
+    }
+    this.storageunitservice.updateStrotageUnit(this.storageUnitForm.value, this.storageUnitForm.value.id).subscribe(response => {
       console.log(response);
-      if(response == true){
-        this.toastr.success('Storage Unit Deleted successfully.');
+      if(response.id != ''){
+        this.toastr.success('Storage unit updated successfully.');
+        this.submitted = false;
+        this.edit = false;
+        this.storageUnitForm.reset();
+        this.getStorageUnits();
       }else{
-          this.toastr.error('Error! While Deleting Storage Unit.');
+          this.toastr.error('Error! While updating Storage unit.');
       }
     },
       err => {
@@ -133,103 +174,69 @@ confirmDelete(equipmentId){
       }
     );
   }
-}
-editCollectionCenter(equipment){
-  
-console.log(JSON.stringify(equipment))  
 
+  splitString(str){
+    let stt:string=""
+      console.log(str.split(","));
+      str.split(",").forEach(data=>{
+        console.log(data);
+        if(data == 'Packaging machines'){
+          this.storageUnitForm.patchValue({
+            packagingmachines: true, 
+          });
+        }
 
-// //{"id":2,
-// "stateId":9,
-// "distId":148,
-// "blockId":1175,
-// "storageCapacity":100,
-// "distanceFromFPC":null,
-// "fpoRefId":3,
-// "updatedBy":"ROLE_FPC",
-// "address":"55/2, Road 23, Amwa Village, Chargawan 273003, Uttar Pradesh",
-// "lattitude":"26.8066878",
-// "longitude":"83.3818885000001",
-// "masterId":8,
-// "createDate":"2020-07-28",
-// "updateDate":null,
-// "deleteDate":null,
-// "fascilities":"Washing facility,Sorting machines,Grading machines",
-// "storageType":null,
-// "isseedprocessingunit":null,
-// "deleted":false}
+        if(data == 'Grading machines'){
+          this.storageUnitForm.patchValue({
+            gradingmachines: true, 
+          });
+        }
 
-  this.storageUnitForm = this.formBuilder.group({
-    storageType: [equipment.storageType, [Validators.required]],
-    facilities: ['', [Validators.required]],
-    storageCapacity: [equipment.storageCapacity, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-    isProcessingUnit: [equipment.isseedprocessingunit, [Validators.required]],
-    district: [equipment.distId , [Validators.required]],
-    block: [equipment.blockId, [Validators.required]],
-    address: [equipment.address, [Validators.required]],
-    washingfacility:[false, [Validators.required]],  
-    sortingmachines:[false, [Validators.required]], 
-    gradingmachines:[false, [Validators.required]], 
-    packagingmachines:[false, [Validators.required]],
-  });
-  this.splitString(equipment.fascilities)
+        if(data == 'Washing facility'){
+          this.storageUnitForm.patchValue({
+            washingfacility: true, 
+          });
+        }
 
-  this.edit = true;
-  window.scroll(0,0);  
-}
+        if(data == 'Sorting machines'){
+          this.storageUnitForm.patchValue({
+            sortingmachines: true, 
+          });
+        }
+        stt = this.prepareString(stt,data);
+      })
+    console.log("Prepared stt = "+stt);
+  }
 
+  addStorageUnit() {
+    this.submitted = true;
+    // stop here if form is invalid
+    this.storageUnitForm.patchValue({
+      fascilities: this.bindFacilities(), 
+    });
 
+    var finalData = this.storageUnitForm.value;
+    delete finalData.gradingmachines;
+    delete finalData.sortingmachines;
+    delete finalData.washingfacility;
+    delete finalData.packagingmachines;
 
-splitString(str)
-{
- 
- let stt:string=""
- console.log(str.split(","))
- str.split(",").forEach(data=>{
- if(data =="")
- {
-
- }
- if(data =="")
- {
-
- }
- if(data =="")
- {
-
- }
- if(data =="")
- {
-
- }
-  stt = this.prepareString(stt,data);
- })
-
-console.log("Prepared stt = "+stt);
-}
-addStorageUnit() {
-  this.submitted = true;
-  // stop here if form is invalid
-  console.log(JSON.stringify(this.storageUnitForm.value))
-  console.log("Prepared Facilities to dispatch = "+this.bindFacilities())
-  // if (this.storageUnitForm.invalid) {
-  //     return;
-  // }
-
-
-  
-  this.storageunitservice.addStrotageUnit(this.storageUnitForm.value).subscribe(response => {
-    console.log(response);
-  },
-    err => {
-    console.log(err)
+    console.log(finalData);
+    if (this.storageUnitForm.invalid) {
+        return;
     }
-  );
-}
+    this.storageunitservice.addStrotageUnit(finalData).subscribe(response => {
+      console.log(response);
+    },
+      err => {
+      console.log(err)
+      }
+    );
+  }
 
-get formControls(){
-  return this.storageUnitForm.controls;
-}
+  get formControls(){
+    return this.storageUnitForm.controls;
+  }
 
 
 }

@@ -39,6 +39,7 @@
                     <input formControlName="equpment_no" type="text" id="input-first-name" class="form-control form-control-alternative">
                     <div *ngIf="submitted && formControls.equpment_no.errors" class="text-danger">
                       <div *ngIf="formControls.equpment_no.errors.required">No. of Equipment is required</div>
+                      <div *ngIf="formControls.equpment_no.errors.min">No. of Equipment should be grater tahn or equal to 1</div>
                     </div>  
                   </div>
                 </div>

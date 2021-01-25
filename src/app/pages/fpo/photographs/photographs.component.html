@@ -40,6 +40,12 @@
                 </div>
               </div>  
               <div class="card-footer py-4 text-center">
+                <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addPhotograph()">
+                  Add Photograph
+                </button>
+                <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updatePhotograph()">
+                  Update Photograph
+                </button>
                 <button type="submit" class="btn btn-yellow btn-primary my-4">Add Photograph</button>
                 <button class="btn btn-warning text-right">Reset</button>
               </div>            
@@ -88,8 +94,8 @@
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editPhotograph(photograph)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(photograph.id)">Delete</a>
                     </div>
                   </div>
                 </td>

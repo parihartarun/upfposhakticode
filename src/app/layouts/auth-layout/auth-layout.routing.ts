@@ -9,9 +9,12 @@ import { InputSupplierRegisterComponent } from '../../pages/registers/input-supp
 import { FarmerRegisterComponent } from '../../pages/registers/farmer-register/farmer-register.component';
 import { FpoRegisterComponent } from '../../pages/registers/fpo-register/fpo-register.component';
 import { RegisterComponent } from '../../pages/registers/register.component';
+import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/forgot-password.component';
+
 export const AuthLayoutRoutes: Routes = [
     { path: 'home-old', component: HomeComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'register/:id', component: RegisterComponent },
     { path: 'home', component: HomeDummyComponent },
     { path: 'products/:val/:searchType', component: ProductsListComponent },

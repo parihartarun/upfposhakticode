@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
+import { AuthService } from '../../../_services/auth/auth.service';
 
 @Component({
   selector: 'app-board-members',
@@ -14,32 +15,41 @@ export class BoardMembersComponent implements OnInit {
   submitted = false;
   members:Array<any>=[];
   p:number = 1;
+  districts = [];
+  blocks = [];
+  panchayats = [];
+  villages = [];
+  edit = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
+    private auth: AuthService,
     private route: Router
   ) {}
 
   ngOnInit(): void {
     this.memberForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      fatherName: ['', [Validators.required]],
+      guardianName: ['', [Validators.required]],
       email: ['', [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      mobile: [''],
+      contactNo: ['', [Validators.pattern("[0-9 ]{10}")]],
       designation: ['', [Validators.required]],
       gender: [''],
-      district: [''],
-      block: [''],
-      grampanchayat: [''],
-      village: [''],
-      masterId:localStorage.getItem('masterId')
+      distId: [''],
+      blockId: [''],
+      panchayatId: [''],
+      villageId: [''],
+      masterId:localStorage.getItem('masterId'),
+      id:['']
     });
     this.getBoardMembers();
+    this.getDistricts();
   }
 
   getBoardMembers(){
     this.api.getBoardMembers(this.memberForm.value).subscribe(data => {
+      console.log(data);
       this.members = data;
     },
       err => {
@@ -48,15 +58,101 @@ export class BoardMembersComponent implements OnInit {
     );
   }
 
-  deleteBoardMember(id){
-    this.api.deleteBoardMember(id).subscribe(response => {
-      this.getBoardMembers();
+  getDistricts() {
+    this.auth.getDistrict().subscribe(data=>{   
+      this.districts = data;
+    });
+  }
+
+  selectDistrict(districtId: any) {
+    this.memberForm.controls['distId'].setValue(districtId.currentTarget.value);
+    this.auth.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
+      this.blocks = block
+    })
+  }
+  selectBlock(blockId: any) {
+    this.memberForm.controls['blockId'].setValue(blockId.currentTarget.value);
+    this.auth.getGramPanchayat(parseInt(blockId.currentTarget.value)).subscribe(panchayt => {
+      console.log(panchayt);
+      this.panchayats = panchayt
+    })
+  }
+  selectPanchayat(panchayatId: any) {   
+    this.memberForm.controls['panchayatId'].setValue(panchayatId.currentTarget.value);
+    this.auth.getVillage(parseInt(panchayatId.currentTarget.value)).subscribe(village => {
+      console.log(village);
+      this.villages = village
+    })
+  }
+
+  confirmDelete(id){
+    if(confirm("Are you sure to delete this item.")) {
+      this.api.deleteBoardMember(id).subscribe(response => {
+        console.log(response);
+        this.getBoardMembers();
+        if(response == true){
+          //this.toastr.success('Storage Unit Deleted successfully.');
+        }else{
+            //this.toastr.error('Error! While Deleting Storage Unit.');
+        }
+      },
+        err => {
+          console.log(err)
+        }
+      );
+    }
+  }
+
+  editBoardMember(member){
+    console.log(member);
+    this.getDistricts();
+    this.selectDistrict(member.distId);
+    this.selectBlock(member.blockId);
+    this.selectPanchayat(member.panchayatId);
+    this.memberForm = this.formBuilder.group({
+      name: [member.name, [Validators.required]],
+      guardianName: [member.guardianName, [Validators.required]],
+      email: [member.email, [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      contactNo: [member.contactNo, [Validators.pattern("[0-9 ]{10}")]],
+      designation: [member.designation, [Validators.required]],
+      gender: [member.gender],
+      distId: [member.distId],
+      blockId: [member.blockId],
+      panchayatId: [member.panchayatId],
+      villageId: [member.villageId],
+      masterId:localStorage.getItem('masterId'),
+      id:[member.id]
+    });
+    this.edit = true;
+    window.scroll(0,0);  
+  }
+
+  updateBoardMember(){
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.memberForm.invalid) {
+        return;
+    }
+    this.api.updateBoardMember(this.memberForm.value).subscribe(response => {
       console.log(response);
+      if(response.id != ''){
+       // this.toastr.success('Storage unit updated successfully.');
+        this.submitted = false;
+        this.edit = false;
+        this.memberForm.reset();
+        this.getBoardMembers();
+      }else{
+          //this.toastr.error('Error! While updating Storage unit.');
+      }
     },
       err => {
         console.log(err)
       }
     );
+  }
+
+  reset(){
+    this.memberForm.reset();
   }
 
   addBoardMember() {

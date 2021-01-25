@@ -30,7 +30,7 @@ export class MachinaryBankComponent implements OnInit {
   ngOnInit(): void {
     this.machinaryBankForm = this.formBuilder.group({
       equpment_name: ['', [Validators.required]],
-      equpment_no: ['', [Validators.required]],
+      equpment_no: ['', [Validators.required, Validators.min(1)]],
       id: [''],
       FpoRefId:localStorage.getItem('masterId'),
       MasterId:localStorage.getItem('masterId')
@@ -74,6 +74,7 @@ addMachinaryBank() {
       this.toastr.success('Machinary bank added successfully.');
       this.submitted = false;
       this.machinaryBankForm.reset();
+      this.getMachinaryBanks();
     }else{
         this.toastr.error('Error! While adding Machinary Bank.');
     }
@@ -107,6 +108,7 @@ updateMachinaryBank(){
       this.submitted = false;
       this.edit = false;
       this.machinaryBankForm.reset();
+      this.getMachinaryBanks();
     }else{
         this.toastr.error('Error! While updating Machinary Bank.');
     }
@@ -123,6 +125,7 @@ confirmDelete(equipmentId){
       console.log(response);
       if(response == true){
         this.toastr.success('Machinary Bank Deleted successfully.');
+        this.getMachinaryBanks();
       }else{
           this.toastr.error('Error! While Deleting Machinary Bank.');
       }

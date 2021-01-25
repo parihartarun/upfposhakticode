@@ -21,6 +21,8 @@
               <div class="pl-lg-4">
                 <div class="row">
                   <div class="col-lg-12">
+                    <input type="hidden" formControlName="id">
+
                     <div class="form-group">
                       <label class="form-control-label" for="input-username">Services/ Products Name<span class="required">*</span></label>
                       <input formControlName="service_name"  type="text" id="input-username" class="form-control form-control-alternative" >
@@ -40,9 +42,9 @@
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-first-name">Upload Photo <span class="required">*</span>
+                      <label class="form-control-label" for="input-first-name" (change)="handleFileInput($event.target.files)">Upload Photo <span class="required">*</span>
                     </label>
-                      <input formControlName="file"  type="file" id="input-first-name" class="form-control form-control-alternative">
+                      <input #myInput formControlName="file"  type="file" id="input-first-name" class="form-control form-control-alternative">
                       <div *ngIf="submitted && formControls.file.errors" class="text-danger">
                         <div *ngIf="formControls.file.errors.required">File is required</div>
                       </div>
@@ -51,7 +53,12 @@
                 </div>  
                 
                 <div class="card-footer py-4 text-center">
-                  <button type="submit" class="btn btn-yellow btn-primary my-4">Add Service/Production</button>
+                  <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addService()">
+                    Add Service/Production
+                  </button>
+                  <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateService()">
+                    Update Service/Production
+                  </button>
                   <button class="btn btn-warning text-right">Reset</button>
                 </div>
               </div>
@@ -104,8 +111,8 @@
                         Actions
                       </a>
                       <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                        <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="editService(service)">Edit</a>
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(service.id)">Delete</a>
                       </div>
                     </div>
                   </td>
