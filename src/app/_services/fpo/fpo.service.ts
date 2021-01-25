@@ -270,6 +270,11 @@ getCollectionCenterById(data){
       return res;
     }));
   }
+  updateComplaint(data) {
+    return this.http.put<any>(this._url + 'complaint/update1/' + data.id, data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
   /****************************************fpo land details************************************ */
   getLandDetailList() {
     return this.http.get<any>(this._url + 'api/fpos/land').pipe(map((res: any) => {
