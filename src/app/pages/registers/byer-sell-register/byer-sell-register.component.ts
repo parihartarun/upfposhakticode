@@ -56,7 +56,7 @@ export class ByerSellRegisterComponent implements OnInit {
       mobileNumber: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],         
       stateRefId: ['', Validators.required],
-      userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
+      userName: ['', [Validators.required, Validators.pattern("(?=.*[$@$!%*?&])[0-9a-zA-Z\d$@$!%*?&]{6,20}")]],
       streetName: ['', Validators.required],
       webSite: [''],
       recaptcha: ['', Validators.required],

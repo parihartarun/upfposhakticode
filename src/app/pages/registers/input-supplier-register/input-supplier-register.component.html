@@ -181,7 +181,7 @@
       </div>
       <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
         <div *ngIf="formControls.pincode.errors.required">pin code is required</div>
-        <div *ngIf="formControls.pincode.errors.max"> maximun 6 digit is required</div>
+        <div *ngIf="formControls.pincode.errors.pattern"> maximun 6 digit is required</div>
       </div>
     </div>
     <div class="col-6">
