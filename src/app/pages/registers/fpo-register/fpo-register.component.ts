@@ -93,7 +93,7 @@ export class FpoRegisterComponent implements OnInit {
     this.fpoRegisterForm.value.userFpo = user;
     let date = new Date(this.fpoRegisterForm.value.dateOfRegistration);
     //let newdate = this.newUYDate(date);
-    this.fpoRegisterForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd-mm-yy'); //whatever format you need. 
+    this.fpoRegisterForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd/MM/yyyy'); //whatever format you need. 
     this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
       
       if (response.message == "SuccessFully Saved!") {
@@ -107,8 +107,7 @@ export class FpoRegisterComponent implements OnInit {
      
     },
       err => {
-        console.log(err);
-        alert(err);
+        this.toastr.error(err);
       })
   }
   
