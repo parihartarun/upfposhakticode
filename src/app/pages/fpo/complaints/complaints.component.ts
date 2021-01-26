@@ -97,7 +97,7 @@ export class ComplaintsComponent implements OnInit {
         this.edit = false;
         this.complaintForm.reset();
       } else {
-        this.toastr.error('Error! While Updating License.');
+        this.toastr.error('Error! While Add complaint.');
       }
     });
     
@@ -119,17 +119,16 @@ export class ComplaintsComponent implements OnInit {
     }
   }
   uploadAndProgress(files: File[]) {
-    console.log(files)
+    
     var formData = new FormData();
-    formData.append('file', this.complaintForm.controls['uploadFile'].value);
+    formData.append('Image', files[0]);    
    
     this.api.uopladFile(formData).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
         this.percentDone = Math.round(100 * event.loaded / event.total);
       } else if (event instanceof HttpResponse) {
         this.uploadSuccess = true;
-      }
-     
+      }     
      });
     
   }

@@ -239,7 +239,7 @@ updateFarmerMachineryBankList(id:number,data:any){
 
 /************************** FPO's  Complaints/ Suggestions **********************************/
   getComplaints_Suggestions() {
-    return this.http.get<any>(this._url + 'complaint/complaintcatgories').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'complaint/catgories').pipe(map((res: any) => {
       return res;
     }));
   }
