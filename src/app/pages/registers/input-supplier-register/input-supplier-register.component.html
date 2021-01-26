@@ -55,7 +55,7 @@
       </div>
       <div *ngIf="submitted && formControls.mobile_number.errors" class="text-danger">
         <div *ngIf="formControls.mobile_number.errors.required">mobile number is required</div>
-        <div *ngIf="formControls.mobile_number.errors.max"> mobile number should be 10 digit</div>
+        <div *ngIf="formControls.mobile_number.errors.pattern"> mobile number should be 10 digit</div>
       </div>
     </div>
   </div>
