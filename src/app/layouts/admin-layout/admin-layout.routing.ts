@@ -55,5 +55,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'department/upload-circulars', component: DepartmentUplaodCircularComponent },
   { path: 'department/complaints', component: DepartmentComplaintsComponent },
   { path: 'department/user-management', component: DepartmentUserManagementComponent },
-  { path: 'department/all-users', component: DepartmentAllUsersComponent }];
+  { path: 'department/all-users', component: DepartmentAllUsersComponent },
+
+];
 

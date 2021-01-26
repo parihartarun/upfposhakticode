@@ -33,6 +33,12 @@ getFpoProfileByUsername(username)
   }));
 }
 
+updateProfile(data){
+  return  this.http.get<any>(this._url+`api/fpos/${data.fpoId}`, data).pipe(map((res:any)=>{
+    return res;
+  }));
+}
+
 
 //------------api for getting equipment list ------------------------------
 getEquipList(){
