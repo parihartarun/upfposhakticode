@@ -117,8 +117,7 @@ export class InputSupplierRegisterComponent implements OnInit {
       }
     },
       err => {
-        console.log(err);
-        alert(err);
+        this.toastr.error(err);
       })
   }
 

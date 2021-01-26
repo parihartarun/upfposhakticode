@@ -71,7 +71,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-  AuthGuardService],
+    AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
