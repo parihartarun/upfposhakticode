@@ -105,10 +105,7 @@ export class FpoRegisterComponent implements OnInit {
         this.toastr.error(response.message);
       }
      
-    },
-      err => {
-        this.toastr.error(err);
-      })
+    })
   }
   
 

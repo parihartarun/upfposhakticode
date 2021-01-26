@@ -130,10 +130,7 @@ export class FarmerChcRegisterComponent implements OnInit {
       else {
         this.toastr.error(response.message);
       }
-    },
-      err => {
-        this.toastr.error(err);
-      })
+    })
   }
   handleSuccess(e) {
     console.log("ReCaptcha", e);

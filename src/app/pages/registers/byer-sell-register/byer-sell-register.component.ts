@@ -100,10 +100,7 @@ export class ByerSellRegisterComponent implements OnInit {
       else {
         this.toastr.error(response.message);
       }
-    },
-      err => {
-        this.toastr.error(err);
-      })
+    })
   }
 
   handleSuccess(e) {
