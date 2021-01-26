@@ -68,11 +68,11 @@ export class InputSupplierRegisterComponent implements OnInit {
       deleted: [true],
       email:['', [Validators.required, Validators.email]],
       gstNumber: ['', Validators.required],     
-      mobile_number: [['', Validators.required, Validators.pattern("[0-9 ]{10}")]],
+      mobile_number: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       seed_id: [''],
       villageRefId: [''],
-      userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
+      userName: ['', [Validators.required, Validators.pattern("(?=.*[$@$!%*?&])[0-9a-zA-Z\d$@$!%*?&]{6,20}")]],
       recaptcha: ['', Validators.required],
       userInputSeller:[],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
@@ -116,11 +116,7 @@ export class InputSupplierRegisterComponent implements OnInit {
       else {
         this.toastr.error(response.message);
       }
-    },
-      err => {
-        console.log(err);
-        alert(err);
-      })
+    })
   }
 
 

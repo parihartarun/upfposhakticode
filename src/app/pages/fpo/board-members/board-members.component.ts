@@ -65,22 +65,25 @@ export class BoardMembersComponent implements OnInit {
   }
 
   selectDistrict(districtId: any) {
-    this.memberForm.controls['distId'].setValue(districtId.currentTarget.value);
-    this.auth.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
+    this.memberForm.controls['distId'].setValue(districtId);
+    this.auth.getBlock(parseInt(districtId)).subscribe(block => {
+      console.log(block);
+
       this.blocks = block
     })
   }
   selectBlock(blockId: any) {
-    this.memberForm.controls['blockId'].setValue(blockId.currentTarget.value);
-    this.auth.getGramPanchayat(parseInt(blockId.currentTarget.value)).subscribe(panchayt => {
+    this.memberForm.controls['blockId'].setValue(blockId);
+    this.auth.getGramPanchayat(parseInt(blockId)).subscribe(panchayt => {
       console.log(panchayt);
       this.panchayats = panchayt
     })
   }
   selectPanchayat(panchayatId: any) {   
-    this.memberForm.controls['panchayatId'].setValue(panchayatId.currentTarget.value);
-    this.auth.getVillage(parseInt(panchayatId.currentTarget.value)).subscribe(village => {
+    this.memberForm.controls['panchayatId'].setValue(panchayatId);
+    this.auth.getVillage(parseInt(panchayatId)).subscribe(village => {
       console.log(village);
+
       this.villages = village
     })
   }
@@ -161,6 +164,7 @@ export class BoardMembersComponent implements OnInit {
     if (this.memberForm.invalid) {
         return;
     }
+    console.log(this.memberForm.value);
 
     this.api.addBoardMember(this.memberForm.value).subscribe(response => {
       this.getBoardMembers();

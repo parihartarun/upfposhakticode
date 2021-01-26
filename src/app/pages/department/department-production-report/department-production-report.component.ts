@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class DepartmentProductionReportComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private api: FpoService,
+    private api: DepartmentService,
     private route: Router
   ) { }
 
@@ -166,13 +167,7 @@ export class DepartmentProductionReportComponent implements OnInit {
         markatableSurplus: '23'
       },
     ]
-    this.api.getBoardMembers(this.filterForm.value).subscribe(response => {
-      console.log(response);
-    },
-      err => {
-        console.log(err)
-      }
-    );
+   
   }
 
   filterProduction() {

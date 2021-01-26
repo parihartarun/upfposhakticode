@@ -199,20 +199,20 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
   
-   getServices(data){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+   getServices(){
+    return  this.http.get<any>(this._url+'FPOServices/getall').pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addService(data){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'FPOServices/insert', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   updateService(data){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'FPOServices/update1/'+data.id, data).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -239,12 +239,12 @@ updateFarmerMachineryBankList(id:number,data:any){
 
 /************************** FPO's  Complaints/ Suggestions **********************************/
   getComplaints_Suggestions() {
-    return this.http.get<any>(this._url + 'complaint/complaintcatgories').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'complaint/catgories').pipe(map((res: any) => {
       return res;
     }));
   }
   uopladFile(file:any) {
-    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+    return this.http.post<any>(this._url + '/complaint/upload', file).pipe(map((res: any) => {
       return res;
     }));
   }

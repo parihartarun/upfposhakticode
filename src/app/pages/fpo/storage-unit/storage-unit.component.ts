@@ -140,6 +140,7 @@ export class StorageUnitComponent implements OnInit {
       sortingmachines:[false, [Validators.required]], 
       gradingmachines:[false, [Validators.required]], 
       packagingmachines:[false, [Validators.required]],
+      fpoRefId:localStorage.getItem('masterId'),
       id:[equipment.id],
     });
     this.splitString(equipment.fascilities)
@@ -150,14 +151,20 @@ export class StorageUnitComponent implements OnInit {
   updateStrotageUnit(){
     this.submitted = true;
     // stop here if form is invalid
-    console.log(this.bindFacilities());
+    console.log(this.storageUnitForm.value);
     this.storageUnitForm.patchValue({
       fascilities: this.bindFacilities(), 
     });
     if (this.storageUnitForm.invalid) {
         return;
     }
-    this.storageunitservice.updateStrotageUnit(this.storageUnitForm.value, this.storageUnitForm.value.id).subscribe(response => {
+
+    var finalData = this.storageUnitForm.value;
+    delete finalData.gradingmachines;
+    delete finalData.sortingmachines;
+    delete finalData.washingfacility;
+    delete finalData.packagingmachines;
+    this.storageunitservice.updateStrotageUnit(finalData, finalData.id).subscribe(response => {
       console.log(response);
       if(response.id != ''){
         this.toastr.success('Storage unit updated successfully.');
@@ -227,6 +234,10 @@ export class StorageUnitComponent implements OnInit {
     }
     this.storageunitservice.addStrotageUnit(finalData).subscribe(response => {
       console.log(response);
+      if(response.id != ''){
+        this.toastr.success('Storage unit added successfully.');
+        this.getStorageUnits();
+      }
     },
       err => {
       console.log(err)

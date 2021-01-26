@@ -25,18 +25,18 @@
 
                     <div class="form-group">
                       <label class="form-control-label" for="input-username">Services/ Products Name<span class="required">*</span></label>
-                      <input formControlName="service_name"  type="text" id="input-username" class="form-control form-control-alternative" >
-                      <div *ngIf="submitted && formControls.service_name.errors" class="text-danger">
+                      <input formControlName="servicename"  type="text" id="input-username" class="form-control form-control-alternative" >
+                      <div *ngIf="submitted && formControls.servicename.errors" class="text-danger">
                         <div *ngIf="formControls.service_name.errors.required">Services/ Products Name is required</div>
                       </div> 
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-username">Services/ Products Description<span class="required">*</span></label>
-                      <textarea formControlName="description"  class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
-                      <div *ngIf="submitted && formControls.description.errors" class="text-danger">
-                        <div *ngIf="formControls.description.errors.required">Services/ Products Description is required</div>
+                      <label class="form-control-label" for="input-username">Services/ Products description<span class="required">*</span></label>
+                      <textarea formControlName="descriptions"  class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
+                      <div *ngIf="submitted && formControls.descriptions.errors" class="text-danger">
+                        <div *ngIf="formControls.descriptions.errors.required">Services/ Products description is required</div>
                       </div>
                     </div>
                   </div>
@@ -97,13 +97,13 @@
               <tbody>
                 <tr *ngFor="let service of services | paginate: { itemsPerPage: 10, currentPage: p }">
                   <td>
-                   {{service.category}}
+                   {{service.servicename}}
                    </td>
                   <td>
-                    {{service.description}}
+                    {{service.descriptions}}
                   </td>
                   <td>
-                    <a href="" download >{{service.file}}</a>
+                    <a href="" download >{{service.filePath}}</a>
                   </td>
                   <td class="text-right">
                     <div ngbDropdown placement="bottom-right">

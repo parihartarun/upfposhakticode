@@ -93,7 +93,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">District</label>
-                    <select formControlName="distId" class="custom-control custom-select" (change)="selectDistrict($event)">
+                    <select formControlName="distId" class="custom-control custom-select" (change)="selectDistrict($event.target.value)">
                       <option name="opt" [value]="undefined" selected disabled>Select District</option>
                       <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
                     </select>
@@ -105,7 +105,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Block</label>
-                    <select formControlName="blockId" class="custom-control custom-select" (change)="selectBlock($event)">
+                    <select formControlName="blockId" class="custom-control custom-select" (change)="selectBlock($event.target.value)">
                       <option name="opt" [value]="undefined" selected disabled>Select Block</option>
                       <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
                     </select>  
@@ -119,7 +119,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Gram Panchayat</label>
-                    <select formControlName="panchayatId" class="custom-control custom-select" (change)="selectPanchayat($event)">
+                    <select formControlName="panchayatId" class="custom-control custom-select" (change)="selectPanchayat($event.target.value)">
                       <option name="opt" [value]="undefined" selected disabled>Select Gram Panchayat</option>
                       <option *ngFor="let panchayat of panchayats" [value]="panchayat.panchayat_id">{{panchayat.panchayat_name}}</option>
                     </select> 

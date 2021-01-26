@@ -63,7 +63,7 @@ export class FpoRegisterComponent implements OnInit {
       dateOfRegistration: ['', Validators.required],
       fpoAddress: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
-      userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
+      userName: ['', [Validators.required, Validators.pattern("(?=.*[$@$!%*?&])[0-9a-zA-Z\d$@$!%*?&]{6,20}")]],
       recaptcha: ['', Validators.required],
       userFpo:[],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
@@ -94,7 +94,7 @@ export class FpoRegisterComponent implements OnInit {
     this.fpoRegisterForm.value.userFpo = user;
     let date = new Date(this.fpoRegisterForm.value.dateOfRegistration);
     //let newdate = this.newUYDate(date);
-    this.fpoRegisterForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd-mm-yy'); //whatever format you need. 
+    this.fpoRegisterForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd/MM/yyyy'); //whatever format you need. 
     this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
       
       if (response.message == "SuccessFully Saved!") {
@@ -106,11 +106,7 @@ export class FpoRegisterComponent implements OnInit {
         this.toastr.error(response.message);
       }
      
-    },
-      err => {
-        console.log(err);
-        alert(err);
-      })
+    })
   }
   
 

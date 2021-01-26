@@ -27,8 +27,8 @@ export class ServicesComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceForm = this.formBuilder.group({
-      service_name: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+      servicename: ['', [Validators.required]],
+      descriptions: ['', [Validators.required]],
       file: ['', [Validators.required]],
       id:['']
     });
@@ -36,135 +36,9 @@ export class ServicesComponent implements OnInit {
   }
 
   getServices(){
-    this.services = [
-      { 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },{ 
-        service_name:'Scheme Benefits',
-        description:'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file:'sed.jpg'
-      },
-    ]
-    this.api.getServices(this.serviceForm.value).subscribe(response => {
+    this.api.getServices().subscribe(response => {
       console.log(response);
+      this.services = response;
     },
       err => {
         console.log(err)
@@ -182,8 +56,9 @@ export class ServicesComponent implements OnInit {
         return;
     }
     const formData: FormData = new FormData();
-    formData.append('Image', this.fileToUpload);
-    formData.append('service', this.serviceForm.value);
+    formData.append('filePath', this.fileToUpload);
+    formData.append('descriptions', this.serviceForm.value.descriptions);
+    formData.append('servicename', this.serviceForm.value.servicename);
 
     this.api.addService(formData).subscribe(response => {
       console.log(response);
@@ -204,8 +79,8 @@ export class ServicesComponent implements OnInit {
 
   editService(service){
     this.serviceForm = this.formBuilder.group({
-      service_name: [service.service_name, [Validators.required]],
-      description: [service.description, [Validators.required]],
+      servicename: [service.servicename, [Validators.required]],
+      descriptions: [service.descriptions, [Validators.required]],
       id:[service.id]
     });
     this.edit = true;
