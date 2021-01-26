@@ -23,11 +23,11 @@
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-farmerLotNo">Farmer Registration Number (UP Agri Pardarshi)</label>
-                    <input type="text" id="input-farmerLotNo" formControlName="farmerLotNo" class="form-control" >
+                    <input type="text" id="input-farmerLotNo"  class="form-control" >
                   </div>
-                  <div *ngIf="submitted && formControls.farmerLotNo.errors" class="text-danger">
+                  <!-- <div *ngIf="submitted && formControls.farmerLotNo.errors" class="text-danger">
                     <div *ngIf="formControls.farmerLotNo.errors.required">Farmer Registration Number is required</div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="row">
@@ -165,7 +165,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-mobile">Mobile</label>
-                    <input type="text" formControlName="farmerMob" id="input-mobile" class="form-control">
+                    <input type="number" formControlName="farmerMob" id="input-mobile" class="form-control">
                   </div>
                   <div *ngIf="submitted && formControls.farmerMob.errors" class="text-danger">
                     <div *ngIf="formControls.farmerMob.errors.required">mobile is required</div>

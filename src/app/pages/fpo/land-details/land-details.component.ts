@@ -18,14 +18,21 @@ export class LandDetailsComponent implements OnInit {
 
   landDetailForm = this.formBuilder.group({
     farmerName: ['', [Validators.required]],
-    fatherHusbandName: ['', [Validators.required]],
+    guardianName: ['', [Validators.required]],
     ownerShip: ['', [Validators.required]],
     areaFarm: ['', [Validators.required]],
+    isorganc:['', [Validators.required]],
+    masterId:localStorage.getItem('masterId'),
+    updatedBy:localStorage.getItem('userrole'),
     id:['']
   });
 
   landDetails:Array<any>=[];
-  ownerShipList:Array<any>=[];
+  ownerShipList:Array<any>=[
+    {ownerName:"owner1"},
+    {ownerName:"owner2"},
+    {ownerName:"owner3"}
+    ];
   FarmerLists:Array<any>=[];
   submitted = false;
   edit = false;
@@ -39,8 +46,16 @@ export class LandDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLandDetailList();
+    this.getFarmerDetailList();
   }
 
+  getFarmerDetailList(){
+    this.fpoService.getFarmerDetailList().subscribe(
+      response => {
+      console.log(response);
+      this.FarmerLists = response;
+      })
+  }
 
   getLandDetailList(){
     this.fpoService.getLandDetailList().subscribe(
@@ -50,23 +65,25 @@ export class LandDetailsComponent implements OnInit {
       })
   }
 
-  getFarmerListsByFpoId(fpoId){
-    this.fpoService.getFarmerListsByFpoId(fpoId).subscribe(
-      response => {
-      console.log(response);
-      this.FarmerLists = response;
-      })
-  }
+  // getFarmerListsByFpoId(fpoId){
+  //   this.fpoService.getFarmerListsByFpoId(fpoId).subscribe(
+  //     response => {
+  //     console.log(response);
+  //     this.FarmerLists = response;
+  //     })
+  // }
 
   addLandDetail() {
   this.submitted = true;
   // stop here if form is invalid
+  alert(JSON.stringify(this.landDetailForm.value));
   this.fpoService.addLandDetails(this.landDetailForm.value).subscribe(response => {
       console.log(response)
       if(response.id != ''){
           this.toastr.success('Land Details Added Successfully.')
           this.submitted = false
-          this.landDetailForm.reset()
+          this.landDetailForm.reset();
+          this.getLandDetailList();
       }else{
           this.toastr.error('Error! While Adding Land Details.')
       }
@@ -105,6 +122,7 @@ export class LandDetailsComponent implements OnInit {
       fatherHusbandName: [landDetail.fatherHusbandName, [Validators.required]],
       ownerShip: [landDetail.ownership, [Validators.required]],
       areaFarm: [landDetail.areaFarm, [Validators.required]],
+      organ:[landDetail.isorganc, [Validators.required]],
       id:[landDetail.id]
     });
     

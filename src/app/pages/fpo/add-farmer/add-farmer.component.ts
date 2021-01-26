@@ -32,8 +32,9 @@ export class AddFarmerComponent implements OnInit {
     this.api.getBank().subscribe(d => {
       this.banks = d
     })
-    this.createFpoFarmerForm()
+    this.createFpoFarmerForm();
   }
+  
   selectDistrict(districtId: any) {
     this.fpoAddFarmerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
     this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
@@ -59,70 +60,35 @@ export class AddFarmerComponent implements OnInit {
   createFpoFarmerForm() {
     this.fpoAddFarmerForm = this.fb.group({
         accountNo : ['', Validators.required],
-        //agency: ['', Validators.required],
         bankRefId: ['', Validators.required],
         blockRef:['', Validators.required],
         category: ['', Validators.required],
-        createdBy:localStorage.getItem('userrole') ,
-        deleted: true,
         distRefId: ['', Validators.required],
-        educationId: 0,
-        //farmerAddress: ['', Validators.required],
-        //farmerAdhaar: ['', Validators.required],
-        farmerId: 0,
-        farmerLotNo:['', Validators.required],
-        farmerMob: ['', Validators.required],
-        farmerName: ['', Validators.required],
-        //figRefId: 0,
-        fpoRefId: localStorage.getItem('masterId'),
         gender: ['', Validators.required],
+        createdBy:localStorage.getItem('userrole'),
+        deleted: [true],
+        enabled: [true],
+        farmerMob: 0,
+        farmerName: ['', Validators.required],
         ifscCode: ['', Validators.required],
-        //kccno: 0,
         parantsName: ['', Validators.required],
         pincode: ['', Validators.required],
-        //registerDate:['', Validators.required],
         stateref: 0,
-        //updateDate: ['', Validators.required],
-        //updatedBy: ['', Validators.required],
         userName: ['', Validators.required],
-        userFar: [],
         userRefId: localStorage.getItem('userId'),
         villRefId: ['', Validators.required],
         villagePanchayatId: ['', Validators.required],
+        //educationId: 0,
+        //farmerId: 0,
+        //farmerLotNo:['', Validators.required],
+        fpoRefId: localStorage.getItem('masterId'),
+        userFar: [],
         password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
         confirmPassword: ['', Validators.required]
     }, {
         validator: MustMatch('password', 'confirmPassword')
        
     });
-
-    // this.fpoAddFarmerForm = this.fb.group({
-    //   accountNo: ['', Validators.required],
-    //   bankRefId: ['', Validators.required],
-    //   blockRef: ['', Validators.required],
-    //   category: ['', Validators.required],
-    //   distRefId: ['', Validators.required],
-    //   gender: ['', Validators.required],
-    //   deleted: [true],
-    //   enabled: [true],
-    //   farmerMob: ['', [Validators.required]],
-    //   farmerName: ['', Validators.required],       
-    //   ifscCode: ['', Validators.required],
-    //   farmerLotNo:['', Validators.required],
-    //   parantsName: ['', Validators.required],
-    //   pincode: ['', Validators.required],
-    //   userName: localStorage.getItem('username'),
-    //   userRefId: [''],
-    //   villRefId: ['', Validators.required],
-    //   villagePanchayatId: ['', Validators.required],
-    //   recaptcha: ['', Validators.required],
-    //   password: '',
-    //   userFar: [],
-    //   confirmPassword: ''
-    // }, {
-    //     validator: MustMatch('password', 'confirmPassword'),
-       
-    // })
 
   }
   get formControls() {

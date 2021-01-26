@@ -34,17 +34,17 @@
                       <option value="">Select farmer</option>
                       <option value="{{farmerList.farmerName}}" *ngFor="let farmerList of FarmerLists">{{farmerList.farmerName}}</option>
                     </select>
-                    <div *ngIf="submitted && formControls.farmerList.errors" class="text-danger">
-                      <div *ngIf="formControls.farmerList.errors.required">farmer is required</div>
+                    <div *ngIf="submitted && formControls.farmefarmerNamerList.errors" class="text-danger">
+                      <div *ngIf="formControls.farmerName.errors.required">farmer is required</div>
                     </div> 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">Father's/ Husband's Name</label>
-                    <input formControlName="fatherHusbandName" type="text" id="father-Husband-name" class="form-control form-control-alternative" >
-                    <div *ngIf="submitted && formControls.fatherHusbandName.errors" class="text-danger">
-                      <div *ngIf="formControls.fatherHusbandName.errors.required">Father's/ Husband's Name is required</div>
+                    <input formControlName="guardianName" type="text" id="father-Husband-name" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.guardianName.errors" class="text-danger">
+                      <div *ngIf="formControls.guardianName.errors.required">Father's/ Husband's Name is required</div>
                     </div>
                   </div>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Type of Ownership<span class="required">*</span></label>
-                    <select class="form-control form-control-alternative">
+                    <select class="form-control form-control-alternative" formControlName="ownerShip">
                       <option value="">Select Ownership</option>
                       <option value="{{ownerShip.ownerName}}" *ngFor="let ownerShip of ownerShipList">{{ownerShip.ownerName}}</option>
                     </select>
@@ -77,13 +77,16 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">If farmer is doing organic farming?<span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio5" type="radio">
+                      <input  formControlName="isorganc"  class="custom-control-input" id="customRadio5" type="radio">
                       <label class="custom-control-label" for="customRadio5">Yes</label>
                     </div>
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input name="custom-radio-2" class="custom-control-input" id="customRadio6" checked="" type="radio">
+                      <input formControlName="isorganc" class="custom-control-input" id="customRadio6"  type="radio">
                       <label class="custom-control-label" for="customRadio6">No</label>
-                    </div>               
+                    </div> 
+                     <div *ngIf="submitted && formControls.isorganc.errors" class="text-danger">
+                      <div *ngIf="formControls.isorganc.errors.required"> organic is required</div>
+                    </div>                 
                   </div>
                 </div>
               </div>

@@ -281,6 +281,12 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
 
+  getFarmerDetailList() {
+    return this.http.get<any>(this._url + 'api/Farmer/getFarmerDetails').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   addLandDetails(data: any) {
     return this.http.post<any>(this._url + 'api/fpos/land', data).pipe(map((res: any) => {
       return res;
