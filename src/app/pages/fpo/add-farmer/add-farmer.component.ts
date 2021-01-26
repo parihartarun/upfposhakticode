@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-farmer',
@@ -22,7 +23,7 @@ export class AddFarmerComponent implements OnInit {
   villages = [];
   banks = [];
   form: FormGroup;
-  constructor(private fb: FormBuilder, private api: AuthService, private fpo :FpoService ,private _router: Router) { }
+  constructor(private fb: FormBuilder, private api: AuthService, private fpo :FpoService ,private _router: Router,private toastr:ToastrService) { }
 
   ngOnInit(): void {
 
@@ -104,7 +105,8 @@ export class AddFarmerComponent implements OnInit {
     // }
     let user = {
       userName: this.fpoAddFarmerForm.value.userName,
-      password: this.fpoAddFarmerForm.value.password
+      password: this.fpoAddFarmerForm.value.password,
+      roleRefId:6
     }
     delete this.fpoAddFarmerForm.value.password;
     delete this.fpoAddFarmerForm.value.userName;
@@ -114,10 +116,13 @@ export class AddFarmerComponent implements OnInit {
 
     console.log("dgdfg "+JSON.stringify(this.fpoAddFarmerForm.value));
     this.fpo.registerFarmerByFpo(this.fpoAddFarmerForm.value).subscribe(response => {
-      alert(response.message);
       if (response.message == "SuccessFully Saved!") {
-        alert("SUCCESS")
-        //this._router.navigate(['/login'])
+        this.toastr.success(response.message);
+        this.fpoAddFarmerForm.reset();
+        this._router.navigate(['/login'])
+      }
+      else {
+        this.toastr.error(response.message);
       }
       console.log(response);
     },

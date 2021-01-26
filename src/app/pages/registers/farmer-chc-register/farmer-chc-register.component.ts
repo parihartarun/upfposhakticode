@@ -88,7 +88,8 @@ export class FarmerChcRegisterComponent implements OnInit {
     }
     let user = {
       userName: this.registerForm.value.userName,
-      password: this.registerForm.value.password
+      password: this.registerForm.value.password,
+      roleRefId:5
     }
     this.registerForm.value.user = user;
     let famerCHCFmb = {

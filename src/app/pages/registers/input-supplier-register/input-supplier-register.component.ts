@@ -99,7 +99,8 @@ export class InputSupplierRegisterComponent implements OnInit {
     this.registerForm.value
     let user = {
       userName: this.registerForm.value.userName,
-      password: this.registerForm.value.password
+      password: this.registerForm.value.password,
+      roleRefId:3
     }
     delete this.registerForm.value.password;
     delete this.registerForm.value.userName;

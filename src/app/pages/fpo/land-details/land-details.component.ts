@@ -17,7 +17,7 @@ export class LandDetailsComponent implements OnInit {
   //landDetailForm: FormGroup;
 
   landDetailForm = this.formBuilder.group({
-    farmerName: ['', [Validators.required]],
+    farmerId: ['', [Validators.required]],
     guardianName: ['', [Validators.required]],
     ownerShip: ['', [Validators.required]],
     areaFarm: ['', [Validators.required]],
@@ -29,13 +29,14 @@ export class LandDetailsComponent implements OnInit {
 
   landDetails:Array<any>=[];
   ownerShipList:Array<any>=[
-    {ownerName:"owner1"},
-    {ownerName:"owner2"},
-    {ownerName:"owner3"}
+    {ownerName:"Owned"},
+    {ownerName:"Leased"},
+    {ownerName:"Rented"}
     ];
   FarmerLists:Array<any>=[];
   submitted = false;
   edit = false;
+  master_id = localStorage.getItem('masterId');
 
  constructor(
     private formBuilder: FormBuilder,
@@ -45,7 +46,7 @@ export class LandDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getLandDetailList();
+    this.getLandDetailList(this.master_id);
     this.getFarmerDetailList();
   }
 
@@ -57,8 +58,8 @@ export class LandDetailsComponent implements OnInit {
       })
   }
 
-  getLandDetailList(){
-    this.fpoService.getLandDetailList().subscribe(
+  getLandDetailList(id){
+    this.fpoService.getLandDetailList(id).subscribe(
       response => {
       console.log(response);
       this.landDetails = response;
@@ -83,7 +84,7 @@ export class LandDetailsComponent implements OnInit {
           this.toastr.success('Land Details Added Successfully.')
           this.submitted = false
           this.landDetailForm.reset();
-          this.getLandDetailList();
+          this.getLandDetailList(this.master_id);
       }else{
           this.toastr.error('Error! While Adding Land Details.')
       }
@@ -108,7 +109,7 @@ export class LandDetailsComponent implements OnInit {
       }else{
           this.toastr.error('Error! While Updating Land Detail.');
       }
-      this.getLandDetailList();
+      this.getLandDetailList(this.master_id);
     },
       err => {
         console.log(err)
@@ -136,7 +137,7 @@ export class LandDetailsComponent implements OnInit {
         alert(JSON.stringify(response));
         if(response == true){
           this.toastr.success('Land Detail Deleted successfully.');
-          this.getLandDetailList();
+          this.getLandDetailList(this.master_id);
         }else{
             this.toastr.error('Error! While Deleting Land Detail.');
         }

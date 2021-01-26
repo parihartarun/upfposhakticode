@@ -85,7 +85,8 @@ export class FpoRegisterComponent implements OnInit {
     }
     let user = {
       userName: this.fpoRegisterForm.value.userName,
-      password: this.fpoRegisterForm.value.password
+      password: this.fpoRegisterForm.value.password,
+      roleRefId:4
     }
     delete this.fpoRegisterForm.value.password;
     delete this.fpoRegisterForm.value.userName;

@@ -85,7 +85,8 @@ export class ByerSellRegisterComponent implements OnInit {
     
     let user = {
       userName: this.registerForm.value.userName,
-      password: this.registerForm.value.password
+      password: this.registerForm.value.password,
+      roleRefId:2
     }
     delete this.registerForm.value.password;
     delete this.registerForm.value.userName;

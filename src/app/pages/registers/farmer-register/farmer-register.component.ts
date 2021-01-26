@@ -71,7 +71,7 @@ export class FarmerRegisterComponent implements OnInit {
       category: ['', Validators.required],
       distRefId: ['', Validators.required],
       gender: ['', Validators.required],
-      createdBy:'ROLE_FARMER' ,
+      createdBy:'ROLE_FARMER',
       deleted: [true],
       enabled: [true],
       farmerMob: 0,
@@ -112,7 +112,8 @@ export class FarmerRegisterComponent implements OnInit {
    
     let user = {
       userName: this.registerForm.value.userName,
-      password: this.registerForm.value.password
+      password: this.registerForm.value.password,
+      roleRefId:6
     }
     delete this.registerForm.value.password;
     delete this.registerForm.value.userName;

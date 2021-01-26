@@ -30,12 +30,12 @@
                       <option value="2"> crop 2</option>
                       <option value="3"> crop 3</option>
                     </select>    -->
-                    <select formControlName="farmerName" class="form-control form-control-alternative">
+                    <select formControlName="farmerId" class="form-control form-control-alternative">
                       <option value="">Select farmer</option>
-                      <option value="{{farmerList.farmerName}}" *ngFor="let farmerList of FarmerLists">{{farmerList.farmerName}}</option>
+                      <option value="{{farmerList.farmerId}}" *ngFor="let farmerList of FarmerLists">{{farmerList.farmerName}}</option>
                     </select>
-                    <div *ngIf="submitted && formControls.farmefarmerNamerList.errors" class="text-danger">
-                      <div *ngIf="formControls.farmerName.errors.required">farmer is required</div>
+                    <div *ngIf="submitted && formControls.farmerId.errors" class="text-danger">
+                      <div *ngIf="formControls.farmerId.errors.required">farmer is required</div>
                     </div> 
                   </div>
                 </div>
@@ -77,11 +77,11 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">If farmer is doing organic farming?<span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
-                      <input  formControlName="isorganc"  class="custom-control-input" id="customRadio5" type="radio">
+                      <input  formControlName="isorganc" value="Yes" class="custom-control-input" id="customRadio5" type="radio">
                       <label class="custom-control-label" for="customRadio5">Yes</label>
                     </div>
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input formControlName="isorganc" class="custom-control-input" id="customRadio6"  type="radio">
+                      <input formControlName="isorganc" value="No" class="custom-control-input" id="customRadio6" type="radio">
                       <label class="custom-control-label" for="customRadio6">No</label>
                     </div> 
                      <div *ngIf="submitted && formControls.isorganc.errors" class="text-danger">
@@ -135,10 +135,10 @@
             </thead>
             <tbody>
               <tr *ngFor="let landDetail of landDetails | paginate: { itemsPerPage: 10, currentPage: p }">
-                <td>{{landDetail.farmerId}}</td>
-                <td>{{landDetail.guardianName}}</td>
+                <td>{{landDetail.farmerName}}</td>
+                <td>{{landDetail.parantsName}}</td>
                 <td></td>
-                <td>{{landDetail.land_area}}</td>
+                <td>{{landDetail.landArea}}</td>
                 <td>{{landDetail.isorganc}}</td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
