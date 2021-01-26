@@ -51,7 +51,7 @@ getStorageUnits(){
 updateStrotageUnit(data,id){
    let header = new HttpHeaders()
    header.append('contentType',"application/json")
-  return  this.http.put<any>(this._url+`api/collectioncenters/:`+id,data,{headers:header}).pipe(map((res:any)=>{
+  return  this.http.put<any>(this._url+`api/collectioncenters/`+id,data,{headers:header}).pipe(map((res:any)=>{
     return res;
   }));
 }

@@ -16,7 +16,9 @@ export class ErrorInterceptor implements HttpInterceptor {
       return next.handle(request).pipe(
         catchError(err => {
           console.log(err);
-          this.toastr.error(err.error.message);
+          if (err.status !== 404) {
+            this.toastr.error(err.error.message);
+          }
           // if (err.status === 401) {
           //   localStorage.removeItem("accessToken");
           //   this.router.navigate(["login"]);
