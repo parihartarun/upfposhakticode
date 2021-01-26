@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class DepartmentComplaintsComponent implements OnInit {
   myInputVariable: ElementRef;
   constructor(
     private formBuilder: FormBuilder,
-    private api: FpoService,
+    private api: DepartmentService,
     private route: Router
   ) { }
 

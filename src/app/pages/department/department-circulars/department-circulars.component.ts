@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class DepartmentCircularsComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private api: FpoService,
+    private api: DepartmentService,
     private route: Router
   ) { }
 
