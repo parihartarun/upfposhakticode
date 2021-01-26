@@ -81,11 +81,7 @@ export class ComplaintsComponent implements OnInit {
     this.api.getComplaints().subscribe(response => {
       console.log(response);
       this.complaints = response;
-    },
-      err => {
-        console.log(err)
-      }
-    );
+    });
 
   }
 
@@ -103,11 +99,7 @@ export class ComplaintsComponent implements OnInit {
       } else {
         this.toastr.error('Error! While Updating License.');
       }
-    },      
-      err => {
-        console.log(err)
-      }
-    );
+    });
     
     
   }
@@ -155,13 +147,8 @@ export class ComplaintsComponent implements OnInit {
   }
   deleteCompliant(id) {
     this.api.deleteCompliant(id).subscribe(response => {
-      this.getComplaints();
-      console.log(response);
-    },
-      err => {
-        console.log(err)
-      }
-    );
+      this.getComplaints();     
+    });
   }
   editComplaint(complaint) {
     this.edit = true;
@@ -193,11 +180,7 @@ export class ComplaintsComponent implements OnInit {
         this.toastr.error('Error! While Updating License.');
       }
       this.getComplaints();
-    },
-      err => {
-        console.log(err)
-      }
-    );
+    });
   }
   /* Return true or false if it is the selected */
   compareByOptionId(idFist, idSecond) {
