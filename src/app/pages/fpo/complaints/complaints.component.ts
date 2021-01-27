@@ -94,11 +94,12 @@ export class ComplaintsComponent implements OnInit {
     if (this.complaintForm.invalid) {
       return;
     }
+    let model = this.complaintForm.value;
     const formData: FormData = new FormData();
-    formData.append('file', this.fileToUpload);
-    formData.append('desc', this.complaintForm.value.desc);
-    formData.append('issueType', this.complaintForm.value.issueType);
-
+    formData.append('file', this.fileToUpload);  
+    formData.append('description', this.complaintForm.value.desc);
+    formData.append('title', this.complaintForm.value.title.comp_type_en);
+    formData.append('issue_type', this.complaintForm.value.issueType);
     this.api.addComplaint(formData).subscribe(response => {
       if (response.id != '') {
         this.toastr.success(response);
@@ -127,7 +128,7 @@ export class ComplaintsComponent implements OnInit {
   }
  
   selectComplaint(complaint) {
-    this.complaintForm.controls['title'].setValue(complaint.currentTarget.value);
+    this.complaintForm.controls['title'].setValue(this.complaintsCatageriy[parseInt(complaint.currentTarget.value)]);
     this.complaintForm.controls['issueType'].setValue(parseInt(complaint.currentTarget.value));
 
   }

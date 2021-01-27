@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('accessToken', response.token);
         sessionStorage.setItem('tokenType', response.token);
         localStorage.setItem('username', response.user.userName);
-        localStorage.setItem('userRole', 'ROLE_MIN');
+        localStorage.setItem('userRole', response.userRole);
         this.userRole = localStorage.getItem('userRole');
         if (this.userRole == 'ROLE_FPC') {
           this.route.navigate(['/fpo/dashboard']);

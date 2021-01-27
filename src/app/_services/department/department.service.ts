@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
@@ -11,6 +12,12 @@ export class DepartmentService {
   _url: string;
   constructor(private http: HttpClient) {
     this._url = environment.baseUrl;
+  }
+  getCrops(): Observable<any> {
+
+    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+      return res;
+    }));
   }
   /************************** department's  Complaints/ Suggestions **********************************/
   getComplaints_Suggestions() {

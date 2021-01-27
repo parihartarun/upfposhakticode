@@ -16,15 +16,14 @@
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="filterForm" (ngSubmit)="filterProduction()">
+          <form [formGroup]="productionReportForm" >
             <div class="pl-lg-4">
-
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Financial year</label>
                     <select formControlName="financial_year" class="custom-control custom-select mb-3">
-                      <option>A</option>
+                      <option value="2020-2020">2020-2020</option>
                       <option>B</option>
                       <option>C</option>
                     </select>
@@ -33,36 +32,41 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Season</label>
-                    <select formControlName="season" class="custom-control custom-select mb-3">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
+                    <select formControlName="season" class="custom-control custom-select mb-3">                    
+                      <option value="0">All Seasons</option>
+                      <option value="1">Rabi</option>
+                      <option value="2">Kharif</option>
+                      <option value="3">Zayad</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">district</label>
-                    <select formControlName="financial_year" class="custom-control custom-select mb-3">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
-                    </select>
+                    <label class="input-label">District </label>
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"></span>
+                      </div>
+                      <select class="form-control" formControlName="districtRefId" (change)="selectDistrict($event)">
+                        <option value="">Select District</option>
+                        <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
+                      </select>
+                    </div>
+                   
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Crops</label>
-                    <select formControlName="season" class="custom-control custom-select mb-3">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
+                    <select formControlName="cropRefId" class="custom-control custom-select mb-3">
+                      <option value="">Select Crops</option>
+                      <option *ngFor="let crop of crops" [value]="crop">{{crop}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group mt-4">
-                    <button class="btn btn-primary mt-2 text-right">View Reports</button>
+                    <button class="btn btn-primary mt-2 text-right" (click)="viewReport()">View Reports</button>
                   </div>
                 </div>
               </div>
