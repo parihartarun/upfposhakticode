@@ -189,57 +189,55 @@
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
                 <div class="row">
-                  <div class="col-md-12">
-                    <h4 class="card-title">{{'FPO Registration Number:' | translate }}</h4>
+
+                  <div class="col-md-4 mb-2">
+                    <img src="../../../assets/img/onion.jpeg" class="card-img" alt="...">
                   </div>
-                  <div class="col-md-12">
-                    {{product.fpo_lot_no}}
+                  <div class="col-md-8 mb-2">
+                    <div class="card-body">
+                      <h4 class="card-title">FPO Name</h4>
+                      <p class="card-text">{{product.nodal}}</p>
+                    </div>
+
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <div class="card-body p-0">
+                      <h4 class="card-title">Crop Name</h4>
+                      <p class="card-text" *ngIf="product.crops">{{product.crops}}</p>
+                      <p class="card-text" *ngIf="!product.crops">NA</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <div class="card-bod p-0">
+                      <h4 class="card-title">Crop Variety</h4>
+                      <p class="card-text" *ngIf="product.cropVeriety">{{product.cropVeriety}}</p>
+                      <p class="card-text" *ngIf="!product.cropVeriety">NA</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <div class="card-body p-0">
+                      <h4 class="card-title">District</h4>
+                      <p class="card-text" *ngIf="product.district">{{product.district}}</p>
+                      <p class="card-text" *ngIf="!product.district">NA</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <div class="card-body p-0">
+                      <h4 class="card-title">Marke Table Surplus</h4>
+                      <p class="card-text" *ngIf="product.marketableSurplus">{{product.marketableSurplus}}</p>
+                      <p class="card-text" *ngIf="!product.marketableSurplus">NA</p>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <h4 class="mt-1">Actually Produced Quantity</h4>
+                    <p class="card-text" *ngIf="product.actualProduction">{{product.actualProduction}}</p>
+                    <p class="card-text" *ngIf="!product.actualProduction">NA</p>
+                  </div>
+
+                  <div class="col-md-4 text-right">
+                    <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <h4 class="card-title"> {{'FPO Name:' | translate }}</h4>
-                  </div>
-                  <div class="col-md-12">
-                    {{product.nodal}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <h4 class="card-title">{{'District:' | translate }}</h4>
-                  </div>
-                  <div class="col-md-12">
-                    {{product.district}}
-                  </div>
-                </div>
-                <br />
-                <div class="row">
-                  <div class="col-md-12">
-                    <h4 class="card-title">{{'State:' | translate }}</h4>
-                  </div>
-                  <div class="col-md-12">
-                    {{product.state}}
-                  </div>
-                </div>
-                <div class="col-md-12 text-right">
-                  <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">{{'Send Enquiry' | translate }}</a>
-                </div>
-                <!--<div class="col-md-4 mb-2">
-    <img src="../../../assets/img/onion.jpeg" class="card-img" alt="...">
-  </div>
-  <div class="col-md-8 mb-2">
-    <div class="card-body">
-      <h4 class="card-title">FPO Name</h4>
-      <p class="card-text">Pune, Maharashtra, India - 4220299</p>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <h4 class="mt-1">Quantity: 450 Kg</h4>
-  </div>
-  <div class="col-md-6 text-right">
-    <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
-  </div>-->
-              </div>
             </div>
           </div>
         
@@ -351,4 +349,5 @@
       </form>
     </div>
   </ng-template>
+    </div>
 </section>
