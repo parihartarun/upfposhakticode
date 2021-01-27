@@ -23,7 +23,9 @@ export class ComplaintsComponent implements OnInit {
   edit = false;
   percentDone: number;
   uploadSuccess: boolean;
-
+  fileToUpload: File = null;
+  isViewComplaint = false;
+  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks:'',}
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
@@ -39,7 +41,9 @@ export class ComplaintsComponent implements OnInit {
         title: ['', [Validators.required]],
         desc: ['', [Validators.required]],
         filePath: [''],
-        uploadFile: ['']
+      uploadFile: [''],
+      issueType: ['', [Validators.required]],
+      masterId: localStorage.getItem('masterId'),
       
     });
     fpoId: localStorage.getItem('masterId')
@@ -47,37 +51,7 @@ export class ComplaintsComponent implements OnInit {
   }
 
   getComplaints() {
-    this.complaints = [
-      {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, 
-    ]
+   
     this.api.getComplaints().subscribe(response => {
       console.log(response);
       this.complaints = response;
@@ -90,9 +64,15 @@ export class ComplaintsComponent implements OnInit {
     if (this.complaintForm.invalid) {
       return;
     }
-    this.api.addComplaint(this.complaintForm.value).subscribe(response => {
-      if (response.id != '') {
-        this.toastr.success(response);
+    let model = this.complaintForm.value;
+    const formData: FormData = new FormData();
+    formData.append('file', this.fileToUpload);  
+    formData.append('description', this.complaintForm.value.desc);
+    formData.append('title', this.complaintForm.value.title.comp_type_en);
+    formData.append('issue_type', this.complaintForm.value.issueType);
+    this.api.addComplaint(formData).subscribe(response => {
+      if (response!= '') {
+        this.toastr.success(response.message);
         this.submitted = false;
         this.edit = false;
         this.complaintForm.reset();
@@ -100,40 +80,28 @@ export class ComplaintsComponent implements OnInit {
         this.toastr.error('Error! While Add complaint.');
       }
     });
-    
-    
   }
 
   get formControls() {
     return this.complaintForm.controls;
   }
-  upload(files: File[]) {
-    if (!this.validateFile(files[0].name)) {
-      this.checkfileFormat = true;
-      this.myInputVariable.nativeElement.value = "";
-      return;
-    }
-    else {
-      this.uploadAndProgress(files);
-      this.checkfileFormat = false;
-    }
-  }
-  uploadAndProgress(files: File[]) {
+  upload(files: FileList) {
+    this.fileToUpload = files.item(0);
+    //if (!this.validateFile(files[0].name)) {
+    //  this.checkfileFormat = true;
+    //  this.myInputVariable.nativeElement.value = "";
+    //  return;
+    //}
+    //else {
     
-    var formData = new FormData();
-    formData.append('Image', files[0]);    
-   
-    this.api.uopladFile(formData).subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.percentDone = Math.round(100 * event.loaded / event.total);
-      } else if (event instanceof HttpResponse) {
-        this.uploadSuccess = true;
-      }     
-     });
-    
+    //  this.checkfileFormat = false;
+    //}
   }
+ 
   selectComplaint(complaint) {
-    this.complaintForm.controls['title'].setValue(complaint.currentTarget.value);
+    this.complaintForm.controls['title'].setValue(this.complaintsCatageriy[parseInt(complaint.currentTarget.value)]);
+    this.complaintForm.controls['issueType'].setValue(parseInt(complaint.currentTarget.value));
+
   }
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
@@ -187,6 +155,21 @@ export class ComplaintsComponent implements OnInit {
   }
   reset() {
     this.complaintForm.reset();
+  }
+  close() {
+    this.isViewComplaint = false;
+  }
+  viewComplaint(complaint) {
+    this.isViewComplaint = true;
+    this.viewComp.assignedTo = complaint.assignTo;
+    this.viewComp.assigned_date = complaint.assigned_date;
+    this.viewComp.currentStatus = complaint.status;
+    this.viewComp.description = complaint.description;
+    this.viewComp.compalintDate = complaint.uploadDate;
+    this.viewComp.remarks = complaint.remarks;
+    this.viewComp.title = complaint.title;
+    window.scroll(0,0)
+
   }
 }
 

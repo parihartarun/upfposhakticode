@@ -16,15 +16,14 @@
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="filterForm" (ngSubmit)="filterProduction()">
+          <form [formGroup]="productionReportForm" >
             <div class="pl-lg-4">
-
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Financial year</label>
                     <select formControlName="financial_year" class="custom-control custom-select mb-3">
-                      <option>A</option>
+                      <option value="2020-2020">2020-2020</option>
                       <option>B</option>
                       <option>C</option>
                     </select>
@@ -33,36 +32,41 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Season</label>
-                    <select formControlName="season" class="custom-control custom-select mb-3">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
+                    <select formControlName="season" class="custom-control custom-select mb-3">                    
+                      <option value="0">All Seasons</option>
+                      <option value="1">Rabi</option>
+                      <option value="2">Kharif</option>
+                      <option value="3">Zayad</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">district</label>
-                    <select formControlName="financial_year" class="custom-control custom-select mb-3">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
-                    </select>
+                    <label class="input-label">District </label>
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"></span>
+                      </div>
+                      <select class="form-control" formControlName="districtRefId" (change)="selectDistrict($event)">
+                        <option value="">Select District</option>
+                        <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
+                      </select>
+                    </div>
+                   
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Crops</label>
-                    <select formControlName="season" class="custom-control custom-select mb-3">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
+                    <select formControlName="cropRefId" class="custom-control custom-select mb-3">
+                      <option value="">Select Crops</option>
+                      <option *ngFor="let crop of crops" [value]="crop">{{crop}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group mt-4">
-                    <button class="btn btn-primary mt-2 text-right">View Reports</button>
+                    <button class="btn btn-primary mt-2 text-right" (click)="viewReport()">View Reports</button>
                   </div>
                 </div>
               </div>
@@ -100,25 +104,31 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Farmer Name</th>
-                <th scope="col">Father/Husband Name</th>
-                <th scope="col">Season</th>
+                <th scope="col">District</th>
+                <th scope="col">FPO Name</th>
+                <th scope="col">FPO Address</th>
+                <th scope="col">FPO Contact</th>
                 <th scope="col">Crop Name</th>
                 <th scope="col">Crop variety</th>
-                <th scope="col">Marakatable Surplus</th>
-                <th scope="col"></th>
+                <th scope="col">Total Farmers</th>
+                <th scope="col">Estimated Production (in Qt.)</th>
+                <th scope="col">Actual Production (in Qt.)</th>
+               
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let p of production | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                  {{p.name}}
+                  {{p.district}}
                 </td>
                 <td>
-                  {{p.fatherName}}
+                  {{p.fpoName}}
                 </td>
                 <td>
-                  {{p.season}}
+                  {{p.fpoAddress}}
+                </td>
+                <td>
+                  {{p.fpoContact}}
                 </td>
                 <td>
                   {{p.cropName}}
@@ -127,9 +137,15 @@
                   {{p.cropVariety}}
                 </td>
                 <td>
-                  {{p.markatableSurplus}}
+                  {{p.totalFarmers}}
                 </td>
-                <td class="text-right">
+                <td>
+                  {{p.estimatedProduction}}
+                </td>
+                <td>
+                  {{p.actualProduction}}
+                </td>
+                <!--<td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
                       Actions
@@ -139,7 +155,7 @@
                       <a class="dropdown-item" href="javascript:void(0)">Delete</a>
                     </div>
                   </div>
-                </td>
+                </td>-->
               </tr>
             </tbody>
           </table>

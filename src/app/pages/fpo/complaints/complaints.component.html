@@ -4,134 +4,230 @@
     </div>
   </div>
   <!-- Page content -->
-  <div class="container-fluid mt--7 mp-7">
-    <!-- Table -->
-    <div class="row">
-      <div class="col">
-        <div class="card shadow">
-          <div class="card-header border-0">
-            <div class="row">
-              <div class="col-9">
-                <h3 class="mb-0"> 
-                    Complaints</h3>
-              </div>
+<div class="container-fluid mt--7 mp-7">
+  <!-- Table -->
+  <div class="row" *ngIf="isViewComplaint">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row ">
+            <div class="col-11">
+              <h3 class="mt-2 p-2 bg-warning">
+                View Status and Details of Complaint/ Suggestion
+              </h3>
             </div>
-          </div>
-          <div class="card-body">
-            <form [formGroup]="complaintForm" >
-              <div class="pl-lg-4">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <label class="form-control-label">Title <span class="required">*</span></label>
-                    
-                      <select class="form-control" formControlName="title" (change)="selectComplaint($event)" [compareWith]="compareByOptionId">
-                        <option value="">Select Complaint/Suggestions</option>
-                        <option *ngFor="let cc of complaintsCatageriy" [value]="cc.comp_type_id">{{cc.comp_type_en}}</option>
-
-                      </select>
-                      <div *ngIf="submitted && formControls.title.errors" class="text-danger">
-                        <div *ngIf="formControls.title.errors.required">title is required</div>
-                      </div>
-                    </div>
-                  </div>               
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <label class="form-control-label" for="">Complaints/ Suggestions Description<span class="required">*</span></label>
-                      <textarea formControlName="desc" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
-
-                      <div *ngIf="submitted && formControls.desc.errors" class="text-danger">
-                        <div *ngIf="formControls.desc.errors.required">Complaints/ Suggestions description is required</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-first-name">
-                        Attach File
-                      </label>
-                      <small class="">
-                        (File format should be .jpg, .png, .jpeg and .pdf)
-                      </small>
-                      <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)" />
-                      <div *ngIf="checkfileFormat" class="text-danger">in correct file format </div>
-                      <small class="" *ngIf="percentDone>0">
-                        Upload Percent: {{percentDone}}% <br />
-                      </small>
-                    </div>
-                   
-                  </div>
-
-                  <div class="card-footer py-4 text-center">                    
-                      <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateComplaint()">Add Complaint/Suggestion</button>                 
-                    <button  *ngIf="edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateComplaint()">updateComplaint/Suggestion</button>
-                    <button class="btn btn-warning text-right" (click)="reset()">Reset</button>
-                  </div>
-                </div>              
-              </div>
-            </form>
+            <div class="col-1 text-right close  ">
+              <button class="btn btn-primary text-right mb-2 mr-2" (click)="close()">Close</button>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    
-    <br/>
-    <!-- Table -->
-    <div class="row">
-      <div class="col">
-        <div class="card shadow">
-          <div class="card-header border-0">
-            <div class="row">
-              <div class="col-9">
-                <h3 class="mb-0">Complaints/ Suggestions</h3>
+        <hr class="m-0">
+        <div class="card-body" *ngIf="viewComp">
+          <div class="row">
+            <div class="col-12 mb-4">
+              <h2 class="mb-0">
+                Details of Complaint/ Suggestion
+              </h2>
+            </div>
+            <div class="col-12">
+              <h4 class="mb-0">
+                Complaints/ Suggestions Category:
+              </h4>
+            </div>
+            <div class="col-12">
+              <span>{{viewComp.title}}</span>
+            </div>
+            <div class="col-12 mb-4 mt-4">
+              <h4 class="mb-0">
+                Complaint/ Suggestion Date:
+              </h4> {{viewComp.compalintDate | date: 'dd/MM/yyyy'}}
+            </div>
+            <div class="col-12">
+              <h4 class="mb-0">
+                Description:
+              </h4>
+            </div>
+            <div class="col-12">
+              {{viewComp.description}}
+
+            </div>
+            <div class="col-12 mb-4 mt-4 bg-warning">
+              <h2 class="mb-0">
+                Status of Complaint/ Suggestion (As per Department)
+              </h2>
+            </div>
+
+            <div class="col-12 mt-0 mb-4">
+              <h4 class="mb-0" style="display:inline-block">
+                Current Status:
+              </h4>
+              <span>{{viewComp.currentStatus}}</span>
+            </div>
+
+            <div class="col-12">
+              <div class="col-6 p-0 " style="display:inline-block">
+                <h4 class="mb-0">
+                  Assigned To: *
+                </h4>
+                <br />
+                <span>{{viewComp.assignedTo}}</span>
               </div>
-              <!-- <div class="col-3 text-right">
-                <button class="btn btn-primary text-right">Add Member</button>
-              </div> -->
+              <div class="col-6 p-0" style="display:inline-block">
+                <div class="col-6">
+                  <h4 class="mb-0">
+                    Date of Assigning:
+                  </h4>
+                  <br />
+                  <span>{{viewComp.assigned_date | date: 'dd/MM/yyyy'}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 mt-2 mb-2">
+              <h4 class="mb-0" style="display:inline-block">
+                Department's Remarks: *
+              </h4>
+              <span class="pl-2 pr-2"> {{viewComp.remarks}}</span>
             </div>
           </div>
-          <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">Complaints/ Suggestions Category</th>
-                  <th scope="col">Complaints/ Suggestions Description</th>
-                  <th scope="col">File</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let complaint of complaints | paginate: { itemsPerPage: 10, currentPage: p }">
-                  <td>
-                   {{complaint.title}}
-                   </td>
-                  <td>
-                    {{complaint.desc}}
-                  </td>
-                  <td>
-                    <a href="" download >{{complaint.file}}</a>
-                  </td>
-                  <td class="text-right">
-                    <div ngbDropdown placement="bottom-right">
-                      <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                        Actions
-                      </a>
-                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="editComplaint(complaint)">Edit</a>
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">Delete</a>
-                      </div>
+          <hr>
+          <div class="row">
+            <div class="col text-right">
+              <button class="btn btn-primary text-right mb-2" (click)="close()">close</button>
+            
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="!isViewComplaint">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">
+                Complaints
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="complaintForm">
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label">Complaints/ Suggestions Category <span class="required">*</span></label>
+
+                    <select class="form-control" formControlName="issueType" (change)="selectComplaint($event)" [compareWith]="compareByOptionId">
+                      <option value="">Select Complaint/Suggestions</option>
+                      <option *ngFor="let cc of complaintsCatageriy" [value]="cc.comp_type_id">{{cc.comp_type_en}}</option>
+
+                    </select>
+                    <div *ngIf="submitted && formControls.title.errors" class="text-danger">
+                      <div *ngIf="formControls.title.errors.required">title is required</div>
                     </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="">Complaints/ Suggestions Description<span class="required">*</span></label>
+                    <textarea formControlName="desc" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
+
+                    <div *ngIf="submitted && formControls.desc.errors" class="text-danger">
+                      <div *ngIf="formControls.desc.errors.required">Complaints/ Suggestions description is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
+                      Attach File
+                    </label>
+                    <!--<small class="">
+                      (File format should be .jpg, .png, .jpeg and .pdf)
+                    </small>-->
+                    <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)" />
+                    <div *ngIf="checkfileFormat" class="text-danger">in correct file format </div>
+
+                  </div>
+
+                </div>
+
+                <div class="card-footer py-4 text-center">
+                  <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="addComplaint()">Add Complaint/Suggestion</button>
+                  <button *ngIf="edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateComplaint()">updateComplaint/Suggestion</button>
+                  <button class="btn btn-warning text-right" (click)="reset()">Reset</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">Complaints/ Suggestions</h3>
+            </div>
+            <!-- <div class="col-3 text-right">
+              <button class="btn btn-primary text-right">Add Member</button>
+            </div> -->
           </div>
-          <div class="card-footer py-4">
-            <nav aria-label="..." class="text-right">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </nav>
-          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Complaints/ Suggestions Category</th>
+                <th scope="col">Complaints/ Suggestions Description</th>
+                <th scope="col">Complaint/ Suggestion Date</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let complaint of complaints | paginate: { itemsPerPage: 10, currentPage: p }">
+                <td>
+                  {{complaint.title}}
+                </td>
+                <td>
+                  {{complaint.description}}
+                </td>
+                <td>
+
+                  {{complaint.uploadDate | date: 'dd/MM/yyyy'}}
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary" (click)="viewComplaint(complaint)">
+                      view
+                    </a>
+                    <!--<div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editComplaint(complaint)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">Delete</a>
+                    </div>-->
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </nav>
         </div>
       </div>
     </div>
   </div>
+</div>

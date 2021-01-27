@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../_services/auth/auth.service';
 import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
@@ -11,172 +12,95 @@ import { FpoService } from '../../../_services/fpo/fpo.service';
 })
 export class DepartmentProductionReportComponent implements OnInit {
 
-  filterForm: FormGroup;
+  
   submitted = false;
   production: Array<any> = [];
   p: number = 1;
-
+  districts = [];
+  crops = [];
+  productionReportForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
-    private route: Router
+    private route: Router,
+    private authServie: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.filterForm = this.formBuilder.group({
+    this.authServie.getDistrict().subscribe(d => {
+      this.districts = d
+    })
+    this.api.getCrops().subscribe(c => {
+      this.crops = c
+    })
+    this.productionReportForm = this.formBuilder.group({
+      districtRefId: [''],
       financial_year: [''],
-      season: ['']
+      season: [''],
+      cropRefId: [''],      
+      masterId: localStorage.getItem('masterId'),
+
     });
+    fpoId: localStorage.getItem('masterId')
     this.getProduction();
   }
 
   getProduction() {
     this.production = [
       {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
+        district:"Agra",
+        FpoName: 'food.com',
+        fpoAddress: 'pune',
+        fpoContact: '8275518800',
         cropName: 'Carrot',
         cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
+        totalFarmers: "12",
+        estimatedProduction: '23',
+        actualProduction:'12'
       },
+      {
+        district: "Agra",
+        FpoName: 'food.com',
+        fpoAddress: 'pune',
+        fpoContact: '8275518800',
+        cropName: 'Carrot',
+        cropVariety: 'variety 1',
+        totalFarmers: "12",
+        estimatedProduction: '23',
+        actualProduction: '12'
+      },
+      {
+        district: "Agra",
+        FpoName: 'food.com',
+        fpoAddress: 'pune',
+        fpoContact: '8275518800',
+        cropName: 'Carrot',
+        cropVariety: 'variety 1',
+        totalFarmers: "12",
+        estimatedProduction: '23',
+        actualProduction: '12'
+      },
+      {
+        district: "Agra",
+        FpoName: 'food.com',
+        fpoAddress: 'pune',
+        fpoContact: '8275518800',
+        cropName: 'Carrot',
+        cropVariety: 'variety 1',
+        totalFarmers: "12",
+        estimatedProduction: '23',
+        actualProduction: '12'
+      }
     ]
    
   }
 
-  filterProduction() {
-    this.getProduction();
-  }
+  
 
   get formControls() {
-    return this.filterForm.controls;
+    return this.productionReportForm.controls;
   }
+  viewReport() { }
 
 
 }

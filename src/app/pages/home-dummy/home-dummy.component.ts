@@ -10,8 +10,8 @@ export class HomeDummyComponent implements OnInit {
   slides = [];
   noWrapSlides = false;
   showIndicator = true;
-  searchValue: string ='tomato'
-  searchType: any = 'Any';
+  searchValue: string = null;
+  searchType: any = 'any';
   data = { searchValue: this.searchValue , searchType: this.searchType }
 
   ngOnInit(): void {
@@ -24,6 +24,9 @@ export class HomeDummyComponent implements OnInit {
   selectSearchType(searchType: any) {
     this.searchType=searchType.currentTarget.value
     this.data.searchType = searchType.currentTarget.value
+  }
+  selectValue() {
+    this.data.searchValue = this.searchValue;
   }
 
 }

@@ -14,6 +14,7 @@ export class ProductsListComponent implements OnInit {
   closeResult: string;
   serachProduct: [];
   routerParameter = '';
+  p: number = 1;
   constructor(private modalService: NgbModal, private _productService: ProductService, private _activatedroute: ActivatedRoute) { }
     
   open(content) {
@@ -41,6 +42,7 @@ export class ProductsListComponent implements OnInit {
       let searchType = params.get('searchType');
       this._productService.getSearchProduct(val, searchType).subscribe(s => {
         this.serachProduct = s;
+        console.log(this.serachProduct.length)
       })
     });
     

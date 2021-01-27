@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form [formGroup]="uploadCircularForm">
             <div class="pl-lg-4">
 
               <div class="row">
@@ -24,9 +24,10 @@
                   <div class="form-group">
                     <div class="form-group">
                       <label class="form-control-label" for="">Description<span class="required">*</span></label>
-                      <textarea class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
-
-
+                      <textarea class="form-control" formControlName="description" id="exampleFormControlTextarea12" rows="3"></textarea>
+                    </div>
+                    <div *ngIf="submitted && formControls.description.errors" class="text-danger">
+                      <div *ngIf="formControls.description.errors.required">description is required</div>
                     </div>
                   </div>
                 </div>
@@ -40,11 +41,15 @@
                     </small>
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" />
                   </div>
+                  <div *ngIf="submitted && formControls.uploadFile.errors" class="text-danger" formControlName="uploadFile">
+                    <div *ngIf="formControls.uploadFile.errors.required">file is required</div>
+                  </div>
                 </div>
 
                 <div class="col-lg-12 text-center">
                   <div class="form-group mt-4">
-                    <button class="btn btn-primary mt-2 text-right">View Reports</button>
+                    <button type="button" class="btn btn-primary mt-2 text-right"(click)="addUploadCircular()">Submit</button>
+                    <button type="button" class="btn btn-warning mt-2 text-right" (click)="reset()">Reset</button>
                   </div>
                 </div>
               </div>
@@ -74,8 +79,8 @@
               <h3 class="mb-0">Circulars</h3>
             </div>
             <!-- <div class="col-3 text-right">
-          <button class="btn btn-primary text-right">Add Member</button>
-        </div> -->
+        <button class="btn btn-primary text-right">Add Member</button>
+      </div> -->
           </div>
         </div>
         <div class="table-responsive">
@@ -87,25 +92,26 @@
                 <th scope="col">Description</th>
                 <th scope="col">Upload Date</th>
                 <th scope="col">File (in Qt.)</th>
+                <th scope="col"></th>
 
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let p of production | paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr *ngFor="let p of uploadCircular | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                  <input class="form-control select" type="checkbox" id="exampleFormControlTextarea12"/>
+                  <input class="form-control select" type="checkbox" id="exampleFormControlTextarea12" />
                 </td>
                 <td>
-                  Mehroni Jaiv Urja Producer Company Limited
+                  {{p.sno}}
                 </td>
                 <td>
-                  African  Marigold
+                  {{p.description}}
                 </td>
                 <td>
-                  NA
+                  {{p.uploadedDate}}
                 </td>
                 <td>
-                  NA
+                  <a href="" download>{{p.file}}</a>
                 </td>
 
                 <td class="text-right">
@@ -128,13 +134,14 @@
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </nav>
         </div>
-      </div>
-      <div class="row">
-        <div class="col text-center">
+        <!--<div class="row">
+          <div class="col text-center">
 
-          <button class="btn btn-warning text-right mb-2">Delete</button>
-        </div>
+            <button class="btn btn-warning text-right mb-2">Delete</button>
+          </div>
+        </div>-->
       </div>
+      
     </div>
   </div>
   

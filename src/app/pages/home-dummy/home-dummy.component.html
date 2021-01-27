@@ -8,7 +8,7 @@
       <div class="form-group has-feedback">
         <div class="form-group">
           <div id="filterDate2">
-            <input type="text" id="homesearch" class="form-control" placeholder="Type here to search" [(ngModel)]="searchValue">
+            <input type="text" id="homesearch" class="form-control" placeholder="Type here to search" [(ngModel)]="searchValue"(input)="selectValue()">
           </div>
         </div>
       </div>
@@ -17,10 +17,10 @@
     <div class="col-md-2 p-0">
       <div class="dropdown searchDropDown ">
         <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" (change)=selectSearchType($event)>
-          <option value="Any">{{'Any' | translate }}</option>
-          <option value="Crop">{{'Crop' | translate }}</option>
+          <option value="any">{{'Any' | translate }}</option>
+          <option value="crop">{{'Crop' | translate }}</option>
           <option value="district">{{'District' | translate }}</option>
-          <option value="FPO">{{'FPO' | translate }}</option>
+          <option value="fpo_name">{{'FPO' | translate }}</option>
           <option value="services">{{'Services/ Products' | translate }}</option>
         </select>
       </div>
