@@ -30,29 +30,29 @@
                 Details of Complainant/ Suggestion provider
               </h2>
             </div>
-          
+
           </div>
           <div class="row">
-            
-              <div class="col-4 mb-4">
-                <h4 class="mb-2">
-                  Name
-                </h4>vishal
-              </div>
 
-              <div class="col-4 mb-4">
-                <h4 class="mb-2">
-                  Mobile:
-                </h4>8275518800
-              </div>
+            <div class="col-4 mb-4">
+              <h4 class="mb-2">
+                Name
+              </h4>vishal
+            </div>
 
-              <div class="col-4 mb-4">
-                <h4 class="mb-2">
-                  Email:
-                </h4>v@gmial.com
-              </div>
+            <div class="col-4 mb-4">
+              <h4 class="mb-2">
+                Mobile:
+              </h4>8275518800
+            </div>
 
-            
+            <div class="col-4 mb-4">
+              <h4 class="mb-2">
+                Email:
+              </h4>v@gmial.com
+            </div>
+
+
           </div>
           <div class="row">
             <div class="col-12 mb-4">
@@ -85,46 +85,77 @@
             </div>
             <div class="col-12 mb-4 mt-4 bg-warning">
               <h2 class="mb-0">
-                Status of Complaint/ Suggestion (As per Department)
+                Update Complaint/ Suggestion Status
               </h2>
             </div>
 
-            <div class="col-12 mt-0 mb-4">
-              <h4 class="mb-0" style="display:inline-block">
-                Current Status:
-              </h4>
-              <span>Assigned</span>
-            </div>
+          </div>
+        
+          <div class="card-body">
+            <form [formGroup]="complaintForm">
+              <div class="pl-lg-0">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label">Assigned To <span class="required">*</span></label>
 
-            <div class="col-12">
-              <div class="col-6 pl-0" style="display:inline-block">
-                <h4 class="mb-0">
-                  Assigned To: *
-                </h4>
-                <br />
-                <span>0</span>
-              </div>
-              <div class="col-6" style="display:inline-block">
-                <div class="col-6  pl-0">
-                  <h4 class="mb-0">
-                    Date of Assigning:
-                  </h4>
-                  <br />
-                  <span>0</span>
+                      <select class="form-control" formControlName="assignedTo" >
+                        <option value="">Select</option>
+                        <option value="1">Additional Director Seeds</option>
+                        <option value="0">Other </option>
+                      </select>
+                      <div *ngIf="submitted && formControls.assignedTo.errors" class="text-danger">
+                        <div *ngIf="formControls.assignedTo.errors.required">Assigned to is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-email">Date of Assigning</label>
+                      <input formControlName="dateOfAssigning" type="text"  disabled id="input-email" class="form-control form-control-alternative">
+                      <div *ngIf="submitted && formControls.dateOfAssigning.errors" class="text-danger">
+                        <div *ngIf="formControls.dateOfAssigning.errors.required">date of assigning is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="">Status Description:<span class="required">*</span></label>
+                      <textarea formControlName="statusDescription" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
+
+                      <div *ngIf="submitted && formControls.statusDescription.errors" class="text-danger">
+                        <div *ngIf="formControls.statusDescription.errors.required">status description description is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label">Complaint/ Suggestion Status: <span class="required">*</span></label>
+
+                      <select class="form-control" formControlName="complaintStatus" >
+                        <option value="">Select</option>
+                        <option value="1">Assigned</option>
+                        <option value="0">Resolved </option>
+                      </select>
+                      <div *ngIf="submitted && formControls.complaintStatus.errors" class="text-danger">
+                        <div *ngIf="formControls.complaintStatus.errors.required">complaint status  is required</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="card-footer text-center">
+                    <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateSatus()">Update Status</button>
+                   
+                    <button class="btn btn-warning text-right" (click)="reset()">Reset</button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-12 mt-2 mb-2">
-              <h4 class="mb-0" style="display:inline-block">
-                Department's Remarks: *
-              </h4>
-              <span class="pl-2 pr-2"> ADA Agri Mechanization has been assigned</span>
-            </div>
+            </form>
           </div>
-          <hr>
           <div class="row">
             <div class="col text-right">
-              <button class="btn btn-primary text-right mb-2">close</button>
+              <button class="btn btn-primary text-right mb-2" (click)="close()">Close</button>
 
             </div>
           </div>
@@ -133,74 +164,7 @@
       </div>
     </div>
   </div>
-  <div class="row" *ngIf="!isViewComplaint">
-    <div class="col">
-      <div class="card shadow">
-        <div class="card-header border-0">
-          <div class="row">
-            <div class="col-9">
-              <h3 class="mb-0">
-                Complaints
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <form [formGroup]="complaintForm">
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="form-group">
-                    <label class="form-control-label">Title <span class="required">*</span></label>
-
-                    <select class="form-control" formControlName="title" (change)="selectComplaint($event)" [compareWith]="compareByOptionId">
-                      <option value="">Select Complaint/Suggestions</option>
-                      <option *ngFor="let cc of complaintsCatageriy" [value]="cc.comp_type_id">{{cc.comp_type_en}}</option>
-
-                    </select>
-                    <div *ngIf="submitted && formControls.title.errors" class="text-danger">
-                      <div *ngIf="formControls.title.errors.required">title is required</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="form-group">
-                    <label class="form-control-label" for="">Complaints/ Suggestions Description<span class="required">*</span></label>
-                    <textarea formControlName="desc" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
-
-                    <div *ngIf="submitted && formControls.desc.errors" class="text-danger">
-                      <div *ngIf="formControls.desc.errors.required">Complaints/ Suggestions description is required</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-12">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">
-                      Attach File
-                    </label>
-                    <small class="">
-                      (File format should be .jpg, .png, .jpeg and .pdf)
-                    </small>
-                    <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)" />
-                    <div *ngIf="checkfileFormat" class="text-danger">in correct file format </div>
-
-                  </div>
-
-                </div>
-
-                <div class="card-footer py-4 text-center">
-                  <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="addComplaint()">Add Complaint/Suggestion</button>
-                  <button *ngIf="edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateComplaint()">updateComplaint/Suggestion</button>
-                  <button class="btn btn-warning text-right" (click)="reset()">Reset</button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </div>
+ 
 
   <br />
   <!-- Table -->

@@ -28,7 +28,7 @@ export class DepartmentService {
       return res;
     }));
   }
-  addComplaint(data) {
+  updateStatus(data) {
     return this.http.post<any>(this._url + '', data).pipe(map((res: any) => {
       return res;
     }));
