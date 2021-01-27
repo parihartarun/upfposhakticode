@@ -42,6 +42,7 @@ export class ComplaintsComponent implements OnInit {
         desc: ['', [Validators.required]],
         filePath: [''],
       uploadFile: [''],
+      issueType: ['', [Validators.required]],
       masterId: localStorage.getItem('masterId'),
       
     });
@@ -95,7 +96,8 @@ export class ComplaintsComponent implements OnInit {
     }
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
-    formData.append('complaint', this.complaintForm.value);
+    formData.append('desc', this.complaintForm.value.desc);
+    formData.append('issueType', this.complaintForm.value.issueType);
 
     this.api.addComplaint(formData).subscribe(response => {
       if (response.id != '') {
@@ -126,6 +128,8 @@ export class ComplaintsComponent implements OnInit {
  
   selectComplaint(complaint) {
     this.complaintForm.controls['title'].setValue(complaint.currentTarget.value);
+    this.complaintForm.controls['issueType'].setValue(parseInt(complaint.currentTarget.value));
+
   }
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);

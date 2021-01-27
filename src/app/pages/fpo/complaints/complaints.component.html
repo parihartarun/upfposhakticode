@@ -66,14 +66,14 @@
             </div>
 
             <div class="col-12">
-              <div class="col-6" style="display:inline-block">
+              <div class="col-6 p-0 " style="display:inline-block">
                 <h4 class="mb-0">
                   Assigned To: *
                 </h4>
                 <br />
                 <span>0</span>
               </div>
-              <div class="col-6" style="display:inline-block">
+              <div class="col-6 p-0" style="display:inline-block">
                 <div class="col-6">
                   <h4 class="mb-0">
                     Date of Assigning:
@@ -93,7 +93,7 @@
           <hr>
           <div class="row">
             <div class="col text-right">
-              <button class="btn btn-primary text-right mb-2">close</button>
+              <button class="btn btn-primary text-right mb-2" (click)="close()">close</button>
             
             </div>
           </div>
@@ -120,9 +120,9 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group">
-                    <label class="form-control-label">Title <span class="required">*</span></label>
+                    <label class="form-control-label">Complaints/ Suggestions Category * <span class="required">*</span></label>
 
-                    <select class="form-control" formControlName="title" (change)="selectComplaint($event)" [compareWith]="compareByOptionId">
+                    <select class="form-control" formControlName="issueType" (change)="selectComplaint($event)" [compareWith]="compareByOptionId">
                       <option value="">Select Complaint/Suggestions</option>
                       <option *ngFor="let cc of complaintsCatageriy" [value]="cc.comp_type_id">{{cc.comp_type_en}}</option>
 
@@ -205,7 +205,7 @@
                   {{complaint.desc}}
                 </td>
                 <td>
-                  Complaint/ Suggestion Date
+                  20/12/2020
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">

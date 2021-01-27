@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
@@ -14,15 +15,17 @@ export class DepartmentComplaintsComponent implements OnInit {
   submitted = false;
   complaintsCatageriy: Array<any> = [];
   complaints: Array<any> = [];
-
   p: number = 1;
   checkfileFormat: boolean = false;
   @ViewChild('myInput')
   myInputVariable: ElementRef;
+  fileToUpload: File = null;
+  isViewComplaint = false;
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
-    private route: Router
+    private route: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -33,147 +36,50 @@ export class DepartmentComplaintsComponent implements OnInit {
       title: ['', [Validators.required]],
       desc: ['', [Validators.required]],
       filePath: [''],
-      uploadFile: ['']
+      uploadFile: [''],
+      masterId: localStorage.getItem('masterId'),
+
     });
+    fpoId: localStorage.getItem('masterId')
     this.getComplaints();
   }
 
   getComplaints() {
     this.complaints = [
       {
-        category: 'Scheme Benefits',
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        file: 'sed.jpg'
+      }, {
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        file: 'sed.jpg'
+      }, {
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        file: 'sed.jpg'
+      }, {
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        file: 'sed.jpg'
+      }, {
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        file: 'sed.jpg'
+      }, {
+        title: 'Scheme Benefits',
         description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
         file: 'sed.jpg'
       }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        category: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
+        title: 'Scheme Benefits',
+        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
         file: 'sed.jpg'
       },
     ]
     this.api.getComplaints().subscribe(response => {
       console.log(response);
       this.complaints = response;
-    },
-      err => {
-        console.log(err)
-      }
-    );
+    });
 
   }
 
@@ -182,39 +88,37 @@ export class DepartmentComplaintsComponent implements OnInit {
     if (this.complaintForm.invalid) {
       return;
     }
-    this.api.addComplaint(this.complaintForm.value).subscribe(response => {
-      console.log(response);
-    },
-      err => {
-        console.log(err)
+    const formData: FormData = new FormData();
+    formData.append('file', this.fileToUpload);
+    formData.append('complaint', this.complaintForm.value);
+
+    this.api.addComplaint(formData).subscribe(response => {
+      if (response.id != '') {
+        this.toastr.success(response);
+        this.submitted = false;
+        this.edit = false;
+        this.complaintForm.reset();
+      } else {
+        this.toastr.error('Error! While Add complaint.');
       }
-    );
+    });
   }
 
   get formControls() {
     return this.complaintForm.controls;
   }
-  upload(files: File[]) {
+  upload(files: FileList) {
     if (!this.validateFile(files[0].name)) {
       this.checkfileFormat = true;
       this.myInputVariable.nativeElement.value = "";
       return;
     }
     else {
-      this.uploadAndProgress(files);
+      this.fileToUpload = files.item(0);
       this.checkfileFormat = false;
     }
   }
-  uploadAndProgress(files: File[]) {
-    console.log(files)
-    var formData = new FormData();
-    formData.append('file', this.complaintForm.controls['uploadFile'].value);
 
-    this.api.uopladFile(formData).subscribe(event => {
-
-    });
-
-  }
   selectComplaint(complaint) {
     this.complaintForm.controls['title'].setValue(complaint.currentTarget.value);
   }
@@ -226,5 +130,55 @@ export class DepartmentComplaintsComponent implements OnInit {
     else {
       return false;
     }
+  }
+  deleteCompliant(id) {
+    this.api.deleteCompliant(id).subscribe(response => {
+      this.getComplaints();
+    });
+  }
+  editComplaint(complaint) {
+    this.edit = true;
+    window.scroll(0, 0);
+    this.complaintForm = this.formBuilder.group({
+      id: [complaint.id],
+      title: [complaint.title, Validators.required],
+      desc: [complaint.desc, Validators.required],
+
+    });
+    this.complaintForm.controls['title'].patchValue(complaint.title);
+    this.complaintForm.get('title').patchValue(complaint.title);
+
+  }
+  updateComplaint() {
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.complaintForm.invalid) {
+      return;
+    }
+    this.api.updateComplaint(this.complaintForm.value).subscribe(response => {
+      console.log(response);
+      if (response.id != '') {
+        this.toastr.success('complians successfully.');
+        this.submitted = false;
+        this.edit = false;
+        this.complaintForm.reset();
+      } else {
+        this.toastr.error('Error! While Updating License.');
+      }
+      this.getComplaints();
+    });
+  }
+  /* Return true or false if it is the selected */
+  compareByOptionId(idFist, idSecond) {
+    return idFist && idSecond && idFist.id == idSecond.id;
+  }
+  reset() {
+    this.complaintForm.reset();
+  }
+  close() {
+    this.isViewComplaint = false;
+  }
+  viewComplaint() {
+    this.isViewComplaint = true;
   }
 }
