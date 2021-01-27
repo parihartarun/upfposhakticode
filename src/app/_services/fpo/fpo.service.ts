@@ -254,7 +254,7 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
   addComplaint(data:any) {
-    return this.http.post<any>(this._url + '', data).pipe(map((res: any) => {
+    return this.http.post<any>(this._url + 'complaint/insert', data).pipe(map((res: any) => {
       return res;
     }));
   }

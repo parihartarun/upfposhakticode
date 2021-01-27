@@ -14,7 +14,7 @@ export class DepartmentCircularsComponent implements OnInit {
   submitted = false;
   production: Array<any> = [];
   p: number = 1;
-
+  edit: boolean=false
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,

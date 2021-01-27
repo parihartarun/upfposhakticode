@@ -24,6 +24,7 @@ export class ComplaintsComponent implements OnInit {
   percentDone: number;
   uploadSuccess: boolean;
   fileToUpload: File = null;
+  isViewComplaint = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,7 +41,8 @@ export class ComplaintsComponent implements OnInit {
         title: ['', [Validators.required]],
         desc: ['', [Validators.required]],
         filePath: [''],
-        uploadFile: ['']
+      uploadFile: [''],
+      masterId: localStorage.getItem('masterId'),
       
     });
     fpoId: localStorage.getItem('masterId')
@@ -92,7 +94,7 @@ export class ComplaintsComponent implements OnInit {
       return;
     }
     const formData: FormData = new FormData();
-    formData.append('Image', this.fileToUpload);
+    formData.append('file', this.fileToUpload);
     formData.append('complaint', this.complaintForm.value);
 
     this.api.addComplaint(formData).subscribe(response => {
@@ -177,6 +179,12 @@ export class ComplaintsComponent implements OnInit {
   }
   reset() {
     this.complaintForm.reset();
+  }
+  close() {
+    this.isViewComplaint = false;
+  }
+  viewComplaint() {
+    this.isViewComplaint = true;
   }
 }
 
