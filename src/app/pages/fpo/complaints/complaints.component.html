@@ -55,15 +55,13 @@
                       </small>
                       <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)" />
                       <div *ngIf="checkfileFormat" class="text-danger">in correct file format </div>
-                      <small class="" *ngIf="percentDone>0">
-                        Upload Percent: {{percentDone}}% <br />
-                      </small>
+                      
                     </div>
                    
                   </div>
 
                   <div class="card-footer py-4 text-center">                    
-                      <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateComplaint()">Add Complaint/Suggestion</button>                 
+                      <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="addComplaint()">Add Complaint/Suggestion</button>                 
                     <button  *ngIf="edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateComplaint()">updateComplaint/Suggestion</button>
                     <button class="btn btn-warning text-right" (click)="reset()">Reset</button>
                   </div>

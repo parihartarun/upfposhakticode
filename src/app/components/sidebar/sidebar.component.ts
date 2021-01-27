@@ -47,7 +47,7 @@ export const departmentROUTES: RouteInfo[] = [
   { path: 'department/sales-report', title: ' Sales Report', icon: 'fa fa-university text-white', class: '' },
   { path: 'department/circulars', title: ' Circulars', icon: 'fa fa-archive text-white', class: '' },
   { path: 'department/upload-circulars', title: "Upload Circular", icon: 'fa fa-id-card text-white', class: '' },
-  { path: 'department/complaints', title: "Complaints/ Suggestions", icon: 'ni-tv-2 text-white', class: '' },
+  { path: 'department/complaints', title: "Complaints", icon: 'ni-tv-2 text-white', class: '' },
   { path: 'department/user-management', title: 'User Management', icon: 'fa fa-archive text-white', class: '' },
   { path: 'department/all-users', title: 'All-Users', icon: 'fa fa-plus-square text-white', class: '' },
 

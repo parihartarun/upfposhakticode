@@ -87,25 +87,26 @@
                 <th scope="col">Description</th>
                 <th scope="col">Upload Date</th>
                 <th scope="col">File (in Qt.)</th>
+                <th scope="col"></th>
 
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let p of production | paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr *ngFor="let p of uploadCircular | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
                   <input class="form-control select" type="checkbox" id="exampleFormControlTextarea12"/>
                 </td>
                 <td>
-                  Mehroni Jaiv Urja Producer Company Limited
+                 {{p.sno}}
                 </td>
                 <td>
-                  African  Marigold
+                  {{p.description}}
                 </td>
                 <td>
-                  NA
+                  {{p.uploadedDate}}
                 </td>
                 <td>
-                  NA
+                  <a href=""download>{{p.file}}</a>
                 </td>
 
                 <td class="text-right">

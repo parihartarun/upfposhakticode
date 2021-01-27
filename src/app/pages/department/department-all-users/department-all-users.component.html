@@ -1,1 +1,163 @@
-<p>department-all-users works!</p>
+<div class="header bg-gradient-danger pb-7 pt-5 pt-md-8">
+  <div class="container-fluid">
+
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7 mp-7">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">All Users</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">All Inactive FPO Users</h3>
+            </div>
+            <!-- <div class="col-3 text-right">
+              <button class="btn btn-primary text-right">Add Member</button>
+            </div> -->
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">FPO Name</th>
+                <th scope="col">User Name</th>
+                <th scope="col">District Name</th>
+                <th scope="col">Request Date</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of users | paginate: { itemsPerPage: 10, currentPage: p }">
+                <td>
+                  {{p.sno}}
+                </td>
+                <td>
+                  {{p.fpoName}}
+                </td>
+                <td>
+                  {{p.userName}}
+                </td>
+                <td>
+                  {{p.district}}
+                </td>
+                <td>
+                  {{p.requestDate}}
+                </td>
+                <td>
+                  {{p.email}}
+                </td>
+                
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      Actions
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">All Active FPO Users</h3>
+            </div>
+            <!-- <div class="col-3 text-right">
+              <button class="btn btn-primary text-right">Add Member</button>
+            </div> -->
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">FPO Name</th>
+                <th scope="col">User Name</th>
+                <th scope="col">District Name</th>
+                <th scope="col">Request Date</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of users | paginate: { itemsPerPage: 10, currentPage: p }">
+                <td>
+                  {{p.sno}}
+                </td>
+                <td>
+                  {{p.fpoName}}
+                </td>
+                <td>
+                  {{p.userName}}
+                </td>
+                <td>
+                  {{p.district}}
+                </td>
+                <td>
+                  {{p.requestDate}}
+                </td>
+                <td>
+                  {{p.email}}
+                </td>
+
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      Actions
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

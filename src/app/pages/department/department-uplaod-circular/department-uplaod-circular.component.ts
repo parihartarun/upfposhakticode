@@ -13,7 +13,7 @@ export class DepartmentUplaodCircularComponent implements OnInit {
 
   filterForm: FormGroup;
   submitted = false;
-  production: Array<any> = [];
+  uploadCircular: Array<any> = [];
   p: number = 1;
 
   constructor(
@@ -27,151 +27,42 @@ export class DepartmentUplaodCircularComponent implements OnInit {
       financial_year: [''],
       season: ['']
     });
-    this.getProduction();
+    this.getUploadCircular();
   }
 
-  getProduction() {
-    this.production = [
+  getUploadCircular() {
+    this.uploadCircular = [
       {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
+        sno: "1",
+        description: "एफपीओ वार्षिक समीक्षा बैठक",
+        uploadedDate: "2020-12-22",
+        file: 'view File'
       },
+      {
+        sno: "2",
+        description: "एफपीओ वार्षिक समीक्षा बैठक",
+        uploadedDate: "2020-12-22",
+        file: 'view File'
+      },
+      {
+        sno: "3",
+        description: "एफपीओ वार्षिक समीक्षा बैठक",
+        uploadedDate: "2020-12-22",
+        file: 'view File'
+      },
+      {
+        sno: "4",
+        description: "एफपीओ वार्षिक समीक्षा बैठक",
+        uploadedDate: "2020-12-22",
+        file: 'view File'
+      }
+      
     ]
 
   }
 
   filterProduction() {
-    this.getProduction();
+    this.getUploadCircular();
   }
 
   get formControls() {

@@ -23,6 +23,7 @@ export class ComplaintsComponent implements OnInit {
   edit = false;
   percentDone: number;
   uploadSuccess: boolean;
+  fileToUpload: File = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -90,7 +91,11 @@ export class ComplaintsComponent implements OnInit {
     if (this.complaintForm.invalid) {
       return;
     }
-    this.api.addComplaint(this.complaintForm.value).subscribe(response => {
+    const formData: FormData = new FormData();
+    formData.append('Image', this.fileToUpload);
+    formData.append('complaint', this.complaintForm.value);
+
+    this.api.addComplaint(formData).subscribe(response => {
       if (response.id != '') {
         this.toastr.success(response);
         this.submitted = false;
@@ -100,38 +105,23 @@ export class ComplaintsComponent implements OnInit {
         this.toastr.error('Error! While Add complaint.');
       }
     });
-    
-    
   }
 
   get formControls() {
     return this.complaintForm.controls;
   }
-  upload(files: File[]) {
+  upload(files: FileList) {
     if (!this.validateFile(files[0].name)) {
       this.checkfileFormat = true;
       this.myInputVariable.nativeElement.value = "";
       return;
     }
     else {
-      this.uploadAndProgress(files);
+      this.fileToUpload = files.item(0);
       this.checkfileFormat = false;
     }
   }
-  uploadAndProgress(files: File[]) {
-    
-    var formData = new FormData();
-    formData.append('Image', files[0]);    
-   
-    this.api.uopladFile(formData).subscribe(event => {
-      if (event.type === HttpEventType.UploadProgress) {
-        this.percentDone = Math.round(100 * event.loaded / event.total);
-      } else if (event instanceof HttpResponse) {
-        this.uploadSuccess = true;
-      }     
-     });
-    
-  }
+ 
   selectComplaint(complaint) {
     this.complaintForm.controls['title'].setValue(complaint.currentTarget.value);
   }

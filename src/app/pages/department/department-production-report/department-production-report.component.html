@@ -100,25 +100,31 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Farmer Name</th>
-                <th scope="col">Father/Husband Name</th>
-                <th scope="col">Season</th>
+                <th scope="col">District</th>
+                <th scope="col">FPO Name</th>
+                <th scope="col">FPO Address</th>
+                <th scope="col">FPO Contact</th>
                 <th scope="col">Crop Name</th>
                 <th scope="col">Crop variety</th>
-                <th scope="col">Marakatable Surplus</th>
+                <th scope="col">Total Farmers</th>
+                <th scope="col">Estimated Production (in Qt.)</th>
+                <th scope="col">Actual Production (in Qt.)</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let p of production | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                  {{p.name}}
+                  {{p.district}}
                 </td>
                 <td>
-                  {{p.fatherName}}
+                  {{p.fpoName}}
                 </td>
                 <td>
-                  {{p.season}}
+                  {{p.fpoAddress}}
+                </td>
+                <td>
+                  {{p.fpoContact}}
                 </td>
                 <td>
                   {{p.cropName}}
@@ -127,7 +133,13 @@
                   {{p.cropVariety}}
                 </td>
                 <td>
-                  {{p.markatableSurplus}}
+                  {{p.totalFarmers}}
+                </td>
+                <td>
+                  {{p.estimatedProduction}}
+                </td>
+                <td>
+                  {{p.actualProduction}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
