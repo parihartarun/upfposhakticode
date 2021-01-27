@@ -25,7 +25,7 @@ export class ComplaintsComponent implements OnInit {
   uploadSuccess: boolean;
   fileToUpload: File = null;
   isViewComplaint = false;
-
+  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks:'',}
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
@@ -51,37 +51,7 @@ export class ComplaintsComponent implements OnInit {
   }
 
   getComplaints() {
-    this.complaints = [
-      {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, 
-    ]
+   
     this.api.getComplaints().subscribe(response => {
       console.log(response);
       this.complaints = response;
@@ -101,8 +71,8 @@ export class ComplaintsComponent implements OnInit {
     formData.append('title', this.complaintForm.value.title.comp_type_en);
     formData.append('issue_type', this.complaintForm.value.issueType);
     this.api.addComplaint(formData).subscribe(response => {
-      if (response.id != '') {
-        this.toastr.success(response);
+      if (response!= '') {
+        this.toastr.success(response.message);
         this.submitted = false;
         this.edit = false;
         this.complaintForm.reset();
@@ -116,15 +86,16 @@ export class ComplaintsComponent implements OnInit {
     return this.complaintForm.controls;
   }
   upload(files: FileList) {
-    if (!this.validateFile(files[0].name)) {
-      this.checkfileFormat = true;
-      this.myInputVariable.nativeElement.value = "";
-      return;
-    }
-    else {
-      this.fileToUpload = files.item(0);
-      this.checkfileFormat = false;
-    }
+    this.fileToUpload = files.item(0);
+    //if (!this.validateFile(files[0].name)) {
+    //  this.checkfileFormat = true;
+    //  this.myInputVariable.nativeElement.value = "";
+    //  return;
+    //}
+    //else {
+    
+    //  this.checkfileFormat = false;
+    //}
   }
  
   selectComplaint(complaint) {
@@ -188,8 +159,17 @@ export class ComplaintsComponent implements OnInit {
   close() {
     this.isViewComplaint = false;
   }
-  viewComplaint() {
+  viewComplaint(complaint) {
     this.isViewComplaint = true;
+    this.viewComp.assignedTo = complaint.assignTo;
+    this.viewComp.assigned_date = complaint.assigned_date;
+    this.viewComp.currentStatus = complaint.status;
+    this.viewComp.description = complaint.description;
+    this.viewComp.compalintDate = complaint.uploadDate;
+    this.viewComp.remarks = complaint.remarks;
+    this.viewComp.title = complaint.title;
+    window.scroll(0,0)
+
   }
 }
 
