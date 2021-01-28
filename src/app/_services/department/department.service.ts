@@ -52,7 +52,7 @@ export class DepartmentService {
   }
   /**************************Upload Circule***********************/
   addUploadCircular(data) {
-    return this.http.post<any>(this._url + '' + data.id, data).pipe(map((res: any) => {
+    return this.http.post<any>(this._url + 'circulars/insert', data).pipe(map((res: any) => {
       return res;
     }));
   }

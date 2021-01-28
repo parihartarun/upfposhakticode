@@ -99,11 +99,10 @@ export class DepartmentUplaodCircularComponent implements OnInit {
     }
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
-    formData.append('desc', this.uploadCircularForm.value.desc);
-   
+    formData.append('description ', this.uploadCircularForm.value.description);   
     this.api.addUploadCircular(formData).subscribe(response => {
-      if (response.id != '') {
-        this.toastr.success(response);
+      if (response) {
+        this.toastr.success(response.message);
         this.submitted = false;
 
         this.uploadCircularForm.reset();
