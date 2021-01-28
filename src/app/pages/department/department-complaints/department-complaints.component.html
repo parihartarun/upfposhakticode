@@ -197,10 +197,10 @@
                   {{complaint.title}}
                 </td>
                 <td>
-                  {{complaint.desc}}
+                  {{complaint.description}}
                 </td>
                 <td>
-                  Complaint/ Suggestion Date
+                  {{complaint.uploadDate | date: 'dd/MM/yyyy'}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">

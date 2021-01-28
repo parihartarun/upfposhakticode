@@ -31,7 +31,7 @@ export class DepartmentService {
     }));
   }
   getComplaints() {
-    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'complaint').pipe(map((res: any) => {
       return res;
     }));
   }

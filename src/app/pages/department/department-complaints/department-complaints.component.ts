@@ -21,7 +21,7 @@ export class DepartmentComplaintsComponent implements OnInit {
   myInputVariable: ElementRef;
   fileToUpload: File = null;
   isViewComplaint = false;
-  
+  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', }
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
@@ -30,9 +30,9 @@ export class DepartmentComplaintsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.api.getComplaints_Suggestions().subscribe(cs => {
-      this.complaintsCatageriy = cs
-    })
+    //this.api.getComplaints_Suggestions().subscribe(cs => {
+    //  this.complaintsCatageriy = cs
+    //})
     this.complaintForm = this.formBuilder.group({
       assignedTo: ['', [Validators.required]],
       dateOfAssigning: ['20/03/2020'],
@@ -46,37 +46,7 @@ export class DepartmentComplaintsComponent implements OnInit {
   }
 
   getComplaints() {
-    this.complaints = [
-      {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        description: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      }, {
-        title: 'Scheme Benefits',
-        desc: 'dsb hbsdbs hjwdnjw hdnejwde wchjdwcew',
-        file: 'sed.jpg'
-      },
-    ]
+   
     this.api.getComplaints().subscribe(response => {
       console.log(response);
       this.complaints = response;
@@ -126,10 +96,20 @@ export class DepartmentComplaintsComponent implements OnInit {
   close() {
     this.isViewComplaint = false;
   }
-  viewComplaint() {
-    this.isViewComplaint = true;
-  }
+  
   getToday(): string {
     return new Date().toISOString().split('T')[0]
+  }
+  viewComplaint(complaint) {
+    this.isViewComplaint = true;
+    this.viewComp.assignedTo = complaint.assignTo;
+    this.viewComp.assigned_date = complaint.assigned_date;
+    this.viewComp.currentStatus = complaint.status;
+    this.viewComp.description = complaint.description;
+    this.viewComp.compalintDate = complaint.uploadDate;
+    this.viewComp.remarks = complaint.remarks;
+    this.viewComp.title = complaint.title;
+    window.scroll(0, 0)
+
   }
 }
