@@ -42,9 +42,9 @@
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-first-name" (change)="handleFileInput($event.target.files)">Upload Photo <span class="required">*</span>
+                      <label class="form-control-label" for="input-first-name">Upload Photo <span class="required">*</span>
                     </label>
-                      <input #myInput formControlName="file"  type="file" id="input-first-name" class="form-control form-control-alternative">
+                      <input #myInput formControlName="file"  (change)="handleFileInput($event.target.files)"  type="file" id="input-first-name" class="form-control form-control-alternative">
                       <div *ngIf="submitted && formControls.file.errors" class="text-danger">
                         <div *ngIf="formControls.file.errors.required">File is required</div>
                       </div>
@@ -103,7 +103,7 @@
                     {{service.descriptions}}
                   </td>
                   <td>
-                    <a href="" download >{{service.filePath}}</a>
+                    <a href="{{baseUrl}}{{service.filePath}}" download >{{service.filePath}}</a>
                   </td>
                   <td class="text-right">
                     <div ngbDropdown placement="bottom-right">

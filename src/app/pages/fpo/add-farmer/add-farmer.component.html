@@ -169,6 +169,7 @@
                   </div>
                   <div *ngIf="submitted && formControls.farmerMob.errors" class="text-danger">
                     <div *ngIf="formControls.farmerMob.errors.required">mobile is required</div>
+                    <span *ngIf="formControls.farmerMob.errors.pattern"> mobile number should be 10 digit</span>
                   </div>
                 </div>
               </div>
@@ -257,7 +258,7 @@
   
   <br/>
   <!-- Table -->
-  <div class="row">
+  <!-- <div class="row">
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
@@ -265,9 +266,6 @@
             <div class="col-9">
               <h3 class="mb-0">Farmer details</h3>
             </div>
-            <!-- <div class="col-3 text-right">
-              <button class="btn btn-primary text-right">Add Member</button>
-            </div> -->
           </div>
         </div>
         <div class="table-responsive">
@@ -324,5 +322,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

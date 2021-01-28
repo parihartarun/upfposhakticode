@@ -69,7 +69,7 @@ export class AddFarmerComponent implements OnInit {
         createdBy:localStorage.getItem('userrole'),
         deleted: [true],
         enabled: [true],
-        farmerMob: 0,
+        farmerMob: ['', [Validators.pattern("[0-9 ]{10}")]],
         farmerName: ['', Validators.required],
         ifscCode: ['', Validators.required],
         parantsName: ['', Validators.required],
@@ -97,7 +97,6 @@ export class AddFarmerComponent implements OnInit {
   }
  
   register() {
-    alert(JSON.stringify(this.fpoAddFarmerForm.value));
     this.submitted = true;
     // stop here if form is invalid
     // if (this.fpoAddFarmerForm.invalid) {
@@ -119,7 +118,6 @@ export class AddFarmerComponent implements OnInit {
       if (response.message == "SuccessFully Saved!") {
         this.toastr.success(response.message);
         this.fpoAddFarmerForm.reset();
-        this._router.navigate(['/login'])
       }
       else {
         this.toastr.error(response.message);

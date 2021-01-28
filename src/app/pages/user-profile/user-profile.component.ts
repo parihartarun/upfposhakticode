@@ -81,12 +81,7 @@ constructor(private formBuilder: FormBuilder,
     if (this.profileForm.invalid) {
         return;
     }
-    console.log(this.profileForm.value);
-    console.log(this.profileForm.value.userName);
     var data = this.profileForm.value;
-    var userName = this.profileForm.value.userName;
-    delete data.userName;
-    data['userFpo'] = {userName:userName};
     console.log(data);
     this.api.updateProfile(data).subscribe(response => {
       console.log(response);

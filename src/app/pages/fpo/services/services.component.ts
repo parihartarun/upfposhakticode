@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment }  from '../../../../environments/environment';
 
 @Component({
   selector: 'app-services',
@@ -17,13 +18,15 @@ export class ServicesComponent implements OnInit {
   p:number = 1;
   edit = false;
   fileToUpload: File = null;
-
+  baseUrl: string;
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
     private route: Router,
     private toastr:ToastrService
-  ) {}
+  ) {
+    this.baseUrl = environment.baseUrl;
+  }
 
   ngOnInit(): void {
     this.serviceForm = this.formBuilder.group({
@@ -46,6 +49,8 @@ export class ServicesComponent implements OnInit {
     );
   }
   handleFileInput(files: FileList) {
+    alert();
+    console.log(files);
       this.fileToUpload = files.item(0);
   }
 
@@ -56,7 +61,7 @@ export class ServicesComponent implements OnInit {
         return;
     }
     const formData: FormData = new FormData();
-    formData.append('file', this.serviceForm.value.file);
+    formData.append('file', this.fileToUpload);
     formData.append('description', this.serviceForm.value.descriptions);
     formData.append('servicename', this.serviceForm.value.servicename);
 
@@ -133,4 +138,6 @@ export class ServicesComponent implements OnInit {
   get formControls(){
     return this.serviceForm.controls;
   }
+
+  
 }
