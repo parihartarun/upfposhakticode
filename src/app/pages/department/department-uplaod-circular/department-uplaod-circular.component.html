@@ -36,9 +36,9 @@
                     <label class="form-control-label" for="input-first-name">
                       Upload Circular <span class="required">*</span>
                     </label>
-                    <small class="">
+                    <!--<small class="">
                       (File format should be .jpg, .png, .jpeg and .pdf)
-                    </small>
+                    </small>-->
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" />
                   </div>
                   <div *ngIf="submitted && formControls.uploadFile.errors" class="text-danger" formControlName="uploadFile">

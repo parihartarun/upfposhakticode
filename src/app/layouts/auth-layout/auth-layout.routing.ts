@@ -15,7 +15,7 @@ import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.compone
 export const AuthLayoutRoutes: Routes = [
     { path: 'home-old', component: HomeComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'fpo-details', component: FpoDetailsComponent },
+    { path: 'fpo-details/:id', component: FpoDetailsComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'register/:id', component: RegisterComponent },
     { path: 'home', component: HomeDummyComponent },

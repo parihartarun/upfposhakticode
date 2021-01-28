@@ -66,9 +66,7 @@ export class DepartmentUplaodCircularComponent implements OnInit {
 
   }
 
-  filterProduction() {
-    this.getUploadCircular();
-  }
+  
 
   get formControls() {
     return this.uploadCircularForm.controls;

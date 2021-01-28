@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FpoService } from '../../_services/fpo/fpo.service';
 
@@ -10,12 +11,17 @@ import { FpoService } from '../../_services/fpo/fpo.service';
 export class FpoDetailsComponent implements OnInit {
 
   closeResult: string;
-  constructor(private modalService: NgbModal, private api: FpoService) { }
+  fpo = {};
+  constructor(private modalService: NgbModal, private api: FpoService, private _activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.api.getfpoDetialById(110).subscribe(f => {
-      f
-    })
+    this._activatedroute.paramMap.subscribe(params => {
+      let fpoId = Number(params.get('id'));
+      this.api.getfpoDetialById(fpoId).subscribe(f => {
+        this.fpo=f
+      })   
+    });
+   
   }
 
   open(content) {
