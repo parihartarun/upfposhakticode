@@ -209,15 +209,16 @@
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" (click)="viewComplaint(complaint)">
-                      view
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      Actions
                     </a>
-                    <!--<div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="editComplaint(complaint)">Edit</a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">Edit</a>
                       <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">Delete</a>
-                    </div>-->
+                    </div>
                   </div>
                 </td>
+               
               </tr>
             </tbody>
           </table>
