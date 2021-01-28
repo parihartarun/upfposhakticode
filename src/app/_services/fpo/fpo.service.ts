@@ -265,7 +265,7 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
   deleteCompliant(data) {
-    return this.http.delete<any>(this._url + 'complaint/delete1/', data).pipe(map((res: any) => {
+    return this.http.delete<any>(this._url + 'complaint/'+data).pipe(map((res: any) => {
       return res;
     }));
   }

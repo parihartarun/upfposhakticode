@@ -112,8 +112,8 @@ export class ComplaintsComponent implements OnInit {
       return false;
     }
   }
-  deleteCompliant(id) {
-    this.api.deleteCompliant(id).subscribe(response => {
+  deleteCompliant(complaint) {
+    this.api.deleteCompliant(complaint.id).subscribe(response => {
       this.getComplaints();     
     });
   }
