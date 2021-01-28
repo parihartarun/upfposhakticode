@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="card-body">
-            <form [formGroup]="serviceForm" (ngSubmit)="addService()">
+            <form [formGroup]="serviceForm">
               <div class="pl-lg-4">
                 <div class="row">
                   <div class="col-lg-12">
@@ -27,7 +27,7 @@
                       <label class="form-control-label" for="input-username">Services/ Products Name<span class="required">*</span></label>
                       <input formControlName="servicename"  type="text" id="input-username" class="form-control form-control-alternative" >
                       <div *ngIf="submitted && formControls.servicename.errors" class="text-danger">
-                        <div *ngIf="formControls.service_name.errors.required">Services/ Products Name is required</div>
+                        <div *ngIf="formControls.servicename.errors.required">Services/ Products Name is required</div>
                       </div> 
                     </div>
                   </div>

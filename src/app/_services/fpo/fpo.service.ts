@@ -81,13 +81,13 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   updateBoardMember(data){
-    return  this.http.put<any>(this._url+'api/fpos/boardmember/'+data.id, data).pipe(map((res:any)=>{
+    return  this.http.put<any>(this._url+'api/fpos/boardmember/editBoardMember/'+data.id, data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   deleteBoardMember(id){
-    return  this.http.delete<any>(this._url+'api/fpos/boardmember/'+id).pipe(map((res:any)=>{
+    return  this.http.delete<any>(this._url+'api/fpos/boardmember/deleteBoardMember/'+id).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -218,7 +218,13 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   updateService(data){
-    return  this.http.post<any>(this._url+'FPOServices/update1/'+data.id, data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'FPOServices/update/'+data.id, data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  deleteService(id){
+    return  this.http.delete<any>(this._url+'FPOServices/delete/'+id).pipe(map((res:any)=>{
       return res;
     }));
   }

@@ -56,8 +56,8 @@ export class ServicesComponent implements OnInit {
         return;
     }
     const formData: FormData = new FormData();
-    formData.append('filePath', this.fileToUpload);
-    formData.append('descriptions', this.serviceForm.value.descriptions);
+    formData.append('file', this.serviceForm.value.file);
+    formData.append('description', this.serviceForm.value.descriptions);
     formData.append('servicename', this.serviceForm.value.servicename);
 
     this.api.addService(formData).subscribe(response => {
@@ -95,20 +95,17 @@ export class ServicesComponent implements OnInit {
     }
 
     const formData: FormData = new FormData();
-    formData.append('Image', this.fileToUpload);
-    formData.append('service', this.serviceForm.value);
+    formData.append('file', this.serviceForm.value.file);
+    formData.append('servicename', this.serviceForm.value.servicename);
+    formData.append('description', this.serviceForm.value.descriptions);
 
     this.api.updateService(formData).subscribe(response => {
       console.log(response);
-      if(response.id != ''){
         this.toastr.success('Service/Production updated successfully.');
         this.submitted = false;
         this.edit = false;
         this.serviceForm.reset();
         this.getServices();
-      }else{
-          this.toastr.error('Error! While updating Service/Production.');
-      }
     },
       err => {
         console.log(err)
@@ -118,14 +115,9 @@ export class ServicesComponent implements OnInit {
 
   confirmDelete(id){
     if(confirm("Are you sure to delete this item.")) {
-      this.api.deleteMachinaryBank(id).subscribe(response => {
-        console.log(response);
-        if(response == true){
-          this.toastr.success('Service/Production Deleted successfully.');
-          this.getServices();
-        }else{
-            this.toastr.error('Error! While Deleting Service/Production.');
-        }
+      this.api.deleteService(id).subscribe(response => {
+        this.toastr.success('Service/Production Deleted successfully.');
+        this.getServices();
       },
         err => {
           console.log(err)
