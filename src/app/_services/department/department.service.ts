@@ -56,7 +56,11 @@ export class DepartmentService {
       return res;
     }));
   }
-  
+  getAllCircluarUpload() {
+    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
 }
 

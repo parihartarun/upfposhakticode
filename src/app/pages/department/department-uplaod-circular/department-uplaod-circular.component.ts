@@ -74,24 +74,9 @@ export class DepartmentUplaodCircularComponent implements OnInit {
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
     this.checkfileFormat = false;
-    //if (!this.validateFile(files[0].name)) {
-    //  this.checkfileFormat = true;
-    //  this.myInputVariable.nativeElement.value = "";
-    //  return;
-    //}
-    //else {
-    
-    //}
+   
   }
-  validateFile(name: String) {
-    var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj" || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
+ 
   addUploadCircular() {
     this.submitted = true;
     if (this.uploadCircularForm.invalid) {

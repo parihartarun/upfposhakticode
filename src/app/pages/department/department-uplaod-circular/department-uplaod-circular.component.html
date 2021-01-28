@@ -87,7 +87,7 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Select</th>
+                <!--<th scope="col">Select</th>-->
                 <th scope="col">S.No</th>
                 <th scope="col">Description</th>
                 <th scope="col">Upload Date</th>
@@ -98,9 +98,9 @@
             </thead>
             <tbody>
               <tr *ngFor="let p of uploadCircular | paginate: { itemsPerPage: 10, currentPage: p }">
-                <td>
+                <!--<td>
                   <input class="form-control select" type="checkbox" id="exampleFormControlTextarea12" />
-                </td>
+                </td>-->
                 <td>
                   {{p.sno}}
                 </td>
