@@ -21,7 +21,7 @@ export class DepartmentComplaintsComponent implements OnInit {
   myInputVariable: ElementRef;
   fileToUpload: File = null;
   isViewComplaint = false;
-  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', }
+  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', name: "", mobile: "", email:"" }
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
@@ -109,6 +109,7 @@ export class DepartmentComplaintsComponent implements OnInit {
     this.viewComp.compalintDate = complaint.uploadDate;
     this.viewComp.remarks = complaint.remarks;
     this.viewComp.title = complaint.title;
+    this.viewComp.name = complaint
     window.scroll(0, 0)
 
   }
