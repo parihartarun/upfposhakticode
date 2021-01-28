@@ -101,6 +101,9 @@ export class DepartmentProductionReportComponent implements OnInit {
     return this.productionReportForm.controls;
   }
   viewReport() { }
-
+  selectDistrict(districtId: any) {
+    this.productionReportForm.controls['districtRefId'].setValue(parseInt(districtId.currentTarget.value));
+    
+  }
 
 }
