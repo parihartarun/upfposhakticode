@@ -24,41 +24,43 @@ constructor(private formBuilder: FormBuilder,
     { }
 
   ngOnInit() {
-    this.profileForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      fpoEmail: ['', [Validators.required]],
-      fpoName: ['', [Validators.required]],
-      fmbno: ['', [Validators.required]],
-      agency: ['', [Validators.required]],
-      fpoAddress: ['', [Validators.required]],
-      distRefId: ['', [Validators.required]],
-      blockRef: ['', [Validators.required]],
-      pincode: ['', [Validators.required]],
-      fpoBankName: [''],
-      fpoIFSC: [''],
-      fpoBankAccNo: [''],
-      fpoId: [''],
-    });
-
-    this.usernamestring=localStorage.getItem('username');
-    this.api.getFpoProfileByUsername(localStorage.getItem('username')).subscribe(data=>{ 
-      console.log(data);
-        this.profileForm.get("username").setValue(data.userName);
-        this.profileForm.get("fpoEmail").setValue(data.fpoEmail);
-        this.profileForm.get("fpoName").setValue(data.fpoName);
-        this.profileForm.get("fmbno").setValue(data.fmbno);
-        this.profileForm.get("agency").setValue(data.agency);
-        this.profileForm.get("fpoAddress").setValue(data.fpoAddress);
-        this.profileForm.get("distRefId").setValue(data.distRefId);
-        this.profileForm.get("blockRef").setValue(data.blockRef);
-        this.profileForm.get("pincode").setValue(data.pincode);
-        this.profileForm.get("fpoBankName").setValue(data.fpoBankName);
-        this.profileForm.get("fpoIFSC").setValue(data.fpoIFSC);
-        this.profileForm.get("fpoBankAccNo").setValue(data.fpoBankAccNo);
-        this.profileForm.get("fpoId").setValue(data.fpoId);
-    })
     this.getDitricts();
     this.getBlocks();
+    // this.profileForm = this.formBuilder.group({
+    //   userName: ['', [Validators.required]],
+    //   fpoEmail: ['', [Validators.required]],
+    //   fpoName: ['', [Validators.required]],
+    //   fmbno: ['', [Validators.required]],
+    //   agency: ['', [Validators.required]],
+    //   fpoAddress: ['', [Validators.required]],
+    //   distRefId: ['', [Validators.required]],
+    //   blockRef: ['', [Validators.required]],
+    //   pincode: ['', [Validators.required]],
+    //   fpoBankName: [''],
+    //   fpoIFSC: [''],
+    //   fpoBankAccNo: [''],
+    //   fpoId: [''],
+    // });
+
+    this.usernamestring=localStorage.getItem('userName');
+    this.api.getFpoProfileByUsername(localStorage.getItem('username')).subscribe(data=>{ 
+      console.log(data);
+      this.profileForm = this.formBuilder.group({
+        userName: [data.userName, [Validators.required]],
+        fpoEmail: [data.fpoEmail, [Validators.required]],
+        fpoName: [data.fpoName, [Validators.required]],
+        fmbno: [data.fmbno, [Validators.required]],
+        agency: [data.agency, [Validators.required]],
+        fpoAddress: [data.fpoAddress, [Validators.required]],
+        distRefId: [data.distRefId, [Validators.required]],
+        blockRef: [data.blockRef, [Validators.required]],
+        pincode: [data.pincode, [Validators.required]],
+        fpoBankName: [data.fpoBankName],
+        fpoIFSC: [data.fpoIFSC],
+        fpoBankAccNo: [data.fpoBankAccNo],
+        fpoId: [data.fpoId],
+      });
+    })
   }
 
   getDitricts(){
@@ -79,11 +81,12 @@ constructor(private formBuilder: FormBuilder,
     if (this.profileForm.invalid) {
         return;
     }
-    console.log(this.profileForm.value.username);
+    console.log(this.profileForm.value);
+    console.log(this.profileForm.value.userName);
     var data = this.profileForm.value;
-    var username = this.profileForm.value.username;
-    delete data.username;
-    data['userFpo'] = {userName:username};
+    var userName = this.profileForm.value.userName;
+    delete data.userName;
+    data['userFpo'] = {userName:userName};
     console.log(data);
     this.api.updateProfile(data).subscribe(response => {
       console.log(response);
@@ -99,4 +102,9 @@ constructor(private formBuilder: FormBuilder,
       }
     );
   }
+
+  get formControls(){
+    return this.profileForm.controls;
+  }
+
 }

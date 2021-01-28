@@ -29,6 +29,7 @@ import { LoginComponent } from './pages/auth-pages/login/login.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
+import { FpoDetailsComponent } from './pages/fpo-details/fpo-details.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -67,6 +68,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProductsListComponent,
     HomeDummyComponent,
     LoginComponent,
+    FpoDetailsComponent,
    
   ],
   providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 

@@ -10,10 +10,12 @@ import { FarmerRegisterComponent } from '../../pages/registers/farmer-register/f
 import { FpoRegisterComponent } from '../../pages/registers/fpo-register/fpo-register.component';
 import { RegisterComponent } from '../../pages/registers/register.component';
 import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/forgot-password.component';
+import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.component';
 
 export const AuthLayoutRoutes: Routes = [
     { path: 'home-old', component: HomeComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'fpo-details', component: FpoDetailsComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'register/:id', component: RegisterComponent },
     { path: 'home', component: HomeDummyComponent },

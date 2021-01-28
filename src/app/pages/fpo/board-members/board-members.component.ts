@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
 import { AuthService } from '../../../_services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-board-members',
@@ -25,14 +26,15 @@ export class BoardMembersComponent implements OnInit {
     private formBuilder: FormBuilder,
     private api: FpoService,
     private auth: AuthService,
-    private route: Router
+    private route: Router,
+    private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
     this.memberForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       guardianName: ['', [Validators.required]],
-      email: ['', [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       contactNo: ['', [Validators.pattern("[0-9 ]{10}")]],
       designation: ['', [Validators.required]],
       gender: [''],
@@ -41,6 +43,7 @@ export class BoardMembersComponent implements OnInit {
       panchayatId: [''],
       villageId: [''],
       masterId:localStorage.getItem('masterId'),
+      updatedBy:localStorage.getItem('userRole'),
       id:['']
     });
     this.getBoardMembers();
@@ -65,38 +68,40 @@ export class BoardMembersComponent implements OnInit {
   }
 
   selectDistrict(districtId: any) {
-    this.memberForm.controls['distId'].setValue(districtId);
-    this.auth.getBlock(parseInt(districtId)).subscribe(block => {
-      console.log(block);
-
-      this.blocks = block
-    })
+    console.log(districtId);
+    if(districtId != null){
+      this.memberForm.controls['distId'].setValue(districtId);
+      this.auth.getBlock(parseInt(districtId)).subscribe(block => {
+        this.blocks = block
+      })
+    }
   }
   selectBlock(blockId: any) {
-    this.memberForm.controls['blockId'].setValue(blockId);
-    this.auth.getGramPanchayat(parseInt(blockId)).subscribe(panchayt => {
-      console.log(panchayt);
-      this.panchayats = panchayt
-    })
+    if(blockId != null){
+      this.memberForm.controls['blockId'].setValue(blockId);
+      this.auth.getGramPanchayat(parseInt(blockId)).subscribe(panchayt => {
+        this.panchayats = panchayt
+      })
+    }
   }
-  selectPanchayat(panchayatId: any) {   
-    this.memberForm.controls['panchayatId'].setValue(panchayatId);
-    this.auth.getVillage(parseInt(panchayatId)).subscribe(village => {
-      console.log(village);
-
-      this.villages = village
-    })
+  selectPanchayat(panchayatId: any) { 
+    if(panchayatId != null){
+      this.memberForm.controls['panchayatId'].setValue(panchayatId);
+      this.auth.getVillage(parseInt(panchayatId)).subscribe(village => {
+        this.villages = village
+      })
+    }  
   }
 
   confirmDelete(id){
+    console.log(id);
     if(confirm("Are you sure to delete this item.")) {
       this.api.deleteBoardMember(id).subscribe(response => {
-        console.log(response);
         this.getBoardMembers();
-        if(response == true){
-          //this.toastr.success('Storage Unit Deleted successfully.');
+        if(response != ''){
+          this.toastr.success('Storage Unit Deleted successfully.');
         }else{
-            //this.toastr.error('Error! While Deleting Storage Unit.');
+          this.toastr.error('Error! While Deleting Storage Unit.');
         }
       },
         err => {
@@ -107,7 +112,7 @@ export class BoardMembersComponent implements OnInit {
   }
 
   editBoardMember(member){
-    console.log(member);
+    console.log(member.id);
     this.getDistricts();
     this.selectDistrict(member.distId);
     this.selectBlock(member.blockId);
@@ -124,7 +129,8 @@ export class BoardMembersComponent implements OnInit {
       panchayatId: [member.panchayatId],
       villageId: [member.villageId],
       masterId:localStorage.getItem('masterId'),
-      id:[member.id]
+      updatedBy:localStorage.getItem('userRole'),
+      id:[member.id],
     });
     this.edit = true;
     window.scroll(0,0);  
@@ -136,16 +142,17 @@ export class BoardMembersComponent implements OnInit {
     if (this.memberForm.invalid) {
         return;
     }
+    console.log(this.memberForm.value);
     this.api.updateBoardMember(this.memberForm.value).subscribe(response => {
       console.log(response);
       if(response.id != ''){
-       // this.toastr.success('Storage unit updated successfully.');
+         this.toastr.success('Storage unit updated successfully.');
         this.submitted = false;
         this.edit = false;
         this.memberForm.reset();
         this.getBoardMembers();
       }else{
-          //this.toastr.error('Error! While updating Storage unit.');
+          this.toastr.error('Error! While updating Storage unit.');
       }
     },
       err => {
