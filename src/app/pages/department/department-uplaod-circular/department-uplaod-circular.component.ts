@@ -30,7 +30,7 @@ export class DepartmentUplaodCircularComponent implements OnInit {
   ngOnInit(): void {
     this.uploadCircularForm = this.formBuilder.group({
       description: ['', Validators.required],
-      uploadFile: ['', Validators.required],
+      uploadFile: [''],
     });
     this.getUploadCircular();
   }
@@ -74,15 +74,16 @@ export class DepartmentUplaodCircularComponent implements OnInit {
     return this.uploadCircularForm.controls;
   }
   upload(files: FileList) {
-    if (!this.validateFile(files[0].name)) {
-      this.checkfileFormat = true;
-      this.myInputVariable.nativeElement.value = "";
-      return;
-    }
-    else {
-      this.fileToUpload = files.item(0);
-      this.checkfileFormat = false;
-    }
+    this.fileToUpload = files.item(0);
+    this.checkfileFormat = false;
+    //if (!this.validateFile(files[0].name)) {
+    //  this.checkfileFormat = true;
+    //  this.myInputVariable.nativeElement.value = "";
+    //  return;
+    //}
+    //else {
+    
+    //}
   }
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
