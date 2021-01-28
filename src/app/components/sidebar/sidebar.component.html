@@ -88,7 +88,7 @@
           </div>
         </div>
       </form>
-      <h6 *ngIf="this.userRole == 'ROLE_FPC'" class="navbar-heading">Sales Details</h6>
+      <h6 *ngIf="userRole == 'ROLE_FPC'" class="navbar-heading">Sales Details</h6>
       <ul class="navbar-nav">
         <li *ngFor="let menuItem of menuItemsCrops" class="{{menuItem.class}} nav-item">
           <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link">
@@ -108,7 +108,7 @@
           </a>
         </li>
       </ul>
-      <div *ngIf="this.userRole == 'ROLE_FPC'">
+      <div *ngIf="userRole == 'ROLE_FPC'">
         <hr class="my-3">
         <!-- Heading -->
         <h6 class="navbar-heading">Farmer Details</h6>
@@ -139,6 +139,21 @@
           </li>
         </ul>
         <!-- Divider -->
+
+      </div>
+      <div *ngIf="userRole == 'ROLE_MIN'">
+        <h6 class="navbar-heading mt-2">User Management</h6>        
+        <!-- Heading -->
+
+        <ul class="navbar-nav">
+          <li class=" nav-item">
+            <a routerLinkActive="active" [routerLink]="['department/all-users']" class="nav-link">
+              <i class="fa fa-plus-square text-white"></i>
+              All-Users
+            </a>
+          </li>
+
+        </ul>
       </div>
     </div>
     </div>

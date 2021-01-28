@@ -49,7 +49,7 @@ export const departmentROUTES: RouteInfo[] = [
   { path: 'department/upload-circulars', title: "Upload Circular", icon: 'fa fa-id-card text-white', class: '' },
   { path: 'department/complaints', title: "Complaints", icon: 'ni-tv-2 text-white', class: '' },
   { path: '#', title: 'User Management', icon: 'fa fa-archive text-white', class: '' },
-  { path: 'department/all-users', title: 'All-Users', icon: 'fa fa-plus-square text-white', class: '' },
+  //{ path: 'department/all-users', title: 'All-Users', icon: 'fa fa-plus-square text-white', class: '' },
 
 
   /* { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
