@@ -20,6 +20,7 @@ export class DepartmentUplaodCircularComponent implements OnInit {
   @ViewChild('myInput')
   myInputVariable: ElementRef;
   checkfileFormat = false;
+  isEdit = false;
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
@@ -31,39 +32,16 @@ export class DepartmentUplaodCircularComponent implements OnInit {
     this.uploadCircularForm = this.formBuilder.group({
       description: ['', Validators.required],
       uploadFile: [''],
+      
     });
     this.getUploadCircular();
   }
 
   getUploadCircular() {
-    this.uploadCircular = [
-      {
-        sno: "1",
-        description: "एफपीओ वार्षिक समीक्षा बैठक",
-        uploadedDate: "2020-12-22",
-        file: 'view File'
-      },
-      {
-        sno: "2",
-        description: "एफपीओ वार्षिक समीक्षा बैठक",
-        uploadedDate: "2020-12-22",
-        file: 'view File'
-      },
-      {
-        sno: "3",
-        description: "एफपीओ वार्षिक समीक्षा बैठक",
-        uploadedDate: "2020-12-22",
-        file: 'view File'
-      },
-      {
-        sno: "4",
-        description: "एफपीओ वार्षिक समीक्षा बैठक",
-        uploadedDate: "2020-12-22",
-        file: 'view File'
-      }
-      
-    ]
-
+    
+    this.api.getAllCircluarUpload().subscribe(cu => {
+      this.uploadCircular = cu;
+    })
   }
 
   
@@ -89,8 +67,27 @@ export class DepartmentUplaodCircularComponent implements OnInit {
       if (response) {
         this.toastr.success(response.message);
         this.submitted = false;
-
         this.uploadCircularForm.reset();
+        this.getUploadCircular()
+      } else {
+        this.toastr.error('Error! While Add complaint.');
+      }
+    });
+  }
+  upadateCircular() {
+    this.submitted = true;
+    if (this.uploadCircularForm.invalid) {
+      return;
+    }
+    const formData: FormData = new FormData();
+    formData.append('file', this.fileToUpload);
+    formData.append('description ', this.uploadCircularForm.value.description);
+    this.api.updateCircular(formData, this.uploadCircularForm.value).subscribe(response => {
+      if (response) {
+        this.toastr.success(response.message);
+        this.submitted = false;
+        this.uploadCircularForm.reset();
+        this.getUploadCircular();
       } else {
         this.toastr.error('Error! While Add complaint.');
       }
@@ -99,5 +96,25 @@ export class DepartmentUplaodCircularComponent implements OnInit {
   reset() {
     this.uploadCircularForm.reset();
   }
-
+  editCicular(circular) {
+    this.isEdit = true;
+    this.uploadCircularForm = this.formBuilder.group({
+      description: [circular.description, Validators.required],
+      uploadFile: [''],
+      id:circular.id
+    });
+   
+    window.scroll(0, 0);
+  }
+  deleteCicular(circular) {  
+      this.api.deleteCircular(circular.id).subscribe(response => {
+        if (response != '') {
+          this.toastr.success('Delete successfully');
+          this.getUploadCircular();
+        } else {
+          this.toastr.error('Error! While Add complaint.');
+        }
+      });
+    
+  }
 }

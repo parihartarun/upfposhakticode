@@ -80,9 +80,14 @@ export class DepartmentComplaintsComponent implements OnInit {
     this.complaintForm.controls['title'].setValue(complaint.currentTarget.value);
   }
   
-  deleteCompliant(id) {
-    this.api.deleteCompliant(id).subscribe(response => {
-      this.getComplaints();
+  deleteCompliant(complaint) {
+    this.api.deleteCompliant(complaint.id).subscribe(response => {
+      if (response != '') {
+        this.toastr.success('Delete successfully');
+        this.getComplaints();
+      } else {
+        this.toastr.error('Error! While Add complaint.');
+      }
     });
   }
  

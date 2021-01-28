@@ -112,9 +112,9 @@
                   <div class="col-lg-12">
                     <div class="form-group">
                       <label class="form-control-label" for="input-email">Appointment Date:</label>
-                      <input formControlName="dateOfAssigning" type="text"  disabled id="input-email" class="form-control form-control-alternative">
-                      <div *ngIf="submitted && formControls.dateOfAssigning.errors" class="text-danger">
-                        <div *ngIf="formControls.dateOfAssigning.errors.required">appointment date is required</div>
+                      <input formControlName="appointmentDate" type="text"  disabled id="input-email" class="form-control form-control-alternative">
+                      <div *ngIf="submitted && formControls.appointmentDate.errors" class="text-danger">
+                        <div *ngIf="formControls.appointmentDate.errors.required">appointment date is required</div>
                       </div>
                     </div>
                   </div>
@@ -216,13 +216,13 @@
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" (click)="viewComplaint(complaint)">
-                      view
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      Actions
                     </a>
-                    <!--<div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-        <a class="dropdown-item" href="javascript:void(0)" (click)="editComplaint(complaint)">Edit</a>
-        <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">Delete</a>
-      </div>-->
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">View</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">Delete</a>
+                    </div>
                   </div>
                 </td>
               </tr>

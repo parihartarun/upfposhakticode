@@ -56,8 +56,18 @@ export class DepartmentService {
       return res;
     }));
   }
+  updateCircular(data,formVlaue) {
+    return this.http.put<any>(this._url + 'circulars/' + formVlaue.id, data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
   getAllCircluarUpload() {
-    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'circulars').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  deleteCircular(data) {
+    return this.http.delete<any>(this._url + 'circulars/'+data).pipe(map((res: any) => {
       return res;
     }));
   }

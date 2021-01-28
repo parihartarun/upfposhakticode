@@ -48,7 +48,8 @@
 
                 <div class="col-lg-12 text-center">
                   <div class="form-group mt-4">
-                    <button type="button" class="btn btn-primary mt-2 text-right"(click)="addUploadCircular()">Submit</button>
+                    <button *ngIf="!isEdit" type="button" class="btn btn-primary mt-2 text-right" (click)="addUploadCircular()">Submit</button>
+                    <button *ngIf="isEdit" type="button" class="btn btn-primary mt-2 text-right" (click)="upadateCircular()">Update</button>
                     <button type="button" class="btn btn-warning mt-2 text-right" (click)="reset()">Reset</button>
                   </div>
                 </div>
@@ -97,21 +98,21 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let p of uploadCircular | paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr *ngFor="let p of uploadCircular | paginate: { itemsPerPage: 10, currentPage: p } let i = index">
                 <!--<td>
                   <input class="form-control select" type="checkbox" id="exampleFormControlTextarea12" />
                 </td>-->
                 <td>
-                  {{p.sno}}
+                  {{i+1}}
                 </td>
                 <td>
                   {{p.description}}
                 </td>
                 <td>
-                  {{p.uploadedDate}}
+                  {{p.uploadedDate | date: 'dd/MM/yyyy'}}
                 </td>
                 <td>
-                  <a href="" download>{{p.file}}</a>
+                  <a href="{{ p.filePath }}" download>View</a>
                 </td>
 
                 <td class="text-right">
@@ -120,8 +121,8 @@
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editCicular(p)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCicular(p)">Delete</a>
                     </div>
                   </div>
                 </td>

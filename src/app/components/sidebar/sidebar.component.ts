@@ -45,11 +45,11 @@ export const departmentROUTES: RouteInfo[] = [
   { path: '#', title: 'Reports', icon: 'fa fa-users text-white', class: '' },  {
     path: 'department/production-report', title: 'Production Report', icon: 'fa fa-id-card text-white', class: '' },
   { path: 'department/sales-report', title: ' Sales Report', icon: 'fa fa-university text-white', class: '' },
-  { path: '#', title: ' Circulars', icon: 'fa fa-archive text-white', class: '' },
+  //{ path: '#', title: ' Circulars', icon: 'fa fa-archive text-white', class: '' },
   { path: 'department/upload-circulars', title: "Upload Circular", icon: 'fa fa-id-card text-white', class: '' },
   { path: 'department/complaints', title: "Complaints", icon: 'ni-tv-2 text-white', class: '' },
-  { path: '#', title: 'User Management', icon: 'fa fa-archive text-white', class: '' },
-  //{ path: 'department/all-users', title: 'All-Users', icon: 'fa fa-plus-square text-white', class: '' },
+  //{ path: '#', title: 'User Management', icon: 'fa fa-archive text-white', class: '' },
+  { path: 'department/all-users', title: 'All-Users', icon: 'fa fa-plus-square text-white', class: '' },
 
 
   /* { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
