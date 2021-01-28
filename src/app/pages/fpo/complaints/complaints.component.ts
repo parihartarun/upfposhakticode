@@ -115,7 +115,12 @@ export class ComplaintsComponent implements OnInit {
   }
   deleteCompliant(complaint) {
     this.api.deleteCompliant(complaint.id).subscribe(response => {
-      this.getComplaints();     
+      if (response != '') {
+        this.toastr.success('Delete successfully');      
+        this.getComplaints();
+      } else {
+        this.toastr.error('Error! While Add complaint.');
+      }    
     });
   }
   editComplaint(complaint) {
