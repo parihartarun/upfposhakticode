@@ -34,9 +34,9 @@ export class DepartmentComplaintsComponent implements OnInit {
     //  this.complaintsCatageriy = cs
     //})
     this.complaintForm = this.formBuilder.group({
-      assignedTo: ['', [Validators.required]],
-      dateOfAssigning: ['20/03/2020'],
-      statusDescription: ['',[Validators.required]],
+      appointment: ['', [Validators.required]],
+      appointmentDate: ['20/03/2020'],
+      departmentComments: ['',[Validators.required]],
       complaintStatus: ['', [Validators.required]],
       masterId: localStorage.getItem('masterId'),
 

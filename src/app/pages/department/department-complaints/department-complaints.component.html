@@ -67,12 +67,12 @@
               </h4>
             </div>
             <div class="col-12">
-              Agricultural Inputs (Seed) (कृषि इनपुट (बीज))
+              <span>{{viewComp.title}}</span>
             </div>
             <div class="col-12 mb-4 mt-4">
               <h4 class="mb-0">
                 Complaint/ Suggestion Date:
-              </h4>11-11-2020
+              </h4>{{viewComp.compalintDate | date: 'dd/MM/yyyy'}}
             </div>
             <div class="col-12">
               <h4 class="mb-0">
@@ -80,7 +80,7 @@
               </h4>
             </div>
             <div class="col-12">
-              We want to setup a seed processing unit in our FPO. We need detailed guidelines and procedures for the same.
+              {{viewComp.description}}
 
             </div>
             <div class="col-12 mb-4 mt-4 bg-warning">
@@ -97,40 +97,40 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label">Assigned To <span class="required">*</span></label>
+                      <label class="form-control-label">Appointed <span class="required">*</span></label>
 
-                      <select class="form-control" formControlName="assignedTo" >
+                      <select class="form-control" formControlName="appointment" >
                         <option value="">Select</option>
                         <option value="1">Additional Director Seeds</option>
                         <option value="0">Other </option>
                       </select>
-                      <div *ngIf="submitted && formControls.assignedTo.errors" class="text-danger">
-                        <div *ngIf="formControls.assignedTo.errors.required">Assigned to is required</div>
+                      <div *ngIf="submitted && formControls.appointment.errors" class="text-danger">
+                        <div *ngIf="formControls.appointment.errors.required">Appointed to is required</div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-email">Date of Assigning</label>
+                      <label class="form-control-label" for="input-email">Appointment Date:</label>
                       <input formControlName="dateOfAssigning" type="text"  disabled id="input-email" class="form-control form-control-alternative">
                       <div *ngIf="submitted && formControls.dateOfAssigning.errors" class="text-danger">
-                        <div *ngIf="formControls.dateOfAssigning.errors.required">date of assigning is required</div>
+                        <div *ngIf="formControls.dateOfAssigning.errors.required">appointment date is required</div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label" for="">Status Description:<span class="required">*</span></label>
-                      <textarea formControlName="statusDescription" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
+                      <label class="form-control-label" for="">Department Comments:<span class="required">*</span></label>
+                      <textarea formControlName="departmentComments" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
 
-                      <div *ngIf="submitted && formControls.statusDescription.errors" class="text-danger">
-                        <div *ngIf="formControls.statusDescription.errors.required">status description description is required</div>
+                      <div *ngIf="submitted && formControls.departmentComments.errors" class="text-danger">
+                        <div *ngIf="formControls.departmentComments.errors.required">department comments is required</div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label">Complaint/ Suggestion Status: <span class="required">*</span></label>
+                      <label class="form-control-label">Change status: <span class="required">*</span></label>
 
                       <select class="form-control" formControlName="complaintStatus" >
                         <option value="">Select</option>
@@ -138,14 +138,14 @@
                         <option value="0">Resolved </option>
                       </select>
                       <div *ngIf="submitted && formControls.complaintStatus.errors" class="text-danger">
-                        <div *ngIf="formControls.complaintStatus.errors.required">complaint status  is required</div>
+                        <div *ngIf="formControls.complaintStatus.errors.required"> status  is required</div>
                       </div>
                     </div>
                   </div>
 
 
                   <div class="card-footer text-center">
-                    <button *ngIf="!edit" type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateSatus()">Update Status</button>
+                    <button  type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateSatus()">Update Status</button>
                    
                     <button class="btn btn-warning text-right" (click)="reset()">Reset</button>
                   </div>
@@ -185,32 +185,44 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Populated Region</th>
+                <th scope="col">FPO Name</th>               
                 <th scope="col">Complaints/ Suggestions Category</th>
-                <th scope="col">Complaints/ Suggestions Description</th>
-                <th scope="col">Complaint/ Suggestion Date</th>
+                <th scope="col">Complaints / Complaints Suggestion Date</th>
+                <th scope="col">Complaints / Complaints Status of suggestion</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let complaint of complaints | paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr *ngFor="let complaint of complaints | paginate: { itemsPerPage: 10, currentPage: p } let i = index">
+                <td>
+                  {{i}}
+                </td>
+                <td>
+                  Agra
+                </td>
+                <td>
+                  FPO Name
+                </td>
                 <td>
                   {{complaint.title}}
                 </td>
                 <td>
-                  {{complaint.description}}
+                  {{complaint.uploadDate| date: 'dd/MM/yyyy'}}
                 </td>
                 <td>
-                  {{complaint.uploadDate | date: 'dd/MM/yyyy'}}
+                  {{complaint.status}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" (click)="viewComplaint()">
+                    <a class="btn btn-sm btn-primary" (click)="viewComplaint(complaint)">
                       view
                     </a>
                     <!--<div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="editComplaint(complaint)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">Delete</a>
-                    </div>-->
+        <a class="dropdown-item" href="javascript:void(0)" (click)="editComplaint(complaint)">Edit</a>
+        <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">Delete</a>
+      </div>-->
                   </div>
                 </td>
               </tr>

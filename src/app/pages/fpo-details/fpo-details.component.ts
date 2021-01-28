@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { FpoService } from '../../_services/fpo/fpo.service';
 
 @Component({
   selector: 'app-fpo-details',
@@ -9,9 +10,12 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class FpoDetailsComponent implements OnInit {
 
   closeResult: string;
-  constructor(private modalService: NgbModal,) { }
+  constructor(private modalService: NgbModal, private api: FpoService) { }
 
   ngOnInit(): void {
+    this.api.getfpoDetialById(110).subscribe(f => {
+      f
+    })
   }
 
   open(content) {
