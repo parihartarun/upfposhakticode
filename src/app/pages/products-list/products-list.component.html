@@ -194,15 +194,17 @@
                     <img src="../../../assets/img/onion.jpeg" class="card-img" alt="...">
                   </div>
                   <div class="col-md-8 mb-2">
-                    <div class="card-body">
-                      <h4 class="card-title">FPO Name</h4>
-                      <p class="card-text">{{product.nodal}}</p>
-                    </div>
+                    <a routerLink="/fpo-details" routerLinkActive="active" class="">
+                      <div class="card-body">
+                        <h4 class="card-title">FPO</h4>
+                        <p class="card-text">{{product.nodal}}</p>
+                      </div>
+                    </a>
 
                   </div>
                   <div class="col-md-6 mb-2">
                     <div class="card-body p-0">
-                      <h4 class="card-title">Crop Name</h4>
+                      <h4 class="card-title">Crop</h4>
                       <p class="card-text" *ngIf="product.crops">{{product.crops}}</p>
                       <p class="card-text" *ngIf="!product.crops">NA</p>
                     </div>

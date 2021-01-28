@@ -76,6 +76,7 @@ export class ComplaintsComponent implements OnInit {
         this.submitted = false;
         this.edit = false;
         this.complaintForm.reset();
+        this.getComplaints();
       } else {
         this.toastr.error('Error! While Add complaint.');
       }
