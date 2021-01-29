@@ -55,7 +55,8 @@
   background: #926e00;
   position: relative;
   height: 50px;
-  width: 51%;
+  width: 100%;
+  max-width: 710px;
 }
 
 .triangle-topright {
@@ -293,8 +294,9 @@
 .navbar-nav > li > a {
   color: #ffffff;
   margin: 0 15px;
-  font-size: 14px;
-  margin-top: 3%;
+  font-size: 12px;
+  margin-top: 9%;
+  padding:0px
 }
 
 element.style {
@@ -487,14 +489,6 @@ app-auth-header {
   border-radius: 58px 58px 58px 58px;
   border: 5px solid #C7A100;
 }
-.navbar-nav {
-  float: right;
-  margin: 0;
-  background: #926e00;
-  position: relative;
-  height: 50px;
-  width: 80%;
-}
 
 .triangle-topright {
   width: 0;
@@ -509,7 +503,7 @@ app-auth-header {
 .nav-item {
   width: 20%;
   text-align: center;
-  margin-top:1%
+  margin-top:0.1%
 }
 .login .nav-item {
   margin-top: 1.2%
@@ -537,7 +531,7 @@ app-auth-header {
 .navbar {
   padding: 0px;
   top: 0%;
-  position: absolute;
+  position: relative;
   right: 0;
 }
 
@@ -550,6 +544,7 @@ app-auth-header {
 }
 .menu_langauge_btn a {
     color:#fff ;
+    font-size:12px;
 }
 .menu_langauge_btn a:hover {
   color: #000;
@@ -565,16 +560,16 @@ app-auth-header {
 .menu_langauge_btn .nav-image1 {
   height: 25px;
   width: 25px;
-  margin-top: 3%;
+  margin-top: 0%;
 }
 
 .nav-image {
   height: 25px;
   width: 25px;
-  margin-top: 3%;
+  margin-top: 0%;
 }
 .menu_langauge_btn {
   cursor: pointer;
-  margin-top: 7%;
+  margin-top: 6%;
 
 }

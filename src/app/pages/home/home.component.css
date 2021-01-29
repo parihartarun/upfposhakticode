@@ -43,14 +43,15 @@
     box-shadow: 2px 2px 0px #fff;
    
   }
-  .navbar-nav {
-    float: right;
-    margin: 0;
-    background: #926e00;
-    position: relative;
-    height: 50px;
-    width:51%;
-  }
+.navbar-nav {
+  float: right;
+  margin: 0;
+  background: #926e00;
+  position: relative;
+  height: 50px;
+  width: 100%;
+  max-width: 710px;
+}
   
   .triangle-topright {
     width: 0;
@@ -254,13 +255,12 @@
     .footer a {
       margin: 5px;
     }
-  .navbar-nav > li > a {
-    color: #ffffff;
-    margin: 0 15px;
-    font-size: 14px;
-    margin-top: 3%;
-  
-  }
+.navbar-nav > li > a {
+  margin: 0px 10px;
+  font-size: 12px;
+  margin-top: 10%;
+  padding: 0px;
+}
   
   element.style {
   }
@@ -410,11 +410,12 @@ app-auth-header {
  .nav-image {
   height: 25px;
   width: 25px;
-  margin-top: 3%;
+  margin-top: 0%;
 }
 
 .menu_langauge_btn a {
   color: #fff;
+  font-size:12px
 }
 
   .menu_langauge_btn a:hover {

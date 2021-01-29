@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,12 @@ export class HomeComponent implements OnInit {
   isLoggeIn = false;
   username = '';
   isHome = true;
-  constructor(private route: Router, private _activatedroute: ActivatedRoute) { }
+  constructor(private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService,) {
+    translate.addLangs(['en', 'hi']);
+    translate.setDefaultLang('hi');
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|hi/) ? browserLang : 'hi');
+  }
 
   ngOnInit(): void {
     if (sessionStorage.getItem('accessToken') != null) {
