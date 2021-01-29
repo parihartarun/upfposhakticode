@@ -1,5 +1,5 @@
 #Stage 1
-FROM nginx:latest AS builder
+FROM nginx:latest as builder
 RUN ["apt-get","update"]
 RUN apt-get install nodejs -y
 RUN apt-get install npm -y

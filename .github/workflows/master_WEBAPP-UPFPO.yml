@@ -32,4 +32,4 @@ jobs:
         app-name: 'WEBAPP-UPFPO'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_3f3dfc9ffcc3456fbbfef8b94a4ca496 }}
-        images: 'contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_67a8204c76fd406f976add5ffafb45b0 }}/webappupfpo-img:${{ github.sha }}'
+        images: 'contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_67a8204c76fd406f976add5ffafb45b0 }}/angular:${{ github.sha }}'
