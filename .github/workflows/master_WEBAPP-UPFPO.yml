@@ -23,8 +23,8 @@ jobs:
         password: ${{ secrets.AzureAppService_ContainerPassword_52056abd705b479d9c7bdb010c1f0a00 }}
 
     - run: |
-        docker build -t nish9900/angular .
-        docker push nish9900/angular
+        docker build . -t contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_67a8204c76fd406f976add5ffafb45b0 }}/angular:${{ github.sha }}
+        docker push contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_67a8204c76fd406f976add5ffafb45b0 }}/angular:${{ github.sha }}
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
