@@ -13,12 +13,12 @@ import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/
 import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.component';
 
 export const AuthLayoutRoutes: Routes = [
-    { path: 'home-old', component: HomeComponent },
+    { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'fpo-details/:id', component: FpoDetailsComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'register/:id', component: RegisterComponent },
-    { path: 'home', component: HomeDummyComponent },
+    //{ path: 'home', component: HomeDummyComponent },
     { path: 'products/:val/:searchType', component: ProductsListComponent },
     { path: 'products', component: ProductsListComponent },
     { path: 'farmer-register', component: FarmerRegisterComponent },

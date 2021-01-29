@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RegisterComponent } from '../../pages/registers/register.component';
 import { LoginComponent } from '../../pages/auth-pages/login/login.component';
-import { HomeComponent } from '../../pages/home/home.component';
+
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ProductsListComponent } from '../../pages/products-list/products-list.component';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -36,7 +36,7 @@ import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/
   declarations: [
     RegisterComponent,
     FarmerRegisterComponent,    
-    HomeComponent,    
+   
     FpoRegisterComponent,
     ByerSellRegisterComponent,
     InputSupplierRegisterComponent,

@@ -6,7 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterCustumComponent } from './auth/footer/footerCustom.component';
-import { AuthHeaderComponent } from './auth/auth-header/auth-header.component';
+
 import { HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -33,7 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarComponent,
     SidebarComponent,
     FooterCustumComponent,
-    AuthHeaderComponent,
+    
     
   ],
   exports: [
@@ -41,7 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NavbarComponent,
     SidebarComponent,
     FooterCustumComponent, 
-    AuthHeaderComponent
+    
   ]
 })
 export class ComponentsModule { }

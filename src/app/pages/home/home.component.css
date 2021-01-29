@@ -270,11 +270,9 @@
     background-color: transparent;
   }
   .fms-wrapper {
-    background-color: #cfb000;
-    background-image: linear-gradient(#fbd70f, #735d17,#4a3c0f);
-    height: 100%;
    
-    max-height: 240px;
+   
+  
   }
   .newsBox {
       padding:0px 2%
@@ -395,3 +393,43 @@ element.style {
     float:right;
 }
 
+app-auth-header {
+    width:100%;
+    height:50px;
+    display:block;
+
+}
+  app-auth-header .app-auth-header {
+      position:relative;
+  }
+.menu_langauge_btn .nav-image1 {
+  height:25px;
+  width:25px;
+  margin-top: 3%;
+}
+ .nav-image {
+  height: 25px;
+  width: 25px;
+  margin-top: 3%;
+}
+
+.menu_langauge_btn a {
+  color: #fff;
+}
+
+  .menu_langauge_btn a:hover {
+    color: #000;
+  }
+
+  .menu_langauge_btn a.languageText:hover {
+    color: #fff;
+  }
+
+.arrowImage {
+  height: 12px;
+}
+.menu_langauge_btn {
+  cursor: pointer;
+  margin-top: 7%;
+
+}

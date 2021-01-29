@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-header',
@@ -11,18 +11,30 @@ export class AuthHeaderComponent implements OnInit {
 
   isLoggeIn = false;
   username = '';
-  constructor(public translate: TranslateService, private route: Router) {
+  isHome = true;
+  constructor(public translate: TranslateService, private route: Router, private _activatedroute: ActivatedRoute) {
     translate.addLangs(['en', 'hi']);
     translate.setDefaultLang('hi');
-
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en|hi/) ? browserLang : 'hi');
+   
+
   }
   useLanguage(language: string) {
+
     this.translate.use(language);
   }
 
   ngOnInit(): void {
+    this._activatedroute.paramMap.subscribe(params => {
+      if (this.route.url === '/home') {
+        this.isHome = false
+      }
+      else {
+        this.isHome = true;
+      }
+    });
+   
     if(sessionStorage.getItem('accessToken') != null){
       this.isLoggeIn = true;
       this.username = localStorage.getItem('username');
