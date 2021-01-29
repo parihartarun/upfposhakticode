@@ -60,11 +60,20 @@
   text-align: center;
   margin-top:1%
 }
+.login .nav-item {
+  margin-top: 1.2%
+}
+  .login .nav-item {
+    width: 24%;
+  }
 
 .nav-image {
   width: 25%;
 }
-
+.sign-up {
+  width: 21%;
+  margin-top: 3%;
+}
 .nav-item.dropdown.show, .dropdown-menu.show {
   background-color: #cdae01;
   min-width: 9rem;
