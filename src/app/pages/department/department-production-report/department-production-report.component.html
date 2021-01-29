@@ -22,10 +22,9 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Financial year</label>
-                    <select formControlName="financial_year" class="custom-control custom-select mb-3">
-                      <option value="2020-2020">2020-2020</option>
-                      <option>B</option>
-                      <option>C</option>
+                    <select formControlName="financial_year" class="custom-control custom-select mb-3" (change)="selectFinancialYear($event)">
+                      <option value="{{getCurrentFinancialYear()}}">{{this.getCurrentFinancialYear()}}</option>
+                      
                     </select>
                   </div>
                 </div>
