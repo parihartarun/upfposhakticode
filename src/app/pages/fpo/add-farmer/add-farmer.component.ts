@@ -23,6 +23,10 @@ export class AddFarmerComponent implements OnInit {
   villages = [];
   banks = [];
   form: FormGroup;
+  FarmerLists:Array<any>=[];
+  p:number;
+  edit=false;
+
   constructor(private fb: FormBuilder, private api: AuthService, private fpo :FpoService ,private _router: Router,private toastr:ToastrService) { }
 
   ngOnInit(): void {
@@ -34,34 +38,52 @@ export class AddFarmerComponent implements OnInit {
       this.banks = d
     })
     this.createFpoFarmerForm();
+    this.getFarmerDetailList();
   }
   
+  getFarmerDetailList(){
+    this.fpo.getFarmerDetailList().subscribe(
+      response => {
+      console.log(response);
+      this.FarmerLists = response;
+      })
+  }
+
   selectDistrict(districtId: any) {
-    this.fpoAddFarmerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
-    this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
-      this.blocks = block
-    })
+    console.log(districtId);
+    if(districtId != null){
+      this.fpoAddFarmerForm.controls['distRefId'].setValue(districtId);
+      this.api.getBlock(parseInt(districtId)).subscribe(block => {
+        this.blocks = block
+      })
+    }
   }
   selectBlock(blockId: any) {
-    this.fpoAddFarmerForm.controls['blockRef'].setValue(blockId.currentTarget.value);
-    this.api.getGramPanchayat(parseInt(blockId.currentTarget.value)).subscribe(panchayt => {
-      this.panchayats = panchayt
-    })
+    if(blockId != null){
+      this.fpoAddFarmerForm.controls['blockRef'].setValue(blockId);
+      this.api.getGramPanchayat(parseInt(blockId)).subscribe(panchayt => {
+        this.panchayats = panchayt
+      })
+    }
   }
-  selectPanchayat(panchayatId: any) {   
-    this.fpoAddFarmerForm.controls['villagePanchayatId'].setValue(panchayatId.currentTarget.value);
-    this.api.getVillage(parseInt(panchayatId.currentTarget.value)).subscribe(village => {
-      this.villages = village
-    })
+  selectPanchayat(panchayatId: any) { 
+    if(panchayatId != null){
+      this.fpoAddFarmerForm.controls['villagePanchayatId'].setValue(panchayatId);
+      this.api.getVillage(parseInt(panchayatId)).subscribe(village => {
+        this.villages = village
+      })
+    }  
   }
 
   selectBanks(bankId: any) {
     this.fpoAddFarmerForm.controls['bankRefId'].setValue(bankId.currentTarget.value);
   }
+  
   createFpoFarmerForm() {
     this.fpoAddFarmerForm = this.fb.group({
-        accountNo : ['', Validators.required],
-        bankRefId: ['', Validators.required],
+        farmerLotNo:['', Validators.required],
+        accountNo : [''],
+        bankRefId: [''],
         blockRef:['', Validators.required],
         category: ['', Validators.required],
         distRefId: ['', Validators.required],
@@ -69,23 +91,20 @@ export class AddFarmerComponent implements OnInit {
         createdBy:localStorage.getItem('userrole'),
         deleted: [true],
         enabled: [true],
-        farmerMob: ['', [Validators.pattern("[0-9 ]{10}")]],
+        farmerMob: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
         farmerName: ['', Validators.required],
-        ifscCode: ['', Validators.required],
+        ifscCode: [''],
         parantsName: ['', Validators.required],
-        pincode: ['', Validators.required],
+        pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
         stateref: 0,
-        userName: ['', Validators.required],
+        userName: [''],
         userRefId: localStorage.getItem('userId'),
         villRefId: ['', Validators.required],
         villagePanchayatId: ['', Validators.required],
-        //educationId: 0,
-        //farmerId: 0,
-        //farmerLotNo:['', Validators.required],
         fpoRefId: localStorage.getItem('masterId'),
         userFar: [],
-        password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
-        confirmPassword: ['', Validators.required]
+        password: ['12345678'],
+        confirmPassword: ['12345678']
     }, {
         validator: MustMatch('password', 'confirmPassword')
        
@@ -96,14 +115,25 @@ export class AddFarmerComponent implements OnInit {
     return this.fpoAddFarmerForm.controls;
   }
  
+  generate_radom_string() {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < 8; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
+ 
   register() {
     this.submitted = true;
     // stop here if form is invalid
-    // if (this.fpoAddFarmerForm.invalid) {
-    //   return;
-    // }
+    console.log(this.fpoAddFarmerForm);
+    if (this.fpoAddFarmerForm.invalid) {
+      return;
+    }
     let user = {
-      userName: this.fpoAddFarmerForm.value.userName,
+      userName: this.generate_radom_string(),
       password: this.fpoAddFarmerForm.value.password,
       roleRefId:6
     }
@@ -115,9 +145,12 @@ export class AddFarmerComponent implements OnInit {
 
     console.log("dgdfg "+JSON.stringify(this.fpoAddFarmerForm.value));
     this.fpo.registerFarmerByFpo(this.fpoAddFarmerForm.value).subscribe(response => {
+      console.log(response);
       if (response.message == "SuccessFully Saved!") {
         this.toastr.success(response.message);
         this.fpoAddFarmerForm.reset();
+        this.submitted = false;
+        this.getFarmerDetailList();
       }
       else {
         this.toastr.error(response.message);
@@ -130,20 +163,62 @@ export class AddFarmerComponent implements OnInit {
       })
   }
   
+  editFarmer(farmerDetails){
+    console.log(farmerDetails);
+    this.selectDistrict(farmerDetails.distRefId);
+    this.selectBlock(farmerDetails.blockRef);
+    this.selectPanchayat(farmerDetails.villagePanchayatId);
+    this.fpoAddFarmerForm = this.fb.group({
+        farmerLotNo:[farmerDetails.farmerLotNo, Validators.required],
+        accountNo : [farmerDetails.accountNo],
+        bankRefId: [farmerDetails.bankRefId],
+        blockRef:[farmerDetails.blockRef, Validators.required],
+        category: [farmerDetails.category, Validators.required],
+        distRefId: [farmerDetails.distRefId, Validators.required],
+        gender: [farmerDetails.gender, Validators.required],
+        farmerMob: [farmerDetails.farmerMob, [Validators.required, Validators.pattern("[0-9 ]{10}")]],
+        farmerName: [farmerDetails.farmerName, Validators.required],
+        ifscCode: [farmerDetails.ifscCode],
+        parantsName: [farmerDetails.parantsName, Validators.required],
+        pincode: [farmerDetails.pincode, [Validators.required, Validators.pattern("[0-9 ]{6}")]],        
+        userName: [farmerDetails.userName],
+        villRefId: [farmerDetails.villRefId, Validators.required],
+        villagePanchayatId: [farmerDetails.villagePanchayatId, Validators.required],
+        userFar: [farmerDetails.userFar],
+        stateref: 0,
+        fpoRefId: localStorage.getItem('masterId'),
+        userRefId: localStorage.getItem('userId'),
+        createdBy:localStorage.getItem('userrole'),
+        deleted: [true],
+        enabled: [true],
+        password: ['12345678'],
+        confirmPassword: ['12345678']
+    }, {
+        validator: MustMatch('password', 'confirmPassword')
+       
+    });
+    this.edit = true;
+    window.scroll(0,0);
+  }
+
+  confirmDelete(id){
+    if(confirm("Are you sure to delete this item.")) {
+      this.fpo.deleteFarmer(id).subscribe(response => {
+        this.toastr.success('Farmer Deleted successfully.');
+        this.getFarmerDetailList();
+      },
+        err => {
+          console.log(err)
+        }
+      );
+    }
+  }
 
   handleSuccess(e) {
     console.log("ReCaptcha", e);
   }
 
-  // getFarmerLists(){
-  //   this.fpoService.getFarmerLists().subscribe(
-  //     response => {
-  //     console.log(response);
-  //     this.landDetails = response;
-  //     })
-  // }
-
   resetForm(){
-  this.fpoAddFarmerForm.reset();
+    this.fpoAddFarmerForm.reset();
   }
 }

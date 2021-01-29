@@ -17,4 +17,14 @@ export class UserService {
       return res;
     }));
   }
+  updateUser(user) {
+    return this.http.put<any>(this._url + '' + user.id, user).pipe(map((res: any) => {
+      return res;
+    }))
+  }
+  deleteUser(userId) {
+    return this.http.delete<any>(this._url + '' + userId ).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 }

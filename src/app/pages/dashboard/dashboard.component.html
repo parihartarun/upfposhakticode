@@ -2,14 +2,14 @@
   <div class="container-fluid"> 
     <div class="header-body">
       <!-- Card stats -->
-      <div class="row mb-2">
+      <div class="row mb-2" *ngIf="totals">
         <div class="col-xl-4 col-lg-6">
           <div class="card card-stats mb-4 mb-xl-0">
             <div class="card-body">
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Total Farmers</h5>
-                  <span class="h2 font-weight-bold mb-0">3,50,897</span>
+                  <span class="h2 font-weight-bold mb-0">{{totals.farmers}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -29,8 +29,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Marginal</h5>
-                  <span class="h2 font-weight-bold mb-0">2,356</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Marginal Farmers</h5>
+                  <span class="h2 font-weight-bold mb-0">{{totals.marginalFarmers}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -51,7 +51,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Small</h5>
-                  <span class="h2 font-weight-bold mb-0">924</span>
+                  <span class="h2 font-weight-bold mb-0">{{totals.smallFarmers}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -74,7 +74,7 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Other</h5>
-                  <span class="h2 font-weight-bold mb-0">4,965</span>
+                  <span class="h2 font-weight-bold mb-0">{{totals.otherFarmers}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -95,9 +95,8 @@
               <div class="row">
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">Total Land</h5>
-                  <span class="h2 font-weight-bold mb-0">1,500</span>
+                  <span class="h2 font-weight-bold mb-0">{{totals.land}}</span>
                   <p class="mt-3 mb-0 text-muted text-sm">
-                  <span class="text-nowrap"> in Ha </span>
                   </p>
                 </div>
                 <div class="col-auto">

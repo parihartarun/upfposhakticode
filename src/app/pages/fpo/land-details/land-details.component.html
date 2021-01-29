@@ -65,9 +65,9 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Area of Farm (in hectare)</label>
-                    <input formControlName="areaFarm" type="text" id="area-farm" class="form-control form-control-alternative" >
-                    <div *ngIf="submitted && formControls.areaFarm.errors" class="text-danger">
-                      <div *ngIf="formControls.areaFarm.errors.required">Area of Farm (in hectare) is required</div>
+                    <input formControlName="land_area" type="text" id="area-farm" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.land_area.errors" class="text-danger">
+                      <div *ngIf="formControls.land_area.errors.required">Area of Farm (in hectare) is required</div>
                     </div>
                   </div>
                 </div>
@@ -157,28 +157,8 @@
           </table>
         </div>
         <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </nav>
         </div>
       </div>
