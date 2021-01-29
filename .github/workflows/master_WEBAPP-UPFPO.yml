@@ -1,0 +1,35 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - WEBAPP-UPFPO
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@master
+
+    - uses: azure/docker-login@v1
+      with:
+        login-server: https://contregistryupfpodev.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_d21cd8901c4c4781bea7aef67c3f2c9c }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_1fbef4dc674b4512b703873de9f5a516 }}
+
+    - run: |
+        docker build . -t contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_d21cd8901c4c4781bea7aef67c3f2c9c }}/webappupfpo-img:${{ github.sha }}
+        docker push contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_d21cd8901c4c4781bea7aef67c3f2c9c }}/webappupfpo-img:${{ github.sha }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'WEBAPP-UPFPO'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a5915eb2009b4876980b94c98b260ee8 }}
+        images: 'contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_d21cd8901c4c4781bea7aef67c3f2c9c }}/webappupfpo-img:${{ github.sha }}'
