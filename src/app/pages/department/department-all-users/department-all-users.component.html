@@ -48,24 +48,24 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let p of users | paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr *ngFor="let u of deActiveUsers | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                 <td>
-                  {{p.sno}}
+                  {{i+1}}
                 </td>
                 <td>
-                  {{p.fpoName}}
+                  {{u.fpoName}}
                 </td>
                 <td>
-                  {{p.userName}}
+                  {{u.userName}}
                 </td>
                 <td>
-                  {{p.district}}
+                  {{u.district}}
                 </td>
                 <td>
-                  {{p.requestDate}}
+                  {{u.requestDate}}
                 </td>
                 <td>
-                  {{p.email}}
+                  {{u.email}}
                 </td>
                 
                 <td class="text-right">
@@ -74,8 +74,8 @@
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="activeUSer(u)">Active</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteUser(u)">Delete</a>
                     </div>
                   </div>
                 </td>
@@ -117,24 +117,24 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let p of users | paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr *ngFor="let u of activeUsers | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                 <td>
-                  {{p.sno}}
+                  {{i+1}}
                 </td>
                 <td>
-                  {{p.fpoName}}
+                  {{u.fpoName}}
                 </td>
                 <td>
-                  {{p.userName}}
+                  {{u.userName}}
                 </td>
                 <td>
-                  {{p.district}}
+                  {{u.district}}
                 </td>
                 <td>
-                  {{p.requestDate}}
+                  {{u.requestDate}}
                 </td>
                 <td>
-                  {{p.email}}
+                  {{u.email}}
                 </td>
 
                 <td class="text-right">
@@ -143,8 +143,8 @@
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Deactive User</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="DeActiveUSer(u)" >Active</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteUser()">Delete</a>
                     </div>
                   </div>
                 </td>
