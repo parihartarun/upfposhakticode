@@ -1,34 +1,38 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy container app to Azure Web App - WEBAPP-UPFPO
+name: Deploy Node.js to Azure Web App
 
 on:
-  push:
-    branches:
-      - master
-  workflow_dispatch:
+  [push]
+
+# CONFIGURATION
+# For help, go to https://github.com/Azure/Actions
+#
+# 1. Set up the following secrets in your repository:
+#   AZURE_WEBAPP_PUBLISH_PROFILE
+#
+# 2. Change these variables for your configuration:
+env:
+  AZURE_WEBAPP_NAME: your-app-name    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: './dist/your-app-name'      # set this to the path to your web app project
+  NODE_VERSION: '10.x'                # set this to the node version to use
 
 jobs:
   build-and-deploy:
-    runs-on: 'ubuntu-latest'
-
+    name: Build and Deploy
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-
-    - uses: azure/docker-login@v1
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
       with:
-        login-server: https://contregistryupfpodev.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_67a8204c76fd406f976add5ffafb45b0 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_52056abd705b479d9c7bdb010c1f0a00 }}
-
-    - run: |
-        docker-compose up --build
-
-    - name: Deploy to Azure Web App
+        node-version: ${{ env.NODE_VERSION }}
+    - name: npm install and build
+      run: |
+        npm install
+        npm run build -- --prod
+    - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'WEBAPP-UPFPO'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_3f3dfc9ffcc3456fbbfef8b94a4ca496 }}
-        images: 'contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_67a8204c76fd406f976add5ffafb45b0 }}/webappupfpo-img:${{ github.sha }}'
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
