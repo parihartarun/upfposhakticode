@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
+import { UserService } from '../../../_services/user/user.service';
 
 @Component({
   selector: 'app-department-complaints',
@@ -21,18 +22,21 @@ export class DepartmentComplaintsComponent implements OnInit {
   myInputVariable: ElementRef;
   fileToUpload: File = null;
   isViewComplaint = false;
+  users : Array<any> =[];
   viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', name: "", mobile: "", email:"" }
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
     private route: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
-    //this.api.getComplaints_Suggestions().subscribe(cs => {
-    //  this.complaintsCatageriy = cs
-    //})
+    this.userService.getAllUser().subscribe(u => {
+      this.users=u
+    })
+
     this.complaintForm = this.formBuilder.group({
       appointment: ['', [Validators.required]],
       appointmentDate: ['20/03/2020'],

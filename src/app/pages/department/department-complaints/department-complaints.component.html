@@ -99,10 +99,9 @@
                     <div class="form-group">
                       <label class="form-control-label">Appointed <span class="required">*</span></label>
 
-                      <select class="form-control" formControlName="appointment" >
-                        <option value="">Select</option>
-                        <option value="1">Additional Director Seeds</option>
-                        <option value="0">Other </option>
+                      <select class="form-control" formControlName="appointment">
+                        <option value="">Select User</option>
+                        <option *ngFor="let u of users" [value]="u.userId">{{u.userName}}</option>
                       </select>
                       <div *ngIf="submitted && formControls.appointment.errors" class="text-danger">
                         <div *ngIf="formControls.appointment.errors.required">Appointed to is required</div>
