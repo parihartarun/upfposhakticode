@@ -33,9 +33,9 @@ export class DepartmentComplaintsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getAllUser().subscribe(u => {
-      this.users=u
-    })
+    //this.userService.getAllUser().subscribe(u => {
+    //  this.users=u
+    //})
 
     this.complaintForm = this.formBuilder.group({
       appointment: ['', [Validators.required]],
@@ -51,8 +51,7 @@ export class DepartmentComplaintsComponent implements OnInit {
 
   getComplaints() {
    
-    this.api.getComplaints().subscribe(response => {
-      console.log(response);
+    this.api.getComplaints().subscribe(response => {      
       this.complaints = response;
     });
 
