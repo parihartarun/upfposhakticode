@@ -14,19 +14,7 @@ import { FpoService } from '../../../_services/fpo/fpo.service';
 export class LandDetailsComponent implements OnInit {
 
   p:number;
-  //landDetailForm: FormGroup;
-
-  landDetailForm = this.formBuilder.group({
-    farmerId: ['', [Validators.required]],
-    guardianName: ['', [Validators.required]],
-    ownerShip: ['', [Validators.required]],
-    areaFarm: ['', [Validators.required]],
-    isorganc:['', [Validators.required]],
-    masterId:localStorage.getItem('masterId'),
-    updatedBy:localStorage.getItem('userrole'),
-    id:['']
-  });
-
+  landDetailForm: FormGroup;
   landDetails:Array<any>=[];
   ownerShipList:Array<any>=[
     {ownerName:"Owned"},
@@ -46,6 +34,17 @@ export class LandDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.landDetailForm = this.formBuilder.group({
+      farmerId: ['', [Validators.required]],
+      guardianName: ['', [Validators.required]],
+      ownerShip: ['', [Validators.required]],
+      land_area: ['', [Validators.required]],
+      isorganc:['', [Validators.required]],
+      masterId:localStorage.getItem('masterId'),
+      updatedBy:localStorage.getItem('userrole'),
+      id:['']
+    });
+    console.log(this.landDetailForm.value);
     this.getLandDetailList(this.master_id);
     this.getFarmerDetailList();
   }
@@ -61,9 +60,9 @@ export class LandDetailsComponent implements OnInit {
   getLandDetailList(id){
     this.fpoService.getLandDetailList(id).subscribe(
       response => {
-      console.log(response);
-      this.landDetails = response;
-      })
+        console.log(response);
+        this.landDetails = response;
+    })
   }
 
   // getFarmerListsByFpoId(fpoId){
@@ -75,24 +74,31 @@ export class LandDetailsComponent implements OnInit {
   // }
 
   addLandDetail() {
-  this.submitted = true;
-  // stop here if form is invalid
-  alert(JSON.stringify(this.landDetailForm.value));
-  this.fpoService.addLandDetails(this.landDetailForm.value).subscribe(response => {
-      console.log(response)
-      if(response.id != ''){
-          this.toastr.success('Land Details Added Successfully.')
-          this.submitted = false
-          this.landDetailForm.reset();
-          this.getLandDetailList(this.master_id);
-      }else{
-          this.toastr.error('Error! While Adding Land Details.')
+      this.submitted = true;
+      // stop here if form is invalid
+      if (this.landDetailForm.invalid) {
+        return;
       }
-    },
-      err => {
-        console.log(err)
-      })
-    }
+      console.log(this.landDetailForm.value);
+      var data = this.landDetailForm.value;
+      data['farmerProfile'] = {"farmerId":this.landDetailForm.value.farmerId};
+      delete data.farmerId;
+      console.log(data);
+      this.fpoService.addLandDetails(this.landDetailForm.value).subscribe(response => {
+        console.log(response)
+        if(response.id != ''){
+            this.toastr.success('Land Details Added Successfully.')
+            this.submitted = false
+            this.landDetailForm.reset();
+            this.getLandDetailList(this.master_id);
+        }else{
+            this.toastr.error('Error! While Adding Land Details.')
+        }
+      },
+        err => {
+          console.log(err)
+        })
+      }
   
   updateLandDetail(){
     this.submitted = true;
@@ -118,13 +124,14 @@ export class LandDetailsComponent implements OnInit {
   }
 
   editLandDetail(landDetail){
+    console.log(landDetail);
     this.landDetailForm = this.formBuilder.group({
       farmerName: [landDetail.farmerName, [Validators.required]],
       fatherHusbandName: [landDetail.fatherHusbandName, [Validators.required]],
       ownerShip: [landDetail.ownership, [Validators.required]],
-      areaFarm: [landDetail.areaFarm, [Validators.required]],
+      land_area: [landDetail.land_area, [Validators.required]],
       organ:[landDetail.isorganc, [Validators.required]],
-      id:[landDetail.id]
+      id:[landDetail.landId]
     });
     
     this.edit = true;

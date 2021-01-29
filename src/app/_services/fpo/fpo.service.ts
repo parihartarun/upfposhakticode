@@ -7,7 +7,13 @@ import { environment }  from '../../../environments/environment';
   providedIn: 'root'
 })
 export class FpoService {
- 
+   //------------Dashboard Data ------------------------------
+  getDashboardData(){
+    return  this.http.get<any>(this._url+`api/home/dashboard`).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
   getBlocks()
   {
     return  this.http.get<any>(this._url+`api/v1/block/getBlocks`).pipe(map((res:any)=>{
@@ -330,13 +336,25 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
+
+  updateFarmer(data: any) {
+    return this.http.post<any>(this._url + 'api/Farmer/editFarmer/'+data.id, data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  deleteFarmer(data: any) {
+    return this.http.post<any>(this._url + 'api/farmer', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   getfpoDetialById(fpoId: number) {
 
     return this.http.get<any>(this._url + 'api/fpos/' + fpoId).pipe(map((res: any) => {
       return res;
     }));
   }
-
 
 }
 

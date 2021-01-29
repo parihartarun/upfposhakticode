@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
+import { FpoService } from '../../_services/fpo/fpo.service';
 
 // core components
 import {
@@ -21,9 +22,12 @@ export class DashboardComponent implements OnInit {
   public salesChart;
   public clicked: boolean = true;
   public clicked1: boolean = false;
+  public totals={};
+  constructor(private api:FpoService){}
 
   ngOnInit() {
 
+    this.getDashboardDetails();
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
       [0, 20, 5, 25, 10, 30, 15, 40, 40]
@@ -51,6 +55,16 @@ export class DashboardComponent implements OnInit {
 		});
   }
 
+  getDashboardDetails(){
+    this.api.getDashboardData().subscribe(response => {
+      console.log(response);
+      this.totals = response;
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
 
   public updateOptions() {
     this.salesChart.data.datasets[0].data = this.data;
