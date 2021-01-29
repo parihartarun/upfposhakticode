@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from '../../../_services/department/department.service';
+import { UserService } from '../../../_services/user/user.service';
 
 @Component({
   selector: 'app-department-all-users',
@@ -12,13 +14,15 @@ export class DepartmentAllUsersComponent implements OnInit {
 
   filterForm: FormGroup;
   submitted = false;
-  users: Array<any> = [];
+  activeUsers: Array<any> = [];
+  deActiveUsers: Array<any> = [];
   p: number = 1;
 
   constructor(
     private formBuilder: FormBuilder,
-    private api: DepartmentService,
-    private route: Router
+    private api: UserService,
+    private route: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -30,14 +34,15 @@ export class DepartmentAllUsersComponent implements OnInit {
   }
 
   getUsers() {
-    this.users = [
+    let users = [
       {
         sno:'01',        
         fpoName: 'SHIVMURAT HITECH PRODUCER COMPANY LIMITED',
         userName: 'Vishal',
         district: "Agra",
         requestDate:'21-12-2020',
-        email:"www.rampurkrishakfpo.in"
+        email: "www.rampurkrishakfpo.in",
+        status:0
        
       },
       {
@@ -46,7 +51,8 @@ export class DepartmentAllUsersComponent implements OnInit {
         userName: 'Vishal',
         district: "Agra",
         requestDate: '21-12-2020',
-        email: "www.rampurkrishakfpo.in"
+        email: "www.rampurkrishakfpo.in",
+          status: 1
 
       },
       {
@@ -55,8 +61,8 @@ export class DepartmentAllUsersComponent implements OnInit {
         userName: 'Vishal',
         district: "Agra",
         requestDate: '21-12-2020',
-        email: "www.rampurkrishakfpo.in"
-
+        email: "www.rampurkrishakfpo.in",
+        status: 0,
       },
       {
         sno: '04',
@@ -64,10 +70,12 @@ export class DepartmentAllUsersComponent implements OnInit {
         userName: 'Vishal',
         district: "Agra",
         requestDate: '21-12-2020',
-        email: "www.rampurkrishakfpo.in"
-
+        email: "www.rampurkrishakfpo.in",
+        status: 1
       }
     ]
+    this.activeUsers = users.filter(u => u.status == 0);
+    this.deActiveUsers = users.filter(u => u.status ==1)
 
   }
 
@@ -78,6 +86,35 @@ export class DepartmentAllUsersComponent implements OnInit {
   get formControls() {
     return this.filterForm.controls;
   }
+  DeActiveUSer(user) {
+    this.changeStatus(user)
+  }
+  activeUSer(user) {
 
+    this.changeStatus(user)
+  }
+  changeStatus(user) {  
+
+    this.api.updateUser(user).subscribe(response => {
+      if (response) {
+        this.toastr.success(response.message);
+
+        this.getUsers();
+      } else {
+        this.toastr.error('Error! While Add complaint.');
+      }
+    });
+  }
+  deleteCicular(user) {
+    this.api.deleteUser(user.id).subscribe(response => {
+      if (response != '') {
+        this.toastr.success('Delete successfully');
+        this.getUsers();
+      } else {
+        this.toastr.error('Error! While Add complaint.');
+      }
+    });
+
+  }
 
 }

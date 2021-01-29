@@ -19,6 +19,7 @@ export class DepartmentProductionReportComponent implements OnInit {
   districts = [];
   crops = [];
   productionReportForm: FormGroup;
+  financialYear = [];
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
@@ -33,6 +34,7 @@ export class DepartmentProductionReportComponent implements OnInit {
     this.api.getCrops().subscribe(c => {
       this.crops = c
     })
+    
     this.productionReportForm = this.formBuilder.group({
       districtRefId: [''],
       financial_year: [''],
@@ -104,6 +106,20 @@ export class DepartmentProductionReportComponent implements OnInit {
   selectDistrict(districtId: any) {
     this.productionReportForm.controls['districtRefId'].setValue(parseInt(districtId.currentTarget.value));
     
+  }
+  getCurrentFinancialYear() {
+    var fiscalyear = "";
+    var today = new Date();
+    if ((today.getMonth() + 1) <= 3) {
+      fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
+    } else {
+      fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
+    }
+    console.log("fiscalyear", fiscalyear)
+    return fiscalyear
+  }
+  selectFinancialYear(year) {
+    this.productionReportForm.controls['financial_year'].setValue(year.currentTarget.value);
   }
 
 }
