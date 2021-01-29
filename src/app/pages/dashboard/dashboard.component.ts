@@ -22,7 +22,14 @@ export class DashboardComponent implements OnInit {
   public salesChart;
   public clicked: boolean = true;
   public clicked1: boolean = false;
-  public totals={};
+  public totals={
+    otherFarmers:0,
+    farmers:0,
+    marginalFarmers:0,
+    smallFarmers:0,
+    land:0,
+
+  };
   constructor(private api:FpoService){}
 
   ngOnInit() {
