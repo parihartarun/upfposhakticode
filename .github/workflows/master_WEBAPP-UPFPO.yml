@@ -23,7 +23,7 @@ jobs:
         password: ${{ secrets.AzureAppService_ContainerPassword_52056abd705b479d9c7bdb010c1f0a00 }}
 
     - run: |
-        docker build . -t contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_67a8204c76fd406f976add5ffafb45b0 }}/webappupfpo-img:${{ github.sha }}
+        docker build . -t
         docker push contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_67a8204c76fd406f976add5ffafb45b0 }}/webappupfpo-img:${{ github.sha }}
 
     - name: Deploy to Azure Web App
