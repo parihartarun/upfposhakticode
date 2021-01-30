@@ -1,15 +1,16 @@
 .header {
-    padding: 20px 0;
-    height: 110px;
-    position:relative;
-  }
-  .logo {
-    position: absolute;
-    top: 6%;
-    left: 0.4%;
-    max-width: 200px;
-    max-height: 200px;
-  }
+ 
+  position: relative;
+  background-color: #cfb000;
+  padding:2% 0px;
+}
+.logo {
+  position: absolute;
+  top: 1%;
+  left: 0.4%;
+  max-width: 180px;
+  max-height: 180px;
+}
   .logo-image {
     width: 60%;
     border-radius: 58px 58px 58px 58px;
@@ -79,7 +80,7 @@
       padding:0px
   }
   .headingTitle {
-    margin-left: 11%;
+    margin-left: 125px;
     margin-top: -4.5%;
   }
   .dropdown-toggle::after {
@@ -269,11 +270,9 @@
     color: #333;
     background-color: transparent;
   }
-  .fms-wrapper {
-   
-   
-  
-  }
+.fms-wrapper {
+  background-color: #cfb000;
+}
   .newsBox {
       padding:0px 2%
   }

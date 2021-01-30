@@ -1,517 +1,536 @@
-<section class="fms-wrapper" style="">
 
-  <div class="innerContent">
-    <nav class="navbar navbar-expand-lg navbar-light">
+<div class="header">
+  <div class="logo">
+    <img class="logo-image" src="../../../assets/image/img/logo.png" />
+  </div>
+  <div class="text-center">
+    <span class="parent">UP FPO Shakti </span>
+    <br>
+    <span class="child">
+      Sangathan.Satark.Shakti
+    </span>
+  </div>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <div class="headingTitle">
+    <span class="gov">Agriculture Department....</span>
+    <br>
+    <span class="up">Uttar Pradesh </span>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto" *ngIf="!isLoggeIn">
-          <div class="triangle-topright"></div>
-          <li class="nav-item dropdown">
-            <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
-              <a class="languageText" ngbDropdownToggle>
-                <img class="nav-image nav-image1" src="../../../assets/image/img/language.png" />
-                {{'Language' | translate}}
-                <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
+  </div>
+  <section class="fms-wrapper" style="">
+
+    <div class="innerContent">
+      <nav class="navbar navbar-expand-lg navbar-light">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto" *ngIf="!isLoggeIn">
+            <div class="triangle-topright"></div>
+            <li class="nav-item dropdown">
+              <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
+                <a class="languageText" ngbDropdownToggle>
+                  <img class="nav-image nav-image1" src="../../../assets/image/img/language.png" />
+                  {{'Language' | translate}}
+                  <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
+                </a>
+                <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+                  <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
+                  <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
+                </div>
+              </div>
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <img class="nav-image" src="../../../assets/image/img/fpomenu.png" />
+                {{'FPO Guideline' | translate}} <span class="sr-only">(current)</span>
               </a>
-              <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
-                <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
-                <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login">
+                <img class="nav-image" src="../../../assets/image/img/scemenu.png" />
+                {{'Schemes' | translate}} <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item" *ngIf="!isLoggeIn">
+              <a class="nav-link" routerLink="/login">
+                <img class="nav-image" src="../../../assets/image/img/signup.png" />
+                {{'Login' | translate}} <span class="sr-only">(current)</span>
+              </a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
+                <a class="languageText" ngbDropdownToggle>
+                  <img class="nav-image sign-up" src="../../../assets/image/img/usermenu.png" />
+                  {{'Sign Up' | translate}}
+                  <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
+                </a>
+                <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+                  <a class="dropdown-item" routerLink="/register/1" routerLinkActive="active"><b>{{'FPO' | translate}}</b></a>
+                  <a class="dropdown-item" routerLink="/register/2" routerLinkActive="active">{{'Farmer' | translate}}</a>
+                  <a class="dropdown-item" routerLink="/register/3" routerLinkActive="active">{{'Buyer/ Seller' | translate}}</a>
+                  <a class="dropdown-item" routerLink="/register/4" routerLinkActive="active">{{'Input Supplier' | translate}}</a>
+                  <a class="dropdown-item" routerLink="/register/5" routerLinkActive="active">{{'CHC/FMB' | translate}}</a>
+                  <!--<a class="dropdown-item" routerLink="/register/6" routerLinkActive="active">{{'Equipment Centre' | translate}}</a>-->
+                </div>
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto login" *ngIf="isLoggeIn">
+            <div class="triangle-topright"></div>
+            <li class="nav-item dropdown">
+              <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
+                <a class="languageText" ngbDropdownToggle>
+                  <img class="nav-image nav-image1" src="../../../assets/image/img/language.png" />
+                  {{'Language' | translate}}
+                  <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
+                </a>
+                <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+                  <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
+                  <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
+                </div>
+              </div>
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <img class="nav-image" src="../../../assets/image/img/fpomenu.png" />
+                {{'FPO' | translate}} <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login">
+                <img class="nav-image" src="../../../assets/image/img/scemenu.png" />
+                {{'Schemes' | translate}} <span class="sr-only">(current)</span>
+              </a>
+            </li>
+
+            <li class="nav-item" *ngIf="isLoggeIn">
+              <a class="nav-link" href="javascript:void(0)" (click)="logout()">
+                <img class="nav-image" src="../../../assets/image/img/signup.png" />
+                {{'Logout' | translate}} <span class="sr-only">(current)</span>
+              </a>
+            </li>
+
+          </ul>
+
+
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-md-2 col-sm-12">
+            <div class="notificationBox" style="/* margin-top: 26px; */">
+              <h4 class="set_notifications">
+                Notifications
+              </h4>
+              <div class="panel panel-default" style="border: 0px;">
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-xs-12 newsBox">
+                      <ul class="demo1">
+
+                        <li class="news-item">
+                          <table cellpadding="4">
+                            <tbody>
+                              <tr>
+                                <td><img src="../../../assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
+                                <td class="news-td">
+                                  <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf" class="text-left text-danger" target="_blank">
+                                    FPO annual review meeting:
+                                    12-Oct-20
+
+                                  </a>
+                                </td>
+
+                                <!-- <td class="news-td"></td> -->
+                              </tr>
+                            </tbody>
+                          </table>
+                        </li>
+                        <li style="" class="news-item">
+                          <table cellpadding="4">
+                            <tbody>
+                              <tr>
+                                <td><img src="../../../assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
+                                <td class="news-td">
+                                  <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document.pdf" class="text-left text-danger" target="_blank">
+                                    FPO orientation workshop:
+                                    12-Oct-20
+
+                                  </a>
+                                </td>
+
+                                <!-- <td class="news-td"></td> -->
+                              </tr>
+                            </tbody>
+                          </table>
+                        </li>
+
+                      </ul>
+                      <div class="text-right">
+                        <small style="color:black"><a href="/viewallnotifications">View all</a>&nbsp;</small>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
               </div>
             </div>
 
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <img class="nav-image" src="../../../assets/image/img/fpomenu.png" />
-              {{'FPO Guideline' | translate}} <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login">
-              <img class="nav-image" src="../../../assets/image/img/scemenu.png" />
-              {{'Schemes' | translate}} <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item" *ngIf="!isLoggeIn">
-            <a class="nav-link" routerLink="/login">
-              <img class="nav-image" src="../../../assets/image/img/signup.png" />
-              {{'Login' | translate}} <span class="sr-only">(current)</span>
-            </a>
-          </li>
 
-          <li class="nav-item dropdown">
-            <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
-              <a class="languageText" ngbDropdownToggle>
-                <img class="nav-image sign-up" src="../../../assets/image/img/usermenu.png" />
-                {{'Sign Up' | translate}}
-                <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
+
+
+
+            <!--Notifications End-->
+            <!--View FPO's On Map Start-->
+            <div style="height: 100px; background-color: #ccc; margin-top: 0%;">
+              <h4 class="set_notifications">
+                View FPOs on Map
+              </h4>
+              <a href="/fpoMap">
+                <img src="../../../assets/image/img/map.jpg" alt="" class="img-thumbnail mob-width" style="width: 100%;">
               </a>
-              <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
-                <a class="dropdown-item" routerLink="/register/1" routerLinkActive="active"><b>{{'FPO' | translate}}</b></a>
-                <a class="dropdown-item" routerLink="/register/2" routerLinkActive="active">{{'Farmer' | translate}}</a>
-                <a class="dropdown-item" routerLink="/register/3" routerLinkActive="active">{{'Buyer/ Seller' | translate}}</a>
-                <a class="dropdown-item" routerLink="/register/4" routerLinkActive="active">{{'Input Supplier' | translate}}</a>
-                <a class="dropdown-item" routerLink="/register/5" routerLinkActive="active">{{'CHC/FMB' | translate}}</a>
-                <!--<a class="dropdown-item" routerLink="/register/6" routerLinkActive="active">{{'Equipment Centre' | translate}}</a>-->
-              </div>
             </div>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto login" *ngIf="isLoggeIn">
-          <div class="triangle-topright"></div>
-          <li class="nav-item dropdown">
-            <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
-              <a class="languageText" ngbDropdownToggle>
-                <img class="nav-image nav-image1" src="../../../assets/image/img/language.png" />
-                {{'Language' | translate}}
-                <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
-              </a>
-              <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
-                <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
-                <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
+            <!--View FPO's On Map End-->
+          </div>
+          <div class="col-md-7 col-md-pull-3">
+            <carousel [noWrap]="noWrapSlides" [showIndicators]="showIndicator">
+              <div *ngFor="let slide of slides; let index=index">
+                <slide>
+                  <img [src]="slide.image" alt="image slide" style="display: block; width: 100%;">
+                  <div class="carousel-caption">
+                    <p>{{slide.text}}</p>
+                  </div>
+                </slide>
+
               </div>
-            </div>
-
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <img class="nav-image" src="../../../assets/image/img/fpomenu.png" />
-              {{'FPO' | translate}} <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login">
-              <img class="nav-image" src="../../../assets/image/img/scemenu.png" />
-              {{'Schemes' | translate}} <span class="sr-only">(current)</span>
-            </a>
-          </li>
-
-          <li class="nav-item" *ngIf="isLoggeIn">
-            <a class="nav-link" href="javascript:void(0)" (click)="logout()">
-              <img class="nav-image" src="../../../assets/image/img/signup.png" />
-              {{'Logout' | translate}} <span class="sr-only">(current)</span>
-            </a>
-          </li>
-
-        </ul>
-
-
-      </div>
-    </nav>
-    <div class="container-fluid">
-      <div class="row">
-
-        <div class="col-md-2 col-sm-12">
-          <div class="notificationBox" style="/* margin-top: 26px; */">
-            <h4 class="set_notifications">
-              Notifications
-            </h4>
-            <div class="panel panel-default" style="border: 0px;">
-              <div class="panel-body">
-                <div class="row">
-                  <div class="col-xs-12 newsBox">
-                    <ul class="demo1">
-
-                      <li class="news-item">
-                        <table cellpadding="4">
-                          <tbody>
-                            <tr>
-                              <td><img src="../../../assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
-                              <td class="news-td">
-                                <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf" class="text-left text-danger" target="_blank">
-                                  FPO annual review meeting:
-                                  12-Oct-20
-
-                                </a>
-                              </td>
-
-                              <!-- <td class="news-td"></td> -->
-                            </tr>
-                          </tbody>
-                        </table>
-                      </li>
-                      <li style="" class="news-item">
-                        <table cellpadding="4">
-                          <tbody>
-                            <tr>
-                              <td><img src="../../../assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
-                              <td class="news-td">
-                                <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document.pdf" class="text-left text-danger" target="_blank">
-                                  FPO orientation workshop:
-                                  12-Oct-20
-
-                                </a>
-                              </td>
-
-                              <!-- <td class="news-td"></td> -->
-                            </tr>
-                          </tbody>
-                        </table>
-                      </li>
-
-                    </ul>
-                    <div class="text-right">
-                      <small style="color:black"><a href="/viewallnotifications">View all</a>&nbsp;</small>
+            </carousel>
+            <div class="main" style="margin-top: 1%;">
+              <div style="background-color: #cfb000;">
+                <strong class="searchFPO " style="">Search FPO by Name/ District/ Crop/ Services/ Products</strong>
+              </div>
+              <div class="row serachBarWpper ">
+                <div class="col-md-8" style="padding: 0px;">
+                  <div class="form-group has-feedback">
+                    <div class="form-group">
+                      <div id="filterDate2">
+                        <input type="text" id="homesearch" class="form-control" style="" placeholder="Type here to search.....">
+                      </div>
                     </div>
                   </div>
 
                 </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-          <!--Notifications End-->
-          <!--View FPO's On Map Start-->
-          <div style="height: 100px; background-color: #ccc; margin-top: 0%;">
-            <h4 class="set_notifications">
-              View FPOs on Map
-            </h4>
-            <a href="/fpoMap">
-              <img src="../../../assets/image/img/map.jpg" alt="" class="img-thumbnail mob-width" style="width: 100%;">
-            </a>
-          </div>
-          <!--View FPO's On Map End-->
-        </div>
-        <div class="col-md-7 col-md-pull-3">
-          <carousel [noWrap]="noWrapSlides" [showIndicators]="showIndicator">
-            <div *ngFor="let slide of slides; let index=index">
-              <slide>
-                <img [src]="slide.image" alt="image slide" style="display: block; width: 100%;">
-                <div class="carousel-caption">
-                  <p>{{slide.text}}</p>
-                </div>
-              </slide>
-
-            </div>
-          </carousel>
-          <div class="main" style="margin-top: 1%;">
-            <div style="background-color: #cfb000;">
-              <strong  class="searchFPO "style="">Search FPO by Name/ District/ Crop/ Services/ Products</strong>
-            </div>
-            <div class="row serachBarWpper " >
-              <div class="col-md-8" style="padding: 0px;">
-                <div class="form-group has-feedback">
-                  <div class="form-group">
-                    <div id="filterDate2">
-                      <input type="text" id="homesearch" class="form-control" style="" placeholder="Type here to search.....">
-                    </div>
+                <div class="col-md-2" style="padding: 0px;">
+                  <div class="dropdown searchDropDown ">
+                    <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" style="width:100%">
+                      <option value="any">Any</option>
+                      <option value="crop">Crop</option>
+                      <option value="district">District</option>
+                      <option value="fpo_name">FPO</option>
+                      <option value="services">Services/ Products</option>
+                    </select>
                   </div>
                 </div>
-
-              </div>
-              <div class="col-md-2" style="padding: 0px;">
-                <div class="dropdown searchDropDown ">
-                  <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" style="width:100%" >
-                    <option value="any">Any</option>
-                    <option value="crop">Crop</option>
-                    <option value="district">District</option>
-                    <option value="fpo_name">FPO</option>
-                    <option value="services">Services/ Products</option>
-                  </select>
+                <div class="col-md-2" style="padding: 0px;">
+                  <input type="button" value="🔍 Search" class="form-control-feedback btn-warning" style="width: 100%; pointer-events: all;">
                 </div>
               </div>
-              <div class="col-md-2" style="padding: 0px;">
-                <input type="button" value="🔍 Search" class="form-control-feedback btn-warning" style="width: 100%; pointer-events: all;">
+            </div>
+
+
+          </div>
+          <div class="col-md-3 col-md-push-7 col-sm-6 set_comdbox no_padding">
+            <div class="row" style="margin-left: auto; margin-right: auto;">
+              <div class="col-md-12">
+
+
+                <div class="text-block">
+                  <img src="../../../assets/image/img/yogi.png" alt="Avatar">
+                  <!--<img src="img/circle.png" alt="" style="position: absolute;height: 120px;">-->
+                  <h4 class="set_name">
+                    Shri. Yogi Adityanath
+                  </h4>
+                  <h4 class="set_post">
+                    Hon'ble Chief Minister
+                  </h4>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="text-block">
+                  <img src="../../../assets/image/img/sury.png" alt="Avatar">
+                  <!-- <img src="img/circle.png" alt="" style="position: absolute;height: 120px;">-->
+                  <h4 class="set_name">
+                    Shri Surya Pratap Shahi
+                  </h4>
+                  <h4 class="set_post">
+                    Hon'ble Agriculture Minister
+                  </h4>
+                </div>
+
+              </div>
+              <div class="col-md-12">
+                <div class="text-block">
+                  <img src="../../../assets/image/img/lakhan.png" alt="Avatar">
+                  <!-- <img src="img/circle.png" alt="" style="position: absolute;height: 120px;">-->
+                  <h4 class="set_name">
+                    Shri Lakhan Singh Rajput
+                  </h4>
+                  <h4 class="set_post">
+                    Hon'ble State Minister Agriculture
+                  </h4>
+                </div>
               </div>
             </div>
           </div>
 
-
-        </div>
-        <div class="col-md-3 col-md-push-7 col-sm-6 set_comdbox no_padding">
-          <div class="row" style="margin-left: auto; margin-right: auto;">
-            <div class="col-md-12">
-
-
-              <div class="text-block">
-                <img src="../../../assets/image/img/yogi.png" alt="Avatar">
-                <!--<img src="img/circle.png" alt="" style="position: absolute;height: 120px;">-->
-                <h4 class="set_name">
-                  Shri. Yogi Adityanath
-                </h4>
-                <h4 class="set_post">
-                  Hon'ble Chief Minister
-                </h4>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="text-block">
-                <img src="../../../assets/image/img/sury.png" alt="Avatar">
-                <!-- <img src="img/circle.png" alt="" style="position: absolute;height: 120px;">-->
-                <h4 class="set_name">
-                  Shri Surya Pratap Shahi
-                </h4>
-                <h4 class="set_post">
-                  Hon'ble Agriculture Minister
-                </h4>
-              </div>
-
-            </div>
-            <div class="col-md-12">
-              <div class="text-block">
-                <img src="../../../assets/image/img/lakhan.png" alt="Avatar">
-                <!-- <img src="img/circle.png" alt="" style="position: absolute;height: 120px;">-->
-                <h4 class="set_name">
-                  Shri Lakhan Singh Rajput
-                </h4>
-                <h4 class="set_post">
-                  Hon'ble State Minister Agriculture
-                </h4>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <div class="row">
-      <div class="container-fluid set_row_bg_image">
-        <div class="row tileBoxRow" style="">
-          <!-- FPO tile--->
-          <div class="col-md-3 set_box_md4" >
-            <div>
-              <span class="set_span_titel">
-                FPOs
-              </span>
-              <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
-              <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
-            </div>
-            <div class="tile_nember">
-              586
-            </div>
-
-          </div>
-          <!--FPO tile end-->
-          <!-- FPO tile--->
-          <div class="col-md-3 set_box_md4" >
-            <div>
-              <span class="set_span_titel">
-                Total Farmers
-
-              </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
-              <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
-            </div>
-            <div class="tile_nember">
-
-
-              203,026
-            </div>
-
-          </div>
-          <!--FPO tile end-->
-          <!-- Farmer tile-->
-
-          <div class="col-md-3 set_box_md4" >
-            <div>
-              <span class="set_span_titel">
-                Farmers
-              </span>
-              <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
-              <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
-            </div>
-            <div>
-              <table rowspacing="20" style="width: 99%;">
-                <tbody>
-                  <tr class="table_tile_tr">
-                    <td class="table_tile_text">Marginal</td>
-                    <td class="table_tile_number">
-                      160,948
-                      <!-- </a> -->
-                    </td>
-                  </tr>
-                  <tr class="table_tile_tr">
-                    <td class="table_tile_text">Small</td>
-                    <td class="table_tile_number">
-                      27,697
-                      <!-- </a> -->
-                    </td>
-                  </tr>
-                  <tr class="table_tile_tr">
-                    <td class="table_tile_text">Others</td>
-                    <td class="table_tile_number">
-                      14,399
-                      <!-- </a> -->
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-
-            </div>
-          </div>
-          <!--Famer tile end--->
-          <!-- Land tile -->
-
-          <div class="col-md-3 set_box_md4" style=" margin-right:0px">
-            <div>
-              <span class="set_span_titel">
-                Total Land (in Ha.)
-              </span>
-              <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div><!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
-            </div>
-            <div class="tile_nember">
-              3,311
-            </div>
-          </div>
-          <!-- Land tile end -->
-        </div>
-        <div class="row tileBoxRow" style="margin: auto auto; padding-left: 3%; padding-right: 3%">
-          <!-- Production tile -->
-          <div class="col-md-3 set_box_md4">
-            <div>
-              <span class="set_span_titel">
-                Production (in Qt.)
-              </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
-              <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
-            </div>
-            <div>
-              <table rowspacing="20" style="width: 99%;">
-                <tbody>
-                  <tr class="table_tile_tr">
-                    <td class="table_tile_text">Rabi</td>
-                    <td class="table_tile_number">23,781</td>
-                  </tr>
-
-                  <tr class="table_tile_tr">
-                    <td class="table_tile_text">Zayd</td>
-                    <td class="table_tile_number">0</td>
-                  </tr>
-
-                  <tr class="table_tile_tr">
-                    <td class="table_tile_text">Kharif</td>
-                    <td class="table_tile_number">21,870</td>
-                  </tr>
-
-
-                </tbody>
-              </table>
-
-            </div>
-
-          </div>
-          <!-- Production tile end -->
-          <!-- Farm Machinery bank tilw -->
-
-          <div class="col-md-3 set_box_md4" >
-            <div>
-              <span class="set_span_titel">
-                Farm Machinery Bank
-              </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
-              <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
-            </div>
-            <div class="tile_nember">
-              92
-              </div>
-
-          </div>
-          <!-- Farm Manchinery Bank tile end -->
-          <!-- Storage centre tile-->
-          <div class="col-md-3 set_box_md4" >
-            <div>
-              <span class="set_span_titel">
-                Warehouse / Cold Storage
-              </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
-              <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
-            </div>
-            <div class="tile_nember">
-              <!--<img src="img/storage.png" alt="" class="set_box_image">-->
-              4
-            </div>
-
-          </div>
-          <!-- Storgare centre tile end -->
-          <!-- Seed processing unit  tile-->
-          <div class="col-md-3 set_box_md4" style="margin-right:0px">
-            <div>
-              <span class="set_span_titel">
-                Seed Processing Unit
-              </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="">-->
-              <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
-            </div>
-            <div class="tile_nember">
-              <!--<img src="img/storage.png" alt="" class="set_box_image">-->
-              11
-            </div>
-
-          </div>
-          <!-- Storgare centre tile end -->
         </div>
       </div>
-    </div>
-  </div>
-  <div class="footer footerBox">
-    <div class="container">
       <div class="row">
-        <div class="col-sm-7 text-center">
+        <div class="container-fluid set_row_bg_image">
+          <div class="row tileBoxRow" style="">
+            <!-- FPO tile--->
+            <div class="col-md-3 set_box_md4">
+              <div>
+                <span class="set_span_titel">
+                  FPOs
+                </span>
+                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
+                <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+              </div>
+              <div class="tile_nember">
+                586
+              </div>
 
-          <!-- Accessibility Statement -->
+            </div>
+            <!--FPO tile end-->
+            <!-- FPO tile--->
+            <div class="col-md-3 set_box_md4">
+              <div>
+                <span class="set_span_titel">
+                  Total Farmers
 
-
-          <a href="/accessibilityen" title="Accessibility Statement">
-            Accessibility Statement
-          </a>
-          |
-          <a href="/privacypolicyen" title="Privacy Policy">
-            Privacy Policy
-          </a>
-          |
-          <!--Hyper Linnking Policy  -->
-          <a href="/hyperlinkingpolicyen" title="HyperLinking Policy">
-            Hyper Linking Policy
-          </a>
-          |
-
-          <!-- Copyright Policy -->
-
-
-          <a href="/copyrightpolicyen" title="Copyright Policy">
-            Copyright Policy
-          </a>
-
-          |
-
-          <a href="/termsconditionsen" title="Terms and Conditions">
-            Terms and Conditions
-          </a>
-          |
-          <a href="/disclaimeren" title="Disclaimer">
-            Disclaimer
-          </a>
-
-          |
-          <!--Help  -->
+                </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
+              </div>
+              <div class="tile_nember">
 
 
-          <a href="/helpen" title="Help">
+                203,026
+              </div>
 
-            Help
-          </a>
+            </div>
+            <!--FPO tile end-->
+            <!-- Farmer tile-->
+
+            <div class="col-md-3 set_box_md4">
+              <div>
+                <span class="set_span_titel">
+                  Farmers
+                </span>
+                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
+                <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+              </div>
+              <div>
+                <table rowspacing="20" style="width: 99%;">
+                  <tbody>
+                    <tr class="table_tile_tr">
+                      <td class="table_tile_text">Marginal</td>
+                      <td class="table_tile_number">
+                        160,948
+                        <!-- </a> -->
+                      </td>
+                    </tr>
+                    <tr class="table_tile_tr">
+                      <td class="table_tile_text">Small</td>
+                      <td class="table_tile_number">
+                        27,697
+                        <!-- </a> -->
+                      </td>
+                    </tr>
+                    <tr class="table_tile_tr">
+                      <td class="table_tile_text">Others</td>
+                      <td class="table_tile_number">
+                        14,399
+                        <!-- </a> -->
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
 
 
-          <p>
-            Content on this website is published and managed by State Agriculture Directorate Uttar Pradesh Krishi Bhawan Lucknow.
+              </div>
+            </div>
+            <!--Famer tile end--->
+            <!-- Land tile -->
 
-          </p>
-          <p>
-            For any questions about this website, please contact
-            Web Information Manager
-            .
-          </p>
-        </div>
-        <div class="col-sm-5 text-center">
-          <p style="margin: 0;">Last reviewed and updated on: 23-07-2020</p>
-          <p> © State Agriculture Directorate Uttar Pradesh, India | All rights reserved.</p>
+            <div class="col-md-3 set_box_md4" style=" margin-right:0px">
+              <div>
+                <span class="set_span_titel">
+                  Total Land (in Ha.)
+                </span>
+                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div><!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+              </div>
+              <div class="tile_nember">
+                3,311
+              </div>
+            </div>
+            <!-- Land tile end -->
+          </div>
+          <div class="row tileBoxRow" style="margin: auto auto; padding-left: 3%; padding-right: 3%">
+            <!-- Production tile -->
+            <div class="col-md-3 set_box_md4">
+              <div>
+                <span class="set_span_titel">
+                  Production (in Qt.)
+                </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
+              </div>
+              <div>
+                <table rowspacing="20" style="width: 99%;">
+                  <tbody>
+                    <tr class="table_tile_tr">
+                      <td class="table_tile_text">Rabi</td>
+                      <td class="table_tile_number">23,781</td>
+                    </tr>
 
+                    <tr class="table_tile_tr">
+                      <td class="table_tile_text">Zayd</td>
+                      <td class="table_tile_number">0</td>
+                    </tr>
+
+                    <tr class="table_tile_tr">
+                      <td class="table_tile_text">Kharif</td>
+                      <td class="table_tile_number">21,870</td>
+                    </tr>
+
+
+                  </tbody>
+                </table>
+
+              </div>
+
+            </div>
+            <!-- Production tile end -->
+            <!-- Farm Machinery bank tilw -->
+
+            <div class="col-md-3 set_box_md4">
+              <div>
+                <span class="set_span_titel">
+                  Farm Machinery Bank
+                </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
+              </div>
+              <div class="tile_nember">
+                92
+              </div>
+
+            </div>
+            <!-- Farm Manchinery Bank tile end -->
+            <!-- Storage centre tile-->
+            <div class="col-md-3 set_box_md4">
+              <div>
+                <span class="set_span_titel">
+                  Warehouse / Cold Storage
+                </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
+              </div>
+              <div class="tile_nember">
+                <!--<img src="img/storage.png" alt="" class="set_box_image">-->
+                4
+              </div>
+
+            </div>
+            <!-- Storgare centre tile end -->
+            <!-- Seed processing unit  tile-->
+            <div class="col-md-3 set_box_md4" style="margin-right:0px">
+              <div>
+                <span class="set_span_titel">
+                  Seed Processing Unit
+                </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="">-->
+                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
+              </div>
+              <div class="tile_nember">
+                <!--<img src="img/storage.png" alt="" class="set_box_image">-->
+                11
+              </div>
+
+            </div>
+            <!-- Storgare centre tile end -->
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+    <div class="footer footerBox">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-7 text-center">
+
+            <!-- Accessibility Statement -->
+
+
+            <a href="/accessibilityen" title="Accessibility Statement">
+              Accessibility Statement
+            </a>
+            |
+            <a href="/privacypolicyen" title="Privacy Policy">
+              Privacy Policy
+            </a>
+            |
+            <!--Hyper Linnking Policy  -->
+            <a href="/hyperlinkingpolicyen" title="HyperLinking Policy">
+              Hyper Linking Policy
+            </a>
+            |
+
+            <!-- Copyright Policy -->
+
+
+            <a href="/copyrightpolicyen" title="Copyright Policy">
+              Copyright Policy
+            </a>
+
+            |
+
+            <a href="/termsconditionsen" title="Terms and Conditions">
+              Terms and Conditions
+            </a>
+            |
+            <a href="/disclaimeren" title="Disclaimer">
+              Disclaimer
+            </a>
+
+            |
+            <!--Help  -->
+
+
+            <a href="/helpen" title="Help">
+
+              Help
+            </a>
+
+
+            <p>
+              Content on this website is published and managed by State Agriculture Directorate Uttar Pradesh Krishi Bhawan Lucknow.
+
+            </p>
+            <p>
+              For any questions about this website, please contact
+              Web Information Manager
+              .
+            </p>
+          </div>
+          <div class="col-sm-5 text-center">
+            <p style="margin: 0;">Last reviewed and updated on: 23-07-2020</p>
+            <p> © State Agriculture Directorate Uttar Pradesh, India | All rights reserved.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

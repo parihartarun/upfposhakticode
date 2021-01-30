@@ -13,7 +13,7 @@ import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/
 import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.component';
 
 export const AuthLayoutRoutes: Routes = [
-    { path: 'home', component: HomeComponent },
+   
     { path: 'login', component: LoginComponent },
     { path: 'fpo-details/:id', component: FpoDetailsComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },

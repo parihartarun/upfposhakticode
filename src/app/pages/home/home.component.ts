@@ -21,6 +21,10 @@ export class HomeComponent implements OnInit {
     translate.use(browserLang.match(/en|hi/) ? browserLang : 'hi');
   }
 
+  useLanguage(language: string) {
+
+    this.translate.use(language);
+  }
   ngOnInit(): void {
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;

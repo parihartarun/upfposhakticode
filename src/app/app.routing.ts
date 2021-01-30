@@ -7,13 +7,17 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 import { AuthGuardService } from './_helpers/auth-guard.service';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes =[
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  }, {
+    path: '', component: HomeComponent ,
+   
+  },
+  {
+    path: 'home', component: HomeComponent
+  },
+  {
     path: '',
     component: AdminLayoutComponent,
     children: [
@@ -34,7 +38,8 @@ const routes: Routes =[
     ]
   }, {
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: 'home',
+     pathMatch: 'full'
   }
 ];
 

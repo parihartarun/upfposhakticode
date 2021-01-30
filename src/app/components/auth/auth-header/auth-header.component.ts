@@ -28,7 +28,7 @@ export class AuthHeaderComponent implements OnInit {
   ngOnInit(): void {
     this._activatedroute.paramMap.subscribe(params => {
       if (this.route.url === '/home') {
-        this.isHome = false
+        this.isHome = true
       }
       else {
         this.isHome = true;
