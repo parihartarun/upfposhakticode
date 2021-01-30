@@ -42,7 +42,7 @@ export class LandDetailsComponent implements OnInit {
       isorganc:['', [Validators.required]],
       masterId:localStorage.getItem('masterId'),
       updatedBy:localStorage.getItem('userrole'),
-      id:['']
+      landId:['']
     });
     console.log(this.landDetailForm.value);
     this.getLandDetailList(this.master_id);
@@ -106,6 +106,7 @@ export class LandDetailsComponent implements OnInit {
     if (this.landDetailForm.invalid) {
         return;
     }
+    console.log(this.landDetailForm.value);
     this.fpoService.updateLandDetail(this.landDetailForm.value).subscribe(response => {
       if(response.id != ''){
         this.toastr.success('Land Detail Updated successfully.');
@@ -126,12 +127,14 @@ export class LandDetailsComponent implements OnInit {
   editLandDetail(landDetail){
     console.log(landDetail);
     this.landDetailForm = this.formBuilder.group({
-      farmerName: [landDetail.farmerName, [Validators.required]],
-      fatherHusbandName: [landDetail.fatherHusbandName, [Validators.required]],
-      ownerShip: [landDetail.ownership, [Validators.required]],
-      land_area: [landDetail.land_area, [Validators.required]],
-      organ:[landDetail.isorganc, [Validators.required]],
-      id:[landDetail.landId]
+      farmerId: [landDetail.farmerId, [Validators.required]],
+      guardianName: [landDetail.parantsName, [Validators.required]],
+      ownerShip: [landDetail.ownerShip, [Validators.required]],
+      land_area: [landDetail.landArea, [Validators.required]],
+      isorganc:[landDetail.isorganc, [Validators.required]],
+      masterId:localStorage.getItem('masterId'),
+      updatedBy:localStorage.getItem('userrole'),
+      landId:[landDetail.landId]
     });
     
     this.edit = true;
@@ -141,7 +144,6 @@ export class LandDetailsComponent implements OnInit {
   confirmDelete(landDetailId){
     if(confirm("Are you sure to delete this item")) {
       this.fpoService.deletelandDetailById(landDetailId).subscribe(response => {
-        alert(JSON.stringify(response));
         if(response == true){
           this.toastr.success('Land Detail Deleted successfully.');
           this.getLandDetailList(this.master_id);

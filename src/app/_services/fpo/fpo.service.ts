@@ -312,13 +312,13 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   deletelandDetailById(id: number) {
-    alert(id)
     return this.http.delete<any>(this._url + 'api/fpos/land/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
+
   updateLandDetail(data: any) {
-    return this.http.put<any>(this._url + 'api/fpos/land/' + data.id, data).pipe(map((res: any) => {
+    return this.http.put<any>(this._url + 'api/fpos/land/editDetails/' + data.landId, data).pipe(map((res: any) => {
       return res;
     }));
   }
