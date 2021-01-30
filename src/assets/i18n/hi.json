@@ -12,6 +12,7 @@
   "Buyer/ Seller": "खरीदार विक्रेता",
   "Input Supplier": "इनपुट आपूर्तिकर्ता",
   "Equipment Centre": "उपकरण केंद्र",
+  "FPO guidelines":"एफपीओ दिशानिर्देश",
 
   "bannerSearchText": "नाम / जिले / फसल / सेवाओं / उत्पादों द्वारा खोज एफपीओ",
   "Any": "कोई भी",
@@ -65,5 +66,20 @@
   "FPO Name:": "एफपीओ का नाम:",
   "State:": "राज्य:",
   "District:": "जिला:",
-  "CHC/FMB": "CHC/FMB"
+  "CHC/FMB": "CHC/FMB",
+
+  "Welcome to FPO Shakti!":"एफपीओ शक्ती मध्ये आपले स्वागत आहे!",
+  "username is required":"वापरकर्तानाव आवश्यक आहे",
+  "Password is required":"संकेतशब्द आवश्यक आहे",
+  "recaptcha is required":"recaptcha आवश्यक आहे",
+  "Forgot password":"संकेतशब्द विसरलात",
+  "Create new account":"नवीन खाते तयार करा",
+  "Password":"संकेतशब्द",
+  "username":"वापरकर्तानाव",
+
+  "Please enter registered email address to reset your password":"कृपया अपना पासवर्ड रीसेट करने के लिए पंजीकृत ईमेल पता दर्ज करें।",
+  "Email is required":"ईमेल जरुरी है",
+  "Send password reset email":"पासवर्ड रीसेट ईमेल भेजें",
+  "Login now":"अभी लॉगिन करे",
+  "email":"ईमेल"
 }

@@ -19,7 +19,6 @@ import { ByerSellRegisterComponent } from '../../pages/registers/byer-sell-regis
 import { InputSupplierRegisterComponent } from '../../pages/registers/input-supplier-register/input-supplier-register.component';
 import { EquipmentCentreRegisterComponent } from '../../pages/registers/equipment-centre-register/equipment-centre-register.component';
 import { FarmerChcRegisterComponent } from '../../pages/registers/farmer-chc-register/farmer-chc-register.component';
-import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -41,7 +40,7 @@ import { ForgotPasswordComponent } from '../../pages/auth-pages/forgot-password/
     ByerSellRegisterComponent,
     InputSupplierRegisterComponent,
     EquipmentCentreRegisterComponent,
-    FarmerChcRegisterComponent, ForgotPasswordComponent
+    FarmerChcRegisterComponent
   ],
   providers: [
     { provide: BsDatepickerConfig },

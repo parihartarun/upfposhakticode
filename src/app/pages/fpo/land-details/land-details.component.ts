@@ -41,7 +41,7 @@ export class LandDetailsComponent implements OnInit {
       land_area: ['', [Validators.required]],
       isorganc:['', [Validators.required]],
       masterId:localStorage.getItem('masterId'),
-      updatedBy:localStorage.getItem('userrole'),
+      updatedBy:localStorage.getItem('userRole'),
       landId:['']
     });
     console.log(this.landDetailForm.value);
@@ -79,12 +79,11 @@ export class LandDetailsComponent implements OnInit {
       if (this.landDetailForm.invalid) {
         return;
       }
-      console.log(this.landDetailForm.value);
       var data = this.landDetailForm.value;
       data['farmerProfile'] = {"farmerId":this.landDetailForm.value.farmerId};
       delete data.farmerId;
       console.log(data);
-      this.fpoService.addLandDetails(this.landDetailForm.value).subscribe(response => {
+      this.fpoService.addLandDetails(data).subscribe(response => {
         console.log(response)
         if(response.id != ''){
             this.toastr.success('Land Details Added Successfully.')
@@ -106,8 +105,11 @@ export class LandDetailsComponent implements OnInit {
     if (this.landDetailForm.invalid) {
         return;
     }
-    console.log(this.landDetailForm.value);
-    this.fpoService.updateLandDetail(this.landDetailForm.value).subscribe(response => {
+    var data = this.landDetailForm.value;
+    data['farmerProfile'] = {"farmerId":this.landDetailForm.value.farmerId};
+    delete data.farmerId;
+    console.log(data);
+    this.fpoService.updateLandDetail(data).subscribe(response => {
       if(response.id != ''){
         this.toastr.success('Land Detail Updated successfully.');
         this.submitted = false;
@@ -125,7 +127,7 @@ export class LandDetailsComponent implements OnInit {
   }
 
   editLandDetail(landDetail){
-    console.log(landDetail);
+    console.log(localStorage.getItem('userrole'));
     this.landDetailForm = this.formBuilder.group({
       farmerId: [landDetail.farmerId, [Validators.required]],
       guardianName: [landDetail.parantsName, [Validators.required]],
@@ -133,7 +135,7 @@ export class LandDetailsComponent implements OnInit {
       land_area: [landDetail.landArea, [Validators.required]],
       isorganc:[landDetail.isorganc, [Validators.required]],
       masterId:localStorage.getItem('masterId'),
-      updatedBy:localStorage.getItem('userrole'),
+      updatedBy:localStorage.getItem('userRole'),
       landId:[landDetail.landId]
     });
     
