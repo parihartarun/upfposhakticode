@@ -374,7 +374,7 @@ element.style {
     height: calc(1.5em + 0.7rem + 2px);
 }
 #searchin {
-    padding:5px;
+  padding: 3.5%;
 }
 .form-control-feedback.btn-warning {
   height: 33px;
