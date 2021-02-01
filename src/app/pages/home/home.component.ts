@@ -14,6 +14,10 @@ export class HomeComponent implements OnInit {
   isLoggeIn = false;
   username = '';
   isHome = true;
+
+  searchValue: string = null;
+  searchType: any = 'any';
+  data = { searchValue: this.searchValue, searchType: this.searchType }
   constructor(private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService,) {
     translate.addLangs(['en', 'hi']);
     translate.setDefaultLang('hi');
@@ -42,6 +46,9 @@ export class HomeComponent implements OnInit {
     localStorage.removeItem('userrole');
     this.route.navigate(['/login']);
     location.reload();
+  }
+  selectValue() {
+    this.data.searchValue = this.searchValue;
   }
 
 }

@@ -211,8 +211,8 @@
 
               </div>
             </carousel>
-            <div class="main" style="margin-top: 1%;">
-              <div style="background-color: #cfb000;">
+            <div class="main" >
+              <div >
                 <strong class="searchFPO " style="">Search FPO by Name/ District/ Crop/ Services/ Products</strong>
               </div>
               <div class="row serachBarWpper ">
@@ -220,7 +220,7 @@
                   <div class="form-group has-feedback">
                     <div class="form-group">
                       <div id="filterDate2">
-                        <input type="text" id="homesearch" class="form-control" style="" placeholder="Type here to search.....">
+                        <input type="text" id="homesearch" class="form-control" style="" placeholder="Type here to search....." [(ngModel)]="searchValue"(input)="selectValue()">
                       </div>
                     </div>
                   </div>
@@ -238,7 +238,9 @@
                   </div>
                 </div>
                 <div class="col-md-2" style="padding: 0px;">
-                  <input type="button" value="🔍 Search" class="form-control-feedback btn-warning" style="width: 100%; pointer-events: all;">
+                  <a [routerLink]="['/products',data.searchValue,data.searchType]" routerLinkActive="active"  >                  
+                    <input type="button" value="🔍 Search" class="form-control-feedback btn-warning" style="width: 100%; pointer-events: all;">
+                  </a>
                 </div>
               </div>
             </div>
