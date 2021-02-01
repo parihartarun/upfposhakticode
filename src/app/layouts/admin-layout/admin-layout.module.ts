@@ -6,32 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
-import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ToastrModule } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
-
-import { BoardMembersComponent } from '../../pages/fpo/board-members/board-members.component';
-import { LicenseComponent } from '../../pages/fpo/license/license.component';
-import { MachinaryBankComponent } from '../../pages/fpo/machinary-bank/machinary-bank.component';
-import { StorageUnitComponent } from '../../pages/fpo/storage-unit/storage-unit.component';
-import { CropProductionComponent } from '../../pages/fpo/crop-production/crop-production.component';
-import { SalesDetailsComponent } from '../../pages/fpo/sales-details/sales-details.component';
-import { ProductionReportComponent } from '../../pages/fpo/production-report/production-report.component';
-import { PhotographsComponent } from '../../pages/fpo/photographs/photographs.component';
-import { FarmerDetailsComponent } from '../../pages/fpo/farmer-details/farmer-details.component';
-import { LandDetailsComponent } from '../../pages/fpo/land-details/land-details.component';
-import { AddFarmerComponent } from '../../pages/fpo/add-farmer/add-farmer.component';
-import { ProductionDetailsComponent } from '../../pages/fpo/production-details/production-details.component';
-import { CropShowingDetailsComponent } from '../../pages/fpo/crop-showing-details/crop-showing-details.component';
-import { ComplaintsComponent } from '../../pages/fpo/complaints/complaints.component';
-import { ServicesComponent } from '../../pages/fpo/services/services.component';
 import { DepartmentDashboardComponent } from '../../pages/department/dashboard/departmentDashboard.component';
 import { DepartmentAllUsersComponent } from '../../pages/department/department-all-users/department-all-users.component';
 import { DepartmentUserManagementComponent } from '../../pages/department/department-user-management/department-user-management.component';
@@ -42,12 +23,6 @@ import { DepartmentProductionReportComponent } from '../../pages/department/depa
 import { DepartmentSalesReportComponent } from '../../pages/department/department-sales-report/department-sales-report.component';
 import { DepartmentCircularsComponent } from '../../pages/department/department-circulars/department-circulars.component';
 
-
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
-
 @NgModule({
   imports: [
     CommonModule,
@@ -57,35 +32,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    NgxPaginationModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    NgxPaginationModule
   ],
   declarations: [
-    DashboardComponent,
     UserProfileComponent,
-    BoardMembersComponent,
-    LicenseComponent,
-    MachinaryBankComponent,
-    StorageUnitComponent,
-    CropProductionComponent,
-    SalesDetailsComponent,
-    ProductionReportComponent,
-    PhotographsComponent,
-    FarmerDetailsComponent,
-    LandDetailsComponent,
-    AddFarmerComponent,
-    ProductionDetailsComponent,
-    CropShowingDetailsComponent,
-    ComplaintsComponent,
-    ServicesComponent,
     DepartmentDashboardComponent,
-   
     DepartmentSalesReportComponent,
     DepartmentCircularsComponent,
     DepartmentSalesReportComponent,

@@ -12,7 +12,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Add Farmer</h3>
+              <h3 class="mb-0">{{'Add Farmer'| translate}}</h3>
             </div>
           </div>
         </div>
@@ -23,10 +23,10 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-farmerLotNo">Farmer Registration Number (UP Agri Pardarshi)<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-farmerLotNo">{{'Farmer Registration Number (UP Agri Pardarshi)'| translate}}<span class="required">*</span></label>
                     <input type="text" formControlName="farmerLotNo" id="input-farmerLotNo"  class="form-control" >
                     <div *ngIf="submitted && formControls.farmerLotNo.errors" class="text-danger">
-                      <div *ngIf="formControls.farmerLotNo.errors.required">Farmer Registration Number is required</div>
+                      <div *ngIf="formControls.farmerLotNo.errors.required">{{'Farmer Registration Number is required'| translate}}</div>
                     </div>
                   </div>
                 </div>
@@ -34,19 +34,19 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-farmerName">Farmer's Name<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-farmerName">{{"Farmer's Name" | translate}}<span class="required">*</span></label>
                     <input type="text" formControlName="farmerName" id="input-farmerName" class="form-control">
                     <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
-                      <div *ngIf="formControls.farmerName.errors.required">farmer name is required</div>
+                      <div *ngIf="formControls.farmerName.errors.required">{{'farmer name is required'| translate}}</div>
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-parantsName">Father's/ Husband's Name<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-parantsName">{{"Father's/ Husband's Name" | translate}}<span class="required">*</span></label>
                     <input type="text" formControlName="parantsName" id="input-parantsName" class="form-control">
                     <div *ngIf="submitted && formControls.parantsName.errors" class="text-danger">
-                      <div *ngIf="formControls.parantsName.errors.required">Father's/ Husband's Name is required</div>
+                      <div *ngIf="formControls.parantsName.errors.required">{{"Father's/ Husband's Name is required" | translate}}</div>
                     </div>
                   </div>
                 </div>
@@ -54,73 +54,73 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Category<span class="required">*</span></label><br/>
+                    <label class="form-control-label" for="input-last-name">{{'Category'| translate}}<span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3 ">
                       <input class="custom-control-input" id="customRadio1" value="general" formControlName="category"  type="radio">
-                      <label class="custom-control-label" for="customRadio1">General</label>
+                      <label class="custom-control-label" for="customRadio1">{{'General'| translate}}</label>
                     </div>
                     <div class="custom-control custom-radio mb-3">
                       <input  class="custom-control-input" id="customRadio2" value="obc" formControlName="category" type="radio">
-                      <label class="custom-control-label" for="customRadio2">OBC</label>
+                      <label class="custom-control-label" for="customRadio2">{{'OBC'| translate}}</label>
                     </div> 
                     <div class="custom-control custom-radio mb-3">
                       <input class="custom-control-input" id="customRadio3" value="sc" formControlName="category" checked="" type="radio">
-                      <label class="custom-control-label" for="customRadio3">SC</label>
+                      <label class="custom-control-label" for="customRadio3">{{'SC'| translate}}</label>
                     </div> 
                     <div class="custom-control custom-radio mb-3">
                       <input class="custom-control-input" id="customRadio4" value="st" formControlName="category" type="radio">
-                      <label class="custom-control-label" for="customRadio4">ST</label>
+                      <label class="custom-control-label" for="customRadio4">{{'ST'| translate}}</label>
                     </div> 
                     <div class="custom-control custom-radio mb-3">
                       <input class="custom-control-input" id="customRadio5" value="other" formControlName="category" type="radio">
-                      <label class="custom-control-label" for="customRadio5">OTHER</label>
+                      <label class="custom-control-label" for="customRadio5">{{'OTHER'| translate}}</label>
                     </div>    
                     <div *ngIf="submitted && formControls.category.errors" class="text-danger">
-                      <div *ngIf="formControls.category.errors.required">Category is required</div>
+                      <div *ngIf="formControls.category.errors.required">{{'Category is required'| translate}}</div>
                     </div>             
                   </div>
                 </div>
                 <div class="col-lg-6">
-                    <label class="form-control-label" for="input-last-name">Gender<span class="required">*</span></label><br/>
+                    <label class="form-control-label" for="input-last-name">{{'Gender'| translate}}<span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
                       <input formControlName="gender" value="Male" class="custom-control-input" id="customRadio6" type="radio">
-                      <label class="custom-control-label" for="customRadio6">Male</label>
+                      <label class="custom-control-label" for="customRadio6">{{'Male'| translate}}</label>
                     </div>
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
                       <input formControlName="gender" value="Female" class="custom-control-input" id="customRadio7" checked="" type="radio">
-                      <label class="custom-control-label" for="customRadio7">Female</label>
+                      <label class="custom-control-label" for="customRadio7">{{'Female'| translate}}</label>
                     </div> 
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
                       <input formControlName="gender" class="custom-control-input" id="customRadio8" type="radio">
-                      <label class="custom-control-label" for="customRadio8">Other</label>
+                      <label class="custom-control-label" for="customRadio8">{{'Other'| translate}}</label>
                     </div>
                     <div *ngIf="submitted && formControls.gender.errors" class="text-danger">
-                      <div *ngIf="formControls.gender.errors.required"> Gender is required</div>
+                      <div *ngIf="formControls.gender.errors.required"> {{'Gender is required'| translate}}</div>
                     </div>               
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">District<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-last-name">{{'District'| translate}}<span class="required">*</span></label>
                     <select class="form-control" formControlName="distRefId" (change)="selectDistrict($event.target.value)">
                       <option>Select District</option>
                       <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
                     </select>
                   <div *ngIf="submitted && formControls.distRefId.errors" class="text-danger">
-                    <div *ngIf="formControls.distRefId.errors.required">district is required</div>
+                    <div *ngIf="formControls.distRefId.errors.required">{{'district is required'| translate}}</div>
                   </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Block<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-last-name">{{'Block'| translate}}<span class="required">*</span></label>
                     <select class="form-control" formControlName="blockRef" (change)="selectBlock($event.target.value)">
                       <option>Select Block</option>
                       <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
                     </select>  
                     <div *ngIf="submitted && formControls.blockRef.errors" class="text-danger">
-                      <div *ngIf="formControls.blockRef.errors.required">block is required</div>
+                      <div *ngIf="formControls.blockRef.errors.required">{{'block is required'| translate}}</div>
                     </div>                
                   </div>
                 </div>
@@ -128,25 +128,25 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Gram Panchayat<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-last-name">{{'Gram Panchayat'| translate}}<span class="required">*</span></label>
                     <select class="form-control" formControlName="villagePanchayatId" (change)="selectPanchayat($event.target.value)">
                       <option>Select Panchayat</option>
                       <option *ngFor="let panchayat of panchayats" [value]="panchayat.panchayat_id">{{panchayat.panchayat_name}}</option>
                     </select>    
                     <div *ngIf="submitted && formControls.villagePanchayatId.errors" class="text-danger">
-                      <div *ngIf="formControls.villagePanchayatId.errors.required">panchayat is required</div>
+                      <div *ngIf="formControls.villagePanchayatId.errors.required">{{'panchayat is required'| translate}}</div>
                     </div>              
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Village<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-last-name">{{'Village'| translate}}<span class="required">*</span></label>
                     <select class="form-control" formControlName="villRefId">
                       <option>Select Village</option>
                       <option *ngFor="let village of villages" [value]="village.villageId">{{village.villageName}}</option>
                     </select>  
                   <div *ngIf="submitted && formControls.villRefId.errors" class="text-danger">
-                    <div *ngIf="formControls.villRefId.errors.required">agency is required</div>
+                    <div *ngIf="formControls.villRefId.errors.required">{{'village is required'| translate}}</div>
                   </div>                
                   </div>
                 </div>
@@ -155,22 +155,22 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-pincode">Pincode<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-pincode">{{'Pincode'| translate}}<span class="required">*</span></label>
                     <input class="form-control" type="number" formControlName="pincode">
 
                   <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
-                    <div *ngIf="formControls.pincode.errors.required">pincode is required</div>
-                    <span *ngIf="formControls.pincode.errors.pattern"> mobile number should be 6 digit</span>
+                    <div *ngIf="formControls.pincode.errors.required">{{'Pincode is required'| translate}}</div>
+                    <span *ngIf="formControls.pincode.errors.pattern"> {{'Pincode should be 6 digit'| translate}}</span>
                   </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-mobile">Mobile<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-mobile">{{'Mobile'| translate}}<span class="required">*</span></label>
                     <input type="number" formControlName="farmerMob" id="input-mobile" class="form-control">
                   <div *ngIf="submitted && formControls.farmerMob.errors" class="text-danger">
-                    <div *ngIf="formControls.farmerMob.errors.required">mobile is required</div>
-                    <span *ngIf="formControls.farmerMob.errors.pattern"> mobile number should be 10 digit</span>
+                    <div *ngIf="formControls.farmerMob.errors.required">{{'mobile is requiredv</div>
+                    <span *ngIf="formControls.farmerMob.errors.pattern"> {{'mobile number should be 10 digit'| translate}}</span>
                   </div>
                   </div>
                 </div>
@@ -181,7 +181,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-bankName">Bank Name</label>
+                    <label class="form-control-label" for="input-bankName">{{'Bank Name'| translate}}</label>
                     <select class="form-control" formControlName="bankRefId" (change)="selectBanks($event)">
                         <option value="">Select Bank Name</option>
                         <option *ngFor="let bank of banks" [value]="bank.bankId">{{bank.bankName}}</option>
@@ -190,7 +190,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-ifscCode">IFSC Code</label>
+                    <label class="form-control-label" for="input-ifscCode">{{'IFSC Code'| translate}}</label>
                     <input type="text" formControlName="ifscCode" id="input-IFSC" class="form-control">
                   </div>
                 </div>
@@ -198,7 +198,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-accountNo">Bank Account Number</label>
+                    <label class="form-control-label" for="input-accountNo">{{'Bank Account Number'| translate}}</label>
                     <input type="text" formControlName="accountNo" id="input-bankAccNo" class="form-control" >
                   </div>
                 </div>
@@ -241,12 +241,12 @@
             </div>
             <div class="card-footer py-4 text-center">
               <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="register()">
-                Add Land Detail
+                {{'Save'| translate}}
               </button>
               <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateFarmerDetails()">
-                Update Land Detail
+                {{'Save'| translate}}
               </button>
-              <button class="btn btn-warning text-right" (click)="resetForm()">Reset</button>
+              <button class="btn btn-warning text-right" (click)="resetForm()">{{'Reset'| translate}}</button>
             </div>
           </form>
 

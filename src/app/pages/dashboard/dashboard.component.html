@@ -8,7 +8,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Total Farmers</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">{{'Total Farmers' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">{{totals.farmers}}</span>
                 </div>
                 <div class="col-auto">
@@ -29,7 +29,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Marginal Farmers</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">{{'Marginal Farmers' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">{{totals.marginalFarmers}}</span>
                 </div>
                 <div class="col-auto">
@@ -50,7 +50,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Small</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">{{'Small' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">{{totals.smallFarmers}}</span>
                 </div>
                 <div class="col-auto">
@@ -73,7 +73,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Other</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">{{'Other' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">{{totals.otherFarmers}}</span>
                 </div>
                 <div class="col-auto">
@@ -94,7 +94,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Total Land</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">{{'Total Land' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">{{totals.land}}</span>
                   <p class="mt-3 mb-0 text-muted text-sm">
                   </p>
@@ -117,7 +117,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Total Crops</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">{{'Total Crops' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">465</span>
                 </div>
                 <div class="col-auto">
@@ -144,20 +144,20 @@
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col-md-5">
-              <h6 class="text-uppercase text-light ls-1 mb-1">Total Crops</h6>
-              <h2 class="text-white mb-0">Sales value</h2>
+              <h6 class="text-uppercase text-light ls-1 mb-1">{{'Total Crops' | translate}}</h6>
+              <h2 class="text-white mb-0">{{'Sales value' | translate}}</h2>
             </div>
             <div class="col-md-7">
               <ul class="nav nav-pills justify-content-end">
                 <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[0];updateOptions()">
                   <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
-                    <span class="d-none d-md-block">Markatable Surplus</span>
+                    <span class="d-none d-md-block">{{'Markatable Surplus' | translate}}</span>
                     <span class="d-md-none">M</span>
                   </a>
                 </li>
                 <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[1];updateOptions()">
                   <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
-                    <span class="d-none d-md-block">Productions</span>
+                    <span class="d-none d-md-block">{{'Productions' | translate}}</span>
                     <span class="d-md-none">W</span>
                   </a>
                 </li>
@@ -179,8 +179,8 @@
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-              <h2 class="mb-0">Total Indents</h2>
+              <h6 class="text-uppercase text-muted ls-1 mb-1">{{'Performance' | translate}}</h6>
+              <h2 class="mb-0">{{'Total Indents' | translate}}</h2>
             </div>
           </div>
         </div>

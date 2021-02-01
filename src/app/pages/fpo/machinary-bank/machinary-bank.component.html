@@ -12,7 +12,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Farm Machinery Bank</h3>
+              <h3 class="mb-0">{{'Farm Machinery Bank' | translate}}</h3>
             </div>
           </div>
         </div>
@@ -23,35 +23,35 @@
                 <input type="hidden" formControlName="id">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-username">Name of Equipment<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-username">{{'Name of Equipment' | translate}}<span class="required">*</span></label>
                     <select formControlName="equpment_name" class="form-control form-control-alternative">
                       <option value="">Select Equipment</option>
                       <option value="{{equip.equpmentname}}" *ngFor="let equip of equipmentList">{{equip.equpmentname}}</option>
                     </select>    
                     <div *ngIf="submitted && formControls.equpment_name.errors" class="text-danger">
-                      <div *ngIf="formControls.equpment_name.errors.required">Name of Equipment is required</div>
+                      <div *ngIf="formControls.equpment_name.errors.required">{{'Name of Equipment is required' | translate}}</div>
                     </div>                
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">No. of Equipment<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-first-name">{{'No. of Equipment' | translate}}<span class="required">*</span></label>
                     <input formControlName="equpment_no" type="text" id="input-first-name" class="form-control form-control-alternative">
                     <div *ngIf="submitted && formControls.equpment_no.errors" class="text-danger">
-                      <div *ngIf="formControls.equpment_no.errors.required">No. of Equipment is required</div>
-                      <div *ngIf="formControls.equpment_no.errors.min">No. of Equipment should be grater tahn or equal to 1</div>
+                      <div *ngIf="formControls.equpment_no.errors.required">{{'No. of Equipment is required' | translate}}</div>
+                      <div *ngIf="formControls.equpment_no.errors.min">{{'No. of Equipment should be grater than or equal to 1' | translate}}</div>
                     </div>  
                   </div>
                 </div>
               </div>
               <div class="card-footer py-4 text-center">
                 <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addMachinaryBank()">
-                  Add Equipment
+                  {{'Save' | translate}}
                 </button>
                 <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateMachinaryBank()">
-                  Update Equipment
+                  {{'Save' | translate}}
                 </button>
-                <button class="btn btn-warning text-right" (click)="resetForm()">Reset</button>
+                <button class="btn btn-warning text-right" (click)="resetForm()">{{'Reset' | translate}}</button>
               </div>
             </div>
           </form>

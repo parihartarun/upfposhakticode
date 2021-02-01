@@ -12,7 +12,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Add License</h3>
+              <h3 class="mb-0">{{'Add License' | translate}}</h3>
             </div>
           </div>
         </div>
@@ -23,22 +23,22 @@
                 <input type="hidden" formControlName="id">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-username">License Type<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-username">{{'License Type' | translate}}<span class="required">*</span></label>
                     <select formControlName="licenceType" class="form-control form-control-alternative">
                       <option value="">Select License Type</option>
                       <option value="{{licensesType.licenseName}}" *ngFor="let licensesType of licensesTypes">{{licensesType.licenseName}}</option>
                     </select>
                     <div *ngIf="submitted && formControls.licenceType.errors" class="text-danger">
-                      <div *ngIf="formControls.licenceType.errors.required">License Type is required</div>
+                      <div *ngIf="formControls.licenceType.errors.required">{{'License Type is required' | translate}}</div>
                     </div>   
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">License Issued By<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-first-name">{{'License Issued By' | translate}}<span class="required">*</span></label>
                     <input formControlName="licenceIssuedBy" type="text" id="input-first-name" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.licenceIssuedBy.errors" class="text-danger">
-                      <div *ngIf="formControls.licenceIssuedBy.errors.required">License Issued By is required</div>
+                      <div *ngIf="formControls.licenceIssuedBy.errors.required">{{'License Issued By is required' | translate}}</div>
                     </div>   
                   </div>
                 </div>
@@ -46,19 +46,19 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">License Number<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-email">{{'License Number' | translate}}<span class="required">*</span></label>
                     <input formControlName="liceneceNumber" type="text" id="input-email" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.liceneceNumber.errors" class="text-danger">
-                      <div *ngIf="formControls.liceneceNumber.errors.required">License Number is required</div>
+                      <div *ngIf="formControls.liceneceNumber.errors.required">{{'License Number is required' | translate}}</div>
                     </div>   
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">License Issued Date</label>
+                    <label class="form-control-label" for="input-email">{{'License Issued Date' | translate}}</label>
                     <input formControlName="issuedate" type="date" [max]="getToday()" id="input-email" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.issuedate.errors" class="text-danger">
-                      <div *ngIf="formControls.issuedate.errors.required">Issued Date is required</div>
+                      <div *ngIf="formControls.issuedate.errors.required">{{'Issued Date is required' | translate}}</div>
                     </div>   
                   </div>
                 </div>
@@ -66,10 +66,10 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">License Valid Till</label>
+                    <label class="form-control-label" for="input-last-name">{{'License Valid Till' | translate}}</label>
                     <input formControlName="licenceValidTill" type="date" [min]="getToday()" id="input-last-name" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.licenceValidTill.errors" class="text-danger">
-                      <div *ngIf="formControls.licenceValidTill.errors.required">Valid till Date is required</div>
+                      <div *ngIf="formControls.licenceValidTill.errors.required">{{'Valid till Date is required' | translate}}</div>
                     </div>   
                   </div>
                 </div>
@@ -77,12 +77,12 @@
 
               <div class="card-footer py-4 text-center">
                 <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addLicense()">
-                  Add License
+                  {{'Save' | translate}}
                 </button>
                 <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateLicense()">
-                  Update License
+                  {{'Save' | translate}}
                 </button>
-                <button class="btn btn-warning text-right" (click)="resetForm()">Reset</button>
+                <button class="btn btn-warning text-right" (click)="resetForm()">{{'Reset' | translate}}</button>
               </div>
             </div>
           </form>

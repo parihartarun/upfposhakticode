@@ -17,14 +17,11 @@ export class AuthHeaderComponent implements OnInit {
   constructor(public translate: TranslateService, private route: Router, private _activatedroute: ActivatedRoute) {
     translate.addLangs(['en', 'hi']);
     translate.setDefaultLang('hi');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|hi/) ? browserLang : 'hi');
-   
-
+    localStorage.setItem('language', 'hi');
   }
   useLanguage(language: string) {
-
     this.translate.use(language);
+    localStorage.setItem('language', language);
   }
 
   ngOnInit(): void {

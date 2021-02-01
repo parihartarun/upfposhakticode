@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { departmentROUTES, FPOROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
@@ -16,12 +17,18 @@ export class NavbarComponent implements OnInit {
   username = '';
   userRole: any;
 
-userstring=""
-  constructor(location: Location,  private element: ElementRef, private router: Router) {
+  userstring=""
+  constructor(location: Location,  private element: ElementRef, private router: Router, public translate: TranslateService) {
     this.location = location;
+    if(localStorage.getItem('language')){
+      translate.setDefaultLang(localStorage.getItem('language'));
+    }else{
+      translate.setDefaultLang('hi');
+    }
   }
 
   ngOnInit() {
+    console.log(localStorage.getItem('language'));
     this.userRole = localStorage.getItem('userRole');
     if (this.userRole == 'ROLE_FPC') {
       this.listTitles = FPOROUTES.filter(listTitle => listTitle);

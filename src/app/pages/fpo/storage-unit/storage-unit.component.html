@@ -12,7 +12,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Add Storage/ Processing Unit</h3>
+              <h3 class="mb-0">{{'Add Storage/ Processing Unit' | translate}}</h3>
             </div>
           </div>
         </div>
@@ -25,41 +25,41 @@
                   <input type="hidden" formControlName="stateId">
 
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Type of Storage<span class="required">*</span></label><br/>
+                    <label class="form-control-label" for="input-last-name">{{'Type of Storage' | translate}}<span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3">
                       <input formControlName="storageType"  class="custom-control-input" id="coldstorageradio" value ="Cold Storage" type="radio">
-                      <label class="custom-control-label" for="coldstorageradio">Cold Storage</label>
+                      <label class="custom-control-label" for="coldstorageradio">{{'Cold Storage' | translate}}</label>
                     </div>
                     <div class="custom-control custom-radio mb-3">
                       <input formControlName="storageType" value ="Warehouse"  class="custom-control-input" id="warehouseradio" checked="" type="radio">
-                      <label class="custom-control-label" for="warehouseradio">Warehouse</label>
+                      <label class="custom-control-label" for="warehouseradio">{{'Warehouse' | translate}}</label>
                     </div> 
                     <div *ngIf="submitted && formControls.storageType.errors" class="text-danger">
-                      <div *ngIf="formControls.storageType.errors.required">Storage Type is required</div>
+                      <div *ngIf="formControls.storageType.errors.required">{{'Storage Type is required' | translate}}</div>
                     </div>                 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">fascilities available</label>
+                    <label class="form-control-label" for="input-last-name">{{'fascilities available' | translate}}</label>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
                       <input formControlName="washingfacility"  class="custom-control-input" id="washingfacilitycheck" type="checkbox">
-                      <label class="custom-control-label" for="washingfacilitycheck">Washing facility</label> 
+                      <label class="custom-control-label" for="washingfacilitycheck">{{'Washing facility' | translate}}</label> 
                     </div>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
                       <input formControlName="sortingmachines" class="custom-control-input" id="sortingmachinescheck"  type="checkbox" >
-                      <label class="custom-control-label" for="sortingmachinescheck">Sorting machines</label>
+                      <label class="custom-control-label" for="sortingmachinescheck">{{'Sorting machines' | translate}}</label>
                     </div>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
                       <input formControlName="gradingmachines"  class="custom-control-input" id="gradingmachinescheck" value="Grading machines" type="checkbox" >
-                      <label class="custom-control-label" for="gradingmachinescheck">Grading machines</label>
+                      <label class="custom-control-label" for="gradingmachinescheck">{{'Grading machines' | translate}}</label>
                     </div>
                     <div class="custom-control custom-control-alternative custom-checkbox mb-3">
                       <input formControlName="packagingmachines"  class="custom-control-input" id="packagingmachinescheck" value="Packaging machines" type="checkbox" checked="" >
-                      <label class="custom-control-label" for="packagingmachinescheck">Packaging machines</label>
+                      <label class="custom-control-label" for="packagingmachinescheck">{{'Packaging machines' | translate}}</label>
                     </div>
                     <div *ngIf="submitted && formControls.fascilities.errors" class="text-danger">
-                      <div *ngIf="formControls.fascilities.errors.required">facilities is required</div>
+                      <div *ngIf="formControls.fascilities.errors.required">{{'facilities is required' | translate}}</div>
                     </div>  
                   </div>
                 </div>
@@ -67,26 +67,26 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Storage Capacity (In Mt.)<span class="required">*</span></label>
-                    <input formControlName="storageCapacity"  type="number" id="input-last-name" class="form-control form-control-alternative" placeholder="Storage Capacity" value="">
+                    <label class="form-control-label" for="input-last-name">{{'Storage Capacity (In Mt.)' | translate}}<span class="required">*</span></label>
+                    <input formControlName="storageCapacity"  type="number" id="input-last-name" class="form-control form-control-alternative" value="">
                     <div *ngIf="submitted && formControls.storageCapacity.errors" class="text-danger">
-                      <div *ngIf="formControls.storageCapacity.errors.required">Storage Capacity is required</div>
+                      <div *ngIf="formControls.storageCapacity.errors.required">{{'Storage Capacity is required' | translate}}</div>
                     </div>  
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Do you have Seed Processing Unit? <span class="required">*</span></label><br/>
+                    <label class="form-control-label" for="input-last-name">{{'Do you have Seed Processing Unit?' | translate}} <span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3 ">
                       <input formControlName="isseedprocessingunit"  value="Yes"  class="custom-control-input" id="customRadio5" type="radio">
-                      <label class="custom-control-label" for="customRadio5">Yes</label>
+                      <label class="custom-control-label" for="customRadio5">{{'Yes' | translate}}</label>
                     </div>
                     <div class="custom-control custom-radio mb-3">
                       <input formControlName="isseedprocessingunit"  value="No" class="custom-control-input" id="customRadio6"  type="radio">
-                      <label class="custom-control-label" for="customRadio6">No</label>
+                      <label class="custom-control-label" for="customRadio6">{{'No' | translate}}</label>
                     </div>      
                     <div *ngIf="submitted && formControls.isseedprocessingunit.errors" class="text-danger">
-                      <div *ngIf="formControls.isseedprocessingunit.errors.required">This Field is required</div>
+                      <div *ngIf="formControls.isseedprocessingunit.errors.required">{{'This Field is required' | translate}}</div>
                     </div>            
                   </div>
                 </div>
@@ -94,27 +94,27 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">District</label>
+                    <label class="form-control-label" for="input-last-name">{{'District' | translate}}</label>
                     <select formControlName="distId" (change)="getBlocksByDistrictId()" id="districtselect" class="custom-control custom-select">
                       <option name="opt" [value]="undefined" selected disabled>Please Select District</option>
                       <option *ngFor="let district of districtlist" [value]="district.district_id">{{district.district_name}}</option>
                       
                     </select>
                     <div *ngIf="submitted && formControls.distId.errors" class="text-danger">
-                      <div *ngIf="formControls.distId.errors.required">District is required</div>
+                      <div *ngIf="formControls.distId.errors.required">{{'District is required' | translate}}</div>
                     </div>  
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Block</label>
+                    <label class="form-control-label" for="input-last-name">{{'Block' | translate}}</label>
                     <select formControlName="blockId"  id="blk" class="custom-control custom-select">
                       <option name="opt2" [value]="undefined" selected disabled>Please Select Block</option>
                       <option *ngFor="let block of blocklist" [value]="block.id">{{block.blockName}}</option>
                       
                     </select>  
                     <div *ngIf="submitted && formControls.blockId.errors" class="text-danger">
-                      <div *ngIf="formControls.blockId.errors.required">Block is required</div>
+                      <div *ngIf="formControls.blockId.errors.required">{{'Block is required' | translate}}</div>
                     </div>                  
                   </div>
                 </div>
@@ -122,22 +122,22 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Address</label>
-                    <textarea formControlName="address"  class="form-control form-control-alternative" rows="3" placeholder="Address"></textarea>
+                    <label class="form-control-label" for="input-last-name">{{'Address' | translate}}</label>
+                    <textarea formControlName="address"  class="form-control form-control-alternative" rows="3" ></textarea>
                     <div *ngIf="submitted && formControls.address.errors" class="text-danger">
-                      <div *ngIf="formControls.address.errors.required">Address is required</div>
+                      <div *ngIf="formControls.address.errors.required">{{'Address is required' | translate}}</div>
                     </div>  
                   </div>
                 </div>
               </div>
               <div class="card-footer py-4 text-center">
                 <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addStorageUnit()">
-                  Add Storage Unit
+                  {{'Add Storage Unit' | translate}}
                 </button>
                 <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateStrotageUnit()">
-                  Update Storage Unit
+                  {{'Update Storage Unit' | translate}}
                 </button>
-                <button class="btn btn-warning text-right" (click)="reset()">Reset</button>
+                <button class="btn btn-warning text-right" (click)="reset()">{{'Reset' | translate}}</button>
               </div>
             </div>
           </form>

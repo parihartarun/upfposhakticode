@@ -28,14 +28,13 @@ export class DashboardComponent implements OnInit {
     marginalFarmers:0,
     smallFarmers:0,
     land:0,
-
   };
   constructor(private api:FpoService){}
 
   ngOnInit() {
 
     this.getDashboardDetails();
-    //this.getChartDetails();
+    this.getChartDetails();
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
       [0, 20, 5, 25, 10, 30, 15, 40, 40]
@@ -74,15 +73,16 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  // getChartDetails(){
-  //   this.api.getChartDetails().subscribe(response => {
-  //     console.log(response);
-  //   },
-  //     err => {
-  //       console.log(err)
-  //     }
-  //   );
-  // }
+  getChartDetails(){
+    console.log(localStorage.getItem('masterId'));
+    this.api.getChartDetails(localStorage.getItem('masterId')).subscribe(response => {
+      console.log('ss'+response);
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
 
   public updateOptions() {
     this.salesChart.data.datasets[0].data = this.data;

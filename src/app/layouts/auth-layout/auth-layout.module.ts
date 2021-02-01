@@ -6,10 +6,7 @@ import { AuthLayoutRoutes } from './auth-layout.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RegisterComponent } from '../../pages/registers/register.component';
-import { LoginComponent } from '../../pages/auth-pages/login/login.component';
-
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { ProductsListComponent } from '../../pages/products-list/products-list.component';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { NgxCaptchaModule } from 'ngx-captcha';

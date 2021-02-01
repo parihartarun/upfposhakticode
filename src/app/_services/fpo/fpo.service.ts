@@ -9,13 +9,15 @@ import { environment }  from '../../../environments/environment';
 export class FpoService {
    //------------Dashboard Data ------------------------------
   getDashboardData(){
-    return  this.http.get<any>(this._url+`api/home/dashboard`).pipe(map((res:any)=>{
+    return  this.http.get<any>(this._url+`api/fpo/dashboard`).pipe(map((res:any)=>{
       return res;
     }));
   }
 
-  getChartDetails(){
-    
+  getChartDetails(masterId){
+    return  this.http.get<any>(this._url+`api/fpo/dashboard/getAllFpoDashboardData?master_id=`+masterId).pipe(map((res:any)=>{
+      return res;
+    }));
   }
 
   getBlocks()
