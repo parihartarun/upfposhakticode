@@ -26,21 +26,26 @@ constructor(private formBuilder: FormBuilder,
   ngOnInit() {
     this.getDitricts();
     this.getBlocks();
-    this.profileForm = this.formBuilder.group({
-      userName: ['', [Validators.required]],
-      fpoEmail: ['', [Validators.required]],
-      fpoName: ['', [Validators.required]],
-      fmbno: ['', [Validators.required]],
-      agency: ['', [Validators.required]],
-      fpoAddress: ['', [Validators.required]],
-      distRefId: ['', [Validators.required]],
-      blockRef: ['', [Validators.required]],
-      pincode: ['', [Validators.required]],
-      fpoBankName: [''],
-      fpoIFSC: [''],
-      fpoBankAccNo: [''],
-      fpoId: [''],
-    });
+
+    this.usernamestring=localStorage.getItem('userName');
+    this.api.getFpoProfileByUsername(localStorage.getItem('username')).subscribe(data=>{ 
+      console.log(data);
+      this.profileForm = this.formBuilder.group({
+        distRefId: [data.distRefId, [Validators.required]],
+        blockRef: [data.blockRef, [Validators.required]],
+        pincode: [data.pincode, [Validators.required]],
+        userName: [data.userName, [Validators.required]],
+        agency: [data.agency, [Validators.required]],
+        fpoEmail: [data.fpoEmail, [Validators.required]],
+        fpoIFSC: [data.fpoIFSC],
+        fpoBankAccNo: [data.fpoBankAccNo],
+        fpoId: [data.fpoId],
+        fpoName: [data.fpoName, [Validators.required]],
+        fmbno: [data.fmbno, [Validators.required]],
+        fpoAddress: [data.fpoAddress, [Validators.required]],
+        fpoBankName: [data.fpoBankName]
+      });
+    })
   }
 
   getDitricts(){
