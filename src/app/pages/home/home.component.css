@@ -371,13 +371,14 @@ element.style {
   border-color: #fff;
 }
 .form-control {
-    height: calc(1.5em + 0.7rem + 2px);
+    height: 35px
 }
 #searchin {
-  padding: 3.5%;
+  padding: 1%;
+  height: 33px;
 }
 .form-control-feedback.btn-warning {
-  height: 33px;
+  height: 35px;
 }
 .searchFPO {
   color: white;
@@ -446,8 +447,8 @@ app-auth-header {
   border-color: #ddd;
 }
 .mapwapper {
-    min-height:120px;
-    
+  min-height: 120px;
+  height: 100px
 }
 .searchFPO {
   margin-left: 0px;
@@ -565,13 +566,19 @@ app-auth-header {
   .serachBarWpper {
     padding: 0px 2.7%;
   }
+  .mapwapper {
+      height:auto
+  }
 }
 @media screen and (max-width: 845px) {
+  .footerBox{
+      height:auto;
+  }
   .set_notifications {
-      font-size:12px
+    font-size: 12px
   }
   .form-control-feedback.btn-warning{
-    height: 33px;
+    height: 34px;
     font-size: 10px;
   }
   
@@ -581,9 +588,24 @@ app-auth-header {
   .searchFPO{
       margin-left:0px;
   }
+  .mapwapper {
+    min-height: 120px;
+    height: auto
+  }
+  #searchin {
+    padding: 1%;
+  }
+  .set_comdbox .col-md-12 {
+    padding: 10%;
+  }
 }
 
 @media screen and (max-width: 768px) {
+
+  .serachBarWpper {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
   .header .parent, .header .gov {
     font-size: 18px;
   }
@@ -602,32 +624,40 @@ app-auth-header {
     text-align: center;
   }
 }
-@media screen and (max-width: 480px) {
-  .header .parent, .header .gov {
-    font-size: 14px;
-  }
-
-  .header .child, .headingTitle .up {
-    font-size: 12px
-  }
-
-  .logo-image {
-    width: 50%
-  }
-
-  .headingTitle {
-    margin-left: 0%;
-    margin-top: 0%;
-    text-align: center;
-  }
-
-  .logo-image {
-    width: 45%
-  }
+@media screen and (max-width: 700px) {
   .col-md-3.set_box_md4 {
     width: 100%;
-    max-width: 100%;
-    padding-top: 1%;
-    margin-right:0;
+    max-width: unset;
+    margin-right: 0px;
   }
 }
+  @media screen and (max-width: 480px) {
+    .header .parent, .header .gov {
+      font-size: 14px;
+    }
+
+    .header .child, .headingTitle .up {
+      font-size: 12px
+    }
+
+    .logo-image {
+      width: 50%
+    }
+
+    .headingTitle {
+      margin-left: 0%;
+      margin-top: 0%;
+      text-align: center;
+    }
+
+    .logo-image {
+      width: 45%
+    }
+
+    .col-md-3.set_box_md4 {
+      width: 100%;
+      max-width: 100%;
+      padding-top: 1%;
+      margin-right: 0;
+    }
+  }
