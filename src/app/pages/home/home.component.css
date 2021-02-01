@@ -507,17 +507,7 @@ app-auth-header {
       margin: 3%;
     }
 
-    .navbar-nav a {
-      margin: 0;
-    }
-
-    .navbar-nav > li > a {
-      margin: 0
-    }
-
-    .menu_langauge_btn {
-      margin: 0
-    }
+    
 
     .triangle-topright {
       display: none
@@ -538,17 +528,6 @@ app-auth-header {
   }
 @media screen and (max-width: 990px) {
 
-  .navbar-nav a {
-    margin: 0;
-  }
-
-  .navbar-nav > li > a {
-    margin: 0
-  }
-
-  .menu_langauge_btn {
-    margin: 0
-  }
   .header .parent, .header .gov {
     font-size: 16px;
   }
@@ -571,6 +550,18 @@ app-auth-header {
   }
 }
 @media screen and (max-width: 845px) {
+
+  .navbar-nav a {
+    margin: 0;
+  }
+
+  .navbar-nav > li > a {
+    margin: 0
+  }
+
+  .menu_langauge_btn {
+    margin: 0
+  }
   .footerBox{
       height:auto;
   }
