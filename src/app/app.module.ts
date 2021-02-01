@@ -26,6 +26,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 
 import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
 import { LoginComponent } from './pages/auth-pages/login/login.component';
+import { ForgotPasswordComponent } from './pages/auth-pages/forgot-password/forgot-password.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
@@ -74,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthHeaderComponent,
     HomeComponent,    
    
+    ForgotPasswordComponent
   ],
   exports: [   
     AuthHeaderComponent

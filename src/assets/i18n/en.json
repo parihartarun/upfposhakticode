@@ -12,6 +12,7 @@
   "Buyer/ Seller": "Buyer/ Seller",
   "Input Supplier": "Input Supplier",
   "Equipment Centre": "Equipment Centre",
+  "FPO guidelines":"FPO guidelines",
 
   "bannerSearchText": "Search FPO by Name/ District/ Crop/ Services/ Products",
   "Any": "Any",
@@ -64,5 +65,20 @@
   "FPO Name:": "FPO Name:",
   "State:": "state:",
   "District:": "District:",
-  "CHC/FMB": "CHC/FMB"
+  "CHC/FMB": "CHC/FMB",
+
+  "Welcome to FPO Shakti!":"Welcome to FPO Shakti!",
+  "username is required":"username is required",
+  "Password is required":"Password is required",
+  "recaptcha is required":"recaptcha is required",
+  "Forgot password":"Forgot password",
+  "Create new account":"Create new account",
+  "Password":"Password",
+  "username":"username",
+
+  "Please enter registered email address to reset your password":"Please enter registered email address to reset your password",
+  "Email is required":"Email is required",
+  "Send password reset email":"Send password reset email",
+  "Login now":"Login now",
+  "email":"email"
 }

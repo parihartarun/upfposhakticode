@@ -103,6 +103,7 @@ export class AddFarmerComponent implements OnInit {
         villagePanchayatId: ['', Validators.required],
         fpoRefId: localStorage.getItem('masterId'),
         userFar: [],
+        farmerId:[''],
         password: ['12345678'],
         confirmPassword: ['12345678']
     }, {
@@ -169,6 +170,7 @@ export class AddFarmerComponent implements OnInit {
     this.selectBlock(farmerDetails.blockRef);
     this.selectPanchayat(farmerDetails.villagePanchayatId);
     this.fpoAddFarmerForm = this.fb.group({
+        farmerId:[farmerDetails.farmerId],
         farmerLotNo:[farmerDetails.farmerLotNo, Validators.required],
         accountNo : [farmerDetails.accountNo],
         bankRefId: [farmerDetails.bankRefId],
@@ -199,6 +201,30 @@ export class AddFarmerComponent implements OnInit {
     });
     this.edit = true;
     window.scroll(0,0);
+  }
+
+  updateFarmerDetails(){
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.fpoAddFarmerForm.invalid) {
+        return;
+    }    
+    console.log(this.fpoAddFarmerForm.value);
+    this.fpo.updateFarmer(this.fpoAddFarmerForm.value).subscribe(response => {
+      if(response.id != ''){
+        this.toastr.success('Farmer Detail Updated successfully.');
+        this.submitted = false;
+        this.edit = false;
+        this.fpoAddFarmerForm.reset();
+      }else{
+          this.toastr.error('Error! While Updating Farmer.');
+      }
+      this.getFarmerDetailList();
+    },
+      err => {
+        console.log(err)
+      }
+    );
   }
 
   confirmDelete(id){

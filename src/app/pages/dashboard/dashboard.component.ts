@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
     this.getDashboardDetails();
+    //this.getChartDetails();
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
       [0, 20, 5, 25, 10, 30, 15, 40, 40]
@@ -72,6 +73,16 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+
+  // getChartDetails(){
+  //   this.api.getChartDetails().subscribe(response => {
+  //     console.log(response);
+  //   },
+  //     err => {
+  //       console.log(err)
+  //     }
+  //   );
+  // }
 
   public updateOptions() {
     this.salesChart.data.datasets[0].data = this.data;

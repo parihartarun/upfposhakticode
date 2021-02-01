@@ -14,6 +14,10 @@ export class FpoService {
     }));
   }
 
+  getChartDetails(){
+    
+  }
+
   getBlocks()
   {
     return  this.http.get<any>(this._url+`api/v1/block/getBlocks`).pipe(map((res:any)=>{
@@ -312,13 +316,13 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   deletelandDetailById(id: number) {
-    alert(id)
-    return this.http.delete<any>(this._url + 'api/fpos/land/' + id).pipe(map((res: any) => {
+    return this.http.delete<any>(this._url + 'api/fpos/land/deleteDetails/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
+
   updateLandDetail(data: any) {
-    return this.http.put<any>(this._url + 'api/fpos/land/' + data.id, data).pipe(map((res: any) => {
+    return this.http.put<any>(this._url + 'api/fpos/land/editDetails/' + data.landId, data).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -338,7 +342,8 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   updateFarmer(data: any) {
-    return this.http.post<any>(this._url + 'api/Farmer/editFarmer/'+data.id, data).pipe(map((res: any) => {
+    console.log(data);
+    return this.http.put<any>(this._url + 'api/Farmer/editFarmer/' + data.farmerId, data).pipe(map((res: any) => {
       return res;
     }));
   }
