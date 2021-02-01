@@ -18,16 +18,20 @@ export class HomeComponent implements OnInit {
   searchValue: string = null;
   searchType: any = 'any';
   data = { searchValue: this.searchValue, searchType: this.searchType }
+  isOpen = false;
+  isDropdownOpen = false;
   constructor(private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService,) {
     translate.addLangs(['en', 'hi']);
     translate.setDefaultLang('hi');
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en|hi/) ? browserLang : 'hi');
+
   }
 
   useLanguage(language: string) {
 
     this.translate.use(language);
+    this.toggleNavbar();
   }
   ngOnInit(): void {
     if (sessionStorage.getItem('accessToken') != null) {
@@ -46,9 +50,17 @@ export class HomeComponent implements OnInit {
     localStorage.removeItem('userrole');
     this.route.navigate(['/login']);
     location.reload();
+
   }
   selectValue() {
     this.data.searchValue = this.searchValue;
   }
-
+  mobileHeader() {
+  }
+  toggleNavbar() {
+    this.isOpen = !this.isOpen;
+  }
+  toggleDropDown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
 }

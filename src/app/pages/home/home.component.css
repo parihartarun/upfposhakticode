@@ -110,7 +110,7 @@
   }
   .news-item {
     overflow: hidden;
-    height: 42.6994px;
+    height: auto;
     padding-top: 9.7044px;
     margin-top: 0px;
     padding-bottom: 9.7044px;
@@ -335,12 +335,14 @@
     box-shadow: 0 0 0 -0.8rem rgba(0,123,255,.25);
   }
   .serachBarWpper {
-    padding: 0px 1.7%;
+    padding: 0px 1.9%;
   }
   .dropdown.searchDropDown {
     border: 1px solid #ced4da;
     border-radius: .25rem;
     background-color:#fff;
+    width:100%;
+    margin-bottom:4%;
   }
 .btn-warning:hover, .btn-warning:active, .btn-warning:focus {
   color: #fff;
@@ -369,13 +371,14 @@ element.style {
   border-color: #fff;
 }
 .form-control {
-    height: calc(1.5em + 0.7rem + 2px);
+    height: 35px
 }
 #searchin {
-    padding:5px;
+  padding: 1%;
+  height: 33px;
 }
 .form-control-feedback.btn-warning {
-  height: 33px;
+  height: 35px;
 }
 .searchFPO {
   color: white;
@@ -439,3 +442,222 @@ app-auth-header {
 .searchFPO {
   background-color: #cfb000;
 }
+.navbar-toggler {
+  margin: 0px 3% 0px auto;
+  border-color: #ddd;
+}
+.mapwapper {
+  min-height: 120px;
+  height: 100px
+}
+.searchFPO {
+  margin-left: 0px;
+  width: 100%;
+  display: block;
+}
+
+@media screen and (max-width: 1200px) {
+  .header .parent,.header .gov{
+      font-size:22px;
+  }
+  .header .child, .headingTitle .up {
+    font-size: 18px
+  }
+}
+@media screen and (max-width: 1120px) {
+  .logo-image {
+    width: 55%
+  }
+}
+
+
+  @media screen and (max-width: 1090px) {
+    .header .parent, .header .gov {
+      font-size: 20px;
+    }
+
+    .header .child, .headingTitle .up {
+      font-size: 16px
+    }
+   
+
+    .collapse.in:not(.show) {
+      display: block !important;
+      margin-top: 0%;
+      position: relative;
+      opacity: 1;
+    }
+
+    .navbar-default .navbar-toggle {
+      border-color: #ddd;
+    }
+
+    .navbar-collapse.in {
+      opacity: 1;
+    }
+
+    .collapse.navbar-collapse.in .navbar-nav {
+      height: auto;
+      max-width: unset;
+    }
+
+    .collapse.navbar-collapse.in .nav-item {
+      width: 50%;
+      text-align: left;
+      margin: 3%;
+    }
+
+    .navbar-nav a {
+      margin: 0;
+    }
+
+    .navbar-nav > li > a {
+      margin: 0
+    }
+
+    .menu_langauge_btn {
+      margin: 0
+    }
+
+    .triangle-topright {
+      display: none
+    }
+
+    .newsBox {
+      padding: 0px 2%;
+      width: 100%;
+    }
+
+    .news-item table {
+      margin-top: 0%;
+      font-size: 14px;
+    }
+    .searchFPO {
+      margin-left: 0px;
+    }
+  }
+@media screen and (max-width: 990px) {
+
+  .navbar-nav a {
+    margin: 0;
+  }
+
+  .navbar-nav > li > a {
+    margin: 0
+  }
+
+  .menu_langauge_btn {
+    margin: 0
+  }
+  .header .parent, .header .gov {
+    font-size: 16px;
+  }
+
+  .header .child, .headingTitle .up {
+    font-size: 14px
+  }
+  .logo-image {
+    width: 50%
+  }
+  .headingTitle {
+    margin-left: 12%;
+  
+  }
+  .serachBarWpper {
+    padding: 0px 2.7%;
+  }
+  .mapwapper {
+      height:auto
+  }
+}
+@media screen and (max-width: 845px) {
+  .footerBox{
+      height:auto;
+  }
+  .set_notifications {
+    font-size: 12px
+  }
+  .form-control-feedback.btn-warning{
+    height: 34px;
+    font-size: 10px;
+  }
+  
+  .set_comdbox {
+    margin: 0px auto;
+  }
+  .searchFPO{
+      margin-left:0px;
+  }
+  .mapwapper {
+    min-height: 120px;
+    height: auto
+  }
+  #searchin {
+    padding: 1%;
+  }
+  .set_comdbox .col-md-12 {
+    padding: 10%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .serachBarWpper {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .header .parent, .header .gov {
+    font-size: 18px;
+  }
+
+  .header .child, .headingTitle .up {
+    font-size: 16px
+  }
+
+  .logo-image {
+    width: 50%
+  }
+
+  .headingTitle {
+    margin-left: 0%;
+    margin-top: 0%;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 700px) {
+  .col-md-3.set_box_md4 {
+    width: 100%;
+    max-width: unset;
+    margin-right: 0px;
+  }
+}
+  @media screen and (max-width: 480px) {
+    .header .parent, .header .gov {
+      font-size: 14px;
+    }
+
+    .header .child, .headingTitle .up {
+      font-size: 12px
+    }
+
+    .logo-image {
+      width: 50%
+    }
+
+    .headingTitle {
+      margin-left: 0%;
+      margin-top: 0%;
+      text-align: center;
+    }
+
+    .logo-image {
+      width: 45%
+    }
+
+    .col-md-3.set_box_md4 {
+      width: 100%;
+      max-width: 100%;
+      padding-top: 1%;
+      margin-right: 0;
+    }
+  }

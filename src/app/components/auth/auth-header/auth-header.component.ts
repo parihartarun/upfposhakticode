@@ -12,6 +12,8 @@ export class AuthHeaderComponent implements OnInit {
   isLoggeIn = false;
   username = '';
   isHome = true;
+  isOpen = false;
+  isDropdownOpen = false;
   constructor(public translate: TranslateService, private route: Router, private _activatedroute: ActivatedRoute) {
     translate.addLangs(['en', 'hi']);
     translate.setDefaultLang('hi');
@@ -47,6 +49,12 @@ export class AuthHeaderComponent implements OnInit {
     localStorage.removeItem('userrole');
     this.route.navigate(['/login']);
     location.reload();
+  }
+  toggleNavbar() {
+    this.isOpen = !this.isOpen;
+  }
+  toggleDropDown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
 }

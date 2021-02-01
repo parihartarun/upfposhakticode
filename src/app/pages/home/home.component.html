@@ -4,29 +4,32 @@
     <img class="logo-image" src="../../../assets/image/img/logo.png" />
   </div>
   <div class="text-center">
-    <span class="parent">UP FPO Shakti </span>
+    <span class="parent">{{'mainTitle' |translate}} </span>
     <br>
     <span class="child">
-      Sangathan.Satark.Shakti
+      {{'mainTitle2' |translate}}
     </span>
   </div>
 
   <div class="headingTitle">
-    <span class="gov">Agriculture Department....</span>
+    <span class="gov">{{'Agriculture Department' | translate}}</span>
     <br>
-    <span class="up">Uttar Pradesh </span>
+    <span class="up">{{'Uttar Pradesh'|translate}}</span>
 
   </div>
+</div>
   <section class="fms-wrapper" style="">
 
     <div class="innerContent">
+    
       <nav class="navbar navbar-expand-lg navbar-light">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"  (click)="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span _ngcontent-aau-c122="" class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <div class="collapse navbar-collapse" id="navbarToggleExternalContent"  [ngClass]="{ in: isOpen }">
           <ul class="navbar-nav ml-auto" *ngIf="!isLoggeIn">
             <div class="triangle-topright"></div>
             <li class="nav-item dropdown">
@@ -77,7 +80,11 @@
                   <a class="dropdown-item" routerLink="/register/5" routerLinkActive="active">{{'CHC/FMB' | translate}}</a>
                   <!--<a class="dropdown-item" routerLink="/register/6" routerLinkActive="active">{{'Equipment Centre' | translate}}</a>-->
                 </div>
+
+
               </div>
+
+
             </li>
           </ul>
           <ul class="navbar-nav ml-auto login" *ngIf="isLoggeIn">
@@ -130,7 +137,7 @@
                 {{'Notifications' | translate }}
               </h4>
               <div class="panel panel-default" style="border: 0px;">
-                <div class="panel-body">
+                <div class="panel-body pb-1 pt-1">
                   <div class="row">
                     <div class="col-xs-12 newsBox">
                       <ul class="demo1">
@@ -187,7 +194,7 @@
 
             <!--Notifications End-->
             <!--View FPO's On Map Start-->
-            <div style="height: 100px; background-color: #ccc; margin-top: 0%;">
+            <div class="mapwapper">
               <h4 class="set_notifications">
                 {{'View FPOs on Map' |  translate}}
               </h4>
@@ -209,8 +216,8 @@
 
               </div>
             </carousel>
-            <div class="main" >
-              <div >
+            <div class="main">
+              <div>
                 <strong class="searchFPO " style="">{{'bannerSearchText' | translate}}</strong>
               </div>
               <div class="row serachBarWpper ">
@@ -218,7 +225,7 @@
                   <div class="form-group has-feedback">
                     <div class="form-group">
                       <div id="filterDate2">
-                        <input type="text" id="homesearch" class="form-control" style="" placeholder="Type here to search....." [(ngModel)]="searchValue"(input)="selectValue()">
+                        <input type="text" id="homesearch" class="form-control" style="" placeholder="Type here to search....." [(ngModel)]="searchValue" (input)="selectValue()">
                       </div>
                     </div>
                   </div>
@@ -235,8 +242,8 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-md-2" style="padding: 0px;">
-                  <a [routerLink]="['/products',data.searchValue,data.searchType]" routerLinkActive="active"  >                  
+                <div class="col-md-2 mb-4" style="padding: 0px;">
+                  <a [routerLink]="['/products',data.searchValue,data.searchType]" routerLinkActive="active">
                     <input type="button" value="🔍 {{'Search' | translate}}" class="form-control-feedback btn-warning" style="width: 100%; pointer-events: all;">
                   </a>
                 </div>
@@ -475,16 +482,16 @@
 
 
             <a href="/accessibilityen" title="Accessibility Statement">
-              Accessibility Statement
+              {{'Accessibility' |translate}}
             </a>
             |
             <a href="/privacypolicyen" title="Privacy Policy">
-              Privacy Policy
+              {{'Privacy Policy' | translate}}
             </a>
             |
             <!--Hyper Linnking Policy  -->
             <a href="/hyperlinkingpolicyen" title="HyperLinking Policy">
-              Hyper Linking Policy
+              {{'Hyper Linking Policy' | translate}}
             </a>
             |
 
@@ -492,17 +499,17 @@
 
 
             <a href="/copyrightpolicyen" title="Copyright Policy">
-              Copyright Policy
+              {{'Copyright Policy' | translate }}
             </a>
 
             |
 
             <a href="/termsconditionsen" title="Terms and Conditions">
-              Terms and Conditions
+              {{'Terms and Conditions' | translate }}
             </a>
             |
             <a href="/disclaimeren" title="Disclaimer">
-              Disclaimer
+              {{'Disclaimer' | translate}}
             </a>
 
             |
@@ -511,23 +518,22 @@
 
             <a href="/helpen" title="Help">
 
-              Help
+              {{'Help' | translate}}
             </a>
 
 
             <p>
-              Content on this website is published and managed by State Agriculture Directorate Uttar Pradesh Krishi Bhawan Lucknow.
+              {{'footerText1' | translate}}
 
             </p>
             <p>
-              For any questions about this website, please contact
-              Web Information Manager
+              {{'footerText2' | translate}}
               .
             </p>
           </div>
           <div class="col-sm-5 text-center">
-            <p style="margin: 0;">Last reviewed and updated on: 23-07-2020</p>
-            <p> © State Agriculture Directorate Uttar Pradesh, India | All rights reserved.</p>
+            <p style="margin: 0;"> {{'footerText3' | translate}}</p>
+            <p> {{'footerText4' | translate}}</p>
 
           </div>
         </div>

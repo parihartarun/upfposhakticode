@@ -1,31 +1,31 @@
 <div class="header">
   <a routerLink="/">
-  <div class="logo">
-    <img class="logo-image" src="../../../assets/image/img/logo.png" />
-  </div>
-  <div class="text-center">
-    <span class="parent">UP FPO Shakti </span>
-    <br>
-    <span class="child">
-      Sangathan.Satark.Shakti
-    </span>
-  </div>
-</a>
+    <div class="logo">
+      <img class="logo-image" src="../../../assets/image/img/logo.png" />
+    </div>
+    <div class="text-center">
+      <span class="parent">{{'mainTitle' |translate}} </span>
+      <br>
+      <span class="child">
+        {{'mainTitle2' |translate}}
+      </span>
+    </div>
+  </a>
 
   <div class="headingTitle">
-    <span class="gov">Agriculture Department....</span>
+    <span class="gov">{{'Agriculture Department' | translate}}</span>
     <br>
-    <span class="up">Uttar Pradesh </span>
+    <span class="up">{{'Uttar Pradesh'|translate}}</span>
 
   </div>
 </div>
 <nav class="navbar navbar-expand-lg navbar-light" *ngIf="isHome">
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngClass]="{ in: isOpen }">
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggeIn">
       <div class="triangle-topright"></div>
       <li class="nav-item dropdown">
@@ -45,7 +45,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#">
           <img class="nav-image" src="../../../assets/image/img/fpomenu.png" />
-          {{'FPO Guideline' | translate}} <span class="sr-only">(current)</span>
+          {{'FPO guidelines' | translate}} <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
