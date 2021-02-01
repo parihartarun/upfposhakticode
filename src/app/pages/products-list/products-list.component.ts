@@ -42,7 +42,7 @@ export class ProductsListComponent implements OnInit {
       let searchType = params.get('searchType');
       this._productService.getSearchProduct(val, searchType).subscribe(s => {
         this.serachProduct = s;
-        console.log(this.serachProduct.length)
+       
       })
     });
     
