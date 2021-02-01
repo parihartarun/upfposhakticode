@@ -335,12 +335,14 @@
     box-shadow: 0 0 0 -0.8rem rgba(0,123,255,.25);
   }
   .serachBarWpper {
-    padding: 0px 1.7%;
+    padding: 0px 1.9%;
   }
   .dropdown.searchDropDown {
     border: 1px solid #ced4da;
     border-radius: .25rem;
     background-color:#fff;
+    width:100%;
+    margin-bottom:4%;
   }
 .btn-warning:hover, .btn-warning:active, .btn-warning:focus {
   color: #fff;
@@ -443,6 +445,15 @@ app-auth-header {
   margin: 0px 3% 0px auto;
   border-color: #ddd;
 }
+.mapwapper {
+    min-height:120px;
+    
+}
+.searchFPO {
+  margin-left: 0px;
+  width: 100%;
+  display: block;
+}
 
 @media screen and (max-width: 1200px) {
   .header .parent,.header .gov{
@@ -520,6 +531,9 @@ app-auth-header {
       margin-top: 0%;
       font-size: 14px;
     }
+    .searchFPO {
+      margin-left: 0px;
+    }
   }
 @media screen and (max-width: 990px) {
 
@@ -547,6 +561,25 @@ app-auth-header {
   .headingTitle {
     margin-left: 12%;
   
+  }
+  .serachBarWpper {
+    padding: 0px 2.7%;
+  }
+}
+@media screen and (max-width: 845px) {
+  .set_notifications {
+      font-size:12px
+  }
+  .form-control-feedback.btn-warning{
+    height: 33px;
+    font-size: 10px;
+  }
+  
+  .set_comdbox {
+    margin: 0px auto;
+  }
+  .searchFPO{
+      margin-left:0px;
   }
 }
 
@@ -590,5 +623,11 @@ app-auth-header {
 
   .logo-image {
     width: 45%
+  }
+  .col-md-3.set_box_md4 {
+    width: 100%;
+    max-width: 100%;
+    padding-top: 1%;
+    margin-right:0;
   }
 }
