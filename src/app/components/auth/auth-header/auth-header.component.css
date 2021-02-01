@@ -573,3 +573,52 @@ app-auth-header {
   margin-top: 6%;
 
 }
+.navbar-toggler {
+  margin: 0px 0px 0px auto;
+  border-color: #ddd;
+}
+
+@media screen and (max-width: 1090px) {
+  .navbar-collapse {
+    transition: opacity 0.5s ease-out;
+    opacity: 0;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: #ddd;
+  }
+  .collapse.in:not(.show) {
+    display: block !important;
+    margin-top: 0%;
+  }
+  .triangle-topright {
+      display:none
+  }
+
+  .navbar-collapse.in {
+    opacity: 1;
+  }
+
+  .collapse.navbar-collapse.in .navbar-nav {
+    height: auto;
+    max-width:unset;
+   
+  }
+
+  .collapse.navbar-collapse.in .nav-item {
+    width: 50%;
+    text-align: left;
+    margin: 3%;
+  }
+
+  .navbar-nav a {
+    margin: 0;
+  }
+
+  .navbar-nav > li > a {
+    margin: 0
+  }
+
+  .menu_langauge_btn {
+    margin: 0
+  }
+}

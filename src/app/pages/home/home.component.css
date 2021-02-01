@@ -110,7 +110,7 @@
   }
   .news-item {
     overflow: hidden;
-    height: 42.6994px;
+    height: auto;
     padding-top: 9.7044px;
     margin-top: 0px;
     padding-bottom: 9.7044px;
@@ -438,4 +438,60 @@ app-auth-header {
 }
 .searchFPO {
   background-color: #cfb000;
+}
+.navbar-toggler {
+  margin: 0px 0px 0px auto;
+  border-color: #ddd;
+}
+
+
+
+
+@media screen and (max-width: 1090px) {
+  .collapse:not(.show) {
+    transition: opacity 0.5s ease-out;
+    opacity: 0;
+  }
+  .collapse.in:not(.show) {
+    display: block !important;
+    margin-top: 0%;
+    position: relative;
+    opacity: 1;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: #ddd;
+  }
+  .navbar-collapse.in {
+      opacity:1;
+  }
+  .collapse.navbar-collapse.in .navbar-nav {
+    height: auto;
+    max-width: unset;
+  }
+  .collapse.navbar-collapse.in .nav-item {
+    width: 50%;
+    text-align: left;
+    margin: 3%;
+  }
+  .navbar-nav a {
+    margin: 0;
+  }
+  .navbar-nav > li > a {
+    margin: 0
+  }
+  .menu_langauge_btn {
+    margin: 0
+  }
+  .triangle-topright {
+    display: none
+  }
+  .newsBox {
+    padding: 0px 2%;
+    width: 100%;
+  }
+  .news-item table {
+    margin-top: 0%;
+    font-size: 14px;
+  }
+
 }
