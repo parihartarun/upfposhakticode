@@ -79,7 +79,7 @@ export class FarmerRegisterComponent implements OnInit {
       ifscCode: ['', Validators.required],
       parantsName: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
-      userName: ['', [Validators.required, Validators.pattern("(?=.*[$@$!%*?&])[0-9a-zA-Z\d$@$!%*?&]{6,20}")]],
+      userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
       userRefId: [''],
       villRefId: ['', Validators.required],
       villagePanchayatId: ['', Validators.required],

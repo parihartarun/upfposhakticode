@@ -12,7 +12,7 @@
   "Buyer/ Seller": "Buyer/ Seller",
   "Input Supplier": "Input Supplier",
   "Equipment Centre": "Equipment Centre",
-  "FPO guidelines":"FPO guidelines",
+  "FPO guidelines": "FPO guidelines",
 
   "bannerSearchText": "Search FPO by Name/ District/ Crop/ Services/ Products",
   "Any": "Any",
@@ -67,18 +67,38 @@
   "District:": "District:",
   "CHC/FMB": "CHC/FMB",
 
-  "Welcome to FPO Shakti!":"Welcome to FPO Shakti!",
-  "username is required":"username is required",
-  "Password is required":"Password is required",
-  "recaptcha is required":"recaptcha is required",
-  "Forgot password":"Forgot password",
-  "Create new account":"Create new account",
-  "Password":"Password",
-  "username":"username",
+  "Welcome to FPO Shakti!": "Welcome to FPO Shakti!",
+  "username is required": "username is required",
+  "Password is required": "Password is required",
+  "recaptcha is required": "recaptcha is required",
+  "Forgot password": "Forgot password",
+  "Create new account": "Create new account",
+  "Password": "Password",
+  "username": "username",
 
-  "Please enter registered email address to reset your password":"Please enter registered email address to reset your password",
-  "Email is required":"Email is required",
-  "Send password reset email":"Send password reset email",
-  "Login now":"Login now",
-  "email":"email"
+  "Please enter registered email address to reset your password": "Please enter registered email address to reset your password",
+  "Email is required": "Email is required",
+  "Send password reset email": "Send password reset email",
+  "Login now": "Login now",
+  "email": "email",
+  "View FPOs on Map": "View FPOs on Map",
+  "Connect with buyers and exporters": "Connect with buyers and exporters",
+  "Get information about FPO registration": "Get information about FPO registration",
+  "Get information about seeds, fertilizers, agricultural implements etc": "Get information about seeds, fertilizers, agricultural implements etc",
+  "Total Land (in Ha.)": "Total Land (in Ha.)",
+  "Accessibility Statement": "Accessibility Statement",
+  "Privacy Policy": "Privacy Policy",
+  "Hyper Linking Policy": "Hyper Linking Policy",
+  "Copyright Policy": "Copyright Policy",
+  "Terms and Conditions": "Terms and Conditions",
+  " Disclaimer": " Disclaimer",
+  "Help": "Help",
+  "footerText1": "Content on this website is published and managed by State Agriculture Directorate Uttar Pradesh Krishi Bhawan Lucknow.",
+  "footerText2": "For any questions about this website, please contact Web Information, Manager",
+  "footerText3": "Last reviewed and updated on: 23-07-2020",
+  "footerText4": "© State Agriculture Directorate Uttar Pradesh, India | All rights reserved."
+
+
+
+
 }
