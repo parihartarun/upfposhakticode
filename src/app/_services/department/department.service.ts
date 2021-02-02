@@ -71,11 +71,7 @@ export class DepartmentService {
       return res;
     }));
   }
-  getAllCircluar() {
-    return this.http.get<any>(this._url + 'circulars').pipe(map((res: any) => {
-      return res;
-    }));
-  }
+  
 
 }
 

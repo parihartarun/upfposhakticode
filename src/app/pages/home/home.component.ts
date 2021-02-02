@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   farmerDetails: any;
   productionDetails: any;
   fpo: any;
+  circluar: any;
   constructor(private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService, private api: HomeService,
     private _fpo: FpoService, private departmentService: DepartmentService  ) {
     translate.addLangs(['en', 'hi']);
@@ -58,6 +59,9 @@ export class HomeComponent implements OnInit {
     })
     this._fpo.getAllFpo().subscribe(fpo => {
       this.fpo = fpo.length; 
+    })
+    this.departmentService.getAllCircluarUpload().subscribe(c => {
+      this.circluar = c 
     })
   }
   logout() {

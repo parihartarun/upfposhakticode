@@ -577,6 +577,10 @@ app-auth-header {
   margin: 0px 3% 0px auto;
   border-color: #ddd;
 }
+.title a {
+  color: #525f7f;
+  cursor:pointer;
+}
 @media screen and (max-width: 1200px) {
   .header .parent, .header .gov {
     font-size: 22px;
