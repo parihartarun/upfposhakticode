@@ -55,7 +55,7 @@ import { ByerSellRegisterComponent } from './pages/registers/byer-sell-register/
 import { InputSupplierRegisterComponent } from './pages/registers/input-supplier-register/input-supplier-register.component';
 import { EquipmentCentreRegisterComponent } from './pages/registers/equipment-centre-register/equipment-centre-register.component';
 import { FarmerChcRegisterComponent } from './pages/registers/farmer-chc-register/farmer-chc-register.component';
-
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -75,6 +75,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CarouselModule,
     NgxCaptchaModule,
     NgxPaginationModule,
+    BsDatepickerModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 10000,
     }),
