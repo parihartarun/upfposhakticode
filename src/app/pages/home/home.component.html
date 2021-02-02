@@ -300,7 +300,7 @@
       </div>
       <div class="row">
         <div class="container-fluid set_row_bg_image">
-          <div class="row tileBoxRow" style="">
+          <div class="row tileBoxRow" style="" >
             <!-- FPO tile--->
             <div class="col-md-3 set_box_md4">
               <div>
@@ -310,8 +310,8 @@
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
                 <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
               </div>
-              <div class="tile_nember">
-                586
+              <div class="tile_nember" *ngIf="fpo">
+                {{fpo}}
               </div>
 
             </div>
@@ -325,10 +325,8 @@
                 </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
               </div>
-              <div class="tile_nember">
-
-
-                203,026
+              <div class="tile_nember" *ngIf="farmerDetails.totalfarmers">
+                {{farmerDetails.totalfarmers}}
               </div>
 
             </div>
@@ -348,22 +346,22 @@
                   <tbody>
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Marginal'|translate}}</td>
-                      <td class="table_tile_number">
-                        160,948
+                      <td class="table_tile_number" *ngIf="farmerDetails.marginalfarmers">
+                        {{farmerDetails.marginalfarmers}}
                         <!-- </a> -->
                       </td>
                     </tr>
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Small' |translate}}</td>
-                      <td class="table_tile_number">
-                        27,697
+                      <td class="table_tile_number" *ngIf="farmerDetails.smalltotal">
+                        {{farmerDetails.smalltotal}}
                         <!-- </a> -->
                       </td>
                     </tr>
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Others'| translate}}</td>
-                      <td class="table_tile_number">
-                        14,399
+                      <td class="table_tile_number" *ngIf="farmerDetails.bigfarmers">
+                        {{farmerDetails.bigfarmers}}
                         <!-- </a> -->
                       </td>
                     </tr>
@@ -383,37 +381,38 @@
                 </span>
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div><!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
               </div>
-              <div class="tile_nember">
-                3,311
+              <div class="tile_nember"  *ngIf="farmerDetails.totalland">
+                {{farmerDetails.totalland}}
               </div>
             </div>
             <!-- Land tile end -->
           </div>
-          <div class="row tileBoxRow" style="margin: auto auto; padding-left: 3%; padding-right: 3%">
+          <div class="row tileBoxRow" style="margin: auto auto; padding-left: 3%; padding-right: 3%" >
             <!-- Production tile -->
             <div class="col-md-3 set_box_md4">
               <div>
                 <span class="set_span_titel">
                   {{'Production (in Qt.)' |translate}}
                 </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
-                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
+                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow ">
+                <i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
               </div>
               <div>
-                <table rowspacing="20" style="width: 99%;">
+                <table rowspacing="20" style="width: 99%;" *ngIf="productionDetails">
                   <tbody>
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Rabi' | translate }}</td>
-                      <td class="table_tile_number">23,781</td>
+                      <td class="table_tile_number" >{{productionDetails.rabiprod}}</td>
                     </tr>
 
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Zayd' | translate}}</td>
-                      <td class="table_tile_number">0</td>
+                      <td class="table_tile_number">{{productionDetails.zayadprod}}</td>
                     </tr>
 
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Kharif' | translate}}</td>
-                      <td class="table_tile_number">21,870</td>
+                      <td class="table_tile_number">{{productionDetails.kharifprod}}</td>
                     </tr>
 
 
