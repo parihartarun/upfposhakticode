@@ -116,6 +116,7 @@ export class StorageUnitComponent implements OnInit {
         }else{
             this.toastr.error('Error! While Deleting Storage Unit.');
         }
+        this.getStorageUnits()
       },
         err => {
           console.log(err)

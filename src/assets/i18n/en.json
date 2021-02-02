@@ -14,7 +14,6 @@
   "Equipment Centre": "Equipment Centre",
   "FPO guidelines": "FPO Guidelines",
 
- 
   "Back":"Back",
   "bannerSearchText": "Search FPO by Name/ District/ Crop/ Services/ Products",
   "Any": "Any",
@@ -217,5 +216,36 @@
   "Bank Account Number": "Bank Account Number",
   "Quantity": "Quantity",
   "Home": "Home",
-  "navText": "Registertion"
+  "navText": "Registertion",
+
+  "UP FPO Shakti":"UP FPO Shakti",
+  "Sales Details":"Sales Details",
+  "FPO Details":"FPO Details",
+  "DEPATMENT Details":"DEPATMENT Details",
+  "Farmer Details":"Farmer Details",
+  "Land Details":"Land Details",
+  "Crop Showing Details":"Crop Showing Details",
+  "Production Details":"Production Details",
+  "Dashboard":"Dashboard",
+  "FPO's Crop Production":"FPO's Crop Production",
+  "FPO's Sales Details":"FPO's Sales Details",
+  "Farmer-wise Production Report":"Farmer-wise Production Report",
+  "Board Member":"Board Member",
+  "License":"License",
+  "Machinary Bank":"Machinary Bank",
+  "Storage Unit":"Storage Unit",
+  "Upload Photographs":"Upload Photographs",
+  "Service/Products":"Service/Products",
+  "Complaints":"Complaints",
+
+  "Add Land Details":"Add Land Details",
+  "Farmer Name":"Farmer Name",
+  "farmer is required":"farmer is required",
+  "Type of Ownership":"Type of Ownership",
+  "Area of Farm (in hectare)":"Area of Farm (in hectare)",
+  "Area of Farm (in hectare) is required":"Area of Farm (in hectare) is required",
+  "If farmer is doing organic farming":"If farmer is doing organic farming",
+
+  "Farmer details":"Farmer details"
+  
 }
