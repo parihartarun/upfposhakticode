@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../_services/auth/auth.service';
 import { ProductService } from '../../_services/product/product.service';
@@ -21,7 +21,7 @@ export class ProductsListComponent implements OnInit {
   searchCriteria: Array<any> = [];
   quantities = [{ quantity: 100, maxQuantity: 0 }, { quantity: 300, maxQuantity: 0 }, { quantity: 500, maxQuantity: 0 }]
   
-  constructor(private modalService: NgbModal, private _productService: ProductService, private _activatedroute: ActivatedRoute, private api: AuthService) { }
+  constructor(private modalService: NgbModal, private _rouetr:Router, private _productService: ProductService, private _activatedroute: ActivatedRoute, private api: AuthService) { }
     
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -55,7 +55,20 @@ export class ProductsListComponent implements OnInit {
        
       })
     });
+
     
+
+    this._activatedroute.queryParamMap.subscribe(params=>{
+
+      console.log("Succeess = "+params.get("sampleid"));
+    
+    })
+
+    
+  }
+  sampleNavigate()
+  {
+    this._rouetr.navigate([""]);
   }
   selectDistrct(district: any) {
     if (district.is_active) {
