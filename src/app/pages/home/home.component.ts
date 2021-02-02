@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { FpoService } from '../../_services/fpo/fpo.service';
+import { HomeService } from '../../_services/home/home.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +22,10 @@ export class HomeComponent implements OnInit {
   data = { searchValue: this.searchValue, searchType: this.searchType }
   isOpen = false;
   isDropdownOpen = false;
-  constructor(private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService,) {
+  farmerDetails: any;
+  productionDetails: any;
+  fpo: any;
+  constructor(private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService, private api: HomeService, private _fpo: FpoService) {
     translate.addLangs(['en', 'hi']);
     translate.setDefaultLang('hi');
     const browserLang = translate.getBrowserLang();
@@ -43,6 +48,15 @@ export class HomeComponent implements OnInit {
       { image: '../../../assets/image/img/slider/3.jpg', text: 'Get information about FPO registration' },
       { image: '../../../assets/image/img/slider/4.jpg', text: 'Get information about seeds, fertilizers, agricultural implements etc' }
     ];
+    this.api.getfarmerDetails().subscribe(h => {
+      this.farmerDetails=h
+    })
+    this.api.getProductionDetails().subscribe(p => {
+      this.productionDetails = p
+    })
+    this._fpo.getAllFpo().subscribe(fpo => {
+      this.fpo = fpo.length; 
+    })
   }
   logout() {
     sessionStorage.removeItem('accessToken');

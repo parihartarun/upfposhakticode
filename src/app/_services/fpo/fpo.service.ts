@@ -38,6 +38,12 @@ export class FpoService {
     this._url = environment.baseUrl;
   }
 //======================== apis added by kaustubh =====================================
+  getAllFpo() {
+   
+    return this.http.get<any>(this._url + '/api/fpos').pipe(map((res: any) => {
+      return res;
+    }));
+  }
 getFpoProfileByUsername(username)
 {
   return  this.http.get<any>(this._url+`api/fpos/getByUsername/${username}`).pipe(map((res:any)=>{
