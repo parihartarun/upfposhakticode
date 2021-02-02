@@ -14,14 +14,14 @@ export class HomeService {
   }
   //------------api for getting search ------------------------------
   getfarmerDetails() {
-    return this.http.get<any>(this._url + '/home/farmer').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'home/farmer').pipe(map((res: any) => {
       return res;
     }));
   }
   getProductionDetails() {
     let date = new Date()
     let year = date.getFullYear()
-    return this.http.get<any>(this._url + '/home/production?finYear=' + year).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'home/production?finYear=' + year).pipe(map((res: any) => {
       return res;
     }));
   }

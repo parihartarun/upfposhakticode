@@ -64,10 +64,17 @@
                 {{'Login' | translate}} <span class="sr-only">(current)</span>
               </a>
             </li>
+            <li class="nav-item" >
+              <a class="nav-link" routerLink="/register">
+                <img class="nav-image" src="../../../assets/image/img/signup.png" />
+                {{'Sign Up' | translate}} <span class="sr-only">(current)</span>
+              </a>
+            </li>
 
-            <li class="nav-item dropdown">
+            <!--<li class="nav-item dropdown">
               <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
                 <a class="languageText" ngbDropdownToggle>
+
                   <img class="nav-image sign-up" src="../../../assets/image/img/usermenu.png" />
                   {{'Sign Up' | translate}}
                   <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
@@ -77,15 +84,15 @@
                   <a class="dropdown-item" routerLink="/register/2" routerLinkActive="active">{{'Farmer' | translate}}</a>
                   <a class="dropdown-item" routerLink="/register/3" routerLinkActive="active">{{'Buyer/ Seller' | translate}}</a>
                   <a class="dropdown-item" routerLink="/register/4" routerLinkActive="active">{{'Input Supplier' | translate}}</a>
-                  <a class="dropdown-item" routerLink="/register/5" routerLinkActive="active">{{'CHC/FMB' | translate}}</a>
+                  <a class="dropdown-item" routerLink="/register/5" routerLinkActive="active">{{'CHC/FMB' | translate}}</a>-->
                   <!--<a class="dropdown-item" routerLink="/register/6" routerLinkActive="active">{{'Equipment Centre' | translate}}</a>-->
-                </div>
+                <!--</div>
 
 
               </div>
 
 
-            </li>
+            </li>-->
           </ul>
           <ul class="navbar-nav ml-auto login" *ngIf="isLoggeIn">
             <div class="triangle-topright"></div>
@@ -325,7 +332,7 @@
                 </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
               </div>
-              <div class="tile_nember" *ngIf="farmerDetails.totalfarmers">
+              <div class="tile_nember" *ngIf="farmerDetails">
                 {{farmerDetails.totalfarmers}}
               </div>
 
@@ -346,21 +353,21 @@
                   <tbody>
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Marginal'|translate}}</td>
-                      <td class="table_tile_number" *ngIf="farmerDetails.marginalfarmers">
+                      <td class="table_tile_number" *ngIf="farmerDetails">
                         {{farmerDetails.marginalfarmers}}
                         <!-- </a> -->
                       </td>
                     </tr>
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Small' |translate}}</td>
-                      <td class="table_tile_number" *ngIf="farmerDetails.smalltotal">
+                      <td class="table_tile_number" *ngIf="farmerDetails">
                         {{farmerDetails.smalltotal}}
                         <!-- </a> -->
                       </td>
                     </tr>
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Others'| translate}}</td>
-                      <td class="table_tile_number" *ngIf="farmerDetails.bigfarmers">
+                      <td class="table_tile_number" *ngIf="farmerDetails">
                         {{farmerDetails.bigfarmers}}
                         <!-- </a> -->
                       </td>
@@ -381,7 +388,7 @@
                 </span>
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div><!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
               </div>
-              <div class="tile_nember"  *ngIf="farmerDetails.totalland">
+              <div class="tile_nember"  *ngIf="farmerDetails">
                 {{farmerDetails.totalland}}
               </div>
             </div>
