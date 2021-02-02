@@ -48,3 +48,8 @@ a {
 .containerMain {
   background-color: #f8f9fe;
 }
+.filterDistrict {
+  max-height: 100px;
+ 
+  overflow-y: scroll;
+}

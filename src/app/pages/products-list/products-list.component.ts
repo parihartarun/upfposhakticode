@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../_services/auth/auth.service';
 import { ProductService } from '../../_services/product/product.service';
 
 @Component({
@@ -14,8 +15,13 @@ export class ProductsListComponent implements OnInit {
   closeResult: string;
   serachProduct: [];
   routerParameter = '';
-  p: number = 1;
-  constructor(private modalService: NgbModal, private _productService: ProductService, private _activatedroute: ActivatedRoute) { }
+  p: number = 1; 
+  districts: Array<District> = [];
+  isDistrict: false;
+  searchCriteria: Array<any> = [];
+  quantities = [{ quantity: 100, maxQuantity: 0 }, { quantity: 300, maxQuantity: 0 }, { quantity: 500, maxQuantity: 0 }]
+  
+  constructor(private modalService: NgbModal, private _productService: ProductService, private _activatedroute: ActivatedRoute, private api: AuthService) { }
     
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -36,6 +42,10 @@ export class ProductsListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.api.getDistrict().subscribe(d => {
+      this.districts = new Array()
+      this.districts = d
+    })
    
     this._activatedroute.paramMap.subscribe(params => {
       let val = params.get('val');
@@ -47,5 +57,26 @@ export class ProductsListComponent implements OnInit {
     });
     
   }
+  selectDistrct(district: any) {
+    if (district.is_active) {
+      this.searchCriteria.push(district)
+    } else {
+      delete this.searchCriteria[this.searchCriteria.findIndex(item => item.is_active == district.is_active)];
+     
+    }
+  }
+  selectQuantity(quantity:any) {
+    if (quantity.maxQuantity) {
+      this.searchCriteria.push(quantity)
+    } else {
+      delete this.searchCriteria[this.searchCriteria.findIndex(item => item.is_active == quantity.maxQuantity)];
 
+    }
+  }
+
+}
+interface District {
+  id: number;
+  district_name: string;
+  isDistrict: false;
 }

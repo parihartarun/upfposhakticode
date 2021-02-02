@@ -29,33 +29,63 @@
               <h3 class="title">{{'District' | translate }} </h3>
             </header>
             <div class="filter-content">
-              <div class="card-body">
+              <div class="card-body filterDistrict">
                 <form>
-                  <label class="form-check">
-                    <input class="form-check-input" type="checkbox" value="">
+                  <label class="form-check" *ngFor="let district of districts">
+                    <input class="form-check-input" type="checkbox" value="" name="district.is_active" [(ngModel)]="district.is_active" (change)="selectDistrct(district)">
                     <span class="form-check-label">
-                      {{'AGRA' | translate }}
+                      {{district.district_name }}
                     </span>
                   </label> <!-- form-check.// -->
-                  <label class="form-check">
+                  <!--<label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'PRAYAGRAJ' | translate }}
                     </span>
-                  </label>
+                  </label>-->
                   <!-- form-check.//-->
-                  <label class="form-check">
+                  <!--<label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'DODA' | translate }}
                     </span>
-                  </label>
+                  </label>-->
                   <!-- form-check.// -->
                 </form>
 
               </div> <!-- card-body.// -->
             </div>
           </article> <!-- card-group-item.// -->
+             <article class="card-group-item">
+            <header class="card-header">
+              <h3 class="title">{{'Quantity ' | translate }}</h3>
+            </header>
+            <div class="filter-content">
+              <div class="card-body">
+                <form>
+                  <label class="form-check" *ngFor="let q of quantities">
+                    <input class="form-check-input" type="checkbox" value="" name="district.is_active" [(ngModel)]="q.maxQuantity" (change)="selectQuantity(q)">
+                    <span class="form-check-label">
+                      {{q.quantity}}
+                    </span>
+                  </label> <!-- form-check.// -->
+                  <!--<label class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <span class="form-check-label">
+                    300
+                    </span>
+                  </label>-->  <!-- form-check.// -->
+                  <!--<label class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <span class="form-check-label">
+                       500
+                    </span>
+                  </label>-->  <!-- form-check.// -->
+                </form>
+
+              </div> <!-- card-body.// -->
+            </div>
+          </article>
 
           <article class="card-group-item">
             <header class="card-header">
