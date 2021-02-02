@@ -86,6 +86,7 @@ export class ComplaintsComponent implements OnInit {
   get formControls() {
     return this.complaintForm.controls;
   }
+
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
     //if (!this.validateFile(files[0].name)) {
@@ -104,6 +105,7 @@ export class ComplaintsComponent implements OnInit {
     this.complaintForm.controls['issueType'].setValue(parseInt(complaint.currentTarget.value));
 
   }
+
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
     if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj"||ext.toLowerCase() == "jpeg" || ext.toLowerCase()=="pdf") {
@@ -113,6 +115,7 @@ export class ComplaintsComponent implements OnInit {
       return false;
     }
   }
+
   deleteCompliant(complaint) {
     this.api.deleteCompliant(complaint.id).subscribe(response => {
       if (response != '') {
@@ -123,6 +126,7 @@ export class ComplaintsComponent implements OnInit {
       }    
     });
   }
+
   editComplaint(complaint) {
     this.edit = true;
     window.scroll(0, 0);
@@ -133,9 +137,9 @@ export class ComplaintsComponent implements OnInit {
     
     });
     this.complaintForm.controls['title'].patchValue(complaint.title);
-    this.complaintForm.get('title').patchValue(complaint.title);
-    
+    this.complaintForm.get('title').patchValue(complaint.title);  
   }
+
   updateComplaint() {
     this.submitted = true;
     // stop here if form is invalid
@@ -155,6 +159,7 @@ export class ComplaintsComponent implements OnInit {
       this.getComplaints();
     });
   }
+  
   /* Return true or false if it is the selected */
   compareByOptionId(idFist, idSecond) {
     return idFist && idSecond && idFist.id == idSecond.id;
@@ -165,6 +170,7 @@ export class ComplaintsComponent implements OnInit {
   close() {
     this.isViewComplaint = false;
   }
+
   viewComplaint(complaint) {
     this.isViewComplaint = true;
     this.viewComp.assignedTo = complaint.assignTo;
@@ -175,7 +181,6 @@ export class ComplaintsComponent implements OnInit {
     this.viewComp.remarks = complaint.remarks;
     this.viewComp.title = complaint.title;
     window.scroll(0,0)
-
   }
 }
 

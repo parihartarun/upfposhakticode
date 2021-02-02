@@ -152,8 +152,8 @@ export class PhotographsComponent implements OnInit {
         return;
     }
     const formData: FormData = new FormData();
-    formData.append('Image', this.fileToUpload);
-    formData.append('data', this.photographForm.value);
+    formData.append('file', this.fileToUpload);
+    formData.append('description', this.photographForm.value.description);
 
     this.api.addPhotograph(formData).subscribe(response => {
       console.log(response);

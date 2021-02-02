@@ -249,19 +249,20 @@ updateFarmerMachineryBankList(id:number,data:any){
 
    /************************** FPO's Photographs **********************************/
 
-  getPhotographs(data){
+  getPhotographs(data: any){
     return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
-  addPhotograph(data){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+  addPhotograph(data: any){
+    console.log('add image===', data)
+    return  this.http.post<any>(this._url+'photo', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
-  updatePhotograph(data){
+  updatePhotograph(data:any){
     return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
       return res;
     }));
@@ -273,26 +274,32 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
+
   uopladFile(file:any) {
     return this.http.post<any>(this._url + 'complaint/upload', file).pipe(map((res: any) => {
       return res;
     }));
   }
+
   getComplaints() {
     return this.http.get<any>(this._url + 'complaint').pipe(map((res: any) => {
       return res;
     }));
   }
+
   addComplaint(data:any) {
+    console.log('data in com===>',data)
     return this.http.post<any>(this._url + 'complaint', data).pipe(map((res: any) => {
       return res;
     }));
   }
+
   deleteCompliant(data) {
     return this.http.delete<any>(this._url + 'complaint/'+data).pipe(map((res: any) => {
       return res;
     }));
   }
+
   updateComplaint(data) {
     return this.http.put<any>(this._url + 'complaint/update1/' + data.id, data).pipe(map((res: any) => {
       return res;

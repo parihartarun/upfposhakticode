@@ -151,7 +151,6 @@
                     </small>-->
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)" />
                     <div *ngIf="checkfileFormat" class="text-danger">{{'File is not in format' | translate}} </div>
-
                   </div>
 
                 </div>
