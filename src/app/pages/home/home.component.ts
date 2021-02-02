@@ -60,9 +60,13 @@ export class HomeComponent implements OnInit {
     this._fpo.getAllFpo().subscribe(fpo => {
       this.fpo = fpo.length; 
     })
-    this.departmentService.getAllCircluarUpload().subscribe(c => {
-      this.circluar = c 
-    })
+    var $this=this
+    setInterval(function () {
+      $this.departmentService.getAllCircluarUpload().subscribe(c => {
+        $this.circluar = c
+      })
+    }, 5000);
+   
   }
   logout() {
     sessionStorage.removeItem('accessToken');
