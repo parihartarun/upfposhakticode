@@ -48,6 +48,14 @@ import { ProductionDetailsComponent } from './pages/fpo/production-details/produ
 import { CropShowingDetailsComponent } from './pages/fpo/crop-showing-details/crop-showing-details.component';
 import { ComplaintsComponent } from './pages/fpo/complaints/complaints.component';
 import { ServicesComponent } from './pages/fpo/services/services.component';
+import { RegisterComponent } from './pages/registers/register.component';
+import { FarmerRegisterComponent } from './pages/registers/farmer-register/farmer-register.component';
+import { FpoRegisterComponent } from './pages/registers/fpo-register/fpo-register.component';
+import { ByerSellRegisterComponent } from './pages/registers/byer-sell-register/byer-sell-register.component';
+import { InputSupplierRegisterComponent } from './pages/registers/input-supplier-register/input-supplier-register.component';
+import { EquipmentCentreRegisterComponent } from './pages/registers/equipment-centre-register/equipment-centre-register.component';
+import { FarmerChcRegisterComponent } from './pages/registers/farmer-chc-register/farmer-chc-register.component';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -106,7 +114,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProductionDetailsComponent,
     CropShowingDetailsComponent,
     ComplaintsComponent,
-    ServicesComponent
+    ServicesComponent,
+    RegisterComponent,
+    FarmerRegisterComponent,
+
+    FpoRegisterComponent,
+    ByerSellRegisterComponent,
+    InputSupplierRegisterComponent,
+    EquipmentCentreRegisterComponent,
+    FarmerChcRegisterComponent
   ],
   exports: [   
     AuthHeaderComponent

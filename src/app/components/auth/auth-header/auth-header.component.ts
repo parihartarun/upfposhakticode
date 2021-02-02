@@ -27,14 +27,7 @@ export class AuthHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this._activatedroute.paramMap.subscribe(params => {
-      if (this.route.url === '/login') {
-        this.isHome = true;
-        this.navText="Login"
-      }
-      else if (this.route.url === "/register/1" || this.route.url === "/register/2" || this.route.url === "/register/3" || this.route.url === "/register/4" || this.route.url === "/register/4") {
-        this.isHome = true;
-        this.navText = "FPO Registertion"
-      }
+     
     });
    
     if(sessionStorage.getItem('accessToken') != null){
