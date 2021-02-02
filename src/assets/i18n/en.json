@@ -295,5 +295,13 @@
   "confirm password is required": "confirm password is required",
   "password is not match": "पासवर्ड मैच नहीं है",
   "Select Bank Name": "Select Bank Name",
-  "bank name is required": "bank name is required"
+  "bank name is required": "bank name is required",
+  "Bank Account Number1": "Bank Account Number",
+  "bank account Number is required": "bank account Number is required",
+  "IFSC": "IFSC code",
+  "ifsc code  is required1": "ifsc code  is required",
+  "Bank Details": "Bank Details",
+  "Already have an account?": "Already have an account?",
+  "Login here": "Login here1"
+
 }
