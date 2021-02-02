@@ -40,7 +40,7 @@ export class FpoService {
 //======================== apis added by kaustubh =====================================
   getAllFpo() {
    
-    return this.http.get<any>(this._url + '/api/fpos').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/fpos').pipe(map((res: any) => {
       return res;
     }));
   }
@@ -274,7 +274,7 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
   uopladFile(file:any) {
-    return this.http.post<any>(this._url + '/complaint/upload', file).pipe(map((res: any) => {
+    return this.http.post<any>(this._url + 'complaint/upload', file).pipe(map((res: any) => {
       return res;
     }));
   }
