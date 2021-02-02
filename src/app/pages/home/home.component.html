@@ -149,14 +149,14 @@
                     <div class="col-xs-12 newsBox">
                       <ul class="demo1">
 
-                        <li class="news-item">
+                        <li class="news-item" *ngFor="let c of circluar">
                           <table cellpadding="4">
                             <tbody>
                               <tr>
                                 <td><img src="../../../assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
                                 <td class="news-td">
                                   <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf" class="text-left text-danger" target="_blank">
-                                    {{'FPO annual review meeting: 12-Oct-20' | translate }}
+                                    {{c.description }}
 
                                   </a>
                                 </td>
@@ -166,23 +166,7 @@
                             </tbody>
                           </table>
                         </li>
-                        <li style="" class="news-item">
-                          <table cellpadding="4">
-                            <tbody>
-                              <tr>
-                                <td><img src="../../../assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
-                                <td class="news-td">
-                                  <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document.pdf" class="text-left text-danger" target="_blank">
-                                    {{'FPO orientation workshop: 12-Oct-20' | translate }}
-
-                                  </a>
-                                </td>
-
-                                <!-- <td class="news-td"></td> -->
-                              </tr>
-                            </tbody>
-                          </table>
-                        </li>
+                     
 
                       </ul>
                       <div class="text-right">
