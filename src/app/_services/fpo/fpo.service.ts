@@ -40,7 +40,7 @@ export class FpoService {
 //======================== apis added by kaustubh =====================================
   getAllFpo() {
    
-    return this.http.get<any>(this._url + '/api/fpos').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/fpos').pipe(map((res: any) => {
       return res;
     }));
   }

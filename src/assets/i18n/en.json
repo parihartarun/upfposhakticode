@@ -12,7 +12,9 @@
   "Buyer/ Seller": "Buyer/ Seller",
   "Input Supplier": "Input Supplier",
   "Equipment Centre": "Equipment Centre",
-  "FPO guidelines": "FPO guidelines",
+  "FPO guidelines": "FPO Guidelines",
+
+ 
   "Back":"Back",
   "bannerSearchText": "Search FPO by Name/ District/ Crop/ Services/ Products",
   "Any": "Any",
@@ -106,7 +108,7 @@
   "footerText3": "Last reviewed and updated on: 23-07-2020",
   "footerText4": "© State Agriculture Directorate Uttar Pradesh, India | All rights reserved.",
   "mainTitle": "UP FPO Shakti",
-  "mainTitle2": "Sangathan.Satark.Shakti",
+  "mainTitle2": "Sangathan.Satat.Shakti",
 
   "Board Member Details": "Board Member Details",
   "Board Member Name": "Board Member Name",
@@ -213,5 +215,7 @@
   "Bank Name": "Bank Name",
   "IFSC Code": "IFSC Code",
   "Bank Account Number": "Bank Account Number",
-  "Quantity": "Quantity"
+  "Quantity": "Quantity",
+  "Home": "Home",
+  "navText": "Registertion"
 }

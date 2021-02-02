@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { DepartmentService } from '../../_services/department/department.service';
 import { FpoService } from '../../_services/fpo/fpo.service';
 import { HomeService } from '../../_services/home/home.service';
 
@@ -25,7 +26,9 @@ export class HomeComponent implements OnInit {
   farmerDetails: any;
   productionDetails: any;
   fpo: any;
-  constructor(private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService, private api: HomeService, private _fpo: FpoService) {
+  circluar: any;
+  constructor(private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService, private api: HomeService,
+    private _fpo: FpoService, private departmentService: DepartmentService  ) {
     translate.addLangs(['en', 'hi']);
     translate.setDefaultLang('hi');
     const browserLang = translate.getBrowserLang();
@@ -56,6 +59,9 @@ export class HomeComponent implements OnInit {
     })
     this._fpo.getAllFpo().subscribe(fpo => {
       this.fpo = fpo.length; 
+    })
+    this.departmentService.getAllCircluarUpload().subscribe(c => {
+      this.circluar = c 
     })
   }
   logout() {
