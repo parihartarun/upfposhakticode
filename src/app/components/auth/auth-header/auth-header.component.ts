@@ -14,6 +14,7 @@ export class AuthHeaderComponent implements OnInit {
   isHome = true;
   isOpen = false;
   isDropdownOpen = false;
+  navText: any
   constructor(public translate: TranslateService, private route: Router, private _activatedroute: ActivatedRoute) {
     translate.addLangs(['en', 'hi']);
     translate.setDefaultLang('hi');
@@ -26,11 +27,13 @@ export class AuthHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this._activatedroute.paramMap.subscribe(params => {
-      if (this.route.url === '/home') {
-        this.isHome = true
-      }
-      else {
+      if (this.route.url === '/login') {
         this.isHome = true;
+        this.navText="Login"
+      }
+      else if (this.route.url === "/register/1" || this.route.url === "/register/2" || this.route.url === "/register/3" || this.route.url === "/register/4" || this.route.url === "/register/4") {
+        this.isHome = true;
+        this.navText = "FPO Registertion"
       }
     });
    

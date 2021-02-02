@@ -454,6 +454,7 @@ app-auth-header {
   margin-left: 0px;
   width: 100%;
   display: block;
+  padding-left: 2%;
 }
 
 @media screen and (max-width: 1200px) {
