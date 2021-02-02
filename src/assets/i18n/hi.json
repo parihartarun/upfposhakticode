@@ -245,7 +245,7 @@
   "IFSC Code": "IFSC कोड",
   "Bank Account Number": "बैंक खाता संख्या",
   "Quantity": "मात्रा",
-  "Home": "घर",
+  "Home": "होम ",
   "navText": "पंजीकरण",
 
   "Farmer details": "किसान का विवरण",
@@ -297,8 +297,13 @@
   "confirm password is required": "पासवर्ड की आवश्यकता है",
   "password is not match": "password is not match",
   "Select Bank Name": "बैंक का नाम चुनें",
-  "bank name is required": "बैंक का नाम आवश्यक है"
-
-
+  "bank name is required": "बैंक का नाम आवश्यक है",
+  "Bank Account Number1": "बैंक खाता संख्या",
+  "bank account Number is required": "बैंक खाता संख्या आवश्यक है",
+  "IFSC": "भारतीय वित्तीय प्रणाली सहिंता कोड(IFSC)",
+  "ifsc code  is required1": "भारतीय वित्तीय प्रणाली सहिंता कोड आवश्यक है",
+  "Bank Details": "बैंक विवरण",
+  "Already have an account?": "क्या आपके पास पहले से एक खाता मौजूद है?",
+  "Login here": "लॉगिन करे"
 
 }
