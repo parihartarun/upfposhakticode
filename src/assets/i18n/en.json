@@ -246,6 +246,17 @@
   "Area of Farm (in hectare) is required":"Area of Farm (in hectare) is required",
   "If farmer is doing organic farming":"If farmer is doing organic farming",
 
-  "Farmer details":"Farmer details"
-  
+  "Farmer details":"Farmer details",
+  "License Details":"License Details",
+  "License type":"License type",
+  "Issued By":"Issued By",
+  "Issued Date":"Issued Date",
+  "Valid Till Date":"Valid Till Date",
+  "Storage/ Processing Units":"Storage/ Processing Units",
+  "Type of storage":"Type of storage",
+  "Storage Capacity":"Storage Capacity",
+  "File":"File",
+  "Complaints/ Suggestions":"Complaints/ Suggestions",
+  "Organic":"Organic",
+  "Farmer's Land Details":"Farmer's Land Details"
 }

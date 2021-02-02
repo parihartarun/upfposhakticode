@@ -224,8 +224,6 @@
   "Area of Farm (in hectare) is required":"खेत का क्षेत्रफल (हेक्टेयर में) आवश्यक है",
   "If farmer is doing organic farming":"अगर किसान जैविक खेती कर रहा है",
 
-  "Farmer details":"Farmer details",
-
   "Add Farmer": "किसान फॉर्म",
   "Farmer Registration Number (UP Agri Pardarshi)": "किसान पंजीकरण संख्या (यूपी कृषि परदेशी)",
   "Farmer Registration Number is required": "किसान पंजीकरण संख्या आवश्यक है",
@@ -245,5 +243,19 @@
   "Bank Account Number": "बैंक खाता संख्या",
   "Quantity": "मात्रा",
   "Home": "घर",
-  "navText": "पंजीकरण"
+  "navText": "पंजीकरण",
+
+  "Farmer details":"किसान का विवरण",
+  "License Details":"लाइसेंस का विवरण",
+  "License type":"लाइसेंस के प्रकार",
+  "Issued By":"जारीकर्ता",
+  "Issued Date":"जारी दिनांक",
+  "Valid Till Date":"मान्य तिथि तक",
+  "Storage/ Processing Units":"भंडारण / प्रसंस्करण इकाइयाँ",
+  "Type of storage":"भंडारण का प्रकार",
+  "Storage Capacity":"भंडारण क्षमता",
+  "File":"फ़ाइल",
+  "Complaints/ Suggestions":"शिकायतें / सुझाव",
+  "Organic":"जैविक",
+  "Farmer's Land Details":"कृषक भूमि का विवरण"
 }
