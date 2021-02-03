@@ -15,6 +15,7 @@ export const ROUTES_MANAGE_SALES: RouteInfo[] = [
 ];
 export const FPOROUTES: RouteInfo[] = [
   { path: 'fpo/board-members', title: 'Board Member', icon: 'fa fa-users text-white', class: '' },
+  { path: 'fpo/guidelines', title: 'FPO Guidelines', icon: 'fa fa-users text-white', class: '' },
   { path: 'fpo/license', title: 'License', icon: 'fa fa-id-card text-white', class: '' },
   { path: 'fpo/machinary-bank', title: 'Machinary Bank', icon: 'fa fa-university text-white', class: '' },
   { path: 'fpo/storage-unit', title: 'Storage Unit', icon: 'fa fa-archive text-white', class: '' },

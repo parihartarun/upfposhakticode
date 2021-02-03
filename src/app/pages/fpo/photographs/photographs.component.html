@@ -23,9 +23,9 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">Image Caption<span class="required">*</span></label>
-                    <input formControlName="image_caption" type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="lucky.jesse">
-                    <div *ngIf="submitted && formControls.image_caption.errors" class="text-danger">
-                      <div *ngIf="formControls.image_caption.errors.required">Image Caption Name is required</div>
+                    <input formControlName="description" type="text" id="input-username" class="form-control form-control-alternative" placeholder="Image caption" value="lucky.jesse">
+                    <div *ngIf="submitted && formControls.description.errors" class="text-danger">
+                      <div *ngIf="formControls.description.errors.required">Image Caption Name is required</div>
                     </div>
                   </div>
                 </div>
@@ -83,10 +83,10 @@
             <tbody>
               <tr *ngFor="let photograph of photographs | paginate: { itemsPerPage: 10, currentPage: p }">
                 <td>
-                 {{photograph.image_caption}}
+                 {{photograph.description}}
                  </td>
                 <td>
-                  <a href="" download >{{photograph.file}}</a>
+                  <a href="" download >{{photograph.fileName}}</a>
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">

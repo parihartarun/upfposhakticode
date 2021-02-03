@@ -249,11 +249,12 @@ updateFarmerMachineryBankList(id:number,data:any){
 
    /************************** FPO's Photographs **********************************/
 
-  getPhotographs(data: any){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+  getPhotographs(){
+    console.log('get api call')
+    return  this.http.get<any>(this._url+'photo').pipe(map((res:any)=>{
       return res;
     }));
-  }
+  };
 
   addPhotograph(data: any){
     console.log('add image===', data)
@@ -263,7 +264,14 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   updatePhotograph(data:any){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'photo', data).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
+  // Delete photograph
+  deletePhotograph(id){
+    return  this.http.delete<any>(this._url+'photo/'+id).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -305,6 +313,7 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
+
   /****************************************fpo land details************************************ */
   getLandDetailList(id) {
     return this.http.get<any>(this._url + 'api/fpos/landfarmer/'+id).pipe(map((res: any) => {

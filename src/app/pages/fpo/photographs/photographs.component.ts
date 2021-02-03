@@ -28,112 +28,115 @@ export class PhotographsComponent implements OnInit {
 
   ngOnInit(): void {
     this.photographForm = this.formBuilder.group({
-      image_caption: ['', [Validators.required]],
+      description: ['', [Validators.required]],
       file: ['', [Validators.required]],
       id:['']
     });
-    this.getPhotographs();
+    this.getPhotographs(); 
   }
 
   getPhotographs(){
-    this.photographs = [
-      { 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },{ 
-        image_caption:'Image 1',
-        file:'sed.jpg'
-      },
-    ]
-    this.api.getPhotographs(this.photographForm.value).subscribe(response => {
-      console.log(response);
+    console.log('get phto call')
+    // this.photographs = [
+    //   { 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },{ 
+    //     description:'Image 1',
+    //     file:'sed.jpg'
+    //   },
+    // ]
+
+    this.api.getPhotographs().subscribe(response => {
+      console.log('getting photo list ===>', response);
+      this.photographs = response;
     },
       err => {
         console.log(err)
@@ -173,11 +176,25 @@ export class PhotographsComponent implements OnInit {
   }
 
   editPhotograph(service){
+    // debugger;
+    console.log('service===>',service)
     this.photographForm = this.formBuilder.group({
-      service_name: [service.service_name, [Validators.required]],
+      // service_name: [service.service_name, [Validators.required]],
+      // description: [service.description, [Validators.required]],
       description: [service.description, [Validators.required]],
+      file: [service.file, [Validators.required]],
       id:[service.id]
     });
+
+    // this.photographForm = this.formBuilder.group({
+    //   id: [service.id],
+    //   file: [service.file, Validators.required],
+    //   description: [service.description, Validators.required]
+    // });
+
+    this.photographForm.controls['file'].patchValue(service.file);
+    this.photographForm.get('description').patchValue(service.description);  
+
     this.edit = true;
     window.scroll(0,0);  
   }
@@ -190,8 +207,11 @@ export class PhotographsComponent implements OnInit {
     }
 
     const formData: FormData = new FormData();
-    formData.append('Image', this.fileToUpload);
-    formData.append('data', this.photographForm.value);
+    // formData.append('Image', this.fileToUpload);
+    // formData.append('data', this.photographForm.value);
+
+    formData.append('file', this.fileToUpload);
+    formData.append('description', this.photographForm.value);
 
     this.api.updatePhotograph(formData).subscribe(response => {
       console.log(response);
@@ -211,14 +231,14 @@ export class PhotographsComponent implements OnInit {
     );
   }
 
-  confirmDelete(id){
+  confirmDelete(id) {
     if(confirm("Are you sure to delete this item.")) {
-      this.api.deleteMachinaryBank(id).subscribe(response => {
+      this.api.deletePhotograph(id).subscribe(response => {
         console.log(response);
-        if(response == true){
+        if(response == true || response){
           this.toastr.success('Photographs Deleted successfully.');
           this.getPhotographs();
-        }else{
+        }else {
             this.toastr.error('Error! While Deleting Photographs.');
         }
       },

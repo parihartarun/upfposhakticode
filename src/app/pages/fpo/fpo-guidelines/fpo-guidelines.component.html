@@ -1,0 +1,30 @@
+<div class="header pb-1 pt-5 pt-md-8">
+    <div class="container-fluid">
+
+    </div>
+</div>
+
+<div class="container-fluid bg-white">
+    <ul class="nav nav-tabs my-3">
+        <li class="nav-item">
+            <a class="nav-link" (click)="onPreFPORegister()">Before FPO Registration</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" (click)="onPostFPORegister()">After FPO Registration</a>
+        </li>
+    </ul>
+
+    <!-- <hr /> -->
+    <h2 class="text-white bg-primary p-2" *ngIf="preFPORegister">Before FPO Registration</h2>
+    <h2 class="text-white bg-primary p-2" *ngIf="postFPORegister">After FPO Registration</h2>
+
+    <div class="row">
+        <div class="col-sm-12 mt-3">
+            <ngx-datatable tableClass="table table-striped table-bordered table-hover" [tableId]="'basicNoData'"
+                [data]="dataBasicNoData" [options]="optionsBasicNoData" [columns]="columnsBasicNoData">
+            </ngx-datatable>
+        </div>
+    </div>
+
+    <hr />
+</div>

@@ -6,6 +6,9 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common
 import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
+
+import { NgxDatatableModule } from '@tusharghoshbd/ngx-datatable';
+
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
@@ -55,8 +58,8 @@ import { ByerSellRegisterComponent } from './pages/registers/byer-sell-register/
 import { InputSupplierRegisterComponent } from './pages/registers/input-supplier-register/input-supplier-register.component';
 import { EquipmentCentreRegisterComponent } from './pages/registers/equipment-centre-register/equipment-centre-register.component';
 import { FarmerChcRegisterComponent } from './pages/registers/farmer-chc-register/farmer-chc-register.component';
-
-
+import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
+ 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -75,6 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CarouselModule,
     NgxCaptchaModule,
     NgxPaginationModule,
+    NgxDatatableModule,
     ToastrModule.forRoot({
       timeOut: 10000,
     }),
@@ -122,7 +126,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ByerSellRegisterComponent,
     InputSupplierRegisterComponent,
     EquipmentCentreRegisterComponent,
-    FarmerChcRegisterComponent
+    FarmerChcRegisterComponent,
+    FpoGuidelinesComponent
   ],
   exports: [   
     AuthHeaderComponent

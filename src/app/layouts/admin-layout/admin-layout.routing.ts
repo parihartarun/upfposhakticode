@@ -5,6 +5,7 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 
 
 import { BoardMembersComponent } from '../../pages/fpo/board-members/board-members.component';
+import { FpoGuidelinesComponent } from './../../pages/fpo/fpo-guidelines/fpo-guidelines.component';
 import { LicenseComponent } from '../../pages/fpo/license/license.component';
 import { MachinaryBankComponent } from '../../pages/fpo/machinary-bank/machinary-bank.component';
 import { StorageUnitComponent } from '../../pages/fpo/storage-unit/storage-unit.component';
@@ -33,6 +34,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: DashboardComponent },
   { path: 'fpo/user-profile', component: UserProfileComponent },
   { path: 'fpo/board-members', component: BoardMembersComponent },
+  { path: 'fpo/guidelines', component: FpoGuidelinesComponent },
   { path: 'fpo/license', component: LicenseComponent },
   { path: 'fpo/machinary-bank', component: MachinaryBankComponent },
   { path: 'fpo/storage-unit', component: StorageUnitComponent },
