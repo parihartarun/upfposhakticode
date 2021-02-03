@@ -10,7 +10,7 @@
   "Sign Up": "साइन अप करें",
   "Farmer": "किसान",
   "Buyer/ Seller": "खरीदार/ विक्रेता",
-  "Input Supplier": "इनपुट आपूर्तिकर्ता",
+  "Input Supplier": "इनपुट प्रदाता",
   "Equipment Centre": "उपकरण केंद्र",
   "FPO guidelines": "एफपीओ दिशानिर्देश",
   "Back": "वापस",
@@ -327,7 +327,24 @@
   "Select Gram Panchayat": "पंचायत का चयन करें",
   "gram panchayat is required": "पंचायत का आवश्यक है",
   "Village is required1": "गाँव आवश्यक है",
-  "Select Village": "गाँव का चयन करें"
-
+  "Select Village": "गाँव का चयन करें",
+  "Buyer Seller Name": "खरीदार/ विक्रेता का नाम",
+  "buyer/trader name is required": "खरीदार/ विक्रेता का नाम आवश्यक है",
+  "Building Name": "इमारत का नाम",
+  "Building Name is required": "इमारत का नाम आवश्यक है",
+  "Contact Person": "संपर्क व्यक्ति",
+  "contact person is required": "संपर्क व्यक्ति का नाम आवश्यक है",
+  "Designation Contact Person": "पदनाम संपर्क व्यक्ति",
+  "designation Contact Person is required": "पदनाम संपर्क व्यक्ति आवश्यक है",
+  "State1:": "राज्य",
+  "Select State": "राज्य का चयन करें",
+  "State is required": "राज्य का नाम आवश्यक है",
+  "Street Name": "सड़क का नाम",
+  "street name is required": "सड़क का नाम  आवश्यक है ",
+  "Email": "ईमेल आईडी",
+  "email is required": "ईमेल आईडी का आवश्यकता है",
+  "Area": "क्षेत्र",
+  "area is required": "क्षेत्र का आवश्यकता है",
+  "WebSite": "वेबसाइट"
 
 }
