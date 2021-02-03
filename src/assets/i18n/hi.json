@@ -356,7 +356,7 @@
   "shop stablishment is required": "दुकान की स्थापना (Regn. No.) आवश्यकता है",
   "Input Supplier Name": "इनपुट प्रदाता का नाम",
   "input Supplier Name is required": "इनपुट प्रदाता का नाम आवश्यकता है",
-  "Input Supplier Type": "इनपुट प्रदाता प्रकार",
+  "Input Supplier Type": "इनपुट प्रदाता ",
   "Select Input Supplier Type": "इनपुट प्रदाता प्रकार का चयन करें",
   "input supplier type is required": "इनपुट प्रदाता प्रकार का आवश्यकता है",
   "Seed": "बीज नंबर",
@@ -371,5 +371,20 @@
   "Registration No. is required": "पंजीकरण क्रमांक आवश्यक है",
   "Contact information": "संपर्क जानकारी",
   "Bank information": "बैंक संबंधी जानकारी",
-  "Update profile": "प्रोफ़ाइल अपडेट करें"
+  "Update profile": "प्रोफ़ाइल अपडेट करें",
+  "Add FPO's Crop Production": "एफपीओ की फसल उत्पादन जोड़ें",
+  "Season": "मौसम",
+  "Select Season": "मौसम का चयन करें",
+  "Season is required": "मौसम आवश्यक है",
+  "Crop Name": "फसल का नाम",
+  "Select Crop": "फसल का चयन करें",
+  "Crop Name is required": "फसल का नाम आवश्यक है",
+  "Crop variety": "फसल प्रकार",
+  "Select variety": "प्रकार का चयन करें",
+  "Actual Production (in Qt.)": "वास्तविक उत्पादन (Qt में)",
+  "Actual Production is required": "वास्तविक उत्पादन (Qt में) आवश्यक है",
+  "Marketable Surplus (in Qt.)": "विपणन योग्य अधिशेष (Qt में)",
+  "Marketable Surplus is required": "विपणन योग्य अधिशेष आवश्यक है"
+
+
 }

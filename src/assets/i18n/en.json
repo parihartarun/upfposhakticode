@@ -369,5 +369,18 @@
   "Registration No. is required": "registration no. is required",
   "Contact information": "Contact information",
   "Bank information": "Bank Information",
-  "Update profile": " Update profile"
+  "Update profile": " Update profile",
+  "Add FPO's Crop Production": "Add FPO's Crop Production",
+  "Season": "Season",
+  "Select Season": "Select Season",
+  "Season is required": "Season is required",
+  "Crop Name": "Crop Name",
+  "Select Crop": "Select Crop",
+  "Crop Name is required": "Crop Name is required",
+  "Crop variety": "Crop variety",
+  "Select variety": "Select variety",
+  "Actual Production (in Qt.)": "Actual Production (in Qt.)",
+  "Actual Production is required": "Actual Production is required",
+  "Marketable Surplus (in Qt.)": "Marketable Surplus (in Qt.)",
+  "Marketable Surplus is required": "Marketable Surplus is required"
 }
