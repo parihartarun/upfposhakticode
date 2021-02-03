@@ -130,7 +130,7 @@
             </div>
           </article>  card-group-item.// -->
           
-          <article class="card-group-item">
+          <!-- <article class="card-group-item">
             <header class="card-header">
               <h3 class="title">{{'Variety' | translate }}</h3>
             </header>
@@ -141,25 +141,29 @@
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Midori ? GreenVariety' | translate }}
-                    </span>
-                  </label> <!-- form-check.// -->
+                    </span> -->
+                  <!-- </label> form-check.//
                   <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Agnihotri' | translate }}
-                    </span>
-                  </label>  <!-- form-check.// -->
-                  <label class="form-check">
+                    </span> -->
+                  <!-- </label>   -->
+                  <!-- form-check.// -->
+                  <!-- <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Lambada (white obake)' | translate }}
                     </span>
-                  </label>  <!-- form-check.// -->
-                </form>
+                  </label>   -->
+                  <!-- form-check.// -->
+                <!-- </form> -->
 
-              </div> <!-- card-body.// -->
-            </div>
-          </article> <!-- card-group-item.// -->
+              <!-- </div>  -->
+              <!-- card-body.// -->
+            <!-- </div>
+          </article>  -->
+          <!-- card-group-item.// -->
           <!-- <article class="card-group-item">
             <header class="card-header">
               <h3 class="title">{{'FPO' | translate }}</h3>
@@ -277,7 +281,7 @@
                   <div class="col-md-6 mb-2">
                     <div class="card-body p-0">
                       <!-- <h4 class="card-title">Marketable Surplus</h4> -->
-                      <p class="card-text text-right pr-5" *ngIf="product.marketableSurplus">{{product.marketableSurplus}} (mt)</p>
+                      <p class="card-text" *ngIf="product.marketableSurplus">{{product.marketableSurplus}} (mt)</p>
                       <p class="card-text" *ngIf="!product.marketableSurplus">NA</p>
                     </div>
                   </div>
