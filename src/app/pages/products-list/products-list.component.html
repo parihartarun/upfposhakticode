@@ -78,7 +78,7 @@
                   <label class="form-check" *ngFor="let q of quantities">
                     <input class="form-check-input" type="checkbox" [value]="q.name" [name]="q.name" [(ngModel)]="q.selected" (change)="selectQuantity(q)">
                     <span class="form-check-label">
-                      {{q.name}} - {{q.maxname}}
+                      {{q.minname}} - {{q.maxname}}
                     </span>
                   </label> <!-- form-check.// -->
                   <!--<label class="form-check">
@@ -160,7 +160,7 @@
               </div> <!-- card-body.// -->
             </div>
           </article> <!-- card-group-item.// -->
-          <article class="card-group-item">
+          <!-- <article class="card-group-item">
             <header class="card-header">
               <h3 class="title">{{'FPO' | translate }}</h3>
             </header>
@@ -171,26 +171,30 @@
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Mehroni Jaiv Urja Producer Company Limited' | translate }}
-                    </span>
-                  </label> <!-- form-check.// -->
-                  <label class="form-check">
+                    </span> -->
+                  <!-- </label> -->
+                    <!-- form-check.// -->
+                  <!-- <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
-                    <span class="form-check-label">
+                    <span class="form-check-label"> 
                       {{'Safal Kisaan Producer Company Limited' | translate }}
-                    </span>
-                  </label>  <!-- form-check.// -->
-                  <label class="form-check">
+                     </span> --> 
+                  <!-- </label>  -->
+                   <!-- form-check.// -->
+                  <!-- <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Shri Annagerbha Bio-Energy Farmer Producer Company Limited' | translate }}
                     </span>
-                  </label>  <!-- form-check.// -->
-                </form>
+                  </label>   -->
+                  <!-- form-check.// -->
+                <!-- </form> -->
 
-              </div> <!-- card-body.// -->
-            </div>
-          </article>
-          <article class="card-group-item">
+              <!-- </div>  -->
+              <!-- card-body.// -->
+            <!-- </div>
+          </article> -->
+          <!-- <article class="card-group-item">
             <header class="card-header">
               <h3 class="title">{{'Services/ Products' | translate }} </h3>
             </header>
@@ -202,25 +206,26 @@
                     <span class="form-check-label">
                       {{'Vermicompost' | translate }}
                     </span>
-                  </label> 
+                  </label>  -->
                   <!-- form-check.// -->
-                  <label class="form-check">
+                  <!-- <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Seed Processing Unit' | translate }}
-                    </span>
-                  </label>  <!-- form-check.// -->
-                  <label class="form-check">
+                    </span> -->
+                  <!-- </label>   -->
+                  <!-- <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Seed Distribution Agency' | translate }}
                     </span>
-                  </label>  <!-- form-check.// -->
-                </form>
+                  </label>   -->
+                <!-- </form> -->
 
-              </div> <!-- card-body.// -->
-            </div>
-          </article> 
+              <!-- </div>  -->
+              <!-- card-body.// -->
+            <!-- </div>
+          </article>  -->
           <!-- card-group-item.// -->
 
 
@@ -243,7 +248,7 @@
                     <a >
                       <div class="card-body">
                         <!-- <h4 class="card-title">FPO</h4> -->
-                        <p class="card-text">{{product.nodal}}</p>
+                        <p class="card-text"><a routerLink="/fpo-details/{{product.id}}">{{product.nodal}}</a></p>
                       </div>
                     </a>
 

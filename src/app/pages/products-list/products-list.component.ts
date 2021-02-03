@@ -23,10 +23,10 @@ export class ProductsListComponent implements OnInit {
   districts: Array<District> = [];
   isDistrict: false;
   searchCriteria: Array<any> = [];
-  quantities:Array<{selected:boolean,maxname:string,name:string,type:string,quantity:number,maxQuantity:number}> = [
-    { selected:false,maxname:"199",name:"100", type:"qty",quantity: 100, maxQuantity: 0 }, 
-    { selected:false, maxname:"299",name:"200", type:"qty",quantity: 200, maxQuantity: 0 },
-    { selected:false, maxname:"399",name:"300", type:"qty",quantity: 300, maxQuantity: 0 },
+  quantities:Array<{selected:boolean,minname:string,maxname:string,name:string,type:string,quantity:number,maxQuantity:number}> = [
+    { selected:false,minname:"0",maxname:"99",name:"100", type:"qty",quantity: 100, maxQuantity: 0 }, 
+    { selected:false, minname:"100",maxname:"199",name:"200", type:"qty",quantity: 200, maxQuantity: 0 },
+    { selected:false, minname:"200",maxname:"299",name:"300", type:"qty",quantity: 300, maxQuantity: 0 },
   ]
   parsearchType: string;
   parval: string;
