@@ -12,7 +12,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Add FPO's Sales Info</h3>
+              <h3 class="mb-0">{{"Add FPO's Sales Info"|translate}}</h3>
             </div>
           </div>
         </div>
@@ -22,46 +22,46 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-username">Season<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-username">{{'Season'|translate}}<span class="required">*</span></label>
                     <select formControlName="season" class="form-control form-control-alternative">
-                      <option value="">Select Season</option>
-                      <option value="1"> Rabi</option>
-                      <option value="2"> Kharip</option>
-                      <option value="3"> Zayad</option>
-                    </select> 
+                      <option value="">{{'Select Season'|translate}}</option>
+                      <option value="1"> {{'Rabi'|translate}}</option>
+                      <option value="2">  {{'Zayd'|translate}}</option>
+                      <option value="3">  {{'Kharif'|translate}}</option>
+                    </select>
                     <div *ngIf="submitted && formControls.season.errors" class="text-danger">
-                      <div *ngIf="formControls.season.errors.required">Season is required</div>
-                    </div>                       
+                      <div *ngIf="formControls.season.errors.required">{{'Season is required'|translate}}</div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">Crop Name<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-first-name">{{'Crop Name'| translate}}<span class="required">*</span></label>
                     <select formControlName="cropName" class="form-control form-control-alternative">
-                      <option value="">Select Crop</option>
+                      <option value="">{{'Select Crop'|translate}}</option>
                       <option value="1"> crop 1</option>
                       <option value="2"> crop 2</option>
                       <option value="3"> crop 3</option>
-                    </select> 
+                    </select>
                     <div *ngIf="submitted && formControls.cropName.errors" class="text-danger">
-                      <div *ngIf="formControls.cropName.errors.required">Crop Name is required</div>
-                    </div>                       
+                      <div *ngIf="formControls.cropName.errors.required">{{'Crop Name is required'|translate}}</div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">Crop variety<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-email">{{'Crop variety'|translate}}<span class="required">*</span></label>
                     <select formControlName="cropVariety" class="form-control form-control-alternative">
-                      <option value="">Select variety</option>
+                      <option value="">{{'Select variety'| translate}}</option>
                       <option value="1"> variety 1</option>
                       <option value="2"> variety 2</option>
                       <option value="3"> variety 3</option>
-                    </select>   
+                    </select>
                     <div *ngIf="submitted && formControls.cropVariety.errors" class="text-danger">
-                      <div *ngIf="formControls.cropVariety.errors.required">Crop Variety is required</div>
-                    </div>                     
+                      <div *ngIf="formControls.cropVariety.errors.required">{{'Crop Variety is required}'|translate}}</div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -76,10 +76,11 @@
               </div>
               <div class="card-footer py-4 text-center">
                 <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addFpoSalesInfo()">
-                  Add Crop Production
+                  {{'Add Crop Production'| translate}}
                 </button>
                 <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateFpoSalesInfo()">
-                  Update Crop Production
+
+                  {{'Update Crop Production'| translate}}
                 </button>
                 <button class="btn btn-warning text-right" (click)="resetForm()">Reset</button>
               </div>
@@ -98,7 +99,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">FPO's Sales Info</h3>
+              <h3 class="mb-0">{{"FPO's Sales Info"|translate}}</h3>
             </div>
             <!-- <div class="col-3 text-right">
               <button class="btn btn-primary text-right">Add Member</button>
@@ -109,11 +110,11 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col"></th>
+                   <th scope="col"></th>
                 <th scope="col">{{'Sr. No' | translate}}</th>
-                <th scope="col">Season</th>
-                <th scope="col">Crop Name</th>
-                <th scope="col">Variety</th>
+                <th scope="col">{{'Season'|translate}}</th>
+                <th scope="col">{{'Crop Name'| translate}}</th>
+                <th scope="col">{{'Variety'|translate}}</th>
                 <th scope="col">Quantity Sold</th>
                 <th scope="col"></th>
               </tr>
@@ -140,12 +141,12 @@
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      {{'Actions'|translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="editFpoSalesInfo(sale)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(sale.id)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)">{{'Edit'|translate}}</a>
+                      <a class="dropdown-item" href="javascript:void(0)">{{'Delete'|translate}}</a>
                     </div>
                   </div>
                 </td>
