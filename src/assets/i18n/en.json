@@ -383,5 +383,13 @@
   "Actual Production is required": "Actual Production is required",
   "Marketable Surplus (in Qt.)": "Marketable Surplus (in Qt.)",
   "Marketable Surplus is required": "Marketable Surplus is required",
-  "Add Crop Production": "Add Crop Production"
+  "Add Crop Production": "Add Crop Production",
+  "FPO's Crop Productions": "FPO's Crop Productions",
+  "Reset1": "Reset",
+  "S.no": "S.no",
+  "Actions": "Actions",
+  "Edit": "Edit",
+  "Delete": "Delete"
+
+
 }

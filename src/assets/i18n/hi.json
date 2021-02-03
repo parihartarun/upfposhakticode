@@ -373,19 +373,23 @@
   "Bank information": "बैंक संबंधी जानकारी",
   "Update profile": "प्रोफ़ाइल अपडेट करें",
   "Add FPO's Crop Production": "एफपीओ की फसल उत्पादन जोड़ें",
-  "Season": "मौसम",
+  "Season": "फसल का मौसम ",
   "Select Season": "मौसम का चयन करें",
   "Season is required": "मौसम आवश्यक है",
   "Crop Name": "फसल का नाम",
   "Select Crop": "फसल का चयन करें",
   "Crop Name is required": "फसल का नाम आवश्यक है",
-  "Crop variety": "फसल प्रकार",
-  "Select variety": "प्रकार का चयन करें",
-  "Actual Production (in Qt.)": "वास्तविक उत्पादन (Qt में)",
-  "Actual Production is required": "वास्तविक उत्पादन (Qt में) आवश्यक है",
-  "Marketable Surplus (in Qt.)": "विपणन योग्य अधिशेष (Qt में)",
-  "Marketable Surplus is required": "विपणन योग्य अधिशेष आवश्यक है",
-  "Add Crop Production": "फसल उत्पादन जोड़ें"
-
-
+  "Crop variety": "फसल की विविधता",
+  "Select variety": "फसल की विविधता का चयन करें",
+  "Actual Production (in Qt.)": "वास्तविक उत्पादन (क्विन्टल में)*",
+  "Actual Production is required": "वास्तविक उत्पादन (क्विन्टल में) आवश्यक है",
+  "Marketable Surplus (in Qt.)": "विक्रय हेतु मात्रा (क्विन्टल में)",
+  "Marketable Surplus is required": "विक्रय हेतु मात्रा आवश्यक है",
+  "Add Crop Production": "जमा करे",
+  "FPO's Crop Productions": "एफपीओ फसल का उत्पादन",
+  "Reset1": "दोबारा ठीक करना है",
+  "S.no": "क्रमांक",
+  "Actions": "कार्रवाई",
+  "Edit": "संपादित करें",
+  "Delete": "हटाएं"
 }
