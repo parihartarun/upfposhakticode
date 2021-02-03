@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form role="form" [formGroup]="memberForm" (ngSubmit)="addBoardMember()">
+          <form role="form" [formGroup]="memberForm">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
@@ -94,7 +94,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'District' | translate}}</label>
                     <select formControlName="distId" class="custom-control custom-select" (change)="selectDistrict($event.target.value)">
-                      <option name="opt" [value]="undefined" selected disabled>Select District' | translate}}</option>
+                      <option name="opt" [value]="undefined" selected disabled>Select District</option>
                       <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
                     </select>
                     <div *ngIf="submitted && formControls.distId.errors" class="text-danger">
@@ -148,7 +148,7 @@
                 <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateBoardMember()">
                   {{'Save' | translate}}
                 </button>
-                <button class="btn btn-warning text-right">{{'Reset' | translate}}</button>
+                <button class="btn btn-warning text-right" (click)="reset()">{{'Reset' | translate}}</button>
               </div>
             </div>
           </form>
@@ -165,7 +165,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Board Member Details</h3>
+              <h3 class="mb-0">{{'Board Member Details' | translate}}</h3>
             </div>
             <!-- <div class="col-3 text-right">
               <button class="btn btn-primary text-right">Add Member</button>
@@ -176,12 +176,12 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Member Name</th>
-                <th scope="col">Father's/Husband's Name</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Designation</th>
-                <th scope="col">Mobile</th>
-                <th scope="col">Email</th>
+                <th scope="col">{{'Member Name' | translate}}</th>
+                <th scope="col">{{"Father's/ Husband's Name" | translate}}</th>
+                <th scope="col">{{'Gender' | translate}}</th>
+                <th scope="col">{{'Designation' | translate}}</th>
+                <th scope="col">{{'Mobile' | translate}}</th>
+                <th scope="col">{{'Email' | translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>

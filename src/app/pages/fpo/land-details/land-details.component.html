@@ -12,7 +12,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Add Land Details</h3>
+              <h3 class="mb-0">{{'Add Land Details' | translate}}</h3>
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
               <input type="hidden" formControlName="landId">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-username">Farmer Name</label>
+                    <label class="form-control-label" for="input-username">{{'Farmer Name' | translate}}</label>
                     <!-- <select class="form-control form-control-alternative">
                       <option value="">Select Farmer</option>
                       <option value="1"> crop 1</option>
@@ -35,16 +35,16 @@
                       <option value="{{farmerList.farmerId}}" *ngFor="let farmerList of FarmerLists">{{farmerList.farmerName}}</option>
                     </select>
                     <div *ngIf="submitted && formControls.farmerId.errors" class="text-danger">
-                      <div *ngIf="formControls.farmerId.errors.required">farmer is required</div>
+                      <div *ngIf="formControls.farmerId.errors.required">{{'farmer is required' | translate}}</div>
                     </div> 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">Father's/ Husband's Name</label>
+                    <label class="form-control-label" for="input-first-name">{{"Father's/ Husband's Name" | translate}}</label>
                     <input formControlName="guardianName" type="text" id="father-Husband-name" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.guardianName.errors" class="text-danger">
-                      <div *ngIf="formControls.guardianName.errors.required">Father's/ Husband's Name is required</div>
+                      <div *ngIf="formControls.guardianName.errors.required">{{"Father's/ Husband's Name is required" | translate}}</div>
                     </div>
                   </div>
                 </div>
@@ -52,22 +52,22 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">Type of Ownership<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-email">{{'Type of Ownership' | translate}}<span class="required">*</span></label>
                     <select class="form-control form-control-alternative" formControlName="ownerShip">
                       <option value="">Select Ownership</option>
                       <option value="{{ownerShip.ownerName}}" *ngFor="let ownerShip of ownerShipList">{{ownerShip.ownerName}}</option>
                     </select>
                     <div *ngIf="submitted && formControls.ownerShip.errors" class="text-danger">
-                      <div *ngIf="formControls.ownerShip.errors.required">License Type is required</div>
+                      <div *ngIf="formControls.ownerShip.errors.required">{{'License Type is required' | translate}}</div>
                     </div> 
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">Area of Farm (in hectare)</label>
+                    <label class="form-control-label" for="input-email">{{'Area of Farm (in hectare)' | translate}}</label>
                     <input formControlName="land_area" type="text" id="area-farm" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.land_area.errors" class="text-danger">
-                      <div *ngIf="formControls.land_area.errors.required">Area of Farm (in hectare) is required</div>
+                      <div *ngIf="formControls.land_area.errors.required">{{'Area of Farm (in hectare) is required' | translate}}</div>
                     </div>
                   </div>
                 </div>
@@ -75,29 +75,29 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">If farmer is doing organic farming?<span class="required">*</span></label><br/>
+                    <label class="form-control-label" for="input-last-name">{{'If farmer is doing organic farming' | translate}}?<span class="required">*</span></label><br/>
                     <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
                       <input  formControlName="isorganc" value="Yes" class="custom-control-input" id="customRadio5" type="radio">
-                      <label class="custom-control-label" for="customRadio5">Yes</label>
+                      <label class="custom-control-label" for="customRadio5">{{'Yes' | translate}}</label>
                     </div>
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
                       <input formControlName="isorganc" value="No" class="custom-control-input" id="customRadio6" type="radio">
-                      <label class="custom-control-label" for="customRadio6">No</label>
+                      <label class="custom-control-label" for="customRadio6">{{'No' | translate}}</label>
                     </div> 
                      <div *ngIf="submitted && formControls.isorganc.errors" class="text-danger">
-                      <div *ngIf="formControls.isorganc.errors.required"> organic is required</div>
+                      <div *ngIf="formControls.isorganc.errors.required"> {{'This field is required' | translate}}.</div>
                     </div>                 
                   </div>
                 </div>
               </div>
               <div class="card-footer py-4 text-center">
                   <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addLandDetail()">
-                    Add Land Detail
+                    {{'Save' | translate}}
                   </button>
                   <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateLandDetail()">
-                    Update Land Detail
+                    {{'Save' | translate}}
                   </button>
-                  <button class="btn btn-warning text-right" (click)="resetForm()">Reset</button>
+                  <button class="btn btn-warning text-right" (click)="resetForm()">{{'Reset' | translate}}</button>
               </div>
             </div>
           </form>
@@ -114,7 +114,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Farmer's Land Details</h3>
+              <h3 class="mb-0">{{"Farmer's Land Details" | translate}}</h3>
             </div>
             <!-- <div class="col-3 text-right">
               <button class="btn btn-primary text-right">Add Member</button>
@@ -125,11 +125,11 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Farmer's Name</th>
-                <th scope="col">Father/Husband Name</th>
-                <th scope="col">Type of ownership</th>
-                <th scope="col">Area of Farm</th>
-                <th scope="col">Organic</th>
+                <th scope="col">{{"Farmer Name" | translate}}</th>
+                <th scope="col">{{"Father's/ Husband's Name" | translate}}</th>
+                <th scope="col">{{"Type of Ownership" | translate}}</th>
+                <th scope="col">{{"Area of Farm (in hectare)" | translate}}</th>
+                <th scope="col">{{"Organic" | translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>

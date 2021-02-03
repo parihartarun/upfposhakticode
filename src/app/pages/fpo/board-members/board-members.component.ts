@@ -174,8 +174,8 @@ export class BoardMembersComponent implements OnInit {
     console.log(this.memberForm.value);
 
     this.api.addBoardMember(this.memberForm.value).subscribe(response => {
+      this.toastr.success('Storage Unit Added successfully.');
       this.getBoardMembers();
-      console.log(response);
     },
       err => {
         console.log(err)

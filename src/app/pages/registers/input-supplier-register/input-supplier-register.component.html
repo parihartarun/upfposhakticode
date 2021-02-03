@@ -3,7 +3,7 @@
 
   <div class="form-group row mb-3">
     <div class="col-6">
-      <label class="input-label">Input Supplier Name <span class="required">*</span></label>
+      <label class="input-label">{{'Input Supplier Name'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -11,12 +11,12 @@
         <input class="form-control" type="text" formControlName="inputSupplierName">
       </div>
       <div *ngIf="submitted && formControls.inputSupplierName.errors" class="text-danger">
-        <div *ngIf="formControls.inputSupplierName.errors.required">input Supplier Name is required</div>
+        <div *ngIf="formControls.inputSupplierName.errors.required">{{'input Supplier Name is required'|translate}}</div>
       </div>
     </div>
     <div class="col-6">
 
-      <label class="input-label">User Name<span class="required">*</span></label>
+      <label class="input-label">{{'Username'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -24,8 +24,8 @@
         <input class="form-control" type="text" formControlName="userName">
       </div>
       <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
-        <div *ngIf="formControls.userName.errors.required">user name is required</div>
-        <div *ngIf="formControls.userName.errors.pattern">user name should be 6 to 20 character</div>
+        <div *ngIf="formControls.userName.errors.required">{{'username is required1'|translate}}</div>
+        <div *ngIf="formControls.userName.errors.pattern">{{'user name should be 6 to 20 character'|translate}}</div>
       </div>
 
     </div>
@@ -33,7 +33,7 @@
   </div>
   <div class="form-group row mb-3">
     <div class="col-6">
-      <label class="input-label">Contact Person<span class="required">*</span></label>
+      <label class="input-label">{{'Contact Person'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -41,12 +41,12 @@
         <input class="form-control" type="text" formControlName="contactPerson">
       </div>
       <div *ngIf="submitted && formControls.contactPerson.errors" class="text-danger">
-        <div *ngIf="formControls.contactPerson.errors.required">contact person is required</div>
+        <div *ngIf="formControls.contactPerson.errors.required">{{'contact person is required'|translate}}<</div>
       </div>
     </div>
     <div class="col-6">
 
-      <label class="input-label">Mobile Number<span class="required">*</span></label>
+      <label class="input-label">{{'Mobile Number' | translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -54,30 +54,30 @@
         <input class="form-control" type="number" formControlName="mobile_number">
       </div>
       <div *ngIf="submitted && formControls.mobile_number.errors" class="text-danger">
-        <div *ngIf="formControls.mobile_number.errors.required">mobile number is required</div>
-        <div *ngIf="formControls.mobile_number.errors.pattern"> mobile number should be 10 digit</div>
-      </div>
+        <div *ngIf="formControls.mobile_number.errors.required">{{'mobile number is required'|translate}}</div>
+        <div *ngIf="formControls.mobile_number.errors.pattern"> {{'Mobile number should be 10 digit1'|translate}}</div>
+       </div>
     </div>
   </div>
   <div class="form-group row mb-3">
     <div class="col-6">
-      <label class="input-label">Input Supplier Type <span class="required">*</span></label>
+      <label class="input-label">{{'Input Supplier Type'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
         <select class="form-control" formControlName="inputSupplierType" (change)="selectInputSupplierType($event)">
-          <option value="">Select Input Supplier Type</option>
+          <option value="">{{'Select Input Supplier Type'|translate}}</option>
           <option *ngFor="let ist of inputSupplierTypes" [value]="ist.id">{{ist.name}}</option>
         </select>
       </div>
       <div *ngIf="submitted && formControls.inputSupplierType.errors" class="text-danger">
-        <div *ngIf="formControls.inputSupplierType.errors.required">input supplier type is required</div>
+        <div *ngIf="formControls.inputSupplierType.errors.required">{{'input supplier type is required'|translate}}</div>
       </div>
     </div>
     <div class="col-6">
 
-      <label class="input-label">Email<span class="required">*</span></label>
+      <label class="input-label">{{'Email'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -85,58 +85,58 @@
         <input class="form-control" type="text" formControlName="email">
       </div>
       <div *ngIf="submitted && formControls.email.errors" class="text-danger">
-        <div *ngIf="formControls.email.errors.required">email is required</div>
-        <div *ngIf="formControls.email.errors.email">Invalid Email Address</div>
+        <div *ngIf="formControls.email.errors.required">{{'email is required'|translate}}</div>
+        <div *ngIf="formControls.email.errors.email">{{'Invalid Email Address'|translate}}</div>
       </div>
     </div>
   </div>
   <div class="form-group row mb-3" *ngIf="isBulkSupplyingCompany">
 
     <div class="col-6">
-      <label class="input-label">District <span class="required">*</span></label>
+      <label class="input-label">{{'District1'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
         <select class="form-control" formControlName="districtRefId" (change)="selectDistrict($event)">
-          <option value="">Select District</option>
+          <option value="">{{'SelectDistrict1'|translate}}</option>
           <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
         </select>
       </div>
       <div *ngIf="submitted && formControls.districtRefId.errors" class="text-danger">
-        <div *ngIf="formControls.districtRefId.errors.required">district is required</div>
+        <div *ngIf="formControls.districtRefId.errors.required">{{'district is required'|translate}}</div>
       </div>
     </div>
     <div class="col-6">
-      <label class="input-label">Block <span class="required">*</span></label>
+      <label class="input-label">{{'Block1'|translate}}  <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
         <select class="form-control" formControlName="blockRefId" (change)="selectBlock($event)">
-          <option value="">Select Block </option>
+          <option value="">{{'Select Block'| translate}} </option>
           <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
         </select>
       </div>
       <div *ngIf="submitted && formControls.blockRefId.errors" class="text-danger">
-        <div *ngIf="formControls.blockRefId.errors.required">block is required</div>
+        <div *ngIf="formControls.blockRefId.errors.required">{{'block is required'| translate}}</div>
       </div>
     </div>
   </div>
   <div class="form-group row mb-3">
     <div class="col-6" *ngIf="isBulkSupplyingCompany">
-      <label class="input-label">Village <span class="required">*</span></label>
+      <label class="input-label">{{'Village'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
         <select class="form-control" formControlName="villageRefId" (change)="selectVillage($event)">
-          <option value="">Select Village</option>
+          <option value="">{{'Select Village'|translate}}</option>
           <option *ngFor="let v of villages" [value]="v.villageId">{{v.villageName}}</option>
         </select>
       </div>
       <div *ngIf="submitted && formControls.villageRefId.errors" class="text-danger">
-        <div *ngIf="formControls.villageRefId.errors.required">Village is required</div>
+        <div *ngIf="formControls.villageRefId.errors.required">{{'Village is required1'| translate}}</div>
       </div>
     </div>
 
@@ -159,7 +159,7 @@
       </div>
     </div>-->
     <div class="col-6">
-      <label class="input-label">Seed<span class="required">*</span></label>
+      <label class="input-label">{{'Seed'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -172,7 +172,7 @@
   </div>
   <div class="form-group row mb-3">
     <div class="col-6">
-      <label class="input-label">PIN Code<span class="required">*</span></label>
+      <label class="input-label">{{'Pincode'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -180,12 +180,12 @@
         <input class="form-control" type="number" formControlName="pincode">
       </div>
       <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
-        <div *ngIf="formControls.pincode.errors.required">pin code is required</div>
-        <div *ngIf="formControls.pincode.errors.pattern"> maximun 6 digit is required</div>
+        <div *ngIf="formControls.pincode.errors.required">{{'pin code is required'|translate}}</div>
+        <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | tarnslate}}</div>
       </div>
     </div>
     <div class="col-6">
-      <label class="input-label">GST Number <span class="required">*</span></label>
+      <label class="input-label">{{'GST Number'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -193,14 +193,14 @@
         <input class="form-control" type="text" formControlName="gstNumber">
       </div>
       <div *ngIf="submitted && formControls.gstNumber.errors" class="text-danger">
-        <div *ngIf="formControls.gstNumber.errors.required">gst number is required</div>
+        <div *ngIf="formControls.gstNumber.errors.required">{{'gst number is required'|translate}}</div>
 
       </div>
     </div>
   </div>
   <div class="form-group row mb-3">
     <div class="col-6">
-      <label class="input-label">License Number <span class="required">*</span></label>
+      <label class="input-label">{{'License Number'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -208,12 +208,12 @@
         <input class="form-control" type="number" formControlName="license_number">
       </div>
       <div *ngIf="submitted && formControls.license_number.errors" class="text-danger">
-        <div *ngIf="formControls.license_number.errors.required">license number is required</div>
+        <div *ngIf="formControls.license_number.errors.required">{{'license Number is required'| translate}}</div>
       </div>
     </div>
     <div class="col-6">
 
-      <label class="input-label">Password <span class="required">*</span></label>
+      <label class="input-label">{{'Create Password'|translate}}  <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -221,10 +221,10 @@
         <input class="form-control" type="password" formControlName="password">
       </div>
       <div *ngIf="submitted && formControls.password.errors" class="text-danger">
-        <div *ngIf="formControls.password.errors.required">password is required</div>
+        <div *ngIf="formControls.password.errors.required">{{'password is required'|translate}}</div>
       </div>
       <div *ngIf="registerForm.controls['password'].invalid">
-        please atleast 8 character one upper,one lower case letter,one digit,one special characher
+        {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character'|translate}}
       </div>
     </div>
   </div>
@@ -233,7 +233,7 @@
 
 
     <div class="col-6">
-      <label class="input-label"> Confrom Password <span class="required">*</span></label>
+      <label class="input-label">{{'Confirm Password'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -241,8 +241,8 @@
         <input class="form-control" type="password" formControlName="confirmPassword">
       </div>
       <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
-        <div *ngIf="formControls.confirmPassword.errors.required">confirm password is required</div>
-        <div *ngIf="formControls.confirmPassword.errors.MustMatch">password is not match</div>
+        <<div *ngIf="formControls.confirmPassword.errors.required">{{'confirm password is required'|translate}}</div>
+        <div *ngIf="formControls.confirmPassword.errors.MustMatch">{{'password is not match'|translate}}</div>
       </div>
     </div>
     <div class="col-6">
@@ -255,6 +255,6 @@
     </div>
   </div>
   <div class="text-center">
-    <button type="submit" class="btn btn-login btn-yellow btn-primary my-4">Register</button>
+    <button type="submit" class="btn btn-login btn-yellow btn-primary my-4">{{"Register"| translate}}</button>
   </div>
 </form>

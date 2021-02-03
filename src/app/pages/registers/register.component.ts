@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../_services/auth/auth.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class RegisterComponent implements OnInit {
     { id: 4, name: "Allhabad" },
     { id: 5, name: "Delhi" }
   ];
-  constructor(private fb: FormBuilder, private api: AuthService, private _activatedroute: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private api: AuthService, private _activatedroute: ActivatedRoute, public translate: TranslateService,) {
    
 
   }

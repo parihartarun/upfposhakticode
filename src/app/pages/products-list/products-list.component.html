@@ -1,4 +1,11 @@
  <!-- Full Page Image Header with Vertically Centered Content -->
+<div class="title">
+  <ol class="breadcrumb mb-0">
+    <li><a href="/home">{{'Home' | translate}}</a></li>
+    <li><a href="#"> / {{'Search' | translate}}</a></li>
+
+  </ol>
+</div>
 <header class="masthead">
   <div class="container h-100">
     <div class="row h-100 align-items-center">
@@ -17,6 +24,7 @@
     </div>
   </div>
 </header>
+
 
 <!-- Page Content -->
 <section class="py-5 containerMain">
@@ -232,7 +240,7 @@
                     <img src="../../../assets/icons/cropplaceholder.jpg" class="card-img" alt="...">
                   </div>
                   <div class="col-md-8 mb-2">
-                    <a routerLink="/fpo-details/{{product.id}}" routerLinkActive="active" class="">
+                    <a >
                       <div class="card-body">
                         <!-- <h4 class="card-title">FPO</h4> -->
                         <p class="card-text">{{product.nodal}}</p>

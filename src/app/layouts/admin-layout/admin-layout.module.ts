@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
-import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ToastrModule } from 'ngx-toastr';
 import { HttpClient } from '@angular/common/http';
@@ -35,7 +35,7 @@ import { DepartmentCircularsComponent } from '../../pages/department/department-
     NgxPaginationModule
   ],
   declarations: [
-    UserProfileComponent,
+    
     DepartmentDashboardComponent,
     DepartmentSalesReportComponent,
     DepartmentCircularsComponent,

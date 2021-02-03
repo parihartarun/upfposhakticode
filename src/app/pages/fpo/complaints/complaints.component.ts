@@ -41,10 +41,9 @@ export class ComplaintsComponent implements OnInit {
         title: ['', [Validators.required]],
         desc: ['', [Validators.required]],
         filePath: [''],
-      uploadFile: [''],
-      issueType: ['', [Validators.required]],
-      masterId: localStorage.getItem('masterId'),
-      
+        uploadFile: [''],
+        issueType: ['', [Validators.required]],
+        masterId: localStorage.getItem('masterId'),
     });
     fpoId: localStorage.getItem('masterId')
     this.getComplaints();
@@ -77,6 +76,7 @@ export class ComplaintsComponent implements OnInit {
         this.edit = false;
         this.complaintForm.reset();
         this.getComplaints();
+        this.toastr.error('Complaint Added Succefully.');
       } else {
         this.toastr.error('Error! While Add complaint.');
       }
@@ -175,7 +175,6 @@ export class ComplaintsComponent implements OnInit {
     this.viewComp.remarks = complaint.remarks;
     this.viewComp.title = complaint.title;
     window.scroll(0,0)
-
   }
 }
 
