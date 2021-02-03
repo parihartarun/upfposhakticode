@@ -58,6 +58,7 @@ export class StorageUnitComponent implements OnInit {
     this.storageUnitForm.reset();
     this.storageUnitForm.markAsPristine();
     this.storageUnitForm.markAsUntouched();
+    this.submitted = false;
   }
 
   prepareString(str:string,appendValue:string){
@@ -94,9 +95,9 @@ export class StorageUnitComponent implements OnInit {
   }
 
   getDistricts() {
-    this.storageunitservice.getDistrictsByStateId().subscribe(data=>{   
+    this.storageunitservice.getDistrictByFpoId(localStorage.getItem('masterId')).subscribe(data=>{   
       console.log(data); 
-      this.districtlist = data;
+      this.districtlist = [data];
     });
   }
 
@@ -144,7 +145,9 @@ export class StorageUnitComponent implements OnInit {
       fpoRefId:localStorage.getItem('masterId'),
       id:[equipment.id],
     });
-    this.splitString(equipment.fascilities)
+    if(equipment.fascilities != '' && equipment.fascilities != null){
+      this.splitString(equipment.fascilities)
+    }
     this.edit = true;
     window.scroll(0,0);  
   }
@@ -167,15 +170,10 @@ export class StorageUnitComponent implements OnInit {
     delete finalData.packagingmachines;
     this.storageunitservice.updateStrotageUnit(finalData, finalData.id).subscribe(response => {
       console.log(response);
-      if(response.id != ''){
-        this.toastr.success('Storage unit updated successfully.');
-        this.submitted = false;
-        this.edit = false;
-        this.storageUnitForm.reset();
-        this.getStorageUnits();
-      }else{
-          this.toastr.error('Error! While updating Storage unit.');
-      }
+      this.toastr.success('Storage unit updated successfully.');
+      this.edit = false;
+      this.reset();
+      this.getStorageUnits();
     },
       err => {
         console.log(err)
@@ -184,8 +182,9 @@ export class StorageUnitComponent implements OnInit {
   }
 
   splitString(str){
+    console.log(str);
     let stt:string=""
-      console.log(str.split(","));
+    if(str != null){
       str.split(",").forEach(data=>{
         console.log(data);
         if(data == 'Packaging machines'){
@@ -213,7 +212,7 @@ export class StorageUnitComponent implements OnInit {
         }
         stt = this.prepareString(stt,data);
       })
-    console.log("Prepared stt = "+stt);
+    }
   }
 
   addStorageUnit() {
@@ -235,10 +234,9 @@ export class StorageUnitComponent implements OnInit {
     }
     this.storageunitservice.addStrotageUnit(finalData).subscribe(response => {
       console.log(response);
-      if(response.id != ''){
-        this.toastr.success('Storage unit added successfully.');
-        this.getStorageUnits();
-      }
+      this.toastr.success('Storage unit added successfully.');
+      this.reset();
+      this.getStorageUnits();
     },
       err => {
       console.log(err)

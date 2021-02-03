@@ -79,13 +79,21 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
+                <th scope="col"></th>
+                <th scope="col">{{'Sr. No' | translate}}</th>
                 <th scope="col">{{"Name of Equipment" | translate}}</th>
                 <th scope="col">{{"No. of Equipment" | translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let equipment of equipments | paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr *ngFor="let equipment of equipments | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                <td>
+                  <input type="checkbox">
+                </td>
+                <td>
+                  {{(p-1) * 10 + i + 1}}
+                </td>
                 <td>
                  {{equipment.equpment_name}}
                  </td>

@@ -33,8 +33,8 @@ getDistricts(){
     return res;
   }));
 }
-getDistrictsByStateId(){
-  return  this.http.get<any>(this._url+`api/v1/District/getDistricts`).pipe(map((res:any)=>{
+getDistrictByFpoId(fpoId){
+  return  this.http.get<any>(this._url+`api/fpos//getDistrictByFpoId/`+fpoId).pipe(map((res:any)=>{
     return res;
   }));
 }
