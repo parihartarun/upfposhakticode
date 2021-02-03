@@ -11,7 +11,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0"> Farmer-wise Production Report</h3>
+              <h3 class="mb-0">{{'Farmer-wise Production Report1'|translate}}</h3>
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Financial year</label>
+                    <label class="form-control-label" for="input-last-name">{{'Financial year'|translate}}</label>
                     <select formControlName="financial_year" class="custom-control custom-select mb-3">
                       <option>A</option>
                       <option>B</option>
@@ -32,17 +32,21 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Season</label>
-                    <select formControlName="season" class="custom-control custom-select mb-3">
-                      <option>A</option>
-                      <option>B</option>
-                      <option>C</option>
-                    </select>                  
+                    <label class="form-control-label" for="input-username">{{'Season'|translate}}<span class="required">*</span></label>
+                    <select formControlName="season" class="form-control form-control-alternative">
+                      <option value="">{{'Select Season'|translate}}</option>
+                      <option value="1"> {{'Rabi'|translate}}</option>
+                      <option value="2">  {{'Zayd'|translate}}</option>
+                      <option value="3">  {{'Kharif'|translate}}</option>
+                    </select>
+                    <div *ngIf="submitted && formControls.season.errors" class="text-danger">
+                      <div *ngIf="formControls.season.errors.required">{{'Season is required'|translate}}</div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group mt-4">
-                    <button class="btn btn-primary mt-2 text-right">View Reports</button>               
+                    <button class="btn btn-primary mt-2 text-right">{{'View Reports'|translate}}</button>               
                   </div>
                 </div>
               </div>
@@ -59,8 +63,8 @@
   <!-- Table -->
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary text-right mb-2">Export PDF</button>
-      <button class="btn btn-warning text-right mb-2">Export Excel</button>
+      <button class="btn btn-primary text-right mb-2">{{'Export PDF'|translate}}</button>
+      <button class="btn btn-warning text-right mb-2">{{'Export Excel'|translate}}</button>
     </div>
   </div>
   <div class="row">
@@ -69,7 +73,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Production Data</h3>
+              <h3 class="mb-0">{{'Production Data'|translate}}</h3>
             </div>
             <!-- <div class="col-3 text-right">
               <button class="btn btn-primary text-right">Add Member</button>
@@ -80,12 +84,12 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Farmer Name</th>
-                <th scope="col">Father/Husband Name</th>
-                <th scope="col">Season</th>
-                <th scope="col">Crop Name</th>
-                <th scope="col">Crop variety</th>
-                <th scope="col">Marakatable Surplus</th>
+                <th scope="col">{{'Farmer Name'| translate}}</th>
+                <th scope="col">{{"Father's/ Husband's Name" | translate}}}</th>
+                <th scope="col">{{'Season'|translate}}</th>
+                <th scope="col">{{'Crop Name'| translate}}</th>
+                <th scope="col">{{'Variety'|translate}}</th>
+                <th scope="col">{{'Marketable Surplus (in Qt.)'|translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -111,12 +115,12 @@
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                      Actions
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      {{'Actions'|translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)">{{'Edit'|translate}}</a>
+                      <a class="dropdown-item" href="javascript:void(0)">{{'Delete'|translate}}</a>
                     </div>
                   </div>
                 </td>

@@ -389,7 +389,17 @@
   "S.no": "S.no",
   "Actions": "Actions",
   "Edit": "Edit",
-  "Delete": "Delete"
-
+  "Delete": "Delete",
+  "Add FPO's Sales Info": "Add FPO's Sales Info",
+  "Quantity Sold (in Qt.)": "Quantity Sold (in Qt.)",
+  "Update Crop Production": "Update Crop Production",
+  "FPO's Sales Info": "FPO's Sales Info",
+  "Quantity Sold": "Quantity Sold",
+  "Farmer-wise Production Report1": "Farmer-wise Production Report",
+  "Financial year": "Financial year",
+  "View Reports": "View Reports",
+  "Export PDF": "Export PDF",
+  "Export Excel": "Export Excel",
+  "Production Data": "Farmer-wise Production Report"
 
 }
