@@ -362,5 +362,14 @@
   "Seed": "बीज नंबर",
   "GST Number": "जीएसटी नंबर",
   "gst number is required": "जीएसटी नंबर का आवश्यकता है",
-  "license Number is required": "लाइसेंस नंबर आवश्यक है"
+  "license Number is required": "लाइसेंस नंबर आवश्यक है",
+  "My account": "मेरा खाता",
+  "User information": "उपयोगकर्ता के लिए जानकारी",
+  "Full name": "पूरा नाम",
+  "Full Name is required": "पूरा नाम आवश्यक है",
+  "Registration No": "पंजीकरण क्रमांक",
+  "Registration No. is required": "पंजीकरण क्रमांक आवश्यक है",
+  "Contact information": "संपर्क जानकारी",
+  "Bank information": "बैंक संबंधी जानकारी",
+  "Update profile": "प्रोफ़ाइल अपडेट करें"
 }

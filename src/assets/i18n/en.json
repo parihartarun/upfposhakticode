@@ -360,5 +360,14 @@
   "Seed": "Seed Number",
   "GST Number": "GST Number",
   "gst number is required": "gst number is required",
-  "license Number is required": "License Number is required"
+  "license Number is required": "License Number is required",
+  "My account": "My account",
+  "User information": "User information",
+  "Full name": "Full name",
+  "Full Name is required": "full name is required",
+  "Registration No": "Registration No.",
+  "Registration No. is required": "registration no. is required",
+  "Contact information": "Contact information",
+  "Bank information": "Bank Information",
+  "Update profile": " Update profile"
 }
