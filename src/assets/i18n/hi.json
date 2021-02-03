@@ -353,7 +353,14 @@
   "Allotment Number": "आबंटन संख्या",
   "allotment number code is required": "आबंटन संख्या का आवश्यकता है",
   "Shop Stablishment (Regn. No.)": "दुकान की स्थापना (Regn. No.)",
-  "shop stablishment is required": "दुकान की स्थापना (Regn. No.) आवश्यकता है"
-
-
+  "shop stablishment is required": "दुकान की स्थापना (Regn. No.) आवश्यकता है",
+  "Input Supplier Name": "इनपुट प्रदाता का नाम",
+  "input Supplier Name is required": "इनपुट प्रदाता का नाम आवश्यकता है",
+  "Input Supplier Type": "इनपुट प्रदाता प्रकार",
+  "Select Input Supplier Type": "इनपुट प्रदाता प्रकार का चयन करें",
+  "input supplier type is required": "इनपुट प्रदाता प्रकार का आवश्यकता है",
+  "Seed": "बीज नंबर",
+  "GST Number": "जीएसटी नंबर",
+  "gst number is required": "जीएसटी नंबर का आवश्यकता है",
+  "license Number is required": "लाइसेंस नंबर आवश्यक है"
 }

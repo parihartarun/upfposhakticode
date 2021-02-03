@@ -351,5 +351,14 @@
   "Allotment Number": "Allotment Number",
   "allotment number code is required": "allotment number code is required",
   "Shop Stablishment (Regn. No.)": "Shop Stablishment (Regn. No.)",
-  "shop stablishment is required": "shop stablishment is required"
+  "shop stablishment is required": "shop stablishment is required",
+  "Input Supplier Name": "Input Supplier Name",
+  "input Supplier Name is required": "input Supplier Name is required",
+  "Input Supplier Type": "Input Supplier Type",
+  "Select Input Supplier Type": "Select Input Supplier Type",
+  "input supplier type is required": "input supplier type is required",
+  "Seed": "Seed Number",
+  "GST Number": "GST Number",
+  "gst number is required": "gst number is required",
+  "license Number is required": "License Number is required"
 }
