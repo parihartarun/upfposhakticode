@@ -345,6 +345,15 @@
   "email is required": "ईमेल आईडी का आवश्यकता है",
   "Area": "क्षेत्र",
   "area is required": "क्षेत्र का आवश्यकता है",
-  "WebSite": "वेबसाइट"
+  "WebSite": "वेबसाइट",
+  "Equipment Centre Name": "उपकरण केंद्र का नाम",
+  "equipment centre Name is required": "उपकरण केंद्र का नाम आवश्यकता है",
+  "Firm Registration Number": "फर्म पंजीकरण संख्या",
+  "Firm Registration Number is required": "फर्म पंजीकरण संख्या आवश्यकता है",
+  "Allotment Number": "आबंटन संख्या",
+  "allotment number code is required": "आबंटन संख्या का आवश्यकता है",
+  "Shop Stablishment (Regn. No.)": "दुकान की स्थापना (Regn. No.)",
+  "shop stablishment is required": "दुकान की स्थापना (Regn. No.) आवश्यकता है"
+
 
 }

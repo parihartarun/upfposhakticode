@@ -343,5 +343,13 @@
   "email is required": "email is required",
   "Area": "Area",
   "area is required": "area is required",
-  "WebSite": "WebSite"
+  "WebSite": "WebSite",
+  "Equipment Centre Name": "Equipment Centre Name",
+  "equipment centre Name is required": "equipment centre Name is required",
+  "Firm Registration Number": "Firm Registration Number",
+  "Firm Registration Number is required": "Firm Registration Number is required",
+  "Allotment Number": "Allotment Number",
+  "allotment number code is required": "allotment number code is required",
+  "Shop Stablishment (Regn. No.)": "Shop Stablishment (Regn. No.)",
+  "shop stablishment is required": "shop stablishment is required"
 }
