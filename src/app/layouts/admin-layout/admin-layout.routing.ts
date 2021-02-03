@@ -28,6 +28,9 @@ import { DepartmentUplaodCircularComponent } from '../../pages/department/depart
 import { DepartmentComplaintsComponent } from '../../pages/department/department-complaints/department-complaints.component';
 import { DepartmentUserManagementComponent } from '../../pages/department/department-user-management/department-user-management.component';
 import { DepartmentAllUsersComponent } from '../../pages/department/department-all-users/department-all-users.component';
+import { SearchComponent } from '../..//pages/common/search/search.component';
+import { NotificationsComponent } from '../../pages/common/notifications/notifications.component';
+import { IndentComponent } from '../../pages/common/indent/indent.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: DashboardComponent },
@@ -56,6 +59,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'department/complaints', component: DepartmentComplaintsComponent },
   { path: 'department/user-management', component: DepartmentUserManagementComponent },
   { path: 'department/all-users', component: DepartmentAllUsersComponent },
-
+  { path: 'search', component: SearchComponent },
+  { path: 'notifications', component: NotificationsComponent },
+  { path: 'indent_history', component:IndentComponent}
 ];
 
