@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor( public router:Router) { }
 
   ngOnInit(): void {
   }
 
+  sreach(){
+    this.router.navigate(['fpo/dashboard']);
+  }
 }

@@ -160,6 +160,11 @@ export class BoardMembersComponent implements OnInit {
     );
   }
 
+  reset(){
+    this.submitted = false;
+    this.memberForm.reset();
+  }
+
   addBoardMember() {
     this.submitted = true;
     // stop here if form is invalid
