@@ -57,6 +57,7 @@ import { EquipmentCentreRegisterComponent } from './pages/registers/equipment-ce
 import { FarmerChcRegisterComponent } from './pages/registers/farmer-chc-register/farmer-chc-register.component';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { IndentComponent } from './pages/fpo/indent/indent.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -126,6 +127,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     EquipmentCentreRegisterComponent,
     FarmerChcRegisterComponent,
     UserProfileComponent,
+    IndentComponent,
   ],
   exports: [   
     AuthHeaderComponent
