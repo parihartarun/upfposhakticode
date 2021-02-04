@@ -1,7 +1,10 @@
+import { DatePipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../_services/auth/auth.service';
 import { FpoService } from '../../_services/fpo/fpo.service';
 import { ProductService } from '../../_services/product/product.service';
@@ -13,6 +16,7 @@ import { ProductService } from '../../_services/product/product.service';
 })
 export class ProductsListComponent implements OnInit {
   isLoggeIn = false;
+  submitted = false;
   title = 'appBootstrap';  
   closeResult: string;
   serachProduct: [];
@@ -33,29 +37,35 @@ export class ProductsListComponent implements OnInit {
   parsearchType: string;
   parval: string;
   topsearchval: string;
+  indentForm: FormGroup;
   
   constructor(private modalService: NgbModal, private _rouetr: Router, private _productService: ProductService, private _activatedroute: ActivatedRoute,
-    private api: AuthService, private _fpoService: FpoService) { }
+    private api: AuthService, private _fpoService: FpoService, private fb: FormBuilder, private datePipe: DatePipe, private toastr: ToastrService) { }
     
   open(event, content, item):any {
-    item
+    
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
       this._fpoService.getfpoDetialById(item.id).subscribe(f => {
-        this.fpoDetail = f
-      })  
+        this.fpoDetail = f;
+        this.createIndentForm();
+       
+      })
+     
       this.modalService.open(content, { ariaLabelledBy: item.id }).result.then((result) => {
          
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          this.submitted = false;
       });
     }
     else {
       this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          this.submitted = false;
       });
      
     }
@@ -182,7 +192,69 @@ searchWithFilters()
   logout() {
     this.modalService.dismissAll();
   }
-  
+  createIndentForm() {
+    this.indentForm = this.fb.group({
+      fpoId: [this.fpoDetail.fpoId],
+      cropId: [567],
+      userId: [this.fpoDetail.userFpo.userId, Validators.required],
+      fpoName: [this.fpoDetail.fpoName],
+      fpoEmail: [this.fpoDetail.fpoEmail],
+      fulfillmentDate: ["", Validators.required],
+      quantity: ["", Validators.required],
+      cropMaster: [],
+      user: [],
+      fpo:[]
+     
+    })
+  }
+  get formControls() {
+    return this.indentForm.controls;
+  }
+  save() {
+    
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.indentForm.invalid) {
+      return;
+    }
+    let user = {
+      userId: this.fpoDetail.userFpo.userId,
+    }
+    let cropMaster = {
+      cropId: this.indentForm.value.cropId
+    }
+    let userFpo = {
+      userId: this.fpoDetail.userFpo.userId,
+    }
+    let fpo = {
+      fpoId: this.indentForm.value.fpoId,
+      userFpo: userFpo
+    }
+    delete this.indentForm.value.password;
+    delete this.indentForm.value.userName;
+    delete this.indentForm.value.confirmPassword;
+    this.indentForm.value.user = user;
+    this.indentForm.value.fpo = fpo;
+    this.indentForm.value.cropMaster = cropMaster;
+    let date = new Date(this.indentForm.value.fulfillmentDate);
+    //let newdate = this.newUYDate(date);
+
+
+    this.indentForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd/MM/yyyy'); //whatever format you need. 
+    this._productService.saveIndent(this.indentForm.value).subscribe(response => {
+
+      if (response.message == "Enquiry created Successfully!") {
+        this.toastr.success(response.message);
+        this.indentForm.reset();
+        this.submitted = false;
+        this.modalService.dismissAll();
+      }
+      else {
+        this.toastr.error(response.message);
+      }
+
+    })
+  }
 }
 interface District {
   id: number;

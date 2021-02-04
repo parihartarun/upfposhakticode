@@ -376,37 +376,53 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">
-          <form role="form">
+        <div class="modal-body" *ngIf="indentForm">
+          <form role="form" [formGroup]="indentForm">
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">Your Full Name</label>
+              <label class="form-control-label" for="input-username">FPO Name<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="Full Name" type="text">
+                <input class="form-control" placeholder="Full Name" disabled type="text" formControlName="fpoName">
               </div>
+             
+             
             </div>
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">Email Address</label>
+              <label class="form-control-label" for="input-username">Email Address<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="Email" type="text">
+                <input class="form-control" placeholder="Email" disabled type="text"  formControlName="fpoEmail">
               </div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">Quantity Required</label>
-              <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="Quantity" type="text">
-              </div>
+            
             </div>
 
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">Fulfilled Date</label>
+              <label class="form-control-label" for="input-username">Quantity Required<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="Fulfilled Date" type="date">
+                <input class="form-control" placeholder="Quantity" type="number" formControlName="quantity">
+              </div>
+              <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
+                <div *ngIf="formControls.quantity.errors.required">quantity is required</div>
+              </div>
+             
+
+            </div>
+
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">Fulfilled Date<span class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input type="text"
+                       placeholder="Datepicker"
+                       class="form-control"
+                       bsDatepicker
+                       [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }" formControlName="fulfillmentDate">
+              </div>
+              <div *ngIf="submitted && formControls.fulfillmentDate.errors" class="text-danger">
+                <div *ngIf="formControls.fulfillmentDate.errors.required">date is required</div>
               </div>
             </div>
+            
 
             <div class="text-center">
-              <button type="submit" class="btn btn-login btn-product-search btn-primary my-4">Send</button>
+              <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"(click)="save()">Send</button>
             </div>
           </form>
         </div>

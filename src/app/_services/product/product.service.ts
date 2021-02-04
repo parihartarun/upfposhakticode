@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
@@ -21,6 +22,12 @@ export class ProductService {
   }
   getSearchProductWithFilters(val:any,searchType:any,httpparams:HttpParams) {
     return this.http.get<any>(this._url + 'home/search',{params:httpparams}).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  saveIndent(data): Observable<any> {
+
+    return this.http.post<any>(this._url + 'enquiry', data).pipe(map((res: any) => {
       return res;
     }));
   }
