@@ -237,13 +237,33 @@
         </div> <!-- card.// -->
       </div>
       <div class="col-md-9">
+        <div class="row">  
+          <ng-template #customLoadingTemplate>
+              <!-- <div class="custom-class">
+                  <h3>
+                      
+                  </h3>
 
-        <div class="row">
+              </div> -->
+          </ng-template>
+       
+          <ngx-loading [show]="loading" [config]="{backdropBackgroundColour: '#ffffff', 
+          backdropBorderRadius: '1px',
+          primaryColour: '#926E01', 
+          secondaryColour: '#926E01', 
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+          
+      </div>
+     
+        <div class="row">          
+    
           <div class="col-md-6" *ngFor="let product of serachProduct | paginate: { itemsPerPage: 10, currentPage: p }">
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
                 <div class="row">
-
+                  
+                  
+                  
                   <div class="col-md-4 mb-2">
                     <!-- <img src="../../../assets/img/onion.jpeg" class="card-img" alt="..."> -->
                     <img src="../../../assets/icons/cropplaceholder.jpg" class="card-img" alt="...">
