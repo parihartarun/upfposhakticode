@@ -199,7 +199,7 @@ searchWithFilters()
       userId: [this.fpoDetail.userFpo.userId, Validators.required],
       fpoName: [this.fpoDetail.fpoName],
       fpoEmail: [this.fpoDetail.fpoEmail],
-      fulfillmentDate: ["", Validators.required],
+      fulfillmentDate: ["", [Validators.required]],
       quantity: ["", Validators.required],
       cropMaster: [],
       user: [],

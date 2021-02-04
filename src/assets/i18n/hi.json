@@ -19,8 +19,8 @@
   "bannerSearchText": "एफपीओ खोजें नाम/ जनपद / फसल /सेवाएँ / उत्पाद द्वारा",
   "Any": "कोई भी",
   "Crop": "फसलों",
-  "Crops":"फ़सलें",
-  
+  "Crops": "फ़सलें",
+
   "District": "जिला",
   "FPO": "एफ.पी. ओ",
   "Search": "खोजें",
@@ -84,7 +84,7 @@
   "Connect with buyers and exporters": "उपज के खरीदारों और निर्यातकों के साथ जुड़े",
   "Get information about FPO registration": "एफपीओ पंजीकरण के बारे में जानकारी प्राप्त करें",
   "Get information about seeds, fertilizers, agricultural implements etc": "बीज, उर्वरक, कृषि उपकरण आदि के बारे में जानकारी प्राप्त करें",
-  "Total Land (in Ha.)": "कुल भूमि (हा में).",
+  "Total Land (in Ha.)": "कुल भूमि (हेक्टेयर में)",
   "Accessibility": "अभिगम्‍यता वक्‍तव्‍य",
   "Privacy Policy": "गोपनीयता नीति",
   "Hyper Linking Policy": "हाइपरलिंकिंग नीति",
@@ -404,16 +404,23 @@
   "View Reports": "रिपोर्ट  देखें",
   "Export PDF": "पीडीएफ रिपोर्ट",
   "Export Excel": "एक्सेल रिपोर्ट",
-  "Production Data":"किसान वार उत्पादन रिपोर्ट",
+  "Production Data": "किसान वार उत्पादन रिपोर्ट",
 
   "Crop Production": "फ़सल उत्पादन",
-  "Sales Report":"विक्रय विवरण",
-  "Production Report":"उत्पादन रिपोर्ट",
-  "Upload Circular":"सर्कुलर अपलोड करें",
-  "Indent History":"इंडेंट हिस्ट्री",
-  "Machinary Catalogue":"मैकिनिकल कैटलॉग",
-  "Input supplier catalogue":"इनपुट आपूर्तिकर्ता सूची",
-  "Complaints/Suggestions":"शिकायतें / सुझाव"
+  "Sales Report": "विक्रय विवरण",
+  "Production Report": "उत्पादन रिपोर्ट",
+  "Upload Circular": "सर्कुलर अपलोड करें",
+  "Indent History": "इंडेंट हिस्ट्री",
+  "Machinary Catalogue": "मैकिनिकल कैटलॉग",
+  "Input supplier catalogue": "इनपुट आपूर्तिकर्ता सूची",
+  "Complaints/Suggestions": "शिकायतें / सुझाव",
 
-
+  "Enquiry Form": "पूछताछ फार्म",
+  "FPO Email1": "एफपीओ ईमेल आईडी",
+  "Quantity Required": "आवश्यक मात्रा",
+  "quantity is required": "मात्रा का आवश्यक है",
+  "Fulfilled Date": "पूर्ण तिथि",
+  "date is required": "तिथि का आवश्यक है",
+  "Send": "भेज दो",
+  "Date": "तिथि"
 }
