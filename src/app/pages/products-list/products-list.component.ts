@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../_services/auth/auth.service';
+import { FpoService } from '../../_services/fpo/fpo.service';
 import { ProductService } from '../../_services/product/product.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { ProductService } from '../../_services/product/product.service';
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit {
-
+  isLoggeIn = false;
   title = 'appBootstrap';  
   closeResult: string;
   serachProduct: [];
@@ -23,6 +24,7 @@ export class ProductsListComponent implements OnInit {
   districts: Array<District> = [];
   isDistrict: false;
   searchCriteria: Array<any> = [];
+  fpoDetail:any
   quantities:Array<{selected:boolean,minname:string,maxname:string,name:string,type:string,quantity:number,maxQuantity:number}> = [
     { selected:false,minname:"0",maxname:"99",name:"100", type:"qty",quantity: 100, maxQuantity: 0 }, 
     { selected:false, minname:"100",maxname:"199",name:"200", type:"qty",quantity: 200, maxQuantity: 0 },
@@ -32,15 +34,33 @@ export class ProductsListComponent implements OnInit {
   parval: string;
   topsearchval: string;
   
-  constructor(private modalService: NgbModal, private _rouetr:Router, private _productService: ProductService, private _activatedroute: ActivatedRoute, private api: AuthService) { }
+  constructor(private modalService: NgbModal, private _rouetr: Router, private _productService: ProductService, private _activatedroute: ActivatedRoute,
+    private api: AuthService, private _fpoService: FpoService) { }
     
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+  open(event, content, item):any {
+    item
+    if (sessionStorage.getItem('accessToken') != null) {
+      this.isLoggeIn = true;
+      this._fpoService.getfpoDetialById(item.id).subscribe(f => {
+        this.fpoDetail = f
+      })  
+      this.modalService.open(content, { ariaLabelledBy: item.id }).result.then((result) => {
+         
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+    }
+    else {
+      this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+     
+    }
   }
+
   
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -158,6 +178,9 @@ searchWithFilters()
      console.log("Updated Filter Data = "+JSON.stringify(this.selectedfilters))
     }
     this.searchWithFilters();
+  }
+  logout() {
+    this.modalService.dismissAll();
   }
   
 }
