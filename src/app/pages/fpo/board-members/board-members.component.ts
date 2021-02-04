@@ -70,7 +70,7 @@ export class BoardMembersComponent implements OnInit {
   selectDistrict(districtId: any) {
     console.log(districtId);
     if(districtId != null){
-      this.memberForm.controls['distId'].setValue(districtId);
+      this.memberForm.patchValue({'distId':districtId});
       this.auth.getBlock(parseInt(districtId)).subscribe(block => {
         this.blocks = block
       })
@@ -113,7 +113,6 @@ export class BoardMembersComponent implements OnInit {
 
   editBoardMember(member){
     console.log(member.id);
-    this.getDistricts();
     this.selectDistrict(member.distId);
     this.selectBlock(member.blockId);
     this.selectPanchayat(member.panchayatId);
@@ -162,6 +161,7 @@ export class BoardMembersComponent implements OnInit {
   }
 
   reset(){
+    this.submitted = false;
     this.memberForm.reset();
   }
 

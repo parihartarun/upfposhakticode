@@ -82,7 +82,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">{{'Mobile' | translate}}</label>
-                    <input formControlName="contactNo" type="number" id="input-email" class="form-control form-control-alternative" >
+                    <input formControlName="contactNo" type="text" id="input-email" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.contactNo.errors" class="text-danger">
                       <span *ngIf="formControls.contactNo.errors.pattern">{{'Mobile number should be 10 digit' | translate}}</span>
                     </div>
@@ -176,6 +176,8 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
+                <th scope="col"></th>
+                <th scope="col">{{'Sr. No' | translate}}</th>
                 <th scope="col">{{'Member Name' | translate}}</th>
                 <th scope="col">{{"Father's/ Husband's Name" | translate}}</th>
                 <th scope="col">{{'Gender' | translate}}</th>
@@ -186,12 +188,18 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let member of members | paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr *ngFor="let member of members | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                <td>
+                  <input type="checkbox">
+                </td>
+                <td>
+                  {{(p-1) * 10 + i + 1}}
+                </td>
                 <td>
                  {{member.name}}
                  </td>
                 <td>
-                  {{member.fatherName}}
+                  {{member.guardianName}}
                 </td>
                 <td>
                   {{member.gender}}
@@ -200,7 +208,7 @@
                   {{member.designation}}
                 </td>
                 <td>
-                  {{member.mobile}}
+                  {{member.contactNo}}
                 </td>
                 <td>
                   {{member.email}}

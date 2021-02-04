@@ -49,7 +49,6 @@ export class ServicesComponent implements OnInit {
     );
   }
   handleFileInput(files: FileList) {
-    alert();
     console.log(files);
       this.fileToUpload = files.item(0);
   }
@@ -86,6 +85,7 @@ export class ServicesComponent implements OnInit {
     this.serviceForm = this.formBuilder.group({
       servicename: [service.servicename, [Validators.required]],
       descriptions: [service.descriptions, [Validators.required]],
+      file:[''],
       id:[service.id]
     });
     this.edit = true;
@@ -100,11 +100,12 @@ export class ServicesComponent implements OnInit {
     }
 
     const formData: FormData = new FormData();
-    formData.append('file', this.serviceForm.value.file);
+    formData.append('file', this.fileToUpload);
     formData.append('servicename', this.serviceForm.value.servicename);
     formData.append('description', this.serviceForm.value.descriptions);
+    formData.append('id', this.serviceForm.value.id);
 
-    this.api.updateService(formData).subscribe(response => {
+    this.api.updateService(formData, this.serviceForm.value.id).subscribe(response => {
       console.log(response);
         this.toastr.success('Service/Production updated successfully.');
         this.submitted = false;

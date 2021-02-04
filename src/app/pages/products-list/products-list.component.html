@@ -14,8 +14,8 @@
           <div class="row">
             <div class="col-md-8 offset-md-2">
               <div class="form-group">
-                <input type="text" class="form-control search-text" id="exampleFormControlInput1" placeholder="Search here product that you want to buy ...">
-                <a href="#" class="btn btn-primary btn-block btn-lg btn-product-search active search-btn" role="button" aria-pressed="true">{{'Search' | translate }}</a>
+                <input type="text" class="form-control search-text" name="topsearch" [(ngModel)]="topsearchval" id="exampleFormControlInput1" placeholder="Search here product that you want to buy ...">
+                <button class="btn btn-primary btn-block btn-lg btn-product-search active search-btn" role="button" aria-pressed="true" (click)="newSearchWithFilters()">{{'Search' | translate }}</button>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@
               <div class="card-body filterDistrict">
                 <form>
                   <label class="form-check" *ngFor="let district of districts">
-                    <input class="form-check-input" type="checkbox" value="" name="district.is_active" [(ngModel)]="district.is_active" (change)="selectDistrct(district)">
+                    <input class="form-check-input" type="checkbox" [value]="district.district_name" [name]="district.district_name" [(ngModel)]="district.is_active" (change)="selectDistrct(district)">
                     <span class="form-check-label">
                       {{district.district_name }}
                     </span>
@@ -70,15 +70,15 @@
           </article> <!-- card-group-item.// -->
              <article class="card-group-item">
             <header class="card-header">
-              <h3 class="title">{{'Quantity ' | translate }}</h3>
+              <h3 class="title">{{'Quantity' | translate }}</h3>
             </header>
             <div class="filter-content">
               <div class="card-body">
                 <form>
                   <label class="form-check" *ngFor="let q of quantities">
-                    <input class="form-check-input" type="checkbox" value="" name="district.is_active" [(ngModel)]="q.maxQuantity" (change)="selectQuantity(q)">
+                    <input class="form-check-input" type="checkbox" [value]="q.name" [name]="q.name" [(ngModel)]="q.selected" (change)="selectQuantity(q)">
                     <span class="form-check-label">
-                      {{q.quantity}}
+                      {{q.minname}} - {{q.maxname}}
                     </span>
                   </label> <!-- form-check.// -->
                   <!--<label class="form-check">
@@ -99,7 +99,7 @@
             </div>
           </article>
 
-          <article class="card-group-item">
+          <!-- <article class="card-group-item">
             <header class="card-header">
               <h3 class="title">{{'Crop' | translate }}</h3>
             </header>
@@ -111,25 +111,26 @@
                     <span class="form-check-label">
                       {{'Anthurium' | translate }}
                     </span>
-                  </label> <!-- form-check.// -->
+                  </label>   
                   <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                      {{'Bhut Jalakia' | translate }}
                     </span>
-                  </label>  <!-- form-check.// -->
+                  </label>   form-check.
                   <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                        {{'Cabbage' | translate }}
                     </span>
-                  </label>  <!-- form-check.// -->
-                </form>
+                  </label>   form-check.// 
+                </form> 
 
-              </div> <!-- card-body.// -->
+              </div>  card-body.// 
             </div>
-          </article> <!-- card-group-item.// -->
-          <article class="card-group-item">
+          </article>  card-group-item.// -->
+          
+          <!-- <article class="card-group-item">
             <header class="card-header">
               <h3 class="title">{{'Variety' | translate }}</h3>
             </header>
@@ -140,26 +141,30 @@
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Midori ? GreenVariety' | translate }}
-                    </span>
-                  </label> <!-- form-check.// -->
+                    </span> -->
+                  <!-- </label> form-check.//
                   <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Agnihotri' | translate }}
-                    </span>
-                  </label>  <!-- form-check.// -->
-                  <label class="form-check">
+                    </span> -->
+                  <!-- </label>   -->
+                  <!-- form-check.// -->
+                  <!-- <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Lambada (white obake)' | translate }}
                     </span>
-                  </label>  <!-- form-check.// -->
-                </form>
+                  </label>   -->
+                  <!-- form-check.// -->
+                <!-- </form> -->
 
-              </div> <!-- card-body.// -->
-            </div>
-          </article> <!-- card-group-item.// -->
-          <article class="card-group-item">
+              <!-- </div>  -->
+              <!-- card-body.// -->
+            <!-- </div>
+          </article>  -->
+          <!-- card-group-item.// -->
+          <!-- <article class="card-group-item">
             <header class="card-header">
               <h3 class="title">{{'FPO' | translate }}</h3>
             </header>
@@ -170,26 +175,30 @@
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Mehroni Jaiv Urja Producer Company Limited' | translate }}
-                    </span>
-                  </label> <!-- form-check.// -->
-                  <label class="form-check">
+                    </span> -->
+                  <!-- </label> -->
+                    <!-- form-check.// -->
+                  <!-- <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
-                    <span class="form-check-label">
+                    <span class="form-check-label"> 
                       {{'Safal Kisaan Producer Company Limited' | translate }}
-                    </span>
-                  </label>  <!-- form-check.// -->
-                  <label class="form-check">
+                     </span> --> 
+                  <!-- </label>  -->
+                   <!-- form-check.// -->
+                  <!-- <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Shri Annagerbha Bio-Energy Farmer Producer Company Limited' | translate }}
                     </span>
-                  </label>  <!-- form-check.// -->
-                </form>
+                  </label>   -->
+                  <!-- form-check.// -->
+                <!-- </form> -->
 
-              </div> <!-- card-body.// -->
-            </div>
-          </article>
-          <article class="card-group-item">
+              <!-- </div>  -->
+              <!-- card-body.// -->
+            <!-- </div>
+          </article> -->
+          <!-- <article class="card-group-item">
             <header class="card-header">
               <h3 class="title">{{'Services/ Products' | translate }} </h3>
             </header>
@@ -201,24 +210,27 @@
                     <span class="form-check-label">
                       {{'Vermicompost' | translate }}
                     </span>
-                  </label> <!-- form-check.// -->
-                  <label class="form-check">
+                  </label>  -->
+                  <!-- form-check.// -->
+                  <!-- <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Seed Processing Unit' | translate }}
-                    </span>
-                  </label>  <!-- form-check.// -->
-                  <label class="form-check">
+                    </span> -->
+                  <!-- </label>   -->
+                  <!-- <label class="form-check">
                     <input class="form-check-input" type="checkbox" value="">
                     <span class="form-check-label">
                       {{'Seed Distribution Agency' | translate }}
                     </span>
-                  </label>  <!-- form-check.// -->
-                </form>
+                  </label>   -->
+                <!-- </form> -->
 
-              </div> <!-- card-body.// -->
-            </div>
-          </article> <!-- card-group-item.// -->
+              <!-- </div>  -->
+              <!-- card-body.// -->
+            <!-- </div>
+          </article>  -->
+          <!-- card-group-item.// -->
 
 
 
@@ -233,54 +245,55 @@
                 <div class="row">
 
                   <div class="col-md-4 mb-2">
-                    <img src="../../../assets/img/onion.jpeg" class="card-img" alt="...">
+                    <!-- <img src="../../../assets/img/onion.jpeg" class="card-img" alt="..."> -->
+                    <img src="../../../assets/icons/cropplaceholder.jpg" class="card-img" alt="...">
                   </div>
                   <div class="col-md-8 mb-2">
                     <a >
                       <div class="card-body">
-                        <h4 class="card-title">FPO</h4>
-                        <p class="card-text">{{product.nodal}}</p>
+                        <!-- <h4 class="card-title">FPO</h4> -->
+                        <p class="card-text"><a routerLink="/fpo-details/{{product.id}}">{{product.nodal}}</a></p>
                       </div>
                     </a>
 
                   </div>
                   <div class="col-md-6 mb-2">
                     <div class="card-body p-0">
-                      <h4 class="card-title">Crop</h4>
+                      <!-- <h4 class="card-title">Crop</h4> -->
                       <p class="card-text" *ngIf="product.crops">{{product.crops}}</p>
                       <p class="card-text" *ngIf="!product.crops">NA</p>
                     </div>
                   </div>
                   <div class="col-md-6 mb-2">
                     <div class="card-bod p-0">
-                      <h4 class="card-title">Crop Variety</h4>
+                      <!-- <h4 class="card-title">Crop Variety</h4> -->
                       <p class="card-text" *ngIf="product.cropVeriety">{{product.cropVeriety}}</p>
                       <p class="card-text" *ngIf="!product.cropVeriety">NA</p>
                     </div>
                   </div>
                   <div class="col-md-6 mb-2">
                     <div class="card-body p-0">
-                      <h4 class="card-title">District</h4>
+                      <!-- <h4 class="card-title">District</h4> -->
                       <p class="card-text" *ngIf="product.district">{{product.district}}</p>
                       <p class="card-text" *ngIf="!product.district">NA</p>
                     </div>
                   </div>
                   <div class="col-md-6 mb-2">
                     <div class="card-body p-0">
-                      <h4 class="card-title">Marke Table Surplus</h4>
-                      <p class="card-text" *ngIf="product.marketableSurplus">{{product.marketableSurplus}}</p>
+                      <!-- <h4 class="card-title">Marketable Surplus</h4> -->
+                      <p class="card-text" *ngIf="product.marketableSurplus">{{product.marketableSurplus}} (mt)</p>
                       <p class="card-text" *ngIf="!product.marketableSurplus">NA</p>
                     </div>
                   </div>
                   <div class="col-md-8">
-                    <h4 class="mt-1">Actually Produced Quantity</h4>
-                    <p class="card-text" *ngIf="product.actualProduction">{{product.actualProduction}}</p>
-                    <p class="card-text" *ngIf="!product.actualProduction">NA</p>
+                    <!-- <h4 class="mt-1">Actually Produced Quantity</h4> -->
+                    <!-- <p class="card-text" *ngIf="product.actualProduction">{{product.actualProduction}}</p>
+                    <p class="card-text" *ngIf="!product.actualProduction">NA</p> -->
+                    <button href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Create Indent</button>
                   </div>
 
                   <div class="col-md-4 text-right">
-                    <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
-                    <a href="javascript:void(0)" routerLink="/fpo-details/{{product.id}}" routerLinkActive="active" class="btn btn-sm btn-primary btn-product-search mr-2 mt-2">View AlL</a>
+                    <button href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search" [disabled]="true">View Details</button>
                   </div>
                 </div>
               </div>
@@ -351,7 +364,7 @@
         </div>
         <div class="card-footer py-4">
           <nav aria-label="..." class="text-right">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <pagination-controls *ngIf="serachProduct&&serachProduct.length>0" (pageChange)="p = $event"></pagination-controls>
           </nav>
         </div>
       </div>

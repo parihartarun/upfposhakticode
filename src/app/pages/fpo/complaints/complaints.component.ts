@@ -71,12 +71,11 @@ export class ComplaintsComponent implements OnInit {
     formData.append('issue_type', this.complaintForm.value.issueType);
     this.api.addComplaint(formData).subscribe(response => {
       if (response!= '') {
-        this.toastr.success(response.message);
+        this.toastr.success('Complaint Added Succefully.');
         this.submitted = false;
         this.edit = false;
         this.complaintForm.reset();
         this.getComplaints();
-        this.toastr.error('Complaint Added Succefully.');
       } else {
         this.toastr.error('Error! While Add complaint.');
       }

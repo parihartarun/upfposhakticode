@@ -48,8 +48,12 @@ export class LoginComponent implements OnInit {
         this.userRole = localStorage.getItem('userRole');
         if (this.userRole == 'ROLE_FPC') {
           this.route.navigate(['/fpo/dashboard']);
-        } else {
+        } else if(this.userRole == 'ROLE_MIN') {
           this.route.navigate(['/department/dashboard']);
+        } else if(this.userRole == 'ROLE_BUYERSELLER'){
+          this.route.navigate(['/indent_history']);
+        }else{
+          this.route.navigate(['/fpo/dashboard']);
         }
       }
     },

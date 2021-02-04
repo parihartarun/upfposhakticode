@@ -115,8 +115,9 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
+                <th scope="col"></th>
                 <th scope="col">{{'S.no'|translate}}</th>
-                <th scope="col">{{Season|translate}}</th>
+                <th scope="col">{{'Season'|translate}}</th>
                 <th scope="col">{{'Crop Name'| translate}}</th>
                 <th scope="col">{{'Variety'|translate}}</th>
                 <th scope="col">{{'Actual Production (in Qt.)'|translate}}</th>
@@ -125,7 +126,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let production of cropProductions | paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr *ngFor="let production of cropProductions | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                <td>
+                  <input type="checkbox">
+                </td>
+                <td>
+                  {{(p-1) * 10 + i + 1}}
+                </td>
                 <td>
                  {{production.season}}
                  </td>

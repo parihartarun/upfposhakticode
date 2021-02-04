@@ -224,45 +224,52 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
   
    getServices(){
-    return  this.http.get<any>(this._url+'FPOServices/getall').pipe(map((res:any)=>{
+    return  this.http.get<any>(this._url+'fposervices/getall').pipe(map((res:any)=>{
       return res;
     }));
   }
 
   addService(data){
-    return  this.http.post<any>(this._url+'FPOServices/insert', data).pipe(map((res:any)=>{
+    return  this.http.post<any>(this._url+'fposervices', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
-  updateService(data){
-    return  this.http.post<any>(this._url+'FPOServices/update/'+data.id, data).pipe(map((res:any)=>{
+  updateService(data, id){
+    return  this.http.put<any>(this._url+'fposervices/'+id, data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
   deleteService(id){
-    return  this.http.delete<any>(this._url+'FPOServices/delete/'+id).pipe(map((res:any)=>{
+    return  this.http.delete<any>(this._url+'fposervices/delete/'+id).pipe(map((res:any)=>{
       return res;
     }));
   }
 
    /************************** FPO's Photographs **********************************/
 
-  getPhotographs(data){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+   getPhotographs(){
+    return  this.http.get<any>(this._url+'photo').pipe(map((res:any)=>{
+      return res;
+    }));
+  };
+
+  addPhotograph(data: any){
+    return  this.http.post<any>(this._url+'photo', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
-  addPhotograph(data){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+  updatePhotograph(data:any){
+    return  this.http.post<any>(this._url+'photo', data).pipe(map((res:any)=>{
       return res;
     }));
   }
 
-  updatePhotograph(data){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+  // Delete photograph
+  deletePhotograph(id){
+    return  this.http.delete<any>(this._url+'photo/'+id).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -356,8 +363,8 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
 
-  deleteFarmer(data: any) {
-    return this.http.post<any>(this._url + 'api/farmer', data).pipe(map((res: any) => {
+  deleteFarmer(id: any) {
+    return this.http.delete<any>(this._url + 'api/Farmer/deleteFarmer/'+id).pipe(map((res: any) => {
       return res;
     }));
   }

@@ -19,6 +19,8 @@
   "bannerSearchText": "एफपीओ खोजें नाम/ जनपद / फसल /सेवाएँ / उत्पाद द्वारा",
   "Any": "कोई भी",
   "Crop": "फसलों",
+  "Crops":"फ़सलें",
+  
   "District": "जिला",
   "FPO": "एफ.पी. ओ",
   "Search": "खोजें",
@@ -402,6 +404,16 @@
   "View Reports": "रिपोर्ट  देखें",
   "Export PDF": "पीडीएफ रिपोर्ट",
   "Export Excel": "एक्सेल रिपोर्ट",
-  "Production Data":"किसान वार उत्पादन रिपोर्ट"
+  "Production Data":"किसान वार उत्पादन रिपोर्ट",
+
+  "Crop Production": "फ़सल उत्पादन",
+  "Sales Report":"विक्रय विवरण",
+  "Production Report":"उत्पादन रिपोर्ट",
+  "Upload Circular":"सर्कुलर अपलोड करें",
+  "Indent History":"इंडेंट हिस्ट्री",
+  "Machinary Catalogue":"मैकिनिकल कैटलॉग",
+  "Input supplier catalogue":"इनपुट आपूर्तिकर्ता सूची",
+  "Complaints/Suggestions":"शिकायतें / सुझाव"
+
 
 }

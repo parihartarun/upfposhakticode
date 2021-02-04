@@ -18,6 +18,7 @@
   "bannerSearchText": "Search FPO by Name/ District/ Crop/ Services/ Products",
   "Any": "Any",
   "Crop": "Crop",
+  "Crops":"Crops",
   "District": "District",
   "FPO": "FPO",
   "Search": "Search",
@@ -400,6 +401,15 @@
   "View Reports": "View Reports",
   "Export PDF": "Export PDF",
   "Export Excel": "Export Excel",
-  "Production Data": "Farmer-wise Production Report"
+  "Production Data": "Farmer-wise Production Report",
 
+  "Crop Production": "Crop Production",
+  "Sales Report":"Sales Report",
+  "Production Report":"Production Report",
+  "Upload Circular":"Upload Circular",
+  "Indent History":"Indent History",
+  "Machinary Catalogue":"Machinary Catalogue",
+  "Input supplier catalogue":"Input supplier catalogue",
+  "Complaints/Suggestions":"Complaints/Suggestions"
+ 
 }

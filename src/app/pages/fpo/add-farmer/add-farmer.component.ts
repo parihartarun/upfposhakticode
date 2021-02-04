@@ -24,7 +24,7 @@ export class AddFarmerComponent implements OnInit {
   banks = [];
   form: FormGroup;
   FarmerLists:Array<any>=[];
-  p:number;
+  p:number = 1;  
   edit=false;
 
   constructor(private fb: FormBuilder, private api: AuthService, private fpo :FpoService ,private _router: Router,private toastr:ToastrService) { }
@@ -89,7 +89,6 @@ export class AddFarmerComponent implements OnInit {
         distRefId: ['', Validators.required],
         gender: ['', Validators.required],
         createdBy:localStorage.getItem('userrole'),
-        deleted: [true],
         enabled: [true],
         farmerMob: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
         farmerName: ['', Validators.required],
@@ -191,7 +190,6 @@ export class AddFarmerComponent implements OnInit {
         fpoRefId: localStorage.getItem('masterId'),
         userRefId: localStorage.getItem('userId'),
         createdBy:localStorage.getItem('userrole'),
-        deleted: [true],
         enabled: [true],
         password: ['12345678'],
         confirmPassword: ['12345678']

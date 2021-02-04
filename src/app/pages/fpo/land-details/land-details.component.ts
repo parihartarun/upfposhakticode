@@ -13,7 +13,7 @@ import { FpoService } from '../../../_services/fpo/fpo.service';
 })
 export class LandDetailsComponent implements OnInit {
 
-  p:number;
+  p:number = 1;  
   landDetailForm: FormGroup;
   landDetails:Array<any>=[];
   ownerShipList:Array<any>=[
@@ -64,14 +64,6 @@ export class LandDetailsComponent implements OnInit {
         this.landDetails = response;
     })
   }
-
-  // getFarmerListsByFpoId(fpoId){
-  //   this.fpoService.getFarmerListsByFpoId(fpoId).subscribe(
-  //     response => {
-  //     console.log(response);
-  //     this.FarmerLists = response;
-  //     })
-  // }
 
   addLandDetail() {
       this.submitted = true;

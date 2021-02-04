@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -16,6 +16,11 @@ export class ProductService {
   //------------api for getting search ------------------------------
   getSearchProduct(val:any,searchType:any) {
     return this.http.get<any>(this._url + 'home/search?in=' + searchType + '&val=' + val).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getSearchProductWithFilters(val:any,searchType:any,httpparams:HttpParams) {
+    return this.http.get<any>(this._url + 'home/search',{params:httpparams}).pipe(map((res: any) => {
       return res;
     }));
   }
