@@ -48,7 +48,7 @@ export class ProductsListComponent implements OnInit {
       this.isLoggeIn = true;
       this._fpoService.getfpoDetialById(item.id).subscribe(f => {
         this.fpoDetail = f;
-        this.createIndentForm();
+        this.createIndentForm(item);
        
       })
      
@@ -192,10 +192,10 @@ searchWithFilters()
   logout() {
     this.modalService.dismissAll();
   }
-  createIndentForm() {
+  createIndentForm(item) {
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
-      cropId: [567],
+      cropId: [item.cropid],
       userId: [this.fpoDetail.userFpo.userId, Validators.required],
       fpoName: [this.fpoDetail.fpoName],
       fpoEmail: [this.fpoDetail.fpoEmail],
