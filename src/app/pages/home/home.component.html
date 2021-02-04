@@ -216,7 +216,7 @@
                   <div class="form-group has-feedback">
                     <div class="form-group">
                       <div id="filterDate2">
-                        <input type="text" id="homesearch" class="form-control" style="" placeholder="Type here to search....." [(ngModel)]="searchValue" (input)="selectValue()">
+                        <input type="text" id="homesearch" class="form-control" style="" placeholder="{{'Type here to search'|translate}}" [(ngModel)]="searchValue" (input)="selectValue()">
                       </div>
                     </div>
                   </div>
@@ -227,7 +227,7 @@
                     <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" style="width:100%">
                       <option value="any">{{'Any' | translate }}</option>
                       <option value="crop">{{'Crop' | translate }}</option>
-                      <option value="district">{{'District' | translate }}</option>
+                      <option value="district">{{'District1' | translate }}</option>
                       <option value="fpo_name">{{'FPO' | translate }}</option>
                       <option value="services">{{'Services/ Products' | translate }}</option>
                     </select>

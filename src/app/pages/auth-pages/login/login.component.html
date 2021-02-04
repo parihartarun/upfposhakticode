@@ -1,7 +1,7 @@
 <div class="title">
   <ol class="breadcrumb mb-0">
     <li><a href="/home">{{'Home' | translate}}</a></li>   
-    <li><a href="#" > / {{'Login' | translate}}</a></li>
+    <li><a> / {{'Login' | translate}}</a></li>
 
   </ol>
   </div>
@@ -42,7 +42,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input formControlName="password" class="form-control" placeholder="{{'Password' | translate}}" type="password">
+                    <input formControlName="password" class="form-control" placeholder="{{'password' | translate}}" type="password">
                   </div>
                   <div *ngIf="submitted && formControls.password.errors" class="text-danger">
                     <div *ngIf="formControls.password.errors.required">{{'Password is required' | translate}}</div>

@@ -130,7 +130,7 @@
         <input class="form-control" type="text" formControlName="fpolandLine" appOnlynumber>
       </div>
       <div *ngIf="submitted && formControls.fpolandLine.errors" class="text-danger">
-        <div *ngIf="formControls.fpolandLine.errors.required">{{'fpo contact is required'|translate}}}</div>
+        <div *ngIf="formControls.fpolandLine.errors.required">{{'fpo contact is required'|translate}}</div>
         <span *ngIf="formControls.fpolandLine.errors.pattern">{{'mobile number should be 10 digit'|translate}}</span>
       </div>
       
