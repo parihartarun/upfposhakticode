@@ -81,7 +81,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="number" formControlName="mobileNumber">
+        <input class="form-control" type="text" formControlName="mobileNumber" appOnlynumber>
       </div>
       <div *ngIf="submitted && formControls.mobileNumber.errors" class="text-danger">
         <div *ngIf="formControls.mobileNumber.errors.required">{{'mobile number is required'|translate}}</div>
@@ -166,7 +166,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="number" formControlName="pincode">
+        <input class="form-control" type="text" formControlName="pincode" appOnlynumber>
       </div>
       <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
         <div *ngIf="formControls.pincode.errors.required">{{'pin code is required'|translate}}</div>

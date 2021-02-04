@@ -34,7 +34,7 @@
         </select>
       </div>
       <div *ngIf="submitted && formControls.distRefId.errors" class="text-danger">
-        <div *ngIf="formControls.distRefId.errors.required">{{'district is required'|tranlaste}}</div>
+        <div *ngIf="formControls.distRefId.errors.required">{{'district is required'|translate}}</div>
       </div>
     </div>
   </div>
@@ -63,11 +63,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="number" formControlName="pincode">
+        <input class="form-control" type="text" formControlName="pincode" appOnlynumber>
       </div>
       <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
         <div *ngIf="formControls.pincode.errors.required">{{'pin code is required'|translate}}</div>
-        <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | tarnslate}}</div>
+        <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | translate}}</div>
       </div>
     </div>
   </div>
@@ -94,10 +94,10 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="number" formControlName="fpoRegistrationNo">
+        <input class="form-control" type="text" formControlName="fpoRegistrationNo" appOnlynumber>
       </div>
       <div *ngIf="submitted && formControls.fpoRegistrationNo.errors" class="text-danger">
-        <div *ngIf="formControls.fpoRegistrationNo.errors.required">{{'fpo registration number  is required'|translate}}</div>
+        <div *ngIf="formControls.fpoRegistrationNo.errors.required">{{'fpo registration number is required'|translate}}</div>
       </div>
     </div>
   </div>
@@ -127,11 +127,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="number" formControlName="fpolandLine">
+        <input class="form-control" type="text" formControlName="fpolandLine" appOnlynumber>
       </div>
       <div *ngIf="submitted && formControls.fpolandLine.errors" class="text-danger">
-        <div *ngIf="formControls.fpolandLine.errors.required">{{'fpo contact  is required'|translate}}}</div>
-        <span *ngIf="formControls.fpolandLine.errors.pattern">{{'mobile number should be 10 digit'|translate}}}</span>
+        <div *ngIf="formControls.fpolandLine.errors.required">{{'fpo contact is required'|translate}}}</div>
+        <span *ngIf="formControls.fpolandLine.errors.pattern">{{'mobile number should be 10 digit'|translate}}</span>
       </div>
       
     </div>
