@@ -11,7 +11,7 @@
   "Farmer": "Farmer",
   "Buyer/ Seller": "Buyer/ Trader",
   "Input Supplier": "Input Supplier",
-  "Equipment Centre": "Equipment Centre",
+  "Equipment Centre": "Equipment Centre (CHC/ FMB)",
   "FPO guidelines": "FPO Guidelines",
 
   "Back": "Back",
@@ -103,7 +103,7 @@
   "Terms and Conditions": "Terms and Conditions",
   "Disclaimer": "Disclaimer",
   "Help": "Help",
-  "footerText1": "the Content on this website is published and managed by State Agriculture Directorate Uttar Pradesh Krishi Bhawan Lucknow.",
+  "footerText1": "Content on this website is published and managed by State Agriculture Directorate Uttar Pradesh Krishi Bhawan Lucknow.",
   "footerText2": "For any questions about this website, please contact Web Information, Manager",
   "footerText3": "Last reviewed and updated on: 23-07-2020",
   "footerText4": "© State Agriculture Directorate Uttar Pradesh, India | All rights reserved.",
@@ -277,10 +277,10 @@
   "FPO Name": "FPO Name",
   "fpo name is required": "fpo name is required",
   "FPO Registration No": "FPO Registration No",
-  "fpo registration number  is required": "fpo registration number  is required",
+  "fpo registration number is required": "fpo registration number  is required",
   "FPO Registration Date": "FPO Registration Date",
   "FPO Contact No": "FPO Contact No",
-  "fpo contact  is required": "fpo contact  is required",
+  "fpo contact is required": "fpo contact  is required",
   "mobile number should be 10 digit": "maximun 6 digit is required",
   "FPO Email": "FPO Email",
   "fpo email is required": "fpo email is required",
@@ -417,7 +417,8 @@
   "quantity is required": "quantity is required",
   "Fulfilled Date": "Fulfilled Date",
   "Send": "Send",
-  "Date": "Date"
-  
-
+  "Date": "Date",
+  "Type here to search": "Type here to search",
+  "password": "Password",
+  "fpo registration date is required": "fpo registration date is required"
 }

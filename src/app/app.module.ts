@@ -61,6 +61,7 @@ import { SearchComponent } from './pages/common/search/search.component';
 import { NotificationsComponent } from './pages/common/notifications/notifications.component';
 import { IndentComponent } from './pages/common/indent/indent.component';
 import { LoginModelPopupComponent } from './pages/common/login-model-popup/login-model-popup.component';
+import { OnlynumberDirective } from './directive/onlynumber.directive';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -134,7 +135,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SearchComponent,
     NotificationsComponent,
     IndentComponent,
-    LoginModelPopupComponent
+    LoginModelPopupComponent,
+    OnlynumberDirective
   ],
   exports: [   
     AuthHeaderComponent
