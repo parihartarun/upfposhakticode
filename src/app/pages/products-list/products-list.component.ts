@@ -18,6 +18,7 @@ export class ProductsListComponent implements OnInit {
   isLoggeIn = false;
   submitted = false;
   title = 'appBootstrap';  
+  loading:boolean=false;
   closeResult: string;
   serachProduct: [];
   routerParameter = '';
@@ -95,10 +96,10 @@ export class ProductsListComponent implements OnInit {
       let searchType = params.get('searchType');
    this.parval = params.get('val');
    this.parsearchType = params.get('searchType');   
-   
-   this._productService.getSearchProduct(val, searchType).subscribe(s => {
+      this.loading=true;
+     this._productService.getSearchProduct(val, searchType).subscribe(s => {
         this.serachProduct = s;
-       
+        this.loading=false;
       })
     });
 
@@ -130,9 +131,11 @@ export class ProductsListComponent implements OnInit {
         
   
       this.serachProduct=[];
+      this.loading=true;
       this._productService.getSearchProductWithFilters(this.parval, this.parsearchType,httpParams).subscribe(s => {
         this.serachProduct = s;
         this.topsearchval = undefined      
+        this.loading = false;
       });
   
     }     
@@ -149,9 +152,10 @@ searchWithFilters()
       
 
     this.serachProduct=[];
+    this.loading=true;
     this._productService.getSearchProductWithFilters(this.parval, this.parsearchType,httpParams).subscribe(s => {
       this.serachProduct = s;
-     
+      this.loading=false;
     });
 
   }

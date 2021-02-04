@@ -12,7 +12,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxCaptchaModule } from 'ngx-captcha';
-
+import { NgxLoadingModule } from 'ngx-loading';
 import { ErrorInterceptor } from './_helpers/error.interceptor'
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { AuthGuardService } from './_helpers/auth-guard.service';
@@ -69,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   imports: [
     BrowserModule,
+    NgxLoadingModule.forRoot({}),
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
