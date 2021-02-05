@@ -62,6 +62,7 @@ import { NotificationsComponent } from './pages/common/notifications/notificatio
 import { IndentComponent } from './pages/common/indent/indent.component';
 import { LoginModelPopupComponent } from './pages/common/login-model-popup/login-model-popup.component';
 import { OnlynumberDirective } from './directive/onlynumber.directive';
+import { NgMarqueeModule } from 'ng-marquee';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -83,6 +84,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxCaptchaModule,
     NgxPaginationModule,
     BsDatepickerModule.forRoot(),
+    NgMarqueeModule,
     ToastrModule.forRoot({
       timeOut: 10000,
     }),
