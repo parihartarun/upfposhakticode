@@ -497,13 +497,13 @@ app-auth-header {
 
 .marquee-content {
   
-  animation: marquee 10s linear infinite;
+  animation: marquee 5s linear infinite;
 }
 
 .item-collection-1 {
   position: relative;
   top:0;
-  animation: swap 10s linear infinite;
+  animation: swap 05s linear infinite;
 }
 @keyframes swap {
   0%, 50% {
@@ -523,7 +523,7 @@ app-auth-header {
   }
 
   100% {
-    transform: translateY(-10%)
+    transform: translateY(-20%)
   }
 }
 
