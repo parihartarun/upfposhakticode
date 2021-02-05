@@ -428,5 +428,8 @@
   "fpo registration date is required": "पंजीकरण की तिथि आवश्यक है",
   "SR. NO": "क्रमांक",
   "MEMBER NAME": "सदस्य का नाम",
-  "Select License Type": "लाइसेंस के प्रकार का चयन करें"
+  "Select License Type": "लाइसेंस के प्रकार का चयन करें",
+  "Select Equipment": "उपकरण का चयन करें",
+  "Select": "चयन करें",
+  "fascilities available": "उपलब्ध सुविधाएं "
 }

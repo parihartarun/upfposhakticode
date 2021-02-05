@@ -423,6 +423,9 @@
   "fpo registration date is required": "fpo registration date is required",
   "SR. NO": "SR. NO",
   "MEMBER NAME": "MEMBER NAME",
-  "Select License Type": "Select License Type"
+  "Select License Type": "Select License Type",
+  "Select Equipment": "Select Equipment",
+  "Select": "Select",
+  "fascilities available": "Fascilities Available"
 
 }
