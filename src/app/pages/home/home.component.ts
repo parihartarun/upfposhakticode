@@ -37,8 +37,7 @@ export class HomeComponent implements OnInit {
     private _fpo: FpoService, private departmentService: DepartmentService) {
     translate.addLangs(['en', 'hi']);
     translate.setDefaultLang('hi');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|hi/) ? browserLang : 'hi');
+   
 
   }
 
