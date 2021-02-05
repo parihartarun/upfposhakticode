@@ -137,19 +137,19 @@
   "Gram Panchayat is required": "ग्रामपंचायत आवश्यक है",
   "Village": "गाँव",
   "Village is required": "गाँव आवश्यक है",
-  "Reset": "रीसेट करा",
-  "Save": "जतन करा",
+  "Reset": "दोबारा ठीक करना है",
+  "Save": "जमा करे",
 
   "Add License": "लाइसेंस",
   "License Type": "लाइसेंस के प्रकार",
-  "License Type is required": "लाइसेंस प्रकार की आवश्यकता है",
+  "License Type is required": "लाइसेंस प्रकार की आवश्यक है",
   "License Issued By": "लाइसेंस जारी किया गया",
   "License Issued By is required": "लाइसेंस जारी करना आवश्यक है",
   "License Number": "लाइसेंस संख्या",
-  "License Number is required": "लाइसेंस नंबर आवश्यक है",
+  "License Number is required": "लाइसेंस संख्या आवश्यक है",
   "License Issued Date": "लाइसेंस जारी तिथि",
   "Issued Date is required": "जारी तिथि की आवश्यकता है",
-  "License Valid Till": "लाइसेंस मान्य तक",
+  "License Valid Till": "लाइसेंस मान्य तिथि ",
   "Valid till Date is required": "दिनांक तक मान्य है",
 
   "Name of Equipment": "उपकरण का नाम",
@@ -364,7 +364,7 @@
   "Seed": "बीज नंबर",
   "GST Number": "जीएसटी नंबर",
   "gst number is required": "जीएसटी नंबर का आवश्यकता है",
-  "license Number is required": "लाइसेंस नंबर आवश्यक है",
+  "license Number is required": "लाइसेंस संख्या आवश्यक है",
   "My account": "मेरा खाता",
   "User information": "उपयोगकर्ता के लिए जानकारी",
   "Full name": "पूरा नाम",
@@ -427,5 +427,6 @@
   "password": "पासवर्ड",
   "fpo registration date is required": "पंजीकरण की तिथि आवश्यक है",
   "SR. NO": "क्रमांक",
-  "MEMBER NAME": "सदस्य का नाम"
+  "MEMBER NAME": "सदस्य का नाम",
+  "Select License Type": "लाइसेंस के प्रकार का चयन करें"
 }
