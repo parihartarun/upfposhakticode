@@ -147,29 +147,28 @@
                 <div class="panel-body pb-1 pt-1">
                   <div class="row">
                     <div class="col-xs-12 newsBox">
-                      <ul class="demo1">
+                      <ul class="demo1 marquee " >
+                        <div class="marquee-content"  >
+                          <li *ngFor="let c of circluar let i=index" class="news-item {{getClass(i+1)}}" >
+                            <table cellpadding="4" >
+                              <tbody>
+                                <tr>
+                                  <td><img src="../../../assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
+                                  <td class="news-td">
+                                    <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf" class="text-left text-danger" target="_blank">
+                                      {{c.description }}
 
-                        <li class="news-item" *ngFor="let c of circluar">
-                          <table cellpadding="4">
-                            <tbody>
-                              <tr>
-                                <td><img src="../../../assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
-                                <td class="news-td">
-                                  <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf" class="text-left text-danger" target="_blank">
-                                    {{c.description }}
+                                    </a>
+                                  </td>
 
-                                  </a>
-                                </td>
-
-                                <!-- <td class="news-td"></td> -->
-                              </tr>
-                            </tbody>
-                          </table>
-                        </li>
-                     
-
+                                  <!-- <td class="news-td"></td> -->
+                                </tr>
+                              </tbody>
+                            </table>
+                          </li>
+                        </div>
                       </ul>
-                      <div class="text-right">
+                      <div class="text-right Viewall">
                         <small style="color:black"><a href="/#">{{'View all' | translate}}</a>&nbsp;</small>
                       </div>
                     </div>
@@ -329,7 +328,7 @@
                 <span class="set_span_titel">
                   {{'Farmers' | translate}}
                 </span>
-                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
+                <!--<div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>-->
                 <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
               </div>
               <div>
