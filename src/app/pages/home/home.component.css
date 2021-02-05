@@ -3,16 +3,24 @@
   background-color: #cfb000;
   padding: 1.2% 0px;
 }
+.mainTitle {
+  width: 80%;
+  margin: 0px auto;
+}
 
 .logo {
-  position: absolute;
-  top: 2%;
+  position: relative;
+  /* top: -5%; */
   left: 0.4%;
-  max-width: 180px;
-  max-height: 180px;
+  max-width: 120px;
+  max-height: 120px;
+  display: inline-block;
+  float: left;
+  width: 100%;
+  margin-top: -1%;
 }
 .logo-image {
-  width: 67%;
+  width: 100%;
   border-radius: 58px 58px 58px 58px;
   border: 5px solid #C7A100;
 }
@@ -79,10 +87,11 @@
   .navbar {
       padding:0px
   }
-  .headingTitle {
-    margin-left: 9%;
-    margin-top: -4.5%;
-  }
+.headingTitle {
+  margin-left: 9%;
+  margin-top: -4.5%;
+}
+  
   .dropdown-toggle::after {
       display:none;
   }
