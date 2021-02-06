@@ -1,5 +1,5 @@
 <form role="form" [formGroup]="fpoRegisterForm">
-  
+
   <div class="form-group row mb-3">
 
     <div class="col-6">
@@ -56,25 +56,7 @@
         <div *ngIf="formControls.blockRef.errors.required">{{'block is required'| translate}}</div>
       </div>
     </div>
-
     <div class="col-6">
-      <label class="input-label">{{'Pincode'|translate}} <span class="required">*</span></label>
-      <div class="input-group input-group-alternative">
-        <div class="input-group-prepend">
-          <span class="input-group-text"></span>
-        </div>
-        <input class="form-control" type="text" formControlName="pincode" appOnlynumber>
-      </div>
-      <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
-        <div *ngIf="formControls.pincode.errors.required">{{'pin code is required'|translate}}</div>
-        <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | translate}}</div>
-      </div>
-    </div>
-  </div>
-  <div class="form-group row mb-3">
-
-    <div class="col-6">
-
       <label class="input-label">{{'FPO Name'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -84,6 +66,23 @@
       </div>
       <div *ngIf="submitted && formControls.fpoName.errors" class="text-danger">
         <div *ngIf="formControls.fpoName.errors.required">{{'fpo name is required'|translate}}</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="form-group row mb-3">
+    <div class="col-6">
+      <label class="input-label">{{'FPO Registration Date'| translate}}<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+        </div>
+        <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+          [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }" formControlName="dateOfRegistration">
+      </div>
+      <div *ngIf="submitted && formControls.dateOfRegistration.errors" class="text-danger">
+        <div *ngIf="formControls.dateOfRegistration.errors.required">{{'fpo registration date is required'|translate}}
+        </div>
       </div>
     </div>
 
@@ -97,28 +96,26 @@
         <input class="form-control" type="text" formControlName="fpoRegistrationNo" appOnlynumber>
       </div>
       <div *ngIf="submitted && formControls.fpoRegistrationNo.errors" class="text-danger">
-        <div *ngIf="formControls.fpoRegistrationNo.errors.required">{{'fpo registration number is required'|translate}}</div>
+        <div *ngIf="formControls.fpoRegistrationNo.errors.required">{{'fpo registration number is required'|translate}}
+        </div>
       </div>
     </div>
   </div>
   <div class="form-group row mb-3">
-
     <div class="col-6">
-      <label class="input-label">{{'FPO Registration Date'| translate}}<span class="required">*</span></label>
+      <label class="input-label">{{'Pincode'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+          <span class="input-group-text"></span>
         </div>
-        <input type="text"
-               placeholder="Datepicker"
-               class="form-control"
-               bsDatepicker
-               [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }" formControlName="dateOfRegistration">
+        <input class="form-control" type="text" maxlength="6" formControlName="pincode" appOnlynumber>
       </div>
-      <div *ngIf="submitted && formControls.dateOfRegistration.errors" class="text-danger">
-        <div *ngIf="formControls.dateOfRegistration.errors.required">{{'fpo registration date is required'|translate}}</div>
+      <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
+        <div *ngIf="formControls.pincode.errors.required">{{'pin code is required'|translate}}</div>
+        <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | translate}}</div>
       </div>
     </div>
+
 
     <div class="col-6">
 
@@ -127,13 +124,13 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="fpolandLine" appOnlynumber>
+        <input class="form-control" type="text" maxlength="10" formControlName="fpolandLine" appOnlynumber>
       </div>
       <div *ngIf="submitted && formControls.fpolandLine.errors" class="text-danger">
         <div *ngIf="formControls.fpolandLine.errors.required">{{'fpo contact is required'|translate}}</div>
         <span *ngIf="formControls.fpolandLine.errors.pattern">{{'mobile number should be 10 digit'|translate}}</span>
       </div>
-      
+
     </div>
   </div>
   <div class="form-group row mb-3">
@@ -152,6 +149,21 @@
       </div>
     </div>
     <div class="col-6">
+      <label class="input-label">{{'FPO Office Address'|translate}} <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" formControlName="fpoAddress">
+      </div>
+      <div *ngIf="submitted && formControls.fpoAddress.errors" class="text-danger">
+        <div *ngIf="formControls.fpoAddress.errors.required">{{'fpo office address is required'|translate}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+
+    <div class="col-6">
 
       <label class="input-label">{{'Username'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -166,20 +178,6 @@
       </div>
 
     </div>
-  </div>
-  <div class="form-group row mb-3">
-    <div class="col-6">
-      <label class="input-label">{{'FPO Office Address'|translate}} <span class="required">*</span></label>
-      <div class="input-group input-group-alternative">
-        <div class="input-group-prepend">
-          <span class="input-group-text"></span>
-        </div>
-        <input class="form-control" type="text" formControlName="fpoAddress">
-      </div>
-      <div *ngIf="submitted && formControls.fpoAddress.errors" class="text-danger">
-        <div *ngIf="formControls.fpoAddress.errors.required">{{'fpo office address is required'|translate}}</div>
-      </div>
-    </div>
     <div class="col-6">
 
       <label class="input-label">{{'Create Password'|translate}} <span class="required">*</span></label>
@@ -193,7 +191,8 @@
         <div *ngIf="formControls.password.errors.required">{{'password is required'|translate}}</div>
       </div>
       <div *ngIf="fpoRegisterForm.controls['password'].invalid">
-        {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character'|translate}}
+        {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special
+        character'|translate}}
       </div>
     </div>
   </div>
@@ -260,21 +259,19 @@
         <div *ngIf="formControls.fpoIFSC.errors.required"> {{'ifsc code is required1'|translate}}</div>
       </div>
     </div>
-    <div class="col-6">      
-        <ngx-recaptcha2 #captchaElem
-                        [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
-                        (success)="handleSuccess($event)"
-                        [useGlobalDomain]="false"
-                        formControlName="recaptcha">
-        </ngx-recaptcha2>
+    <div class="col-6">
+      <ngx-recaptcha2 #captchaElem [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
+        (success)="handleSuccess($event)" [useGlobalDomain]="false" formControlName="recaptcha">
+      </ngx-recaptcha2>
     </div>
-    
+
   </div>
-  
-    
+
+
 
 
   <div class="text-center">
-    <button type="button" class="btn btn-login btn-yellow btn-primary my-4" (click)="register()">{{"Register"| translate}}</button>
+    <button type="button" class="btn btn-login btn-yellow btn-primary my-4" (click)="register()">{{"Register"|
+      translate}}</button>
   </div>
 </form>
