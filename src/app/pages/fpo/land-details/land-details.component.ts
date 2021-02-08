@@ -36,16 +36,29 @@ export class LandDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.roleType = localStorage.getItem('userRole')
-    this.landDetailForm = this.formBuilder.group({
-      farmerId: ['', [Validators.required]],
-      guardianName: ['', [Validators.required]],
-      ownerShip: ['', [Validators.required]],
-      land_area: ['', [Validators.required]],
-      isorganc:['', [Validators.required]],
-      masterId:localStorage.getItem('masterId'),
-      updatedBy:localStorage.getItem('userRole'),
-      landId:['']
-    });
+    if (this.roleType == "ROLE_FPC") {
+      this.landDetailForm = this.formBuilder.group({
+        farmerId: ['', [Validators.required]],
+        guardianName: ['', [Validators.required]],
+        ownerShip: ['', [Validators.required]],
+        land_area: ['', [Validators.required]],
+        isorganc: ['', [Validators.required]],
+        masterId: localStorage.getItem('masterId'),
+        updatedBy: localStorage.getItem('userRole'),
+        landId: ['']
+      });
+    }
+    else {
+      this.landDetailForm = this.formBuilder.group({
+        farmerId: localStorage.getItem('masterId'),   
+        ownerShip: ['', [Validators.required]],
+        land_area: ['', [Validators.required]],
+        isorganc: ['', [Validators.required]],
+        masterId: localStorage.getItem('masterId'),
+        updatedBy: localStorage.getItem('userRole'),
+        landId: ['']
+      });
+    }
     console.log(this.landDetailForm.value);
     this.getLandDetailList(this.master_id);
     this.getFarmerDetailList();
@@ -123,16 +136,30 @@ export class LandDetailsComponent implements OnInit {
 
   editLandDetail(landDetail){
     console.log(localStorage.getItem('userrole'));
-    this.landDetailForm = this.formBuilder.group({
-      farmerId: [landDetail.farmerId, [Validators.required]],
-      guardianName: [landDetail.parantsName, [Validators.required]],
-      ownerShip: [landDetail.ownership, [Validators.required]],
-      land_area: [landDetail.landArea, [Validators.required]],
-      isorganc:[landDetail.isorganc, [Validators.required]],
-      masterId:localStorage.getItem('masterId'),
-      updatedBy:localStorage.getItem('userRole'),
-      landId:[landDetail.landId]
-    });
+    if (this.roleType == "ROLE_FPC") {
+      this.landDetailForm = this.formBuilder.group({
+        farmerId: [landDetail.farmerId, [Validators.required]],
+        guardianName: [landDetail.parantsName, [Validators.required]],
+        ownerShip: [landDetail.ownership, [Validators.required]],
+        land_area: [landDetail.landArea, [Validators.required]],
+        isorganc: [landDetail.isorganc, [Validators.required]],
+        masterId: localStorage.getItem('masterId'),
+        updatedBy: localStorage.getItem('userRole'),
+        landId: [landDetail.landId]
+      });
+    }
+    else {
+      this.landDetailForm = this.formBuilder.group({
+        farmerId: localStorage.getItem('masterId'),
+       
+        ownerShip: [landDetail.ownership, [Validators.required]],
+        land_area: [landDetail.landArea, [Validators.required]],
+        isorganc: [landDetail.isorganc, [Validators.required]],
+        masterId: localStorage.getItem('masterId'),
+        updatedBy: localStorage.getItem('userRole'),
+        landId: [landDetail.landId]
+      });
+    }
     
     this.edit = true;
     window.scroll(0,0);
