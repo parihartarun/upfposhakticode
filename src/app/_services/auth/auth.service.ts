@@ -45,6 +45,12 @@ export class AuthService {
       return res;
     }));
   }
+  getCrops(): Observable<any>  {
+    
+    return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropDetails` ).pipe(map((res: any) => {
+      return res;
+    }));
+  }
   getBank(): Observable<any> {
 
     return this.http.get<any>(this._url + 'api/v1/Bank/getBanks').pipe(map((res: any) => {

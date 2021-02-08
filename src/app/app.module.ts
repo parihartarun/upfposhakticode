@@ -60,6 +60,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { SearchComponent } from './pages/common/search/search.component';
 import { NotificationsComponent } from './pages/common/notifications/notifications.component';
 import { IndentComponent } from './pages/common/indent/indent.component';
+import { TreeviewModule } from 'ngx-treeview';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -73,6 +74,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    TreeviewModule.forRoot(),
     ComponentsModule,
     NgbModule,
     RouterModule,
