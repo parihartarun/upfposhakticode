@@ -88,7 +88,15 @@ config:any = {
   onSelectedChange($event)
   {
 console.log("Selected Change Event Called  = "+JSON.stringify($event));
-  }
+this.selectedfilters = this.selectedfilters.filter(elem=>elem.type!="crop");
+$event.forEach(element => {
+  this.selectedfilters.push({name:element,type:"crop"});  
+});
+
+
+this.searchWithFilters();
+
+}
 onFilterChange($event)
 {
   console.log("Selected Filter Event Called  = "+JSON.stringify($event));
@@ -181,7 +189,7 @@ let croptypes = [];
  
 let croptypeItem = {};
   croptypeItem["text"] = cropTypeElement.verietyName;
-  croptypeItem["value"] = cropTypeElement.verietyName+","+cropElement.cropName;
+  croptypeItem["value"] = cropElement.cropName+"@"+cropTypeElement.verietyName;
   croptypeItem["checked"] = false;
   croptypeItem["collapsed"] = false;
   croptypes.push(croptypeItem);  
@@ -255,7 +263,22 @@ searchWithFilters()
     httpParams = httpParams.append("val",""+this.parval);
     this.selectedfilters.forEach(data=>{
       
-      httpParams = data.type=="district"? httpParams.append("filterdist",""+data.name):httpParams.append("filterqty",""+data.name);
+    switch(data.type)
+    {
+      case 'district':
+        httpParams =httpParams.append("filterdist",""+data.name);
+      break;
+        case 'qty':
+          httpParams = httpParams.append("filterqty",""+data.name);
+        break;
+          case 'crop':
+            httpParams =  httpParams.append("filtercrop",""+data.name);
+          break;  
+    }  
+    
+       
+    
+    
     });
       
 
