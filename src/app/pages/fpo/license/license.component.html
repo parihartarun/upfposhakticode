@@ -25,7 +25,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">{{'License Type' | translate}}<span class="required">*</span></label>
                     <select formControlName="licenceType" class="form-control form-control-alternative">
-                      <option value="">Select License Type</option>
+                      <option value="">{{'Select License Type'|translate}}</option>
                       <option value="{{licensesType.licenseName}}" *ngFor="let licensesType of licensesTypes">{{licensesType.licenseName}}</option>
                     </select>
                     <div *ngIf="submitted && formControls.licenceType.errors" class="text-danger">
@@ -111,7 +111,7 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col"></th>
-                <th scope="col">{{'Sr. No' | translate}}</th>
+                <th scope="col">{{'SR. NO' | translate}}</th>
                 <th scope="col">{{"License type" | translate}}</th>
                 <th scope="col">{{"Issued By" | translate}}</th>
                 <th scope="col">{{"License Number" | translate}}</th>

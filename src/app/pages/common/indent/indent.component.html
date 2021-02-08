@@ -24,11 +24,11 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col"></th>
-                <th scope="col">Your Full Name</th>
-                <th scope="col">Email Address</th>
-                <th scope="col">Crop Name</th>
-                <th scope="col">Quantity Required</th>
-                <th scope="col">Fulfilled Date</th>
+                <!--<th scope="col">Your Full Name</th>
+                <th scope="col">Email Address</th>-->
+                <th scope="col">{{'Crop Name'|translate}}</th>
+                <th scope="col">{{'Quantity Required'|translate}}</th>
+                <th scope="col">{{'Fulfilled Date'|translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -37,7 +37,7 @@
                 <td>
                   {{(p-1) * 10 + i + 1}}
                 </td>
-                <th scope="row">
+                <!--<th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
                       <span class="mb-0 text-sm">{{indent.fullName}}</span>
@@ -46,7 +46,7 @@
                 </th>
                 <td>
                   {{indent.emailAddress}}
-                </td>
+                </td>-->
                 <td>
                   Rabi
                 </td>
@@ -60,11 +60,11 @@
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
+                      {{'Actions'|translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <!--<a class="dropdown-item" href="javascript:void(0)">Edit</a>-->
+                      <a class="dropdown-item" href="javascript:void(0)">{{'Delete'|translate}}</a>
                     </div>
                   </div>
                 </td>

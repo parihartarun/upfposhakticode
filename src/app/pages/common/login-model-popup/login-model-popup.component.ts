@@ -1,24 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { AuthService } from '../../../_services/auth/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-login-model-popup',
+  templateUrl: './login-model-popup.component.html',
+  styleUrls: ['./login-model-popup.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginModelPopupComponent implements OnInit {
+
   loginForm: FormGroup;
   submitted = false;
   userRole: any;
+  @Output() logout = new EventEmitter<string>();
   constructor(
     private formBuilder: FormBuilder,
     private api: AuthService,
     private route: Router,
 
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  get formControls(){
+  get formControls() {
     return this.loginForm.controls;
   }
 
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-        return;
+      return;
     }
     this.api.userLogin(this.loginForm.value).subscribe(response => {
       console.log(response);
@@ -45,17 +46,17 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('tokenType', response.token);
         localStorage.setItem('username', response.user.userName);
         localStorage.setItem('userRole', response.userRole);
-        localStorage.setItem('masterId', response.user.userId);
         this.userRole = localStorage.getItem('userRole');
-        if (this.userRole == 'ROLE_FPC') {
-          this.route.navigate(['/fpo/dashboard']);
-        } else if(this.userRole == 'ROLE_MIN') {
-          this.route.navigate(['/department/dashboard']);
-        } else if(this.userRole == 'ROLE_BUYERSELLER'){
-          this.route.navigate(['/indent_history']);
-        }else{
-          this.route.navigate(['/fpo/dashboard']);
-        }
+        this.logout.emit();
+        //if (this.userRole == 'ROLE_FPC') {
+        //  this.route.navigate(['/fpo/dashboard']);
+        //} else if (this.userRole == 'ROLE_MIN') {
+        //  this.route.navigate(['/department/dashboard']);
+        //} else if (this.userRole == 'ROLE_BUYERSELLER') {
+        //  this.route.navigate(['/indent_history']);
+        //} else {
+        //  this.route.navigate(['/fpo/dashboard']);
+        //}
       }
     },
       err => {
@@ -66,4 +67,5 @@ export class LoginComponent implements OnInit {
   handleSuccess(e) {
     console.log("ReCaptcha", e);
   } 
+
 }

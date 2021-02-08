@@ -107,7 +107,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'Block' | translate}}</label>
                     <select formControlName="blockId"  id="blk" class="custom-control custom-select">
-                      <option name="opt2" [value]="undefined" selected disabled>Please Select Block</option>
+                      <option name="opt2" [value]="undefined" selected disabled>{{'Select Block'|translate}}</option>
                       <option *ngFor="let block of blocklist" [value]="block.id">{{block.blockName}}</option>
                     </select>  
                     <div *ngIf="submitted && formControls.blockId.errors" class="text-danger">
@@ -163,7 +163,7 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col"></th>
-                <th scope="col">{{'Sr. No' | translate}}</th>
+                <th scope="col">{{'SR. NO' | translate}}</th>
                 <th scope="col">{{'Type of storage' | translate}}</th>
                 <th scope="col">{{'Address' | translate}}</th>
                 <th scope="col">{{'Storage Capacity' | translate}}</th>
@@ -197,8 +197,8 @@
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="editCollectionCenter(unit)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(unit.id)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editCollectionCenter(unit)">{{'Edit'|translate}}</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(unit.id)">{{'Delete'|translate}}</a>
                     </div>
                   </div>
                 </td>

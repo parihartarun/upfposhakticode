@@ -34,7 +34,7 @@ getDistricts(){
   }));
 }
 getDistrictByFpoId(fpoId){
-  return  this.http.get<any>(this._url+`api/fpos//getDistrictByFpoId/`+fpoId).pipe(map((res:any)=>{
+  return  this.http.get<any>(this._url+`api/fpos/getDistrictByFpoId/`+fpoId).pipe(map((res:any)=>{
     return res;
   }));
 }

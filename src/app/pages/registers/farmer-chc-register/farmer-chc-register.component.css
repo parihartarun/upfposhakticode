@@ -9,3 +9,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+.title a {
+  color: rgb(82, 95, 127);
+  cursor: pointer
+}

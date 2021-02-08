@@ -3,7 +3,7 @@
   <div class="logo">
     <img class="logo-image" src="../../../assets/image/img/logo.png" />
   </div>
-  <div class="text-center">
+  <div class="text-center mainTitle ">
     <span class="parent">{{'mainTitle' |translate}} </span>
     <br>
     <span class="child">
@@ -147,30 +147,29 @@
                 <div class="panel-body pb-1 pt-1">
                   <div class="row">
                     <div class="col-xs-12 newsBox">
-                      <ul class="demo1">
+                      <ul class="demo1 marquee " >
+                        <div class="marquee-content"  >
+                          <li *ngFor="let c of circluar let i=index" class="news-item {{getClass(i+1)}}" >
+                            <table cellpadding="4" >
+                              <tbody>
+                                <tr>
+                                  <td><img src="../../../assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
+                                  <td class="news-td">
+                                    <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf" class="text-left text-danger" target="_blank">
+                                      {{c.description }}
 
-                        <li class="news-item" *ngFor="let c of circluar">
-                          <table cellpadding="4">
-                            <tbody>
-                              <tr>
-                                <td><img src="../../../assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
-                                <td class="news-td">
-                                  <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf" class="text-left text-danger" target="_blank">
-                                    {{c.description }}
+                                    </a>
+                                  </td>
 
-                                  </a>
-                                </td>
-
-                                <!-- <td class="news-td"></td> -->
-                              </tr>
-                            </tbody>
-                          </table>
-                        </li>
-                     
-
+                                  <!-- <td class="news-td"></td> -->
+                                </tr>
+                              </tbody>
+                            </table>
+                          </li>
+                        </div>
                       </ul>
-                      <div class="text-right">
-                        <small style="color:black"><a href="/viewallnotifications">{{'View all' | translate}}</a>&nbsp;</small>
+                      <div class="text-right Viewall">
+                        <small style="color:black"><a href="/#">{{'View all' | translate}}</a>&nbsp;</small>
                       </div>
                     </div>
 
@@ -216,7 +215,7 @@
                   <div class="form-group has-feedback">
                     <div class="form-group">
                       <div id="filterDate2">
-                        <input type="text" id="homesearch" class="form-control" style="" placeholder="Type here to search....." [(ngModel)]="searchValue" (input)="selectValue()">
+                        <input type="text" id="homesearch" class="form-control" style="" placeholder="{{'Type here to search'|translate}}" [(ngModel)]="searchValue" (input)="selectValue()">
                       </div>
                     </div>
                   </div>
@@ -227,7 +226,7 @@
                     <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" style="width:100%">
                       <option value="any">{{'Any' | translate }}</option>
                       <option value="crop">{{'Crop' | translate }}</option>
-                      <option value="district">{{'District' | translate }}</option>
+                      <option value="district">{{'District1' | translate }}</option>
                       <option value="fpo_name">{{'FPO' | translate }}</option>
                       <option value="services">{{'Services/ Products' | translate }}</option>
                     </select>
@@ -329,7 +328,7 @@
                 <span class="set_span_titel">
                   {{'Farmers' | translate}}
                 </span>
-                <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>
+                <!--<div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow "><i _ngcontent-iol-c112="" class="fas fa-percent"></i></div>-->
                 <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
               </div>
               <div>

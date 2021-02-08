@@ -89,7 +89,7 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col"></th>
-                  <th scope="col">{{'Sr. No' | translate}}</th>
+                  <th scope="col">{{'SR. NO' | translate}}</th>
                   <th scope="col">{{'Services/ Products Name' | translate}}</th>
                   <th scope="col">{{'Services/ Products description' | translate}}</th>
                   <th scope="col">{{"File" | translate}}</th>
@@ -116,11 +116,11 @@
                   <td class="text-right">
                     <div ngbDropdown placement="bottom-right">
                       <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                        Actions
+                        {{'Actions'|translate}}
                       </a>
                       <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="editService(service)">Edit</a>
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(service.id)">Delete</a>
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="editService(service)">{{'Edit'|translate}}</a>
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(service.id)">{{'Delete'|translate}}</a>
                       </div>
                     </div>
                   </td>
@@ -137,4 +137,3 @@
       </div>
     </div>
   </div>
-  

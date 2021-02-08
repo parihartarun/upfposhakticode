@@ -150,6 +150,7 @@ confirmDelete(licenseId){
 
 resetForm(){
   this.licenseForm.reset();
+  this.submitted = false;
 }
 
 get formControls(){

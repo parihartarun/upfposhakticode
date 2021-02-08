@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { DepartmentService } from '../../_services/department/department.service';
 import { FpoService } from '../../_services/fpo/fpo.service';
 import { HomeService } from '../../_services/home/home.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,11 @@ export class HomeComponent implements OnInit {
   username = '';
   isHome = true;
 
+  private itemContainer: any;
+  private scrollContainer: any;
+  private items = [];
+  private isNearBottom = true;
+
   searchValue: string = null;
   searchType: any = 'any';
   data = { searchValue: this.searchValue, searchType: this.searchType }
@@ -28,11 +34,10 @@ export class HomeComponent implements OnInit {
   fpo: any;
   circluar: any;
   constructor(private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService, private api: HomeService,
-    private _fpo: FpoService, private departmentService: DepartmentService  ) {
+    private _fpo: FpoService, private departmentService: DepartmentService) {
     translate.addLangs(['en', 'hi']);
     translate.setDefaultLang('hi');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|hi/) ? browserLang : 'hi');
+   
 
   }
 
@@ -52,19 +57,20 @@ export class HomeComponent implements OnInit {
       { image: '../../../assets/image/img/slider/4.jpg', text: 'Get information about seeds, fertilizers, agricultural implements etc' }
     ];
     this.api.getfarmerDetails().subscribe(h => {
-      this.farmerDetails=h
+      this.farmerDetails = h
     })
     this.api.getProductionDetails().subscribe(p => {
       this.productionDetails = p
     })
     this._fpo.getAllFpo().subscribe(fpo => {
-      this.fpo = fpo.length; 
+      this.fpo = fpo.length;
     })
-    var $this=this
+    var $this = this;
+    $this.departmentService.getAllCircluarUpload().subscribe(c => {
+      $this.circluar = c
+    })
     setInterval(function () {
-      $this.departmentService.getAllCircluarUpload().subscribe(c => {
-        $this.circluar = c
-      })
+      
     }, 5000);
    
   }
@@ -87,4 +93,15 @@ export class HomeComponent implements OnInit {
   toggleDropDown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
+
+
+  getClass(index) {
+    if (index % 2 == 0) {
+      return "item-collection-1"
+    }
+    else {
+      return "item-collection-2"
+    }
+  }
+
 }
