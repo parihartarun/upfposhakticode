@@ -251,6 +251,7 @@ export class PhotographsComponent implements OnInit {
 
   resetForm(){
     this.photographForm.reset();
+    this.submitted = false;
   }
 
   get formControls(){
