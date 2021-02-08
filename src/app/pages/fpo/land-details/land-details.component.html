@@ -19,17 +19,13 @@
         <div class="card-body">
           <form [formGroup]="landDetailForm" >
             <div class="pl-lg-4">
-              <div class="row">
-              <input type="hidden" formControlName="landId">
-                <div class="col-lg-6" *ngIf="getUserTypes()">
+               <input type="hidden" formControlName="landId">
+              <div class="row" *ngIf="getUserTypes()">
+             
+                <div class="col-lg-6" >
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">{{'Farmer Name' | translate}}</label>
-                    <!-- <select class="form-control form-control-alternative">
-                      <option value="">Select Farmer</option>
-                      <option value="1"> crop 1</option>
-                      <option value="2"> crop 2</option>
-                      <option value="3"> crop 3</option>
-                    </select>    -->
+                   
                     <select formControlName="farmerId" class="form-control form-control-alternative">
                       <option value="">{{'Select farmer'|translate}}</option>
                       <option value="{{farmerList.farmerId}}" *ngFor="let farmerList of FarmerLists">{{farmerList.farmerName}}</option>
