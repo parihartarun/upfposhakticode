@@ -113,10 +113,10 @@ export class LandDetailsComponent implements OnInit {
         return;
     }
     var data = this.landDetailForm.value;
-    data['farmerProfile'] = {"farmerId":this.landDetailForm.value.farmerId};
+    data['farmerProfile'] = {"farmerId": Number(this.landDetailForm.value.farmerId)};
     delete data.farmerId;
     console.log(data);
-    this.landDetailForm.value.masterId = localStorage.getItem('masterId'),
+    this.landDetailForm.value.masterId = Number(localStorage.getItem('masterId')),
     this.fpoService.updateLandDetail(data).subscribe(response => {
       if(response.id != ''){
         this.toastr.success('Land Detail Updated successfully.');

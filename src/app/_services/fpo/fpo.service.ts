@@ -375,7 +375,11 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
-
+  getAllFPOGuideLine() {
+    return this.http.get<any>(this._url + 'fpoguidelines/getall').pipe(map((res: any) => {
+      return res;
+    }));
+  }
 }
 
 

@@ -152,29 +152,34 @@
                 <div class="row">
                   <div class="col-12">
                     <from role="form" [formGroup]="fpoGuideLineFrom" style="width:100%">
-                      <div class="form-group row m-2 pb-2 pt-2">
-                        <div class="col-lg-6">
-                          <div class="custom-control custom-control-alternative custom-checkbox text-center ">
-                            <input formControlName="isPerRegistration" class="custom-control-input" id="washingfacilitycheck" type="checkbox">
-                            <label class="custom-control-label" for="washingfacilitycheck">{{'Pre-FPO Registratio' | translate}}</label>
+                      <div class="form-group row m-2 pb-2 pt-2">                      
+                       
+                        <div class="col-lg-3">
+                          <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
+                            <input formControlName="isPostRegistration" value="isPerRegistration" class="custom-control-input" id="customRadio6" type="radio" checked="" (change)="isProPostRegistration(isPostRegistration)">
+                            <label class="custom-control-label" for="customRadio6">{{'Pre-FPO Registration' | translate}}</label>
                           </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-3">
+                          <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
+                            <input formControlName="isPostRegistration" value="isPostRegistration" class="custom-control-input" id="customRadio7" type="radio"(change)="isProPostRegistration(isPostRegistration)">
+                            <label class="custom-control-label" for="customRadio7">{{'Post-FPO Registration' | translate}}</label>
+                          </div>
+                        </div>
 
-                          <div class="custom-control custom-control-alternative custom-checkbox text-center ">
-                            <input formControlName="isPostRegistration" class="custom-control-input" id="sortingmachinescheck" type="checkbox">
-                            <label class="custom-control-label" for="sortingmachinescheck">{{'Post-FPO Registration' | translate}}</label>
-                          </div>
-                        </div>
+
                       </div>
+
                     </from>
-                    <hr />
-                    <h3 class="mb-0 ml-2">Indent</h3>
+                   
+                      <hr />
+                      <h3 *ngIf="isPost" class="mb-0 ml-2">{{'Post-FPO Registration'|translate}}</h3>
+                      <h3 *ngIf="!isPost" class="mb-0 ml-2">{{'Pre-FPO Registration'|translate}}</h3>
+                    </div>
+                    <!-- <div class="col-3 text-right">
+    <button class="btn btn-primary text-right">Add Member</button>
+  </div> -->
                   </div>
-                  <!-- <div class="col-3 text-right">
-              <button class="btn btn-primary text-right">Add Member</button>
-            </div> -->
-                </div>
               </div>
               <div class="table-responsive">
                 <table class="table align-items-center table-flush">
@@ -183,48 +188,30 @@
                       <th scope="col"></th>
                       <!--<th scope="col">Your Full Name</th>
                 <th scope="col">Email Address</th>-->
-                      <th scope="col">{{'Crop Name'|translate}}</th>
-                      <th scope="col">{{'Quantity Required'|translate}}</th>
-                      <th scope="col">{{'Fulfilled Date'|translate}}</th>
-                      <th scope="col"></th>
+                      <th scope="col">{{'SR. NO'|translate}}</th>
+                      <th scope="col">{{'Description'|translate}}</th>
+                      <th scope="col">{{'Date'|translate}}</th>
+                      <th scope="col">{{'View Details'|translate}}</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let indent of indents | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
+                    <tr *ngFor="let indent of fpoGuideLines | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                       <td>
                         {{(p-1) * 10 + i + 1}}
                       </td>
-                      <!--<th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">{{indent.fullName}}</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  {{indent.emailAddress}}
-                </td>-->
+                   
                       <td>
-                        Rabi
+                        {{indent.desc}}
                       </td>
                       <td>
-                        {{indent.quantityRequired}}
+                        {{indent.uploadDate  | date: 'dd/MM/yyyy'}}
                       </td>
                       <td>
-                        {{indent.fulfilledDate}}
+                        
+                        <a href="{{baseUrl}}{{indent.filePath}}" download>{{indent.filePath}}</a>
                       </td>
 
-                      <td class="text-right">
-                        <div ngbDropdown placement="bottom-right">
-                          <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                            {{'Actions'|translate}}
-                          </a>
-                          <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                            <!--<a class="dropdown-item" href="javascript:void(0)">Edit</a>-->
-                            <a class="dropdown-item" href="javascript:void(0)">{{'Delete'|translate}}</a>
-                          </div>
-                        </div>
-                      </td>
+                      
                     </tr>
 
                   </tbody>

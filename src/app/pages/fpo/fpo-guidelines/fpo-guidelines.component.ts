@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
+import { FpoService } from '../../../_services/fpo/fpo.service';
 
 @Component({
   selector: 'app-fpo-guidelines',
@@ -8,54 +10,37 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FpoGuidelinesComponent implements OnInit {
 
-  indents: any = [];
+  fpoGuideLines: any = [];
   p: number = 1;
-
+  baseUrl: string;
   fpoGuideLineFrom: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
-
+  isPost = false;
+  constructor(private formBuilder: FormBuilder, private api: FpoService,) {
+    this.baseUrl = environment.baseUrl;
   }
 
 
   ngOnInit(): void {
-    this.getIdent();
+    ;
     this.fpoGuideLineFrom = this.formBuilder.group({
-      
-      isPerRegistration: [false],
-      isPostRegistration: [false],
-    
-      id: ['']
-    });  
+      isPostRegistration: ['isPerRegistration']     
+     
+    });
+    this.api.getAllFPOGuideLine().subscribe(fg => {
+      this.fpoGuideLines=fg
+    })
 
   }
-  getIdent() {
-    this.indents = [{
-      id: 1,
-      fullName: "Vishal patil",
-      emailAddress: "v@gmail.com",
-      quantityRequired: "120",
-      fulfilledDate: "12/02/1990"
-    },
-    {
-      id: 1,
-      fullName: "Niraj patil",
-      emailAddress: "n@gmail.com",
-      quantityRequired: "120",
-      fulfilledDate: "12/02/1990"
-    },
-    {
-      id: 1,
-      fullName: "Vishal patil",
-      emailAddress: "v@gmail.com",
-      quantityRequired: "120",
-      fulfilledDate: "12/02/1990"
-    },
-    {
-      id: 1,
-      fullName: "Vishal patil",
-      emailAddress: "v@gmail.com",
-      quantityRequired: "120",
-      fulfilledDate: "12/02/1990"
-    }]
+  
+  isProPostRegistration(isPerRegistration: any) {
+    if (this.fpoGuideLineFrom.controls['isPostRegistration'].value === "isPostRegistration") {
+      this.fpoGuideLineFrom.controls['isPostRegistration'].setValue('isPostRegistration');
+      this.isPost = true;
+    } else {
+      this.fpoGuideLineFrom.controls['isPostRegistration'].setValue('isPerRegistration');
+      this.isPost = true;
+    }
+    
+   
   }
 }

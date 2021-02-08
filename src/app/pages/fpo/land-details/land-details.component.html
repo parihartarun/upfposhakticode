@@ -64,7 +64,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">{{'Area of Farm (in hectare)' | translate}}</label>
-                    <input formControlName="land_area" type="text" id="area-farm" class="form-control form-control-alternative">
+                    <input formControlName="land_area" type="text" id="area-farm" class="form-control form-control-alternative" appOnlynumber>
                     <div *ngIf="submitted && formControls.land_area.errors" class="text-danger">
                       <div *ngIf="formControls.land_area.errors.required">{{'Area of Farm (in hectare) is required' | translate}}</div>
                     </div>
@@ -125,7 +125,7 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col"></th>
-                <th scope="col">{{'Sr. No' | translate}}</th>
+                <th scope="col">{{'SR. NO' | translate}}</th>
                 <th scope="col">{{"Farmer Name" | translate}}</th>
                 <th scope="col">{{"Father's/ Husband's Name" | translate}}</th>
                 <th scope="col">{{"Type of Ownership" | translate}}</th>
@@ -153,8 +153,8 @@
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="editLandDetail(landDetail)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(landDetail.landId)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editLandDetail(landDetail)">{{'Edit'|translate}}</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(landDetail.landId)">{{'Delete'|translate}}</a>
                     </div>
                   </div>
                 </td>
