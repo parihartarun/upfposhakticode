@@ -15,6 +15,7 @@ export class LandDetailsComponent implements OnInit {
 
   p:number = 1;  
   landDetailForm: FormGroup;
+  roleType: any;
   landDetails:Array<any>=[];
   ownerShipList:Array<any>=[
     {ownerName:"Owned"},
@@ -34,6 +35,7 @@ export class LandDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.roleType = localStorage.getItem('userRole')
     this.landDetailForm = this.formBuilder.group({
       farmerId: ['', [Validators.required]],
       guardianName: ['', [Validators.required]],
@@ -74,7 +76,7 @@ export class LandDetailsComponent implements OnInit {
       var data = this.landDetailForm.value;
       data['farmerProfile'] = {"farmerId":this.landDetailForm.value.farmerId};
       delete data.farmerId;
-      console.log(data);
+    this.landDetailForm.value.masterId= localStorage.getItem('masterId'),
       this.fpoService.addLandDetails(data).subscribe(response => {
         console.log(response)
         if(response.id != ''){
@@ -101,6 +103,7 @@ export class LandDetailsComponent implements OnInit {
     data['farmerProfile'] = {"farmerId":this.landDetailForm.value.farmerId};
     delete data.farmerId;
     console.log(data);
+    this.landDetailForm.value.masterId = localStorage.getItem('masterId'),
     this.fpoService.updateLandDetail(data).subscribe(response => {
       if(response.id != ''){
         this.toastr.success('Land Detail Updated successfully.');
@@ -123,7 +126,7 @@ export class LandDetailsComponent implements OnInit {
     this.landDetailForm = this.formBuilder.group({
       farmerId: [landDetail.farmerId, [Validators.required]],
       guardianName: [landDetail.parantsName, [Validators.required]],
-      ownerShip: [landDetail.ownerShip, [Validators.required]],
+      ownerShip: [landDetail.ownership, [Validators.required]],
       land_area: [landDetail.landArea, [Validators.required]],
       isorganc:[landDetail.isorganc, [Validators.required]],
       masterId:localStorage.getItem('masterId'),
@@ -158,5 +161,13 @@ export class LandDetailsComponent implements OnInit {
 
   get formControls(){
     return this.landDetailForm.controls;
+  }
+  getUserTypes() {
+    if (this.roleType == 'ROLE_FPC') {
+      return true
+    }
+    else {
+      return false
+    }
   }
 }

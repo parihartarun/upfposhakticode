@@ -21,7 +21,7 @@
             <div class="pl-lg-4">
               <div class="row">
               <input type="hidden" formControlName="landId">
-                <div class="col-lg-6">
+                <div class="col-lg-6" *ngIf="getUserTypes()">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">{{'Farmer Name' | translate}}</label>
                     <!-- <select class="form-control form-control-alternative">
@@ -31,7 +31,7 @@
                       <option value="3"> crop 3</option>
                     </select>    -->
                     <select formControlName="farmerId" class="form-control form-control-alternative">
-                      <option value="">Select farmer</option>
+                      <option value="">{{'Select farmer'|translate}}</option>
                       <option value="{{farmerList.farmerId}}" *ngFor="let farmerList of FarmerLists">{{farmerList.farmerName}}</option>
                     </select>
                     <div *ngIf="submitted && formControls.farmerId.errors" class="text-danger">
@@ -54,7 +54,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">{{'Type of Ownership' | translate}}<span class="required">*</span></label>
                     <select class="form-control form-control-alternative" formControlName="ownerShip">
-                      <option value="">Select Ownership</option>
+                      <option value="">{{'Select Ownership'|translate}}</option>
                       <option value="{{ownerShip.ownerName}}" *ngFor="let ownerShip of ownerShipList">{{ownerShip.ownerName}}</option>
                     </select>
                     <div *ngIf="submitted && formControls.ownerShip.errors" class="text-danger">
@@ -145,7 +145,7 @@
                 </td>
                 <td>{{landDetail.farmerName}}</td>
                 <td>{{landDetail.parantsName}}</td>
-                <td></td>
+                <td>{{landDetail.ownership}}</td>
                 <td>{{landDetail.landArea}}</td>
                 <td>{{landDetail.isorganc}}</td>
                 <td class="text-right">
