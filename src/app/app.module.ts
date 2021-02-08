@@ -63,6 +63,7 @@ import { IndentComponent } from './pages/common/indent/indent.component';
 import { LoginModelPopupComponent } from './pages/common/login-model-popup/login-model-popup.component';
 import { OnlynumberDirective } from './directive/onlynumber.directive';
 import { NgMarqueeModule } from 'ng-marquee';
+import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -138,7 +139,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotificationsComponent,
     IndentComponent,
     LoginModelPopupComponent,
-    OnlynumberDirective
+    OnlynumberDirective,
+    FpoGuidelinesComponent
   ],
   exports: [   
     AuthHeaderComponent
