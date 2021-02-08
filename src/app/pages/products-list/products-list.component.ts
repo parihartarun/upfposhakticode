@@ -2,6 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { TreeviewItem } from 'ngx-treeview';
 import { AuthService } from '../../_services/auth/auth.service';
 import { ProductService } from '../../_services/product/product.service';
 
@@ -29,12 +30,64 @@ export class ProductsListComponent implements OnInit {
     { selected:false, minname:"100",maxname:"199",name:"200", type:"qty",quantity: 200, maxQuantity: 0 },
     { selected:false, minname:"200",maxname:"299",name:"300", type:"qty",quantity: 300, maxQuantity: 0 },
   ]
+
+
   parsearchType: string;
   parval: string;
   topsearchval: string;
+  items2: any;
   
   constructor(private modalService: NgbModal, private _rouetr:Router, private _productService: ProductService, private _activatedroute: ActivatedRoute, private api: AuthService) { }
-    
+  
+
+  items: any;
+config:any = {
+  hasAllCheckBox: false,
+  hasFilter: false,
+  hasCollapseExpand: false,
+  decoupleChildFromParent: false,
+  maxHeight: 500
+}
+  simpleItems = {
+    text: 'parent-1',
+    value: 'p1',
+    children: [
+ {
+        text: 'child-p1c1',
+        value: {name:"p1c1",child:"p1c1"},
+      },
+      {
+        text: 'child-p1c2',
+        value: {name:"p1c2",child:"p1c2"},
+      },
+    ]
+  };
+
+  simpleItems2 = {
+    text: 'parent-2',
+    value: 'p2',
+    collapsed: true,
+    children: [
+      {
+        text: 'child-p2c1',
+        value: {name:"p2c1",child:"p2c1"},
+      },
+      {
+        text: 'child-p2c2',
+        value: {name:"p2c2",child:"p2c2"},
+      },
+    ]
+  };
+
+  onSelectedChange($event)
+  {
+console.log("Selected Change Event Called  = "+JSON.stringify($event));
+  }
+onFilterChange($event)
+{
+  console.log("Selected Filter Event Called  = "+JSON.stringify($event));
+}
+
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -42,7 +95,8 @@ export class ProductsListComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-  
+
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -52,15 +106,58 @@ export class ProductsListComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-
+  getItems(parentChildObj) {
+    let itemsArray = [];
+    parentChildObj.forEach(set => {
+      set.checked = false;
+      set.collapsed = false;
+      itemsArray.push(new TreeviewItem(set))
+    });
+    return itemsArray;
+  }
   ngOnInit() {
-    this.api.getDistrictBystateId(9).subscribe(d => {
+   
+   this.api.getDistrictBystateId(9).subscribe(d => {
       this.districts = new Array()
       this.districts = d
-
-      console.log("districts received"+JSON.stringify(this.districts));
+      
     })
    
+    this.api.getCrops().subscribe(c => {
+      this.items2=[];
+      console.log("Crops received"+JSON.stringify(c));
+   
+   c.forEach(cropElement => {
+    let itm:any ={}
+itm["text"] = cropElement.cropName;
+itm["value"] = cropElement.cropName;
+
+console.log("Item Packed as here"+JSON.stringify(itm));
+
+let croptypes = [];
+
+ cropElement.cropTypes.forEach(cropTypeElement => {
+ 
+let croptypeItem = {};
+  croptypeItem["text"] = cropTypeElement.verietyName;
+  croptypeItem["value"] = cropTypeElement.verietyName+","+cropElement.cropName;
+  croptypeItem["checked"] = false;
+  croptypeItem["collapsed"] = false;
+  croptypes.push(croptypeItem);  
+});
+console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows = "+JSON.stringify(croptypes));
+  
+  // console.log("Crop Types of the Crop"+JSON.stringify(croptypes))
+   itm["children"] = croptypes;
+
+
+     this.items2.push(itm);
+  
+  });  
+// console.log("")
+ this.items = this.getItems([...this.items2]);
+  })
+
     this._activatedroute.paramMap.subscribe(params => {
       let val = params.get('val');
       let searchType = params.get('searchType');

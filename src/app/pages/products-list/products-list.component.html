@@ -15,7 +15,7 @@
             <div class="col-md-8 offset-md-2">
               <div class="form-group">
                 <input type="text" class="form-control search-text" name="topsearch" [(ngModel)]="topsearchval" id="exampleFormControlInput1" placeholder="Search here product that you want to buy ...">
-                <button class="btn btn-primary btn-block btn-lg btn-product-search active search-btn" role="button" aria-pressed="true" (click)="newSearchWithFilters()">{{'Search' | translate }}</button>
+                <button class="btn btn-primary btn-block btn-product-search active search-btn" role="button" aria-pressed="true" (click)="newSearchWithFilters()">{{'Search' | translate }}</button>
               </div>
             </div>
           </div>
@@ -98,7 +98,24 @@
               </div> <!-- card-body.// -->
             </div>
           </article>
+<article class="card-group-item">
+  <header class="card-header">
+    <h3 class="title">{{'cropandverieties' | translate }} </h3>
+  </header>
+  <ngx-loading [show]="!items" [config]="{backdropBackgroundColour: '#ffffff', 
+          backdropBorderRadius: '1px',
+          primaryColour: '#926E01', 
+          secondaryColour: '#926E01', 
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+  <ngx-treeview *ngIf="items"
 
+  [items]="items"
+  [config]="config"
+  (selectedChange)="onSelectedChange($event)"
+  (filterChange)="onFilterChange($event)"
+>
+</ngx-treeview>
+</article>
           <!-- <article class="card-group-item">
             <header class="card-header">
               <h3 class="title">{{'Crop' | translate }}</h3>
@@ -262,8 +279,6 @@
               <div class="row no-gutters">
                 <div class="row">
                   
-                  
-                  
                   <div class="col-md-4 mb-2">
                     <!-- <img src="../../../assets/img/onion.jpeg" class="card-img" alt="..."> -->
                     <img src="../../../assets/icons/cropplaceholder.jpg" class="card-img" alt="...">
@@ -313,7 +328,7 @@
                   </div>
 
                   <div class="col-md-4 text-right">
-                    <button href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search" [disabled]="true">View Details</button>
+                    <button href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search" [disabled]="true">{{'viewdetails' | translate }}</button>
                   </div>
                 </div>
               </div>
