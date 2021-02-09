@@ -32,14 +32,26 @@ export class FarmerUserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.roleType = localStorage.getItem('userRole');
     this.getDitricts();
+    this.authservice.getBank().subscribe(d => {
+      this.banks = d
+    })
     
     this.usernamestring = localStorage.getItem('username');
-    this.farmerService.getFarmerProfileByUsername(localStorage.getItem('username')).subscribe(data => {
+    this.farmerService.getFarmerProfileByUsername(localStorage.getItem('masterId')).subscribe(data => {
       console.log(data);
-     
+      this.authservice.getBlock(parseInt(data.distRefId)).subscribe(block => {
+        this.blocks = block
+      })
+      this.authservice.getGramPanchayat(parseInt(data.blockRef)).subscribe(gp => {
+        this.panchayts = gp
+      })
+      this.authservice.getVillage(parseInt(data.villagePanchayatId)).subscribe(v => {
+        this.villages = v
+      })
+      this.createRegisterForm(data);
     })
    
-    this.createRegisterForm();
+   
   }
   getDitricts() {
     this.api.getDistricts().subscribe(data => {
@@ -93,27 +105,27 @@ export class FarmerUserProfileComponent implements OnInit {
   get formControls() {
     return this.profileForm.controls;
   }
-  createRegisterForm() {
+  createRegisterForm(data) {
     this.profileForm = this.formBuilder.group({
-      accountNo: ['', Validators.required],
-      bankRefId: ['', Validators.required],
-      blockRef: ['', Validators.required],
-      category: ['', Validators.required],
-      distRefId: ['', Validators.required],
-      gender: ['', Validators.required],
+      accountNo: [data.accountNo, Validators.required],
+      bankRefId: [data.bankRefId, Validators.required],
+      blockRef: [data.blockRef, Validators.required],
+      category: [data.category, Validators.required],
+      distRefId: [data.distRefId, Validators.required],
+      gender: [data.gender, Validators.required],
       createdBy: 'ROLE_FARMER',
       deleted: [true],
       enabled: [true],
-      farmerId: [],
-      farmerMob: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
-      farmerName: ['', Validators.required],
-      ifscCode: ['', Validators.required],
-      parantsName: ['', Validators.required],
-      pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
-      userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
-      userRefId: [''],
-      villRefId: ['', Validators.required],
-      villagePanchayatId: ['', Validators.required],
+      farmerId: [data.farmerId],
+      farmerMob: [data.farmerMob, [Validators.required, Validators.pattern("[0-9 ]{10}")]],
+      farmerName: [data.farmerName, Validators.required],
+      ifscCode: [data.ifscCode, Validators.required],
+      parantsName: [data.parantsName, Validators.required],
+      pincode: [data.pincode, [Validators.required, Validators.pattern("[0-9 ]{6}")]],
+      userName: [localStorage.getItem('username'), [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
+      userRefId: [data.userRefId],
+      villRefId: [data.villRefId, Validators.required],
+      villagePanchayatId: [data.villagePanchayatId, Validators.required],
      
      
     })

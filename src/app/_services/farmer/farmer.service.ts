@@ -25,13 +25,13 @@ export class FarmerService {
     }));
 
   }
-  getFarmerProfileByUsername(username) {
-    return this.http.get<any>(this._url + `api/fpos/getByUsername/${username}`).pipe(map((res: any) => {
+  getFarmerProfileByUsername(materId) {
+    return this.http.get<any>(this._url + `api/farmer/profile/${materId}`).pipe(map((res: any) => {
       return res;
     }));
   }
   updateProfile(data) {
-    return this.http.get<any>(this._url + `api/fpos/${data.fpoId}`, data).pipe(map((res: any) => {
+    return this.http.put<any>(this._url + `api/farmer/update/${data.farmerId}`, data).pipe(map((res: any) => {
       return res;
     }));
   }
