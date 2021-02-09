@@ -75,7 +75,8 @@ export class FarmerRegisterComponent implements OnInit {
       deleted: [true],
       enabled: [true],
       farmerMob: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
-      farmerName: ['', Validators.required],       
+      farmerName: ['', Validators.required],
+    
       ifscCode: ['', Validators.required],
       parantsName: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],

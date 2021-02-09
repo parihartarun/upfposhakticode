@@ -23,6 +23,39 @@ export class FarmerService {
     return this.http.get<any>(this._url + '' + farmerId).pipe(map((res: any) => {
       return res;
     }));
+
+  }
+  getFarmerProfileByUsername(materId) {
+    return this.http.get<any>(this._url + `api/farmer/profile/${materId}`).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  updateProfile(data) {
+    return this.http.put<any>(this._url + `api/farmer/update/${data.farmerId}`, data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getFarmerLandDetailList(id) {
+    return this.http.get<any>(this._url + 'landdetail/getall/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  addLandDetails(data: any) {
+    return this.http.post<any>(this._url + 'landdetail/land', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  deletelandDetailById(id: number) {
+    return this.http.delete<any>(this._url + 'landdetail/land/deleteDetails/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  updateLandDetail(data: any) {
+    return this.http.put<any>(this._url + 'landdetail/land/editDetails/' + data.landId, data).pipe(map((res: any) => {
+      return res;
+    }));
   }
  
 }

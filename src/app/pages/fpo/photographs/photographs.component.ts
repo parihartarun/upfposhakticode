@@ -182,7 +182,7 @@ export class PhotographsComponent implements OnInit {
       // service_name: [service.service_name, [Validators.required]],
       // description: [service.description, [Validators.required]],
       description: [service.description, [Validators.required]],
-      file: [service.file, [Validators.required]],
+      file: [service.file],
       id:[service.id]
     });
 
@@ -199,7 +199,7 @@ export class PhotographsComponent implements OnInit {
     window.scroll(0,0);  
   }
 
-  updatePhotograph(){
+  updatePhotograph(photograph){
     this.submitted = true;
     // stop here if form is invalid
     if (this.photographForm.invalid) {
@@ -213,7 +213,7 @@ export class PhotographsComponent implements OnInit {
     formData.append('file', this.fileToUpload);
     formData.append('description', this.photographForm.value);
 
-    this.api.updatePhotograph(formData).subscribe(response => {
+    this.api.updatePhotograph(this.photographForm.value.id,formData).subscribe(response => {
       console.log('update file res===>', response);
       if(response.id != ''){
         this.toastr.success('Photographs updated successfully.');

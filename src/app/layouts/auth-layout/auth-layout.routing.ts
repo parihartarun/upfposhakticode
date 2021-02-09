@@ -10,6 +10,7 @@ import { FarmerRegisterComponent } from '../../pages/registers/farmer-register/f
 import { FpoRegisterComponent } from '../../pages/registers/fpo-register/fpo-register.component';
 import { RegisterComponent } from '../../pages/registers/register.component';
 import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.component';
+import { FpoGuidelinesComponent } from '../../pages/fpo/fpo-guidelines/fpo-guidelines.component';
 
 export const AuthLayoutRoutes: Routes = [
    
@@ -23,5 +24,7 @@ export const AuthLayoutRoutes: Routes = [
     { path: 'farmer-register', component: FarmerRegisterComponent },
     { path: 'fpo-register', component: FpoRegisterComponent },
     { path: 'bye-seller-register', component: ByerSellRegisterComponent },
-    { path: 'input-suppler-register', component: InputSupplierRegisterComponent },
+  { path: 'input-suppler-register', component: InputSupplierRegisterComponent },
+  
+
 ];
