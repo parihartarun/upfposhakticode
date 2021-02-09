@@ -214,7 +214,7 @@ export class PhotographsComponent implements OnInit {
     formData.append('description', this.photographForm.value);
 
     this.api.updatePhotograph(formData).subscribe(response => {
-      console.log(response);
+      console.log('update file', response);
       if(response.id != ''){
         this.toastr.success('Photographs updated successfully.');
         this.submitted = false;

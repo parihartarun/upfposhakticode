@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, TemplateRef, } from '@angular/core';
-
+declare let $: any;
 @Component({
   selector: 'app-fpo-guidelines',
   templateUrl: './fpo-guidelines.component.html',
@@ -15,8 +15,8 @@ export class FpoGuidelinesComponent implements OnInit {
 
   optionsBasicNoData = {}
   dataBasicNoData = [];
-  columnsBasicNoData: any = {}; 
-  optionsWithFeatures: any 
+  columnsBasicNoData: any = {};
+  optionsWithFeatures: any;
 
   constructor() { }
   ngOnInit(): void {
@@ -37,19 +37,21 @@ export class FpoGuidelinesComponent implements OnInit {
       rowClickEvent: true,
       rowPerPageMenu: [5, 10, 20, 30],
       rowPerPage: 5
-    }
+    } 
 
   }
 
   onPreFPORegister() {
+    console.log('pre call')
     this.postFPORegister = false;
     this.preFPORegister = true;
   }
 
   onPostFPORegister() {
+    console.log('post call')
     this.postFPORegister = true;
     this.preFPORegister = false;
   }
-
+ 
 
 }

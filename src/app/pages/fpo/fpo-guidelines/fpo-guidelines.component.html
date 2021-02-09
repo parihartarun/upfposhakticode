@@ -4,7 +4,19 @@
     </div>
 </div>
 
-<div class="container-fluid bg-white">
+<div class="container-fluid bg-white p-3">
+
+    <!-- <div class="d-inline">
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary btn-lg w-100 btn-inline">Before FPO Registration</button>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-info btn-lg w-100 btn-inline">After FPO Registration</button>
+            </div>
+        </div>
+    </div> -->
+
     <ul class="nav nav-tabs my-3">
         <li class="nav-item">
             <a class="nav-link" (click)="onPreFPORegister()">Before FPO Registration</a>
@@ -18,7 +30,7 @@
     <h2 class="text-white bg-primary p-2" *ngIf="preFPORegister">Before FPO Registration</h2>
     <h2 class="text-white bg-primary p-2" *ngIf="postFPORegister">After FPO Registration</h2>
 
-    <div class="row">
+    <div class="row" *ngIf="preFPORegister">
         <div class="col-sm-12 mt-3">
             <ngx-datatable tableClass="table table-striped table-bordered table-hover" [tableId]="'basicNoData'"
                 [data]="dataBasicNoData" [options]="optionsBasicNoData" [columns]="columnsBasicNoData">
@@ -26,5 +38,90 @@
         </div>
     </div>
 
+    <div class="row" *ngIf="postFPORegister">
+        <div class="col-sm-12 mt-3">
+            <ngx-datatable tableClass="table table-striped table-bordered table-hover" [tableId]="'basicNoData'"
+                [data]="dataBasicNoData" [options]="optionsBasicNoData" [columns]="columnsBasicNoData">
+            </ngx-datatable>
+        </div>
+    </div>
     <hr />
+
+    <!-- <div class="card my-4">
+        <div class="card-body">
+            <div class="row mx-md-n5">
+                <div class="col px-md-5">
+                    <div class="p-3 border bg-primary text-white" 
+                    (click)="onPreFPORegister()">
+                        Before FPO Registration
+                    </div>
+                </div>
+                <div class="col px-md-5">
+                    <div class="p-3 border bg-info text-white" 
+                    (click)="onPostFPORegister()">
+                        After FPO Registration
+                    </div>
+                </div>
+            </div>
+            <div class="card-header bg-primary mt-5 p-0">
+                <h2 class="w-100 text-center text-white p-1 mb-0" *ngIf="preFPORegister">
+                    Before FPO Registration
+                </h2>
+                <h2 class="w-100 text-center text-white p-1 mb-0" *ngIf="postFPORegister">
+                    After FPO Registration
+                </h2>
+            </div>
+            <div class="row mx-md-n5">
+                <div class="col px-md-5">
+                    <div class="form-group d-flex">
+                        <span for="d-inline">Show</span>
+                        <select class="form-control w-10" id="exampleFormControlSelect1">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                        <span for="d-inline">Entries</span>
+                      </div>
+                </div>
+                <div class="col px-md-5">
+                    <div class="p-3 border bg-info text-white" 
+                    (click)="onPostFPORegister()">
+                        After FPO Registration
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+
 </div>
