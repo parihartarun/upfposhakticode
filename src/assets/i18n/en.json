@@ -13,6 +13,8 @@
   "Input Supplier": "Input Supplier",
   "Equipment Centre": "Equipment Centre (CHC/ FMB)",
   "FPO guidelines": "FPO Guidelines",
+  "cropandverieties":"Crops and Verieties",
+"viewdetails":"View Details",
 
   "Back": "Back",
   "bannerSearchText": "Search FPO by Name/ District/ Crop/ Services/ Products",
@@ -422,5 +424,18 @@
   "password": "Password",
   "fpo registration date is required": "fpo registration date is required",
   "SR. NO": "SR. NO",
-  "MEMBER NAME": "MEMBER NAME"
+  "MEMBER NAME": "MEMBER NAME",
+  "Select License Type": "Select License Type",
+  "Select Equipment": "Select Equipment",
+  "Select": "Select",
+  "fascilities available": "Fascilities Available",
+  "Image Caption": "Image Caption",
+  "Image Caption Name is required": "Image Caption Name is required",
+  "Add Photograph": "Add Photograph",
+  "Update Photograph": "Update Photograph",
+  "Photos of FPO": "Photos of FPO",
+  "Select Complaint/Suggestions": "Select Complaint/Suggestions",
+  "Indent": "Indent",
+  "createindent":"Create Indent"
+
 }

@@ -139,6 +139,7 @@ confirmDelete(equipmentId){
 
 resetForm(){
   this.machinaryBankForm.reset();
+  this.submitted = false;
 }
 
 get formControls(){

@@ -60,6 +60,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { SearchComponent } from './pages/common/search/search.component';
 import { NotificationsComponent } from './pages/common/notifications/notifications.component';
 import { IndentComponent } from './pages/common/indent/indent.component';
+import { TreeviewModule } from 'ngx-treeview';
 import { LoginModelPopupComponent } from './pages/common/login-model-popup/login-model-popup.component';
 import { OnlynumberDirective } from './directive/onlynumber.directive';
 import { NgMarqueeModule } from 'ng-marquee';
@@ -76,6 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    TreeviewModule.forRoot(),
     ComponentsModule,
     NgbModule,
     RouterModule,

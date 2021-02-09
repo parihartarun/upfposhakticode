@@ -95,6 +95,7 @@ export class StorageUnitComponent implements OnInit {
   }
 
   getDistricts() {
+    const id = Number(localStorage.getItem('masterId'))
     this.storageunitservice.getDistrictByFpoId(localStorage.getItem('masterId')).subscribe(data=>{   
       console.log(data); 
       this.districtlist = [data];

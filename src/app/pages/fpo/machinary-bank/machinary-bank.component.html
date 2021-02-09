@@ -25,7 +25,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">{{'Name of Equipment' | translate}}<span class="required">*</span></label>
                     <select formControlName="equpment_name" class="form-control form-control-alternative">
-                      <option value="">Select Equipment</option>
+                      <option value="">{{'Select Equipment'|translate}}</option>
                       <option value="{{equip.equpmentname}}" *ngFor="let equip of equipmentList">{{equip.equpmentname}}</option>
                     </select>    
                     <div *ngIf="submitted && formControls.equpment_name.errors" class="text-danger">
@@ -79,8 +79,8 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col"></th>
-                <th scope="col">{{'Sr. No' | translate}}</th>
+                <th scope="col"> {{'Select'|translate}}</th>
+                <th scope="col">{{'SR. NO' | translate}}</th>
                 <th scope="col">{{"Name of Equipment" | translate}}</th>
                 <th scope="col">{{"No. of Equipment" | translate}}</th>
                 <th scope="col"></th>
