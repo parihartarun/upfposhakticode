@@ -436,6 +436,8 @@
   "Photos of FPO": "Photos of FPO",
   "Select Complaint/Suggestions": "Select Complaint/Suggestions",
   "Indent": "Indent",
-  "createindent":"Create Indent"
+  "createindent":"Create Indent",
+  "filters":"Filters",
+  "nofiltersselected":" list is empty."
 
 }

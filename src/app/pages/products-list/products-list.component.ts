@@ -243,6 +243,8 @@ console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows =
       this.selectedfilters.forEach(data=>{
         
         httpParams = data.type=="district"? httpParams.append("filterdist",""+data.name):httpParams.append("filterqty",""+data.name);
+      
+      
       });
         
   

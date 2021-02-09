@@ -15,7 +15,7 @@
             <div class="col-md-8 offset-md-2">
               <div class="form-group">
                 <input type="text" class="form-control search-text" name="topsearch" [(ngModel)]="topsearchval" id="exampleFormControlInput1" placeholder="Search here product that you want to buy ...">
-                <button class="btn btn-primary btn-block btn-product-search active search-btn" role="button" aria-pressed="true" (click)="newSearchWithFilters()">{{'Search' | translate }}</button>
+                <button class="btn  btn-block btn-product-search active search-btn" role="button" aria-pressed="true" (click)="newSearchWithFilters()">{{'Search' | translate }}</button>
               </div>
             </div>
           </div>
@@ -32,7 +32,13 @@
     <div class="d-flex p-2 ">
       <button class="btn btn-sm btn-primary btn-product-search" (click)="sampleNavigate()">{{'Back' | translate }}</button>
     </div>
-
+<div class="d-flex">
+  <span class="d-inline-block my-2 mx-1">{{'filters' | translate }}</span> 
+  <span *ngIf ="selectedfilters.length==0" class="d-inline-block my-2 mx-1">{{'nofiltersselected' | translate }}</span>
+  <div *ngIf ="selectedfilters.length!=0" class="d-inline-block overflow-pills-container">
+<div *ngFor="let chipitem of selectedfilters" class="d-inline-block mx-1 my-2 upfpo-pills">{{chipitem.name}} ({{chipitem.type}})</div>
+</div>
+</div>
     <div class="row">
       <div class="col-md-3">
         <div class="card">

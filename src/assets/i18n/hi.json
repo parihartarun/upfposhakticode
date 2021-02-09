@@ -439,5 +439,7 @@
   "Photos of FPO": "एफपीओ की फोटो",
   "Select Complaint/Suggestions": "शिकायतें / सुझाव  का चयन करें",
   "Indent": "इंडेंट",
-  "createindent":"इंडेंट किजिये"
+  "createindent":"इंडेंट किजिये",
+  "filters":"फ़िल्टर सूची",
+  "nofiltersselected":" खाली है"
 }
