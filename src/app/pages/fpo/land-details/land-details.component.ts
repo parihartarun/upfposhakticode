@@ -27,6 +27,7 @@ export class LandDetailsComponent implements OnInit {
   submitted = false;
   edit = false;
   master_id = localStorage.getItem('masterId');
+  farmerId:any
 
  constructor(
     private formBuilder: FormBuilder,
@@ -98,7 +99,10 @@ export class LandDetailsComponent implements OnInit {
       return;
     }
     var data = this.landDetailForm.value;
-    data['farmerProfile'] = { "farmerId": this.landDetailForm.value.farmerId };
+    if (this.landDetailForm.value.farmerId) {
+      this.farmerId = this.landDetailForm.value.farmerId
+    }
+    data['farmerProfile'] = { "farmerId": this.farmerId };
     delete data.farmerId;
     this.landDetailForm.value.masterId = localStorage.getItem('masterId');
     if (this.roleType == "ROLE_FPC") {
