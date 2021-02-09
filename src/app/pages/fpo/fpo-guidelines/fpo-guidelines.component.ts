@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
@@ -15,8 +16,11 @@ export class FpoGuidelinesComponent implements OnInit {
   baseUrl: string;
   fpoGuideLineFrom: FormGroup;
   isPost = false;
-  constructor(private formBuilder: FormBuilder, private api: FpoService,) {
+  isOpen = false;
+  constructor(private formBuilder: FormBuilder, private api: FpoService, public translate: TranslateService) {
     this.baseUrl = environment.baseUrl;
+    translate.addLangs(['en', 'hi']);
+    translate.setDefaultLang('hi');
   }
 
 
@@ -31,7 +35,14 @@ export class FpoGuidelinesComponent implements OnInit {
     })
 
   }
-  
+  useLanguage(language: string) {
+
+    this.translate.use(language);
+    this.toggleNavbar();
+  }
+  toggleNavbar() {
+    this.isOpen = !this.isOpen;
+  }
   isProPostRegistration(isPerRegistration: any) {
     if (this.fpoGuideLineFrom.controls['isPostRegistration'].value === "isPostRegistration") {
       this.fpoGuideLineFrom.controls['isPostRegistration'].setValue('isPostRegistration');
