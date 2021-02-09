@@ -23,6 +23,39 @@ export class FarmerService {
     return this.http.get<any>(this._url + '' + farmerId).pipe(map((res: any) => {
       return res;
     }));
+
+  }
+  getFarmerProfileByUsername(username) {
+    return this.http.get<any>(this._url + `api/fpos/getByUsername/${username}`).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  updateProfile(data) {
+    return this.http.get<any>(this._url + `api/fpos/${data.fpoId}`, data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getFarmerLandDetailList(id) {
+    return this.http.get<any>(this._url + 'api/fpos/landfarmer/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  addLandDetails(data: any) {
+    return this.http.post<any>(this._url + 'api/fpos/land', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  deletelandDetailById(id: number) {
+    return this.http.delete<any>(this._url + 'api/fpos/land/deleteDetails/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  updateLandDetail(data: any) {
+    return this.http.put<any>(this._url + 'api/fpos/land/editDetails/' + data.landId, data).pipe(map((res: any) => {
+      return res;
+    }));
   }
  
 }

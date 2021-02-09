@@ -21,12 +21,12 @@ export class FpoGuidelinesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    ;
+    
     this.fpoGuideLineFrom = this.formBuilder.group({
       isPostRegistration: ['isPerRegistration']     
      
     });
-    this.api.getAllFPOGuideLine().subscribe(fg => {
+    this.api.getFPOGuideLinePreRegistration().subscribe(fg => {
       this.fpoGuideLines=fg
     })
 
@@ -36,9 +36,15 @@ export class FpoGuidelinesComponent implements OnInit {
     if (this.fpoGuideLineFrom.controls['isPostRegistration'].value === "isPostRegistration") {
       this.fpoGuideLineFrom.controls['isPostRegistration'].setValue('isPostRegistration');
       this.isPost = true;
+      this.api.getFPOGuideLinePostRegistration().subscribe(fg => {
+        this.fpoGuideLines = fg
+      })
     } else {
       this.fpoGuideLineFrom.controls['isPostRegistration'].setValue('isPerRegistration');
       this.isPost = true;
+      this.api.getFPOGuideLinePreRegistration().subscribe(fg => {
+        this.fpoGuideLines = fg
+      })
     }
     
    
