@@ -31,6 +31,7 @@ import { DepartmentAllUsersComponent } from '../../pages/department/department-a
 import { SearchComponent } from '../..//pages/common/search/search.component';
 import { NotificationsComponent } from '../../pages/common/notifications/notifications.component';
 import { IndentComponent } from '../../pages/common/indent/indent.component';
+import { FarmerUserProfileComponent } from '../../pages/user-profile/farmer-user-profile/farmer-user-profile.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: DashboardComponent },
@@ -61,6 +62,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'department/all-users', component: DepartmentAllUsersComponent },
   { path: 'search', component: SearchComponent },
   { path: 'notifications', component: NotificationsComponent },
-  { path: 'indent_history', component:IndentComponent}
+  { path: 'indent_history', component: IndentComponent },
+  { path: 'fpo/farmer-user-profile', component: FarmerUserProfileComponent }
 ];
 

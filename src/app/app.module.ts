@@ -64,6 +64,7 @@ import { LoginModelPopupComponent } from './pages/common/login-model-popup/login
 import { OnlynumberDirective } from './directive/onlynumber.directive';
 import { NgMarqueeModule } from 'ng-marquee';
 import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
+import { FarmerUserProfileComponent } from './pages/user-profile/farmer-user-profile/farmer-user-profile.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -140,7 +141,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     IndentComponent,
     LoginModelPopupComponent,
     OnlynumberDirective,
-    FpoGuidelinesComponent
+    FpoGuidelinesComponent,
+    FarmerUserProfileComponent
   ],
   exports: [   
     AuthHeaderComponent
