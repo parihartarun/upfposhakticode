@@ -11,34 +11,57 @@
                 <div class="card-header border-0">
                     <div class="row">
                         <div class="col-9">
-                            <h3 class="mb-0">{{'Guideline' | translate}}</h3>
+                            <h3 class="mb-0">{{'Schemes' | translate}}</h3>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form [formGroup]="guidelineForm">
+                    <form [formGroup]="schemeForm">
                         <div class="pl-lg-4">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="input-last-name">{{'Guideline Type' |
+                                        <label class="form-control-label" for="input-last-name">{{'Schemes Type' |
                                             translate}} <span class="required">*</span></label>
-                                        <select formControlName="guideline_type"
+                                        <select formControlName="schemes_type"
                                             class="custom-control custom-select mb-1">
                                             <option value="null" disabled>
-                                                {{'Select Guideline Type' | translate}}</option>
-                                            <option value="'PREREGISTRATION'">
-                                                {{'Pre-PFO Registration' | translate}}</option>
-                                            <option value="'POSTREGISTRATION'">
-                                                {{'Post-PFO Registration' | translate}}</option>
+                                                {{'Select Schemes Type' | translate}}</option>
+                                            <option value="'Seeds'"> {{'Seeds' | translate}}</option>
+                                            <option value="'Fertilizer'"> {{'Fertilizer' | translate}}</option>
+                                            <option value="'Agri Equipment'"> {{'Agri Equipment' | translate}}</option>
+                                            <option value="'Agri Equipment Bank'"> {{'Agri Equipment Bank' | translate}}
+                                            </option>
+                                            <option value="'Export'"> {{'Export' | translate}}</option>
+                                            <option value="'Organic Farming'"> {{'Organic Farming' | translate}}
+                                            </option>
+                                            <option value="'Special Crop'"> {{'Special Crop' | translate}}</option>
+                                            <option value="'Finance'"> {{'Finance' | translate}}</option>
                                         </select>
                                         <div *ngIf="typeValidation.invalid && (typeValidation.dirty || typeValidation.touched)"
                                             class="text-danger">
-                                            <div>{{'Guideline type is required' | translate}}</div>
+                                            <div>{{'Schemes type is required' | translate}}</div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">
+                                            {{'Department name' | translate}} <span class="required">*</span>
+                                        </label>
+                                        <!--<small class="">
+                                          (File format should be .jpg, .png, .jpeg and .pdf)
+                                        </small>-->
+                                        <input type="text" id="input-first-name"
+                                            placeholder="{{'Department name' | translate}}"
+                                            class="form-control form-control-alternative" formControlName="departmentName">
+                                        <div *ngIf="departValidation.invalid && (departValidation.dirty || departValidation.touched)"
+                                            class="text-danger">
+                                            <div>{{'Department name is required' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">
                                             {{'Upload Document' | translate}} <span class="required">*</span>
@@ -72,8 +95,8 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <button class="btn btn-primary text-right" (click)="addGuideline()">
-                                            {{'Add Guideline' | translate}}</button>
+                                        <button class="btn btn-primary text-right" (click)="addSchemes()">
+                                            {{'Add Schemes' | translate}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +107,7 @@
             </div>
         </div>
     </div>
-    
+
     <br />
 
     <!-- Table -->
@@ -94,7 +117,7 @@
                 <div class="card-header border-0">
                     <div class="row">
                         <div class="col-9">
-                            <h3 class="mb-0">{{'Guidelines List' | translate}}</h3>
+                            <h3 class="mb-0">{{'Schemes List' | translate}}</h3>
                         </div>
                         <!-- <div class="col-3 text-right">
                 <button class="btn btn-primary text-right">Add Member</button>
@@ -113,8 +136,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr
-                                *ngFor="let p of (guideLineList | async) | paginate: { itemsPerPage: 10, currentPage: p }">
+                            <tr *ngFor="let p of (schemeList | async) | paginate: { itemsPerPage: 10, currentPage: p }">
                                 <td>
                                     {{p.id}}
                                 </td>

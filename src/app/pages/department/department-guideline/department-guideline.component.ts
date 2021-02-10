@@ -19,7 +19,7 @@ export class DepartmentGuidelineComponent implements OnInit {
     this.guidelineForm = this.formBuilder.group({
       guideline_type: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
-      document: new FormControl(null),
+      document: new FormControl(null, Validators.required),
     });
     this.departmentService.getGuideline();
   }

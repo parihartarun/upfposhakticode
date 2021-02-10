@@ -11,6 +11,7 @@ export class DepartmentService {
 
   _url: string;
   guideLineList: BehaviorSubject<any> = new BehaviorSubject([]);
+  schemeList: BehaviorSubject<any> = new BehaviorSubject([]);
   constructor(private http: HttpClient) {
     this._url = environment.baseUrl;
   }
@@ -80,12 +81,23 @@ export class DepartmentService {
     })
   }
   uploadGuideline(data) {
-    console.log('data', data);
-
     this.http.post<any>(this._url + 'fpoguidelines', { ...data }).subscribe((res: any) => {
       if (res) {
-        console.log('pavan upload', res);
-
+        this.getGuideline();
+      }
+    })
+  }
+  getScheme() {
+    this.http.get<any>(this._url + 'schemes').subscribe((res: any) => {
+      if (res) {
+        this.schemeList.next(res);
+      }
+    })
+  }
+  uploadSchemes(data) {
+    this.http.post<any>(this._url + 'schemes', { ...data }).subscribe((res: any) => {
+      if (res) {
+        this.getScheme();
       }
     })
   }

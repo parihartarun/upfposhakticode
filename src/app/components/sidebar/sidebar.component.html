@@ -156,8 +156,14 @@
         </li>
         <li *ngIf="userRole != 'ROLE_BUYERSELLER'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['department/guideline']" class="nav-link">
-            <i class="ni fa fa-archive text-white"></i>
+            <i class="ni fa fa-book text-white"></i>
             {{'Guideline' | translate}}
+          </a>
+        </li>
+        <li *ngIf="userRole != 'ROLE_BUYERSELLER'" class="nav-item">
+          <a routerLinkActive="active" [routerLink]="['department/schemes']" class="nav-link">
+            <i class="ni fa fa-globe text-white"></i>
+            {{'Schemes' | translate}}
           </a>
         </li>
         <li *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_FARMER' || userRole == 'ROLE_BUYERSELLER'" class="nav-item">
