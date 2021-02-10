@@ -223,7 +223,7 @@
                 </div>
                 <div class="col-md-2" style="padding: 0px;">
                   <div class="dropdown searchDropDown ">
-                    <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" style="width:100%">
+                    <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" [(ngModel)]="searchType" style="width:100%">
                       <option value="any">{{'Any' | translate }}</option>
                       <option value="crop">{{'Crop' | translate }}</option>
                       <option value="district">{{'District1' | translate }}</option>
@@ -233,7 +233,7 @@
                   </div>
                 </div>
                 <div class="col-md-2 mb-4" style="padding: 0px;">
-                  <a [routerLink]="['/products',data.searchValue,data.searchType]" routerLinkActive="active">
+                  <a [routerLink]="['/products',searchValue,searchType]" routerLinkActive="active">
                     <input type="button" value="🔍 {{'Search' | translate}}" class="form-control-feedback btn-warning" placeholder="{{'searchPlaceHolder'| translate}}" style="width: 100%; pointer-events: all;">
                   </a>
                 </div>
