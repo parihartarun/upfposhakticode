@@ -16,7 +16,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       return next.handle(request).pipe(
         catchError(err => {
           console.log(err);
-          if (err.status !== 404) {
+          if (err.status !== 404 && err.error.message != undefined) {
             this.toastr.error(err.error.message);
           }
           // if (err.status === 401) {
