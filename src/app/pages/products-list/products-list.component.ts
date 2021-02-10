@@ -22,6 +22,7 @@ export class ProductsListComponent implements AfterViewInit,OnInit {
   loading:boolean=false;
   closeResult: string;
   serachProduct: [];
+  dummysearchval:string=''
   routerParameter = '';
   selectedfilters :Array<{name:string,type:string}>=[]
   selecteddists:Array<string>=[];
@@ -221,6 +222,7 @@ console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows =
     this._activatedroute.paramMap.subscribe(params => {
       let val = params.get('val');
       let searchType = params.get('searchType');
+      this.dummysearchval = params.get('val'); 
    this.parval = params.get('val');
    this.parsearchType = params.get('searchType');   
       this.loading=true;
@@ -248,25 +250,26 @@ console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows =
 
   newSearchWithFilters()
   {
-    let httpParams:HttpParams = new HttpParams();     
-      httpParams = httpParams.append("in",""+this.parsearchType);
-      httpParams = httpParams.append("val",""+this.topsearchval);
-      this.selectedfilters.forEach(data=>{
+    this.parval = this.dummysearchval;
+    // let httpParams:HttpParams = new HttpParams();     
+    //   httpParams = httpParams.append("in",""+this.parsearchType);
+    //   httpParams = httpParams.append("val",""+this.topsearchval);
+    //   this.selectedfilters.forEach(data=>{
         
-        httpParams = data.type=="district"? httpParams.append("filterdist",""+data.name):httpParams.append("filterqty",""+data.name);
+    //     httpParams = data.type=="district"? httpParams.append("filterdist",""+data.name):httpParams.append("filterqty",""+data.name);
       
       
-      });
+    //   });
         
   
-      this.serachProduct=[];
-      this.loading=true;
-      this._productService.getSearchProductWithFilters(this.parval, this.parsearchType,httpParams).subscribe(s => {
-        this.serachProduct = s;
-        this.topsearchval = undefined      
-        this.loading = false;
-      });
-  
+      // this.serachProduct=[];
+      // this.loading=true;
+      // this._productService.getSearchProductWithFilters(this.parval, this.parsearchType,httpParams).subscribe(s => {
+      //   this.serachProduct = s;
+      //   this.topsearchval = undefined      
+      //   this.loading = false;
+      // });
+      this.searchWithFilters();  
     }     
 
 searchWithFilters()
