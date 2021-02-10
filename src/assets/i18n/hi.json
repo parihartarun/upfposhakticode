@@ -441,5 +441,7 @@
   "Indent": "इंडेंट",
   "createindent":"इंडेंट किजिये",
   "filters":"फ़िल्टर सूची",
-  "nofiltersselected":" खाली है"
+  "nofiltersselected":" खाली है",
+  "noitemsfound":"कुछ नहीं मिला...",
+  "searchplaceholder":"खोजने के लिए यहां टाइप करें"
 }
