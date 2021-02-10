@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +15,7 @@ import { ProductService } from '../../_services/product/product.service';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements AfterViewInit,OnInit {
   isLoggeIn = false;
   submitted = false;
   title = 'appBootstrap';  
@@ -84,17 +84,25 @@ config:any = {
       },
     ]
   };
+  treeloaded: boolean=false;
 
   onSelectedChange($event)
   {
-console.log("Selected Change Event Called  = "+JSON.stringify($event));
+    if(this.treeloaded)
+{
+  console.log("Selected Change Event Called  = "+JSON.stringify($event));
 this.selectedfilters = this.selectedfilters.filter(elem=>elem.type!="crop");
 $event.forEach(element => {
   this.selectedfilters.push({name:element,type:"crop"});  
 });
-
-
 this.searchWithFilters();
+}
+if(!this.treeloaded)
+{
+  this.treeloaded=true;
+}
+//this.treeloaded == false?true:true;
+console.log("Tree loaded status = "+this.treeloaded)
 
 }
 onFilterChange($event)
@@ -115,6 +123,9 @@ onFilterChange($event)
   
   constructor(private modalService: NgbModal, private _rouetr: Router, private _productService: ProductService, private _activatedroute: ActivatedRoute,
     private api: AuthService, private _fpoService: FpoService, private fb: FormBuilder, private datePipe: DatePipe, private toastr: ToastrService) { }
+  ngAfterViewInit(): void {
+   this.treeloaded=false;
+  }
     
   open(event, content, item):any {
     
