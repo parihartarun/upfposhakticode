@@ -1,15 +1,154 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
+import { FpoService } from '../../../_services/fpo/fpo.service';
 @Component({
   selector: 'app-crop-showing-details',
   templateUrl: './crop-showing-details.component.html',
   styleUrls: ['./crop-showing-details.component.css']
 })
 export class CropShowingDetailsComponent implements OnInit {
+ 
+  cropSowingForm: FormGroup;
+  farmerForm:FormGroup;
+  submitted = false;
+  equipments:Array<any>=[];
+  farmers:Array<any>=[];
+  crops:Array<any>=[];
+  cropVarieties:Array<any>=[];
+  seasons:Array<any>=[];
+  p:number = 1;
+  edit = false;
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private api: FpoService,
+    private route: Router,
+    private toastr:ToastrService
+  ) {}
 
   ngOnInit(): void {
+    this.cropSowingForm  = this.formBuilder.group({
+      list: this.formBuilder.array([this.initItemRows()]),
+      farmerId: ['', [Validators.required]],
+      guardianName: [''],
+      seasonRefName: ['',[Validators.required]],
+      baseland:[],
+      masterId:localStorage.getItem('masterId'),
+      sowingId:[]
+    });
+    this.getCropSowingDetails();
+    this.getFarmers();
+    this.getCropList();
+    this.getSeasonList();
   }
 
+  initItemRows() {
+    return this.formBuilder.group({
+      sowingArea: ['', [Validators.required]],
+      cropId: ['', [Validators.required]],
+      verietyRef: ['',[Validators.required]],
+      expectedYield:['', [Validators.required]],
+      actualYield:['', [Validators.required]],
+      masterId:localStorage.getItem('masterId')
+    });
+  }
+
+  get formArr() {
+    return this.cropSowingForm.get('list') as FormArray;
+  }
+
+  addNewRow() {
+    this.formArr.push(this.initItemRows());
+  }
+  
+  deleteRow(index: number) {
+    this.formArr.removeAt(index);
+  }
+
+  getFarmers(){
+    this.api.getFarmerDetailList().subscribe(
+      response => {
+      console.log(response);
+      this.farmers = response;
+    })
+  }
+
+  getSeasonList(){
+    this.api.getSeasonList().subscribe(
+      response => {
+      console.log(response);
+      this.seasons = response;
+    })
+  }
+
+  getCropList(){
+    this.api.getCropList().subscribe(
+      response => {
+      console.log(response);
+      this.crops = response;
+    })
+  }
+
+  getCropVarietiesByCropId(cropId){
+    this.api.getCropVarietiesByCropId(cropId).subscribe(
+      response => {
+      console.log(response);
+      this.cropVarieties = response;
+    })
+  }
+
+  getFarmerDetails(farmerId){
+    console.log(farmerId);
+    this.api.getFarmerDetailsForCropSowing(farmerId).subscribe(response => {
+      console.log(response);
+      if(response != null){
+        this.cropSowingForm.controls.baseland.patchValue(response.land_area);
+        this.cropSowingForm.controls.guardianName.patchValue(response.parantsName);
+      }
+
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
+  getCropSowingDetails(){
+    this.api.getFarmerDetailsForCropSowing(localStorage.getItem('masterId')).subscribe(response => {
+      console.log(response);
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
+  addSowingDetails(){
+    this.submitted = true;
+    // stop here if form is invalid
+    console.log(this.cropSowingForm);
+    if (this.cropSowingForm.invalid) {
+        return;
+    }
+
+    var data = this.cropSowingForm.value;
+    // data['crop_id'] = {"cropId":this.cropSowingForm.value.cropId};
+    // data['verietyId'] = {"verietyId":this.cropSowingForm.value.verietyId};
+    // delete data.cropId;
+     console.log(data);
+    this.api.addCropProduction(data).subscribe(response => {
+      console.log(response);
+      this.toastr.success('Crop Production added successfully.');
+      this.submitted = false;
+      this.cropSowingForm.reset();
+      this.getCropSowingDetails();
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
 }

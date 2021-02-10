@@ -15,6 +15,8 @@ export class SalesDetailsComponent implements OnInit {
   salesForm: FormGroup;
   submitted = false;
   sales:Array<any>=[];
+  cropVarieties:Array<any>=[];
+  crops:Array<any>=[];
   p:number = 1;
   edit = false;
 
@@ -28,17 +30,35 @@ export class SalesDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.salesForm = this.formBuilder.group({
       season: ['', [Validators.required]],
-      cropName: ['', [Validators.required]],
-      cropVariety: ['', [Validators.required]],
-      quantity_sold: ['', [Validators.required]],
+      cropRefName: ['', [Validators.required]],
+      verietyId: ['', [Validators.required]],
+      soldQuantity: ['', [Validators.required]],
       fpoId:localStorage.getItem('masterId'),
+      masterId:localStorage.getItem('masterId'),
       id:['']
     });
     this.getFpoSalesInfo();
+    this.getCropList();
+  }
+
+  getCropList(){
+    this.api.getCropList().subscribe(
+      response => {
+      console.log(response);
+      this.crops = response;
+    })
+  }
+
+  getCropVarietiesByCropId(cropId){
+    this.api.getCropVarietiesByCropId(cropId).subscribe(
+      response => {
+      console.log(response);
+      this.cropVarieties = response;
+    })
   }
 
   getFpoSalesInfo(){
-    this.api.getFpoSalesInfo().subscribe(response => {
+    this.api.getFpoSalesInfo(localStorage.getItem('masterId')).subscribe(response => {
       console.log(response);
       this.sales = response;
     },
@@ -55,15 +75,12 @@ export class SalesDetailsComponent implements OnInit {
         return;
     }
 
+    console.log(this.salesForm.value);
     this.api.addFpoSalesInfo(this.salesForm.value).subscribe(response => {
-      if(response.id != ''){
-        this.toastr.success('Sales info added successfully.');
-        this.submitted = false;
-        this.edit = false;
-        this.salesForm.reset();
-      }else{
-          this.toastr.error('Error! While adding Sales info.');
-      }
+      this.toastr.success('Sales info added successfully.');
+      this.submitted = false;
+      this.edit = false;
+      this.salesForm.reset();
       this.getFpoSalesInfo();
     },
       err => {
@@ -73,11 +90,14 @@ export class SalesDetailsComponent implements OnInit {
   }
 
   editFpoSalesInfo(sale){
+    this.getCropVarietiesByCropId(sale.crop_id);
     this.salesForm = this.formBuilder.group({
-      season: [sale.season, [Validators.required]],
-      cropName: [sale.cropName, [Validators.required]],
-      cropVariety: [sale.cropVariety, [Validators.required]],
-      quantity_sold: [sale.quantity_sold, [Validators.required]],
+      season: [sale.season_id, [Validators.required]],
+      cropRefName: [sale.crop_id, [Validators.required]],
+      verietyId: [sale.veriety_id, [Validators.required]],
+      soldQuantity: [sale.sold_quantity, [Validators.required]],
+      fpoId:localStorage.getItem('masterId'),
+      masterId:localStorage.getItem('masterId'),
       id:[sale.id]
     });
     this.edit = true;
@@ -91,14 +111,10 @@ updateFpoSalesInfo(){
       return;
   }
   this.api.updateFpoSalesInfo(this.salesForm.value).subscribe(response => {
-    if(response.id != ''){
-      this.toastr.success('Sales info Updated successfully.');
-      this.submitted = false;
-      this.edit = false;
-      this.salesForm.reset();
-    }else{
-        this.toastr.error('Error! While Updating Sales info.');
-    }
+    this.toastr.success('Sales info Updated successfully.');
+    this.submitted = false;
+    this.edit = false;
+    this.salesForm.reset();
     this.getFpoSalesInfo();
   },
     err => {
@@ -110,11 +126,7 @@ updateFpoSalesInfo(){
 confirmDelete(id){
   if(confirm("Are you sure to delete this item")) {
     this.api.deleteFpoSalesInfo(id).subscribe(response => {
-      if(response == true){
-        this.toastr.success('Sales Info Deleted successfully.');
-      }else{
-          this.toastr.error('Error! While Deleting Sales info.');
-      }
+      this.toastr.success('Sales Info Deleted successfully.');
     },
       err => {
         console.log(err)
