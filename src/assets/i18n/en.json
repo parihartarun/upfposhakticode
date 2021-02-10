@@ -439,6 +439,26 @@
   "Pre-FPO Registration": "Pre-FPO Registratio",
   "Post-FPO Registration": "Post-FPO Registration",
   "View Details": "View In Details",
-  "DESCRIPTION": "DESCRIPTION"
+  "DESCRIPTION": "DESCRIPTION",
+  "Name": "Name",
+  "Update Complaint/ Suggestion Status": "Update Complaint/ Suggestion Status",
+  "Appointed": "Appointed",
+  "Select User": "Select User",
+  "Appointed to is required": "Appointed to is required",
+  "Appointment Date": "Appointment Date",
+  "appointment date is required": "appointment date is required",
+  "fpo Comments": "Fpo Comments",
+  "Change status": "Change status",
+  "Select Status": "Select Status",
+  "Assigned": "Assigned",
+  "Open": "Open",
+  "Resolved": "Resolved",
+  "status  is required": "status  is required",
+  "Update Status": "Update Status",
+  "close": "Close",
+  "View": "View",
+  "Department Comments": "Department Comments",
+  "department comments is required": "department comments is required",
+  "Details of Complainant/ Suggestion provider": "Details of Complainant/ Suggestion provider"
 
 }

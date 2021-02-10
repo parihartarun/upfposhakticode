@@ -66,6 +66,7 @@ import { NgMarqueeModule } from 'ng-marquee';
 import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
 import { FarmerUserProfileComponent } from './pages/user-profile/farmer-user-profile/farmer-user-profile.component';
 import { FarmerComplaintsComponent } from './pages/farmer/farmer-complaints/farmer-complaints.component';
+import { DepartmentComplaintsComponent } from './pages/department/department-complaints/department-complaints.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -144,7 +145,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     OnlynumberDirective,
     FpoGuidelinesComponent,
     FarmerUserProfileComponent,
-    FarmerComplaintsComponent
+    FarmerComplaintsComponent,
+    DepartmentComplaintsComponent,
   ],
   exports: [   
     AuthHeaderComponent

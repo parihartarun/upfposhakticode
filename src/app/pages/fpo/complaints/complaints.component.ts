@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../_services/auth/auth.service';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
@@ -13,6 +14,7 @@ import { FpoService } from '../../../_services/fpo/fpo.service';
 })
 export class ComplaintsComponent implements OnInit {
   complaintForm: FormGroup;
+  complaintStatusForm: FormGroup
   submitted = false;
   complaintsCatageriy: Array<any> = [];
   complaints: Array<any> = [];  
@@ -26,16 +28,20 @@ export class ComplaintsComponent implements OnInit {
   fileToUpload: File = null;
   isViewComplaint = false;
   roleType: any;
+  users: any[];
   viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks:'',}
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
     private route: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    
+    this.authService.getAllUser().subscribe(u => {
+      this.users = u
+    })
     this.api.getComplaints_Suggestions().subscribe(cs => {
       this.complaintsCatageriy = cs
     })
@@ -71,6 +77,7 @@ export class ComplaintsComponent implements OnInit {
     formData.append('description', this.complaintForm.value.desc);
     formData.append('title', this.complaintForm.value.title.comp_type_en);
     formData.append('issue_type', this.complaintForm.value.issueType);
+    formData.append("masterId", localStorage.getItem('masterId'))
     this.api.addComplaint(formData).subscribe(response => {
       if (response!= '') {
         this.toastr.success('Complaint Added Succefully.');
@@ -175,7 +182,31 @@ export class ComplaintsComponent implements OnInit {
     this.viewComp.compalintDate = complaint.uploadDate;
     this.viewComp.remarks = complaint.remarks;
     this.viewComp.title = complaint.title;
-    window.scroll(0,0)
+    window.scroll(0, 0);
+    this.complaintStatusForm = this.formBuilder.group({
+      appointment: ['', [Validators.required]],
+      appointmentDate: ['20/03/2020'],
+      departmentComments: ['', [Validators.required]],
+      complaintStatus: ['', [Validators.required]],
+      masterId: localStorage.getItem('masterId'),
+
+    });
+  }
+  updateSatus() {
+    this.submitted = true;
+    if (this.complaintForm.invalid) {
+      return;
+    }
+
+    //this.api.updateStatus(this.complaintForm.value).subscribe(response => {
+    //  if (response.id != '') {
+    //    this.toastr.success(response);
+    //    this.submitted = false;
+    //    this.complaintForm.reset();
+    //  } else {
+    //    this.toastr.error('Error! While Add complaint.');
+    //  }
+    //});
   }
 }
 

@@ -78,6 +78,7 @@ export class FarmerComplaintsComponent implements OnInit {
     formData.append('description', this.complaintForm.value.desc);
     formData.append('title', this.complaintForm.value.title.comp_type_en);
     formData.append('issue_type', this.complaintForm.value.issueType);
+    formData.append("masterId", localStorage.getItem('masterId'))
     this.api.addComplaint(formData).subscribe(response => {
       if (response != '') {
         this.toastr.success('Complaint Added Succefully.');
