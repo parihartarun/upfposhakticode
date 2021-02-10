@@ -21,7 +21,7 @@
   "Crop": "फसलों",
   "Crops": "फ़सलें",
 
-  "District": "जिला",
+  "District": "जनपद",
   "FPO": "एफ.पी. ओ",
   "Search": "खोजें",
   "Services/ Products": "सेवाएँ / उत्पाद",
@@ -456,5 +456,10 @@
   "enterfpodeliveryaddr":"डिलिवरी का पता दर्ज करें",  
   "fpodeliveryaddr":"डिलिवरी का पता",
   "deleiveryrequired":"डिलिवरी का पता आवश्यक है",
-  "Indent Form":"इंडेंट फार्म"
+  "Indent Form":"इंडेंट फार्म",
+  "FPO CONTACT":"दूरभाष संख्या",
+  "Estimated Production (in Qt.)" :"अपेक्षित उपज (क्विन्टल में)",
+  "Sales Data" : "विक्रय डेटा",
+  "Select District" : "जनपद का चयन करें",
+  "Select Crops" : "फ़सलें का चयन करें"
 }

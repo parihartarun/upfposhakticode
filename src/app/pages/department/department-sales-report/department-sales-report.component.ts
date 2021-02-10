@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-department-sales-report',
@@ -14,167 +15,84 @@ export class DepartmentSalesReportComponent implements OnInit {
   submitted = false;
   production: Array<any> = [];
   p: number = 1;
+  districts = [];
+  crops = [];
+  seasons = [];
+  stateID = 9;
+  salesReport;
 
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
-    private route: Router
+    private route: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
     this.filterForm = this.formBuilder.group({
-      financial_year: [''],
-      season: ['']
-    });
-    this.getProduction();
-  }
+      finYear: ['', Validators.required],
+      distId: ['',Validators.required],
+      cropId: ['', Validators.required],
+      seasonId: ['', Validators.required]
+      // masterId: localStorage.getItem('masterId'),
 
-  getProduction() {
-    this.production = [
-      {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      }, {
-        name: 'Vaishali Patil',
-        fatherName: 'Namdev Patil',
-        season: 'Kharif',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        markatableSurplus: '23'
-      },
-    ]
-    
+    });
+    this.api.getDistrictBystateId(this.stateID).subscribe(d => {
+      this.districts = d;
+    })
+
+
+    this.api.getSeason().subscribe(s=>{
+      this.seasons = s;
+    })
   }
 
   filterProduction() {
-    this.getProduction();
+    // this.getProduction();
   }
 
   get formControls() {
     return this.filterForm.controls;
   }
+
+  getCurrentFinancialYear() {
+    var fiscalyear = "";
+    var today = new Date();
+    if ((today.getMonth() + 1) <= 3) {
+      fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
+    } else {
+      fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
+    }
+    console.log("fiscalyear", fiscalyear)
+    return fiscalyear
+  }
+  selectFinancialYear(year) {
+    this.filterForm.controls['finYear'].setValue(year.currentTarget.value);
+  }
+
+  selectDistrict(districtId: any) {
+    this.filterForm.controls['distId'].setValue(parseInt(districtId.currentTarget.value));
+  }
+
+  selectCrops(crop){
+    this.filterForm.controls['cropId'].setValue(crop.currentTarget.value);
+  }
+  seasonIDD
+  selectSeason(e){
+    this.seasonIDD =  e.target.value;
+    this.api.getCropsForSales(this.seasonIDD).subscribe(c => {
+      this.crops = c;
+  });
+}
+
+  viewReport() { 
+    this.api.departViewReportSales(this.filterForm.value).subscribe(resp =>{
+      if(resp<=0){
+        this.toastr.error('data not available.');
+      }
+      this.salesReport = resp;
+    });
+  }
+
 
 }
