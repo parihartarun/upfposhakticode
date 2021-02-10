@@ -14,13 +14,10 @@
   "Equipment Centre": "उपकरण केंद्र (CHC/ FMB)",
   "FPO guidelines": "एफपीओ दिशानिर्देश",
   "Back": "वापस",
-
-
   "bannerSearchText": "एफपीओ खोजें नाम/ जनपद / फसल /सेवाएँ / उत्पाद द्वारा",
   "Any": "कोई भी",
   "Crop": "फसलों",
   "Crops": "फ़सलें",
-
   "District": "जिला",
   "FPO": "एफ.पी. ओ",
   "Search": "खोजें",
@@ -56,7 +53,6 @@
   "Farm Machinery Bank": "फार्म मशीनरी बैंक",
   "Warehouse / Cold Storage": "भंडारण केंद्र / कोल्ड स्टोरेज",
   "Welcome": "स्वागत हे",
-
   "AGRA": "आगरा",
   "PRAYAGRAJ": "प्रयागराज",
   "DODA": "डोडा",
@@ -79,7 +75,6 @@
   "State:": "राज्य:",
   "District:": "जिला:",
   "CHC/FMB": "CHC/FMB",
-
   "View FPOs on Map": "एफपीओ को मानचित्र पर देखें",
   "Connect with buyers and exporters": "उपज के खरीदारों और निर्यातकों के साथ जुड़े",
   "Get information about FPO registration": "एफपीओ पंजीकरण के बारे में जानकारी प्राप्त करें",
@@ -98,8 +93,6 @@
   "footerText4": "कॉपीराइट © राज्य कृषि निदेशालय, उत्तर प्रदेश को सभी अधिकार सुरक्षित हैं।",
   "mainTitle": "यूपी एफपीओ शक्ति",
   "mainTitle2": "संगठन. सतत. शक्ति",
-
-
   "Welcome to FPO Shakti!": "एफ.पी. ओ. शक्ति में आपका स्वागत है!!",
   "username is required": "उपयोगकर्ता नाम आवश्यक है",
   "Password is required": "पासवर्ड की आवश्यकता है",
@@ -108,13 +101,11 @@
   "Create new account": "नया खाता बनाएँ",
   "Password": "Password",
   "username": "उपयोगकर्ता नाम",
-
   "Please enter registered email address to reset your password": "कृपया अपना पासवर्ड रीसेट करने के लिए पंजीकृत ईमेल पता दर्ज करें।",
   "Email is required": "ईमेल जरुरी है",
   "Send password reset email": "पासवर्ड रीसेट ईमेल भेजें",
   "Login now": "अभी लॉगिन करे",
   "email": "ईमेल",
-
   "Board Member Details": "बोर्ड के सदस्य विवरण",
   "Board Member Name": "बोर्ड के सदस्य का नाम",
   "Board Member Name is required": "बोर्ड के सदस्य का नाम आवश्यक है",
@@ -139,7 +130,6 @@
   "Village is required": "गाँव आवश्यक है",
   "Reset": "दोबारा ठीक करना है",
   "Save": "जमा करे",
-
   "Add License": "लाइसेंस",
   "License Type": "लाइसेंस के प्रकार",
   "License Type is required": "लाइसेंस प्रकार की आवश्यक है",
@@ -151,13 +141,11 @@
   "Issued Date is required": "जारी तिथि की आवश्यकता है",
   "License Valid Till": "लाइसेंस मान्य तिथि ",
   "Valid till Date is required": "दिनांक तक मान्य है",
-
   "Name of Equipment": "उपकरण का नाम",
   "Name of Equipment is required": "उपकरण का नाम आवश्यक है",
   "No. of Equipment": "उपकरण की संख्या",
   "No. of Equipment is required": "उपकरणों की संख्या आवश्यक है",
   "No. of Equipment should be grater than or equal to 1": "उपकरणों की संख्या 1 के बराबर या उसके बराबर होनी चाहिए",
-
   "Add Storage/ Processing Unit": "भंडारण / प्रसंस्करण इकाई जोड़ें",
   "Type of Storage": "भंडारण का प्रकार",
   "Cold Storage": "कोल्ड स्टोरेज",
@@ -176,7 +164,6 @@
   "This Field is required": "यह फ़ील्ड आवश्यक है",
   "Address": "पता",
   "Address is required": "पता आवश्यक है",
-
   "Add Services/ Products": "सेवाएँ / उत्पाद जोड़ें",
   "Services/ Products Name": "सेवाओं / उत्पादों का नाम",
   "Services/ Products Name is required": "सेवाओं / उत्पादों का नाम आवश्यक है",
@@ -184,7 +171,6 @@
   "Services/ Products description is required": "सेवाओं / उत्पादों का विवरण आवश्यक है",
   "Upload Photo": "फोटो अपलोड करें",
   "File is required": "फ़ाफोटो अपलोड आवश्यक है",
-
   "View Status and Details of Complaint/ Suggestion": "शिकायत / सुझाव की स्थिति और विवरण देखें",
   "Details of Complaint/ Suggestion": "शिकायत / सुझाव का विवरण",
   "Complaints/ Suggestions Category:": "शिकायतें / सुझाव श्रेणी:",
@@ -200,7 +186,6 @@
   "Complaints/ Suggestions description is required": "शिकायतों / सुझावों का विवरण आवश्यक है",
   "Attach File": "फ़ाइल जोड़ें",
   "File is not in format": "फ़ाइल प्रारूप में नहीं है",
-
   "UP FPO Shakti": "यूपी एफपीओ शक्ति",
   "Sales Details": "बिक्री विवरण",
   "FPO Details": "एफपीओ विवरण",
@@ -220,7 +205,6 @@
   "Upload Photographs": "फोटोग्राफ अपलोड करें",
   "Service/Products": "सेवा / उत्पाद",
   "Complaints": "शिकायतें",
-
   "Add Land Details": "भूमि विवरण",
   "Farmer Name": "किसान का नाम",
   "farmer is required": "किसान की आवश्यकता है",
@@ -228,7 +212,6 @@
   "Area of Farm (in hectare)": "खेत का क्षेत्रफल (हेक्टेयर में)",
   "Area of Farm (in hectare) is required": "खेत का क्षेत्रफल (हेक्टेयर में) आवश्यक है",
   "If farmer is doing organic farming": "अगर किसान जैविक खेती कर रहा है",
-
   "Add Farmer": "किसान फॉर्म",
   "Farmer Registration Number (UP Agri Pardarshi)": "किसान पंजीकरण संख्या (यूपी कृषि परदेशी)",
   "Farmer Registration Number is required": "किसान पंजीकरण संख्या आवश्यक है",
@@ -249,7 +232,6 @@
   "Quantity": "मात्रा",
   "Home": "होम ",
   "navText": "पंजीकरण",
-
   "Farmer details": "किसान का विवरण",
   "License Details": "लाइसेंस का विवरण",
   "License type": "लाइसेंस के प्रकार",
@@ -263,7 +245,6 @@
   "Complaints/ Suggestions": "शिकायतें / सुझाव",
   "Organic": "जैविक",
   "Farmer's Land Details": "कृषक भूमि का विवरण",
-
   "searchPlaceHolder": "खोजने के लिए यहां टाइप करें",
   "Register": "रजिस्टर करें",
   "Agency": "एजेंसी (से संबद्ध)",
@@ -405,7 +386,6 @@
   "Export PDF": "पीडीएफ रिपोर्ट",
   "Export Excel": "एक्सेल रिपोर्ट",
   "Production Data": "किसान वार उत्पादन रिपोर्ट",
-
   "Crop Production": "फ़सल उत्पादन",
   "Sales Report": "विक्रय विवरण",
   "Production Report": "उत्पादन रिपोर्ट",
@@ -414,7 +394,6 @@
   "Machinary Catalogue": "मैकिनिकल कैटलॉग",
   "Input supplier catalogue": "इनपुट आपूर्तिकर्ता सूची",
   "Complaints/Suggestions": "शिकायतें / सुझाव",
-
   "Enquiry Form": "पूछताछ फार्म",
   "FPO Email1": "एफपीओ ईमेल आईडी",
   "Quantity Required": "आवश्यक मात्रा",
@@ -444,5 +423,17 @@
   "Pre-FPO Registration": "एफपीओ पंजीकरण से पूर्व",
   "Post-FPO Registration": "एफपीओ पंजीकरण के उपरांत",
   "View Details": "विस्तार से देखें",
-  "DESCRIPTION": "विवरण"
+  "DESCRIPTION": "विवरण",
+  "Guideline": "दिशानिर्देश",
+  "Guideline Type": "दिशानिर्देश प्रकार",
+  "Upload Document": "दस्तावेज़ अपलोड करें",
+  "Description": "विवरण",
+  "Add Guideline": "दिशानिर्देश जोड़ें",
+  "Select Guideline Type": "दिशानिर्देश प्रकार का चयन करें",
+  "Pre-PFO Registration": "प्री-पीएफओ पंजीकरण",
+  "Post-PFO Registration": "पोस्ट-पीएफओ पंजीकरण",
+  "Guideline type is required": "दिशानिर्देश प्रकार की आवश्यकता है",
+  "Description is required": "विवरण की आवश्यकता है",
+  "Guidelines List": "दिशानिर्देश सूची",
+  "Serial no.": "क्रमिक संख्या"
 }

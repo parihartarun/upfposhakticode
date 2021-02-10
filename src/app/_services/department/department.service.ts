@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
@@ -10,6 +10,7 @@ import { environment } from '../../../environments/environment';
 export class DepartmentService {
 
   _url: string;
+  guideLineList: BehaviorSubject<any> = new BehaviorSubject([]);
   constructor(private http: HttpClient) {
     this._url = environment.baseUrl;
   }
@@ -56,7 +57,7 @@ export class DepartmentService {
       return res;
     }));
   }
-  updateCircular(data,formVlaue) {
+  updateCircular(data, formVlaue) {
     return this.http.put<any>(this._url + 'circulars/' + formVlaue.id, data).pipe(map((res: any) => {
       return res;
     }));
@@ -67,11 +68,26 @@ export class DepartmentService {
     }));
   }
   deleteCircular(data) {
-    return this.http.delete<any>(this._url + 'circulars/'+data).pipe(map((res: any) => {
+    return this.http.delete<any>(this._url + 'circulars/' + data).pipe(map((res: any) => {
       return res;
     }));
   }
-  
+  getGuideline() {
+    this.http.get<any>(this._url + 'fpoguidelines/getall').subscribe((res: any) => {
+      if (res) {
+        this.guideLineList.next(res);
+      }
+    })
+  }
+  uploadGuideline(data) {
+    console.log('data', data);
 
+    this.http.post<any>(this._url + 'fpoguidelines', { ...data }).subscribe((res: any) => {
+      if (res) {
+        console.log('pavan upload', res);
+
+      }
+    })
+  }
 }
 
