@@ -198,6 +198,18 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
 
+  getFarmerWiseProductionReport(data){
+    return this.http.get<any>(this._url + 'marketablesurplus/getFarmerWiseProductionReport/', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  exportProductionReport(fileFormat){
+    return this.http.get<any>(this._url + 'marketablesurplus/exportProductionReport/'+fileFormat).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   /************************** FPO's Sales Details **********************************/
   getFpoSalesInfo(masterId){
     return  this.http.get<any>(this._url+'fposalesdetails/getFpoSalesDetails/'+masterId).pipe(map((res:any)=>{
@@ -413,6 +425,27 @@ updateFarmerMachineryBankList(id:number,data:any){
 
   /*******************************production details************************* */
 
+   // =========================================profile page Apis by ======================
+
+   getBoardMemberById(data){
+    return  this.http.get<any>(this._url+ 'api/fpos/boardmember/getBoardMemberById/'+data).pipe(map((res:any)=>{
+      return res;
+    }));    
+  }
+
+
+  getById(data:number){
+    return  this.http.get<any>(this._url+ 'api/fpos/' +data).pipe(map((res:any)=>{
+      return res;
+    })); 
+  }
+
+  getAdditionServiceById(data:number){
+    return  this.http.get<any>(this._url+ '/api/fpos/FpoAdditionalServices/getFpoAdditionalServicesById/' +data).pipe(map((res:any)=>{
+      return res;
+    })); 
+
+  }
 }
 
 
