@@ -446,7 +446,12 @@
   "Pre-FPO Registratio": "Pre-FPO Registratio",
   "Post-FPO Registration": "Post-FPO Registration",
   "View Details": "View In Details",
-  "DESCRIPTION": "DESCRIPTION"  
-
-
+  "DESCRIPTION": "DESCRIPTION",
+  "zerotonintynine" : "0 - 99 (quintal)",
+  "hundredtohundrednintynine":"100 - 199 (quintal)",
+  "morethan200":"More than 200 (quintal)",
+  "enterfpodeliveryaddr":"Please enter delivery Address.",  
+  "fpodeliveryaddr":"Delivery Address.",
+  "deleiveryrequired":"Delivery address is required.",
+  "Indent Form":"Indent Form"
 }

@@ -33,9 +33,9 @@ export class ProductsListComponent implements AfterViewInit,OnInit {
   searchCriteria: Array<any> = [];
   fpoDetail:any
   quantities:Array<{selected:boolean,minname:string,maxname:string,name:string,type:string,quantity:number,maxQuantity:number}> = [
-    { selected:false,minname:"0",maxname:"99",name:"100", type:"qty",quantity: 100, maxQuantity: 0 }, 
-    { selected:false, minname:"100",maxname:"199",name:"200", type:"qty",quantity: 200, maxQuantity: 0 },
-    { selected:false, minname:"200",maxname:"299",name:"300", type:"qty",quantity: 300, maxQuantity: 0 },
+    { selected:false,minname:"zerotonintynine",maxname:"99",name:"100", type:"qty",quantity: 100, maxQuantity: 0 }, 
+    { selected:false, minname:"hundredtohundrednintynine",maxname:"199",name:"200", type:"qty",quantity: 200, maxQuantity: 0 },
+    { selected:false, minname:"morethan200",maxname:"200",name:"300", type:"qty",quantity: 300, maxQuantity: 0 },
   ]
 
 
@@ -347,6 +347,7 @@ searchWithFilters()
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
       cropId: [item.cropid],
+      fpoDeliveryAddress:["", Validators.required],
       userId: [this.fpoDetail.userFpo.userId, Validators.required],
       fpoName: [this.fpoDetail.fpoName],
       fpoEmail: [this.fpoDetail.fpoEmail],
@@ -395,13 +396,13 @@ searchWithFilters()
     this._productService.saveIndent(this.indentForm.value).subscribe(response => {
 
       if (response.message == "Enquiry created Successfully!") {
-        this.toastr.success(response.message);
+        //this.toastr.success(response.message);
         this.indentForm.reset();
         this.submitted = false;
         this.modalService.dismissAll();
       }
       else {
-        this.toastr.error(response.message);
+        //this.toastr.error(response.message);
       }
 
     })

@@ -28,11 +28,6 @@
           <div class="row">
             <div class="col-8">
               <div class="form-group">
-                
-          
-               
-               
-                
               </div>
             </div>
           </div>
@@ -59,12 +54,12 @@
     <div class="row">
       <div class="col-md-3">
         <div class="card">
-          <article class="card-group-item">
-            <header class="card-header">
+          <article class="card-group-item my-2">
+            <header class="">
               <h3 class="title">{{'District1' | translate }}</h3>
             </header>
             <div class="filter-content">
-              <div class="card-body filterDistrict">
+              <div class="filterDistrict">
                 <form>
                   <label class="form-check" *ngFor="let district of districts">
                     <input class="form-check-input" type="checkbox" [value]="district.district_name" [name]="district.district_name" [(ngModel)]="district.is_active" (change)="selectDistrct(district)">
@@ -91,17 +86,17 @@
               </div> <!-- card-body.// -->
             </div>
           </article> <!-- card-group-item.// -->
-          <article class="card-group-item">
-            <header class="card-header">
+          <article class="card-group-item my-2">
+            <header class="">
               <h3 class="title">{{'Quantity' | translate }}</h3>
             </header>
             <div class="filter-content">
-              <div class="card-body">
+              <div class="">
                 <form>
                   <label class="form-check" *ngFor="let q of quantities">
                     <input class="form-check-input" type="checkbox" [value]="q.name" [name]="q.name" [(ngModel)]="q.selected" (change)="selectQuantity(q)">
                     <span class="form-check-label">
-                      {{q.minname}} - {{q.maxname}}
+                      {{q.minname | translate}}
                     </span>
                   </label> <!-- form-check.// -->
                   <!--<label class="form-check">
@@ -123,8 +118,8 @@
               </div> <!-- card-body.// -->
             </div>
           </article>
-<article class="card-group-item">
-  <header class="card-header">
+<article class="card-group-item my-2">
+  <header class="">
     <h3 class="title">{{'cropandverieties' | translate }} </h3>
   </header>
   <ngx-loading [show]="!items" [config]="{backdropBackgroundColour: '#ffffff', 
@@ -434,7 +429,7 @@
     <ng-template #mymodal let-modal>
       <div *ngIf="isLoggeIn">
         <div class="modal-header">
-          <h3 class="modal-title text-center">{{'Enquiry Form'|  translate}}</h3>
+          <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">×</span>
           </button>
@@ -458,18 +453,6 @@
             </div>
 
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span class="required">*</span></label>
-              <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="{{'Quantity'|translate}}" type="number" formControlName="quantity">
-              </div>
-              <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
-                <div *ngIf="formControls.quantity.errors.required">{{'quantity is required'|translate}}</div>
-              </div>
-             
-
-            </div>
-
-            <div class="form-group mb-3">
               <label class="form-control-label" for="input-username">{{'Fulfilled Date'|translate}}<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
                 <input type="text"
@@ -482,6 +465,26 @@
                 <div *ngIf="formControls.fulfillmentDate.errors.required">{{'date is required'| translate}}</div>
               </div>
             </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="{{'Quantity'|translate}}" type="number" formControlName="quantity">
+              </div>
+              <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
+                <div *ngIf="formControls.quantity.errors.required">{{'quantity is required'|translate}}</div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-delivery">{{'fpodeliveryaddr'|translate}}<span class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <textarea class="form-control" id = "input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"  formControlName="fpoDeliveryAddress"></textarea>
+              </div>
+              <div *ngIf="submitted && formControls.fpoDeliveryAddress.errors" class="text-danger">
+                <div *ngIf="formControls.fpoDeliveryAddress.errors.required">{{'deleiveryrequired'| translate}}</div>
+              </div>
+            </div>
+            
             
 
             <div class="text-center">

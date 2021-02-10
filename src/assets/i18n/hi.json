@@ -246,7 +246,7 @@
   "Bank Name": "बैंक का नाम",
   "IFSC Code": "IFSC कोड",
   "Bank Account Number": "बैंक खाता संख्या",
-  "Quantity": "मात्रा",
+  "Quantity": "उत्पादन मात्रा",
   "Home": "होम ",
   "navText": "पंजीकरण",
 
@@ -449,5 +449,12 @@
   "Post-FPO Registration": "एफपीओ पंजीकरण के उपरांत",
   "View Details": "विस्तार से देखें",
   "DESCRIPTION": "विवरण",  
-  "createindent":"इंडेंट किजिये"
+  "createindent":"इंडेंट किजिये",
+  "zerotonintynine" : "० - ९९ (क्विंटल)",
+  "hundredtohundrednintynine":"१०० - १९९ (क्विंटल)",
+  "morethan200":"२०० से अधिक (क्विंटल)",
+  "enterfpodeliveryaddr":"डिलिवरी का पता दर्ज करें",  
+  "fpodeliveryaddr":"डिलिवरी का पता",
+  "deleiveryrequired":"डिलिवरी का पता आवश्यक है",
+  "Indent Form":"इंडेंट फार्म"
 }
