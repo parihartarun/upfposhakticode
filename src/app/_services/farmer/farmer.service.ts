@@ -57,5 +57,10 @@ export class FarmerService {
       return res;
     }));
   }
+  getComplaints(masterId) {
+    return this.http.get<any>(this._url + 'complaint/' + masterId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
  
 }

@@ -124,4 +124,10 @@ export class AuthService {
       return res;
     }));
   }
+  getAllUser() {
+    return this.http.get<any>(this._url + 'api/v1/user').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
 }

@@ -1,23 +1,22 @@
-import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../../_services/auth/auth.service';
-
-import { FpoService } from '../../../_services/fpo/fpo.service';
+import { FarmerService } from '../../../../_services/farmer/farmer.service';
+import { FpoService } from '../../../../_services/fpo/fpo.service';
 
 @Component({
-  selector: 'app-complaints',
-  templateUrl: './complaints.component.html',
-  styleUrls: ['./complaints.component.css']
+  selector: 'app-input-supper-complaints',
+  templateUrl: './input-supper-complaints.component.html',
+  styleUrls: ['./input-supper-complaints.component.css']
 })
-export class ComplaintsComponent implements OnInit {
+export class InputSupperComplaintsComponent implements OnInit {
+
+
   complaintForm: FormGroup;
-  complaintStatusForm: FormGroup
   submitted = false;
   complaintsCatageriy: Array<any> = [];
-  complaints: Array<any> = [];  
+  complaints: Array<any> = [];
   p: number = 1;
   checkfileFormat: boolean = false;
   @ViewChild('myInput')
@@ -28,38 +27,41 @@ export class ComplaintsComponent implements OnInit {
   fileToUpload: File = null;
   isViewComplaint = false;
   roleType: any;
-  users: any[];
-  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks:'',}
+  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', }
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
     private route: Router,
     private toastr: ToastrService,
-    private authService: AuthService
+    private farmerService: FarmerService
   ) { }
 
   ngOnInit(): void {
-    this.authService.getAllUser().subscribe(u => {
-      this.users = u
-    })
+
     this.api.getComplaints_Suggestions().subscribe(cs => {
       this.complaintsCatageriy = cs
     })
-    this.complaintForm = this.formBuilder.group({
+    this.farmerService.getFarmerProfileByUsername(localStorage.getItem('masterId')).subscribe(data => {
+      console.log(data);
+      this.complaintForm = this.formBuilder.group({
         title: ['', [Validators.required]],
         desc: ['', [Validators.required]],
         filePath: [''],
         uploadFile: [''],
         issueType: ['', [Validators.required]],
         masterId: localStorage.getItem('masterId'),
-    });
-    fpoId: localStorage.getItem('masterId')
+
+
+
+      })
+    })
+
     this.getComplaints();
   }
 
   getComplaints() {
-   
-    this.api.getComplaints().subscribe(response => {
+
+    this.farmerService.getComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.complaints = response;
     });
@@ -73,13 +75,13 @@ export class ComplaintsComponent implements OnInit {
     }
     let model = this.complaintForm.value;
     const formData: FormData = new FormData();
-    formData.append('file', this.fileToUpload);  
+    formData.append('file', this.fileToUpload);
     formData.append('description', this.complaintForm.value.desc);
     formData.append('title', this.complaintForm.value.title.comp_type_en);
     formData.append('issue_type', this.complaintForm.value.issueType);
     formData.append("masterId", localStorage.getItem('masterId'))
     this.api.addComplaint(formData).subscribe(response => {
-      if (response!= '') {
+      if (response != '') {
         this.toastr.success('Complaint Added Succefully.');
         this.submitted = false;
         this.edit = false;
@@ -102,11 +104,11 @@ export class ComplaintsComponent implements OnInit {
     //  return;
     //}
     //else {
-    
+
     //  this.checkfileFormat = false;
     //}
   }
- 
+
   selectComplaint(complaint) {
     this.complaintForm.controls['title'].setValue(this.complaintsCatageriy[parseInt(complaint.currentTarget.value)]);
     this.complaintForm.controls['issueType'].setValue(parseInt(complaint.currentTarget.value));
@@ -114,7 +116,7 @@ export class ComplaintsComponent implements OnInit {
   }
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj"||ext.toLowerCase() == "jpeg" || ext.toLowerCase()=="pdf") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj" || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
       return true;
     }
     else {
@@ -124,11 +126,11 @@ export class ComplaintsComponent implements OnInit {
   deleteCompliant(complaint) {
     this.api.deleteCompliant(complaint.id).subscribe(response => {
       if (response != '') {
-        this.toastr.success('Delete successfully');      
+        this.toastr.success('Delete successfully');
         this.getComplaints();
       } else {
         this.toastr.error('Error! While Add complaint.');
-      }    
+      }
     });
   }
   editComplaint(complaint) {
@@ -138,11 +140,11 @@ export class ComplaintsComponent implements OnInit {
       id: [complaint.id],
       title: [complaint.title, Validators.required],
       desc: [complaint.desc, Validators.required],
-    
+
     });
     this.complaintForm.controls['title'].patchValue(complaint.title);
     this.complaintForm.get('title').patchValue(complaint.title);
-    
+
   }
   updateComplaint() {
     this.submitted = true;
@@ -182,32 +184,7 @@ export class ComplaintsComponent implements OnInit {
     this.viewComp.compalintDate = complaint.uploadDate;
     this.viewComp.remarks = complaint.remarks;
     this.viewComp.title = complaint.title;
-    window.scroll(0, 0);
-    this.complaintStatusForm = this.formBuilder.group({
-      appointment: ['', [Validators.required]],
-      appointmentDate: ['20/03/2020'],
-      departmentComments: ['', [Validators.required]],
-      complaintStatus: ['', [Validators.required]],
-      masterId: localStorage.getItem('masterId'),
-
-    });
+    window.scroll(0, 0)
   }
-  updateSatus() {
-    this.submitted = true;
-    if (this.complaintForm.invalid) {
-      return;
-    }
 
-    //this.api.updateStatus(this.complaintForm.value).subscribe(response => {
-    //  if (response.id != '') {
-    //    this.toastr.success(response);
-    //    this.submitted = false;
-    //    this.complaintForm.reset();
-    //  } else {
-    //    this.toastr.error('Error! While Add complaint.');
-    //  }
-    //});
-  }
 }
-
-

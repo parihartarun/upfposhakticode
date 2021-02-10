@@ -66,6 +66,11 @@ import { OnlynumberDirective } from './directive/onlynumber.directive';
 import { NgMarqueeModule } from 'ng-marquee';
 import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
 import { FarmerUserProfileComponent } from './pages/user-profile/farmer-user-profile/farmer-user-profile.component';
+import { FarmerComplaintsComponent } from './pages/farmer/farmer-complaints/farmer-complaints.component';
+import { DepartmentComplaintsComponent } from './pages/department/department-complaints/department-complaints.component';
+import { BuyerTraderComplaintsComponent } from './pages/buyer-treder/buyer-trader-complaints/buyer-trader-complaints.component';
+import { InputSupperComplaintsComponent } from './pages/auth-pages/inputSupper/input-supper-complaints/input-supper-complaints.component';
+import { ChcComplaintsComponent } from './pages/auth-pages/chc/chc-complaints/chc-complaints.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -144,7 +149,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginModelPopupComponent,
     OnlynumberDirective,
     FpoGuidelinesComponent,
-    FarmerUserProfileComponent
+    FarmerUserProfileComponent,
+    FarmerComplaintsComponent,
+    DepartmentComplaintsComponent,
+    BuyerTraderComplaintsComponent,
+    InputSupperComplaintsComponent,
+    ChcComplaintsComponent,
   ],
   exports: [   
     AuthHeaderComponent

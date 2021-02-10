@@ -32,6 +32,8 @@ import { SearchComponent } from '../..//pages/common/search/search.component';
 import { NotificationsComponent } from '../../pages/common/notifications/notifications.component';
 import { IndentComponent } from '../../pages/common/indent/indent.component';
 import { FarmerUserProfileComponent } from '../../pages/user-profile/farmer-user-profile/farmer-user-profile.component';
+import { FarmerComplaintsComponent } from '../../pages/farmer/farmer-complaints/farmer-complaints.component';
+import { BuyerTraderComplaintsComponent } from '../../pages/buyer-treder/buyer-trader-complaints/buyer-trader-complaints.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: DashboardComponent },
@@ -63,6 +65,10 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'indent_history', component: IndentComponent },
-  { path: 'fpo/farmer-user-profile', component: FarmerUserProfileComponent }
+  { path: 'fpo/farmer-user-profile', component: FarmerUserProfileComponent },
+  { path: 'farmer/complaints', component: FarmerComplaintsComponent },
+  { path: 'byer/complaints', component: BuyerTraderComplaintsComponent },
+  { path: 'chc/complaints', component: BuyerTraderComplaintsComponent },
+  { path: 'input/complaints', component: BuyerTraderComplaintsComponent },
 ];
 

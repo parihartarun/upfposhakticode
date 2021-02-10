@@ -14,8 +14,8 @@
   "Equipment Centre": "उपकरण केंद्र (CHC/ FMB)",
   "FPO guidelines": "एफपीओ दिशानिर्देश",
   "Back": "वापस",
-  "viewdetails":"विवरण देखें",
-  "cropandverieties":"विविध फ़सलें",
+  "viewdetails": "विवरण देखें",
+  "cropandverieties": "विविध फ़सलें",
   "bannerSearchText": "एफपीओ खोजें नाम/ जनपद / फसल /सेवाएँ / उत्पाद द्वारा",
   "Any": "कोई भी",
   "Crop": "फसलों",
@@ -444,6 +444,35 @@
   "Pre-FPO Registration": "एफपीओ पंजीकरण से पूर्व",
   "Post-FPO Registration": "एफपीओ पंजीकरण के उपरांत",
   "View Details": "विस्तार से देखें",
-  "DESCRIPTION": "विवरण",  
-  "createindent":"इंडेंट किजिये"
+  "DESCRIPTION": "विवरण",
+  "Name": "नाम",
+  "Update Complaint/ Suggestion Status": "शिकायत / सुझाव की स्थिति अपडेट करें",
+  "Appointed": "नियुक्त किया",
+  "Select User": "उपयोगकर्ता का चयन करें",
+  "Appointed to is required": "नियुक्त आवश्यक है",
+  "Appointment Date": "नियुक्ति तिथि",
+  "appointment date is required": "नियुक्ति तिथि आवश्यक है",
+  "fpo Comments": "एफपीओ की टिप्पणी",
+  "fpo comments is required": "एफपीओ की टिप्पणी आवश्यक है",
+  "Change status": "स्थिति बदलें",
+  "Select Status": "स्थिति  का चयन करें",
+  "Assigned": "सौंपा गया",
+  "Open": "खुला",
+  "Resolved": "हल किया हुआ",
+  "status  is required": "स्थिति आवश्यक है",
+  "Update Status": "अपडेट स्थिति",
+  "close": "बंद",
+  "View": "राय",
+  "Department Comments": "विभाग की टिप्पणी",
+  "department comments is required": "विभाग की टिप्पणी आवश्यक है",
+  "Details of Complainant/ Suggestion provider": "शिकायतकर्ता / सुझाव प्रदाता का विवरण",
+  "Complaints / Complaints Status of suggestion": "शिकायत / सुझाव की स्थिति",
+  "User Management": "उपयोगकर्ता की सक्रियता",
+  "All-Users": " सभी-उपयोगकर्ता",
+  "DESCRIPTION": "विवरण",
+  "createindent": "इंडेंट किजिये"
+}
+
+
+
 }
