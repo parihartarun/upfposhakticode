@@ -8,14 +8,31 @@
 </div>
 <header class="masthead">
   <div class="container h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-12 text-center">
-        <form>
+    <div class="row h-100 pt-5 align-items-center">
+      <div class="col-12 mt-5 text-center">
+        <form class="mt-5 pb-5">
+
+          <div class="d-flex mx-5 mt-5 align-items-end justify-content-center">
+            <input type="text" class="form-control d-inline search-text" name="topsearch" [(ngModel)]="topsearchval" id="exampleFormControlInput1" placeholder="{{'searchplaceholder' |translate}}">
+            <div class="dropdown d-inline searchDropDown ">
+              <select class="btn d-inline btn-default search-btn dropdown-toggle" id="searchin" name="Searchin" style="width:100%">
+                <option value="any">{{'Any' | translate }}</option>
+                <option value="crop">{{'Crop' | translate }}</option>
+                <option value="district">{{'District1' | translate }}</option>
+                <option value="fpo_name">{{'FPO' | translate }}</option>
+                <option value="services">{{'Services/ Products' | translate }}</option>
+              </select>
+            </div>
+            <button class="btn d-inline btn-block btn-product-search active search-btn" role="button" aria-pressed="true" (click)="newSearchWithFilters()">{{'Search' | translate }}</button>
+          </div>
           <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-8">
               <div class="form-group">
-                <input type="text" class="form-control search-text" name="topsearch" [(ngModel)]="topsearchval" id="exampleFormControlInput1" placeholder="Search here product that you want to buy ...">
-                <button class="btn  btn-block btn-product-search active search-btn" role="button" aria-pressed="true" (click)="newSearchWithFilters()">{{'Search' | translate }}</button>
+                
+          
+               
+               
+                
               </div>
             </div>
           </div>
@@ -405,6 +422,11 @@
           <nav aria-label="..." class="text-right">
             <pagination-controls *ngIf="serachProduct&&serachProduct.length>0" (pageChange)="p = $event"></pagination-controls>
           </nav>
+          <div *ngIf="serachProduct?.length==0" class=" p-5 d-flex justify-content-center align-items-center">
+                       <img class="fatalimg" src="../../../assets/image/img/sad.jpg"/>            
+          </div>
+          <div *ngIf="serachProduct?.length==0" class="d-flex justify-content-center yellotext">{{ 'noitemsfound' | translate }}</div>
+
         </div>
       </div>
     </div>

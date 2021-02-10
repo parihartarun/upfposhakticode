@@ -11,9 +11,29 @@
       float: left;
       height: 50px;
   }
+  .yellotext
+  {
+   color:#926E00;
+   font-size: large; 
+  }
+  .fatalimg
+  {
+height:150px;
+width :150px;
+  }
+
+  .btn.btn-default.dropdown-toggle {
+    color: #000;
+    background-color: #fff;
+    border-color: #fff;
+  }
+  .dropdown-toggle::after {
+    display:none;
+}
   .search-btn{
       width: 20%;
       float: left;
+      height: 50px;
   }
 .card{
     padding:15px;
