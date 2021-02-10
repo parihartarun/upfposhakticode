@@ -220,14 +220,14 @@
         </ul>
       </div>
       <div *ngIf="userRole == 'ROLE_MIN'">
-        <h6 class="navbar-heading mt-2">User Management</h6>
+        <h6 class="navbar-heading mt-2">{{'User Management' |translate}}</h6>
         <!-- Heading -->
 
         <ul class="navbar-nav">
           <li class=" nav-item">
             <a routerLinkActive="active" [routerLink]="['department/all-users']" class="nav-link">
               <i class="fa fa-plus-square text-white"></i>
-              All-Users
+              {{'All-Users'|translate}}
             </a>
           </li>
 
