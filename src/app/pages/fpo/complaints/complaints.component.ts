@@ -25,6 +25,7 @@ export class ComplaintsComponent implements OnInit {
   uploadSuccess: boolean;
   fileToUpload: File = null;
   isViewComplaint = false;
+  roleType: any;
   viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks:'',}
   constructor(
     private formBuilder: FormBuilder,
@@ -34,6 +35,7 @@ export class ComplaintsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
     this.api.getComplaints_Suggestions().subscribe(cs => {
       this.complaintsCatageriy = cs
     })

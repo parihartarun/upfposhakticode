@@ -1,0 +1,282 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="max-height: 300px;  background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+
+    <div class="col-xl-12 order-xl-1">
+      <div class="card shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">{{'My account'|translate}}</h3>
+            </div>
+            <div class="col-4 text-right">
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="profileForm" *ngIf="profileForm">
+            <input type="hidden" formControlName="farmerId">
+            <h6 class="heading-small text-muted mb-4">{{'User information'|translate}}</h6>
+            <div class="form-group row mb-3">
+              <div class="col-6">
+                <label class="input-label">{{'Farmer Name1'|translate}}  <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="text" formControlName="farmerName">
+                </div>
+                <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
+                  <div *ngIf="formControls.farmerName.errors.required">{{'farmer name is required'|translate}}</div>
+                </div>
+              </div>
+              <div class="col-6">
+
+                <label class="input-label">{{'Username'|translate}}<span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="text" formControlName="userName">
+                </div>
+                <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
+                  <div *ngIf="formControls.userName.errors.required">{{'username is required1'|translate}}</div>
+                  <div *ngIf="formControls.userName.errors.pattern">{{'user name should be 6 to 20 character'|translate}}</div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="form-group row mb-3">
+              <div class="col-6">
+                <label class="input-label">{{"Farmer's Father/ Husband Name"|translate}}<span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="text" formControlName="parantsName">
+                </div>
+                <div *ngIf="submitted && formControls.parantsName.errors" class="text-danger">
+                  <div *ngIf="formControls.parantsName.errors.required">{{"farmer's father/ husband Name is required"|translate}}</div>
+                </div>
+              </div>
+              <div class="col-6">
+
+                <label class="input-label">{{'Mobile' | translate}}<span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="text" formControlName="farmerMob" appOnlynumber>
+                </div>
+                <div *ngIf="submitted && formControls.farmerMob.errors" class="text-danger">
+                  <div *ngIf="formControls.farmerMob.errors.required">{{'mobile number is required'|translate}}</div>
+                  <div *ngIf="formControls.farmerMob.errors.pattern"> {{'Mobile number should be 10 digit1'|translate}}</div>
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+            <div class="form-group row mb-3">
+
+              <div class="col-6">
+                <label class="input-label">{{'Category1'|translate}} <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="category">
+                    <option value="">{{'Select Category'| translate}}</option>
+                    <option value="General">{{'General1'|translate}}</option>
+                    <option value="obc">{{'OBC1'|translate}}</option>
+                    <option value="sc">{{'SC1'| translate}}</option>
+                    <option value="st">{{'ST1'|translate}}</option>
+                    <option value="other">{{'OTHER1'|translate}}</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.category.errors" class="text-danger">
+                  <div *ngIf="formControls.category.errors.required">{{'category is required'|translate}}</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="input-label">{{'Gender'|translate}} <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="gender">
+                    <option value="">{{'Select Gender'|translate}}</option>
+                    <option value="Male">{{'Male'|translate}}</option>
+                    <option value="Female">{{'Female'|translate}}</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.gender.errors" class="text-danger">
+                  <div *ngIf="formControls.gender.errors.required">{{'Gender is required1'|translate}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row mb-3">
+              <div class="col-6">
+                <label class="input-label">{{'District1'|translate}} <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="distRefId" (change)="selectDistrict($event)">
+                    <option value="">{{'SelectDistrict1'|translate}}</option>
+                    <option *ngFor="let district of districtlist" [value]="district.district_id">
+                      {{district.district_name}}
+                    </option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.distRefId.errors" class="text-danger">
+                  <div *ngIf="formControls.distRefId.errors.required">{{'district is required'|translate}}</div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <label class="input-label">{{'Block1'|translate}} <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="blockRef" (change)="selectBlock($event)">
+                    <option value="">{{'Select Block'| translate}} </option>
+                    <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.blockRef.errors" class="text-danger">
+                  <div *ngIf="formControls.blockRef.errors.required">{{'block is required'| translate}}</div>
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group row mb-3">
+
+              <div class="col-6">
+                <label class="input-label">{{'Gram Panchayat1'|translate}} <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="villagePanchayatId" (change)="selectGramPanchayat($event)">
+                    <option value="">{{'Select Gram Panchayat'|translate}}  </option>
+                    <option *ngFor="let panchayat of panchayts" [value]="panchayat.panchayat_id">{{panchayat.panchayat_name}}</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.villagePanchayatId.errors" class="text-danger">
+                  <div *ngIf="formControls.villagePanchayatId.errors.required">{{'gram panchayat is required'|translate}}</div>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <label class="input-label">{{'Village'|translate}} <span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="villRefId" (change)="selectVillage($event)">
+                    <option value="">{{'Select Village'|translate}} </option>
+                    <option *ngFor="let village of villages" [value]="village.villageId">{{village.villageName}}</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.villRefId.errors" class="text-danger">
+                  <div *ngIf="formControls.villRefId.errors.required">{{'Village is required1'| translate}}</div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group row mb-3">
+              <div class="col-6">
+                <label class="input-label">{{'Pincode'|translate}}<span class="required">*</span></label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="text" formControlName="pincode" appOnlynumber>
+                </div>
+                <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
+                  <div *ngIf="formControls.pincode.errors.required">{{'pin code is required'|translate}}</div>
+                  <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | translate}}</div>
+                </div>
+              </div>
+             
+            </div>
+           
+
+            <hr />
+            <h3>{{'Bank Details'|translate}}</h3>
+            <div class="form-group row mb-3">
+
+              <div class="col-6">
+                <label class="input-label">{{'Bank Name'|translate}}</label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <select class="form-control" formControlName="bankRefId" (change)="selectBanks($event)">
+                    <option value="">{{'Select Bank Name'|translate}}</option>
+                    <option *ngFor="let bank of banks" [value]="bank.bankId">{{bank.bankName}}</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && formControls.bankRefId.errors" class="text-danger">
+                  <div *ngIf="formControls.bankRefId.errors.required">{{'bank name is required' |translate}}</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="input-label">{{'Bank Account Number1'|translate}}r</label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="text" formControlName="accountNo" appOnlynumber>
+                </div>
+                <div *ngIf="submitted && formControls.accountNo.errors" class="text-danger">
+                  <div *ngIf="formControls.accountNo.errors.required">{{'bank account Number is required'|translate}}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row mb-3">
+
+              <div class="col-6">
+                <label class="input-label">{{'IFSC'|translate}}</label>
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <input class="form-control" type="text" formControlName="ifscCode">
+                </div>
+                <div *ngIf="submitted && formControls.ifscCode.errors" class="text-danger">
+                  <div *ngIf="formControls.ifscCode.errors.required"> {{'ifsc code is required1'|translate}}</div>
+                </div>
+              </div>
+            
+
+            </div>
+
+            <div class="pl-lg-4">
+              <button type="button" class="btn btn-yellow btn-primary my-4" (click)="updateProfile()">
+                {{'Update profile'| translate}}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

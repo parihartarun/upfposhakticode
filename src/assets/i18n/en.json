@@ -440,5 +440,13 @@
   "filters":"Filters",
   "nofiltersselected":" list is empty.",
 "noitemsfound":"No items found..",
-"searchplaceholder":"Type here for search..."
+"searchplaceholder":"Type here for search...",
+  "Select farmer": "Select farmer",
+  "Select Ownership": "Select Ownership",
+  "Pre-FPO Registratio": "Pre-FPO Registratio",
+  "Post-FPO Registration": "Post-FPO Registration",
+  "View Details": "View In Details",
+  "DESCRIPTION": "DESCRIPTION"  
+
+
 }

@@ -5,6 +5,7 @@ import { formatDate } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
+import { FarmerService } from '../../../_services/farmer/farmer.service';
 
 @Component({
   selector: 'app-land-details',
@@ -15,6 +16,7 @@ export class LandDetailsComponent implements OnInit {
 
   p:number = 1;  
   landDetailForm: FormGroup;
+  roleType: any;
   landDetails:Array<any>=[];
   ownerShipList:Array<any>=[
     {ownerName:"Owned"},
@@ -25,27 +27,45 @@ export class LandDetailsComponent implements OnInit {
   submitted = false;
   edit = false;
   master_id = localStorage.getItem('masterId');
+  farmerId:any
 
  constructor(
     private formBuilder: FormBuilder,
     private fpoService: FpoService,
     private route: Router,
-    private toastr:ToastrService
+   private toastr: ToastrService,
+   private farmerService: FarmerService
   ) {}
 
   ngOnInit(): void {
-    this.landDetailForm = this.formBuilder.group({
-      farmerId: ['', [Validators.required]],
-      guardianName: ['', [Validators.required]],
-      ownerShip: ['', [Validators.required]],
-      land_area: ['', [Validators.required]],
-      isorganc:['', [Validators.required]],
-      masterId:localStorage.getItem('masterId'),
-      updatedBy:localStorage.getItem('userRole'),
-      landId:['']
-    });
+    this.roleType = localStorage.getItem('userRole')
+    if (this.roleType == "ROLE_FPC") {
+      this.landDetailForm = this.formBuilder.group({
+        farmerId: ['', [Validators.required]],
+        guardianName: ['', [Validators.required]],
+        ownerShip: ['', [Validators.required]],
+        land_area: ['', [Validators.required]],
+        isorganc: ['', [Validators.required]],
+        masterId: localStorage.getItem('masterId'),
+        updatedBy: localStorage.getItem('userRole'),
+        landId: ['']
+      });
+      this.getLandDetailList(this.master_id);
+    }
+    else {
+      this.landDetailForm = this.formBuilder.group({
+        farmerId: localStorage.getItem('masterId'),   
+        ownerShip: ['', [Validators.required]],
+        land_area: ['', [Validators.required]],
+        isorganc: ['', [Validators.required]],
+        masterId: localStorage.getItem('masterId'),
+        updatedBy: localStorage.getItem('userRole'),
+        landId: ['']
+      });
+      this.getFarmerLandDetailList(this.master_id);
+    }
     console.log(this.landDetailForm.value);
-    this.getLandDetailList(this.master_id);
+    
     this.getFarmerDetailList();
   }
 
@@ -64,93 +84,172 @@ export class LandDetailsComponent implements OnInit {
         this.landDetails = response;
     })
   }
+  getFarmerLandDetailList(id) {
+    this.farmerService.getFarmerLandDetailList(id).subscribe(
+      response => {
+        console.log(response);
+        this.landDetails = response;
+      })
+  }
 
   addLandDetail() {
-      this.submitted = true;
-      // stop here if form is invalid
-      if (this.landDetailForm.invalid) {
-        return;
-      }
-      var data = this.landDetailForm.value;
-      data['farmerProfile'] = {"farmerId":this.landDetailForm.value.farmerId};
-      delete data.farmerId;
-      console.log(data);
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.landDetailForm.invalid) {
+      return;
+    }
+    var data = this.landDetailForm.value;
+    if (this.landDetailForm.value.farmerId) {
+      this.farmerId = this.landDetailForm.value.farmerId
+    }
+    data['farmerProfile'] = { "farmerId": this.farmerId };
+    delete data.farmerId;
+    this.landDetailForm.value.masterId = localStorage.getItem('masterId');
+    if (this.roleType == "ROLE_FPC") {
       this.fpoService.addLandDetails(data).subscribe(response => {
         console.log(response)
-        if(response.id != ''){
-            this.toastr.success('Land Details Added Successfully.')
-            this.submitted = false
-            this.landDetailForm.reset();
-            this.getLandDetailList(this.master_id);
-        }else{
-            this.toastr.error('Error! While Adding Land Details.')
+        if (response.id != '') {
+          this.toastr.success('Land Details Added Successfully.')
+          this.submitted = false
+          this.landDetailForm.reset();
+          this.getLandDetailList(this.master_id);
+        } else {
+          this.toastr.error('Error! While Adding Land Details.')
         }
       },
         err => {
           console.log(err)
         })
-      }
+    }
+    else {
+      this.farmerService.addLandDetails(data).subscribe(response => {
+        console.log(response)
+        if (response.id != '') {
+          this.toastr.success('Land Details Added Successfully.')
+          this.submitted = false
+          this.landDetailForm.reset();
+          this.getFarmerLandDetailList(this.master_id);
+        } else {
+          this.toastr.error('Error! While Adding Land Details.')
+        }
+      },
+        err => {
+          console.log(err)
+        })
+    }
+  }
   
-  updateLandDetail(){
+  updateLandDetail() {
     this.submitted = true;
     // stop here if form is invalid
     if (this.landDetailForm.invalid) {
-        return;
+      return;
     }
     var data = this.landDetailForm.value;
-    data['farmerProfile'] = {"farmerId":this.landDetailForm.value.farmerId};
+    data['farmerProfile'] = { "farmerId": Number(this.landDetailForm.value.farmerId) };
     delete data.farmerId;
     console.log(data);
-    this.fpoService.updateLandDetail(data).subscribe(response => {
-      if(response.id != ''){
-        this.toastr.success('Land Detail Updated successfully.');
-        this.submitted = false;
-        this.edit = false;
-        this.landDetailForm.reset();
-      }else{
-          this.toastr.error('Error! While Updating Land Detail.');
-      }
-      this.getLandDetailList(this.master_id);
-    },
-      err => {
-        console.log(err)
-      }
-    );
+    this.landDetailForm.value.masterId = Number(localStorage.getItem('masterId'));
+        if(this.roleType == "ROLE_FPC") {
+      this.fpoService.updateLandDetail(data).subscribe(response => {
+              if (response.id != '') {
+                this.toastr.success('Land Detail Updated successfully.');
+                this.submitted = false;
+                this.edit = false;
+                this.landDetailForm.reset();
+              } else {
+                this.toastr.error('Error! While Updating Land Detail.');
+              }
+              this.getLandDetailList(this.master_id);
+            },
+              err => {
+                console.log(err)
+              }
+            );
+          }
+        else {
+          this.farmerService.updateLandDetail(data).subscribe(response => {
+            if (response.id != '') {
+              this.toastr.success('Land Detail Updated successfully.');
+              this.submitted = false;
+              this.edit = false;
+              this.landDetailForm.reset();
+            } else {
+              this.toastr.error('Error! While Updating Land Detail.');
+            }
+            this.getFarmerLandDetailList(this.master_id);
+          },
+            err => {
+              console.log(err)
+            }
+          );
+        }
   }
 
   editLandDetail(landDetail){
     console.log(localStorage.getItem('userrole'));
-    this.landDetailForm = this.formBuilder.group({
-      farmerId: [landDetail.farmerId, [Validators.required]],
-      guardianName: [landDetail.parantsName, [Validators.required]],
-      ownerShip: [landDetail.ownerShip, [Validators.required]],
-      land_area: [landDetail.landArea, [Validators.required]],
-      isorganc:[landDetail.isorganc, [Validators.required]],
-      masterId:localStorage.getItem('masterId'),
-      updatedBy:localStorage.getItem('userRole'),
-      landId:[landDetail.landId]
-    });
+    if (this.roleType == "ROLE_FPC") {
+      this.landDetailForm = this.formBuilder.group({
+        farmerId: [landDetail.farmerId, [Validators.required]],
+        guardianName: [landDetail.parantsName, [Validators.required]],
+        ownerShip: [landDetail.ownership, [Validators.required]],
+        land_area: [landDetail.landArea, [Validators.required]],
+        isorganc: [landDetail.isorganc, [Validators.required]],
+        masterId: localStorage.getItem('masterId'),
+        updatedBy: localStorage.getItem('userRole'),
+        landId: [landDetail.landId]
+      });
+    }
+    else {
+      this.landDetailForm = this.formBuilder.group({
+        farmerId: localStorage.getItem('masterId'),
+       
+        ownerShip: [landDetail.ownership, [Validators.required]],
+        land_area: [landDetail.landArea, [Validators.required]],
+        isorganc: [landDetail.isorganc, [Validators.required]],
+        masterId: localStorage.getItem('masterId'),
+        updatedBy: localStorage.getItem('userRole'),
+        landId: [landDetail.landId]
+      });
+    }
     
     this.edit = true;
     window.scroll(0,0);
   }
 
   confirmDelete(landDetailId){
-    if(confirm("Are you sure to delete this item")) {
-      this.fpoService.deletelandDetailById(landDetailId).subscribe(response => {
-        if(response == true){
-          this.toastr.success('Land Detail Deleted successfully.');
-          this.getLandDetailList(this.master_id);
-        }else{
+    if (confirm("Are you sure to delete this item")) {
+      if (this.roleType == "ROLE_FPC") {
+        this.fpoService.deletelandDetailById(landDetailId).subscribe(response => {
+          if (response == true) {
+            this.toastr.success('Land Detail Deleted successfully.');
+            this.getLandDetailList(this.master_id);
+          } else {
             this.toastr.error('Error! While Deleting Land Detail.');
-        }
-      },
-        err => {
-          console.log(err)
-        }
-      );
+          }
+        },
+          err => {
+            console.log(err)
+          }
+        );
+      }
+      else {
+        this.farmerService.deletelandDetailById(landDetailId).subscribe(response => {
+          if (response == true) {
+            this.toastr.success('Land Detail Deleted successfully.');
+            this.getFarmerLandDetailList(this.master_id);
+          } else {
+            this.toastr.error('Error! While Deleting Land Detail.');
+          }
+        },
+          err => {
+            console.log(err)
+          }
+        );
+      }
+      }
     }
-  }
+  
 
   resetForm(){
     this.landDetailForm.reset();
@@ -158,5 +257,13 @@ export class LandDetailsComponent implements OnInit {
 
   get formControls(){
     return this.landDetailForm.controls;
+  }
+  getUserTypes() {
+    if (this.roleType == 'ROLE_FPC') {
+      return true
+    }
+    else {
+      return false
+    }
   }
 }

@@ -42,7 +42,7 @@ constructor(private formBuilder: FormBuilder,
     //   fpoId: [''],
     // });
 
-    this.usernamestring=localStorage.getItem('userName');
+    this.usernamestring=localStorage.getItem('username');
     this.api.getFpoProfileByUsername(localStorage.getItem('username')).subscribe(data=>{ 
       console.log(data);
       this.profileForm = this.formBuilder.group({

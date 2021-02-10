@@ -69,7 +69,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="farmerMob" appOnlynumber>
+        <input class="form-control" type="text" maxlength="10" formControlName="farmerMob" appOnlynumber>
       </div>
       <div *ngIf="submitted && formControls.farmerMob.errors" class="text-danger">
         <div *ngIf="formControls.farmerMob.errors.required">{{'mobile number is required'|translate}}</div>
@@ -198,11 +198,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="pincode" appOnlynumber>
+        <input class="form-control" type="text" maxlength="6" formControlName="pincode" appOnlynumber>
       </div>
       <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
         <div *ngIf="formControls.pincode.errors.required">{{'pin code is required'|translate}}</div>
-        <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | tarnslate}}</div>
+        <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | translate}}</div>
       </div>
     </div>
     <div class="col-6">

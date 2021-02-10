@@ -439,9 +439,15 @@
   "Photos of FPO": "एफपीओ की फोटो",
   "Select Complaint/Suggestions": "शिकायतें / सुझाव  का चयन करें",
   "Indent": "इंडेंट",
-  "createindent":"इंडेंट किजिये",
   "filters":"फ़िल्टर सूची",
   "nofiltersselected":" खाली है",
   "noitemsfound":"कुछ नहीं मिला...",
-  "searchplaceholder":"खोजने के लिए यहां टाइप करें"
+  "searchplaceholder":"खोजने के लिए यहां टाइप करें",
+  "Select farmer": "किसान का चयन करें",
+  "Select Ownership": "स्वामित्व का चयन करें",
+  "Pre-FPO Registration": "एफपीओ पंजीकरण से पूर्व",
+  "Post-FPO Registration": "एफपीओ पंजीकरण के उपरांत",
+  "View Details": "विस्तार से देखें",
+  "DESCRIPTION": "विवरण",  
+  "createindent":"इंडेंट किजिये"
 }
