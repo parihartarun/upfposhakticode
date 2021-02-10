@@ -69,6 +69,7 @@ export class CropProductionComponent implements OnInit {
   }
 
   getCropProduction(){
+    console.log(localStorage.getItem('masterId'));
     this.api.getCropProductionDetails(localStorage.getItem('masterId')).subscribe(data => {
       console.log(data);
       this.cropProductions = data;
