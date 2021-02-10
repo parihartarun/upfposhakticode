@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { FarmerService } from '../../../_services/farmer/farmer.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
 @Component({
@@ -30,7 +31,8 @@ export class FarmerComplaintsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private api: FpoService,
     private route: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private farmerService: FarmerService
   ) { }
 
   ngOnInit(): void {
@@ -38,21 +40,27 @@ export class FarmerComplaintsComponent implements OnInit {
     this.api.getComplaints_Suggestions().subscribe(cs => {
       this.complaintsCatageriy = cs
     })
-    this.complaintForm = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      desc: ['', [Validators.required]],
-      filePath: [''],
-      uploadFile: [''],
-      issueType: ['', [Validators.required]],
-      masterId: localStorage.getItem('masterId'),
-    });
-    fpoId: localStorage.getItem('masterId')
+    this.farmerService.getFarmerProfileByUsername(localStorage.getItem('masterId')).subscribe(data => {
+      console.log(data);
+      this.complaintForm = this.formBuilder.group({
+        title: ['', [Validators.required]],
+        desc: ['', [Validators.required]],
+        filePath: [''],
+        uploadFile: [''],
+        issueType: ['', [Validators.required]],
+        masterId: localStorage.getItem('masterId'),
+       
+
+
+      })
+    })
+   
     this.getComplaints();
   }
 
   getComplaints() {
 
-    this.api.getComplaints().subscribe(response => {
+    this.farmerService.getComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.complaints = response;
     });
