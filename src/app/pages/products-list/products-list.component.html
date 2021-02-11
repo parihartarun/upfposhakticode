@@ -8,14 +8,26 @@
 </div>
 <header class="masthead">
   <div class="container h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-12 text-center">
-        <form>
+    <div class="row h-100 pt-5 align-items-center">
+      <div class="col-12 mt-5 text-center">
+        <form class="mt-5 pb-5">
+
+          <div class="d-flex mx-5 mt-5 align-items-end justify-content-center">  
+            <input type="text" class="form-control d-inline search-text" name="topsearch" [(ngModel)]="dummysearchval" id="exampleFormControlInput1" placeholder="{{'searchplaceholder' |translate}}">
+            <div class="dropdown d-inline searchDropDown">
+              <select class="btn d-inline btn-default search-btn dropdown-toggle" id="searchin" name="Searchin" [(ngModel)]="parsearchType" style="width:100%">
+                <option value="any">{{'Any' | translate }}</option>
+                <option value="crop">{{'Crop' | translate }}</option>
+                <option value="district">{{'District1' | translate }}</option>
+                <option value="fpo_name">{{'FPO' | translate }}</option>
+                <option value="services">{{'Services/ Products' | translate }}</option>
+              </select>
+            </div>
+            <button class="btn d-inline btn-block btn-product-search active search-btn" role="button" aria-pressed="true" (click)="newSearchWithFilters()" [disabled]="dummysearchval.length==0">{{'Search' | translate }}</button>
+          </div>
           <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-8">
               <div class="form-group">
-                <input type="text" class="form-control search-text" name="topsearch" [(ngModel)]="topsearchval" id="exampleFormControlInput1" placeholder="Search here product that you want to buy ...">
-                <button class="btn btn-primary btn-block btn-lg btn-product-search active search-btn" role="button" aria-pressed="true" (click)="newSearchWithFilters()">{{'Search' | translate }}</button>
               </div>
             </div>
           </div>
@@ -32,21 +44,27 @@
     <div class="d-flex p-2 ">
       <button class="btn btn-sm btn-primary btn-product-search" (click)="sampleNavigate()">{{'Back' | translate }}</button>
     </div>
-
+<div class="d-flex">
+  <span class="d-inline-block my-2 mx-1">{{'filters' | translate }}</span> 
+  <span *ngIf ="selectedfilters.length==0" class="d-inline-block my-2 mx-1">{{'nofiltersselected' | translate }}</span>
+  <div *ngIf ="selectedfilters.length!=0" class="d-inline-block overflow-pills-container">
+<div *ngFor="let chipitem of selectedfilters" class="d-inline-block mx-1 my-2 upfpo-pills">{{chipitem.name}} ({{chipitem.type}})</div>
+</div>
+</div>
     <div class="row">
       <div class="col-md-3">
         <div class="card">
-          <article class="card-group-item">
-            <header class="card-header">
-              <h3 class="title">{{'District' | translate }} </h3>
+          <article class="card-group-item my-2">
+            <header class="">
+              <h3 class="title">{{'District1' | translate }}</h3>
             </header>
             <div class="filter-content">
-              <div class="card-body filterDistrict">
+              <div class="filterDistrict">
                 <form>
                   <label class="form-check" *ngFor="let district of districts">
                     <input class="form-check-input" type="checkbox" [value]="district.district_name" [name]="district.district_name" [(ngModel)]="district.is_active" (change)="selectDistrct(district)">
                     <span class="form-check-label">
-                      {{district.district_name }}
+                      {{district.district_name}}
                     </span>
                   </label> <!-- form-check.// -->
                   <!--<label class="form-check">
@@ -68,17 +86,17 @@
               </div> <!-- card-body.// -->
             </div>
           </article> <!-- card-group-item.// -->
-          <article class="card-group-item">
-            <header class="card-header">
+          <article class="card-group-item my-2">
+            <header class="">
               <h3 class="title">{{'Quantity' | translate }}</h3>
             </header>
             <div class="filter-content">
-              <div class="card-body">
+              <div class="">
                 <form>
                   <label class="form-check" *ngFor="let q of quantities">
                     <input class="form-check-input" type="checkbox" [value]="q.name" [name]="q.name" [(ngModel)]="q.selected" (change)="selectQuantity(q)">
                     <span class="form-check-label">
-                      {{q.minname}} - {{q.maxname}}
+                      {{q.minname | translate}}
                     </span>
                   </label> <!-- form-check.// -->
                   <!--<label class="form-check">
@@ -100,7 +118,24 @@
               </div> <!-- card-body.// -->
             </div>
           </article>
+<article class="card-group-item my-2">
+  <header class="">
+    <h3 class="title">{{'cropandverieties' | translate }} </h3>
+  </header>
+  <ngx-loading [show]="!items" [config]="{backdropBackgroundColour: '#ffffff', 
+          backdropBorderRadius: '1px',
+          primaryColour: '#926E01', 
+          secondaryColour: '#926E01', 
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+  <ngx-treeview *ngIf="items"
 
+  [items]="items"
+  [config]="config"
+  (selectedChange)="onSelectedChange($event)"
+  (filterChange)="onFilterChange($event)"
+>
+</ngx-treeview>
+</article>
           <!-- <article class="card-group-item">
           <header class="card-header">
             <h3 class="title">{{'Crop' | translate }}</h3>
@@ -260,8 +295,6 @@
               <div class="row no-gutters">
                 <div class="row">
                   
-                  
-                  
                   <div class="col-md-4 mb-2">
                     <!-- <img src="../../../assets/img/onion.jpeg" class="card-img" alt="..."> -->
                     <img src="../../../assets/icons/cropplaceholder.jpg" class="card-img" alt="...">
@@ -307,11 +340,11 @@
                     <!-- <h4 class="mt-1">Actually Produced Quantity</h4> -->
                     <!-- <p class="card-text" *ngIf="product.actualProduction">{{product.actualProduction}}</p>
                   <p class="card-text" *ngIf="!product.actualProduction">NA</p> -->
-                    <button href="javascript:void(0)" (click)="open($event,mymodal,product)" class="btn btn-sm btn-primary btn-product-search">Create Indent</button>
+                    <button href="javascript:void(0)" (click)="open($event,mymodal,product)" class="btn btn-sm btn-primary btn-product-search">{{'createindent' | translate }}</button>
                   </div>
 
                   <div class="col-md-4 text-right">
-                    <button href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search" [disabled]="true">View Details</button>
+                    <button href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search" [disabled]="true">{{'viewdetails' | translate }}</button>
                   </div>
                 </div>
               </div>
@@ -384,6 +417,11 @@
           <nav aria-label="..." class="text-right">
             <pagination-controls *ngIf="serachProduct&&serachProduct.length>0" (pageChange)="p = $event"></pagination-controls>
           </nav>
+          <div *ngIf="serachProduct?.length==0" class=" p-5 d-flex justify-content-center align-items-center">
+                       <img class="fatalimg" src="../../../assets/image/img/sad.jpg"/>            
+          </div>
+          <div *ngIf="serachProduct?.length==0" class="d-flex justify-content-center yellotext">{{ 'noitemsfound' | translate }}</div>
+
         </div>
       </div>
     </div>
@@ -391,7 +429,7 @@
     <ng-template #mymodal let-modal>
       <div *ngIf="isLoggeIn">
         <div class="modal-header">
-          <h3 class="modal-title text-center">{{'Enquiry Form'|  translate}}</h3>
+          <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">×</span>
           </button>
@@ -415,18 +453,6 @@
             </div>
 
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span class="required">*</span></label>
-              <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="{{'Quantity'|translate}}" type="number" formControlName="quantity">
-              </div>
-              <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
-                <div *ngIf="formControls.quantity.errors.required">{{'quantity is required'|translate}}</div>
-              </div>
-             
-
-            </div>
-
-            <div class="form-group mb-3">
               <label class="form-control-label" for="input-username">{{'Fulfilled Date'|translate}}<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
                 <input type="text"
@@ -439,6 +465,26 @@
                 <div *ngIf="formControls.fulfillmentDate.errors.required">{{'date is required'| translate}}</div>
               </div>
             </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="{{'Quantity'|translate}}" type="number" formControlName="quantity">
+              </div>
+              <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
+                <div *ngIf="formControls.quantity.errors.required">{{'quantity is required'|translate}}</div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-delivery">{{'fpodeliveryaddr'|translate}}<span class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <textarea class="form-control" id = "input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"  formControlName="fpoDeliveryAddress"></textarea>
+              </div>
+              <div *ngIf="submitted && formControls.fpoDeliveryAddress.errors" class="text-danger">
+                <div *ngIf="formControls.fpoDeliveryAddress.errors.required">{{'deleiveryrequired'| translate}}</div>
+              </div>
+            </div>
+            
             
 
             <div class="text-center">

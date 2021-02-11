@@ -20,11 +20,13 @@ export class NavbarComponent implements OnInit {
   userstring=""
   constructor(location: Location,  private element: ElementRef, private router: Router, public translate: TranslateService) {
     this.location = location;
-    if(localStorage.getItem('language')){
-      translate.setDefaultLang(localStorage.getItem('language'));
-    }else{
-      translate.setDefaultLang('hi');
-    }
+    translate.setDefaultLang('en');
+
+    // if(localStorage.getItem('language')){
+    //   translate.setDefaultLang(localStorage.getItem('language'));
+    // }else{
+    //   translate.setDefaultLang('hi');
+    // }
   }
 
   ngOnInit() {

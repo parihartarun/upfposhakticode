@@ -37,12 +37,9 @@ export class HomeComponent implements OnInit {
     private _fpo: FpoService, private departmentService: DepartmentService) {
     translate.addLangs(['en', 'hi']);
     translate.setDefaultLang('hi');
-   
-
   }
 
   useLanguage(language: string) {
-
     this.translate.use(language);
     this.toggleNavbar();
   }

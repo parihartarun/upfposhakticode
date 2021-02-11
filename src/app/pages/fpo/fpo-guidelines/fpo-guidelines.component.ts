@@ -17,6 +17,8 @@ export class FpoGuidelinesComponent implements OnInit {
   fpoGuideLineFrom: FormGroup;
   isPost = false;
   isOpen = false;
+  isLoggeIn = false;
+  username = '';
   constructor(private formBuilder: FormBuilder, private api: FpoService, public translate: TranslateService) {
     this.baseUrl = environment.baseUrl;
     translate.addLangs(['en', 'hi']);
@@ -25,7 +27,10 @@ export class FpoGuidelinesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+    if (sessionStorage.getItem('accessToken') != null) {
+      this.isLoggeIn = true;
+      this.username = localStorage.getItem('username');
+    }
     this.fpoGuideLineFrom = this.formBuilder.group({
       isPostRegistration: ['isPerRegistration']     
      
@@ -43,7 +48,7 @@ export class FpoGuidelinesComponent implements OnInit {
   toggleNavbar() {
     this.isOpen = !this.isOpen;
   }
-  isProPostRegistration(isPerRegistration: any) {
+  isProPostRegistration() {
     if (this.fpoGuideLineFrom.controls['isPostRegistration'].value === "isPostRegistration") {
       this.fpoGuideLineFrom.controls['isPostRegistration'].setValue('isPostRegistration');
       this.isPost = true;

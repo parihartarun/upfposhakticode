@@ -14,6 +14,8 @@
   "Equipment Centre": "उपकरण केंद्र (CHC/ FMB)",
   "FPO guidelines": "एफपीओ दिशानिर्देश",
   "Back": "वापस",
+  "viewdetails":"विवरण देखें",
+  "cropandverieties":"विविध फ़सलें",
   "bannerSearchText": "एफपीओ खोजें नाम/ जनपद / फसल /सेवाएँ / उत्पाद द्वारा",
   "Any": "कोई भी",
   "Crop": "फसलों",
@@ -229,7 +231,7 @@
   "Bank Name": "बैंक का नाम",
   "IFSC Code": "IFSC कोड",
   "Bank Account Number": "बैंक खाता संख्या",
-  "Quantity": "मात्रा",
+  "Quantity": "उत्पादन मात्रा",
   "Home": "होम ",
   "navText": "पंजीकरण",
   "Farmer details": "किसान का विवरण",
@@ -418,6 +420,10 @@
   "Photos of FPO": "एफपीओ की फोटो",
   "Select Complaint/Suggestions": "शिकायतें / सुझाव  का चयन करें",
   "Indent": "इंडेंट",
+  "filters":"फ़िल्टर सूची",
+  "nofiltersselected":" खाली है",
+  "noitemsfound":"कुछ नहीं मिला...",
+  "searchplaceholder":"खोजने के लिए यहां टाइप करें",
   "Select farmer": "किसान का चयन करें",
   "Select Ownership": "स्वामित्व का चयन करें",
   "Pre-FPO Registration": "एफपीओ पंजीकरण से पूर्व",
@@ -451,5 +457,15 @@
   "Department name": "विभाग का नाम",
   "Schemes type is required": "योजनाओं का प्रकार आवश्यक है",
   "Department name is required": "विभाग का नाम आवश्यक है",
-  "Upload document is required":"अपलोड दस्तावेज़ की आवश्यकता है"
+  "Upload document is required":"अपलोड दस्तावेज़ की आवश्यकता है",
+  "createindent":"इंडेंट किजिये",
+  "zerotonintynine" : "० - ९९ (क्विंटल)",
+  "hundredtohundrednintynine":"१०० - १९९ (क्विंटल)",
+  "morethan200":"२०० से अधिक (क्विंटल)",
+  "enterfpodeliveryaddr":"डिलिवरी का पता दर्ज करें",  
+  "fpodeliveryaddr":"डिलिवरी का पता",
+  "deleiveryrequired":"डिलिवरी का पता आवश्यक है",
+  "Indent Form":"इंडेंट फार्म"
 }
+ 
+

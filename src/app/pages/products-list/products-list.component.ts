@@ -1,9 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { TreeviewItem } from 'ngx-treeview';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../_services/auth/auth.service';
 import { FpoService } from '../../_services/fpo/fpo.service';
@@ -14,13 +15,14 @@ import { ProductService } from '../../_services/product/product.service';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements AfterViewInit,OnInit {
   isLoggeIn = false;
   submitted = false;
   title = 'appBootstrap';  
   loading:boolean=false;
   closeResult: string;
   serachProduct: [];
+  dummysearchval:string=''
   routerParameter = '';
   selectedfilters :Array<{name:string,type:string}>=[]
   selecteddists:Array<string>=[];
@@ -31,17 +33,100 @@ export class ProductsListComponent implements OnInit {
   searchCriteria: Array<any> = [];
   fpoDetail:any
   quantities:Array<{selected:boolean,minname:string,maxname:string,name:string,type:string,quantity:number,maxQuantity:number}> = [
-    { selected:false,minname:"0",maxname:"99",name:"100", type:"qty",quantity: 100, maxQuantity: 0 }, 
-    { selected:false, minname:"100",maxname:"199",name:"200", type:"qty",quantity: 200, maxQuantity: 0 },
-    { selected:false, minname:"200",maxname:"299",name:"300", type:"qty",quantity: 300, maxQuantity: 0 },
+    { selected:false,minname:"zerotonintynine",maxname:"99",name:"100", type:"qty",quantity: 100, maxQuantity: 0 }, 
+    { selected:false, minname:"hundredtohundrednintynine",maxname:"199",name:"200", type:"qty",quantity: 200, maxQuantity: 0 },
+    { selected:false, minname:"morethan200",maxname:"200",name:"300", type:"qty",quantity: 300, maxQuantity: 0 },
   ]
+
+
   parsearchType: string;
   parval: string;
   topsearchval: string;
+  items2: any;
+  
+  // constructor(private modalService: NgbModal, private _rouetr:Router, private _productService: ProductService, private _activatedroute: ActivatedRoute, private api: AuthService) { }
+  
+
+  items: any;
+config:any = {
+  hasAllCheckBox: false,
+  hasFilter: false,
+  hasCollapseExpand: false,
+  decoupleChildFromParent: false,
+  maxHeight: 500
+}
+  simpleItems = {
+    text: 'parent-1',
+    value: 'p1',
+    children: [
+ {
+        text: 'child-p1c1',
+        value: {name:"p1c1",child:"p1c1"},
+      },
+      {
+        text: 'child-p1c2',
+        value: {name:"p1c2",child:"p1c2"},
+      },
+    ]
+  };
+
+  simpleItems2 = {
+    text: 'parent-2',
+    value: 'p2',
+    collapsed: true,
+    children: [
+      {
+        text: 'child-p2c1',
+        value: {name:"p2c1",child:"p2c1"},
+      },
+      {
+        text: 'child-p2c2',
+        value: {name:"p2c2",child:"p2c2"},
+      },
+    ]
+  };
+  treeloaded: boolean=false;
+
+  onSelectedChange($event)
+  {
+    if(this.treeloaded)
+{
+  console.log("Selected Change Event Called  = "+JSON.stringify($event));
+this.selectedfilters = this.selectedfilters.filter(elem=>elem.type!="crop");
+$event.forEach(element => {
+  this.selectedfilters.push({name:element,type:"crop"});  
+});
+this.searchWithFilters();
+}
+if(!this.treeloaded)
+{
+  this.treeloaded=true;
+}
+//this.treeloaded == false?true:true;
+console.log("Tree loaded status = "+this.treeloaded)
+
+}
+onFilterChange($event)
+{
+  console.log("Selected Filter Event Called  = "+JSON.stringify($event));
+}
+
+  // open(content) {
+  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  //     this.closeResult = `Closed with: ${result}`;
+  //   }, (reason) => {
+  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //   });
+  // }
+
+
   indentForm: FormGroup;
   
   constructor(private modalService: NgbModal, private _rouetr: Router, private _productService: ProductService, private _activatedroute: ActivatedRoute,
     private api: AuthService, private _fpoService: FpoService, private fb: FormBuilder, private datePipe: DatePipe, private toastr: ToastrService) { }
+  ngAfterViewInit(): void {
+   this.treeloaded=false;
+  }
     
   open(event, content, item):any {
     
@@ -82,18 +167,62 @@ export class ProductsListComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-
+  getItems(parentChildObj) {
+    let itemsArray = [];
+    parentChildObj.forEach(set => {
+      set.checked = false;
+      set.collapsed = false;
+      itemsArray.push(new TreeviewItem(set))
+    });
+    return itemsArray;
+  }
   ngOnInit() {
-    this.api.getDistrictBystateId(9).subscribe(d => {
+   
+   this.api.getDistrictBystateId(9).subscribe(d => {
       this.districts = new Array()
       this.districts = d
-
-      console.log("districts received"+JSON.stringify(this.districts));
+      
     })
    
+    this.api.getCrops().subscribe(c => {
+      this.items2=[];
+      console.log("Crops received"+JSON.stringify(c));
+   
+   c.forEach(cropElement => {
+    let itm:any ={}
+itm["text"] = cropElement.cropName;
+itm["value"] = cropElement.cropName;
+
+console.log("Item Packed as here"+JSON.stringify(itm));
+
+let croptypes = [];
+
+ cropElement.cropTypes.forEach(cropTypeElement => {
+ 
+let croptypeItem = {};
+  croptypeItem["text"] = cropTypeElement.verietyName;
+  croptypeItem["value"] = cropElement.cropName+"@"+cropTypeElement.verietyName;
+  croptypeItem["checked"] = false;
+  croptypeItem["collapsed"] = false;
+  croptypes.push(croptypeItem);  
+});
+console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows = "+JSON.stringify(croptypes));
+  
+  // console.log("Crop Types of the Crop"+JSON.stringify(croptypes))
+   itm["children"] = croptypes;
+
+
+     this.items2.push(itm);
+  
+  });  
+// console.log("")
+ this.items = this.getItems([...this.items2]);
+  })
+
     this._activatedroute.paramMap.subscribe(params => {
       let val = params.get('val');
       let searchType = params.get('searchType');
+      this.dummysearchval = params.get('val'); 
    this.parval = params.get('val');
    this.parsearchType = params.get('searchType');   
       this.loading=true;
@@ -121,23 +250,26 @@ export class ProductsListComponent implements OnInit {
 
   newSearchWithFilters()
   {
-    let httpParams:HttpParams = new HttpParams();     
-      httpParams = httpParams.append("in",""+this.parsearchType);
-      httpParams = httpParams.append("val",""+this.topsearchval);
-      this.selectedfilters.forEach(data=>{
+    this.parval = this.dummysearchval;
+    // let httpParams:HttpParams = new HttpParams();     
+    //   httpParams = httpParams.append("in",""+this.parsearchType);
+    //   httpParams = httpParams.append("val",""+this.topsearchval);
+    //   this.selectedfilters.forEach(data=>{
         
-        httpParams = data.type=="district"? httpParams.append("filterdist",""+data.name):httpParams.append("filterqty",""+data.name);
-      });
+    //     httpParams = data.type=="district"? httpParams.append("filterdist",""+data.name):httpParams.append("filterqty",""+data.name);
+      
+      
+    //   });
         
   
-      this.serachProduct=[];
-      this.loading=true;
-      this._productService.getSearchProductWithFilters(this.parval, this.parsearchType,httpParams).subscribe(s => {
-        this.serachProduct = s;
-        this.topsearchval = undefined      
-        this.loading = false;
-      });
-  
+      // this.serachProduct=[];
+      // this.loading=true;
+      // this._productService.getSearchProductWithFilters(this.parval, this.parsearchType,httpParams).subscribe(s => {
+      //   this.serachProduct = s;
+      //   this.topsearchval = undefined      
+      //   this.loading = false;
+      // });
+      this.searchWithFilters();  
     }     
 
 searchWithFilters()
@@ -147,7 +279,22 @@ searchWithFilters()
     httpParams = httpParams.append("val",""+this.parval);
     this.selectedfilters.forEach(data=>{
       
-      httpParams = data.type=="district"? httpParams.append("filterdist",""+data.name):httpParams.append("filterqty",""+data.name);
+    switch(data.type)
+    {
+      case 'district':
+        httpParams =httpParams.append("filterdist",""+data.name);
+      break;
+        case 'qty':
+          httpParams = httpParams.append("filterqty",""+data.name);
+        break;
+          case 'crop':
+            httpParams =  httpParams.append("filtercrop",""+data.name);
+          break;  
+    }  
+    
+       
+    
+    
     });
       
 
@@ -200,6 +347,7 @@ searchWithFilters()
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
       cropId: [item.cropid],
+      fpoDeliveryAddress:["", Validators.required],
       userId: [this.fpoDetail.userFpo.userId, Validators.required],
       fpoName: [this.fpoDetail.fpoName],
       fpoEmail: [this.fpoDetail.fpoEmail],
@@ -248,13 +396,13 @@ searchWithFilters()
     this._productService.saveIndent(this.indentForm.value).subscribe(response => {
 
       if (response.message == "Enquiry created Successfully!") {
-        this.toastr.success(response.message);
+        //this.toastr.success(response.message);
         this.indentForm.reset();
         this.submitted = false;
         this.modalService.dismissAll();
       }
       else {
-        this.toastr.error(response.message);
+        //this.toastr.error(response.message);
       }
 
     })
