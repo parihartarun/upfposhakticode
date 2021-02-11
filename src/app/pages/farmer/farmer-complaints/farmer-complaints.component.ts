@@ -104,7 +104,7 @@ export class FarmerComplaintsComponent implements OnInit {
     formData.append('issue_type', this.complaintForm.value.issueType);
     if (this.roleType == "ROLE_FARMER") {
       formData.append("farmer_id", localStorage.getItem('masterId'))
-      //formData.append("fpo_id", this.fpoId)
+      formData.append("fpo_id ", this.fpoId)
       this.farmerService.addComplaint(this.complaintForm.value, formData).subscribe(response => {
         if (response != '') {
           this.toastr.success('Complaint Added Succefully.');

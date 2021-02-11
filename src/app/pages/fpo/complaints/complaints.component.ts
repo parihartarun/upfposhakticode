@@ -189,16 +189,16 @@ export class ComplaintsComponent implements OnInit {
     this.viewComp.title = complaint.title;
     window.scroll(0, 0);
     let myDate = new Date();
-    this.complaintStatusForm = this.formBuilder.group({
-      id:[complaint.id],
-      assign_to: ['', [Validators.required]],
-      appointmentDate: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
-      comment : ['', [Validators.required]],
-      status : ['', [Validators.required]],
+    //this.complaintStatusForm = this.formBuilder.group({
+    //  id:[complaint.id],
+    //  assign_to: ['', [Validators.required]],
+    //  appointmentDate: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
+    //  comment : ['', [Validators.required]],
+    //  status : ['', [Validators.required]],
      
 
 
-    });
+    //});
   }
  
 }
