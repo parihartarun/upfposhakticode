@@ -1,25 +1,23 @@
 import { DatePipe } from '@angular/common';
-import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DATE } from 'ngx-bootstrap/chronos/units/constants';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../_services/auth/auth.service';
-
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
 @Component({
-  selector: 'app-complaints',
-  templateUrl: './complaints.component.html',
-  styleUrls: ['./complaints.component.css']
+  selector: 'app-complaint-by-farmer',
+  templateUrl: './complaint-by-farmer.component.html',
+  styleUrls: ['./complaint-by-farmer.component.css']
 })
-export class ComplaintsComponent implements OnInit {
+export class ComplaintByFarmerComponent implements OnInit {
+
   complaintForm: FormGroup;
   complaintStatusForm: FormGroup
   submitted = false;
   complaintsCatageriy: Array<any> = [];
-  complaints: Array<any> = [];  
+  complaints: Array<any> = [];
   p: number = 1;
   checkfileFormat: boolean = false;
   @ViewChild('myInput')
@@ -31,7 +29,7 @@ export class ComplaintsComponent implements OnInit {
   isViewComplaint = false;
   roleType: any;
   users: any[];
-  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', farmerId:''}
+  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', farmerId: '' }
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
@@ -49,19 +47,19 @@ export class ComplaintsComponent implements OnInit {
       this.complaintsCatageriy = cs
     })
     this.complaintForm = this.formBuilder.group({
-        title: ['', [Validators.required]],
-        desc: ['', [Validators.required]],
-        filePath: [''],
-        uploadFile: [''],
-        issueType: ['', [Validators.required]],
-        masterId: localStorage.getItem('masterId'),
+      title: ['', [Validators.required]],
+      desc: ['', [Validators.required]],
+      filePath: [''],
+      uploadFile: [''],
+      issueType: ['', [Validators.required]],
+      masterId: localStorage.getItem('masterId'),
     });
     fpoId: localStorage.getItem('masterId')
     this.getComplaints();
   }
 
   getComplaints() {
-   
+
     this.api.getComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.complaints = response;
@@ -69,30 +67,6 @@ export class ComplaintsComponent implements OnInit {
 
   }
 
-  addComplaint() {
-    this.submitted = true;
-    if (this.complaintForm.invalid) {
-      return;
-    }
-    let model = this.complaintForm.value;
-    const formData: FormData = new FormData();
-    formData.append('file', this.fileToUpload);  
-    formData.append('description', this.complaintForm.value.desc);
-    formData.append('title', this.complaintForm.value.title.comp_type_en);
-    formData.append('issue_type', this.complaintForm.value.issueType);
-    formData.append("farmer_id", localStorage.getItem('masterId'))
-    this.api.addComplaint(formData).subscribe(response => {
-      if (response!= '') {
-        this.toastr.success('Complaint Added Succefully.');
-        this.submitted = false;
-        this.edit = false;
-        this.complaintForm.reset();
-        this.getComplaints();
-      } else {
-        this.toastr.error('Error! While Add complaint.');
-      }
-    });
-  }
 
   get formControls() {
     return this.complaintForm.controls;
@@ -105,11 +79,11 @@ export class ComplaintsComponent implements OnInit {
     //  return;
     //}
     //else {
-    
+
     //  this.checkfileFormat = false;
     //}
   }
- 
+
   selectComplaint(complaint) {
     this.complaintForm.controls['title'].setValue(this.complaintsCatageriy[parseInt(complaint.currentTarget.value)]);
     this.complaintForm.controls['issueType'].setValue(parseInt(complaint.currentTarget.value));
@@ -117,7 +91,7 @@ export class ComplaintsComponent implements OnInit {
   }
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj"||ext.toLowerCase() == "jpeg" || ext.toLowerCase()=="pdf") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj" || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
       return true;
     }
     else {
@@ -127,26 +101,14 @@ export class ComplaintsComponent implements OnInit {
   deleteCompliant(complaint) {
     this.api.deleteCompliant(complaint.id).subscribe(response => {
       if (response != '') {
-        this.toastr.success('Delete successfully');      
+        this.toastr.success('Delete successfully');
         this.getComplaints();
       } else {
         this.toastr.error('Error! While Add complaint.');
-      }    
+      }
     });
   }
-  editCompliant(complaint) {
-    this.edit = true;
-    window.scroll(0, 0);
-    this.complaintForm = this.formBuilder.group({
-      id: [complaint.id],
-      title: [complaint.title, Validators.required],
-      desc: [complaint.desc, Validators.required],
-    
-    });
-    this.complaintForm.controls['title'].patchValue(complaint.title);
-    this.complaintForm.get('title').patchValue(complaint.title);
-    
-  }
+ 
   updateSatus(viewComp) {
     this.submitted = true;
     // stop here if form is invalid
@@ -190,17 +152,17 @@ export class ComplaintsComponent implements OnInit {
     window.scroll(0, 0);
     let myDate = new Date();
     this.complaintStatusForm = this.formBuilder.group({
-      id:[complaint.id],
+      id: [complaint.id],
       assign_to: ['', [Validators.required]],
       appointmentDate: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
-      comment : ['', [Validators.required]],
-      status : ['', [Validators.required]],
-     
+      comment: ['', [Validators.required]],
+      status: ['', [Validators.required]],
+
 
 
     });
   }
- 
+
 }
 
 

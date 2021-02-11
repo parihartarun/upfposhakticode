@@ -70,6 +70,7 @@ import { DepartmentComplaintsComponent } from './pages/department/department-com
 import { BuyerTraderComplaintsComponent } from './pages/buyer-treder/buyer-trader-complaints/buyer-trader-complaints.component';
 import { InputSupperComplaintsComponent } from './pages/auth-pages/inputSupper/input-supper-complaints/input-supper-complaints.component';
 import { ChcComplaintsComponent } from './pages/auth-pages/chc/chc-complaints/chc-complaints.component';
+import { ComplaintByFarmerComponent } from './pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -153,6 +154,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BuyerTraderComplaintsComponent,
     InputSupperComplaintsComponent,
     ChcComplaintsComponent,
+    ComplaintByFarmerComponent,
   ],
   exports: [   
     AuthHeaderComponent
