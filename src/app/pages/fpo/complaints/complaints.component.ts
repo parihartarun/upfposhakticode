@@ -3,6 +3,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DATE } from 'ngx-bootstrap/chronos/units/constants';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../_services/auth/auth.service';
 
@@ -41,7 +42,7 @@ export class ComplaintsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.getAllUser().subscribe(u => {
+    this.authService.getDeptmentUser().subscribe(u => {
       this.users = u
     })
     this.api.getComplaints_Suggestions().subscribe(cs => {
@@ -146,13 +147,14 @@ export class ComplaintsComponent implements OnInit {
     this.complaintForm.get('title').patchValue(complaint.title);
     
   }
-  updateComplaint(viewComp) {
+  updateSatus(viewComp) {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.complaintForm.invalid) {
+    if (this.complaintStatusForm.invalid) {
       return;
     }
-    this.api.updateComplaint(this.complaintForm.value).subscribe(response => {
+    delete this.complaintStatusForm.value.appointmentDate;
+    this.api.updateComplaint(this.complaintStatusForm.value).subscribe(response => {
       console.log(response);
       if (response.id != '') {
         this.toastr.success('complians successfully.');
@@ -186,14 +188,14 @@ export class ComplaintsComponent implements OnInit {
     this.viewComp.remarks = complaint.remarks;
     this.viewComp.title = complaint.title;
     window.scroll(0, 0);
-  
+    let myDate = new Date();
     this.complaintStatusForm = this.formBuilder.group({
-      assign_to : ['', [Validators.required]],
-      appointmentDate: this.datePipe.transform(complaint.createDateTime, 'dd/MM/yyyy'),
+      id:[complaint.id],
+      assign_to: ['', [Validators.required]],
+      appointmentDate: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
       comment : ['', [Validators.required]],
       status : ['', [Validators.required]],
-      farmerId :complaint.farmerId,
-      masterId: localStorage.getItem('masterId'),
+     
 
 
     });

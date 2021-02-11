@@ -128,12 +128,12 @@
                       <div class="form-group">
                         <label class="form-control-label">{{'Appointed'| translate}} <span class="required">*</span></label>
 
-                        <select class="form-control" formControlName="assign_to ">
+                        <select class="form-control" formControlName="assign_to">
                           <option value="">{{'Select User'|translate}}</option>
                           <option *ngFor="let u of users" [value]="u.userId">{{u.userName}}</option>
                         </select>
-                        <div *ngIf="submitted && formControls.assign_to .errors" class="text-danger">
-                          <div *ngIf="formControls.assign_to .errors.required">{{'Appointed to is required'| translate}}</div>
+                        <div *ngIf="submitted && formControls.assign_to.errors" class="text-danger">
+                          <div *ngIf="formControls.assign_to.errors.required">{{'Appointed to is required'| translate}}</div>
                         </div>
                       </div>
                     </div>
@@ -162,9 +162,9 @@
 
                         <select class="form-control" formControlName="status">
                           <option value="">{{'Select Status'|translate}}</option>
-                          <option value="0">{{'Open'|translate}}</option>
-                          <option value="1">{{'Assigned'|translate}}</option>
-                          <option value="2">{{'Resolved'|translate}} </option>
+                          <option value="OPEN">{{'Open'|translate}}</option>
+                          <option value="ASSOGNED">{{'Assigned'|translate}}</option>
+                          <option value="RESOLVED">{{'Resolved'|translate}} </option>
                         </select>
                         <div *ngIf="submitted && formControls.status.errors" class="text-danger">
                           <div *ngIf="formControls.status.errors.required"> {{'status  is required'|translate}}</div>
@@ -314,7 +314,7 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">{{'View'|translate}}</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">{{'Delete'|translate}}</a>
+                      <!--<a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">{{'Delete'|translate}}</a>-->
                     </div>
                   </div>
                 </td>
