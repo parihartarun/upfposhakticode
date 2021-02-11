@@ -16,17 +16,17 @@
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="filterForm" (ngSubmit)="filterProduction()">
+          <form [formGroup]="filterForm" (ngSubmit)="getFarmerWiseProductionReport()">
             <div class="pl-lg-4">
 
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'Financial year'|translate}}</label>
-                    <select formControlName="financial_year" class="custom-control custom-select mb-3">
+                    <select formControlName="finYear" class="custom-control custom-select mb-3">
                       <option value="">{{'Select financial year'|translate}}</option>
-                      <option>2019-2020</option>
-                      <option>2020-2021</option>
+                      <option value="2019-2020">2019-2020</option>
+                      <option value="2020-2021" selected>2020-2021</option>
                       <!-- <option>C</option> -->
                     </select>
                   </div>
@@ -34,15 +34,11 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">{{'Season'|translate}}<span class="required">*</span></label>
-                    <select formControlName="season" class="form-control form-control-alternative">
+                    <select formControlName="seasonId" class="form-control form-control-alternative">
                       <option value="">{{'Select Season'|translate}}</option>
-                      <option value="1"> {{'Rabi'|translate}}</option>
-                      <option value="2">  {{'Zayd'|translate}}</option>
-                      <option value="3">  {{'Kharif'|translate}}</option>
+                      <option value="2" selected>{{'All'|translate}}</option>
+                      <option value="{{season.seasonId}}" *ngFor="let season of seasons">{{season.season}}</option>
                     </select>
-                    <div *ngIf="submitted && formControls.season.errors" class="text-danger">
-                      <div *ngIf="formControls.season.errors.required">{{'Season is required'|translate}}</div>
-                    </div>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -85,53 +81,37 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                  <th scope="col"></th>
-                  <th scope="col">{{'Sr. No' | translate}}</th>
+                <th scope="col">{{'Sr. No' | translate}}</th>
                 <th scope="col">{{'Farmer Name'| translate}}</th>
                 <th scope="col">{{"Father's/ Husband's Name" | translate}}}</th>
                 <th scope="col">{{'Season'|translate}}</th>
                 <th scope="col">{{'Crop Name'| translate}}</th>
                 <th scope="col">{{'Variety'|translate}}</th>
                 <th scope="col">{{'Marketable Surplus (in Qt.)'|translate}}</th>
-                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let p of production | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
                 <td>
-                  <input type="checkbox">
-                </td>
-                <td>
                   {{ i + 1}}
                 </td>
                 <td>
-                 {{p.name}}
+                 {{p.farmer_name}}
                  </td>
                 <td>
-                  {{p.fatherName}}
+                  {{p.father_husband_name}}
                 </td>
                 <td>
-                  {{p.season}}
+                  {{p.season_name}}
                 </td>
                 <td>
-                  {{p.cropName}}
+                  {{p.crop_name}}
                 </td>
                 <td>
-                  {{p.cropVariety}}
+                  {{p.crop_veriety}}
                 </td>
                 <td>
-                  {{p.markatableSurplus}}
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      {{'Actions'|translate}}
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">{{'Edit'|translate}}</a>
-                      <a class="dropdown-item" href="javascript:void(0)">{{'Delete'|translate}}</a>
-                    </div>
-                  </div>
+                  {{p.marketable_surplus}}
                 </td>
               </tr>
             </tbody>

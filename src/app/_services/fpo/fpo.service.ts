@@ -199,7 +199,7 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   getFarmerWiseProductionReport(data){
-    return this.http.get<any>(this._url + 'marketablesurplus/getFarmerWiseProductionReport/', data).pipe(map((res: any) => {
+    return this.http.post<any>(this._url + 'farmerWiseProductionReport/getFarmerProductionReport', data).pipe(map((res: any) => {
       return res;
     }));
   }
