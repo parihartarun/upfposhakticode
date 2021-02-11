@@ -78,7 +78,7 @@ export class ComplaintsComponent implements OnInit {
     formData.append('title', this.complaintForm.value.title.comp_type_en);
     formData.append('issue_type', this.complaintForm.value.issueType);
     formData.append("master_id", localStorage.getItem('masterId'))
-    this.api.addComplaint(this.complaintForm.value,formData).subscribe(response => {
+    this.api.addComplaint(formData).subscribe(response => {
       if (response!= '') {
         this.toastr.success('Complaint Added Succefully.');
         this.submitted = false;
