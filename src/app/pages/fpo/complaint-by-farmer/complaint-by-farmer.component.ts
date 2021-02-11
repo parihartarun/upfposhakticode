@@ -29,6 +29,8 @@ export class ComplaintByFarmerComponent implements OnInit {
   isViewComplaint = false;
   roleType: any;
   users: any[];
+  fliterForm: FormGroup;
+  filterResponse: any[];
   viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', farmerId: '' }
   constructor(
     private formBuilder: FormBuilder,
@@ -46,13 +48,9 @@ export class ComplaintByFarmerComponent implements OnInit {
     this.api.getComplaints_Suggestions().subscribe(cs => {
       this.complaintsCatageriy = cs
     })
-    this.complaintForm = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      desc: ['', [Validators.required]],
-      filePath: [''],
-      uploadFile: [''],
-      issueType: ['', [Validators.required]],
-      masterId: localStorage.getItem('masterId'),
+    this.fliterForm = this.formBuilder.group({
+      complaint: ['New']
+
     });
     fpoId: localStorage.getItem('masterId')
     this.getComplaints();
@@ -62,7 +60,8 @@ export class ComplaintByFarmerComponent implements OnInit {
 
     this.api.getComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
-      this.complaints = response;
+      this.filterResponse = response
+      this.complaints = this.filterResponse.filter(f => !f.status || f.status=='OPEN');
     });
 
   }
@@ -71,44 +70,7 @@ export class ComplaintByFarmerComponent implements OnInit {
   get formControls() {
     return this.complaintForm.controls;
   }
-  upload(files: FileList) {
-    this.fileToUpload = files.item(0);
-    //if (!this.validateFile(files[0].name)) {
-    //  this.checkfileFormat = true;
-    //  this.myInputVariable.nativeElement.value = "";
-    //  return;
-    //}
-    //else {
-
-    //  this.checkfileFormat = false;
-    //}
-  }
-
-  selectComplaint(complaint) {
-    this.complaintForm.controls['title'].setValue(this.complaintsCatageriy[parseInt(complaint.currentTarget.value)]);
-    this.complaintForm.controls['issueType'].setValue(parseInt(complaint.currentTarget.value));
-
-  }
-  validateFile(name: String) {
-    var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj" || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-  deleteCompliant(complaint) {
-    this.api.deleteCompliant(complaint.id).subscribe(response => {
-      if (response != '') {
-        this.toastr.success('Delete successfully');
-        this.getComplaints();
-      } else {
-        this.toastr.error('Error! While Add complaint.');
-      }
-    });
-  }
- 
+  
   updateSatus(viewComp) {
     this.submitted = true;
     // stop here if form is invalid
@@ -162,7 +124,13 @@ export class ComplaintByFarmerComponent implements OnInit {
 
     });
   }
+  filterComaplaint(isPerRegistration: any) {
+    if (this.fliterForm.controls['complaint'].value === "New") {
+      this.complaints = this.filterResponse.filter(f => !f.status || f.status == 'OPEN');
+    } else {
+      this.complaints = this.filterResponse.filter(f => f.status );
 
+    }
+  }
 }
-
 
