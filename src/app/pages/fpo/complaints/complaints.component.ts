@@ -80,7 +80,7 @@ export class ComplaintsComponent implements OnInit {
     formData.append('description', this.complaintForm.value.desc);
     formData.append('title', this.complaintForm.value.title.comp_type_en);
     formData.append('issue_type', this.complaintForm.value.issueType);
-    formData.append("farmer_id", localStorage.getItem('masterId'))
+    formData.append("fpo_id", localStorage.getItem('masterId'))
     this.api.addComplaint(formData).subscribe(response => {
       if (response!= '') {
         this.toastr.success('Complaint Added Succefully.');
@@ -154,18 +154,18 @@ export class ComplaintsComponent implements OnInit {
       return;
     }
     delete this.complaintStatusForm.value.appointmentDate;
-    this.api.updateComplaint(this.complaintStatusForm.value).subscribe(response => {
-      console.log(response);
-      if (response.id != '') {
-        this.toastr.success('complians successfully.');
-        this.submitted = false;
-        this.edit = false;
-        this.complaintForm.reset();
-      } else {
-        this.toastr.error('Error! While Updating License.');
-      }
-      this.getComplaints();
-    });
+    //this.api.updateComplaint(this.complaintStatusForm.value).subscribe(response => {
+    //  console.log(response);
+    //  if (response.id != '') {
+    //    this.toastr.success('complians successfully.');
+    //    this.submitted = false;
+    //    this.edit = false;
+    //    this.complaintForm.reset();
+    //  } else {
+    //    this.toastr.error('Error! While Updating License.');
+    //  }
+    //  this.getComplaints();
+    //});
   }
   /* Return true or false if it is the selected */
   compareByOptionId(idFist, idSecond) {

@@ -22,7 +22,7 @@
           </div>
         </div>
         <hr class="m-0">
-        <div class="card-body">
+        <!--<div class="card-body">
           <div class="row">
 
             <div class="col-4 mb-4">
@@ -46,7 +46,7 @@
 
           </div>
         </div>
-        <hr class="m-0">
+        <hr class="m-0">-->
         <div class="card-body" *ngIf="viewComp">
           <div class="row">
             <div class="col-12 mb-4">
@@ -163,7 +163,7 @@
                       <select class="form-control" formControlName="status">
                         <option value="">{{'Select Status'|translate}}</option>
                         <option value="OPEN">{{'Open'|translate}}</option>
-                        <option value="ASSOGNED">{{'Assigned'|translate}}</option>
+                        <option value="ASSIGNED">{{'Assigned'|translate}}</option>
                         <option value="RESOLVED">{{'Resolved'|translate}} </option>
                       </select>
                       <div *ngIf="submitted && formControls.status.errors" class="text-danger">

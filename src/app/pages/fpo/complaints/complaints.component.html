@@ -22,7 +22,7 @@
           </div>
         </div>
         <hr class="m-0">
-        <div class="card-body" >
+        <!--<div class="card-body" >
           <div class="row">
 
             <div class="col-4 mb-4">
@@ -46,7 +46,7 @@
 
           </div>
         </div>
-          <hr class="m-0">
+          <hr class="m-0">-->
           <div class="card-body" *ngIf="viewComp">
             <div class="row">
               <div class="col-12 mb-4">
@@ -218,8 +218,8 @@
                       <option *ngFor="let cc of complaintsCatageriy" [value]="cc.comp_type_id">{{cc.comp_type_en}}</option>
 
                     </select>
-                    <div *ngIf="submitted && formControls.title.errors" class="text-danger">
-                      <div *ngIf="formControls.title.errors.required">{{'Category is required' | translate}}</div>
+                    <div *ngIf="submitted && formControls.issueType.errors" class="text-danger">
+                      <div *ngIf="formControls.issueType.errors.required">{{'Category is required' | translate}}</div>
                     </div>
                   </div>
                 </div>

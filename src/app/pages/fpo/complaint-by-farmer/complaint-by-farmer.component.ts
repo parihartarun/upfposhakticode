@@ -58,7 +58,7 @@ export class ComplaintByFarmerComponent implements OnInit {
 
   getComplaints() {
 
-    this.api.getComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
+    this.api.getComplaintsFpoFarmer(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.filterResponse = response
       this.complaints = this.filterResponse.filter(f => !f.status || f.status=='OPEN');
@@ -68,7 +68,7 @@ export class ComplaintByFarmerComponent implements OnInit {
 
 
   get formControls() {
-    return this.complaintForm.controls;
+    return this.complaintStatusForm.controls;
   }
   
   updateSatus(viewComp) {
@@ -78,13 +78,20 @@ export class ComplaintByFarmerComponent implements OnInit {
       return;
     }
     delete this.complaintStatusForm.value.appointmentDate;
-    this.api.updateComplaint(this.complaintStatusForm.value).subscribe(response => {
+    const formData: FormData = new FormData();
+ 
+    formData.append('id', this.complaintStatusForm.value.id);
+    formData.append('assign_to', this.complaintStatusForm.value.assign_to);
+    formData.append('comment', this.complaintStatusForm.value.comment);
+    formData.append('status', this.complaintStatusForm.value.status);
+ 
+    this.api.updateComplaint(this.complaintStatusForm.value, formData).subscribe(response => {
       console.log(response);
       if (response.id != '') {
         this.toastr.success('complians successfully.');
         this.submitted = false;
         this.edit = false;
-        this.complaintForm.reset();
+        this.complaintStatusForm.reset();
       } else {
         this.toastr.error('Error! While Updating License.');
       }

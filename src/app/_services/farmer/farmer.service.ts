@@ -63,12 +63,12 @@ export class FarmerService {
     }));
   }
   getCHCComplaints(masterId) {
-    return this.http.get<any>(this._url + 'complaint/' + masterId).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'fpocomplaint/chcfmb/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }
   getInputComplaints(masterId) {
-    return this.http.get<any>(this._url + 'complaint/' + masterId).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'fpocomplaint/inputsupplier/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }

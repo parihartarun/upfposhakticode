@@ -43,7 +43,9 @@ export class FarmerComplaintsComponent implements OnInit {
     })
     this.farmerService.getFarmerProfileByUsername(localStorage.getItem('masterId')).subscribe(data => {
       console.log(data);
-      this.fpoId = data.fpoRefId
+      if (this.roleType == "ROLE_FARMER") {
+        this.fpoId = data.fpoRefId
+      }
       this.complaintForm = this.formBuilder.group({
         title: ['', [Validators.required]],
         desc: ['', [Validators.required]],
@@ -84,7 +86,7 @@ export class FarmerComplaintsComponent implements OnInit {
   }
   getInputComplaints() {
 
-    this.farmerService.getComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
+    this.farmerService.getInputComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.complaints = response;
     });
@@ -132,7 +134,7 @@ export class FarmerComplaintsComponent implements OnInit {
       });
     }
     if (this.roleType == "ROLE_CHCFMB") {
-      formData.append("chc_fmb_id ", localStorage.getItem('masterId'))
+      formData.append("chc_fmb_id", localStorage.getItem('masterId'))
       this.farmerService.addCHCComplaint(this.complaintForm.value, formData).subscribe(response => {
         if (response != '') {
           this.toastr.success('Complaint Added Succefully.');

@@ -126,8 +126,8 @@
                       <option *ngFor="let cc of complaintsCatageriy" [value]="cc.comp_type_id">{{cc.comp_type_en}}</option>
 
                     </select>
-                    <div *ngIf="submitted && formControls.title.errors" class="text-danger">
-                      <div *ngIf="formControls.title.errors.required">{{'Category is required' | translate}}</div>
+                    <div *ngIf="submitted && formControls.issueType.errors" class="text-danger">
+                      <div *ngIf="formControls.issueType.errors.required">{{'Category is required' | translate}}</div>
                     </div>
                   </div>
                 </div>
@@ -198,10 +198,11 @@
               </tr>
             </thead>
             <tbody>
+             
               <tr *ngFor="let complaint of complaints | paginate: { itemsPerPage: 10, currentPage: p };index as i">
                 <!--<td>
-                  <input type="checkbox">
-                </td>-->
+      <input type="checkbox">
+    </td>-->
                 <td>
                   {{(p-1) * 10 + i + 1}}
                 </td>
