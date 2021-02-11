@@ -58,12 +58,12 @@ export class FarmerService {
     }));
   }
   getComplaints(masterId) {
-    return this.http.get<any>(this._url + 'complaint/getcomplaint/' + masterId).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'complaint/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }
   addComplaint(complaint:any,data: any) {
-    return this.http.post<any>(this._url + 'complaint?description=' + complaint.desc + '&issue_type=' + complaint.issueType + '&title='+complaint.comp_type_en, data).pipe(map((res: any) => {
+    return this.http.post<any>(this._url + 'complaint', data).pipe(map((res: any) => {
       return res;
     }));
   }
