@@ -43,8 +43,7 @@ export class AuthService {
     
     return this.http.get<any>(this._url + `api/v1/District/getDistrictsByStateId/${stateid}` ).pipe(map((res: any) => {
       return res;
-    }));
-  }
+    }));   }
   getCrops(): Observable<any>  {
     
     return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropDetails` ).pipe(map((res: any) => {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../_services/auth/auth.service';
@@ -14,11 +14,11 @@ export class LoginModelPopupComponent implements OnInit {
   submitted = false;
   userRole: any;
   @Output() logout = new EventEmitter<string>();
+  @Input() fpoid:string;
   constructor(
     private formBuilder: FormBuilder,
     private api: AuthService,
     private route: Router,
-
   ) { }
 
   ngOnInit() {
@@ -39,6 +39,7 @@ export class LoginModelPopupComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    
     this.api.userLogin(this.loginForm.value).subscribe(response => {
       console.log(response);
       if (response.accessToken != '') {
@@ -47,7 +48,7 @@ export class LoginModelPopupComponent implements OnInit {
         localStorage.setItem('username', response.user.userName);
         localStorage.setItem('userRole', response.userRole);
         this.userRole = localStorage.getItem('userRole');
-        this.logout.emit();
+        this.logout.emit(""+this.fpoid);
         //if (this.userRole == 'ROLE_FPC') {
         //  this.route.navigate(['/fpo/dashboard']);
         //} else if (this.userRole == 'ROLE_MIN') {

@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
@@ -15,13 +15,15 @@ import { ProductService } from '../../_services/product/product.service';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements AfterViewInit,OnInit {
   isLoggeIn = false;
+  currentfpoid:number;
   submitted = false;
   title = 'appBootstrap';  
   loading:boolean=false;
   closeResult: string;
   serachProduct: [];
+  dummysearchval:string=''
   routerParameter = '';
   selectedfilters :Array<{name:string,type:string}>=[]
   selecteddists:Array<string>=[];
@@ -32,9 +34,9 @@ export class ProductsListComponent implements OnInit {
   searchCriteria: Array<any> = [];
   fpoDetail:any
   quantities:Array<{selected:boolean,minname:string,maxname:string,name:string,type:string,quantity:number,maxQuantity:number}> = [
-    { selected:false,minname:"0",maxname:"99",name:"100", type:"qty",quantity: 100, maxQuantity: 0 }, 
-    { selected:false, minname:"100",maxname:"199",name:"200", type:"qty",quantity: 200, maxQuantity: 0 },
-    { selected:false, minname:"200",maxname:"299",name:"300", type:"qty",quantity: 300, maxQuantity: 0 },
+    { selected:false,minname:"zerotonintynine",maxname:"99",name:"100", type:"qty",quantity: 100, maxQuantity: 0 }, 
+    { selected:false, minname:"hundredtohundrednintynine",maxname:"199",name:"200", type:"qty",quantity: 200, maxQuantity: 0 },
+    { selected:false, minname:"morethan200",maxname:"200",name:"300", type:"qty",quantity: 300, maxQuantity: 0 },
   ]
 
 
@@ -84,17 +86,25 @@ config:any = {
       },
     ]
   };
+  treeloaded: boolean=false;
 
   onSelectedChange($event)
   {
-console.log("Selected Change Event Called  = "+JSON.stringify($event));
+    if(this.treeloaded)
+{
+  console.log("Selected Change Event Called  = "+JSON.stringify($event));
 this.selectedfilters = this.selectedfilters.filter(elem=>elem.type!="crop");
 $event.forEach(element => {
   this.selectedfilters.push({name:element,type:"crop"});  
 });
-
-
 this.searchWithFilters();
+}
+if(!this.treeloaded)
+{
+  this.treeloaded=true;
+}
+//this.treeloaded == false?true:true;
+console.log("Tree loaded status = "+this.treeloaded)
 
 }
 onFilterChange($event)
@@ -115,11 +125,15 @@ onFilterChange($event)
   
   constructor(private modalService: NgbModal, private _rouetr: Router, private _productService: ProductService, private _activatedroute: ActivatedRoute,
     private api: AuthService, private _fpoService: FpoService, private fb: FormBuilder, private datePipe: DatePipe, private toastr: ToastrService) { }
+  ngAfterViewInit(): void {
+   this.treeloaded=false;
+  }
     
   open(event, content, item):any {
-    
+    this.currentfpoid = item.id;
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
+      
       this._fpoService.getfpoDetialById(item.id).subscribe(f => {
         this.fpoDetail = f;
         this.createIndentForm(item);
@@ -210,6 +224,7 @@ console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows =
     this._activatedroute.paramMap.subscribe(params => {
       let val = params.get('val');
       let searchType = params.get('searchType');
+      this.dummysearchval = params.get('val'); 
    this.parval = params.get('val');
    this.parsearchType = params.get('searchType');   
       this.loading=true;
@@ -237,23 +252,26 @@ console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows =
 
   newSearchWithFilters()
   {
-    let httpParams:HttpParams = new HttpParams();     
-      httpParams = httpParams.append("in",""+this.parsearchType);
-      httpParams = httpParams.append("val",""+this.topsearchval);
-      this.selectedfilters.forEach(data=>{
+    this.parval = this.dummysearchval;
+    // let httpParams:HttpParams = new HttpParams();     
+    //   httpParams = httpParams.append("in",""+this.parsearchType);
+    //   httpParams = httpParams.append("val",""+this.topsearchval);
+    //   this.selectedfilters.forEach(data=>{
         
-        httpParams = data.type=="district"? httpParams.append("filterdist",""+data.name):httpParams.append("filterqty",""+data.name);
-      });
+    //     httpParams = data.type=="district"? httpParams.append("filterdist",""+data.name):httpParams.append("filterqty",""+data.name);
+      
+      
+    //   });
         
   
-      this.serachProduct=[];
-      this.loading=true;
-      this._productService.getSearchProductWithFilters(this.parval, this.parsearchType,httpParams).subscribe(s => {
-        this.serachProduct = s;
-        this.topsearchval = undefined      
-        this.loading = false;
-      });
-  
+      // this.serachProduct=[];
+      // this.loading=true;
+      // this._productService.getSearchProductWithFilters(this.parval, this.parsearchType,httpParams).subscribe(s => {
+      //   this.serachProduct = s;
+      //   this.topsearchval = undefined      
+      //   this.loading = false;
+      // });
+      this.searchWithFilters();  
     }     
 
 searchWithFilters()
@@ -325,12 +343,21 @@ searchWithFilters()
     this.searchWithFilters();
   }
   logout() {
-    this.modalService.dismissAll();
+    console.log("Fpo Id caught = "+this.currentfpoid)
+    this.isLoggeIn = true;
+    //this.modalService.dismissAll();
+    this.isLoggeIn = true;
+    this._fpoService.getfpoDetialById(this.currentfpoid).subscribe(f => {
+      this.fpoDetail = f;
+      this.createIndentForm(f);
+     
+    })
   }
   createIndentForm(item) {
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
       cropId: [item.cropid],
+      fpoDeliveryAddress:["", Validators.required],
       userId: [this.fpoDetail.userFpo.userId, Validators.required],
       fpoName: [this.fpoDetail.fpoName],
       fpoEmail: [this.fpoDetail.fpoEmail],
@@ -379,18 +406,19 @@ searchWithFilters()
     this._productService.saveIndent(this.indentForm.value).subscribe(response => {
 
       if (response.message == "Enquiry created Successfully!") {
-        this.toastr.success(response.message);
+        //this.toastr.success(response.message);
         this.indentForm.reset();
         this.submitted = false;
         this.modalService.dismissAll();
       }
       else {
-        this.toastr.error(response.message);
+        //this.toastr.error(response.message);
       }
 
     })
   }
 }
+
 interface District {
   id: number;
   district_name: string;

@@ -436,6 +436,11 @@
   "Photos of FPO": "Photos of FPO",
   "Select Complaint/Suggestions": "Select Complaint/Suggestions",
   "Indent": "Indent",
+  "createindent":"Create Indent",
+  "filters":"Filters",
+  "nofiltersselected":" list is empty.",
+"noitemsfound":"No items found..",
+"searchplaceholder":"Type here for search...",
   "Select farmer": "Select farmer",
   "Select Ownership": "Select Ownership",
   "Pre-FPO Registration": "Pre-FPO Registratio",
@@ -468,4 +473,12 @@
   "DESCRIPTION": "DESCRIPTION",  
   "createindent":"Create Indent"
 
+  "DESCRIPTION": "DESCRIPTION",
+  "zerotonintynine" : "0 - 99 (quintal)",
+  "hundredtohundrednintynine":"100 - 199 (quintal)",
+  "morethan200":"More than 200 (quintal)",
+  "enterfpodeliveryaddr":"Please enter delivery Address.",  
+  "fpodeliveryaddr":"Delivery Address.",
+  "deleiveryrequired":"Delivery address is required.",
+  "Indent Form":"Indent Form"
 }
