@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../_services/auth/auth.service';
 import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 import { UserService } from '../../../_services/user/user.service';
@@ -30,12 +31,13 @@ export class DepartmentComplaintsComponent implements OnInit {
     private route: Router,
     private toastr: ToastrService,
     private userService: UserService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
-    //this.userService.getAllUser().subscribe(u => {
-    //  this.users=u
-    //})
+    this.authService.getDeptmentUser().subscribe(u => {
+      this.users=u
+    })
 
     this.complaintForm = this.formBuilder.group({
       appointment: ['', [Validators.required]],

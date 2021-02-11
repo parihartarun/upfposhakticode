@@ -26,6 +26,7 @@ export class FarmerComplaintsComponent implements OnInit {
   fileToUpload: File = null;
   isViewComplaint = false;
   roleType: any;
+  fpoId: any;
   viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', }
   constructor(
     private formBuilder: FormBuilder,
@@ -36,12 +37,15 @@ export class FarmerComplaintsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.roleType = localStorage.getItem('userRole')
     this.api.getComplaints_Suggestions().subscribe(cs => {
       this.complaintsCatageriy = cs
     })
     this.farmerService.getFarmerProfileByUsername(localStorage.getItem('masterId')).subscribe(data => {
       console.log(data);
+      if (this.roleType == "ROLE_FARMER") {
+        this.fpoId = data.fpoRefId
+      }
       this.complaintForm = this.formBuilder.group({
         title: ['', [Validators.required]],
         desc: ['', [Validators.required]],
@@ -54,13 +58,35 @@ export class FarmerComplaintsComponent implements OnInit {
 
       })
     })
-   
-    this.getComplaints();
+    if (this.roleType == "ROLE_FARMER") {
+      this.getComplaints();
+    }
+    if (this.roleType == "ROLE_INPUTSUPPLIER") {
+      this.getInputComplaints();
+    }
+    if (this.roleType == "ROLE_CHCFMB") { }
+    this.getCHCComplaints();
   }
 
   getComplaints() {
 
     this.farmerService.getComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
+      console.log(response);
+      this.complaints = response;
+    });
+
+  }
+  getCHCComplaints() {
+
+    this.farmerService.getCHCComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
+      console.log(response);
+      this.complaints = response;
+    });
+
+  }
+  getInputComplaints() {
+
+    this.farmerService.getInputComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.complaints = response;
     });
@@ -78,18 +104,51 @@ export class FarmerComplaintsComponent implements OnInit {
     formData.append('description', this.complaintForm.value.desc);
     formData.append('title', this.complaintForm.value.title.comp_type_en);
     formData.append('issue_type', this.complaintForm.value.issueType);
-    formData.append("masterId", localStorage.getItem('masterId'))
-    this.api.addComplaint(formData).subscribe(response => {
-      if (response != '') {
-        this.toastr.success('Complaint Added Succefully.');
-        this.submitted = false;
-        this.edit = false;
-        this.complaintForm.reset();
-        this.getComplaints();
-      } else {
-        this.toastr.error('Error! While Add complaint.');
-      }
-    });
+    if (this.roleType == "ROLE_FARMER") {
+      formData.append("farmer_id", localStorage.getItem('masterId'))
+      formData.append("fpo_id ", this.fpoId)
+      this.farmerService.addComplaint(this.complaintForm.value, formData).subscribe(response => {
+        if (response != '') {
+          this.toastr.success('Complaint Added Succefully.');
+          this.submitted = false;
+          this.edit = false;
+          this.complaintForm.reset();
+          this.getComplaints();
+        } else {
+          this.toastr.error('Error! While Add complaint.');
+        }
+      });
+    }
+    if (this.roleType == "ROLE_INPUTSUPPLIER") {
+      formData.append("supplier_id", localStorage.getItem('masterId'))
+      this.farmerService.addInputComplaint(this.complaintForm.value, formData).subscribe(response => {
+        if (response != '') {
+          this.toastr.success('Complaint Added Succefully.');
+          this.submitted = false;
+          this.edit = false;
+          this.complaintForm.reset();
+          this.getInputComplaints();
+        } else {
+          this.toastr.error('Error! While Add complaint.');
+        }
+      });
+    }
+    if (this.roleType == "ROLE_CHCFMB") {
+      formData.append("chc_fmb_id", localStorage.getItem('masterId'))
+      this.farmerService.addCHCComplaint(this.complaintForm.value, formData).subscribe(response => {
+        if (response != '') {
+          this.toastr.success('Complaint Added Succefully.');
+          this.submitted = false;
+          this.edit = false;
+          this.complaintForm.reset();
+          this.getCHCComplaints();
+        } else {
+          this.toastr.error('Error! While Add complaint.');
+        }
+      });
+    }
+
+    
   }
 
   get formControls() {

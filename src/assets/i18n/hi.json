@@ -191,7 +191,7 @@
   "Complaint/ Suggestion Date": "शिकायत / सुझाव तिथि",
   "Status of Complaint/ Suggestion (As per Department)": "शिकायत की स्थिति / सुझाव (विभाग के अनुसार)",
   "Current Status": "वर्तमान स्थिति",
-  "Assigned To": "Assigned To",
+  "Assigned To": "नियुक्त किया",
   "Date of Assigning": "नियत करने की तिथि",
   "Department's Remarks": "विभाग की टिप्पणी",
   "Complaints/ Suggestions Category": "शिकायतें / सुझाव श्रेणी",
@@ -472,6 +472,14 @@
   "Details of Complainant/ Suggestion provider": "शिकायतकर्ता / सुझाव प्रदाता का विवरण",
   "Complaints / Complaints Status of suggestion": "शिकायत / सुझाव की स्थिति",
   "User Management": "उपयोगकर्ता की सक्रियता",
+  "All-Users": " सभी-उपयोगकर्ता",
+  "fpo's Remarks": "एफपीओ की टिप्पणी",
+  "Complaints/SuggestionsByFarmer": "शिकायतें / सुझाव किसान द्वारा",
+  "status": "स्थिति",
+  "New Compliant": "नया शिकायतें",
+  "All Complaint": "सब शिकायतें",
+
+
   "All-Users": " सभी-उपयोगकर्ता", 
   "createindent": "इंडेंट किजिये",
   "zerotonintynine" : "० - ९९ (क्विंटल)",
