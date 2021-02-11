@@ -89,8 +89,8 @@ export class RegisterComponent implements OnInit {
     //  })
   }
   selectRegister(selectRegisterForm: any) {   
-    this.selectRegisterForm = selectRegisterForm.currentTarget.value
-    this.registerForm.controls['selectFormValue'].setValue(selectRegisterForm.currentTarget.value);
+    this.selectRegisterForm = selectRegisterForm
+    this.registerForm.controls['selectFormValue'].setValue(selectRegisterForm);
   }
 
 }
