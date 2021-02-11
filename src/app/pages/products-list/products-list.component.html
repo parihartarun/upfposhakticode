@@ -1,8 +1,8 @@
  <!-- Full Page Image Header with Vertically Centered Content -->
 <div class="title">
-  <ol class="breadcrumb mb-0">
-    <li><a href="/home">{{'Home' | translate}}</a></li>
-    <li><a href="#"> / {{'Search' | translate}}</a></li>
+  <ol class="breadcrumb  mb-0">
+    <li><a class="mx-1 text-upfpo px-1" routerLink="">{{'Home' | translate}}</a> /</li>
+    <li><a class="mx-1 text-upfpo px-1" role="button"> {{'Search' | translate}} </a></li>
 
   </ol>
 </div>
@@ -501,7 +501,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <app-login-model-popup (logout)="logout()"></app-login-model-popup>
+          <app-login-model-popup  (logout)="logout()"></app-login-model-popup>
         </div>
       </div>
 
