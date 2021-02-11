@@ -81,7 +81,8 @@ export class DepartmentService {
     })
   }
   uploadGuideline(data) {
-    this.http.post<any>(this._url + 'fpoguidelines', { ...data }).subscribe((res: any) => {
+    console.log('uploadFPOGuideline', data);
+    this.http.post<any>(this._url + 'fpoguidelines/uploadFPOGuideline', { ...data }).subscribe((res: any) => {
       if (res) {
         this.getGuideline();
       }

@@ -26,8 +26,6 @@ export class DepartmentGuidelineComponent implements OnInit {
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
     console.log(' this.fileToUpload', this.fileToUpload);
-    
-
   }
   addGuideline() {
     this.guidelineForm.markAllAsTouched();
@@ -40,6 +38,11 @@ export class DepartmentGuidelineComponent implements OnInit {
         guideline_type: this.guidelineForm.value.guideline_type
       })
     }
+  }
+  editGuideline(data) {
+    this.guidelineForm.get('guideline_type').patchValue(data.fpoGuidelineType)
+    this.guidelineForm.get('description').patchValue(data.description)
+    this.guidelineForm.get('document').patchValue(data.fileName)
   }
   get typeValidation() { return this.guidelineForm.get('guideline_type'); }
   get descValidation() { return this.guidelineForm.get('description'); }

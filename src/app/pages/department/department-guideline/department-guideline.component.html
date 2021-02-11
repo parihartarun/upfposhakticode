@@ -27,9 +27,9 @@
                                             class="custom-control custom-select mb-1">
                                             <option value="null" disabled>
                                                 {{'Select Guideline Type' | translate}}</option>
-                                            <option value="'PREREGISTRATION'">
+                                            <option [value]="'PREREGISTRATION'">
                                                 {{'Pre-PFO Registration' | translate}}</option>
-                                            <option value="'POSTREGISTRATION'">
+                                            <option [value]="'POSTREGISTRATION'">
                                                 {{'Post-PFO Registration' | translate}}</option>
                                         </select>
                                         <div *ngIf="typeValidation.invalid && (typeValidation.dirty || typeValidation.touched)"
@@ -136,7 +136,7 @@
                                             {{'Actions' | translate}}
                                         </a>
                                         <div ngbDropdownMenu class=" dropdown-menu-center dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="javascript:void(0)">{{'Edit' |
+                                            <a class="dropdown-item" (click)="editGuideline(p)">{{'Edit' |
                                                 translate}}</a>
                                             <a class="dropdown-item" href="javascript:void(0)">{{'Delete' |
                                                 translate}}</a>
