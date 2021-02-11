@@ -11,7 +11,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Production Report</h3>
+              <h3 class="mb-0">{{'Production Report' | translate}}</h3>
             </div>
           </div>
         </div>
@@ -21,8 +21,8 @@
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Financial year</label>
-                    <select formControlName="financial_year" class="custom-control custom-select mb-3" (change)="selectFinancialYear($event)">
+                    <label class="form-control-label" for="input-last-name">{{'Financial year' | translate}}</label>
+                    <select formControlName="finYear" class="custom-control custom-select mb-3" (change)="selectFinancialYear($event)">
                       <option value="{{getCurrentFinancialYear()}}">{{this.getCurrentFinancialYear()}}</option>
                       
                     </select>
@@ -30,24 +30,22 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Season</label>
-                    <select formControlName="season" class="custom-control custom-select mb-3">                    
-                      <option value="0">All Seasons</option>
-                      <option value="1">Rabi</option>
-                      <option value="2">Kharif</option>
-                      <option value="3">Zayad</option>
+                    <label class="form-control-label" for="input-last-name">{{'Season' |translate}}</label>
+                    <select formControlName="seasonId" class="custom-control custom-select mb-3" (change)="selectSeason($event)">                    
+                      <option value="">{{'Select Season' | translate}}</option>
+                      <option *ngFor="let season of seasons" [value]="season.seasonId">{{season.season}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="input-label">District </label>
+                    <label class="form-control-label">{{'District' | translate}} </label>
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
                         <span class="input-group-text"></span>
                       </div>
-                      <select class="form-control" formControlName="districtRefId" (change)="selectDistrict($event)">
-                        <option value="">Select District</option>
+                      <select class="form-control" formControlName="distId" (change)="selectDistrict($event)">
+                        <option value="">{{'Select District' | translate}}</option>
                         <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
                       </select>
                     </div>
@@ -56,16 +54,16 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Crops</label>
-                    <select formControlName="cropRefId" class="custom-control custom-select mb-3">
-                      <option value="">Select Crops</option>
-                      <option *ngFor="let crop of crops" [value]="crop">{{crop}}</option>
+                    <label class="form-control-label" for="input-last-name">{{'Crops' | translate}}</label>
+                    <select formControlName="cropId"  (change)="selectCrops($event)" class="custom-control custom-select mb-3">
+                      <option value="">{{'Select Crops' | translate}}</option>
+                      <option *ngFor="let crop of crops" [value]="crop.cropId">{{crop.cropName}}</option>
                     </select>
                   </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4"> 
                   <div class="form-group mt-4">
-                    <button class="btn btn-primary mt-2 text-right" (click)="viewReport()">View Reports</button>
+                    <button class="btn btn-primary mt-2 text-right" [disabled]="productionReportForm.invalid" (click)="viewReport()">{{'View Reports' | translate}}</button>
                   </div>
                 </div>
               </div>
@@ -82,8 +80,8 @@
   <!-- Table -->
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary text-right mb-2">Export PDF</button>
-      <button class="btn btn-warning text-right mb-2">Export Excel</button>
+      <button class="btn btn-primary text-right mb-2">{{'Export PDF' | translate}}</button>
+      <button class="btn btn-warning text-right mb-2">{{'Export Excel' | translate}}</button>
     </div>
   </div>
   <div class="row">
@@ -92,7 +90,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Production Data</h3>
+              <h3 class="mb-0">{{'Production Data' | translate}}</h3>
             </div>
             <!-- <div class="col-3 text-right">
               <button class="btn btn-primary text-right">Add Member</button>
@@ -103,46 +101,47 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">District</th>
-                <th scope="col">FPO Name</th>
-                <th scope="col">FPO Address</th>
-                <th scope="col">FPO Contact</th>
-                <th scope="col">Crop Name</th>
-                <th scope="col">Crop variety</th>
-                <th scope="col">Total Farmers</th>
-                <th scope="col">Estimated Production (in Qt.)</th>
-                <th scope="col">Actual Production (in Qt.)</th>
+                <th scope="col">{{'District' | translate}}</th>
+                <th scope="col">{{'FPO Name' |translate}}</th>
+                <th scope="col">{{'FPO Office Address' | translate}}</th>
+                <th scope="col">{{'FPO Contact No' | translate}}</th>
+                <th scope="col">{{'Crop Name' | translate}}</th>
+                <th scope="col">{{'Crop variety' | translate}}</th>
+                <th scope="col">{{'Total Farmers' | translate}}</th>
+                <th scope="col">{{'Estimated Production (in Qt.)' | translate}}</th>
+                <th scope="col">{{'Actual Production (in Qt.)' | translate}}</th>
                
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let p of production | paginate: { itemsPerPage: 10, currentPage: p }">
+              <tr *ngFor="let p of reportData | paginate: { itemsPerPage: 10, currentPage: p }">
+               
                 <td>
-                  {{p.district}}
+                  {{p.district_name}}
                 </td>
                 <td>
-                  {{p.fpoName}}
+                  {{p.fpo_name}}
                 </td>
                 <td>
-                  {{p.fpoAddress}}
+                  {{p.fpo_address}}
                 </td>
                 <td>
-                  {{p.fpoContact}}
+                  {{p.fpo_landline}}
                 </td>
                 <td>
-                  {{p.cropName}}
+                  {{p.crop_name}}
                 </td>
                 <td>
-                  {{p.cropVariety}}
+                  {{p.crop_veriety}}
                 </td>
                 <td>
-                  {{p.totalFarmers}}
+                  {{p.total_farmers}}
                 </td>
                 <td>
-                  {{p.estimatedProduction}}
+                  {{p.estimated_production}}
                 </td>
                 <td>
-                  {{p.actualProduction}}
+                  {{p.actual_production}}
                 </td>
                 <!--<td class="text-right">
                   <div ngbDropdown placement="bottom-right">

@@ -19,8 +19,6 @@ import { DepartmentUserManagementComponent } from '../../pages/department/depart
 
 import { DepartmentUplaodCircularComponent } from '../../pages/department/department-uplaod-circular/department-uplaod-circular.component';
 import { DepartmentReportComponent } from '../../pages/department/department-report/department-report.component';
-import { DepartmentProductionReportComponent } from '../../pages/department/department-production-report/department-production-report.component';
-import { DepartmentSalesReportComponent } from '../../pages/department/department-sales-report/department-sales-report.component';
 import { DepartmentCircularsComponent } from '../../pages/department/department-circulars/department-circulars.component';
 
 @NgModule({
@@ -37,10 +35,7 @@ import { DepartmentCircularsComponent } from '../../pages/department/department-
   declarations: [
     
     DepartmentDashboardComponent,
-    DepartmentSalesReportComponent,
     DepartmentCircularsComponent,
-    DepartmentSalesReportComponent,
-    DepartmentProductionReportComponent,
     DepartmentReportComponent ,  
     DepartmentUplaodCircularComponent,
    

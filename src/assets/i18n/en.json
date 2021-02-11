@@ -476,5 +476,10 @@
   "enterfpodeliveryaddr":"Please enter delivery Address.",  
   "fpodeliveryaddr":"Delivery Address.",
   "deleiveryrequired":"Delivery address is required.",
-  "Indent Form":"Indent Form"
+  "Indent Form":"Indent Form",
+  "Estimated Production (in Qt.)" : "Estimated Production (in Qt.)",
+  "Sales Data" : "Sales Data",
+  "Select District" : "Select District",
+  "Select Crops" : "Select Crops"
+
 }

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../_services/auth/auth.service';
 import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-department-production-report',
@@ -12,99 +14,63 @@ import { FpoService } from '../../../_services/fpo/fpo.service';
 })
 export class DepartmentProductionReportComponent implements OnInit {
 
-  
+
   submitted = false;
   production: Array<any> = [];
   p: number = 1;
   districts = [];
   crops = [];
+  seasons= [];
+  reportData;
+  stateID = 9;
+
   productionReportForm: FormGroup;
   financialYear = [];
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
     private route: Router,
-    private authServie: AuthService
+    private authServie: AuthService,
+    private toastr:ToastrService
   ) { }
 
   ngOnInit(): void {
-    this.authServie.getDistrict().subscribe(d => {
+    this.authServie.getDistrictBystateId(this.stateID).subscribe(d => {
       this.districts = d
-    })
-    this.api.getCrops().subscribe(c => {
-      this.crops = c
-    })
-    
+    });
+
+    this.api.getSeason().subscribe(s=>{
+      this.seasons = s;
+    });
+
     this.productionReportForm = this.formBuilder.group({
-      districtRefId: [''],
-      financial_year: [''],
-      season: [''],
-      cropRefId: [''],      
-      masterId: localStorage.getItem('masterId'),
+      finYear: ['',Validators.required],
+      distId: ['',Validators.required],
+      cropId: ['', Validators.required],
+      seasonId: ['', Validators.required]
+      // masterId: localStorage.getItem('masterId'),
 
     });
     fpoId: localStorage.getItem('masterId')
-    this.getProduction();
+    // this.getProduction();
   }
-
-  getProduction() {
-    this.production = [
-      {
-        district:"Agra",
-        FpoName: 'food.com',
-        fpoAddress: 'pune',
-        fpoContact: '8275518800',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        totalFarmers: "12",
-        estimatedProduction: '23',
-        actualProduction:'12'
-      },
-      {
-        district: "Agra",
-        FpoName: 'food.com',
-        fpoAddress: 'pune',
-        fpoContact: '8275518800',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        totalFarmers: "12",
-        estimatedProduction: '23',
-        actualProduction: '12'
-      },
-      {
-        district: "Agra",
-        FpoName: 'food.com',
-        fpoAddress: 'pune',
-        fpoContact: '8275518800',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        totalFarmers: "12",
-        estimatedProduction: '23',
-        actualProduction: '12'
-      },
-      {
-        district: "Agra",
-        FpoName: 'food.com',
-        fpoAddress: 'pune',
-        fpoContact: '8275518800',
-        cropName: 'Carrot',
-        cropVariety: 'variety 1',
-        totalFarmers: "12",
-        estimatedProduction: '23',
-        actualProduction: '12'
-      }
-    ]
-   
-  }
-
-  
 
   get formControls() {
     return this.productionReportForm.controls;
   }
-  viewReport() { }
+
+  viewReport() { 
+    this.api.departViewReport(this.productionReportForm.value).subscribe(resp =>{
+      if(resp<=0){
+        this.toastr.error('data not available.');
+      }
+      this.reportData = resp;
+
+    });
+  }
+
   selectDistrict(districtId: any) {
-    this.productionReportForm.controls['districtRefId'].setValue(parseInt(districtId.currentTarget.value));
+    this.productionReportForm.controls['distId'].setValue(parseInt(districtId.currentTarget.value));
     
   }
   getCurrentFinancialYear() {
@@ -119,7 +85,20 @@ export class DepartmentProductionReportComponent implements OnInit {
     return fiscalyear
   }
   selectFinancialYear(year) {
-    this.productionReportForm.controls['financial_year'].setValue(year.currentTarget.value);
+    this.productionReportForm.controls['finYear'].setValue(year.currentTarget.value);
   }
+  selectCrops(crop){
+    this.productionReportForm.controls['cropId'].setValue(crop.currentTarget.value);
+  }
+
+  seasonIDD;
+  selectSeason(e){;
+    this.seasonIDD =  e.target.value;
+    this.api.getCrops(this.seasonIDD).subscribe(c => {
+      this.crops = c;
+    });
+  }
+
+  
 
 }
