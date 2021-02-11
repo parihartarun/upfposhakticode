@@ -131,6 +131,11 @@ export class CropProductionComponent implements OnInit {
     );
   }
 
+  resetForm(){
+    this.productionForm.reset();
+    this.submitted=false;
+  }
+
   editCropProduction(production){
     console.log(production);
     console.log(localStorage.getItem('userrole'));
