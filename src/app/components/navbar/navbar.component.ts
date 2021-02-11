@@ -20,23 +20,24 @@ export class NavbarComponent implements OnInit {
   userstring=""
   constructor(location: Location,  private element: ElementRef, private router: Router, public translate: TranslateService) {
     this.location = location;
-    translate.setDefaultLang('en');
-
-    // if(localStorage.getItem('language')){
-    //   translate.setDefaultLang(localStorage.getItem('language'));
-    // }else{
-    //   translate.setDefaultLang('hi');
-    // }
+    if(localStorage.getItem('language')){
+      translate.setDefaultLang(localStorage.getItem('language'));
+    }else{
+      translate.setDefaultLang('hi');
+    }
   }
 
   useLanguage(language: string) {
-
+    console.log(language);
     this.translate.use(language);
+    localStorage.setItem('language', language);
     this.toggleNavbar();
   }
+
   toggleNavbar() {
     this.isOpen = !this.isOpen;
   }
+
   ngOnInit() {
     console.log(localStorage.getItem('language'));
     this.userRole = localStorage.getItem('userRole');
