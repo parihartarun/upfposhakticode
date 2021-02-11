@@ -332,7 +332,7 @@
                   <div class="col-md-6 mb-2">
                     <div class="card-body p-0">
                       <!-- <h4 class="card-title">Marketable Surplus</h4> -->
-                      <p class="card-text" *ngIf="product.marketableSurplus">{{product.marketableSurplus}} (mt)</p>
+                      <p class="card-text" *ngIf="product.marketableSurplus">{{product.marketableSurplus}} {{'quintal' | translate }}</p>
                       <p class="card-text" *ngIf="!product.marketableSurplus">NA</p>
                     </div>
                   </div>
@@ -427,6 +427,7 @@
     </div>
 
     <ng-template #mymodal let-modal>
+      
       <div *ngIf="isLoggeIn">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
@@ -436,22 +437,32 @@
         </div>
         <div class="modal-body" *ngIf="indentForm">
           <form role="form" [formGroup]="indentForm">
+            <div class="row">
+            <div class="col-5 text-sm text-bold">{{'FPO Name'| translate}}:</div>
+            <div class="col-7 text-sm">{{fpoDetail.fpoName}}</div>
+            </div>
+            <div class="row">
+              <div class="col-5 text-sm text-bold">{{'FPO Email1'|translate}}:</div>
+              <div class="col-7 text-sm ">{{fpoDetail.fpoEmail}}</div>
+              </div>
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'FPO Name'| translate}}<span class="required">*</span></label>
+              
+               
+              <!-- <label class="form-control-label" for="input-username">{{'FPO Name'| translate}}<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
                 <input class="form-control" placeholder="Full Name" disabled type="text" formControlName="fpoName">
-              </div>
+              </div> -->
              
              
             </div>
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'FPO Email1'|translate}}<span class="required">*</span></label>
+               
+              <!-- <label class="form-control-label" for="input-username">{{'FPO Email1'|translate}}<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
                 <input class="form-control" placeholder="Email" disabled type="text"  formControlName="fpoEmail">
-              </div>
+              </div> -->
             
             </div>
-
             <div class="form-group mb-3">
               <label class="form-control-label" for="input-username">{{'Fulfilled Date'|translate}}<span class="required">*</span></label>
               <div class="input-group input-group-alternative">

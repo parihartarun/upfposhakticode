@@ -132,12 +132,10 @@ onFilterChange($event)
   open(event, content, item):any {
     this.currentfpoid = item.id;
     if (sessionStorage.getItem('accessToken') != null) {
-      this.isLoggeIn = true;
-      
+      this.isLoggeIn = true;      
       this._fpoService.getfpoDetialById(item.id).subscribe(f => {
         this.fpoDetail = f;
         this.createIndentForm(item);
-       
       })
      
       this.modalService.open(content, { ariaLabelledBy: item.id }).result.then((result) => {
@@ -233,8 +231,6 @@ console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows =
         this.loading=false;
       })
     });
-
-    
 
     this._activatedroute.queryParamMap.subscribe(params=>{
 

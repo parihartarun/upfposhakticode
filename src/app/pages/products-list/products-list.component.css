@@ -11,6 +11,14 @@
       float: left;
       height: 50px;
   }
+  .text-bold
+  {
+    font-weight: bold;
+  }
+  .text-sm
+  {
+    font-size: small;
+  }
   .text-upfpo
   {
     color:#926E00 !important; 
