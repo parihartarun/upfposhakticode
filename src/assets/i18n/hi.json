@@ -472,15 +472,8 @@
   "Details of Complainant/ Suggestion provider": "शिकायतकर्ता / सुझाव प्रदाता का विवरण",
   "Complaints / Complaints Status of suggestion": "शिकायत / सुझाव की स्थिति",
   "User Management": "उपयोगकर्ता की सक्रियता",
-  "All-Users": " सभी-उपयोगकर्ता",
- 
-  "createindent": "इंडेंट किजिये"
-}
-
-
-
-  "DESCRIPTION": "विवरण",  
-  "createindent":"इंडेंट किजिये",
+  "All-Users": " सभी-उपयोगकर्ता", 
+  "createindent": "इंडेंट किजिये",
   "zerotonintynine" : "० - ९९ (क्विंटल)",
   "hundredtohundrednintynine":"१०० - १९९ (क्विंटल)",
   "morethan200":"२०० से अधिक (क्विंटल)",
