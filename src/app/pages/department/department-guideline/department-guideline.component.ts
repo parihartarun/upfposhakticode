@@ -30,13 +30,11 @@ export class DepartmentGuidelineComponent implements OnInit {
   addGuideline() {
     this.guidelineForm.markAllAsTouched();
     if (this.guidelineForm.valid) {
-      const formData: FormData = new FormData();
+      let formData: FormData = new FormData();
       formData.append('file', this.fileToUpload);
-      this.departmentService.uploadGuideline({
-        file: formData,
-        description: this.guidelineForm.value.description,
-        guideline_type: this.guidelineForm.value.guideline_type
-      })
+      formData.append('description', this.guidelineForm.value.description);
+      formData.append('guideline_type', this.guidelineForm.value.guideline_type);
+      this.departmentService.uploadGuideline(formData)
     }
   }
   editGuideline(data) {
