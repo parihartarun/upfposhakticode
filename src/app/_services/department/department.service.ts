@@ -15,9 +15,14 @@ export class DepartmentService {
   constructor(private http: HttpClient) {
     this._url = environment.baseUrl;
   }
-  getCrops(): Observable<any> {
+  getCrops(season): Observable<any> {
+    return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropsBySeasonId/${season}`).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
-    return this.http.get<any>(this._url + '').pipe(map((res: any) => {
+  getCropsForSales(season){
+    return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropsBySeasonId/${season}`).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -102,5 +107,35 @@ export class DepartmentService {
       }
     })
   }
+
+  getDistrictBystateId(stateid:number): Observable<any>  {
+    return this.http.get<any>(this._url + `api/v1/District/getDistrictsByStateId/${stateid}` ).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  getDistrict(): Observable<any>  {
+    return this.http.get<any>(this._url + 'api/v1/District/getDistricts' ).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  
+  getSeason(){
+    return this.http.get<any>(this._url + 'api/v1/seasonMaster/getSeasons' ).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  departViewReport(viewdata):Observable<any>{
+     return this.http.post<any>(this._url + 'api/department/getProductionReport', viewdata ).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  departViewReportSales(viewdata):Observable<any>{
+    return this.http.post<any>(this._url + 'api/department/getSalesReport', viewdata ).pipe(map((res: any) => {
+     return res;
+   }));
+ }
 }
 

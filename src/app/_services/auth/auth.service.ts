@@ -39,8 +39,8 @@ export class AuthService {
       return res;
     }));
   }
+ 
   getDistrictBystateId(stateid:number): Observable<any>  {
-    
     return this.http.get<any>(this._url + `api/v1/District/getDistrictsByStateId/${stateid}` ).pipe(map((res: any) => {
       return res;
     }));   }
@@ -123,4 +123,10 @@ export class AuthService {
       return res;
     }));
   }
+  getAllUser() {
+    return this.http.get<any>(this._url + 'api/v1/user').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
 }

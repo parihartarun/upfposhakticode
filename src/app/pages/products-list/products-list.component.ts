@@ -17,6 +17,7 @@ import { ProductService } from '../../_services/product/product.service';
 })
 export class ProductsListComponent implements AfterViewInit,OnInit {
   isLoggeIn = false;
+  currentfpoid:number;
   submitted = false;
   title = 'appBootstrap';  
   loading:boolean=false;
@@ -129,9 +130,10 @@ onFilterChange($event)
   }
     
   open(event, content, item):any {
-    
+    this.currentfpoid = item.id;
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
+      
       this._fpoService.getfpoDetialById(item.id).subscribe(f => {
         this.fpoDetail = f;
         this.createIndentForm(item);
@@ -341,7 +343,15 @@ searchWithFilters()
     this.searchWithFilters();
   }
   logout() {
-    this.modalService.dismissAll();
+    console.log("Fpo Id caught = "+this.currentfpoid)
+    this.isLoggeIn = true;
+    //this.modalService.dismissAll();
+    this.isLoggeIn = true;
+    this._fpoService.getfpoDetialById(this.currentfpoid).subscribe(f => {
+      this.fpoDetail = f;
+      this.createIndentForm(f);
+     
+    })
   }
   createIndentForm(item) {
     this.indentForm = this.fb.group({
@@ -408,6 +418,7 @@ searchWithFilters()
     })
   }
 }
+
 interface District {
   id: number;
   district_name: string;

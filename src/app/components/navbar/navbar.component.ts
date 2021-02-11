@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   isLoggeIn = false;
   username = '';
   userRole: any;
-
+  isOpen = false;
   userstring=""
   constructor(location: Location,  private element: ElementRef, private router: Router, public translate: TranslateService) {
     this.location = location;
@@ -29,6 +29,14 @@ export class NavbarComponent implements OnInit {
     // }
   }
 
+  useLanguage(language: string) {
+
+    this.translate.use(language);
+    this.toggleNavbar();
+  }
+  toggleNavbar() {
+    this.isOpen = !this.isOpen;
+  }
   ngOnInit() {
     console.log(localStorage.getItem('language'));
     this.userRole = localStorage.getItem('userRole');

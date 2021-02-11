@@ -16,11 +16,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { DepartmentDashboardComponent } from '../../pages/department/dashboard/departmentDashboard.component';
 import { DepartmentAllUsersComponent } from '../../pages/department/department-all-users/department-all-users.component';
 import { DepartmentUserManagementComponent } from '../../pages/department/department-user-management/department-user-management.component';
-import { DepartmentComplaintsComponent } from '../../pages/department/department-complaints/department-complaints.component';
+
 import { DepartmentUplaodCircularComponent } from '../../pages/department/department-uplaod-circular/department-uplaod-circular.component';
 import { DepartmentReportComponent } from '../../pages/department/department-report/department-report.component';
-import { DepartmentProductionReportComponent } from '../../pages/department/department-production-report/department-production-report.component';
-import { DepartmentSalesReportComponent } from '../../pages/department/department-sales-report/department-sales-report.component';
 import { DepartmentCircularsComponent } from '../../pages/department/department-circulars/department-circulars.component';
 
 @NgModule({
@@ -37,13 +35,10 @@ import { DepartmentCircularsComponent } from '../../pages/department/department-
   declarations: [
     
     DepartmentDashboardComponent,
-    DepartmentSalesReportComponent,
     DepartmentCircularsComponent,
-    DepartmentSalesReportComponent,
-    DepartmentProductionReportComponent,
     DepartmentReportComponent ,  
     DepartmentUplaodCircularComponent,
-    DepartmentComplaintsComponent,
+   
     DepartmentUserManagementComponent,
     DepartmentAllUsersComponent
   ]
