@@ -48,7 +48,6 @@ import { ProductionDetailsComponent } from './pages/fpo/production-details/produ
 import { CropShowingDetailsComponent } from './pages/fpo/crop-showing-details/crop-showing-details.component';
 import { ComplaintsComponent } from './pages/fpo/complaints/complaints.component';
 import { ServicesComponent } from './pages/fpo/services/services.component';
-import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
 
 import { RegisterComponent } from './pages/registers/register.component';
 import { FarmerRegisterComponent } from './pages/registers/farmer-register/farmer-register.component';

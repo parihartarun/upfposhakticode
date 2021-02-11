@@ -27,16 +27,18 @@
                                             class="custom-control custom-select mb-1">
                                             <option value="null" disabled>
                                                 {{'Select Schemes Type' | translate}}</option>
-                                            <option value="'Seeds'"> {{'Seeds' | translate}}</option>
-                                            <option value="'Fertilizer'"> {{'Fertilizer' | translate}}</option>
-                                            <option value="'Agri Equipment'"> {{'Agri Equipment' | translate}}</option>
-                                            <option value="'Agri Equipment Bank'"> {{'Agri Equipment Bank' | translate}}
+                                            <option [value]="'Seeds'"> {{'Seeds' | translate}}</option>
+                                            <option [value]="'Fertilizer'"> {{'Fertilizer' | translate}}</option>
+                                            <option [value]="'Agri Equipment'"> {{'Agri Equipment' | translate}}
                                             </option>
-                                            <option value="'Export'"> {{'Export' | translate}}</option>
-                                            <option value="'Organic Farming'"> {{'Organic Farming' | translate}}
+                                            <option [value]="'Agri Equipment Bank'"> {{'Agri Equipment Bank' |
+                                                translate}}
                                             </option>
-                                            <option value="'Special Crop'"> {{'Special Crop' | translate}}</option>
-                                            <option value="'Finance'"> {{'Finance' | translate}}</option>
+                                            <option [value]="'Export'"> {{'Export' | translate}}</option>
+                                            <option [value]="'Organic Farming'"> {{'Organic Farming' | translate}}
+                                            </option>
+                                            <option [value]="'Special Crop'"> {{'Special Crop' | translate}}</option>
+                                            <option [value]="'Finance'"> {{'Finance' | translate}}</option>
                                         </select>
                                         <div *ngIf="typeValidation.invalid && (typeValidation.dirty || typeValidation.touched)"
                                             class="text-danger">
@@ -54,7 +56,8 @@
                                         </small>-->
                                         <input type="text" id="input-first-name"
                                             placeholder="{{'Department name' | translate}}"
-                                            class="form-control form-control-alternative" formControlName="departmentName">
+                                            class="form-control form-control-alternative"
+                                            formControlName="departmentName">
                                         <div *ngIf="departValidation.invalid && (departValidation.dirty || departValidation.touched)"
                                             class="text-danger">
                                             <div>{{'Department name is required' | translate}}</div>
@@ -93,10 +96,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-12">
                                     <div class="form-group">
-                                        <button class="btn btn-primary text-right" (click)="addSchemes()">
+                                        <button *ngIf="!isEdit" class="btn btn-primary text-right" (click)="addSchemes()">
                                             {{'Add Schemes' | translate}}</button>
+                                        <button *ngIf="isEdit" class="btn btn-primary text-right" (click)="updateSchemes()">
+                                            {{'Update Schemes' | translate}}</button>
+                                        <button *ngIf="isEdit" class="btn btn-primary text-right" (click)="isEdit=false;schemeForm.reset();">
+                                            {{'Cancel' | translate}}</button>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +118,7 @@
     <br />
 
     <!-- Table -->
-    <div class="row">
+    <div class="row" *ngIf="!isEdit">
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
@@ -143,8 +150,11 @@
                                 <td>
                                     {{p.description}}
                                 </td>
-                                <td>
+                                <td *ngIf="!!p.uploadDate">
                                     {{p.uploadDate | date: 'dd/MM/yyyy'}}
+                                </td>
+                                <td *ngIf="!!!p.uploadDate">
+                                    {{p.createDate | date: 'dd/MM/yyyy'}}
                                 </td>
                                 <td>
                                     <a href="{{p.filePath}}" download><img
@@ -158,9 +168,9 @@
                                             {{'Actions' | translate}}
                                         </a>
                                         <div ngbDropdownMenu class=" dropdown-menu-center dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="javascript:void(0)">{{'Edit' |
+                                            <a class="dropdown-item" (click)="editSchemes(p)">{{'Edit' |
                                                 translate}}</a>
-                                            <a class="dropdown-item" href="javascript:void(0)">{{'Delete' |
+                                            <a class="dropdown-item" (click)="deleteSchemes(p.id)">{{'Delete' |
                                                 translate}}</a>
                                         </div>
                                     </div>

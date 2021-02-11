@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/_services/department/department.service';
 
 @Component({
@@ -13,8 +14,9 @@ export class DepartmentSchemeComponent implements OnInit {
 
   fileToUpload: File = null;
   schemeForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, public departmentService: DepartmentService) { }
+  isEdit = false;
+  id = null;
+  constructor(private formBuilder: FormBuilder, public departmentService: DepartmentService, private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -34,13 +36,41 @@ export class DepartmentSchemeComponent implements OnInit {
     if (this.schemeForm.valid) {
       const formData: FormData = new FormData();
       formData.append('file', this.fileToUpload);
-      this.departmentService.uploadSchemes({
-        file: formData,
-        description: this.schemeForm.value.description,
-        schemes_type: this.schemeForm.value.schemes_type,
-        parent_department : this.schemeForm.value.departmentName,
-      })
+      formData.append('description', this.schemeForm.value.description);
+      formData.append('title', this.schemeForm.value.schemes_type);
+      formData.append('parent_department', this.schemeForm.value.departmentName);
+      this.departmentService.uploadSchemes(formData);
+      this.schemeForm.reset();
     }
+  }
+  editSchemes(data) {
+    this.schemeForm.get('departmentName').patchValue(data.parentDepartment);
+    this.schemeForm.get('description').patchValue(data.description);
+    this.schemeForm.get('schemes_type').patchValue(data.schemeType);
+    // this.schemeForm.get('document').patchValue(data.fileName);
+    this.id = data.id;
+    this.isEdit = true;
+  }
+  updateSchemes() {
+    const formData: FormData = new FormData();
+    formData.append('file', this.fileToUpload);
+    formData.append('description', this.schemeForm.value.description);
+    formData.append('title', this.schemeForm.value.schemes_type);
+    formData.append('parent_department', this.schemeForm.value.departmentName);
+    formData.append('id', this.id);
+    this.departmentService.editSchemes(this.id, formData).subscribe((res: any) => {
+      if (res == true || res) {
+        this.toastr.success('Schemes Updated successfully.');
+        this.departmentService.getScheme();
+        this.schemeForm.reset();
+        this.isEdit = false;
+      } else {
+        this.toastr.error('Error! While Updated Schemes.');
+      }
+    })
+  }
+  deleteSchemes(id) {
+    this.departmentService.deleteSchemes(id);
   }
   get typeValidation() { return this.schemeForm.get('schemes_type'); }
   get descValidation() { return this.schemeForm.get('description'); }
