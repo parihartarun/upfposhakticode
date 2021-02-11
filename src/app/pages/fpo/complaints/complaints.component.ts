@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -29,13 +30,14 @@ export class ComplaintsComponent implements OnInit {
   isViewComplaint = false;
   roleType: any;
   users: any[];
-  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks:'',}
+  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', farmerId:''}
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
     private route: Router,
     private toastr: ToastrService,
-    private authService: AuthService
+    private authService: AuthService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -59,7 +61,7 @@ export class ComplaintsComponent implements OnInit {
 
   getComplaints() {
    
-    this.api.getComplaints().subscribe(response => {
+    this.api.getComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.complaints = response;
     });
@@ -77,7 +79,7 @@ export class ComplaintsComponent implements OnInit {
     formData.append('description', this.complaintForm.value.desc);
     formData.append('title', this.complaintForm.value.title.comp_type_en);
     formData.append('issue_type', this.complaintForm.value.issueType);
-    formData.append("master_id", localStorage.getItem('masterId'))
+    formData.append("farmer_id", localStorage.getItem('masterId'))
     this.api.addComplaint(formData).subscribe(response => {
       if (response!= '') {
         this.toastr.success('Complaint Added Succefully.');
@@ -144,7 +146,7 @@ export class ComplaintsComponent implements OnInit {
     this.complaintForm.get('title').patchValue(complaint.title);
     
   }
-  updateComplaint() {
+  updateComplaint(viewComp) {
     this.submitted = true;
     // stop here if form is invalid
     if (this.complaintForm.invalid) {
@@ -175,6 +177,7 @@ export class ComplaintsComponent implements OnInit {
   }
   viewComplaint(complaint) {
     this.isViewComplaint = true;
+    this.viewComp.farmerId = complaint.farmerId
     this.viewComp.assignedTo = complaint.assignTo;
     this.viewComp.assigned_date = complaint.assigned_date;
     this.viewComp.currentStatus = complaint.status;
@@ -183,31 +186,19 @@ export class ComplaintsComponent implements OnInit {
     this.viewComp.remarks = complaint.remarks;
     this.viewComp.title = complaint.title;
     window.scroll(0, 0);
+  
     this.complaintStatusForm = this.formBuilder.group({
-      appointment: ['', [Validators.required]],
-      appointmentDate: ['20/03/2020'],
-      departmentComments: ['', [Validators.required]],
-      complaintStatus: ['', [Validators.required]],
+      assign_to : ['', [Validators.required]],
+      appointmentDate: this.datePipe.transform(complaint.createDateTime, 'dd/MM/yyyy'),
+      comment : ['', [Validators.required]],
+      status : ['', [Validators.required]],
+      farmerId :complaint.farmerId,
       masterId: localStorage.getItem('masterId'),
+
 
     });
   }
-  updateSatus() {
-    this.submitted = true;
-    if (this.complaintForm.invalid) {
-      return;
-    }
-
-    //this.api.updateStatus(this.complaintForm.value).subscribe(response => {
-    //  if (response.id != '') {
-    //    this.toastr.success(response);
-    //    this.submitted = false;
-    //    this.complaintForm.reset();
-    //  } else {
-    //    this.toastr.error('Error! While Add complaint.');
-    //  }
-    //});
-  }
+ 
 }
 
 

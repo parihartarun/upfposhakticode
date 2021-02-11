@@ -285,13 +285,13 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
-  getComplaints() {
-    return this.http.get<any>(this._url + 'complaint').pipe(map((res: any) => {
+  getComplaints(id) {
+    return this.http.get<any>(this._url + 'fpocomplaint/'+id).pipe(map((res: any) => {
       return res;
     }));
   }
   addComplaint(data:any) {
-    return this.http.post<any>(this._url + 'complaint', data).pipe(map((res: any) => {
+    return this.http.post<any>(this._url + 'fpocomplaint', data).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -301,7 +301,7 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
   updateComplaint(data) {
-    return this.http.put<any>(this._url + 'complaint/update1/' + data.id, data).pipe(map((res: any) => {
+    return this.http.put<any>(this._url + '/complaint/dept/' + data.id, data).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -385,6 +385,7 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
+ 
 }
 
 

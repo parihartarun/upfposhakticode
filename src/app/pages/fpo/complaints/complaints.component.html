@@ -109,7 +109,7 @@
               </div>
               <div class="col-12 mt-2 mb-2">
                 <h4 class="mb-0" style="display:inline-block">
-                  {{"Department's Remarks" | translate}}: *
+                  {{"fpo's Remarks" | translate}}: *
                 </h4>
                 <span class="pl-2 pr-2"> {{viewComp.remarks}}</span>
               </div>
@@ -128,12 +128,12 @@
                       <div class="form-group">
                         <label class="form-control-label">{{'Appointed'| translate}} <span class="required">*</span></label>
 
-                        <select class="form-control" formControlName="appointment">
+                        <select class="form-control" formControlName="assign_to ">
                           <option value="">{{'Select User'|translate}}</option>
                           <option *ngFor="let u of users" [value]="u.userId">{{u.userName}}</option>
                         </select>
-                        <div *ngIf="submitted && formControls.appointment.errors" class="text-danger">
-                          <div *ngIf="formControls.appointment.errors.required">{{'Appointed to is required'| translate}}</div>
+                        <div *ngIf="submitted && formControls.assign_to .errors" class="text-danger">
+                          <div *ngIf="formControls.assign_to .errors.required">{{'Appointed to is required'| translate}}</div>
                         </div>
                       </div>
                     </div>
@@ -149,10 +149,10 @@
                     <div class="col-lg-12">
                       <div class="form-group">
                         <label class="form-control-label" for=""> {{'fpo Comments'|translate}}:<span class="required">*</span></label>
-                        <textarea formControlName="departmentComments" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
+                        <textarea formControlName="comment" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
 
-                        <div *ngIf="submitted && formControls.departmentComments.errors" class="text-danger">
-                          <div *ngIf="formControls.departmentComments.errors.required">{{'fpo comments is required'|translate}}</div>
+                        <div *ngIf="submitted && formControls.comment.errors" class="text-danger">
+                          <div *ngIf="formControls.comment.errors.required">{{'fpo comments is required'|translate}}</div>
                         </div>
                       </div>
                     </div>
@@ -160,21 +160,21 @@
                       <div class="form-group">
                         <label class="form-control-label">{{'Change status'|translate}}: <span class="required">*</span></label>
 
-                        <select class="form-control" formControlName="complaintStatus">
+                        <select class="form-control" formControlName="status">
                           <option value="">{{'Select Status'|translate}}</option>
                           <option value="0">{{'Open'|translate}}</option>
                           <option value="1">{{'Assigned'|translate}}</option>
                           <option value="2">{{'Resolved'|translate}} </option>
                         </select>
-                        <div *ngIf="submitted && formControls.complaintStatus.errors" class="text-danger">
-                          <div *ngIf="formControls.complaintStatus.errors.required"> {{'status  is required'|translate}}</div>
+                        <div *ngIf="submitted && formControls.status.errors" class="text-danger">
+                          <div *ngIf="formControls.status.errors.required"> {{'status  is required'|translate}}</div>
                         </div>
                       </div>
                     </div>
 
 
                     <div class="card-footer text-center">
-                      <button type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateSatus()">{{'Update Status'|translate}}</button>
+                      <button type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateSatus(viewComp)">{{'Update Status'|translate}}</button>
 
                       <button class="btn btn-warning text-right" (click)="reset()">{{'Reset'|translate}}</button>
                     </div>
@@ -229,7 +229,7 @@
                     <textarea formControlName="desc" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
 
                     <div *ngIf="submitted && formControls.desc.errors" class="text-danger">
-                      <div *ngIf="formControls.desc.errors.required">{{'Complaints/ Suggestions description is required' | translate}}</div>
+                      <div *ngIf="formControls.comment.errors.required">{{'Complaints/ Suggestions description is required' | translate}}</div>
                     </div>
                   </div>
                 </div>
