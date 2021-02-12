@@ -51,6 +51,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.userRole = localStorage.getItem('userRole');
+    console.log(this.userRole);
     if (this.userRole == 'ROLE_FPC') {
       this.menuItemsCrops = ROUTES_MANAGE_SALES.filter(menuItem => menuItem);
       this.router.events.subscribe((event) => {
