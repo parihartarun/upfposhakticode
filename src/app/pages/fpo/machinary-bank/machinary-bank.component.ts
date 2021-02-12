@@ -67,7 +67,7 @@ addMachinaryBank() {
   if (this.machinaryBankForm.invalid) {
       return;
   }
-
+console.log(this.machinaryBankForm.value);
   this.api.addMachinaryBank(this.machinaryBankForm.value).subscribe(response => {
     console.log(response);
     if(response.id != ''){

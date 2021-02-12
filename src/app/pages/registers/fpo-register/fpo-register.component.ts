@@ -88,10 +88,11 @@ export class FpoRegisterComponent implements OnInit {
       password: this.fpoRegisterForm.value.password,
       roleRefId:4
     }
+    this.fpoRegisterForm.value.userFpo = user;
+
     delete this.fpoRegisterForm.value.password;
     delete this.fpoRegisterForm.value.userName;
     delete this.fpoRegisterForm.value.confirmPassword;
-    this.fpoRegisterForm.value.userFpo = user;
     let date = new Date(this.fpoRegisterForm.value.dateOfRegistration);
     //let newdate = this.newUYDate(date);
     this.fpoRegisterForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd/MM/yyyy'); //whatever format you need. 

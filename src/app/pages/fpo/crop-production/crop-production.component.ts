@@ -87,7 +87,12 @@ export class CropProductionComponent implements OnInit {
         return;
     }
 
+    this.productionForm.patchValue({
+      fpoId:localStorage.getItem('masterId'),
+      masterId:localStorage.getItem('masterId')
+    });
     var data = this.productionForm.value;
+
     // data['crop_id'] = {"cropId":this.productionForm.value.cropId};
     // data['verietyId'] = {"verietyId":this.productionForm.value.verietyId};
     data['crop_id'] = this.productionForm.value.cropId;
@@ -150,7 +155,9 @@ export class CropProductionComponent implements OnInit {
       fpoId:localStorage.getItem('masterId'),
       masterId:localStorage.getItem('masterId'),
     });
-    
+    this.productionForm.patchValue({
+      verietyId:production.veriety_id
+    });
     this.edit = true;
     window.scroll(0,0);
   }

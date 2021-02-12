@@ -74,7 +74,10 @@ export class SalesDetailsComponent implements OnInit {
     if (this.salesForm.invalid) {
         return;
     }
-
+    this.salesForm.patchValue({
+      fpoId:localStorage.getItem('masterId'),
+      masterId:localStorage.getItem('masterId')
+    });
     console.log(this.salesForm.value);
     this.api.addFpoSalesInfo(this.salesForm.value).subscribe(response => {
       this.toastr.success('Sales info added successfully.');
@@ -99,6 +102,9 @@ export class SalesDetailsComponent implements OnInit {
       fpoId:localStorage.getItem('masterId'),
       masterId:localStorage.getItem('masterId'),
       id:[sale.id]
+    });
+    this.salesForm.patchValue({
+      verietyId:sale.veriety_id
     });
     this.edit = true;
     window.scroll(0,0);
@@ -126,6 +132,7 @@ updateFpoSalesInfo(){
 confirmDelete(id){
   if(confirm("Are you sure to delete this item")) {
     this.api.deleteFpoSalesInfo(id).subscribe(response => {
+      this.getFpoSalesInfo();
       this.toastr.success('Sales Info Deleted successfully.');
     },
       err => {
@@ -139,10 +146,8 @@ resetForm(){
   this.salesForm.reset();
 }
 
-
-  get formControls(){
-    return this.salesForm.controls;
-  }
-
+get formControls(){
+  return this.salesForm.controls;
+}
 
 }

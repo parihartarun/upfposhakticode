@@ -86,8 +86,8 @@ updateFarmerMachineryBankList(id:number,data:any){
   }));
 }
 //=====================================================================================
-  getBoardMembers(data){
-    return  this.http.get<any>(this._url+'api/fpos/boardmember').pipe(map((res:any)=>{
+  getBoardMembers(masterId){
+    return  this.http.get<any>(this._url+'api/fpos/boardmember/'+masterId).pipe(map((res:any)=>{
       return res;
     }));
   }
