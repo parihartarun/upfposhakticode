@@ -507,5 +507,12 @@
   "Insectices / Pestices": "कीटनाशक",
   "My profile": "मेरी प्रोफाइल",
   "User Details Status": "उपयोगकर्ता विवरण स्थिति",
-  "User Status": "उपयोगकर्ता की स्थिति"
+  "User Status": "उपयोगकर्ता की स्थिति",
+  "Request Date": "अनुरोध की तिथि",
+  "All Inactive FPO Users": "सभी निष्क्रिय एफपीओ उपयोगकर्ता",
+  "Select status": "स्थिति का चयन करें",
+  "Active": "सक्रिय",
+  "InActive": "निष्क्रिय",
+  "Active FPO Users": "सक्रिय एफपीओ उपयोगकर्ता",
+  "InActive FPO Users": "निष्क्रिय एफपीओ उपयोगकर्ता"
 }
