@@ -12,7 +12,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Indent</h3>
+              <h3 class="mb-0">{{'indenthistory' | translate }}</h3>
             </div>
             <!-- <div class="col-3 text-right">
               <button class="btn btn-primary text-right">Add Member</button>
@@ -23,38 +23,34 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col"></th>
+                
                 <!--<th scope="col">Your Full Name</th>
                 <th scope="col">Email Address</th>-->
+                <th scope="col">{{'indentnumber'|translate}}</th>
                 <th scope="col">{{'Crop Name'|translate}}</th>
                 <th scope="col">{{'Quantity Required'|translate}}</th>
                 <th scope="col">{{'Fulfilled Date'|translate}}</th>
+                <th scope="col">{{'status'|translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let indent of indents | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
+                
                 <td>
-                  {{(p-1) * 10 + i + 1}}
-                </td>
-                <!--<th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">{{indent.fullName}}</span>
-                    </div>
-                  </div>
-                </th> -->
-                <!-- <td>
-                  {{indent.emailAddress}}
-                </td>-->
-                <td>
-                  Rabi
+                  {{indent?.enquieryNumber}}
                 </td>
                 <td>
-                  {{indent.quantityRequired}}
+                  {{indent?.cropMaster?.cropName}}
                 </td>
                 <td>
-                  {{indent.fulfilledDate}}
+                  {{indent?.quantity}}
+                </td>
+                <td>
+                  {{indent?.fulfillmentDate | date: 'dd/MM/yyyy'}}
+                </td>
+                <td>
+                  {{indent?.status}}
                 </td>
                
                 <td class="text-right">

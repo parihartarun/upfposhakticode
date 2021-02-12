@@ -207,9 +207,13 @@
   "Bank Name": "Bank Name",
   "IFSC Code": "IFSC Code",
   "Bank Account Number": "Bank Account Number",
-  "Quantity": "Quantity",
+  "Quantity": "Quantity (quintal)",
   "Home": "Home",
+  "indenthistory": "Indent History",
+  "quantityinnumberisrequired":"Quantity in number is Required",
   "navText": "Registertion",
+  "indentnumber":"Indent Number",
+  "quintal":"Quintal",
   "UP FPO Shakti": "UP FPO Shakti",
   "Sales Details": "Sales Details",
   "FPO Details": "FPO Details",
@@ -422,6 +426,7 @@
   "createindent": "Create Indent",
   "filters": "Filters",
   "nofiltersselected": " list is empty.",
+  
   "noitemsfound": "No items found..",
   "searchplaceholder": "Type here for search...",
   "Select farmer": "Select farmer",
@@ -452,6 +457,8 @@
   "Details of Complainant/ Suggestion provider": "Details of Complainant/ Suggestion provider",
   "Complaints / Complaints Status of suggestion": "Complaints / Complaints Status of suggestion",
   "User Management": "User Management",
+  
+  
   "All-Users": "All-Users",
   "zerotonintynine": "0 - 99 (quintal)",
   "hundredtohundrednintynine": "100 - 199 (quintal)",
