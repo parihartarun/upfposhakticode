@@ -459,6 +459,9 @@ export class FpoService {
   getAllStorageUnitByFpo(id) {
     return this.http.get<any>(this._url + 'api/collectioncenters/getAllByFpo/' + id);
   }
+  getFarmMachineryBankByFpo(id) {
+    return this.http.get<any>(this._url + 'api/farm/machinery/banks/getFarmMachineryBankByFpo/' + id);
+  }
 }
 
 

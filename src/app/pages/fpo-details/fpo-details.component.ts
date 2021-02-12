@@ -17,11 +17,13 @@ export class FpoDetailsComponent implements OnInit {
   License = [];
   boardMember: [];
   machinerary = [];
+  coldStorage = [];
   data1 = [];
   dummyid = 15;
   additionalservice = []
   boardMemberPagination = 1;
-
+  mechPagination = 1;
+  coldPagination = 1;
   public datasets: any;
   public data: any;
   public salesChart;
@@ -35,14 +37,64 @@ export class FpoDetailsComponent implements OnInit {
     land: 0,
   };
   fpoId;
+  view: any[] = [400, 400];
+
+  // options
+  showXAxis: boolean = true;
+  showYAxis: boolean = true;
+  gradient: boolean = true;
+  showLegend: boolean = true;
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = 'Crops';
+  showYAxisLabel: boolean = true;
+  yAxisLabel: string = 'Quantity (in Qt.)';
+  multi = [
+    {
+      "name": "Gram",
+      "series": [
+        {
+          "name": "Marketable Surplus",
+          "value": 3500
+        }
+      ]
+    },
+
+    {
+      "name": "Lentil",
+      "series": [
+        {
+          "name": "Marketable Surplus",
+          "value": 1000
+        }
+      ]
+    },
+
+    {
+      "name": "Wheat",
+      "series": [
+        {
+          "name": "Marketable Surplus",
+          "value": 7000
+        },
+        {
+          "name": "Sold",
+          "value": 3000
+        }
+      ]
+    }
+  ];
+  colorScheme = {
+    domain: ['#ca1a1a', 'blue']
+  };
+
   constructor(private modalService: NgbModal, private api: FpoService, private _activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
     ///////////////////////Apis/////////////////////////
     this._activatedroute.params.subscribe(param => {
       this.fpoId = param.id;
       this.getAllByFpo();
+      this.getFarmMachineryBankByFpo();
     })
 
     this._activatedroute.paramMap.subscribe(params => {
@@ -75,9 +127,16 @@ export class FpoDetailsComponent implements OnInit {
   getAllByFpo() {
     this.api.getAllStorageUnitByFpo(this.fpoId).subscribe((res: any) => {
       if (res) {
-        console.log('res', res);
+        this.coldStorage = res;
       }
-    })
+    });
+  }
+  getFarmMachineryBankByFpo() {
+    this.api.getFarmMachineryBankByFpo(this.fpoId).subscribe((res: any) => {
+      if (res) {
+        this.machinerary = res;
+      }
+    });
   }
   getDashboardDetails() {
     this.api.getDashboardData().subscribe(response => {

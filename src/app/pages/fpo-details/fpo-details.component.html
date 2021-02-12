@@ -152,22 +152,7 @@
       </div>
     </div>
   </div>
-  <!-- <div class="container mt-4">
-    <div class="card shadow">
-      <div class="card-header p-0">
-        <h3>Season-wise Production </h3>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div style="display: block;">
-            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-              [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
-            </canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
+
   <div class="container mt-4">
     <div class="card shadow">
       <div class="card-header p-0">
@@ -188,7 +173,24 @@
       </div>
     </div>
   </div>
-
+  <div class="container mt-4">
+    <div class="card shadow">
+      <div class="card-header p-0">
+        <h3>Season-wise Production </h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6" *ngFor="let row of [].constructor(2)">
+            <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="multi" [xAxis]="showXAxis"
+              [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+              [legendTitle]="legendTitle" [legendPosition]="'below'">
+            </ngx-charts-bar-vertical-2d>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <br>
   <div class="container">
     <div class="card shadow">
@@ -327,28 +329,28 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let license of License | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                <tr *ngFor="let row of coldStorage | paginate: { itemsPerPage: 10, currentPage: p };let i=index">
                   <!-- <td>
                       <input type="checkbox">
                     </td> -->
 
                   <td>
-                    -
+                    {{i+1}}
                   </td>
                   <td>
-                    -
+                   {{row.district}}
                   </td>
                   <td>
-                    -
+                   {{row.address}}
                   </td>
                   <td>
-                    -
+                   {{row.storageType}}
                   </td>
                   <td>
-                    -
+                   {{row.storageCapacity}}
                   </td>
                   <td>
-                    -
+                   {{row.fascilities}}
                   </td>
 
 
@@ -439,27 +441,25 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col"></th>
                   <th scope="col">{{'SR. NO' | translate}}</th>
                   <th scope="col">{{'Name Of Equipment' | translate}}</th>
                   <th scope="col">{{'No Of Equipment' | translate}}</th>
 
-                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let mech of machinerary | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                <tr
+                  *ngFor="let mech of machinerary | paginate: { itemsPerPage: 10, currentPage: mechPagination };let i=index">
 
-                  <td> </td>
                   <td>
-                    {{mech.srNo}}
+                    {{i+1}}
                   </td>
                   <td>
-                    {{mech.nameOfEqu}}
+                    {{mech.equpment_name}}
                   </td>
                   <td>
 
-                    {{mech.noOfEqu}}
+                    {{mech.equpment_no}}
                   </td>
 
 
@@ -469,7 +469,7 @@
           </div>
           <div class="card-footer py-4">
             <nav aria-label="..." class="text-right">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              <pagination-controls (pageChange)="mechPagination = $event"></pagination-controls>
             </nav>
           </div>
         </div>

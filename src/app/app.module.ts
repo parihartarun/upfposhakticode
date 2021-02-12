@@ -86,6 +86,7 @@ import { InputDetailsInsecticidesComponent } from './pages/Input-Supplier/input-
 import { MachineryComponent } from './pages/CHC/machinery/machinery.component';
 import { UserStatusComponent } from './pages/user-status/user-status.component';
 import { ComplaintByFarmerComponent } from './pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -103,6 +104,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TreeviewModule.forRoot(),
     ComponentsModule,
     NgbModule,
+    NgxChartsModule,
     RouterModule,
     AppRoutingModule,
     CarouselModule,
