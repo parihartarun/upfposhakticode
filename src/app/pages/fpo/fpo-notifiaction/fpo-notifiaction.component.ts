@@ -63,7 +63,7 @@ export class FpoNotifiactionComponent implements OnInit {
     }
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
-    formData.append('farmer_id', this.NotificationsForm.value.fpo_id);
+    formData.append('farmer_id', this.NotificationsForm.value.farmer_id);
     formData.append('message', this.NotificationsForm.value.message);
     formData.append('fpo_id', localStorage.getItem('masterId'));
     formData.append("role", localStorage.getItem('userRole'))

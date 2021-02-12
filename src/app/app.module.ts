@@ -79,6 +79,7 @@ import { ComplaintByFarmerComponent } from './pages/fpo/complaint-by-farmer/comp
 import { DepartmentNotificationComponent } from './pages/department/department-notification/department-notification.component';
 import { FpoNotifiactionComponent } from './pages/fpo/fpo-notifiaction/fpo-notifiaction.component';
 import { NotifiactionByDepartmentComponent } from './pages/fpo/notifiaction-by-department/notifiaction-by-department.component';
+import { FarmerNotifictionByFpoComponent } from './pages/farmer/farmer-notifiction-by-fpo/farmer-notifiction-by-fpo.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -171,6 +172,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DepartmentNotificationComponent,
     FpoNotifiactionComponent,
     NotifiactionByDepartmentComponent,
+    FarmerNotifictionByFpoComponent,
   ],
   exports: [   
     AuthHeaderComponent

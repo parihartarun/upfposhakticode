@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { DepartmentService } from '../../../_services/department/department.service';
+import { FarmerService } from '../../../_services/farmer/farmer.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
 @Component({
-  selector: 'app-fpo-notifiaction-by-department',
-  templateUrl: './notifiaction-by-department.component.html',
-  styleUrls: ['./notifiaction-by-department.component.css']
+  selector: 'app-farmer-notifiction-by-fpo',
+  templateUrl: './farmer-notifiction-by-fpo.component.html',
+  styleUrls: ['./farmer-notifiction-by-fpo.component.css']
 })
-export class NotifiactionByDepartmentComponent implements OnInit {
-
+export class FarmerNotifictionByFpoComponent implements OnInit {
 
   NotificationsForm: FormGroup;
   submitted = false;
@@ -19,20 +18,20 @@ export class NotifiactionByDepartmentComponent implements OnInit {
   notifications = [];
   p: number = 1;
   isViewComplaint = false;
-  notification:any
+  notification: any
   constructor(private formBuilder: FormBuilder, private api: FpoService, private route: Router,
-    private toastr: ToastrService,
-    private _departmentService: DepartmentService) { }
+    private toastr: ToastrService, private _farmerService: FarmerService
+   ) { }
 
   ngOnInit(): void {
-    this.api.getAllNotificationByFpo(localStorage.getItem('masterId')).subscribe(us => {
+    this._farmerService.getAllNotificationByFpo(localStorage.getItem('masterId')).subscribe(us => {
       this.notifications = us;
-    })    
-   
+    })
 
 
 
-   
+
+
   }
   reset() {
     this.NotificationsForm.reset();
@@ -47,7 +46,7 @@ export class NotifiactionByDepartmentComponent implements OnInit {
   }
   viewNotifications(notification) {
     this.isViewComplaint = true;
-    this.notification=notification
+    this.notification = notification
   }
   sendNotifications() {
 
@@ -80,5 +79,4 @@ export class NotifiactionByDepartmentComponent implements OnInit {
   // }
 
 }
-
 
