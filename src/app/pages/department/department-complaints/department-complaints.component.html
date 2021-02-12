@@ -24,14 +24,14 @@
         </div>
         <hr class="m-0">
         <div class="card-body">
-          <div class="row">
+          <!--<div class="row">
             <div class="col-12 mb-4">
               <h2 class="mb-0 bg-warning">
                 {{'Details of Complainant/ Suggestion provider'|translate}}
               </h2>
             </div>
 
-          </div>
+          </div>-->
           <!--<div class="row">
 
             <div class="col-4 mb-4">
@@ -100,7 +100,7 @@
                       <label class="form-control-label">"{{'Appointed'| translate}} <span class="required">*</span></label>
 
                       <select class="form-control" formControlName="appointment">
-                        <option value="">{{'Select User'|translate}}<</option>
+                        <option value="">{{'Select User'|translate}}</option>
                         <option *ngFor="let u of users" [value]="u.userId">{{u.userName}}</option>
                       </select>
                       <div *ngIf="submitted && formControls.appointment.errors" class="text-danger">
@@ -219,7 +219,7 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">{{'View'|translate}}</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">{{'Delete' | translate}}</a>
+                     
                     </div>
                   </div>
                 </td>

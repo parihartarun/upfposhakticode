@@ -239,7 +239,7 @@ export class FarmerComplaintsComponent implements OnInit {
     this.viewComp.assigned_date = complaint.assigned_date;
     this.viewComp.currentStatus = complaint.status;
     this.viewComp.description = complaint.description;
-    this.viewComp.compalintDate = complaint.uploadDate;
+    this.viewComp.compalintDate = complaint.createDateTime;
     this.viewComp.remarks = complaint.remarks;
     this.viewComp.title = complaint.title;
     window.scroll(0, 0)

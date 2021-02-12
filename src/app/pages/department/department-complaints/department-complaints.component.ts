@@ -112,11 +112,11 @@ export class DepartmentComplaintsComponent implements OnInit {
   }
   viewComplaint(complaint) {
     this.isViewComplaint = true;
-    this.viewComp.assignedTo = complaint.assignTo;
+    this.viewComp.assignedTo = complaint.assignBy;
     this.viewComp.assigned_date = complaint.assigned_date;
     this.viewComp.currentStatus = complaint.status;
     this.viewComp.description = complaint.description;
-    this.viewComp.compalintDate = complaint.uploadDate;
+    this.viewComp.compalintDate = complaint.createDateTime;
     this.viewComp.remarks = complaint.remarks;
     this.viewComp.title = complaint.title;
     this.viewComp.name = complaint

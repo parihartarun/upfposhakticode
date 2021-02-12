@@ -154,7 +154,7 @@
           {{'Complaints/Suggestions' | translate}}
         </a>
       </li>
-      <li *ngIf="userRole == 'ROLE_BUYERSELLER' && userRole != 'ROLE_MIN' && userRole != 'ROLE_FARMER' && userRole != 'ROLE_FPC' && userRole != 'ROLE_CHCFMB' && userRole != 'ROLE_INPUTSUPPLIER'" class="nav-item">
+      <li *ngIf="userRole != 'ROLE_BUYERSELLER' && userRole != 'ROLE_MIN' && userRole != 'ROLE_FARMER' && userRole != 'ROLE_FPC' && userRole != 'ROLE_CHCFMB' && userRole != 'ROLE_INPUTSUPPLIER'" class="nav-item">
         <a routerLinkActive="active" [routerLink]="['fpo/complaints']" class="nav-link">
           <i class="ni fa fa-archive text-white"></i>
           {{'Complaints/Suggestions' | translate}}
