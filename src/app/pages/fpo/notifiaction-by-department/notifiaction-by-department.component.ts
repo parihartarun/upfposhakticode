@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
 @Component({
@@ -18,42 +19,20 @@ export class NotifiactionByDepartmentComponent implements OnInit {
   notifications = [];
   p: number = 1;
   isViewComplaint = false;
-  constructor(private formBuilder: FormBuilder, private api: FpoService, private route: Router, private toastr: ToastrService) { }
+  notification:any
+  constructor(private formBuilder: FormBuilder, private api: FpoService, private route: Router,
+    private toastr: ToastrService,
+    private _departmentService: DepartmentService) { }
 
   ngOnInit(): void {
-    //  this.api.getAllUsers().subscribe(us => {
-    //     this.getalluserlist = us;
-    //   })
-
-    this.notifications = [
-      {
-        "title": "FPO_Famer1",
-        "description": "The shortest article. Ever.",
-        "uploadDate": "2015-05-22T14:56:28.000Z"
-      },
-      {
-        "title": "FPO_Famer2",
-        "description": "Farmer Producer Company.",
-        "uploadDate": "2015-08-22T14:56:28.000Z"
-      },
-      {
-        "title": "FPO_Famer2",
-        "description": "The FPO can aggregate the produce better.",
-        "uploadDate": "2015-09-22T14:56:28.000Z"
-      }
-    ]
+    this.api.getAllNotificationBydept(localStorage.getItem('masterId')).subscribe(us => {
+      this.notifications = us;
+    })    
+   
 
 
 
-    this.NotificationsForm = this.formBuilder.group({
-      userName: ['', [Validators.required]],
-      desc: ['', [Validators.required]],
-      receiver_id: [''],
-      fpoId: [''],
-      sender_id: [''],
-      uploadFile: ['', [Validators.required]],
-      masterId: localStorage.getItem('masterId'),
-    });
+   
   }
   reset() {
     this.NotificationsForm.reset();
@@ -66,8 +45,9 @@ export class NotifiactionByDepartmentComponent implements OnInit {
     // });
 
   }
-  viewNotifications() {
+  viewNotifications(notification) {
     this.isViewComplaint = true;
+    this.notification=notification
   }
   sendNotifications() {
 

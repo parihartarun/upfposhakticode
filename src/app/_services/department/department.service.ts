@@ -110,6 +110,7 @@ export class DepartmentService {
     return this.http.post<any>(this._url + 'notification/fposend', formData).pipe(map((res: any) => {
       return res;
     }))
+   
 }
 }
 

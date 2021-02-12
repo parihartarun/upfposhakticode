@@ -49,27 +49,29 @@
         <div class="card-body" >
           <div class="row">
             <div class="col-12 mb-4">
-              <h2 class="mb-0">
+              <h4 class="mb-0">
                 {{'Notifications Details' | translate}}
-              </h2>
+              </h4>
             </div>
             <div class="col-12">
               <h4 class="mb-0">
-                {{'Name' | translate}}
+                {{'Department Name' | translate}}
               </h4>
             </div>
             <div class="col-12 mb-4">
-              <span>DEPT NME</span>
+             
+              <span class="mb-2">{{notification.createBy}}
+              </span>
             </div>
             <div class="col-12 mb-4">
               <h4 class="mb-0">
                 {{'DESCRIPTION' | translate}}
               </h4>
             </div>
-            <div class="col-12">
-              <h4 class="mb-0">
-                test
-              </h4>
+            <div class="col-12 mb-4">
+              <span class="mb-2">
+                {{notification.message}}
+              </span>
             </div>
             <div class="col-12 mb-4">
               <h4 class="mb-0">
@@ -77,9 +79,9 @@
               </h4>
             </div>
             <div class="col-12">
-              <h4 class="mb-0">
-                12/Nov/2020
-              </h4>
+              <span class="mb-2">
+                {{notification.createDate | date: 'dd/MM/yyyy'}}
+              </span>
             </div>
           </div>
           <hr>
@@ -111,23 +113,29 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">{{'FPO Name'|translate}}</th>
+
+                <th scope="col">{{'SR. NO'|translate}}</th>
+                <th scope="col">{{'Deparment Name'|translate}}</th>
                 <th scope="col">{{'DESCRIPTION'|translate}}</th>
                 <th scope="col">{{'NotificationsDate'|translate}}</th>
-                <!--<th scope="col"></th>-->
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let notification of notifications | paginate: { itemsPerPage: 10, currentPage: p };index as i">
                 <td>
-                  {{ notification.title}}
+                  {{(p-1) * 10 + i + 1}}
                 </td>
                 <td>
-                  {{notification.description}}
+                  {{notification.createBy}}
+                </td>
+
+                <td>
+                  {{notification.message}}
                 </td>
                 <td>
 
-                  {{ notification.uploadDate  | date: 'dd/MM/yyyy'}}
+                  {{ notification.createDate  | date: 'dd/MM/yyyy'}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">

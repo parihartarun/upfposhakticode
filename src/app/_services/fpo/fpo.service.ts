@@ -458,7 +458,11 @@ updateFarmerMachineryBankList(id:number,data:any){
     })); 
 
   }
- 
+  getAllNotificationBydept(id) {
+    return this.http.get<any>(this._url + '/notification/fponotification/' + id).pipe(map((res: any) => {
+      return res;
+    }))
+  }
 }
 
 

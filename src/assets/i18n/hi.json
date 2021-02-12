@@ -495,7 +495,8 @@
   "description is required": "विवरण का आवश्यक है",
   "Notifications Details": "अधिसूचना विवरण",
   "NotificationsDate": "अधिसूचना तिथि",
-  "Notifications By Department": "अधिसूचना विभाग द्वारा"
+  "Notifications By Department": "अधिसूचना विभाग द्वारा",
+  "Department Name": "विभाग नाम"
 
 
 }
