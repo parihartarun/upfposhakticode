@@ -131,7 +131,7 @@ export class ComplaintByFarmerComponent implements OnInit {
 
     });
   }
-  filterComaplaint(isPerRegistration: any) {
+  filterComaplaint() {
     if (this.fliterForm.controls['complaint'].value === "New") {
       this.complaints = this.filterResponse.filter(f => !f.status || f.status == 'OPEN');
     } else {
