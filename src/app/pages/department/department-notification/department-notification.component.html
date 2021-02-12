@@ -89,6 +89,7 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
+                <th scope="col">{{'SR.NO'|translate}}</th>
                 <th scope="col">{{'FPO Name'|translate}}</th>
                 <th scope="col">{{'DESCRIPTION'|translate}}</th>
                 <th scope="col">{{'NotificationsDate'|translate}}</th>
@@ -97,6 +98,9 @@
             </thead>
             <tbody>
               <tr *ngFor="let notification of notifications | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                <td>
+                  {{(p-1) * 10 + i + 1}}
+                </td>
                 <td>
                   {{ notification.title}}
                 </td>
@@ -108,16 +112,16 @@
                   {{ notification.uploadDate  | date: 'dd/MM/yyyy'}}
                 </td>
                 <!--<td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="viewNotifications(notification)">View</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(notification)">Delete</a>
-                    </div>
-                  </div>
-                </td>-->
+    <div ngbDropdown placement="bottom-right">
+      <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+        Actions
+      </a>
+      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+        <a class="dropdown-item" href="javascript:void(0)" (click)="viewNotifications(notification)">View</a>
+        <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(notification)">Delete</a>
+      </div>
+    </div>
+  </td>-->
               </tr>
             </tbody>
           </table>
