@@ -56,9 +56,15 @@
         </li>
 
         <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
-          <a routerLinkActive="active" [routerLink]="['notifications']" class="nav-link">
+          <a routerLinkActive="active" [routerLink]="['fpo/fpo-notification']" class="nav-link">
             <i class="ni ni-tv-2 text-white"></i>
             {{'Notifications' | translate}}
+          </a>
+        </li>
+        <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
+          <a routerLinkActive="active" [routerLink]="['fpo/fpo-notificationByDept']" class="nav-link">
+            <i class="ni ni-tv-2 text-white"></i>
+            {{'Notifications By Department' | translate}}
           </a>
         </li>
         <li *ngIf="userRole == 'ROLE_FARMER'" class="nav-item">

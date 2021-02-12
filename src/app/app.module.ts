@@ -77,6 +77,8 @@ import { DepartmentProductionReportComponent } from './pages/department/departme
 import { DepartmentSalesReportComponent } from './pages/department/department-sales-report/department-sales-report.component';
 import { ComplaintByFarmerComponent } from './pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
 import { DepartmentNotificationComponent } from './pages/department/department-notification/department-notification.component';
+import { FpoNotifiactionComponent } from './pages/fpo/fpo-notifiaction/fpo-notifiaction.component';
+import { NotifiactionByDepartmentComponent } from './pages/fpo/notifiaction-by-department/notifiaction-by-department.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -167,6 +169,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DepartmentSalesReportComponent,
     ComplaintByFarmerComponent,
     DepartmentNotificationComponent,
+    FpoNotifiactionComponent,
+    NotifiactionByDepartmentComponent,
   ],
   exports: [   
     AuthHeaderComponent

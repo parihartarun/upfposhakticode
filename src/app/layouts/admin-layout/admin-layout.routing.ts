@@ -36,6 +36,8 @@ import { FarmerComplaintsComponent } from '../../pages/farmer/farmer-complaints/
 import { BuyerTraderComplaintsComponent } from '../../pages/buyer-treder/buyer-trader-complaints/buyer-trader-complaints.component';
 import { ComplaintByFarmerComponent } from '../../pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
 import { DepartmentNotificationComponent } from '../../pages/department/department-notification/department-notification.component';
+import { FpoNotifiactionComponent } from '../../pages/fpo/fpo-notifiaction/fpo-notifiaction.component';
+import { NotifiactionByDepartmentComponent } from '../../pages/fpo/notifiaction-by-department/notifiaction-by-department.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: DashboardComponent },
@@ -74,6 +76,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'input/complaints', component: FarmerComplaintsComponent },
   { path: 'fpo/complaintsByfarmer', component: ComplaintByFarmerComponent },
   { path: 'department/dept-notification', component: DepartmentNotificationComponent },
+  { path: 'fpo/fpo-notification', component: FpoNotifiactionComponent },
+  { path: 'fpo/fpo-notificationByDept', component: NotifiactionByDepartmentComponent },
 
 ];
 

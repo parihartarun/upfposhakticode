@@ -1,0 +1,129 @@
+<div class="header bg-gradient-danger pb-7 pt-5 pt-md-8">
+  <div class="container-fluid">
+
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7 mp-7">
+
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">
+                {{'Notifications' |translate}}
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="NotificationsForm">
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label">{{'FPO Name'|translate}}  <span class="required">*</span></label>
+                    <select class="form-control" formControlName="fpoId">
+                      <option value="">{{'Select FPO' | translate}}</option>
+                      <option *ngFor="let ul of getalluserlist" [value]="ul.userId">{{ul.userName}}</option>
+                    </select>
+                  </div>
+                  <div *ngIf="submitted && formControls.fpoId.errors" class="text-danger">
+                    <div *ngIf="formControls.fpoId.errors.required">{{'fpo name is required'| translate}}</div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="">{{'DESCRIPTION'|translate}}<span class="required">*</span></label>
+                    <input formControlName="desc" class="form-control" id="exampleFormControlTextarea12" rows="3">
+                  </div>
+                  <div *ngIf="submitted && formControls.desc.errors" class="text-danger">
+                    <div *ngIf="formControls.desc.errors.required">{{'description is required'| translate}}</div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
+                      {{'Attach File' | translate}}
+                    </label>
+
+                    <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)" />
+                    <div *ngIf="checkfileFormat" class="text-danger">{{'File is not in format' | translate}} </div>
+
+                  </div>
+
+                </div>
+                <div class="card-footer py-4 text-center">
+                  <button type="submit" class="btn btn-yellow btn-primary my-4" (click)="sendNotifications()">{{'Send'|translate}} </button>
+                  <button class="btn btn-warning text-right" (click)="reset()">{{'Reset'|translate}}</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">{{'Notifications Details'|translate}}</h3>
+            </div>
+
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">{{'FPO Name'|translate}}</th>
+                <th scope="col">{{'DESCRIPTION'|translate}}</th>
+                <th scope="col">{{'NotificationsDate'|translate}}</th>
+                <!--<th scope="col"></th>-->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let notification of notifications | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                <td>
+                  {{ notification.title}}
+                </td>
+                <td>
+                  {{notification.description}}
+                </td>
+                <td>
+
+                  {{ notification.uploadDate  | date: 'dd/MM/yyyy'}}
+                </td>
+                <!--<td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      Actions
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="viewNotifications(notification)">View</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(notification)">Delete</a>
+                    </div>
+                  </div>
+                </td>-->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="..." class="text-right">
+            <pagination-controls></pagination-controls>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
