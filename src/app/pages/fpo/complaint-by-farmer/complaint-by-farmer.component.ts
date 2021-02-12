@@ -61,7 +61,8 @@ export class ComplaintByFarmerComponent implements OnInit {
     this.api.getComplaintsFpoFarmer(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.filterResponse = response
-      this.complaints = this.filterResponse.filter(f => !f.status || f.status=='OPEN');
+      this.complaints = this.filterResponse.filter(f => !f.status || f.status == 'OPEN');
+      this.fliterForm.controls['complaint'].setValue('New')
     });
 
   }
@@ -92,10 +93,12 @@ export class ComplaintByFarmerComponent implements OnInit {
         this.submitted = false;
         this.edit = false;
         this.complaintStatusForm.reset();
+        this.getComplaints();
+        this.isViewComplaint = false;
       } else {
         this.toastr.error('Error! While Updating License.');
       }
-      this.getComplaints();
+     
     });
   }
   /* Return true or false if it is the selected */
@@ -111,12 +114,12 @@ export class ComplaintByFarmerComponent implements OnInit {
   viewComplaint(complaint) {
     this.isViewComplaint = true;
     this.viewComp.farmerId = complaint.farmerId
-    this.viewComp.assignedTo = complaint.assignTo;
-    this.viewComp.assigned_date = complaint.assigned_date;
+    this.viewComp.assignedTo = complaint.assignBy;
+    this.viewComp.assigned_date = complaint.createDateTime;
     this.viewComp.currentStatus = complaint.status;
     this.viewComp.description = complaint.description;
     this.viewComp.compalintDate = complaint.uploadDate;
-    this.viewComp.remarks = complaint.remarks;
+    this.viewComp.remarks = complaint.fpoComment;
     this.viewComp.title = complaint.title;
     window.scroll(0, 0);
     let myDate = new Date();
