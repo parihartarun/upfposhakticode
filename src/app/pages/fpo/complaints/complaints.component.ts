@@ -187,12 +187,12 @@ export class ComplaintsComponent implements OnInit {
   viewComplaint(complaint) {
     this.isViewComplaint = true;
     this.viewComp.farmerId = complaint.farmerId
-    this.viewComp.assignedTo = complaint.assignBy;
-    this.viewComp.assigned_date = complaint.assign_date;
+    this.viewComp.assignedTo = complaint.assignby;
+    this.viewComp.assigned_date = complaint.createdate;
     this.viewComp.currentStatus = this.getStatus(complaint.status);
     this.viewComp.description = complaint.description;
     this.viewComp.compalintDate = complaint.createdate;
-    this.viewComp.remarks = complaint.deptComment;
+    this.viewComp.remarks = complaint.deptcomment;
     this.viewComp.title = complaint.ftitle;
     window.scroll(0, 0);
     let myDate = new Date();
