@@ -488,5 +488,12 @@
   "Insectices / Pestices": "Insectices / Pestices",
   "My profile": "My profile",
   "User Details Status": "User Details Status",
-  "User Status": "User Status"
+  "User Status": "User Status",
+  "Request Date": "Request Date",
+  "All Inactive FPO Users": "All Inactive FPO Users",
+  "Select status": "Select status",
+  "Active": "Active",
+  "InActive": "InActive",
+  "Active FPO Users": "Active FPO Users",
+  "InActive FPO Users": "InActive FPO Users"
 }

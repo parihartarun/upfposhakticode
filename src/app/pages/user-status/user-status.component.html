@@ -9,9 +9,9 @@
         <div class="form-group">
             <label>{{'User Status' | translate}}</label>
             <select class="form-control" (change)="selectvalue($event.target.value)">
-                <option value="select">Select Type</option>
-                <option value="active">Active</option>
-                <option value="inactive">InActive</option>
+                <option value="select">{{'Select status' | translate}}</option>
+                <option value="active">{{'Active' | translate}}</option>
+                <option value="inactive">{{'InActive' | translate}}</option>
                 </select>
         </div>
     </div>
@@ -23,7 +23,7 @@
                     <div class="row" style="background-color: #cfb000;text-align: center;">
                         <div class="col-9">
                             <h3 class="mb-0">
-                                <h2>Active Farmer Users</h2>
+                                <h2>{{'Active FPO Users' | translate}}</h2>
                             </h3>
                         </div>
                     </div>
@@ -32,13 +32,13 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr style="background-color: #cfb000;">
-                                <th scope="col">S.No</th>
-                                <th scope="col"> FPO Name</th>
-                                <th scope="col"> Username</th>
-                                <th scope="col">District</th>
-                                <th scope="col">Request Date</th>
-                                <th scope="col"> Email </th>
-                                <th scope="col">All Inactive FPO Users</th>
+                                <th scope="col">{{'S.no' | translate}}</th>
+                                <th scope="col"> {{'FPO Name' | translate}}</th>
+                                <th scope="col"> {{'username' | translate}}</th>
+                                <th scope="col">{{'District' | translate}}</th>
+                                <th scope="col">{{'Request Date' | translate}}</th>
+                                <th scope="col"> {{'email' | translate}} </th>
+                                <th scope="col">{{'All Inactive FPO Users' | translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,7 +86,6 @@
         </div>
     </div>
 
-
     <div class="row"  *ngIf="status=='inactive'">
         <div class="col">
             <div class="card shadow">
@@ -94,7 +93,7 @@
                     <div class="row" style="background-color: #cfb000;text-align: center;">
                         <div class="col-9">
                             <h3 class="mb-0">
-                                <h2>All Inactive FPO Users</h2>
+                                <h2>{{'InActive FPO Users' | translate}}</h2>
                             </h3>
                         </div>
                     </div>
@@ -103,13 +102,13 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr style="background-color: #cfb000;">
-                                <th scope="col">S.No</th>
-                                <th scope="col"> FPO Name</th>
-                                <th scope="col"> Username</th>
-                                <th scope="col">District</th>
-                                <th scope="col">Request Date</th>
-                                <th scope="col"> Email </th>
-                                <th scope="col">All Inactive FPO Users</th>
+                                <th scope="col">{{'S.no' | translate}}</th>
+                                <th scope="col"> {{'FPO Name' | translate}}</th>
+                                <th scope="col"> {{'username' | translate}}</th>
+                                <th scope="col">{{'District' | translate}}</th>
+                                <th scope="col">{{'Request Date' | translate}}</th>
+                                <th scope="col"> {{'email' | translate}} </th>
+                                <th scope="col">{{'All Inactive FPO Users' | translate}}</th>
                             </tr>
                         </thead>
                         <tbody>
