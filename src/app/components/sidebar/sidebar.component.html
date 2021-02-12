@@ -301,21 +301,21 @@
       <li *ngIf="userRole == 'ROLE_INPUTSUPPLIER'" class=" nav-item">
         <a routerLinkActive="active" [routerLink]="['/input-seed']" class="nav-link">
           <i class="fa fa-university text-white"></i>
-          Input Details(Seeds)
+          {{'Seed' | translate}}
         </a>
       </li>
   
       <li *ngIf="userRole == 'ROLE_INPUTSUPPLIER'" class=" nav-item">
         <a routerLinkActive="active" [routerLink]="['/input-fertilizer']" class="nav-link">
           <i class="fa fa-university text-white"></i>
-          {{'Input Details(Fertilizer)' | translate}}
+          {{'Fertilizer' | translate}}
         </a>
       </li>
   
       <li *ngIf="userRole == 'ROLE_INPUTSUPPLIER'" class=" nav-item">
         <a routerLinkActive="active" [routerLink]="['/input-machinery']" class="nav-link">
           <i class="fa fa-university text-white"></i>
-          {{'Input Details (Machinery/Equipment)' | translate}}
+          {{'Machinery / Equipment' | translate}}
         </a>
       </li>
   
@@ -323,7 +323,7 @@
       <li *ngIf="userRole == 'ROLE_INPUTSUPPLIER'" class=" nav-item">
         <a routerLinkActive="active" [routerLink]="['/input-insect']" class="nav-link">
           <i class="fa fa-university text-white"></i>
-          {{'Input Details (Insectices/Pestices)' | translate}}
+          {{'Insectices / Pestices' | translate}}
         </a>
       </li>
      
