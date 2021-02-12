@@ -357,7 +357,8 @@
               {{'Production Details' | translate}}
             </a>
           </li>
-          <li *ngIf="userRole == 'ROLE_FPC'" class=" nav-item">
+          <li   *ngIf="userRole == 'ROLE_FPC'" class=" nav-item">
+         
             <a routerLinkActive="active" [routerLink]="['/userDetails']" class="nav-link">
               <i class="fa fa-plus-square text-white"></i>
               {{'User Details Status' | translate}}

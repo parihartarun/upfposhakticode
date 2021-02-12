@@ -61,7 +61,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { SearchComponent } from './pages/common/search/search.component';
 import { NotificationsComponent } from './pages/common/notifications/notifications.component';
 import { IndentComponent } from './pages/common/indent/indent.component';
-import { TreeviewModule } from 'ngx-treeview';Client - Tarun Parihar
+import { TreeviewModule } from 'ngx-treeview';
 import { LoginModelPopupComponent } from './pages/common/login-model-popup/login-model-popup.component';
 import { OnlynumberDirective } from './directive/onlynumber.directive';
 import { NgMarqueeModule } from 'ng-marquee';
@@ -86,6 +86,8 @@ import { InputDetailsInsecticidesComponent } from './pages/Input-Supplier/input-
 import { MachineryComponent } from './pages/CHC/machinery/machinery.component';
 import { UserStatusComponent } from './pages/user-status/user-status.component';
 import { ComplaintByFarmerComponent } from './pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
+import { BuyeruserComponent } from './pages/buyer-treder/buyeruser/buyeruser.component';
+import { UserProfileDashboardComponent } from './pages/user-profile-dashboard/user-profile-dashboard.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -185,6 +187,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MachineryComponent,
     UserStatusComponent,
     ComplaintByFarmerComponent,
+    BuyeruserComponent,
+    UserProfileDashboardComponent,
   ],
   exports: [
     AuthHeaderComponent

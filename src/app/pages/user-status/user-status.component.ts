@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class UserStatusComponent implements OnInit {
   status: any;
 
+  
   constructor() { }
 
   ngOnInit(): void {

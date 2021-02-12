@@ -43,6 +43,8 @@ import { InputDetailsInsecticidesComponent } from 'src/app/pages/Input-Supplier/
 import { MachineryComponent } from 'src/app/pages/CHC/machinery/machinery.component';
 import { UserStatusComponent } from 'src/app/pages/user-status/user-status.component';
 import { ComplaintByFarmerComponent } from '../../pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
+import { BuyeruserComponent } from 'src/app/pages/buyer-treder/buyeruser/buyeruser.component';
+import { UserProfileDashboardComponent } from 'src/app/pages/user-profile-dashboard/user-profile-dashboard.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: DashboardComponent },
@@ -90,5 +92,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'chc/complaints', component: FarmerComplaintsComponent },
   { path: 'input/complaints', component: FarmerComplaintsComponent },
   { path: 'fpo/complaintsByfarmer', component: ComplaintByFarmerComponent },
+  { path: 'indent_history/buyer-user-profile', component: BuyeruserComponent },
+  {path:'user-profile',component:UserProfileDashboardComponent}
+
 ];
 
