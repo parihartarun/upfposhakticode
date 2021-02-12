@@ -456,18 +456,20 @@
   "Details of Complainant/ Suggestion provider": "Details of Complainant/ Suggestion provider",
   "Complaints / Complaints Status of suggestion": "Complaints / Complaints Status of suggestion",
   "User Management": "User Management",
-  "All-Users": "All-Users", 
-  "zerotonintynine" : "0 - 99",
-  "hundredtohundrednintynine":"100 - 199",
-  "morethan200":"More than 200",
-  "enterfpodeliveryaddr":"Please enter delivery Address.",  
-  "fpodeliveryaddr":"Delivery Address.",
-  "deleiveryrequired":"Delivery address is required.",
-  "Indent Form":"Indent Form",
-  "Estimated Production (in Qt.)" : "Estimated Production (in Qt.)",
-  "Sales Data" : "Sales Data",
-  "Select District" : "Select District",
-  "Select Crops" : "Select Crops",
+  
+  
+  "All-Users": "All-Users",
+  "zerotonintynine": "0 - 99 (quintal)",
+  "hundredtohundrednintynine": "100 - 199 (quintal)",
+  "morethan200": "More than 200 (quintal)",
+  "enterfpodeliveryaddr": "Please enter delivery Address.",
+  "fpodeliveryaddr": "Delivery Address.",
+  "deleiveryrequired": "Delivery address is required.",
+  "Indent Form": "Indent Form",
+  "Estimated Production (in Qt.)": "Estimated Production (in Qt.)",
+  "Sales Data": "Sales Data",
+  "Select District": "Select District",
+  "Select Crops": "Select Crops",
   "Description": "Description",
   "Seeds": "Seeds",
   "Fertilizer": "Fertilizer",
@@ -477,14 +479,14 @@
   "Organic Farming": "Organic Farming",
   "Special Crop": "Special Crop",
   "Finance": "Finance",
-
-
   "fpo's Remarks": "FPO's Remarks",
   "Complaints/SuggestionsByFarmer": "Complaints/Suggestions By Farmer",
   "status": "Status",
   "New Compliant": "New Compliants",
   "All Complaint": "All Complaints",
-  "Machinery / Equipment":"Machinery / Equipment",
-  "Insectices / Pestices":"Insectices / Pestices"
-
+  "Machinery / Equipment": "Machinery / Equipment",
+  "Insectices / Pestices": "Insectices / Pestices",
+  "My profile": "My profile",
+  "User Details Status": "User Details Status",
+  "User Status": "User Status"
 }

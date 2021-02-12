@@ -86,6 +86,8 @@ import { InputDetailsInsecticidesComponent } from './pages/Input-Supplier/input-
 import { MachineryComponent } from './pages/CHC/machinery/machinery.component';
 import { UserStatusComponent } from './pages/user-status/user-status.component';
 import { ComplaintByFarmerComponent } from './pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
+import { BuyeruserComponent } from './pages/buyer-treder/buyeruser/buyeruser.component';
+import { UserProfileDashboardComponent } from './pages/user-profile-dashboard/user-profile-dashboard.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -185,6 +187,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MachineryComponent,
     UserStatusComponent,
     ComplaintByFarmerComponent,
+    BuyeruserComponent,
+    UserProfileDashboardComponent,
   ],
   exports: [
     AuthHeaderComponent
