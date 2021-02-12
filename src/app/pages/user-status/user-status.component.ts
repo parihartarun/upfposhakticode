@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-status.component.css']
 })
 export class UserStatusComponent implements OnInit {
+  status: any;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  selectvalue(type)
+  {
+   console.log(type);
+   this.status = type;
   }
 
 }
