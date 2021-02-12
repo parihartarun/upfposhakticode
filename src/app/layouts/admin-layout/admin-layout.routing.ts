@@ -43,6 +43,9 @@ import { InputDetailsInsecticidesComponent } from 'src/app/pages/Input-Supplier/
 import { MachineryComponent } from 'src/app/pages/CHC/machinery/machinery.component';
 import { UserStatusComponent } from 'src/app/pages/user-status/user-status.component';
 import { ComplaintByFarmerComponent } from '../../pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
+import { DepartmentNotificationComponent } from '../../pages/department/department-notification/department-notification.component';
+import { FpoNotifiactionComponent } from '../../pages/fpo/fpo-notifiaction/fpo-notifiaction.component';
+import { NotifiactionByDepartmentComponent } from '../../pages/fpo/notifiaction-by-department/notifiaction-by-department.component';
 import { BuyeruserComponent } from 'src/app/pages/buyer-treder/buyeruser/buyeruser.component';
 import { UserProfileDashboardComponent } from 'src/app/pages/user-profile-dashboard/user-profile-dashboard.component';
 
@@ -94,6 +97,10 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/complaintsByfarmer', component: ComplaintByFarmerComponent },
   { path: 'indent_history/buyer-user-profile', component: BuyeruserComponent },
   {path:'user-profile',component:UserProfileDashboardComponent}
+
+  { path: 'department/dept-notification', component: DepartmentNotificationComponent },
+  { path: 'fpo/fpo-notification', component: FpoNotifiactionComponent },
+  { path: 'fpo/fpo-notificationByDept', component: NotifiactionByDepartmentComponent },
 
 ];
 

@@ -43,7 +43,7 @@ export class DepartmentService {
       return res;
     }));
   }
-  updateStatus(data,formData) {
+  updateStatus(data, formData) {
     return this.http.put<any>(this._url + 'fpocomplaint/complaintstatus/' + data.id, formData).pipe(map((res: any) => {
       return res;
     }));
@@ -166,5 +166,18 @@ export class DepartmentService {
       return res;
     }));
   }
+  sendNotifiaction(data, formData) {
+    return this.http.post<any>(this._url + 'notification/fposend', formData).pipe(map((res: any) => {
+      return res;
+    }))
+   
 }
+  departViewReportSales(viewdata): Observable<any> {
+    return this.http.post<any>(this._url + 'api/department/getSalesReport', viewdata).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+}
+
+
 

@@ -456,6 +456,18 @@
   "Details of Complainant/ Suggestion provider": "Details of Complainant/ Suggestion provider",
   "Complaints / Complaints Status of suggestion": "Complaints / Complaints Status of suggestion",
   "User Management": "User Management",
+  "All-Users": "All-Users",
+  "zerotonintynine": "0 - 99 (quintal)",
+  "hundredtohundrednintynine": "100 - 199 (quintal)",
+  "morethan200": "More than 200 (quintal)",
+  "enterfpodeliveryaddr": "Please enter delivery Address.",
+  "fpodeliveryaddr": "Delivery Address.",
+  "deleiveryrequired": "Delivery address is required.",
+  "Indent Form": "Indent Form",
+  "Estimated Production (in Qt.)": "Estimated Production (in Qt.)",
+  "Sales Data": "Sales Data",
+  "Select District": "Select District",
+  "Select Crops": "Select Crops",
   
   
   "All-Users": "All-Users",
@@ -496,4 +508,13 @@
   "InActive": "InActive",
   "Active FPO Users": "Active FPO Users",
   "InActive FPO Users": "InActive FPO Users"
+}
+  "All Complaint": "All Complaints",
+  "Select FPO": "Select FPO",
+  "description is required": "description is required",
+  "Notifications Details": "Notifications Details",
+  "NotificationsDate": "Notifications Date",
+  "Notifications By Department": "Notifications By Department",
+  "Department Name": "Department Name"
+
 }
