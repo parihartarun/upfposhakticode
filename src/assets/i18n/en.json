@@ -480,6 +480,15 @@
   "Estimated Production (in Qt.)" : "Estimated Production (in Qt.)",
   "Sales Data" : "Sales Data",
   "Select District" : "Select District",
-  "Select Crops" : "Select Crops"
+  "Select Crops" : "Select Crops",
+  "Description": "Description",
+  "Seeds": "Seeds",
+  "Fertilizer": "Fertilizer",
+  "Agri Equipment": "Agri Equipment",
+  "Agri Equipment Bank": "Agri Equipment Bank",
+  "Export": "Export",
+  "Organic Farming": "Organic Farming",
+  "Special Crop": "Special Crop",
+  "Finance": "Finance"
 
 }

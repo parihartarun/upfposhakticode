@@ -485,5 +485,14 @@
   "Estimated Production (in Qt.)" :"अपेक्षित उपज (क्विन्टल में)",
   "Sales Data" : "विक्रय डेटा",
   "Select District" : "जनपद का चयन करें",
-  "Select Crops" : "फ़सलें का चयन करें"
+  "Select Crops" : "फ़सलें का चयन करें",
+  "Description": "उत्पाद विवरण",
+  "Seeds": "बीज",
+  "Fertilizer": "उर्वरक",
+  "Agri Equipment": "कृषि उपकरण",
+  "Agri Equipment Bank": "किसान कृषि उपकरण बैंक",
+  "Export": "निर्यात",
+  "Organic Farming": "जैविक कृषि",
+  "Special Crop": "विशेष फसल",
+  "Finance": "वित्त"
 }

@@ -75,6 +75,13 @@ import { InputSupperComplaintsComponent } from './pages/auth-pages/inputSupper/i
 import { ChcComplaintsComponent } from './pages/auth-pages/chc/chc-complaints/chc-complaints.component';
 import { DepartmentProductionReportComponent } from './pages/department/department-production-report/department-production-report.component';
 import { DepartmentSalesReportComponent } from './pages/department/department-sales-report/department-sales-report.component';
+import { SchemasComponent } from './pages/schemas/schemas.component';
+import { InputDetailsSeedsComponent } from './pages/Input-Supplier/input-details-seeds/input-details-seeds.component';
+import { InputDetailsFertilizerComponent } from './pages/Input-Supplier/input-details-fertilizer/input-details-fertilizer.component';
+import { InputDetailsMachineryComponent } from './pages/Input-Supplier/input-details-machinery/input-details-machinery.component';
+import { InputDetailsInsecticidesComponent } from './pages/Input-Supplier/input-details-insecticides/input-details-insecticides.component';
+import { MachineryComponent } from './pages/CHC/machinery/machinery.component';
+import { UserStatusComponent } from './pages/user-status/user-status.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -160,9 +167,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     BuyerTraderComplaintsComponent,
     InputSupperComplaintsComponent,
     ChcComplaintsComponent,
-
+    SchemasComponent,
     DepartmentProductionReportComponent,
     DepartmentSalesReportComponent,
+    InputDetailsSeedsComponent,
+    InputDetailsFertilizerComponent,
+    InputDetailsMachineryComponent,
+    InputDetailsInsecticidesComponent,
+    MachineryComponent,
+    UserStatusComponent,
+
   ],
   exports: [   
     AuthHeaderComponent
