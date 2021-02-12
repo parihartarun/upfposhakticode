@@ -34,6 +34,8 @@ export class LicenseComponent implements OnInit {
       liceneceNumber: ['', [Validators.required]],
       issuedate: [''],
       licenceValidTill: [''],
+      fpoRefId:localStorage.getItem('masterId'),
+      masterId:localStorage.getItem('masterId'),
       id:['']
     });
     this.getLicense();
@@ -45,7 +47,7 @@ export class LicenseComponent implements OnInit {
  }
 
   getLicense(){
-      this.api.getLicense().subscribe(response => {
+      this.api.getLicense(localStorage.getItem('masterId')).subscribe(response => {
         console.log(response);
         this.licenses = response;
       },
@@ -73,7 +75,10 @@ addLicense() {
   if (this.licenseForm.invalid) {
       return;
   }
-
+  this.licenseForm.patchValue({
+    fpoRefId:localStorage.getItem('masterId'),
+    masterId:localStorage.getItem('masterId')
+  });
   this.api.addLicense(this.licenseForm.value).subscribe(response => {
     console.log(response)
     if(response.id != ''){
@@ -99,6 +104,8 @@ editLicense(license){
     liceneceNumber: [license.liceneceNumber, [Validators.required]],
     issuedate: [''],
     licenceValidTill: [''],
+    fpoRefId:localStorage.getItem('masterId'),
+    masterId:localStorage.getItem('masterId'),
     id:[license.id]
   });
   
