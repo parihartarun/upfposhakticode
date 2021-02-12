@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
 @Component({
@@ -13,16 +14,18 @@ export class DepartmentNotificationComponent implements OnInit {
 
   NotificationsForm: FormGroup;
   submitted = false;
-  getalluserlist: Array<any> = [];
+  fpos: Array<any> = [];
   notifications = [];
   p: number = 1;
+  fileToUpload:any
 
-  constructor(private formBuilder: FormBuilder, private api: FpoService, private route: Router, private toastr: ToastrService) { }
+  constructor(private formBuilder: FormBuilder, private api: FpoService, private route: Router, private toastr: ToastrService
+    , private _departmentService: DepartmentService) { }
 
   ngOnInit(): void {
-    //  this.api.getAllUsers().subscribe(us => {
-    //     this.getalluserlist = us;
-    //   })
+    this.api.getAllFpo().subscribe(us => {
+      this.fpos = us;
+       })
 
     this.notifications = [
       {
@@ -45,56 +48,56 @@ export class DepartmentNotificationComponent implements OnInit {
 
 
     this.NotificationsForm = this.formBuilder.group({
-      userName: ['', [Validators.required]],
-      desc: ['', [Validators.required]],
-      receiver_id: [''],
-      fpoId: [''],
-      sender_id: [''],      
-      uploadFile: ['', [Validators.required]],
-      masterId: localStorage.getItem('masterId'),
+
+      message: ['', [Validators.required]],
+      fpo_id: ['', [Validators.required]],      
+        uploadFile: ['', [Validators.required]],
+        dept_id: localStorage.getItem('masterId'),
     });
   }
   reset() {
     this.NotificationsForm.reset();
   }
 
-  getAllNotification() {
-    // this.api.getAllnotifocation().subscribe(response => {
-    //   console.log(response);
-    //   this.notifications = response;
-    // });
-
-  }
+ 
   viewNotifications() {
 
   }
-  sendNotifications() {
-
-  }
-
   get formControls() {
     return this.NotificationsForm.controls;
   }
-  // sendNotifications() {  
-  //   this.submitted = true;
-  //   // stop here if form is invalid
-  //   // if (this.NotificationsForm.invalid) {
-  //   //   return;
-  //   // }
-  //   this.api.updateNotification(this.NotificationsForm.value).subscribe(response => {
-  //     console.log(response);
-  //     if (response.id != '') {
-  //       this.toastr.success('complians successfully.');
-  //       this.submitted = false;
-  //       // this.edit = false;
-  //       this.NotificationsForm.reset();
-  //     } else {
-  //       this.toastr.error('Error! While Updating License.');
-  //     }
-  //    // this.getComplaints();
-  //   });
-  // }
-
+   sendNotifications() {  
+     this.submitted = true;
+     
+      if (this.NotificationsForm.invalid) {
+        return;
+     }
+     const formData: FormData = new FormData();
+     formData.append('file', this.fileToUpload);
+     formData.append('fpo_id', this.NotificationsForm.value.fpo_id);
+     formData.append('message', this.NotificationsForm.value.message);
+     formData.append('dept_id ', localStorage.getItem('masterId'));
+     formData.append("role", localStorage.getItem('userRole'))
+     this._departmentService.sendNotifiaction(this.NotificationsForm.value, formData).subscribe(response => {
+       console.log(response);
+       if (response.id != '') {
+         this.toastr.success('complians successfully.');
+         this.submitted = false;
+         // this.edit = false;
+         this.NotificationsForm.reset();
+       } else {
+         this.toastr.error('Error! While Updating License.');
+       }
+      // this.getComplaints();
+     });
+   }
+  selectfPo(complaint) {
+    this.NotificationsForm.controls['fpo_id'].setValue(complaint.currentTarget.value);
+   
+  }
+  upload(files: FileList) {
+    this.fileToUpload = files.item(0);
+      }
 }
 
 

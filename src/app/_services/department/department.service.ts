@@ -19,7 +19,7 @@ export class DepartmentService {
     }));
   }
 
-  getCropsForSales(season){
+  getCropsForSales(season) {
     return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropsBySeasonId/${season}`).pipe(map((res: any) => {
       return res;
     }));
@@ -40,7 +40,7 @@ export class DepartmentService {
       return res;
     }));
   }
-  updateStatus(data,formData) {
+  updateStatus(data, formData) {
     return this.http.put<any>(this._url + 'fpocomplaint/complaintstatus/' + data.id, formData).pipe(map((res: any) => {
       return res;
     }));
@@ -61,7 +61,7 @@ export class DepartmentService {
       return res;
     }));
   }
-  updateCircular(data,formVlaue) {
+  updateCircular(data, formVlaue) {
     return this.http.put<any>(this._url + 'circulars/' + formVlaue.id, data).pipe(map((res: any) => {
       return res;
     }));
@@ -72,39 +72,46 @@ export class DepartmentService {
     }));
   }
   deleteCircular(data) {
-    return this.http.delete<any>(this._url + 'circulars/'+data).pipe(map((res: any) => {
+    return this.http.delete<any>(this._url + 'circulars/' + data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getDistrictBystateId(stateid:number): Observable<any>  {
-    return this.http.get<any>(this._url + `api/v1/District/getDistrictsByStateId/${stateid}` ).pipe(map((res: any) => {
+  getDistrictBystateId(stateid: number): Observable<any> {
+    return this.http.get<any>(this._url + `api/v1/District/getDistrictsByStateId/${stateid}`).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getDistrict(): Observable<any>  {
-    return this.http.get<any>(this._url + 'api/v1/District/getDistricts' ).pipe(map((res: any) => {
-      return res;
-    }));
-  }
-  
-  getSeason(){
-    return this.http.get<any>(this._url + 'api/v1/seasonMaster/getSeasons' ).pipe(map((res: any) => {
+  getDistrict(): Observable<any> {
+    return this.http.get<any>(this._url + 'api/v1/District/getDistricts').pipe(map((res: any) => {
       return res;
     }));
   }
 
-  departViewReport(viewdata):Observable<any>{
-     return this.http.post<any>(this._url + 'api/department/getProductionReport', viewdata ).pipe(map((res: any) => {
+  getSeason() {
+    return this.http.get<any>(this._url + 'api/v1/seasonMaster/getSeasons').pipe(map((res: any) => {
       return res;
     }));
   }
 
-  departViewReportSales(viewdata):Observable<any>{
-    return this.http.post<any>(this._url + 'api/department/getSalesReport', viewdata ).pipe(map((res: any) => {
-     return res;
-   }));
- }
+  departViewReport(viewdata): Observable<any> {
+    return this.http.post<any>(this._url + 'api/department/getProductionReport', viewdata).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  departViewReportSales(viewdata): Observable<any> {
+    return this.http.post<any>(this._url + 'api/department/getSalesReport', viewdata).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  sendNotifiaction(data, formData) {
+    return this.http.post<any>(this._url + 'notification/fposend', formData).pipe(map((res: any) => {
+      return res;
+    }))
 }
+}
+
+
 
