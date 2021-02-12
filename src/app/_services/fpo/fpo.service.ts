@@ -326,7 +326,7 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
   updateStatusComplaint(data, formdata) {
-    return this.http.put<any>(this._url + 'complaint/dept/' + data.id, formdata).pipe(map((res: any) => {
+    return this.http.put<any>(this._url + 'complaint/complaintstatus/' + data.id, formdata).pipe(map((res: any) => {
 
       return res;
     }));
