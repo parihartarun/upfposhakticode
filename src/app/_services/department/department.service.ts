@@ -172,11 +172,7 @@ export class DepartmentService {
     }))
    
 }
-  departViewReportSales(viewdata): Observable<any> {
-    return this.http.post<any>(this._url + 'api/department/getSalesReport', viewdata).pipe(map((res: any) => {
-      return res;
-    }));
-  }
+ 
 }
 
 

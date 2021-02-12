@@ -470,18 +470,7 @@
   "Select Crops": "Select Crops",
   
   
-  "All-Users": "All-Users",
-  "zerotonintynine": "0 - 99 (quintal)",
-  "hundredtohundrednintynine": "100 - 199 (quintal)",
-  "morethan200": "More than 200 (quintal)",
-  "enterfpodeliveryaddr": "Please enter delivery Address.",
-  "fpodeliveryaddr": "Delivery Address.",
-  "deleiveryrequired": "Delivery address is required.",
-  "Indent Form": "Indent Form",
-  "Estimated Production (in Qt.)": "Estimated Production (in Qt.)",
-  "Sales Data": "Sales Data",
-  "Select District": "Select District",
-  "Select Crops": "Select Crops",
+
   "Description": "Description",
   "Seeds": "Seeds",
   "Fertilizer": "Fertilizer",
@@ -507,9 +496,9 @@
   "Active": "Active",
   "InActive": "InActive",
   "Active FPO Users": "Active FPO Users",
-  "InActive FPO Users": "InActive FPO Users"
-}
-  "All Complaint": "All Complaints",
+  "InActive FPO Users": "InActive FPO Users",
+
+
   "Select FPO": "Select FPO",
   "description is required": "description is required",
   "Notifications Details": "Notifications Details",
