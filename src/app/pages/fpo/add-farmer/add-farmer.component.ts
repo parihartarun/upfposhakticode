@@ -42,7 +42,7 @@ export class AddFarmerComponent implements OnInit {
   }
   
   getFarmerDetailList(){
-    this.fpo.getFarmerDetailList().subscribe(
+    this.fpo.getFarmerDetailList(localStorage.getItem('masterId')).subscribe(
       response => {
       console.log(response);
       this.FarmerLists = response;
@@ -128,22 +128,27 @@ export class AddFarmerComponent implements OnInit {
   register() {
     this.submitted = true;
     // stop here if form is invalid
-    console.log(this.fpoAddFarmerForm);
+    console.log(this.fpoAddFarmerForm.value);
     if (this.fpoAddFarmerForm.invalid) {
       return;
     }
+    this.fpoAddFarmerForm.patchValue({
+      fpoRefId: localStorage.getItem('masterId'),
+      userRefId: localStorage.getItem('userId'),
+      createdBy:localStorage.getItem('userrole')
+    });
     let user = {
       userName: this.generate_radom_string(),
-      password: this.fpoAddFarmerForm.value.password,
+      password: 12345678,
       roleRefId:6
     }
+    this.fpoAddFarmerForm.value.userFar = user;
+
     delete this.fpoAddFarmerForm.value.password;
     delete this.fpoAddFarmerForm.value.userName;
     delete this.fpoAddFarmerForm.value.confirmPassword;
-  
-    this.fpoAddFarmerForm.value.userFar = user;
 
-    console.log("dgdfg "+JSON.stringify(this.fpoAddFarmerForm.value));
+    console.log(this.fpoAddFarmerForm.value);
     this.fpo.registerFarmerByFpo(this.fpoAddFarmerForm.value).subscribe(response => {
       console.log(response);
       if (response.message == "SuccessFully Saved!") {
@@ -159,7 +164,6 @@ export class AddFarmerComponent implements OnInit {
     },
       err => {
         console.log(err);
-        alert(err);
       })
   }
   
@@ -196,6 +200,11 @@ export class AddFarmerComponent implements OnInit {
     }, {
         validator: MustMatch('password', 'confirmPassword')
        
+    });
+    this.fpoAddFarmerForm.patchValue({
+      blockRef: farmerDetails.blockRef,
+      villagePanchayatId: farmerDetails.villagePanchayatId,
+      villRefId:farmerDetails.villRefId
     });
     this.edit = true;
     window.scroll(0,0);
