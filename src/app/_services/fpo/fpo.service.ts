@@ -459,9 +459,26 @@ updateFarmerMachineryBankList(id:number,data:any){
 
   }
   getAllNotificationBydept(id) {
-    return this.http.get<any>(this._url + '/notification/fponotification/' + id).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'notification/fponotification/' + id).pipe(map((res: any) => {
       return res;
     }))
+  }
+  sendNotifiaction(data, formData) {
+    return this.http.post<any>(this._url + 'notification/farmersend', formData).pipe(map((res: any) => {
+      return res;
+    }))
+  }
+  getAllFarmer() {
+
+    return this.http.get<any>(this._url + 'api/farmer').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getAllNotificationByFpo(id) {
+
+    return this.http.get<any>(this._url + 'notification/farmernotification/'+id).pipe(map((res: any) => {
+      return res;
+    }));
   }
 }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DepartmentService } from '../../../_services/department/department.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 
 @Component({
@@ -11,91 +12,79 @@ import { FpoService } from '../../../_services/fpo/fpo.service';
 })
 export class FpoNotifiactionComponent implements OnInit {
 
-
   NotificationsForm: FormGroup;
   submitted = false;
-  getalluserlist: Array<any> = [];
+  fpos: Array<any> = [];
   notifications = [];
   p: number = 1;
-
-  constructor(private formBuilder: FormBuilder, private api: FpoService, private route: Router, private toastr: ToastrService) { }
+  fileToUpload: any
+  farmers:any[]
+  constructor(private formBuilder: FormBuilder, private api: FpoService, private route: Router, private toastr: ToastrService
+    , private _departmentService: DepartmentService) { }
 
   ngOnInit(): void {
-    //  this.api.getAllUsers().subscribe(us => {
-    //     this.getalluserlist = us;
-    //   })
-
-    this.notifications = [
-      {
-        "title": "FPO_Famer1",
-        "description": "The shortest article. Ever.",
-        "uploadDate": "2015-05-22T14:56:28.000Z"
-      },
-      {
-        "title": "FPO_Famer2",
-        "description": "Farmer Producer Company.",
-        "uploadDate": "2015-08-22T14:56:28.000Z"
-      },
-      {
-        "title": "FPO_Famer2",
-        "description": "The FPO can aggregate the produce better.",
-        "uploadDate": "2015-09-22T14:56:28.000Z"
-      }
-    ]
+    this.api.getAllFarmer().subscribe(us => {
+      this.farmers = us;
+    })
+    this.getNotificationByFPO();
+    
 
 
 
     this.NotificationsForm = this.formBuilder.group({
-      userName: ['', [Validators.required]],
-      desc: ['', [Validators.required]],
-      receiver_id: [''],
-      fpoId: [''],
-      sender_id: [''],
+
+      message: ['', [Validators.required]],
+      
+      farmer_id: ['', [Validators.required]],
       uploadFile: ['', [Validators.required]],
-      masterId: localStorage.getItem('masterId'),
+      dept_id: localStorage.getItem('masterId'),
     });
   }
   reset() {
     this.NotificationsForm.reset();
   }
-
-  getAllNotification() {
-    // this.api.getAllnotifocation().subscribe(response => {
-    //   console.log(response);
-    //   this.notifications = response;
-    // });
-
+  getNotificationByFPO() {
+    this.api.getAllNotificationByFpo(localStorage.getItem('masterId')).subscribe(us => {
+      this.notifications = us;
+    })
   }
+
   viewNotifications() {
 
   }
-  sendNotifications() {
-
-  }
-
   get formControls() {
     return this.NotificationsForm.controls;
   }
-  // sendNotifications() {  
-  //   this.submitted = true;
-  //   // stop here if form is invalid
-  //   // if (this.NotificationsForm.invalid) {
-  //   //   return;
-  //   // }
-  //   this.api.updateNotification(this.NotificationsForm.value).subscribe(response => {
-  //     console.log(response);
-  //     if (response.id != '') {
-  //       this.toastr.success('complians successfully.');
-  //       this.submitted = false;
-  //       // this.edit = false;
-  //       this.NotificationsForm.reset();
-  //     } else {
-  //       this.toastr.error('Error! While Updating License.');
-  //     }
-  //    // this.getComplaints();
-  //   });
-  // }
+  sendNotifications() {
+    this.submitted = true;
 
+    if (this.NotificationsForm.invalid) {
+      return;
+    }
+    const formData: FormData = new FormData();
+    formData.append('file', this.fileToUpload);
+    formData.append('farmer_id', this.NotificationsForm.value.fpo_id);
+    formData.append('message', this.NotificationsForm.value.message);
+    formData.append('fpo_id', localStorage.getItem('masterId'));
+    formData.append("role", localStorage.getItem('userRole'))
+    this.api.sendNotifiaction(this.NotificationsForm.value, formData).subscribe(response => {
+      console.log(response);
+      if (response.id != '') {
+        this.toastr.success('complians successfully.');
+        this.submitted = false;
+        this.getNotificationByFPO();
+        this.NotificationsForm.reset();
+      } else {
+        this.toastr.error('Error! While Updating License.');
+      }
+      // this.getComplaints();
+    });
+  }
+  selectfPo(complaint) {
+    this.NotificationsForm.controls['farmer_id'].setValue(complaint.currentTarget.value);
+
+  }
+  upload(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
 }
-
-
