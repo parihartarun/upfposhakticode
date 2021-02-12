@@ -480,6 +480,11 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
+  getfamerDetail(id) {
+    return this.http.get<any>(this._url + 'fpocomplaint/farmerComplaint/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 }
 
 
