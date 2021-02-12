@@ -36,12 +36,12 @@ export class DepartmentService {
     }));
   }
   getComplaints() {
-    return this.http.get<any>(this._url + 'complaint').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'fpocomplaint/getall').pipe(map((res: any) => {
       return res;
     }));
   }
-  updateStatus(data) {
-    return this.http.post<any>(this._url + '', data).pipe(map((res: any) => {
+  updateStatus(data,formData) {
+    return this.http.put<any>(this._url + 'fpocomplaint/complaintstatus/' + data.id, formData).pipe(map((res: any) => {
       return res;
     }));
   }

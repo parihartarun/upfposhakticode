@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -31,7 +32,7 @@ export class DepartmentComplaintsComponent implements OnInit {
     private route: Router,
     private toastr: ToastrService,
     private userService: UserService,
-    private authService: AuthService,
+    private authService: AuthService, private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -39,14 +40,7 @@ export class DepartmentComplaintsComponent implements OnInit {
       this.users=u
     })
 
-    this.complaintForm = this.formBuilder.group({
-      appointment: ['', [Validators.required]],
-      appointmentDate: ['20/03/2020'],
-      departmentComments: ['',[Validators.required]],
-      complaintStatus: ['', [Validators.required]],
-      masterId: localStorage.getItem('masterId'),
-
-    });
+   
     fpoId: localStorage.getItem('masterId')
     this.getComplaints();
   }
@@ -64,12 +58,19 @@ export class DepartmentComplaintsComponent implements OnInit {
     if (this.complaintForm.invalid) {
       return;
     }
-   
-    this.api.updateStatus(this.complaintForm.value).subscribe(response => {
+    const formData: FormData = new FormData();
+
+    formData.append('id', this.complaintForm.value.id);
+    formData.append('assign_to', this.complaintForm.value.assign_to);
+    formData.append('comment', this.complaintForm.value.comment);
+    formData.append('status', this.complaintForm.value.status);
+    this.api.updateStatus(this.complaintForm.value, formData).subscribe(response => {
       if (response.id != '') {
         this.toastr.success(response);
         this.submitted = false;        
         this.complaintForm.reset();
+        this.getComplaints();
+        this.isViewComplaint = false;
       } else {
         this.toastr.error('Error! While Add complaint.');
       }
@@ -113,14 +114,20 @@ export class DepartmentComplaintsComponent implements OnInit {
   viewComplaint(complaint) {
     this.isViewComplaint = true;
     this.viewComp.assignedTo = complaint.assignBy;
-    this.viewComp.assigned_date = complaint.assigned_date;
+    this.viewComp.assigned_date = complaint.createDateTime;
     this.viewComp.currentStatus = complaint.status;
     this.viewComp.description = complaint.description;
     this.viewComp.compalintDate = complaint.createDateTime;
-    this.viewComp.remarks = complaint.remarks;
+    this.viewComp.remarks = complaint.createDateTime;
     this.viewComp.title = complaint.title;
     this.viewComp.name = complaint
     window.scroll(0, 0)
-
+    this.complaintForm = this.formBuilder.group({
+      id: [complaint.id],
+      assign_to: ['', [Validators.required]],
+      appointmentDate: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
+      comment: ['', [Validators.required]],
+      status: ['', [Validators.required]],
+    });
   }
 }
