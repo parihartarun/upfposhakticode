@@ -76,6 +76,7 @@ import { ChcComplaintsComponent } from './pages/auth-pages/chc/chc-complaints/ch
 import { DepartmentProductionReportComponent } from './pages/department/department-production-report/department-production-report.component';
 import { DepartmentSalesReportComponent } from './pages/department/department-sales-report/department-sales-report.component';
 import { ComplaintByFarmerComponent } from './pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
+import { DepartmentNotificationComponent } from './pages/department/department-notification/department-notification.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -165,6 +166,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DepartmentProductionReportComponent,
     DepartmentSalesReportComponent,
     ComplaintByFarmerComponent,
+    DepartmentNotificationComponent,
   ],
   exports: [   
     AuthHeaderComponent
