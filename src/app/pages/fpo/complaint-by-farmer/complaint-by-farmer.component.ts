@@ -133,7 +133,7 @@ export class ComplaintByFarmerComponent implements OnInit {
       comment: ['', [Validators.required]],
       status: ['', [Validators.required]],
     });
-    getfamerDetail
+    
   }
   filterComaplaint() {
     if (this.fliterForm.controls['complaint'].value === "New") {
