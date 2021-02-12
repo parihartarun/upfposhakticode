@@ -11,6 +11,8 @@ import { FpoRegisterComponent } from '../../pages/registers/fpo-register/fpo-reg
 import { RegisterComponent } from '../../pages/registers/register.component';
 import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.component';
 import { FpoGuidelinesComponent } from '../../pages/fpo/fpo-guidelines/fpo-guidelines.component';
+import { SchemasComponent } from 'src/app/pages/schemas/schemas.component';
+
 
 export const AuthLayoutRoutes: Routes = [
    
@@ -25,6 +27,7 @@ export const AuthLayoutRoutes: Routes = [
     { path: 'fpo-register', component: FpoRegisterComponent },
     { path: 'bye-seller-register', component: ByerSellRegisterComponent },
   { path: 'input-suppler-register', component: InputSupplierRegisterComponent },
+  { path: 'schema', component: SchemasComponent },
   
 
 ];

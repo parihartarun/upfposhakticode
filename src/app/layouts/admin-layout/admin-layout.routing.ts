@@ -36,6 +36,12 @@ import { DepartmentGuidelineComponent } from 'src/app/pages/department/departmen
 import { DepartmentSchemeComponent } from 'src/app/pages/department/department-scheme/department-scheme.component';
 import { FarmerComplaintsComponent } from '../../pages/farmer/farmer-complaints/farmer-complaints.component';
 import { BuyerTraderComplaintsComponent } from '../../pages/buyer-treder/buyer-trader-complaints/buyer-trader-complaints.component';
+import { InputDetailsSeedsComponent } from 'src/app/pages/Input-Supplier/input-details-seeds/input-details-seeds.component';
+import { InputDetailsFertilizerComponent } from 'src/app/pages/Input-Supplier/input-details-fertilizer/input-details-fertilizer.component';
+import { InputDetailsMachineryComponent } from 'src/app/pages/Input-Supplier/input-details-machinery/input-details-machinery.component';
+import { InputDetailsInsecticidesComponent } from 'src/app/pages/Input-Supplier/input-details-insecticides/input-details-insecticides.component';
+import { MachineryComponent } from 'src/app/pages/CHC/machinery/machinery.component';
+import { UserStatusComponent } from 'src/app/pages/user-status/user-status.component';
 import { ComplaintByFarmerComponent } from '../../pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
 
 export const AdminLayoutRoutes: Routes = [
@@ -73,6 +79,14 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/farmer-user-profile', component: FarmerUserProfileComponent },
   { path: 'farmer/complaints', component: FarmerComplaintsComponent },
   { path: 'byer/complaints', component: BuyerTraderComplaintsComponent },
+  { path: 'chc/complaints', component: BuyerTraderComplaintsComponent },
+  { path: 'input/complaints', component: BuyerTraderComplaintsComponent },
+  { path: 'input-seed', component: InputDetailsSeedsComponent },
+  { path: 'input-fertilizer', component: InputDetailsFertilizerComponent },
+  { path: 'input-machinery', component: InputDetailsMachineryComponent },
+  { path: 'input-insect', component: InputDetailsInsecticidesComponent },
+  { path: 'CHC-machinery', component: MachineryComponent },
+  { path: 'userDetails', component: UserStatusComponent },
   { path: 'chc/complaints', component: FarmerComplaintsComponent },
   { path: 'input/complaints', component: FarmerComplaintsComponent },
   { path: 'fpo/complaintsByfarmer', component: ComplaintByFarmerComponent },

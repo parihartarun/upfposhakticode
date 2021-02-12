@@ -89,7 +89,7 @@
                 <span>{{viewComp.currentStatus}}</span>
               </div>
 
-              <div class="col-12">
+              <div class="col-12 mt-4">
                 <div class="col-6 p-0 " style="display:inline-block">
                   <h4 class="mb-0">
                     {{'Assigned To' | translate}}: *
@@ -285,15 +285,17 @@
                 <th scope="col">{{'SR. NO' | translate}}</th>
                 <th scope="col">{{'Complaints/ Suggestions Category' | translate}}</th>
                 <th scope="col">{{'Complaints/ Suggestions Description' | translate}}</th>
-                <th scope="col">{{'Complaint/ Suggestion Date' | translate}}</th>
+                <th scope="col">{{'Complaint/ Suggestion Date'|translate}}</th>
+             
+                <th scope="col">{{'Complaints / Complaints Status of suggestion'|translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let complaint of complaints | paginate: { itemsPerPage: 10, currentPage: p };index as i">
                 <!--<td>
-                  <input type="checkbox">
-                </td>-->
+    <input type="checkbox">
+  </td>-->
                 <td>
                   {{(p-1) * 10 + i + 1}}
                 </td>
@@ -307,6 +309,10 @@
 
                   {{complaint.createDateTime | date: 'dd/MM/yyyy'}}
                 </td>
+                <td>
+                  <span *ngIf="complaint.status">{{complaint.status}}</span>
+                  <span *ngIf="!complaint.status">NA</span>
+                </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
@@ -314,11 +320,11 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">{{'View'|translate}}</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="editCompliant(complaint)">{{'Edit'|translate}}</a>
+                      <!--<a class="dropdown-item" href="javascript:void(0)" (click)="editCompliant(complaint)">{{'Edit'|translate}}</a>-->
                     </div>
                   </div>
                 </td>
-               
+
               </tr>
             </tbody>
           </table>
