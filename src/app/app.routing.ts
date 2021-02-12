@@ -9,7 +9,6 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { AuthGuardService } from './_helpers/auth-guard.service';
 import { HomeComponent } from './pages/home/home.component';
 import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
-import { SchemasComponent } from './pages/schemas/schemas.component';
 
 const routes: Routes =[
   {
@@ -19,10 +18,7 @@ const routes: Routes =[
   {
     path: 'home', component: HomeComponent
   },
-  { path: 'fpo_guidelines', component: FpoGuidelinesComponent },
-  // { path: 'schema', component: SchemasComponent },
-
-  
+  { path: 'fpo_guidelines', component: FpoGuidelinesComponent }, 
   {
     path: '',
     component: AdminLayoutComponent,
