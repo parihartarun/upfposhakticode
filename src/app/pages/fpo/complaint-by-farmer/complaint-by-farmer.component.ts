@@ -85,7 +85,7 @@ export class ComplaintByFarmerComponent implements OnInit {
     formData.append('comment', this.complaintStatusForm.value.comment);
     formData.append('status', this.complaintStatusForm.value.status);
  
-    this.api.updateComplaint(this.complaintStatusForm.value, formData).subscribe(response => {
+    this.api.updateStatusComplaint(this.complaintStatusForm.value, formData).subscribe(response => {
       console.log(response);
       if (response.id != '') {
         this.toastr.success('complians successfully.');

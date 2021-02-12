@@ -325,6 +325,12 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
+  updateStatusComplaint(data, formdata) {
+    return this.http.put<any>(this._url + 'complaint/dept/' + data.id, formdata).pipe(map((res: any) => {
+
+      return res;
+    }));
+  }
   /****************************************fpo land details************************************ */
   getLandDetailList(id) {
     return this.http.get<any>(this._url + 'api/fpos/landfarmer/'+id).pipe(map((res: any) => {

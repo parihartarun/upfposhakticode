@@ -147,25 +147,32 @@ export class ComplaintsComponent implements OnInit {
     this.complaintForm.get('title').patchValue(complaint.title);
     
   }
-  updateSatus(viewComp) {
+  updateComplaint(viewComp) {
     this.submitted = true;
     // stop here if form is invalid
     if (this.complaintStatusForm.invalid) {
       return;
     }
+    const formData: FormData = new FormData();
+    formData.append('file', this.fileToUpload);
+    formData.append('description', this.complaintForm.value.desc);
+    formData.append('title', this.complaintForm.value.title.comp_type_en);
+    formData.append('issue_type', this.complaintForm.value.issueType);
+    formData.append("fpo_id", localStorage.getItem('masterId'))
+
     delete this.complaintStatusForm.value.appointmentDate;
-    //this.api.updateComplaint(this.complaintStatusForm.value).subscribe(response => {
-    //  console.log(response);
-    //  if (response.id != '') {
-    //    this.toastr.success('complians successfully.');
-    //    this.submitted = false;
-    //    this.edit = false;
-    //    this.complaintForm.reset();
-    //  } else {
-    //    this.toastr.error('Error! While Updating License.');
-    //  }
-    //  this.getComplaints();
-    //});
+    this.api.updateComplaint(this.complaintStatusForm.value, formData).subscribe(response => {
+      console.log(response);
+      if (response.id != '') {
+        this.toastr.success('complians successfully.');
+        this.submitted = false;
+        this.edit = false;
+        this.complaintForm.reset();
+      } else {
+        this.toastr.error('Error! While Updating License.');
+      }
+      this.getComplaints();
+    });
   }
   /* Return true or false if it is the selected */
   compareByOptionId(idFist, idSecond) {
