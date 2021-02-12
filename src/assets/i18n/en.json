@@ -463,6 +463,11 @@
   "Estimated Production (in Qt.)": "Estimated Production (in Qt.)",
   "Sales Data": "Sales Data",
   "Select District": "Select District",
-  "Select Crops": "Select Crops"
+  "Select Crops": "Select Crops",
+  "fpo's Remarks": "FPO's Remarks",
+  "Complaints/SuggestionsByFarmer": "Complaints/Suggestions By Farmer",
+  "status": "Status",
+  "New Compliant": "New Compliants",
+  "All Complaint": "All Complaints"
 
 }

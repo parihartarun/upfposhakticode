@@ -179,7 +179,7 @@
   "Complaint/ Suggestion Date": "शिकायत / सुझाव तिथि",
   "Status of Complaint/ Suggestion (As per Department)": "शिकायत की स्थिति / सुझाव (विभाग के अनुसार)",
   "Current Status": "वर्तमान स्थिति",
-  "Assigned To": "Assigned To",
+  "Assigned To": "नियुक्त किया",
   "Date of Assigning": "नियत करने की तिथि",
   "Department's Remarks": "विभाग की टिप्पणी",
   "Complaints/ Suggestions Category": "शिकायतें / सुझाव श्रेणी",
@@ -458,9 +458,9 @@
   "Schemes type is required": "योजनाओं का प्रकार आवश्यक है",
   "Department name is required": "विभाग का नाम आवश्यक है",
   "Upload document is required": "अपलोड दस्तावेज़ की आवश्यकता है",
-  "Update Guideline":"दिशानिर्देश को अपडेट करें",
-  "Update Schemes":"योजना को अपडेट करें",
-  "Cancel":"रद्द",
+  "Update Guideline": "दिशानिर्देश को अपडेट करें",
+  "Update Schemes": "योजना को अपडेट करें",
+  "Cancel": "रद्द",
   "createindent": "इंडेंट किजिये",
   "Name": "नाम",
   "Update Complaint/ Suggestion Status": "शिकायत / सुझाव की स्थिति अपडेट करें",
@@ -497,5 +497,10 @@
   "Estimated Production (in Qt.)": "अपेक्षित उपज (क्विन्टल में)",
   "Sales Data": "विक्रय डेटा",
   "Select District": "जनपद का चयन करें",
-  "Select Crops": "फ़सलें का चयन करें"
+  "Select Crops": "फ़सलें का चयन करें",
+  "fpo's Remarks": "एफपीओ की टिप्पणी",
+  "Complaints/SuggestionsByFarmer": "शिकायतें / सुझाव किसान द्वारा",
+  "status": "स्थिति",
+  "New Compliant": "नया शिकायतें",
+  "All Complaint": "सब शिकायतें"
 }
