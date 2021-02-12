@@ -152,18 +152,18 @@ export class BuyerTraderComplaintsComponent implements OnInit {
     if (this.complaintForm.invalid) {
       return;
     }
-    this.api.updateComplaint(this.complaintForm.value).subscribe(response => {
-      console.log(response);
-      if (response.id != '') {
-        this.toastr.success('complians successfully.');
-        this.submitted = false;
-        this.edit = false;
-        this.complaintForm.reset();
-      } else {
-        this.toastr.error('Error! While Updating License.');
-      }
-      this.getComplaints();
-    });
+    //this.api.updateComplaint(this.complaintForm.value).subscribe(response => {
+    //  console.log(response);
+    //  if (response.id != '') {
+    //    this.toastr.success('complians successfully.');
+    //    this.submitted = false;
+    //    this.edit = false;
+    //    this.complaintForm.reset();
+    //  } else {
+    //    this.toastr.error('Error! While Updating License.');
+    //  }
+    //  this.getComplaints();
+    //});
   }
   /* Return true or false if it is the selected */
   compareByOptionId(idFist, idSecond) {
