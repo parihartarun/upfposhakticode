@@ -34,20 +34,25 @@ export class FpoDetailsComponent implements OnInit {
     smallFarmers: 0,
     land: 0,
   };
+  fpoId;
   constructor(private modalService: NgbModal, private api: FpoService, private _activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
     ///////////////////////Apis/////////////////////////
+    this._activatedroute.params.subscribe(param => {
+      this.fpoId = param.id;
+      this.getAllByFpo();
+    })
 
     this._activatedroute.paramMap.subscribe(params => {
       let fpoId = Number(params.get('id'));
 
-      this.api.getfpoDetialById(fpoId).subscribe(f => {
-        this.fpo = f
-        console.log('fpo', f);
-
-      })
+      this.api.getfpoDetialById(fpoId).subscribe((res: any) => {
+        if (res) {
+          this.fpo = res;
+        }
+      });
 
       this.api.getById(fpoId).subscribe(response => {
         this.data1 = response;
@@ -66,41 +71,14 @@ export class FpoDetailsComponent implements OnInit {
 
     });
 
-
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.data = this.datasets[0];
-
-
-    var chartOrders = document.getElementById('chart-orders');
-
-    parseOptions(Chart, chartOptions());
-
-
-    var ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });
-
-    var ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });
-
-    var chartSales = document.getElementById('chart-sales');
-
-    this.salesChart = new Chart(chartSales, {
-      type: 'line',
-      options: chartExample1.options,
-      data: chartExample1.data
-    });
-
   }
-
+  getAllByFpo() {
+    this.api.getAllStorageUnitByFpo(this.fpoId).subscribe((res: any) => {
+      if (res) {
+        console.log('res', res);
+      }
+    })
+  }
   getDashboardDetails() {
     this.api.getDashboardData().subscribe(response => {
       console.log(response);

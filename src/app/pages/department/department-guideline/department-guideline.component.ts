@@ -75,6 +75,7 @@ export class DepartmentGuidelineComponent implements OnInit {
         this.toastr.success('Guideline updated successfully.');
         this.departmentService.getGuideline();
         this.guidelineForm.reset();
+        this.isEdit = false;
       } else {
         this.toastr.error('Something went wrong.');
       }

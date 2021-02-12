@@ -10,10 +10,10 @@
 </header>
 <div class="bg-light d-flex align-items-start justify-content-between px-6">
   <div>
-    <button type="button" class="btn btn-link" routerLink="/home">Home</button>
+    <button type="button" class="btn btn-link" routerLink="/home">{{'Home' | translate}}</button>
   </div>
   <div>
-    <button type="button" class="btn btn-link" routerLink="/home">Back</button>
+    <button type="button" class="btn btn-link" routerLink="/home">{{'Back' | translate}}</button>
   </div>
 </div>
 <!-- Page Content -->
@@ -26,10 +26,10 @@
       <div class="card-body">
         <div class="row">
           <div class="table-responsive">
-            <table class="table">
+            <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col">{{'Name' | translate}}</th>
+                  <th scope="col">{{'FPO Name' | translate}}</th>
                   <th scope="col">{{'Email' | translate}}</th>
                   <th scope="col">{{'Agency (associated with)' | translate}}</th>
                   <th scope="col">{{'Address' | translate}}</th>
@@ -61,39 +61,16 @@
   <div class="container mt-4">
     <div class="card shadow">
       <div class="card-header p-0">
-        <h3> FPO Details</h3>
+        <h3>{{'FPO Details' | translate}}</h3>
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-4 col-sm-12 col-xs-12 text-center">
-            <img class="card-img" src="../../../assets/img/img (1).gif" height="180px" width="100%"
+          <div class="col-md-4 col-sm-12 col-xs-12 text-center" *ngFor="let row of fpo?.photoUpload">
+            <img class="card-img" [src]="row.filePath" height="180px" width="100%"
               style="object-fit: cover;  object-positon: center center; object-fit: fill;" />
             <div class="col-12">
               <div class="card-body">
-                <p class="card-text">Felicitation of Vikash Path FPO by Honorable Chief Minister</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-img" class="col-md-4 col-sm-12 col-xs-12 text-center">
-            <img class="card-img" src="../../../assets/img/img (2).gif" height="180px" width="100%"
-              style="object-fit: cover;  object-positon: center center; object-fit: fill;" />
-
-            <div class="col-12">
-              <div class="card-body">
-                <p class="card-text">
-                  Felicitation of FPO</p>
-              </div>
-            </div>
-          </div>
-          <div class="card-img" class="col-md-4 col-sm-12 col-xs-12 text-center">
-            <img class="card-img" src="../../../assets/img/img (3).gif" height="180px" width="100%"
-              style="object-fit: cover;  object-positon: center center; object-fit: fill;" />
-
-            <div class="col-12">
-              <div class="card-body">
-                <p class="card-text">Bio Fertilizer Production and Training Centre
-                </p>
+                <p class="card-text">{{row.description}}</p>
               </div>
             </div>
           </div>
@@ -106,9 +83,9 @@
                 <div class="number text-center" style="margin: 10px;">
                   <h3>
                     <small>
-                      910</small>
+                      {{fpo.totalfarmers}}</small>
                     <br>
-                    <small> Total Farmers</small>
+                    <small> {{'Total Farmers' | translate}}</small>
                     <br>
                     <small>&nbsp;</small>
                   </h3>
@@ -124,27 +101,9 @@
                 <div class="number text-center" style="margin: 10px;">
                   <h3>
                     <small>
-                      1,015</small>
+                      {{fpo.totalland}}</small>
                     <br>
-                    <small> Total Land</small>
-                    <br>
-                    <small>(in Ha.)</small>
-                  </h3>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="board">
-              <div class="panel panel-primary"
-                style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">
-                <div class="number text-center" style="margin: 10px;">
-                  <h3>
-                    <small>
-                      1</small>
-                    <br>
-                    <small> Farm Machinery Bank</small>
+                    <small> {{'Total Land (in Ha.)' | translate}}</small>
                     <br>
                     <small>&nbsp;</small>
                   </h3>
@@ -162,7 +121,25 @@
                     <small>
                       1</small>
                     <br>
-                    <small>Seed Processing Unit</small>
+                    <small> {{'Farm Machinery Bank' | translate}}</small>
+                    <br>
+                    <small>&nbsp;</small>
+                  </h3>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="board">
+              <div class="panel panel-primary"
+                style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">
+                <div class="number text-center" style="margin: 10px;">
+                  <h3>
+                    <small>
+                      {{fpo.seedprocessingunitno}}</small>
+                    <br>
+                    <small>{{'Seed Processing Unit' | translate}}</small>
                     <br>
                     <small>&nbsp;</small>
                   </h3>
@@ -194,7 +171,7 @@
   <div class="container mt-4">
     <div class="card shadow">
       <div class="card-header p-0">
-        <h3> Product/Services</h3>
+        <h3> {{'Product/Services' | translate}}</h3>
       </div>
       <div class="card-body">
         <div class="row">
@@ -217,18 +194,18 @@
     <div class="card shadow">
 
       <div class="card-header p-0">
-        <h3 class="mb-0">Production Details (Annual)</h3>
+        <h3 class="mb-0">{{'Production Details (Annual)' | translate}}</h3>
       </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">{{'Sr. No' | translate}}</th>
-                <th scope="col">Crops</th>
-                <th scope="col">Crop Variety</th>
-                <th scope="col">Marketable Surplus 2021 (In Qt.)</th>
-                <th scope="col">Sold Quantity 2021 (In Qt.)</th>
+                <th scope="col">{{'SR. NO' | translate}}</th>
+                <th scope="col">{{'Crops' | translate}}</th>
+                <th scope="col">{{'Crop Variety' | translate}}</th>
+                <th scope="col">{{'Marketable Surplus 2021 (In Qt.)' | translate}}</th>
+                <th scope="col">{{'Sold Quantity 2021 (In Qt.)' | translate}}</th>
               </tr>
             </thead>
             <tbody>
@@ -269,7 +246,7 @@
     <div class="card shadow">
 
       <div class="card-header p-0">
-        <h3 class="mb-0">Other Details of FPO</h3>
+        <h3 class="mb-0">{{'Other Details of FPO' | translate}}</h3>
       </div>
       <div class="card-body">
         <div class="card mb-4">
@@ -277,7 +254,7 @@
           <div class="card-header p-0">
             <div class="row">
               <div class="col-9">
-                <h3 class="mb-0">Board Members</h3>
+                <h3 class="mb-0">{{'Board Members' | translate}}</h3>
               </div>
               <!-- <div class="col-3 text-right">
                   <button class="btn btn-primary text-right">Add Member</button>
@@ -288,11 +265,11 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col">{{'Sr. No' | translate}}</th>
-                  <th scope="col">Member Name</th>
-                  <th scope="col">Designations</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Mobile</th>
+                  <th scope="col">{{'SR. NO' | translate}}</th>
+                  <th scope="col">{{'Member Name' | translate}}</th>
+                  <th scope="col">{{'Designations' | translate}}</th>
+                  <th scope="col">{{'Email' | translate}}</th>
+                  <th scope="col">{{'Mobile' | translate}}</th>
                 </tr>
               </thead>
               <tbody>
@@ -330,7 +307,7 @@
           <div class="card-header p-0">
             <div class="row">
               <div class="col-9">
-                <h3 class="mb-0">Warehouse / Cold Storage</h3>
+                <h3 class="mb-0">{{'Warehouse / Cold Storage' | translate}}</h3>
               </div>
               <!-- <div class="col-3 text-right">
                   <button class="btn btn-primary text-right">Add Member</button>
@@ -341,12 +318,12 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col">{{'Sr. No' | translate}}</th>
-                  <th scope="col">District</th>
-                  <th scope="col">Storage Center Address</th>
-                  <th scope="col">Storage Center Type</th>
-                  <th scope="col">Storage Capacity (in Mt.)</th>
-                  <th scope="col">Available Facilities</th>
+                  <th scope="col">{{'SR. NO' | translate}}</th>
+                  <th scope="col">{{'District' | translate}}</th>
+                  <th scope="col">{{'Storage Center Address' | translate}}</th>
+                  <th scope="col">{{'Storage Center Type' | translate}}</th>
+                  <th scope="col">{{'Storage Capacity (in Mt.)' | translate}}</th>
+                  <th scope="col">{{'Available Facilities' | translate}}</th>
                 </tr>
               </thead>
               <tbody>
@@ -391,7 +368,7 @@
           <div class="card-header p-0">
             <div class="row">
               <div class="col-9">
-                <h3 class="mb-0">Licenses</h3>
+                <h3 class="mb-0">{{'Licenses' | translate}}</h3>
               </div>
               <!-- <div class="col-3 text-right">
                   <button class="btn btn-primary text-right">Add Member</button>
@@ -402,12 +379,12 @@
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col">{{'Sr. No' | translate}}</th>
-                  <th scope="col">Licenses Type</th>
-                  <th scope="col">Licenses Issued By</th>
-                  <th scope="col">Licenses Number</th>
-                  <th scope="col">Licenses From</th>
-                  <th scope="col">Licenses To</th>
+                  <th scope="col">{{'SR. NO' | translate}}</th>
+                  <th scope="col">{{'Licenses Type' | translate}}</th>
+                  <th scope="col">{{'Licenses Issued By' | translate}}</th>
+                  <th scope="col">{{'Licenses Number' | translate}}</th>
+                  <th scope="col">{{'Licenses From' | translate}}</th>
+                  <th scope="col">{{'Licenses To' | translate}}</th>
                 </tr>
               </thead>
               <tbody>
@@ -416,7 +393,7 @@
                   <!-- <td>
                       <input type="checkbox">
                     </td> -->
-                  
+
                   <td>
                     {{i+1}}
                   </td>
@@ -451,7 +428,7 @@
           <div class="card-header p-0">
             <div class="row">
               <div class="col-9">
-                <h3 class="mb-0">Farm Machinery Bank</h3>
+                <h3 class="mb-0">{{'Farm Machinery Bank' | translate}}</h3>
               </div>
               <!-- <div class="col-3 text-right">
                   <button class="btn btn-primary text-right">Add Member</button>
@@ -463,9 +440,9 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col"></th>
-                  <th scope="col">{{'Sr. No' | translate}}</th>
-                  <th scope="col">Name Of Equipment</th>
-                  <th scope="col">No Of Equipment</th>
+                  <th scope="col">{{'SR. NO' | translate}}</th>
+                  <th scope="col">{{'Name Of Equipment' | translate}}</th>
+                  <th scope="col">{{'No Of Equipment' | translate}}</th>
 
                   <th scope="col"></th>
                 </tr>
