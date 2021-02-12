@@ -84,7 +84,7 @@
             </div>
             <div class="col-12 mt-2 mb-2">
               <h4 class="mb-0" style="display:inline-block">
-                {{"Department's Remarks" | translate}}: *
+                {{"fpo's Remarks" | translate}}: *
               </h4>
               <span class="pl-2 pr-2"> {{viewComp.remarks}}</span>
             </div>
@@ -126,8 +126,8 @@
                       <option *ngFor="let cc of complaintsCatageriy" [value]="cc.comp_type_id">{{cc.comp_type_en}}</option>
 
                     </select>
-                    <div *ngIf="submitted && formControls.title.errors" class="text-danger">
-                      <div *ngIf="formControls.title.errors.required">{{'Category is required' | translate}}</div>
+                    <div *ngIf="submitted && formControls.issueType.errors" class="text-danger">
+                      <div *ngIf="formControls.issueType.errors.required">{{'Category is required' | translate}}</div>
                     </div>
                   </div>
                 </div>
@@ -198,10 +198,11 @@
               </tr>
             </thead>
             <tbody>
+             
               <tr *ngFor="let complaint of complaints | paginate: { itemsPerPage: 10, currentPage: p };index as i">
                 <!--<td>
-                  <input type="checkbox">
-                </td>-->
+      <input type="checkbox">
+    </td>-->
                 <td>
                   {{(p-1) * 10 + i + 1}}
                 </td>
@@ -218,11 +219,11 @@
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
+                      {{'Actions' |translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">{{'View' |translate}}</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">{{'Delete'|translate}}</a>
+                      <!--<a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">{{'Delete'|translate}}</a>-->
                     </div>
                   </div>
                 </td>

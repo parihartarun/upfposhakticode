@@ -1,0 +1,306 @@
+<div class="header bg-gradient-danger pb-7 pt-5 pt-md-8">
+  <div class="container-fluid">
+
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7 mp-7">
+  <!-- Table -->
+  <div class="row" *ngIf="isViewComplaint">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row ">
+            <div class="col-11">
+              <h3 class="mt-2 p-2 bg-warning">
+                {{'View Status and Details of Complaint/ Suggestion' | translate}}
+              </h3>
+            </div>
+            <div class="col-1 text-right close  ">
+              <button class="btn btn-primary text-right mb-2 mr-2" (click)="close()">{{'close'|translate}}</button>
+            </div>
+          </div>
+        </div>
+        <hr class="m-0">
+        <!--<div class="card-body">
+          <div class="row">
+
+            <div class="col-4 mb-4">
+              <h4 class="mb-2">
+                {{'Name'|translate}} :
+              </h4>vishal
+            </div>
+
+            <div class="col-4 mb-4">
+              <h4 class="mb-2">
+                {{'Mobile' | translate}}:
+              </h4>8275518800
+            </div>
+
+            <div class="col-4 mb-4">
+              <h4 class="mb-2">
+                {{'Email'|translate}}:
+              </h4>v@gmial.com
+            </div>
+
+
+          </div>
+        </div>
+        <hr class="m-0">-->
+        <div class="card-body" *ngIf="viewComp">
+          <div class="row">
+            <div class="col-12 mb-4">
+              <h2 class="mb-0">
+                {{'Details of Complaint/ Suggestion' | translate}}
+              </h2>
+            </div>
+            <div class="col-12">
+              <h4 class="mb-0">
+                {{'Complaints/ Suggestions Category:' | translate}}
+              </h4>
+            </div>
+            <div class="col-12">
+              <span>{{viewComp.title}}</span>
+            </div>
+            <div class="col-12 mb-4 mt-4">
+              <h4 class="mb-0">
+                {{'Complaint/ Suggestion Date' | translate}}:
+              </h4> {{viewComp.compalintDate | date: 'dd/MM/yyyy'}}
+            </div>
+            <div class="col-12">
+              <h4 class="mb-0">
+                {{'Description:' | translate}}
+              </h4>
+            </div>
+            <div class="col-12">
+              {{viewComp.description}}
+
+            </div>
+            <div class="col-12 mb-4 mt-4 bg-warning">
+              <h2 class="mb-0">
+                {{'Status of Complaint/ Suggestion (As per Department)' | translate}}
+              </h2>
+            </div>
+
+            <div class="col-12 mt-0 mb-4">
+              <h4 class="mb-0" style="display:inline-block">
+                {{'Current Status' | translate}}:
+              </h4>
+              <span>{{viewComp.currentStatus}}</span>
+            </div>
+
+            <div class="col-12">
+              <div class="col-6 p-0 " style="display:inline-block">
+                <h4 class="mb-0">
+                  {{'Assigned To' | translate}}: *
+                </h4>
+                <br />
+                <span>{{viewComp.assignedTo}}</span>
+              </div>
+              <div class="col-6 p-0" style="display:inline-block">
+                <div class="col-6">
+                  <h4 class="mb-0">
+                    {{'Date of Assigning' | translate}}:
+                  </h4>
+                  <br />
+                  <span>{{viewComp.assigned_date | date: 'dd/MM/yyyy'}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 mt-2 mb-2">
+              <h4 class="mb-0" style="display:inline-block">
+                {{"fpo's Remarks" | translate}}: *
+              </h4>
+              <span class="pl-2 pr-2"> {{viewComp.remarks}}</span>
+            </div>
+          </div>
+          <hr>
+          <div class="card-body" *ngIf="complaintStatusForm">
+            <div class="col-12 mb-4 mt-4 bg-warning">
+              <h2 class="mb-0">
+                Update Complaint/ Suggestion Status
+              </h2>
+            </div>
+            <form [formGroup]="complaintStatusForm">
+              <div class="pl-lg-0">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label">{{'Appointed'| translate}} <span class="required">*</span></label>
+
+                      <select class="form-control" formControlName="assign_to">
+                        <option value="">{{'Select User'|translate}}</option>
+                        <option *ngFor="let u of users" [value]="u.userId">{{u.userName}}</option>
+                      </select>
+                      <div *ngIf="submitted && formControls.assign_to.errors" class="text-danger">
+                        <div *ngIf="formControls.assign_to.errors.required">{{'Appointed to is required'| translate}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-email">{{'Appointment Date' |translate}}:</label>
+                      <input formControlName="appointmentDate" type="text" disabled id="input-email" class="form-control form-control-alternative">
+                      <div *ngIf="submitted && formControls.appointmentDate.errors" class="text-danger">
+                        <div *ngIf="formControls.appointmentDate.errors.required">{{'appointment date is required'|translate}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label" for=""> {{'fpo Comments'|translate}}:<span class="required">*</span></label>
+                      <textarea formControlName="comment" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
+
+                      <div *ngIf="submitted && formControls.comment.errors" class="text-danger">
+                        <div *ngIf="formControls.comment.errors.required">{{'fpo comments is required'|translate}}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label">{{'Change status'|translate}}: <span class="required">*</span></label>
+
+                      <select class="form-control" formControlName="status">
+                        <option value="">{{'Select Status'|translate}}</option>
+                        <option value="OPEN">{{'Open'|translate}}</option>
+                        <option value="ASSIGNED">{{'Assigned'|translate}}</option>
+                        <option value="RESOLVED">{{'Resolved'|translate}} </option>
+                      </select>
+                      <div *ngIf="submitted && formControls.status.errors" class="text-danger">
+                        <div *ngIf="formControls.status.errors.required"> {{'status  is required'|translate}}</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="card-footer text-center">
+                    <button type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateSatus(viewComp)">{{'Update Status'|translate}}</button>
+
+                    <button class="btn btn-warning text-right" (click)="reset()">{{'Reset'|translate}}</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+            <div class="col text-right">
+              <button class="btn btn-primary text-right mb-2" (click)="close()">{{'close'|translate}}</button>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="!isViewComplaint">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">
+                {{'Complaints' | translate}}
+              </h3>
+            </div>
+          </div>
+        </div>    
+
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-3">
+              <h3 class="mb-0">{{'Complaints/ Suggestions' | translate}}</h3>
+            </div>
+            <div class="col-9">
+              <from role="form" [formGroup]="fliterForm" style="width:100%">
+                <div class="form-group row m-2 pb-2 pt-2">
+
+                  <div class="col-lg-3">
+                    <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
+                      <input formControlName="complaint" value="New" class="custom-control-input" id="customRadio6" type="radio" checked="" (change)="filterComaplaint()">
+                      <label class="custom-control-label" for="customRadio6">{{'New Compliant' | translate}}</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
+                      <input formControlName="complaint" value="all" class="custom-control-input" id="customRadio7" type="radio" (change)="filterComaplaint()">
+                      <label class="custom-control-label" for="customRadio7">{{'All Complaint' | translate}}</label>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </from>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <!--<th scope="col"></th>-->
+                <th scope="col">{{'SR. NO' | translate}}</th>
+                <th scope="col">{{'Complaints/ Suggestions Category' | translate}}</th>
+                <th scope="col">{{'Complaints/ Suggestions Description' | translate}}</th>
+                <th scope="col">{{'Complaint/ Suggestion Date' | translate}}</th>
+                <th scope="col">{{'Complaint/ Suggestion Date' | translate}}</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let complaint of complaints | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                <!--<td>
+    <input type="checkbox">
+  </td>-->
+                <td>
+                  {{(p-1) * 10 + i + 1}}
+                </td>
+                <td>
+                  {{complaint.title}}
+                </td>
+                <td>
+                  {{complaint.description}}
+                </td>
+                <td>
+
+                  {{complaint.createDateTime | date: 'dd/MM/yyyy'}}
+                </td>
+                <td>
+                  <span *ngIf="complaint.status">{{complaint.status}}</span>
+                  <span *ngIf="!complaint.status">NA</span>
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      Actions
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">{{'View'|translate}}</a>
+
+                    </div>
+                  </div>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
