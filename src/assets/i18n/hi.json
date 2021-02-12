@@ -380,6 +380,7 @@
   "Select Season": "मौसम का चयन करें",
   "Season is required": "मौसम आवश्यक है",
   "Crop Name": "फसल का नाम",
+
   "Select Crop": "फसल का चयन करें",
   "Crop Name is required": "फसल का नाम आवश्यक है",
   "Crop variety": "फसल की विविधता",
@@ -412,6 +413,7 @@
   "Production Report": "उत्पादन रिपोर्ट",
   "Upload Circular": "सर्कुलर अपलोड करें",
   "Indent History": "इंडेंट हिस्ट्री",
+  "indentnumber":"इंडेंट संख्या",
   "Machinary Catalogue": "मैकिनिकल कैटलॉग",
   "Input supplier catalogue": "इनपुट आपूर्तिकर्ता सूची",
   "Complaints/Suggestions": "शिकायतें / सुझाव",
@@ -440,6 +442,7 @@
   "Photos of FPO": "एफपीओ की फोटो",
   "Select Complaint/Suggestions": "शिकायतें / सुझाव  का चयन करें",
   "Indent": "इंडेंट",
+  "indenthistory": "इंडेंट इतिहास",
   "filters":"फ़िल्टर सूची",
   "nofiltersselected":" खाली है",
   "noitemsfound":"कुछ नहीं मिला...",
