@@ -39,7 +39,7 @@ export class ProductsListComponent implements AfterViewInit,OnInit {
     { selected:false, minname:"morethan200",maxname:"200",name:"300", type:"qty",quantity: 300, maxQuantity: 0 },
   ]
 
-
+  indentcreated:boolean = false;
   parsearchType: string;
   parval: string;
   topsearchval: string;
@@ -131,6 +131,7 @@ onFilterChange($event)
     
   open(event, content, item):any {
     this.currentfpoid = item.id;
+    this.indentForm=undefined
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;      
       this._fpoService.getfpoDetialById(item.id).subscribe(f => {
@@ -349,16 +350,22 @@ searchWithFilters()
      
     })
   }
+  getToday():Date
+  {
+    return new Date();
+  }
   createIndentForm(item) {
+  
+
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
       cropId: [item.cropid],
-      fpoDeliveryAddress:["", Validators.required],
+      fpoDeliveryAddress:[""],
       userId: [this.fpoDetail.userFpo.userId, Validators.required],
       fpoName: [this.fpoDetail.fpoName],
       fpoEmail: [this.fpoDetail.fpoEmail],
       fulfillmentDate: ["", [Validators.required]],
-      quantity: ["", Validators.required],
+      quantity: [, [Validators.required,Validators.pattern(`[1-9]{1,}`)]],
       cropMaster: [],
       user: [],
       fpo:[]
@@ -372,9 +379,11 @@ searchWithFilters()
     
     this.submitted = true;
     // stop here if form is invalid
+   
     if (this.indentForm.invalid) {
       return;
     }
+    this.indentcreated = true;
     let user = {
       userId: this.fpoDetail.userFpo.userId,
     }
@@ -399,21 +408,29 @@ searchWithFilters()
 
 
     this.indentForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd/MM/yyyy'); //whatever format you need. 
+    this.indentForm.value.fulfillmentDate = this.datePipe.transform(date, 'yyyy-MM-dd');
     this._productService.saveIndent(this.indentForm.value).subscribe(response => {
-
+     
       if (response.message == "Enquiry created Successfully!") {
         //this.toastr.success(response.message);
         this.indentForm.reset();
         this.submitted = false;
-        this.modalService.dismissAll();
-      }
+        this.indentcreated = true;
+  }
       else {
         //this.toastr.error(response.message);
       }
 
     })
   }
+closeModal()
+{
+  this.modalService.dismissAll();
 }
+
+}
+
+
 
 interface District {
   id: number;

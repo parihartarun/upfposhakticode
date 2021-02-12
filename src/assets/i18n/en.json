@@ -219,6 +219,7 @@
   "Bank Account Number": "Bank Account Number",
   "Quantity": "Quantity (quintal)",
   "Home": "Home",
+  "quantityinnumberisrequired":"Quantity in number is Required",
   "navText": "Registertion",
   "quintal":"Quintal",
   "UP FPO Shakti": "UP FPO Shakti",
