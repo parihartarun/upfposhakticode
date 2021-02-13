@@ -24,7 +24,15 @@ export class UserProfileDashboardComponent implements OnInit {
       email:['', Validators.required],
       contact_person:['',Validators.required],
       mobile_number:['',Validators.required],
-      pincode:['',Validators.required]
+      pincode:['',Validators.required],
+      inputSupplierName:['',Validators.required],
+      inputSupplierType:['',Validators.required],
+      distRefId:['',Validators.required],
+      blockRefId:['',Validators.required],
+      villageRefId:['',Validators.required],
+      seed_id:['',Validators.required],
+      gstNumber:['',Validators.required],
+      license_number:['',Validators.required],
       
     });
 
@@ -43,7 +51,15 @@ export class UserProfileDashboardComponent implements OnInit {
         contact_person:res.contact_person,
         mobile_number:res.mobile_number,
         userName:res.userInputSeller.userName,
-        pincode:res.pincode
+        pincode:res.pincode,
+        inputSupplierName:res.inputSupplierName,
+        inputSupplierType:res.inputSupplierType,
+        distRefId:res.distRefId,
+        blockRefId:res.blockRefId,
+        villageRefId:res.villageRefId,
+        seed_id:res.seed_id,
+        gstNumber:res.gstNumber,
+        license_number:res.license_number
       });
      }
    })

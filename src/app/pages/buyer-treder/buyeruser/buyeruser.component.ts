@@ -30,7 +30,13 @@ export class BuyeruserComponent implements OnInit {
       districtRefId: ['', Validators.required],
       stateRefId: ['', Validators.required],
       pincode: ['', Validators.required],
-      email: ['', Validators.required]
+      email: ['', Validators.required],
+      gstNumber:['', Validators.required],
+      tinNumber:['', Validators.required],
+      panNumber:['', Validators.required],
+      commdityDealsIn:['', Validators.required],
+      companyCategory:['',Validators.required],
+      webSite:['',Validators.required]
 
     });
 
@@ -54,7 +60,13 @@ export class BuyeruserComponent implements OnInit {
           districtRefId: res.districtRefId,
           stateRefId: res.stateRefId,
           pincode: res.pincode,
-          email: res.email
+          email: res.email,
+          gstNumber:res.gstNumber,
+          tinNumber:res.tinNumber,
+          panNumber:res.tinNumber,
+          commdityDealsIn:res.tinNumber,
+          companyCategory:res.companyCategory,
+          webSite:res.webSite
         });
       }
     })
