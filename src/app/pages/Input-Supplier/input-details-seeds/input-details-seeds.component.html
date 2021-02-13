@@ -12,7 +12,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Seeds</h3>
+              <h3 class="mb-0">{{'Seeds' | translate}}</h3>
             </div>
           </div>
         </div>
@@ -22,37 +22,29 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Crop<span class="required">*</span></label>
-                    <select class="form-control" required>
-                      <option>Crop</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
+                    <label>{{'Crop Name' | translate}}<span class="required">*</span></label>
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative" required>
+
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Variety<span class="required">*</span></label>
-                    <select class="form-control" required>
-                      <option>Variety</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                    </select>
+                    <label>{{'Variety' | translate}}<span class="required">*</span></label>
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative" required>
+
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Picture of Seeds<span class="required">*</span></label>
+                    <label>{{'Picture of Seeds' | translate}}<span class="required">*</span></label>
                     <input type="file" id="input-first-name" class="form-control form-control-alternative" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>company / Brand<span class="required">*</span></label>
+                    <label>{{'company / Brand' | translate}}<span class="required">*</span></label>
                     <input type="text" id="input-first-name" class="form-control form-control-alternative" required>
                   </div>
                 </div>
@@ -60,13 +52,13 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Quantity<span class="required">*</span></label>
+                    <label>{{'Quantity' | translate}}<span class="required">*</span></label>
                     <input type="text" id="input-first-name" class="form-control form-control-alternative" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Seed Certification Number</label>
+                    <label>{{'Seed Certification Number' | translate}}</label>
                     <input type="text" id="input-first-name" class="form-control form-control-alternative">
                   </div>
                 </div>
@@ -74,13 +66,13 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Certificate-valid From</label>
+                    <label>{{'Certificate-valid From' | translate}}</label>
                     <input type="date" id="input-first-name" class="form-control form-control-alternative">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>Certificate-valid to</label>
+                    <label>{{'Certificate-valid to' | translate}}</label>
                     <input type="date" id="input-first-name" class="form-control form-control-alternative">
                   </div>
                 </div>
@@ -90,8 +82,8 @@
         </div>
 
         <div class="card-footer py-4 text-center">
-          <button class="btn btn-yellow">Save</button>
-          <button class="btn btn-warning">Reset</button>
+          <button class="btn btn-yellow">{{'Save' | translate}}</button>
+          <button class="btn btn-warning">{{'Reset' | translate}}</button>
         </div>
       </div>
     </div>
@@ -106,7 +98,7 @@
           <div class="row">
             <div class="col-9">
               <h3 class="mb-0">
-                Seeds Details
+                {{'Seeds Details' | translate}}
               </h3>
             </div>
           </div>
@@ -115,10 +107,10 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">S.No</th>
-                <th scope="col"> Crop</th>
-                <th scope="col">Variety</th>
-                <th scope="col">Quantity</th>
+                <th scope="col">{{'S.no' | translate}}</th>
+                <th scope="col"> {{'Crop' | translate}}</th>
+                <th scope="col">{{'Variety' | translate}}</th>
+                <th scope="col">{{'Quantity' | translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -139,11 +131,11 @@
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
+                      {{'Actions' | translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)">{{'Edit' | translate}}</a>
+                      <a class="dropdown-item" href="javascript:void(0)">{{'Delete' | translate}}</a>
                     </div>
                   </div>
                 </td>
