@@ -21,6 +21,15 @@ export class FpoService {
       return res;
     }));
   }
+  getIndentByUserId(fpoid){
+    let params:HttpParams  = new HttpParams();
+    params = params.append("id",fpoid);
+    return  this.http.get<any>(this._url+`enquiry/findByUser`,{params:params}).pipe(map((res:any)=>{
+      
+      return res;
+    }));
+  }
+  
   getChartDetails(masterId) {
     return this.http.get<any>(this._url + `api/fpo/dashboard/getAllFpoDashboardData?master_id=` + masterId).pipe(map((res: any) => {
       return res;
