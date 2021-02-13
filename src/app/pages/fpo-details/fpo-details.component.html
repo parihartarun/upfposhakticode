@@ -13,7 +13,7 @@
     <button type="button" class="btn btn-link" routerLink="/home">{{'Home' | translate}}</button>
   </div>
   <div>
-    <button type="button" class="btn btn-link" routerLink="/home">{{'Back' | translate}}</button>
+    <button type="button" class="btn btn-link" [routerLink]="goBackUrl">{{'Back' | translate}}</button>
   </div>
 </div>
 <!-- Page Content -->
@@ -334,7 +334,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let row of coldStorage | paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+                <tr
+                  *ngFor="let row of coldStorage | paginate: { itemsPerPage: 10, currentPage: storageUnitPagination };let i=index">
                   <!-- <td>
                       <input type="checkbox">
                     </td> -->
@@ -366,7 +367,7 @@
           </div>
           <div class="card-footer py-4">
             <nav aria-label="..." class="text-right">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              <pagination-controls (pageChange)="storageUnitPagination = $event"></pagination-controls>
             </nav>
           </div>
         </div>
