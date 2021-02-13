@@ -55,7 +55,6 @@ export class CropProductionComponent implements OnInit {
   getCropsBySeasonId(seasonId){
     this.api.getCropsBySeasonId(seasonId).subscribe(
       response => {
-      console.log(response);
       this.crops = response;
     })
   }
@@ -125,6 +124,10 @@ export class CropProductionComponent implements OnInit {
     if (this.productionForm.invalid) {
         return;
     }
+    this.productionForm.patchValue({
+      fpoId:localStorage.getItem('masterId'),
+      masterId:localStorage.getItem('masterId')
+    });
     var data = this.productionForm.value;
     // data['crop_id'] = {"cropId":this.productionForm.value.cropId};
     // data['verietyId'] = {"verietyId":this.productionForm.value.verietyId};
