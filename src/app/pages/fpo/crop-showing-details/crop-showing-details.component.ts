@@ -69,7 +69,7 @@ export class CropShowingDetailsComponent implements OnInit {
   }
 
   getFarmers(){
-    this.api.getFarmerDetailList().subscribe(
+    this.api.getFarmerDetailList(localStorage.getItem('masterId')).subscribe(
       response => {
       console.log(response);
       this.farmers = response;

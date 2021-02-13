@@ -1,0 +1,213 @@
+<div class="header bg-gradient-danger pb-7 pt-5 pt-md-8">
+    <div class="container-fluid">
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7 mp-7">
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row">
+                        <div class="col-9">
+                            <h3 class="mb-0">{{'Fertilizer' | translate}}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Fertilizer Type' | translate}}<span class="required">*</span></label>
+                                        <select class="form-control" (change)="selectvalue($event.target.value)">
+                                            <option value="select">{{'Select Type' | translate}}</option>
+                                            <option value="chemical">{{'Chemical Fertilizer' | translate}}</option>
+                                            <option value="bio">{{'Bio Fertilizer' | translate}}</option>
+                                            <option value="organic">{{'Organic' | translate}}</option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group" *ngIf="fertitype == 'chemical'">
+                                        <label>{{'Chemical Fertilizer' | translate}} <span class="required">*</span></label>
+                                        <select class="form-control" (change)="selectedtype($event.target.value)">
+                                            <option>{{'Urea' | translate}}</option>
+                                            <option>{{'DAP' | translate}}</option>
+                                            <option>{{'NPK' | translate}}</option>
+                                            <option>{{'MOP' | translate}}</option>
+                                            <option>{{'Fortified' | translate}}</option>
+                                            <option>{{'zinc' | translate}}</option>
+                                            <option>{{'Micro Nutrient Mixture' | translate}}</option>
+                                            <option>{{'Sulphur' | translate}}</option>
+                                            <option value="other">{{'Other' | translate}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="fertitype == 'bio'">
+                                        <label>{{'Bio Fertilizer' | translate}}<span class="required">*</span></label>
+                                        <select class="form-control" (change)="selectedtype($event.target.value)">
+                                            <option>{{'Rhizobium' | translate}}</option>
+                                            <option>{{'Culture' | translate}}</option>
+                                            <option>{{'PSB' | translate}}</option>
+                                            <option>{{'BGA' | translate}}</option>
+                                            <option>{{'Azotobacter' | translate}}</option>
+                                            <option value="other">{{'Other' | translate}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="fertitype == 'organic'">
+                                        <label>{{'Organic' | translate}}<span class="required">*</span></label>
+                                        <select class="form-control" (change)="selected($event.traget.value)">
+                                            <option>{{'Vermi Compost' | translate}}</option>
+                                            <option>{{'Nadep Compost' | translate}}</option>
+                                            <option>{{'City Compost' | translate}}</option>
+                                            <option>{{'Jiva Mrit' | translate}}</option>
+                                            <option>{{'Ghan Jiva Mrit' | translate}}</option>
+                                            <option value="other">{{'Other' | translate}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label> {{'Fertilizer grade' | translate}}<span class="required">*</span> </label>
+                                        <select class="form-control">
+                                            <option>A</option>
+                                            <option>B</option>
+                                            <option>C</option>
+                                           
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div *ngIf="subtype == 'other'" class="form-group">
+                                        <label>{{'Other' | translate}}</label>
+                                        <input type="text" id="input-first-name"
+                                            class="form-control form-control-alternative">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Name of Manufacturer' | translate}} <span class="required">*</span></label>
+                                        <input type="text" id="input-first-name"
+                                            class="form-control form-control-alternative">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Picture of Fertilizer packets' | translate}}</label>
+                                        <input type="file" id="input-first-name"
+                                            class="form-control form-control-alternative">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="card-footer py-4 text-center">
+                    <button class="btn btn-yellow">{{'Save' | translate}}</button>
+                    <!-- <button class="btn btn-yellow">Save and continue</button> -->
+                    <button class="btn btn-warning">{{'Reset' |  translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <!-- Table -->
+    <div class="row">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row">
+                        <div class="col-9">
+                            <h3 class="mb-0">
+                               {{'Fertilizer Details' | translate}}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">{{'S.no' | translate}}</th>
+                                <th scope="col"> {{'Fertilizer Type' | translate}}</th>
+                                <th scope="col">{{'Fetilizer Grade' | translate}}</th>
+
+                                <th scope="col">{{'Name of Manufacturer' | translate}}</th>
+
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    O1
+                                </td>
+                                <td>Chemical
+                                  </td>
+                                <td>
+                                    A
+                                </td>
+                                <td>
+                                    xyz
+                                </td>
+                                <td class="text-right">
+                                    <div ngbDropdown placement="bottom-right">
+                                        <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                                            {{'Actions' | translate}}
+                                        </a>
+                                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="javascript:void(0)">{{'Edit' | translate}}</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">{{'Delete' | translate}}</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                  
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer py-4">
+                    <nav aria-label="...">
+                        <ul class="pagination justify-content-end mb-0">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                                    <i class="fas fa-angle-left"></i>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="javascript:void(0)">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0)">2 <span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0)">
+                                    <i class="fas fa-angle-right"></i>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

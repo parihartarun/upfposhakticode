@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient  } from '@angular/common/http';
+import { HttpClient, HttpParams  } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment }  from '../../../environments/environment';
 
@@ -13,7 +13,14 @@ export class FpoService {
       return res;
     }));
   }
-
+  getIndentByFpoId(fpoid){
+    let params:HttpParams  = new HttpParams();
+    params = params.append("fpoId",fpoid);
+    return  this.http.get<any>(this._url+`enquiry/findByFpo`,{params:params}).pipe(map((res:any)=>{
+      
+      return res;
+    }));
+  }
   getChartDetails(masterId){
     return  this.http.get<any>(this._url+`api/fpo/dashboard/getAllFpoDashboardData?master_id=`+masterId).pipe(map((res:any)=>{
       return res;
@@ -86,8 +93,8 @@ updateFarmerMachineryBankList(id:number,data:any){
   }));
 }
 //=====================================================================================
-  getBoardMembers(data){
-    return  this.http.get<any>(this._url+'api/fpos/boardmember').pipe(map((res:any)=>{
+  getBoardMembers(masterId){
+    return  this.http.get<any>(this._url+'api/fpos/boardmember/'+masterId).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -111,8 +118,8 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   /************************** License **********************************/
-  getLicense(){
-    return  this.http.get<any>(this._url+'api/fpo/license').pipe(map((res:any)=>{
+  getLicense(masterId){
+    return  this.http.get<any>(this._url+'api/fpo/license/getFpoLicenseDetailsByFpoId/'+masterId).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -143,8 +150,8 @@ updateFarmerMachineryBankList(id:number,data:any){
  
 
   /************************** Machinary banks **********************************/
-  getMachinaryBanks(){
-    return  this.http.get<any>(this._url+'api/farm/machinery/banks').pipe(map((res:any)=>{
+  getMachinaryBanks(masterId){
+    return  this.http.get<any>(this._url+'/api/farm/machinery/banks/getFarmMachineryBankByFpo/'+masterId).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -199,7 +206,7 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   getFarmerWiseProductionReport(data){
-    return this.http.get<any>(this._url + 'marketablesurplus/getFarmerWiseProductionReport/', data).pipe(map((res: any) => {
+    return this.http.post<any>(this._url + 'farmerWiseProductionReport/getFarmerProductionReport', data).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -299,13 +306,18 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
-  getComplaints() {
-    return this.http.get<any>(this._url + 'complaint').pipe(map((res: any) => {
+  getComplaints(id) {
+    return this.http.get<any>(this._url + 'fpocomplaint/fpo/'+id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getComplaintsFpoFarmer(id) {
+    return this.http.get<any>(this._url + 'fpocomplaint/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
   addComplaint(data:any) {
-    return this.http.post<any>(this._url + 'complaint', data).pipe(map((res: any) => {
+    return this.http.post<any>(this._url + 'fpocomplaint', data).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -314,8 +326,15 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
-  updateComplaint(data) {
-    return this.http.put<any>(this._url + 'complaint/update1/' + data.id, data).pipe(map((res: any) => {
+  updateComplaint(data ,formdata) {
+    return this.http.put<any>(this._url + 'complaint/dept/' + data.id, formdata).pipe(map((res: any) => {
+   
+      return res;
+    }));
+  }
+  updateStatusComplaint(data, formdata) {
+    return this.http.put<any>(this._url + 'complaint/complaintstatus/' + data.id, formdata).pipe(map((res: any) => {
+
       return res;
     }));
   }
@@ -332,8 +351,8 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
 
-  getFarmerDetailList() {
-    return this.http.get<any>(this._url + 'api/Farmer/getFarmerDetails').pipe(map((res: any) => {
+  getFarmerDetailList(masterId) {
+    return this.http.get<any>(this._url + 'api/Farmer/getFarmerDetails/'+masterId).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -445,6 +464,33 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     })); 
 
+  }
+  getAllNotificationBydept(id) {
+    return this.http.get<any>(this._url + 'notification/fponotification/' + id).pipe(map((res: any) => {
+      return res;
+    }))
+  }
+  sendNotifiaction(data, formData) {
+    return this.http.post<any>(this._url + 'notification/farmersend', formData).pipe(map((res: any) => {
+      return res;
+    }))
+  }
+  getAllFarmer() {
+
+    return this.http.get<any>(this._url + 'api/farmer').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getAllNotificationByFpo(id) {
+
+    return this.http.get<any>(this._url + 'notification/fposend/'+id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getfamerDetail(id) {
+    return this.http.get<any>(this._url + 'fpocomplaint/farmerComplaint/' + id).pipe(map((res: any) => {
+      return res;
+    }));
   }
 }
 

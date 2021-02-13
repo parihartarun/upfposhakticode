@@ -13,6 +13,7 @@ export class ProductionReportComponent implements OnInit {
   filterForm: FormGroup;
   submitted = false;
   production:Array<any>=[];
+  seasons:Array<any>=[];
   p:number = 1;
 
   constructor(
@@ -23,151 +24,28 @@ export class ProductionReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.filterForm = this.formBuilder.group({
-      financial_year: [''],
-      season: ['']
+      finYear: ['2020-2021'],
+      seasonId: [2],
+      fpoId:[localStorage.getItem('masterId')]
     });
-    this.getProduction();
+    this.getFarmerWiseProductionReport();
+    this.getSeasonList();
   }
 
-  getProduction(){
-    this.production = [
-      { 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },{ 
-        name:'Vaishali Patil',
-        fatherName:'Namdev Patil',
-        season:'Kharif',
-        cropName:'Carrot',
-        cropVariety:'variety 1',
-        markatableSurplus:'23'
-      },
-    ]
-    this.api.getBoardMembers(this.filterForm.value).subscribe(response => {
+
+  getSeasonList(){
+    this.api.getSeasonList().subscribe(
+      response => {
       console.log(response);
+      this.seasons = response;
+    })
+  }
+
+  getFarmerWiseProductionReport(){
+    console.log(this.filterForm.value);
+    this.api.getFarmerWiseProductionReport(this.filterForm.value).subscribe(response => {
+      console.log(response);
+      this.production = response;
     },
       err => {
         console.log(err)
@@ -175,8 +53,15 @@ export class ProductionReportComponent implements OnInit {
     );
   }
 
-  filterProduction() {
-    this.getProduction();
+  exportProductionReport(fileFormat) {
+    this.api.exportProductionReport(fileFormat).subscribe(response => {
+      console.log(response);
+    },
+      err => {
+        console.log(err)
+      }
+    );
+    this.getFarmerWiseProductionReport();
   }
 
   get formControls(){

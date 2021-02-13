@@ -32,8 +32,7 @@ export class MachinaryBankComponent implements OnInit {
       equpment_name: ['', [Validators.required]],
       equpment_no: ['', [Validators.required, Validators.min(1)]],
       id: [''],
-      FpoRefId:localStorage.getItem('masterId'),
-      MasterId:localStorage.getItem('masterId')
+      masterId:localStorage.getItem('masterId')
     });
     this.getMachinaryBanks();
     this.getEquipments();
@@ -51,7 +50,8 @@ export class MachinaryBankComponent implements OnInit {
   }
 
   getMachinaryBanks(){
-    this.api.getMachinaryBanks().subscribe(response => {
+    console.log(localStorage.getItem('masterId'));
+    this.api.getMachinaryBanks(localStorage.getItem('masterId')).subscribe(response => {
       console.log(response);
       this.equipments = response;
     },
@@ -68,6 +68,9 @@ addMachinaryBank() {
       return;
   }
 
+  this.machinaryBankForm.patchValue({
+    masterId:localStorage.getItem('masterId')
+  });  
   this.api.addMachinaryBank(this.machinaryBankForm.value).subscribe(response => {
     console.log(response);
     if(response.id != ''){
@@ -89,7 +92,8 @@ editMachinaryBank(equipment){
   this.machinaryBankForm = this.formBuilder.group({
     equpment_name: [equipment.equpment_name, [Validators.required]],
     equpment_no: [equipment.equpment_no, [Validators.required]],
-    id:[equipment.id]
+    id:[equipment.id],
+    masterId:localStorage.getItem('masterId')
   });
   this.edit = true;
   window.scroll(0,0);  

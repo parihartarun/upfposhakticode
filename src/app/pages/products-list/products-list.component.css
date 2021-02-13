@@ -6,10 +6,42 @@
     background-repeat: no-repeat;
     background-image: url('../../../assets/image/img/slider/1.jpg');
 }
+
+.text-xsm
+{
+  font-size: 9px;
+}
+.text-sm
+{
+  font-size: 12px;
+}
+.suc-img
+{
+  height:150px;
+  width:150px;
+}
+.loader-container
+{
+  min-height: 500px;
+  max-height: 500px;
+max-width: inherit;
+}
   .search-text{
       width: 80%;
       float: left;
       height: 50px;
+  }
+  .text-bold
+  {
+    font-weight: bold;
+  }
+  .text-sm
+  {
+    font-size: small;
+  }
+  .text-upfpo
+  {
+    color:#926E00 !important; 
   }
   .yellotext
   {

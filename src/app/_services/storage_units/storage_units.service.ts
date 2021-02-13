@@ -43,8 +43,8 @@ getBlocksByDistrictsId(){
     return res;
   }));
 }
-getStorageUnits(){
-  return  this.http.get<any>(this._url+'api/collectioncenters').pipe(map((res:any)=>{
+getStorageUnits(masterId){
+  return  this.http.get<any>(this._url+'api/collectioncenters/getAllByFpo/'+masterId).pipe(map((res:any)=>{
     return res;
   }));
 }

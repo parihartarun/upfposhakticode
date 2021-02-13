@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -26,9 +26,12 @@ export class ProductService {
     }));
   }
   saveIndent(data): Observable<any> {
-
-    return this.http.post<any>(this._url + 'enquiry', data).pipe(map((res: any) => {
+    let headers = {}
+    
+    return this.http.post(this._url + 'enquiry/insert', data,{responseType: 'text'}).pipe(map((res: any) => {
+      console.log("indent received"+res);
       return res;
+      
     }));
   }
 }

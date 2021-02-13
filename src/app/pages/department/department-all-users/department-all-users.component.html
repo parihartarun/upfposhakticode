@@ -11,7 +11,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">All Users</h3>
+              <h3 class="mb-0">{{'FPO Users' | translate}}</h3>
             </div>
           </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">All Inactive FPO Users</h3>
+              <h3 class="mb-0">{{'All Inactive FPO Users' | translate}}</h3>
             </div>
             <!-- <div class="col-3 text-right">
               <button class="btn btn-primary text-right">Add Member</button>
@@ -38,12 +38,12 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">S.No</th>
-                <th scope="col">FPO Name</th>
-                <th scope="col">User Name</th>
-                <th scope="col">District Name</th>
-                <th scope="col">Request Date</th>
-                <th scope="col">Email</th>
+                <th scope="col">{{'S.No' | translate}}</th>
+                <th scope="col">{{'FPO Name' | translate}}</th>
+                <th scope="col">{{'User Name' | translate}}</th>
+                <th scope="col">{{'District Name' | translate}}</th>
+                <th scope="col">{{'Request Date' | translate}}</th>
+                <th scope="col">{{'Email' | translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -53,29 +53,29 @@
                   {{i+1}}
                 </td>
                 <td>
-                  {{u.fpoName}}
+                  {{u.fpo_name}}
                 </td>
                 <td>
-                  {{u.userName}}
+                  {{u.user_name}}
                 </td>
                 <td>
-                  {{u.district}}
+                  {{u.district_name}}
                 </td>
                 <td>
-                  {{u.requestDate}}
+                  {{u.date_of_regi}}
                 </td>
                 <td>
-                  {{u.email}}
+                  {{u.fpo_email}}
                 </td>
                 
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
+                      {{'Actions' | translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="activeUSer(u)">Active</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteUser(u)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="activeUSer(u)">{{'Active' | translate}}</a>
+                      <!-- <a class="dropdown-item" href="javascript:void(0)" (click)="deleteUser(u)">Delete</a> -->
                     </div>
                   </div>
                 </td>
@@ -97,7 +97,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">All Active FPO Users</h3>
+              <h3 class="mb-0">{{'All Active FPO Users' | translate}}</h3>
             </div>
             <!-- <div class="col-3 text-right">
               <button class="btn btn-primary text-right">Add Member</button>
@@ -108,12 +108,12 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">S.No</th>
-                <th scope="col">FPO Name</th>
-                <th scope="col">User Name</th>
-                <th scope="col">District Name</th>
-                <th scope="col">Request Date</th>
-                <th scope="col">Email</th>
+                <th scope="col">{{'S.No' | translate}}</th>
+                <th scope="col">{{'FPO Name' | translate}}</th>
+                <th scope="col">{{'User Name' | translate}}</th>
+                <th scope="col">{{'District Name' | translate}}</th>
+                <th scope="col">{{'Request Date' | translate}}</th>
+                <th scope="col">{{'Email' | translate}}</th>
               </tr>
             </thead>
             <tbody>
@@ -122,29 +122,29 @@
                   {{i+1}}
                 </td>
                 <td>
-                  {{u.fpoName}}
+                  {{u.fpo_name}}
                 </td>
                 <td>
-                  {{u.userName}}
+                  {{u.user_name}}
                 </td>
                 <td>
-                  {{u.district}}
+                  {{u.district_name}}
                 </td>
                 <td>
-                  {{u.requestDate}}
+                  {{u.date_of_regi}}
                 </td>
                 <td>
-                  {{u.email}}
+                  {{u.fpo_email}}
                 </td>
 
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
+                    {{'Actions' | translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="DeActiveUSer(u)" >Deactive</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteUser()">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#myModal" (click)="DeActiveUSer(u)" >{{'Deactive' | translate}}</a>
+                      <!-- <a class="dropdown-item" href="javascript:void(0)" (click)="deleteUser()">Delete</a> -->
                     </div>
                   </div>
                 </td>
@@ -158,6 +158,43 @@
           </nav>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Add reason of deactivation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+            <label class="form-control-label">{{'Reason of deactivation' | translate}} </label>
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"></span>
+              </div>
+              <select class="form-control" [(ngModel)]="reasons" (change)="selectChange($event)">
+                <option value="">{{'Select reason' | translate}}</option>
+                <option *ngFor="let reason of Reasons" [value]="reason.reason">{{reason.reason}}</option>
+              </select>
+            </div><br>
+
+            <div *ngIf="valueOther">
+              <input type="text" class="form-control" [(ngModel)]="inputOthers">
+            </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveDeactivate()" >Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
     </div>
   </div>
 </div>

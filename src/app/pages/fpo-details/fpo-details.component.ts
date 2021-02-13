@@ -13,6 +13,7 @@ export class FpoDetailsComponent implements OnInit {
 
   closeResult: string;
   fpo = {};
+  p:number =0;
   License =[];
   boardMember:[];
   machinerary = [];

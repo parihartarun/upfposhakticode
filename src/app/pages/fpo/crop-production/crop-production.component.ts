@@ -69,6 +69,7 @@ export class CropProductionComponent implements OnInit {
   }
 
   getCropProduction(){
+    console.log(localStorage.getItem('masterId'));
     this.api.getCropProductionDetails(localStorage.getItem('masterId')).subscribe(data => {
       console.log(data);
       this.cropProductions = data;
@@ -86,7 +87,12 @@ export class CropProductionComponent implements OnInit {
         return;
     }
 
+    this.productionForm.patchValue({
+      fpoId:localStorage.getItem('masterId'),
+      masterId:localStorage.getItem('masterId')
+    });
     var data = this.productionForm.value;
+
     // data['crop_id'] = {"cropId":this.productionForm.value.cropId};
     // data['verietyId'] = {"verietyId":this.productionForm.value.verietyId};
     data['crop_id'] = this.productionForm.value.cropId;
@@ -130,6 +136,11 @@ export class CropProductionComponent implements OnInit {
     );
   }
 
+  resetForm(){
+    this.productionForm.reset();
+    this.submitted=false;
+  }
+
   editCropProduction(production){
     console.log(production);
     console.log(localStorage.getItem('userrole'));
@@ -144,7 +155,9 @@ export class CropProductionComponent implements OnInit {
       fpoId:localStorage.getItem('masterId'),
       masterId:localStorage.getItem('masterId'),
     });
-    
+    this.productionForm.patchValue({
+      verietyId:production.veriety_id
+    });
     this.edit = true;
     window.scroll(0,0);
   }

@@ -18,7 +18,7 @@ const routes: Routes =[
   {
     path: 'home', component: HomeComponent
   },
-  { path: 'fpo_guidelines', component: FpoGuidelinesComponent },
+  { path: 'fpo_guidelines', component: FpoGuidelinesComponent }, 
   {
     path: '',
     component: AdminLayoutComponent,

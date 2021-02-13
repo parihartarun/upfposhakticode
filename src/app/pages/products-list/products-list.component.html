@@ -1,8 +1,8 @@
  <!-- Full Page Image Header with Vertically Centered Content -->
 <div class="title">
-  <ol class="breadcrumb mb-0">
-    <li><a href="/home">{{'Home' | translate}}</a></li>
-    <li><a href="#"> / {{'Search' | translate}}</a></li>
+  <ol class="breadcrumb  mb-0">
+    <li><a class="mx-1 text-upfpo px-1" routerLink="">{{'Home' | translate}}</a> /</li>
+    <li><a class="mx-1 text-upfpo px-1" role="button"> {{'Search' | translate}} </a></li>
 
   </ol>
 </div>
@@ -332,7 +332,7 @@
                   <div class="col-md-6 mb-2">
                     <div class="card-body p-0">
                       <!-- <h4 class="card-title">Marketable Surplus</h4> -->
-                      <p class="card-text" *ngIf="product.marketableSurplus">{{product.marketableSurplus}} (mt)</p>
+                      <p class="card-text" *ngIf="product.marketableSurplus">{{product.marketableSurplus}} {{'quintal' | translate }}</p>
                       <p class="card-text" *ngIf="!product.marketableSurplus">NA</p>
                     </div>
                   </div>
@@ -427,60 +427,93 @@
     </div>
 
     <ng-template #mymodal let-modal>
+      
       <div *ngIf="isLoggeIn">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body" *ngIf="indentForm">
-          <form role="form" [formGroup]="indentForm">
+        <div class="modal-body mt-1 pt-1" *ngIf="!indentForm || indentloading">
+         <div class="loader-container">
+          <ngx-loading [show]="!indentForm || indentloading" [config]="{backdropBackgroundColour: '#ffffff', 
+          backdropBorderRadius: '1px',
+          primaryColour: '#926E01', 
+          secondaryColour: '#926E01', 
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>  
+        </div>
+          
+        </div>
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && indentcreated">
+          <div class="d-flex w-100 align-items-center justify-content-center">  <img class="suc-img" src="../../../assets/image/img/successsubmit.png"></div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-2 text-sm"> <strong>{{ 'indentsucessmessage' | translate:{id:indentid} }}</strong> </div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-5 text-sm"><button (click)="closeModal()" class="btn btn-sm mt-5 btn-product-search" >{{'ok' | translate }}</button></div>
+        </div>
+
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
+          <form role="form mt-1 p-1" [formGroup]="indentForm">
+            <div class="row">
+            <div class="col-5 text-sm text-bold">{{'FPO Name'| translate}}:</div>
+            <div class="col-7 text-sm">{{fpoDetail.fpoName}}</div>
+            </div>
+            <div class="row">
+              <div class="col-5 text-sm text-bold">{{'FPO Email1'|translate}}:</div>
+              <div class="col-7 text-sm ">{{fpoDetail.fpoEmail}}</div>
+              </div>
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'FPO Name'| translate}}<span class="required">*</span></label>
+              
+               
+              <!-- <label class="form-control-label" for="input-username">{{'FPO Name'| translate}}<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
                 <input class="form-control" placeholder="Full Name" disabled type="text" formControlName="fpoName">
-              </div>
+              </div> -->
              
              
             </div>
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'FPO Email1'|translate}}<span class="required">*</span></label>
+               
+              <!-- <label class="form-control-label" for="input-username">{{'FPO Email1'|translate}}<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
                 <input class="form-control" placeholder="Email" disabled type="text"  formControlName="fpoEmail">
-              </div>
+              </div> -->
             
             </div>
-
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'Fulfilled Date'|translate}}<span class="required">*</span></label>
+              <label class="form-control-label" for="input-username">{{'Fulfilled Date' | translate }}<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
                 <input type="text"
                        placeholder="{{'Date'|translate}}"
                        class="form-control"
+                       [minDate]="getToday()"
                        bsDatepicker
                        [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }" formControlName="fulfillmentDate">
               </div>
-              <div *ngIf="submitted && formControls.fulfillmentDate.errors" class="text-danger">
+              <div *ngIf="submitted && formControls.fulfillmentDate.errors" class="text-danger mt-1 text-xsm">
                 <div *ngIf="formControls.fulfillmentDate.errors.required">{{'date is required'| translate}}</div>
               </div>
             </div>
             <div class="form-group mb-3">
               <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="{{'Quantity'|translate}}" type="number" formControlName="quantity">
+                <input class="form-control" placeholder="{{'Quantity'|translate}}" type="text" formControlName="quantity">
               </div>
-              <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
+              <div *ngIf="!submitted && formControls.quantity.touched && formControls.quantity.errors" class="text-danger mt-1 text-xsm">
+                
+                <div *ngIf="formControls.quantity.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+              </div>
+              <div *ngIf="submitted && formControls.quantity.errors" class="text-danger mt-1 text-xsm">
                 <div *ngIf="formControls.quantity.errors.required">{{'quantity is required'|translate}}</div>
+                <div *ngIf="formControls.quantity.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
               </div>
             </div>
 
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-delivery">{{'fpodeliveryaddr'|translate}}<span class="required">*</span></label>
+              <label class="form-control-label" for="input-delivery">{{'fpodeliveryaddr'|translate}}</label>
               <div class="input-group input-group-alternative">
                 <textarea class="form-control" id = "input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"  formControlName="fpoDeliveryAddress"></textarea>
               </div>
-              <div *ngIf="submitted && formControls.fpoDeliveryAddress.errors" class="text-danger">
+              <div *ngIf="submitted && formControls.fpoDeliveryAddress.errors" class="text-danger mt-1 text-xsm">
                 <div *ngIf="formControls.fpoDeliveryAddress.errors.required">{{'deleiveryrequired'| translate}}</div>
               </div>
             </div>
@@ -488,7 +521,7 @@
             
 
             <div class="text-center">
-              <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"(click)="save()">{{'Send'|translate}}</button>
+              <button type="submit" [disabled] = "!indentForm.valid" class="btn btn-login btn-product-search btn-primary my-4"(click)="save()">{{'Send'|translate}}</button>
             </div>
           </form>
         </div>

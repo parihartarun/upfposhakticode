@@ -13,11 +13,11 @@
           <div class="row ">
             <div class="col-11">
               <h3 class="mt-2 p-2 ">
-                View Status and Details of Complaint/ Suggestion
+                {{'View Status and Details of Complaint/ Suggestion' | translate}}
               </h3>
             </div>
             <div class="col-1 text-right close ">
-              <button class="btn btn-primary text-right mb-2" (click)="close()">Close</button>
+              <button class="btn btn-primary text-right mb-2" (click)="close()">{{'close'|translate}}</button>
 
             </div>
           </div>
@@ -27,7 +27,7 @@
           <div class="row">
             <div class="col-12 mb-4">
               <h2 class="mb-0 bg-warning">
-                Details of Complainant/ Suggestion provider
+                {{'Details of Complainant/ Suggestion provider'|translate}}
               </h2>
             </div>
 
@@ -36,20 +36,15 @@
 
             <div class="col-4 mb-4">
               <h4 class="mb-2">
-                Name
-              </h4>vishal
+                {{'Name'|translate}}
+              </h4>{{viewComp.name}}
             </div>
 
+           
             <div class="col-4 mb-4">
               <h4 class="mb-2">
-                Mobile:
-              </h4>8275518800
-            </div>
-
-            <div class="col-4 mb-4">
-              <h4 class="mb-2">
-                Email:
-              </h4>v@gmial.com
+                {{'Email'|translate}}:
+              </h4>{{viewComp.fpoemail}}
             </div>
 
 
@@ -57,13 +52,13 @@
           <div class="row">
             <div class="col-12 mb-4">
               <h2 class="mb-0 bg-warning">
-                Details of Complaint/ Suggestion
+                {{'Details of Complaint/ Suggestion' | translate}}
               </h2>
             </div>
 
             <div class="col-12">
               <h4 class="mb-0">
-                Complaints/ Suggestions Category:
+                {{'Complaints/ Suggestions Category:' | translate}}
               </h4>
             </div>
             <div class="col-12">
@@ -71,12 +66,12 @@
             </div>
             <div class="col-12 mb-4 mt-4">
               <h4 class="mb-0">
-                Complaint/ Suggestion Date:
+                {{'Complaint/ Suggestion Date'|translate}}:
               </h4>{{viewComp.compalintDate | date: 'dd/MM/yyyy'}}
             </div>
             <div class="col-12">
               <h4 class="mb-0">
-                Description:
+                {{'Description'|translate}}:
               </h4>
             </div>
             <div class="col-12">
@@ -85,68 +80,69 @@
             </div>
             <div class="col-12 mb-4 mt-4 bg-warning">
               <h2 class="mb-0">
-                Update Complaint/ Suggestion Status
+                {{'Update Complaint/ Suggestion Status'|translate}}
               </h2>
             </div>
 
           </div>
         
-          <div class="card-body">
-            <form [formGroup]="complaintForm">
+          <div class="card-body" *ngIf="complaintForm && viewComp.currentStatus!='RESOLVED'">
+            <form [formGroup]="complaintForm" >
               <div class="pl-lg-0">
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label">Appointed <span class="required">*</span></label>
+                      <label class="form-control-label">"{{'Appointed'| translate}} <span class="required">*</span></label>
 
-                      <select class="form-control" formControlName="appointment">
-                        <option value="">Select User</option>
+                      <select class="form-control" formControlName="assign_to">
+                        <option value="">{{'Select User'|translate}}</option>
                         <option *ngFor="let u of users" [value]="u.userId">{{u.userName}}</option>
                       </select>
-                      <div *ngIf="submitted && formControls.appointment.errors" class="text-danger">
-                        <div *ngIf="formControls.appointment.errors.required">Appointed to is required</div>
+                      <div *ngIf="submitted && formControls.assign_to.errors" class="text-danger">
+                        <div *ngIf="formControls.assign_to.errors.required">{{'Appointed to is required'| translate}}</div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-email">Appointment Date:</label>
+                      <label class="form-control-label" for="input-email">{{'Appointment Date' |translate}}:</label>
                       <input formControlName="appointmentDate" type="text"  disabled id="input-email" class="form-control form-control-alternative">
                       <div *ngIf="submitted && formControls.appointmentDate.errors" class="text-danger">
-                        <div *ngIf="formControls.appointmentDate.errors.required">appointment date is required</div>
+                        <div *ngIf="formControls.appointmentDate.errors.required">{{'appointment date is required'|translate}}</div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label" for="">Department Comments:<span class="required">*</span></label>
-                      <textarea formControlName="departmentComments" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
+                      <label class="form-control-label" for="">{{'Department Comments'|translate}}:<span class="required">*</span></label>
+                      <textarea formControlName="comment" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
 
-                      <div *ngIf="submitted && formControls.departmentComments.errors" class="text-danger">
-                        <div *ngIf="formControls.departmentComments.errors.required">department comments is required</div>
+                      <div *ngIf="submitted && formControls.comment.errors" class="text-danger">
+                        <div *ngIf="formControls.comment.errors.required">{{'department comments is required'|translate}}</div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label">Change status: <span class="required">*</span></label>
+                      <label class="form-control-label">{{'Change status'|translate}}: <span class="required">*</span></label>
 
-                      <select class="form-control" formControlName="complaintStatus" >
-                        <option value="">Select</option>
-                        <option value="1">Assigned</option>
-                        <option value="0">Resolved </option>
+                      <select class="form-control" formControlName="status">
+                        <option value="">{{'Select Status'|translate}}</option>
+                        <option value="OPEN">{{'Open'|translate}}</option>
+                        <option value="ASSIGNED">{{'Assigned'|translate}}</option>
+                        <option value="RESOLVED">{{'Resolved'|translate}} </option>
                       </select>
-                      <div *ngIf="submitted && formControls.complaintStatus.errors" class="text-danger">
-                        <div *ngIf="formControls.complaintStatus.errors.required"> status  is required</div>
+                      <div *ngIf="submitted && formControls.status.errors" class="text-danger">
+                        <div *ngIf="formControls.status.errors.required"> {{'status  is required'|translate}}</div>
                       </div>
                     </div>
                   </div>
 
 
                   <div class="card-footer text-center">
-                    <button  type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateSatus()">Update Status</button>
+                    <button type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateSatus()">{{'Update Status' |translate}}</button>
                    
-                    <button class="btn btn-warning text-right" (click)="reset()">Reset</button>
+                    <button class="btn btn-warning text-right" (click)="reset()">{{'Reset'|translate}}</button>
                   </div>
                 </div>
               </div>
@@ -154,7 +150,7 @@
           </div>
           <div class="row">
             <div class="col text-right">
-              <button class="btn btn-primary text-right mb-2" (click)="close()">Close</button>
+              <button class="btn btn-primary text-right mb-2" (click)="close()">{{'close'|translate}}</button>
 
             </div>
           </div>
@@ -173,7 +169,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">Complaints/ Suggestions</h3>
+              <h3 class="mb-0">{{'Complaints/ Suggestions' |translate}}</h3>
             </div>
             <!-- <div class="col-3 text-right">
               <button class="btn btn-primary text-right">Add Member</button>
@@ -184,12 +180,12 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">S.No</th>
-                <th scope="col">Populated Region</th>
-                <th scope="col">FPO Name</th>               
-                <th scope="col">Complaints/ Suggestions Category</th>
-                <th scope="col">Complaints / Complaints Suggestion Date</th>
-                <th scope="col">Complaints / Complaints Status of suggestion</th>
+                <th scope="col">{{'S.no'|translate}}</th>
+              
+                <th scope="col">{{'FPO Name'|translate}}</th>               
+                <th scope="col">{{'Complaints/ Suggestions Category'|translate}}</th>
+                <th scope="col">{{'Complaint/ Suggestion Date'|translate}}</th>
+                <th scope="col">{{'Complaints / Complaints Status of suggestion'|translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -198,29 +194,28 @@
                 <td>
                   {{i}}
                 </td>
+              
                 <td>
-                  Agra
+                  {{ complaint.fponame}}
                 </td>
                 <td>
-                  FPO Name
+                  {{complaint.ftitle}}
                 </td>
                 <td>
-                  {{complaint.title}}
+                  {{complaint.createdate| date: 'dd/MM/yyyy'}}
                 </td>
                 <td>
-                  {{complaint.uploadDate| date: 'dd/MM/yyyy'}}
-                </td>
-                <td>
-                  {{complaint.status}}
+                  <span *ngIf="complaint.status">{{getStatus(complaint.status)}}</span>
+                  <span *ngIf="!complaint.status">NA</span>
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
+                      {{'Actions'| translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">View</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(complaint)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">{{'View'|translate}}</a>
+                     
                     </div>
                   </div>
                 </td>

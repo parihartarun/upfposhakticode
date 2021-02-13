@@ -48,6 +48,7 @@ import { ProductionDetailsComponent } from './pages/fpo/production-details/produ
 import { CropShowingDetailsComponent } from './pages/fpo/crop-showing-details/crop-showing-details.component';
 import { ComplaintsComponent } from './pages/fpo/complaints/complaints.component';
 import { ServicesComponent } from './pages/fpo/services/services.component';
+
 import { RegisterComponent } from './pages/registers/register.component';
 import { FarmerRegisterComponent } from './pages/registers/farmer-register/farmer-register.component';
 import { FpoRegisterComponent } from './pages/registers/fpo-register/fpo-register.component';
@@ -68,6 +69,32 @@ import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guideline
 import { FarmerUserProfileComponent } from './pages/user-profile/farmer-user-profile/farmer-user-profile.component';
 import { DepartmentProductionReportComponent } from './pages/department/department-production-report/department-production-report.component';
 import { DepartmentSalesReportComponent } from './pages/department/department-sales-report/department-sales-report.component';
+import { DepartmentGuidelineComponent } from './pages/department/department-guideline/department-guideline.component';
+import { DepartmentSchemeComponent } from './pages/department/department-scheme/department-scheme.component';
+// import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
+// import { FarmerUserProfileComponent } from './pages/user-profile/farmer-user-profile/farmer-user-profile.component';
+import { FarmerComplaintsComponent } from './pages/farmer/farmer-complaints/farmer-complaints.component';
+import { DepartmentComplaintsComponent } from './pages/department/department-complaints/department-complaints.component';
+import { BuyerTraderComplaintsComponent } from './pages/buyer-treder/buyer-trader-complaints/buyer-trader-complaints.component';
+import { InputSupperComplaintsComponent } from './pages/auth-pages/inputSupper/input-supper-complaints/input-supper-complaints.component';
+import { ChcComplaintsComponent } from './pages/auth-pages/chc/chc-complaints/chc-complaints.component';
+// import { DepartmentProductionReportComponent } from './pages/department/department-production-report/department-production-report.component';
+// import { DepartmentSalesReportComponent } from './pages/department/department-sales-report/department-sales-report.component';
+import { SchemasComponent } from './pages/schemas/schemas.component';
+import { InputDetailsSeedsComponent } from './pages/Input-Supplier/input-details-seeds/input-details-seeds.component';
+import { InputDetailsFertilizerComponent } from './pages/Input-Supplier/input-details-fertilizer/input-details-fertilizer.component';
+import { InputDetailsMachineryComponent } from './pages/Input-Supplier/input-details-machinery/input-details-machinery.component';
+import { InputDetailsInsecticidesComponent } from './pages/Input-Supplier/input-details-insecticides/input-details-insecticides.component';
+import { MachineryComponent } from './pages/CHC/machinery/machinery.component';
+import { UserStatusComponent } from './pages/user-status/user-status.component';
+import { ComplaintByFarmerComponent } from './pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
+import { DepartmentNotificationComponent } from './pages/department/department-notification/department-notification.component';
+import { FpoNotifiactionComponent } from './pages/fpo/fpo-notifiaction/fpo-notifiaction.component';
+import { NotifiactionByDepartmentComponent } from './pages/fpo/notifiaction-by-department/notifiaction-by-department.component';
+import { FarmerNotifictionByFpoComponent } from './pages/farmer/farmer-notifiction-by-fpo/farmer-notifiction-by-fpo.component';
+import { BuyeruserComponent } from './pages/buyer-treder/buyeruser/buyeruser.component';
+import { UserProfileDashboardComponent } from './pages/user-profile-dashboard/user-profile-dashboard.component';
+import { DepartmentAllUsersComponent } from './pages/department/department-all-users/department-all-users.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -103,7 +130,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  
+
   declarations: [
     AppComponent,
     AdminLayoutComponent,
@@ -113,8 +140,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     FpoDetailsComponent,
     AuthHeaderComponent,
-    HomeComponent,    
-   
+    HomeComponent,
+    FpoGuidelinesComponent,
     ForgotPasswordComponent,
     DashboardComponent,
     BoardMembersComponent,
@@ -151,11 +178,37 @@ export function HttpLoaderFactory(http: HttpClient) {
 
     DepartmentProductionReportComponent,
     DepartmentSalesReportComponent,
+    DepartmentGuidelineComponent,
+    DepartmentSchemeComponent,
+    // FpoGuidelinesComponent,
+    // FarmerUserProfileComponent,
+    FarmerComplaintsComponent,
+    DepartmentComplaintsComponent,
+    BuyerTraderComplaintsComponent,
+    InputSupperComplaintsComponent,
+    ChcComplaintsComponent,
+    SchemasComponent,
+    DepartmentProductionReportComponent,
+    DepartmentSalesReportComponent,
+    InputDetailsSeedsComponent,
+    InputDetailsFertilizerComponent,
+    InputDetailsMachineryComponent,
+    InputDetailsInsecticidesComponent,
+    MachineryComponent,
+    UserStatusComponent,
+    ComplaintByFarmerComponent,
+    BuyeruserComponent,
+    UserProfileDashboardComponent,
+    DepartmentAllUsersComponent,
+    DepartmentNotificationComponent,
+    FpoNotifiactionComponent,
+    NotifiactionByDepartmentComponent,
+    FarmerNotifictionByFpoComponent,
   ],
-  exports: [   
+  exports: [
     AuthHeaderComponent
   ],
-  providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
+  providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     AuthGuardService],
   bootstrap: [AppComponent]

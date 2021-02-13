@@ -32,6 +32,23 @@ import { SearchComponent } from '../..//pages/common/search/search.component';
 import { NotificationsComponent } from '../../pages/common/notifications/notifications.component';
 import { IndentComponent } from '../../pages/common/indent/indent.component';
 import { FarmerUserProfileComponent } from '../../pages/user-profile/farmer-user-profile/farmer-user-profile.component';
+import { DepartmentGuidelineComponent } from 'src/app/pages/department/department-guideline/department-guideline.component';
+import { DepartmentSchemeComponent } from 'src/app/pages/department/department-scheme/department-scheme.component';
+import { FarmerComplaintsComponent } from '../../pages/farmer/farmer-complaints/farmer-complaints.component';
+import { BuyerTraderComplaintsComponent } from '../../pages/buyer-treder/buyer-trader-complaints/buyer-trader-complaints.component';
+import { InputDetailsSeedsComponent } from 'src/app/pages/Input-Supplier/input-details-seeds/input-details-seeds.component';
+import { InputDetailsFertilizerComponent } from 'src/app/pages/Input-Supplier/input-details-fertilizer/input-details-fertilizer.component';
+import { InputDetailsMachineryComponent } from 'src/app/pages/Input-Supplier/input-details-machinery/input-details-machinery.component';
+import { InputDetailsInsecticidesComponent } from 'src/app/pages/Input-Supplier/input-details-insecticides/input-details-insecticides.component';
+import { MachineryComponent } from 'src/app/pages/CHC/machinery/machinery.component';
+import { UserStatusComponent } from 'src/app/pages/user-status/user-status.component';
+import { ComplaintByFarmerComponent } from '../../pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
+import { DepartmentNotificationComponent } from '../../pages/department/department-notification/department-notification.component';
+import { FpoNotifiactionComponent } from '../../pages/fpo/fpo-notifiaction/fpo-notifiaction.component';
+import { NotifiactionByDepartmentComponent } from '../../pages/fpo/notifiaction-by-department/notifiaction-by-department.component';
+import { BuyeruserComponent } from 'src/app/pages/buyer-treder/buyeruser/buyeruser.component';
+import { UserProfileDashboardComponent } from 'src/app/pages/user-profile-dashboard/user-profile-dashboard.component';
+import { FarmerNotifictionByFpoComponent } from '../../pages/farmer/farmer-notifiction-by-fpo/farmer-notifiction-by-fpo.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: DashboardComponent },
@@ -60,9 +77,32 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'department/complaints', component: DepartmentComplaintsComponent },
   { path: 'department/user-management', component: DepartmentUserManagementComponent },
   { path: 'department/all-users', component: DepartmentAllUsersComponent },
+  { path: 'department/guideline', component: DepartmentGuidelineComponent },
+  { path: 'department/schemes', component: DepartmentSchemeComponent },
   { path: 'search', component: SearchComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'indent_history', component: IndentComponent },
-  { path: 'fpo/farmer-user-profile', component: FarmerUserProfileComponent }
+  { path: 'fpo/farmer-user-profile', component: FarmerUserProfileComponent },
+  { path: 'farmer/complaints', component: FarmerComplaintsComponent },
+  { path: 'byer/complaints', component: BuyerTraderComplaintsComponent },
+  { path: 'chc/complaints', component: BuyerTraderComplaintsComponent },
+  { path: 'input/complaints', component: BuyerTraderComplaintsComponent },
+  { path: 'input-seed', component: InputDetailsSeedsComponent },
+  { path: 'input-fertilizer', component: InputDetailsFertilizerComponent },
+  { path: 'input-machinery', component: InputDetailsMachineryComponent },
+  { path: 'input-insect', component: InputDetailsInsecticidesComponent },
+  { path: 'CHC-machinery', component: MachineryComponent },
+  { path: 'userDetails', component: UserStatusComponent },
+  { path: 'chc/complaints', component: FarmerComplaintsComponent },
+  { path: 'input/complaints', component: FarmerComplaintsComponent },
+  { path: 'fpo/complaintsByfarmer', component: ComplaintByFarmerComponent },
+  { path: 'indent_history/buyer-user-profile', component: BuyeruserComponent },
+  {path:'user-profile',component:UserProfileDashboardComponent},
+
+  { path: 'department/dept-notification', component: DepartmentNotificationComponent },
+  { path: 'fpo/fpo-notification', component: FpoNotifiactionComponent },
+  { path: 'fpo/fpo-notificationByDept', component: NotifiactionByDepartmentComponent },
+  { path: 'farmer/farmerNotificationByFpo', component: FarmerNotifictionByFpoComponent },
+
 ];
 
