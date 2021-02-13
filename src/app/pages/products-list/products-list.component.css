@@ -11,6 +11,15 @@
 {
   font-size: 9px;
 }
+.text-sm
+{
+  font-size: 12px;
+}
+.suc-img
+{
+  height:150px;
+  width:150px;
+}
 .loader-container
 {
   min-height: 500px;

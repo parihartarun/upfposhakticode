@@ -112,6 +112,9 @@ export class ComplaintByFarmerComponent implements OnInit {
     this.isViewComplaint = false;
   }
   viewComplaint(complaint) {
+    this.api.getfamerDetail(complaint.farmerId).subscribe(f => {
+      f
+    })
     this.isViewComplaint = true;
     this.viewComp.farmerId = complaint.farmerId
     this.viewComp.assignedTo = complaint.assignBy;
@@ -129,10 +132,8 @@ export class ComplaintByFarmerComponent implements OnInit {
       appointmentDate: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
       comment: ['', [Validators.required]],
       status: ['', [Validators.required]],
-
-
-
     });
+    
   }
   filterComaplaint() {
     if (this.fliterForm.controls['complaint'].value === "New") {
