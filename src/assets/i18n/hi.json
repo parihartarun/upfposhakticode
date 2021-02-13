@@ -517,5 +517,11 @@
   "Active": "सक्रिय",
   "InActive": "निष्क्रिय",
   "Active FPO Users": "सक्रिय एफपीओ उपयोगकर्ता",
-  "InActive FPO Users": "निष्क्रिय एफपीओ उपयोगकर्ता"
+  "InActive FPO Users": "निष्क्रिय एफपीओ उपयोगकर्ता",
+  "FPO Users" : "एफपीओ उपयोगकर्ता",
+  "User Name" : "एफपीओ का नाम",
+  "District Name":"जनपद",
+  "Request Date" : "अनुरोध की तारीख",
+  "Deactive" : "निष्क्रिय",
+  "All Active FPO Users":"सभी सक्रिय एफपीओ उपयोगकर्ता"
 }

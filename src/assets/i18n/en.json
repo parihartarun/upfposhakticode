@@ -495,5 +495,11 @@
   "Active": "Active",
   "InActive": "InActive",
   "Active FPO Users": "Active FPO Users",
-  "InActive FPO Users": "InActive FPO Users"
+  "InActive FPO Users": "InActive FPO Users",
+  "FPO Users" : "FPO Users",
+  "User Name" : "User Name",
+  "District Name" : "District Name",
+  "Request Date" : "Request Date",
+  "Deactive" : "Deactive",
+  "All Active FPO Users" : "All Active FPO Users"
 }
