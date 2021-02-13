@@ -351,8 +351,8 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
 
-  getFarmerDetailList() {
-    return this.http.get<any>(this._url + 'api/Farmer/getFarmerDetails').pipe(map((res: any) => {
+  getFarmerDetailList(masterId) {
+    return this.http.get<any>(this._url + 'api/Farmer/getFarmerDetails/'+masterId).pipe(map((res: any) => {
       return res;
     }));
   }

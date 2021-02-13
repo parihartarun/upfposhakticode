@@ -272,7 +272,7 @@
   "FPO Registration Date": "FPO Registration Date",
   "FPO Contact No": "FPO Contact No",
   "fpo contact is required": "fpo contact  is required",
-  "mobile number should be 10 digit": "maximun 6 digit is required",
+  "mobile number should be 10 digit": "mobile number should be 10 digit",
   "FPO Email": "FPO Email",
   "fpo email is required": "fpo email is required",
   "Username": "User Name",
@@ -459,9 +459,9 @@
   "Complaints / Complaints Status of suggestion": "Complaints / Complaints Status of suggestion",
   "User Management": "User Management",
   "All-Users": "All-Users",
-  "zerotonintynine": "0 - 99 (quintal)",
-  "hundredtohundrednintynine": "100 - 199 (quintal)",
-  "morethan200": "More than 200 (quintal)",
+  "zerotonintynine": "0 - 99",
+  "hundredtohundrednintynine": "100 - 199",
+  "morethan200": "More than 200",
   "enterfpodeliveryaddr": "Please enter delivery Address.",
   "fpodeliveryaddr": "Delivery Address.",
   "deleiveryrequired": "Delivery address is required.",
@@ -471,8 +471,6 @@
   "Select District": "Select District",
   "Select Crops": "Select Crops",
   
-  
-
   "Description": "Description",
   "Seeds": "Seeds",
   "Fertilizer": "Fertilizer",
