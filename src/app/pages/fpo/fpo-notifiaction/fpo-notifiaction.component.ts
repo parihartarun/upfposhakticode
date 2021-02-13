@@ -88,8 +88,6 @@ export class FpoNotifiactionComponent implements OnInit {
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
   }
-  upload(files: FileList) {
-    this.fileToUpload = files.item(0);
-  }
+ 
 
 }
