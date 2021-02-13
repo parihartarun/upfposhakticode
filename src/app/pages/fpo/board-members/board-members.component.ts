@@ -137,7 +137,7 @@ export class BoardMembersComponent implements OnInit {
         panchayatId:member.panchayatId,
         villageId:member.villageId
       });
-    }, 3000);
+    }, 1000);
     
     this.edit = true;
     window.scroll(0,0);  
