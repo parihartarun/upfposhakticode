@@ -131,11 +131,14 @@ export class BoardMembersComponent implements OnInit {
       updatedBy:localStorage.getItem('userRole'),
       id:[member.id],
     });
-    this.memberForm.patchValue({
-      blockId:member.blockId,
-      panchayatId:member.panchayatId,
-      villageId:member.villageId
-    });
+    setTimeout(()=>{                           //<<<---using ()=> syntax
+      this.memberForm.patchValue({
+        blockId:member.blockId,
+        panchayatId:member.panchayatId,
+        villageId:member.villageId
+      });
+    }, 3000);
+    
     this.edit = true;
     window.scroll(0,0);  
   }

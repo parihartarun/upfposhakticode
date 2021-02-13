@@ -201,11 +201,13 @@ export class AddFarmerComponent implements OnInit {
         validator: MustMatch('password', 'confirmPassword')
        
     });
-    this.fpoAddFarmerForm.patchValue({
-      blockRef: farmerDetails.blockRef,
-      villagePanchayatId: farmerDetails.villagePanchayatId,
-      villRefId:farmerDetails.villRefId
-    });
+    setTimeout(()=>{     
+      this.fpoAddFarmerForm.patchValue({
+        blockRef: farmerDetails.blockRef,
+        villagePanchayatId: farmerDetails.villagePanchayatId,
+        villRefId:farmerDetails.villRefId
+      });
+    }, 3000);
     this.edit = true;
     window.scroll(0,0);
   }

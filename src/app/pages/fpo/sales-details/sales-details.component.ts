@@ -120,9 +120,11 @@ export class SalesDetailsComponent implements OnInit {
       masterId:localStorage.getItem('masterId'),
       id:[sale.id]
     });
-    this.salesForm.patchValue({
-      verietyId:sale.veriety_id
-    });
+    setTimeout(()=>{  
+      this.salesForm.patchValue({
+        verietyId:sale.veriety_id
+      });
+    }, 3000);
     this.edit = true;
     window.scroll(0,0);
   }
