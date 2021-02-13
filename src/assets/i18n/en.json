@@ -583,6 +583,9 @@
   "Notifications Details": "Notifications Details",
   "NotificationsDate": "Notifications Date",
   "Notifications By Department": "Notifications By Department",
-  "Department Name": "Department Name"
+  "Department Name": "Department Name",
+  "Reason of deactivation" : "Reason of deactivation",
+  "Select reason" : "Select reason",
+  "Add reason of deactivation" : "Add reason of deactivation"
 
 }

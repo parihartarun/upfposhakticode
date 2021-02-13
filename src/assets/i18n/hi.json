@@ -609,5 +609,8 @@
   "Notifications Details": "अधिसूचना विवरण",
   "NotificationsDate": "अधिसूचना तिथि",
   "Notifications By Department": "अधिसूचना विभाग द्वारा",
-  "Department Name": "विभाग नाम"
+  "Department Name": "विभाग नाम",
+  "Reason of deactivation" :"निष्क्रियता का कारण",
+  "Select reason" : "कारण का चयन करें",
+  "Add reason of deactivation" : "निष्क्रियता का कारण जोड़ें"
 }
