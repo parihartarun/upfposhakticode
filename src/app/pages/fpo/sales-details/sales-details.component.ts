@@ -17,6 +17,7 @@ export class SalesDetailsComponent implements OnInit {
   sales:Array<any>=[];
   cropVarieties:Array<any>=[];
   crops:Array<any>=[];
+  seasons:Array<any>=[];
   p:number = 1;
   edit = false;
 
@@ -38,16 +39,32 @@ export class SalesDetailsComponent implements OnInit {
       id:['']
     });
     this.getFpoSalesInfo();
-    this.getCropList();
+    //this.getCropList();
+    this.getSeasonList();
   }
 
-  getCropList(){
-    this.api.getCropList().subscribe(
+  getSeasonList(){
+    this.api.getSeasonList().subscribe(
       response => {
       console.log(response);
+      this.seasons = response;
+    })
+  }
+
+  getCropsBySeasonId(seasonId){
+    this.api.getCropsBySeasonId(seasonId).subscribe(
+      response => {
       this.crops = response;
     })
   }
+
+  // getCropList(){
+  //   this.api.getCropList().subscribe(
+  //     response => {
+  //     console.log(response);
+  //     this.crops = response;
+  //   })
+  // }
 
   getCropVarietiesByCropId(cropId){
     this.api.getCropVarietiesByCropId(cropId).subscribe(
@@ -103,9 +120,11 @@ export class SalesDetailsComponent implements OnInit {
       masterId:localStorage.getItem('masterId'),
       id:[sale.id]
     });
-    this.salesForm.patchValue({
-      verietyId:sale.veriety_id
-    });
+    setTimeout(()=>{  
+      this.salesForm.patchValue({
+        verietyId:sale.veriety_id
+      });
+    }, 3000);
     this.edit = true;
     window.scroll(0,0);
   }

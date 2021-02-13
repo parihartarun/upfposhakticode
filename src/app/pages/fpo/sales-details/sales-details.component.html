@@ -23,12 +23,10 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">{{'Season'|translate}}<span class="required">*</span></label>
-                    <select formControlName="season" class="form-control form-control-alternative">
-                      <option value="">{{'Select Season'|translate}}</option>
-                      <option value="1"> {{'Rabi'|translate}}</option>
-                      <option value="2">  {{'Zayd'|translate}}</option>
-                      <option value="3">  {{'Kharif'|translate}}</option>
-                    </select>
+                    <select formControlName="season" class="form-control form-control-alternative" (change)="getCropsBySeasonId($event.target.value)">
+                      <option value="">{{'Select Season'|translate}}</option>                    
+                      <option value="{{season.seasonId}}" *ngFor="let season of seasons">{{season.season}}</option>
+                    </select> 
                     <div *ngIf="submitted && formControls.season.errors" class="text-danger">
                       <div *ngIf="formControls.season.errors.required">{{'Season is required'|translate}}</div>
                     </div>

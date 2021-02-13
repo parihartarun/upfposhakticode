@@ -87,6 +87,13 @@ export class DepartmentService {
       }
     })
   }
+  getGuidelineByType(type) {
+    this.http.get<any>(this._url + 'fpoguidelines/' + type).subscribe((res: any) => {
+      if (res) {
+        this.guideLineList.next(res);
+      }
+    })
+  }
   addGuideline(data) {
     this.http.post<any>(this._url + 'fpoguidelines/uploadFPOGuideline', data).subscribe((res: any) => {
       if (res == true || res) {

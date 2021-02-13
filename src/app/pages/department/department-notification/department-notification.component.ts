@@ -27,25 +27,7 @@ export class DepartmentNotificationComponent implements OnInit {
       this.fpos = us;
        })
 
-    this.notifications = [
-      {
-        "title": "FPO_Famer1",
-        "description": "The shortest article. Ever.",
-        "uploadDate": "2015-05-22T14:56:28.000Z"
-      },
-      {
-        "title": "FPO_Famer2",
-        "description": "Farmer Producer Company.",
-        "uploadDate": "2015-08-22T14:56:28.000Z"
-      },
-      {
-        "title": "FPO_Famer2",
-        "description": "The FPO can aggregate the produce better.",
-        "uploadDate": "2015-09-22T14:56:28.000Z"
-      }
-    ]
-
-
+    this.getNotificationByDept();
 
     this.NotificationsForm = this.formBuilder.group({
 
@@ -54,6 +36,11 @@ export class DepartmentNotificationComponent implements OnInit {
         uploadFile: ['', [Validators.required]],
         dept_id: localStorage.getItem('masterId'),
     });
+  }
+  getNotificationByDept() {
+    this.api.getAllNotificationDept(localStorage.getItem('masterId')).subscribe(us => {
+      this.notifications = us;
+    })
   }
   reset() {
     this.NotificationsForm.reset();
@@ -85,6 +72,7 @@ export class DepartmentNotificationComponent implements OnInit {
          this.submitted = false;
          // this.edit = false;
          this.NotificationsForm.reset();
+         this.getNotificationByDept();
        } else {
          this.toastr.error('Error! While Updating License.');
        }

@@ -147,9 +147,11 @@ export class StorageUnitComponent implements OnInit {
       masterId:localStorage.getItem('masterId'),
       id:[equipment.id],
     });
-    this.storageUnitForm.patchValue({
-      blockId:equipment.blockId
-    });
+    setTimeout(()=>{
+      this.storageUnitForm.patchValue({
+        blockId:equipment.blockId
+      });
+    }, 3000);
     if(equipment.fascilities != '' && equipment.fascilities != null){
       this.splitString(equipment.fascilities)
     }

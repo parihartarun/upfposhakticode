@@ -121,7 +121,7 @@
                   <div class="form-group">
                     <label class="form-control-label">{{'Complaints/ Suggestions Category' | translate}} <span class="required">*</span></label>
 
-                    <select class="form-control" formControlName="issueType" (change)="selectComplaint($event)" [compareWith]="compareByOptionId">
+                    <select class="form-control" formControlName="issueType" (change)="selectComplaint($event)">
                       <option value="">{{'Select Complaint/Suggestions' | translate}}</option>
                       <option *ngFor="let cc of complaintsCatageriy" [value]="cc.comp_type_id">{{cc.comp_type_en}}</option>
 

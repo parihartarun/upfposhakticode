@@ -23,7 +23,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">{{'Season'|translate}}<span class="required">*</span></label>
-                    <select formControlName="season" class="form-control form-control-alternative">
+                    <select formControlName="season" class="form-control form-control-alternative" (change)="getCropsBySeasonId($event.target.value)">
                       <option value="">{{'Select Season'|translate}}</option>                    
                       <option value="{{season.seasonId}}" *ngFor="let season of seasons">{{season.season}}</option>
                     </select> 
@@ -143,6 +143,7 @@
                 </td>
                 <td>
                   {{production.actual_quantity}}
+
                 </td>
                 <td>
                   {{production.marketable_quantity}}
