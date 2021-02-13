@@ -94,7 +94,7 @@
         </div>
         <select class="form-control" formControlName="category">
           <option value="">{{'Select Category'| translate}}</option>
-          <option value="Genereal">{{'General1'|translate}}</option>
+          <option value="General">{{'General1'|translate}}</option>
           <option value="obc">{{'OBC1'|translate}}</option>
           <option value="sc">{{'SC1'| translate}}</option>
           <option value="st">{{'ST1'|translate}}</option>
@@ -113,8 +113,8 @@
         </div>
         <select class="form-control" formControlName="gender">
           <option value="">{{'Select Gender'|translate}}</option>
-          <option value="male">{{'Male'|translate}}</option>
-          <option value="female">{{'Female'|translate}}</option>
+          <option value="Male">{{'Male'|translate}}</option>
+          <option value="Female">{{'Female'|translate}}</option>
         </select>
       </div>
       <div *ngIf="submitted && formControls.gender.errors" class="text-danger">
@@ -214,14 +214,14 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <select class="form-control" formControlName="villagePanchayatId" (change)="selectGramPanchayat($event)">
+        <select class="form-control" formControlName="fpoRefId">
           <option value="">{{'Select FPO'|translate}} </option>
-          <option *ngFor="let panchayat of panchayts" [value]="panchayat.panchayat_id">{{panchayat.panchayat_name}}
+          <option *ngFor="let fpo of fpoList" [value]="fpo.fpoId">{{fpo.fpoName}}
           </option>
         </select>
       </div>
-      <div *ngIf="submitted && formControls.villagePanchayatId.errors" class="text-danger">
-        <div *ngIf="formControls.villagePanchayatId.errors.required">{{'gram panchayat is required'|translate}}</div>
+      <div *ngIf="submitted && formControls.fpoRefId.errors" class="text-danger">
+        <div *ngIf="formControls.fpoRefId.errors.required">{{'FPO is required'|translate}}</div>
       </div>
     </div>
 

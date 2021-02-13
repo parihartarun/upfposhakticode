@@ -25,6 +25,7 @@ export class FarmerRegisterComponent implements OnInit {
   panchayts = [];
   villages = [];
   banks = [];
+  fpoList = [];
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router,
     private toastr: ToastrService,
     private fpoService: FpoService) {
@@ -38,7 +39,7 @@ export class FarmerRegisterComponent implements OnInit {
       this.banks = d
     })
     this.createRegisterForm();
-
+    this.getALlFpoList();
 
   }
   selectDistrict(districtId: any) {
@@ -56,7 +57,7 @@ export class FarmerRegisterComponent implements OnInit {
   getALlFpoList() {
     this.fpoService.getAllFpo().subscribe(res => {
       if (res) {
-        console.log('pavan', res);
+        this.fpoList = res;
       }
     });
   }
@@ -92,6 +93,7 @@ export class FarmerRegisterComponent implements OnInit {
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
       userRefId: [''],
+      fpoRefId: ['', Validators.required],
       villRefId: ['', Validators.required],
       villagePanchayatId: ['', Validators.required],
       recaptcha: ['', Validators.required],
