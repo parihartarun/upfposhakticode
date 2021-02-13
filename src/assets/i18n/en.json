@@ -566,6 +566,11 @@
   "Notifications Details": "Notifications Details",
   "NotificationsDate": "Notifications Date",
   "Notifications By Department": "Notifications By Department",
-  "Department Name": "Department Name"
+  "Department Name": "Department Name",
+  "BuyerSeller Name":"BuyerSeller Name",
+  "designationContactPerson":"Designation Contact Person",
+  "buildingName":"Building Name",
+  "Supplier Name":"Supplier Name"
+ 
 
 }

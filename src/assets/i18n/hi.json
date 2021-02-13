@@ -586,5 +586,9 @@
   "Notifications Details": "अधिसूचना विवरण",
   "NotificationsDate": "अधिसूचना तिथि",
   "Notifications By Department": "अधिसूचना विभाग द्वारा",
-  "Department Name": "विभाग नाम"
+  "Department Name": "विभाग नाम",
+  "BuyerSeller Name":"खरीदार का नाम",
+  "designationContactPerson":"पदनाम संपर्क व्यक्ति",
+  "buildingName":"इमारत का नाम",
+  "Supplier Name":"आपूर्तिकर्ता नाम"
 }
