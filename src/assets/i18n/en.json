@@ -470,17 +470,6 @@
   "Complaints / Complaints Status of suggestion": "Complaints / Complaints Status of suggestion",
   "User Management": "User Management",
   "All-Users": "All-Users",
-  "enterfpodeliveryaddr": "Please enter delivery Address.",
-  "fpodeliveryaddr": "Delivery Address.",
-  "deleiveryrequired": "Delivery address is required.",
-  "Indent Form": "Indent Form",
-  "Estimated Production (in Qt.)": "Estimated Production (in Qt.)",
-  "Sales Data": "Sales Data",
-  "Select District": "Select District",
-  "Select Crops": "Select Crops",
-
-
-
   "Description": "Description",
   "Seeds": "Seeds",
   "Fertilizer": "Fertilizer",
@@ -532,8 +521,7 @@
   "FPO Users" : "FPO Users",
   "User Name" : "User Name",
   "District Name" : "District Name",
-  "Request Date" : "Request Date",
-  "Deactive" : "Deactive",
+   "Deactive" : "Deactive",
   "All Active FPO Users" : "All Active FPO Users",
   "Equipment Available": "Equipment Available",
   "Equipment Capacity": "Equipment Capacity",
@@ -605,6 +593,19 @@
   "NotificationsDate": "Notifications Date",
   "Notifications By Department": "Notifications By Department",
   "Department Name": "Department Name",
+  "BuyerSeller Name":"BuyerSeller Name",
+  "designationContactPerson":"Designation Contact Person",
+  "buildingName":"Building Name",
+  "Supplier Name":"Supplier Name",
   "Category Deals In": "Category Deals In"
+  "Category Deals In": "Category Deals In",
+  "Legal Details": "Legal Details",
+  "TIN Number": "TIN Number",
+  "PAN number": "PAN Number",
+  "Company Category": "Company Category",
+  "variety Deals In": "Variety Deals In",
+  "Area (Landmark)": "Area (Landmark)",
+  "Commdity Deals in": "Commdity Deals in"
+
 
 }

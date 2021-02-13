@@ -166,6 +166,11 @@ export class CropProductionComponent implements OnInit {
       fpoId:localStorage.getItem('masterId'),
       masterId:localStorage.getItem('masterId'),
     });
+    setTimeout(()=>{                           //<<<---using ()=> syntax
+      this.productionForm.patchValue({
+        verietyId:production.veriety_id
+      });
+    }, 3000);
     this.productionForm.patchValue({
       verietyId:production.veriety_id
     });
