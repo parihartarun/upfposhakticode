@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
+import { ProductService } from 'src/app/_services/product/product.service';
 
 @Component({
   selector: 'app-indent',
@@ -15,15 +18,30 @@ export class IndentComponent implements OnInit {
   userrole:string;
   userRole: string;
   masterId: string;
-  constructor(private auth:AuthService,private fpoService:FpoService) { }
+  indentForm: FormGroup;
+  currentItem: any;
+  constructor(private fb: FormBuilder,private _productService: ProductService,private modalService: NgbModal,private auth:AuthService,private fpoService:FpoService) { }
 
   ngOnInit(): void {
     this.getIdent()
    
   }
+  opendialog($event,content,item)
+  {
+   this.currentItem = item;
+    
+    this.indentForm = this.fb.group({
+      status: [undefined],
+      quantity:[undefined],
+      reason: [""],     
+    })
+
+    this.modalService.open(content);
+}
+
   getIdent() {
     
-    
+    this.loading = true;
     this.indents = [ ],
     // localStorage.setItem('userRole', response.userRole);
     //localStorage.setItem('masterId', response.masterId);
@@ -32,20 +50,32 @@ export class IndentComponent implements OnInit {
     console.log("User role on Indent List Page  = "+this.userRole);
     console.log("Master Id on Indent List Page  = "+this.masterId);
     
-    if (this.userRole == 'ROLE_FPC') {  
+        if (this.userRole == 'ROLE_FPC') {  
       this.fpoService.getIndentByFpoId(this.masterId).subscribe(data=>{
         console.log("Data Has been received"+JSON.stringify(data));
         this.indents = data;
+        this.loading = false;
       })
 
-    } else if(this.userRole == 'ROLE_MIN') {
-      
-    } else if(this.userRole == 'ROLE_BUYERSELLER'){
-      
-    }else{
-      
+    }  else {
+      this.fpoService.getIndentByUserId(this.masterId).subscribe(data=>{
+        console.log("Data Has been received"+JSON.stringify(data));
+        this.indents = data;
+        this.loading = false;
+      })
+
     }
 
 
+  }
+  save()
+  {
+    console.log("data serializes - "+JSON.stringify(this.indentForm.value));
+
+this._productService.updateEnquiry(this.indentForm.value,this.currentItem.id).subscribe(data=>{
+  console.log("Updated Successfully");
+  this.modalService.dismissAll();
+ // this.ngOnInit();
+})
   }
 }

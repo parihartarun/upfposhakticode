@@ -30,112 +30,15 @@ export class PhotographsComponent implements OnInit {
     this.photographForm = this.formBuilder.group({
       description: ['', [Validators.required]],
       file: ['', [Validators.required]],
-      id:['']
+      id:[''],
+      fpo_id:localStorage.getItem('masterId')
     });
     this.getPhotographs(); 
   }
 
   getPhotographs(){
-    console.log('get phto call')
-    // this.photographs = [
-    //   { 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },{ 
-    //     description:'Image 1',
-    //     file:'sed.jpg'
-    //   },
-    // ]
-
-    this.api.getPhotographs().subscribe(response => {
-      console.log('getting photo list ===>', response);
+    this.api.getPhotographs(localStorage.getItem('masterId')).subscribe(response => {
+      console.log(response);
       this.photographs = response;
     },
       err => {
@@ -157,6 +60,7 @@ export class PhotographsComponent implements OnInit {
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
     formData.append('description', this.photographForm.value.description);
+    formData.append('fpo_id', localStorage.getItem('masterId'));
 
     this.api.addPhotograph(formData).subscribe(response => {
       console.log(response);
@@ -211,7 +115,8 @@ export class PhotographsComponent implements OnInit {
     // formData.append('data', this.photographForm.value);
 
     formData.append('file', this.fileToUpload);
-    formData.append('description', this.photographForm.value);
+    formData.append('description', this.photographForm.value.description);
+    formData.append('fpo_id', localStorage.getItem('masterId'));
 
     this.api.updatePhotograph(this.photographForm.value.id,formData).subscribe(response => {
       console.log('update file res===>', response);
@@ -232,6 +137,7 @@ export class PhotographsComponent implements OnInit {
   }
 
   confirmDelete(id) {
+    console.log(id);
     if(confirm("Are you sure to delete this item.")) {
       this.api.deletePhotograph(id).subscribe(response => {
         console.log(response);

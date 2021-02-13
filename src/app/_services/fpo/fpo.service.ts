@@ -21,6 +21,15 @@ export class FpoService {
       return res;
     }));
   }
+  getIndentByUserId(fpoid) {
+    let params: HttpParams = new HttpParams();
+    params = params.append("id", fpoid);
+    return this.http.get<any>(this._url + `enquiry/findByUser`, { params: params }).pipe(map((res: any) => {
+
+      return res;
+    }));
+  }
+
   getChartDetails(masterId) {
     return this.http.get<any>(this._url + `api/fpo/dashboard/getAllFpoDashboardData?master_id=` + masterId).pipe(map((res: any) => {
       return res;
@@ -268,8 +277,8 @@ export class FpoService {
 
   /************************** FPO's Photographs **********************************/
 
-  getPhotographs() {
-    return this.http.get<any>(this._url + 'photo').pipe(map((res: any) => {
+  getPhotographs(masterId) {
+    return this.http.get<any>(this._url + 'photo/getPhotoByFpo/'+masterId).pipe(map((res: any) => {
       return res;
     }));
   };
@@ -513,6 +522,9 @@ export class FpoService {
   }
   getFarmMachineryBankByFpo(id) {
     return this.http.get<any>(this._url + 'api/farm/machinery/banks/getFarmMachineryBankByFpo/' + id);
+  }
+  getFpoPhoto(id) {
+    return this.http.get<any>(this._url + 'photo/getPhotoByFpo/' + id);
   }
 }
 

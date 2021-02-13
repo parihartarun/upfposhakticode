@@ -34,6 +34,19 @@
             </div> -->
           </div>
         </div>
+
+                  <div class="card-body" style="height: 80px;">
+                      <div class="pl-lg-4">
+                        <div class="row">
+                          <div class="offset-lg-6 col-lg-6">
+                            <div class="form-group">
+                            <input type="text" id="homesearch" class="form-control" placeholder="{{'Search' | translate}}" >
+                            </div>
+                          </div>
+                        </div> 
+                      </div>
+                  </div>
+   
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
@@ -74,7 +87,7 @@
                       {{'Actions' | translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="activeUSer(u)">{{'Active' | translate}}</a>
+                      <a class="dropdown-item"  (click)="activeUSer(u)">{{'Active' | translate}}</a>
                       <!-- <a class="dropdown-item" href="javascript:void(0)" (click)="deleteUser(u)">Delete</a> -->
                     </div>
                   </div>
@@ -104,6 +117,20 @@
             </div> -->
           </div>
         </div>
+
+        <div class="card-body" style="height: 80px;">
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="offset-lg-6 col-lg-6">
+                <div class="form-group">
+                  <input type="text" id="homesearch1" class="form-control" placeholder="{{'Search' | translate}}" >
+                </div>
+              </div>
+            </div> 
+          </div>
+      </div>
+
+
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
@@ -143,7 +170,7 @@
                     {{'Actions' | translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#myModal" (click)="DeActiveUSer(u)" >{{'Deactive' | translate}}</a>
+                      <a class="dropdown-item"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal" (click)="DeActiveUSer(u)" >{{'Deactive' | translate}}</a>
                       <!-- <a class="dropdown-item" href="javascript:void(0)" (click)="deleteUser()">Delete</a> -->
                     </div>
                   </div>
@@ -164,38 +191,40 @@
 
 
 
-<div class="modal" id="myModal">
+<div class="modal" id="myModal" tabindex="-1">
   <div class="modal-dialog">
+    <form [formGroup]="reasonSelectedForm">
     <div class="modal-content">
 
       <div class="modal-header">
-        <h4 class="modal-title">Add reason of deactivation</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{'Add reason of deactivation' | translate}}</h4>
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
       </div>
-
+    
       <div class="modal-body">
             <label class="form-control-label">{{'Reason of deactivation' | translate}} </label>
             <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
                 <span class="input-group-text"></span>
               </div>
-              <select class="form-control" [(ngModel)]="reasons" (change)="selectChange($event)">
+              <select class="form-control" formControlName="reasons" (change)="selectChange($event)">
                 <option value="">{{'Select reason' | translate}}</option>
                 <option *ngFor="let reason of Reasons" [value]="reason.reason">{{reason.reason}}</option>
               </select>
             </div><br>
 
             <div *ngIf="valueOther">
-              <input type="text" class="form-control" [(ngModel)]="inputOthers">
+              <input type="text" class="form-control" formControlName="inputOthers">
             </div>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="saveDeactivate()" >Save</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveDeactivate()" [disabled]="reasonSelectedForm.invalid" >{{'Save' | translate}}</button>
+        <button type="button" class="btn btn-danger" (click)="closeModal()" data-dismiss="modal">{{'close' | translate}}</button>
       </div>
 
     </div>
+  </form>
   </div>
 </div>
 

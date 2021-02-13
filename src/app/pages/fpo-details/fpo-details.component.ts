@@ -24,6 +24,8 @@ export class FpoDetailsComponent implements OnInit {
   boardMemberPagination = 1;
   mechPagination = 1;
   coldPagination = 1;
+  storageUnitPagination = 1;
+  productPagination = 1;
   public datasets: any;
   public data: any;
   public salesChart;
@@ -48,11 +50,12 @@ export class FpoDetailsComponent implements OnInit {
   xAxisLabel: string = 'Crops';
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Quantity (in Qt.)';
-  multi = []
+  multi = [];
+  goBackUrl = '';
   colorScheme = {
-    domain: ['blue','#ca1a1a']
+    domain: ['blue', '#ca1a1a']
   };
-
+  pfoPhoto = [];
   constructor(private modalService: NgbModal, private api: FpoService, private _activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -63,6 +66,8 @@ export class FpoDetailsComponent implements OnInit {
       this.getFarmMachineryBankByFpo();
     })
     this.setGraphData();
+    this.goBackUrl = localStorage.getItem('fpoSearchUrl');
+
     this._activatedroute.paramMap.subscribe(params => {
       let fpoId = Number(params.get('id'));
 
@@ -76,10 +81,10 @@ export class FpoDetailsComponent implements OnInit {
         this.data1 = response;
       });
 
-      this.api.getAdditionServiceById(fpoId).subscribe(response => {
-        //  alert("addiational"+JSON.stringify(response));
-        this.additionalservice = response;
-      });
+      // this.api.getAdditionServiceById(fpoId).subscribe(response => {
+      //   //  alert("addiational"+JSON.stringify(response));
+      //   this.additionalservice = response;
+      // });
 
       this.api.getBoardMemberById(fpoId).subscribe(response => {
         this.boardMember = response;
@@ -88,7 +93,15 @@ export class FpoDetailsComponent implements OnInit {
       });
 
     });
-
+    this.getFpoPhohto();
+  }
+  getFpoPhohto() {
+    this.api.getFpoPhoto(this.fpoId).subscribe((res: any) => {
+      if (res) {
+        console.log('res', res);
+        this.pfoPhoto = res;
+      }
+    })
   }
   getAllByFpo() {
     this.api.getAllStorageUnitByFpo(this.fpoId).subscribe((res: any) => {

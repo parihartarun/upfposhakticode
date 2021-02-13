@@ -13,7 +13,7 @@
     <button type="button" class="btn btn-link" routerLink="/home">{{'Home' | translate}}</button>
   </div>
   <div>
-    <button type="button" class="btn btn-link" routerLink="/home">{{'Back' | translate}}</button>
+    <button type="button" class="btn btn-link" [routerLink]="goBackUrl">{{'Back' | translate}}</button>
   </div>
 </div>
 <!-- Page Content -->
@@ -65,7 +65,7 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-4 col-sm-12 col-xs-12 text-center" *ngFor="let row of fpo?.photoUpload">
+          <div class="col-md-4 col-sm-12 col-xs-12 text-center" *ngFor="let row of pfoPhoto">
             <img class="card-img" [src]="row.filePath" height="180px" width="100%"
               style="object-fit: cover;  object-positon: center center; object-fit: fill;" />
             <div class="col-12">
@@ -119,7 +119,7 @@
                 <div class="number text-center" style="margin: 10px;">
                   <h3>
                     <small>
-                      1</small>
+                      {{machinerary.length}} </small>
                     <br>
                     <small> {{'Farm Machinery Bank' | translate}}</small>
                     <br>
@@ -212,7 +212,7 @@
                 <th scope="col">{{'Crops' | translate}}</th>
                 <th scope="col">{{'Crop Variety' | translate}}</th>
                 <th scope="col">{{'Marketable Surplus 2021 (In Qt.)' | translate}}</th>
-                <th scope="col">{{'Sold Quantity 2021 (In Qt.)' | translate}}</th>
+                <th scope="col">{{'SOLD QUANTITY 2021 (IN QT.)' | translate}}</th>
               </tr>
             </thead>
             <tbody>
@@ -334,7 +334,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let row of coldStorage | paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+                <tr
+                  *ngFor="let row of coldStorage | paginate: { itemsPerPage: 10, currentPage: storageUnitPagination };let i=index">
                   <!-- <td>
                       <input type="checkbox">
                     </td> -->
@@ -366,7 +367,7 @@
           </div>
           <div class="card-footer py-4">
             <nav aria-label="..." class="text-right">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              <pagination-controls (pageChange)="storageUnitPagination = $event"></pagination-controls>
             </nav>
           </div>
         </div>
