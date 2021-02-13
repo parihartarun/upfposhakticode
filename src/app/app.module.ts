@@ -67,6 +67,8 @@ import { OnlynumberDirective } from './directive/onlynumber.directive';
 import { NgMarqueeModule } from 'ng-marquee';
 import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
 import { FarmerUserProfileComponent } from './pages/user-profile/farmer-user-profile/farmer-user-profile.component';
+import { DepartmentProductionReportComponent } from './pages/department/department-production-report/department-production-report.component';
+import { DepartmentSalesReportComponent } from './pages/department/department-sales-report/department-sales-report.component';
 import { DepartmentGuidelineComponent } from './pages/department/department-guideline/department-guideline.component';
 import { DepartmentSchemeComponent } from './pages/department/department-scheme/department-scheme.component';
 // import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
@@ -76,8 +78,8 @@ import { DepartmentComplaintsComponent } from './pages/department/department-com
 import { BuyerTraderComplaintsComponent } from './pages/buyer-treder/buyer-trader-complaints/buyer-trader-complaints.component';
 import { InputSupperComplaintsComponent } from './pages/auth-pages/inputSupper/input-supper-complaints/input-supper-complaints.component';
 import { ChcComplaintsComponent } from './pages/auth-pages/chc/chc-complaints/chc-complaints.component';
-import { DepartmentProductionReportComponent } from './pages/department/department-production-report/department-production-report.component';
-import { DepartmentSalesReportComponent } from './pages/department/department-sales-report/department-sales-report.component';
+// import { DepartmentProductionReportComponent } from './pages/department/department-production-report/department-production-report.component';
+// import { DepartmentSalesReportComponent } from './pages/department/department-sales-report/department-sales-report.component';
 import { SchemasComponent } from './pages/schemas/schemas.component';
 import { InputDetailsSeedsComponent } from './pages/Input-Supplier/input-details-seeds/input-details-seeds.component';
 import { InputDetailsFertilizerComponent } from './pages/Input-Supplier/input-details-fertilizer/input-details-fertilizer.component';
@@ -175,6 +177,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     OnlynumberDirective,
     FpoGuidelinesComponent,
     FarmerUserProfileComponent,
+
+    DepartmentProductionReportComponent,
+    DepartmentSalesReportComponent,
     DepartmentGuidelineComponent,
     DepartmentSchemeComponent,
     // FpoGuidelinesComponent,
