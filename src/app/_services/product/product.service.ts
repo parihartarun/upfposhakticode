@@ -34,4 +34,14 @@ export class ProductService {
       
     }));
   }
+  updateEnquiry(data,id): Observable<any> {
+    let headers = {}
+  
+    return this.http.put(this._url + 'enquiry/update/'+id, data,{responseType: 'text'}).pipe(map((res: any) => {
+      console.log("indent received"+res);
+      return res;
+      
+    }));
+  }
+
 }
