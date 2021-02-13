@@ -213,7 +213,7 @@
                   <div class="form-group">
                     <label class="form-control-label">{{'Complaints/ Suggestions Category' | translate}} <span class="required">*</span></label>
 
-                    <select class="form-control" formControlName="issueType" (change)="selectComplaint($event)" [compareWith]="compareByOptionId">
+                    <select class="form-control" formControlName="issueType" (change)="selectComplaint($event)">
                       <option value="">{{'Select Complaint/Suggestions' | translate}}</option>
                       <option *ngFor="let cc of complaintsCatageriy" [value]="cc.comp_type_id">{{cc.comp_type_en}}</option>
 
@@ -316,7 +316,7 @@
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
+                      {{'Actions'|translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">{{'View'|translate}}</a>

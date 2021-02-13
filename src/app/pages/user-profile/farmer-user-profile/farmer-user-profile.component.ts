@@ -22,6 +22,7 @@ export class FarmerUserProfileComponent implements OnInit {
   panchayts = [];
   villages = [];
   banks = [];
+  fpoList = [];
   constructor(private formBuilder: FormBuilder,
     private api: FpoService,
     private authservice: AuthService,
@@ -35,7 +36,7 @@ export class FarmerUserProfileComponent implements OnInit {
     this.authservice.getBank().subscribe(d => {
       this.banks = d
     })
-    
+
     this.usernamestring = localStorage.getItem('username');
     this.farmerService.getFarmerProfileByUsername(localStorage.getItem('masterId')).subscribe(data => {
       console.log(data);
@@ -49,16 +50,23 @@ export class FarmerUserProfileComponent implements OnInit {
         this.villages = v
       })
       this.createRegisterForm(data);
+      this.getALlFpoList();
     })
-   
-   
+
+
   }
   getDitricts() {
     this.api.getDistricts().subscribe(data => {
       this.districtlist = data;
     })
   }
-
+  getALlFpoList() {
+    this.api.getAllFpo().subscribe(res => {
+      if (res) {
+        this.fpoList = res;
+      }
+    });
+  }
   selectDistrict(districtId: any) {
     this.profileForm.controls['distRefId'].setValue(parseInt(districtId.currentTarget.value));
     this.authservice.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
@@ -120,18 +128,19 @@ export class FarmerUserProfileComponent implements OnInit {
       farmerMob: [data.farmerMob, [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       farmerName: [data.farmerName, Validators.required],
       ifscCode: [data.ifscCode, Validators.required],
+      fpoRefId: [data.fpoRefId, Validators.required],
       parantsName: [data.parantsName, Validators.required],
       pincode: [data.pincode, [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       userName: [localStorage.getItem('username'), [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
       userRefId: [data.userRefId],
       villRefId: [data.villRefId, Validators.required],
       villagePanchayatId: [data.villagePanchayatId, Validators.required],
-     
-     
+
+
     })
 
 
 
   }
-  
+
 }

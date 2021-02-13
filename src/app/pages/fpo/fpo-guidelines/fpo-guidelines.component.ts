@@ -21,8 +21,12 @@ export class FpoGuidelinesComponent implements OnInit {
   username = '';
   constructor(private formBuilder: FormBuilder, private api: FpoService, public translate: TranslateService) {
     this.baseUrl = environment.baseUrl;
-    translate.addLangs(['en', 'hi']);
-    translate.setDefaultLang('hi');
+    if(localStorage.getItem('language')){
+      translate.setDefaultLang(localStorage.getItem('language'));
+    }else{
+      translate.setDefaultLang('hi');
+      localStorage.setItem('language', 'hi');
+    }
   }
 
 
@@ -41,7 +45,7 @@ export class FpoGuidelinesComponent implements OnInit {
 
   }
   useLanguage(language: string) {
-
+    localStorage.setItem('language', language);
     this.translate.use(language);
     this.toggleNavbar();
   }

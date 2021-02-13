@@ -35,11 +35,16 @@ export class HomeComponent implements OnInit {
   circluar: any;
   constructor(private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService, private api: HomeService,
     private _fpo: FpoService, private departmentService: DepartmentService) {
-    translate.addLangs(['en', 'hi']);
-    translate.setDefaultLang('hi');
+      if(localStorage.getItem('language')){
+        translate.setDefaultLang(localStorage.getItem('language'));
+      }else{
+        translate.setDefaultLang('hi');
+        localStorage.setItem('language', 'hi');
+      }
   }
 
   useLanguage(language: string) {
+    localStorage.setItem('language', language);
     this.translate.use(language);
     this.toggleNavbar();
   }

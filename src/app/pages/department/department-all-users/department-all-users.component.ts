@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from '../../../_services/department/department.service';
@@ -12,11 +12,16 @@ import { UserService } from '../../../_services/user/user.service';
 })
 export class DepartmentAllUsersComponent implements OnInit {
 
-  filterForm: FormGroup;
   submitted = false;
   activeUsers: Array<any> = [];
   deActiveUsers: Array<any> = [];
   p: number = 1;
+  allData: Array<any> = [];
+  Reasons: Array<any> = [];
+  reasonSelectedForm: FormGroup;
+  currentUser: any;
+  valueOther = false;
+  chageData;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,95 +31,114 @@ export class DepartmentAllUsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.filterForm = this.formBuilder.group({
-      financial_year: [''],
-      season: ['']
-    });
-    this.getUsers();
+    this.reasonSelectedForm = this.formBuilder.group({
+      reasons : ['', Validators.required],
+      inputOthers:['']
+      });
+      this.getAllUserDetails();
+      this.getReasons();
   }
 
-  getUsers() {
-    let users = [
-      {
-        sno:'01',        
-        fpoName: 'SHIVMURAT HITECH PRODUCER COMPANY LIMITED',
-        userName: 'Vishal',
-        district: "Agra",
-        requestDate:'21-12-2020',
-        email: "www.rampurkrishakfpo.in",
-        status:0
-       
-      },
-      {
-        sno: '02',
-        fpoName: 'SHIVMURAT HITECH PRODUCER COMPANY LIMITED',
-        userName: 'Vishal',
-        district: "Agra",
-        requestDate: '21-12-2020',
-        email: "www.rampurkrishakfpo.in",
-          status: 1
+  selectChange(e) {
+    this.chageData = e.target.value;
+    if (this.chageData == 'Others') {
+     this.valueOther = true;
+    } else {
+      this.valueOther = false;
+    }
+  }
 
-      },
-      {
-        sno: '03',
-        fpoName: 'SHIVMURAT HITECH PRODUCER COMPANY LIMITED',
-        userName: 'Vishal',
-        district: "Agra",
-        requestDate: '21-12-2020',
-        email: "www.rampurkrishakfpo.in",
-        status: 0,
-      },
-      {
-        sno: '04',
-        fpoName: 'SHIVMURAT HITECH PRODUCER COMPANY LIMITED',
-        userName: 'Vishal',
-        district: "Agra",
-        requestDate: '21-12-2020',
-        email: "www.rampurkrishakfpo.in",
-        status: 1
-      }
-    ]
-    this.activeUsers = users.filter(u => u.status == 0);
-    this.deActiveUsers = users.filter(u => u.status ==1)
+  getReasons() {
+    this.api.deactivategetReason().subscribe(resp => {
+      this.Reasons = resp;
+      this.Reasons.push({reasonId: this.Reasons.length + 1, reason: 'Others'});
+    });
+  }
 
+  getAllUserDetails(){
+    this.api.getAllUser().subscribe(resp => {
+    this.allData = resp;
+    this.activeUsers = this.allData.filter(u => u.enabled == true);
+    this.deActiveUsers = this.allData.filter(u => u.enabled == false);
+
+     });
   }
 
   filterProduction() {
-    this.getUsers();
+
+  }
+get formControls() {
+    return this.reasonSelectedForm.controls;
   }
 
-  get formControls() {
-    return this.filterForm.controls;
-  }
+  saveDeactivate() {
+    this.changeStatus(this.currentUser);
+}
   DeActiveUSer(user) {
-    this.changeStatus(user)
+    this.currentUser = user;
   }
+
   activeUSer(user) {
-
-    this.changeStatus(user)
+    this.changeActiveStatus(user);
   }
-  changeStatus(user) {  
 
-    this.api.updateUser(user).subscribe(response => {
+  changeActiveStatus(user) {
+    const activeUserData = {
+      userid : user.user_id,
+      masterId : 1,
+      username : user.user_name,
+      userrole: localStorage.getItem('userRole'),
+     };
+     this.api.updateActiveUser(activeUserData).subscribe(response => {
       if (response) {
         this.toastr.success(response.message);
 
-        this.getUsers();
+        this.getAllUserDetails();
       } else {
-        this.toastr.error('Error! While Add complaint.');
+        this.toastr.error('Error! While Activate user.');
       }
     });
   }
+
+
+  changeStatus(user) {
+ const deactiveUserData = {
+  userid : user.user_id,
+  masterId : 1,
+  username : user.user_name,
+  userrole: localStorage.getItem('userRole'),
+  reason : this.chageData,
+  };
+  if (this.chageData == 'Others') {
+deactiveUserData.reason = this.reasonSelectedForm.controls['inputOthers'].value;
+  }
+    this.api.updateUser(deactiveUserData).subscribe(response => {
+      if (response) {
+        this.toastr.success(response.message);
+
+        this.getAllUserDetails();
+      } else {
+        this.toastr.error('Error! While Deactivate user.');
+      }
+    });
+  }
+
   deleteCicular(user) {
     this.api.deleteUser(user.id).subscribe(response => {
       if (response != '') {
         this.toastr.success('Delete successfully');
-        this.getUsers();
+        this.getAllUserDetails();
       } else {
         this.toastr.error('Error! While Add complaint.');
       }
     });
 
+  }
+
+  closeModal() {
+    this.ngOnInit();
+    this.getReasons();
+    this.valueOther = false;
   }
 
 }

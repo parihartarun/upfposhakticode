@@ -514,6 +514,16 @@ app-auth-header {
   top:0;
   animation: swap 05s linear infinite;
 }
+.homePageImageIcom {
+    max-width:50px;
+    max-height:50px;
+    width:100%;
+}
+  .homePageImageIcom .logo-image {
+    width: 100%;
+   
+    border:0px;
+  }
 @keyframes swap {
   0%, 50% {
     top: 0%;

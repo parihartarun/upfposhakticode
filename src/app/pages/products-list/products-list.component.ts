@@ -313,6 +313,8 @@ searchWithFilters()
     this.loading=true;
     this._productService.getSearchProductWithFilters(this.parval, this.parsearchType,httpParams).subscribe(s => {
       this.serachProduct = s;
+      console.log('serachProduct',s);
+      
       this.loading=false;
     });
 

@@ -12,44 +12,47 @@ border-radius: 80px;">
                 <input type="radio" name="sections" id="option1" checked>
                 <label for="option1" (click)="tabtype('SEEDS')">{{'Seeds' | translate}}</label>
                 <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Seeds' | translate}}</h4>
+                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Seeds' | translate}}
+                    </h4>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>{{'SR. NO' | translate}}</th>
-                                                <th>{{'Description' | translate}}</th>
-                                                <th>{{'Date' | translate}}</th>
-                                                <th>{{'View' | translate}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                                <td>
-                                                   {{i+1}}
-                                                </td>
-                                                <td>
-                                                    {{schema.description}}
-                                                </td>
-                                                <td>
-                                                    {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                                </td>
-                                                <td>
-                                                    {{schema.view}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- <div class="card-footer py-4"> -->
-                                    <nav aria-label="..." class="text-right">
-                                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                    </nav>
-                                <!-- </div> -->
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>{{'SR. NO' | translate}}</th>
+                                            <th>{{'Description' | translate}}</th>
+                                            <th>{{'Date' | translate}}</th>
+                                            <th>{{'View' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                                            <td>
+                                                {{i+1}}
+                                            </td>
+                                            <td>
+                                                {{schema.description}}
+                                            </td>
+                                            <td>
+                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
+                                                        src="../../../../assets/image/img/pdficon.png"
+                                                        style=" height:20px; width:30px"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="card-footer py-4"> -->
+                            <nav aria-label="..." class="text-right">
+                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                            </nav>
+                            <!-- </div> -->
                             <!-- </div> -->
                         </div>
                     </div>
@@ -59,44 +62,47 @@ border-radius: 80px;">
                 <input type="radio" name="sections" id="option2">
                 <label for="option2" (click)="tabtype('FERTILIZER')">{{'Fertilizer' | translate}}</label>
                 <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Fertilizer' | translate}}</h4>
+                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Fertilizer' |
+                        translate}}</h4>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>{{'SR. NO' | translate}}</th>
-                                                <th>{{'Description' | translate}}</th>
-                                                <th>{{'Date' | translate}}</th>
-                                                <th>{{'View' | translate}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                                <td>
-                                                   {{i+1}}
-                                                </td>
-                                                <td>
-                                                    {{schema.description}}
-                                                </td>
-                                                <td>
-                                                    {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                                </td>
-                                                <td>
-                                                    {{schema.view}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- <div class="card-footer py-4"> -->
-                                    <nav aria-label="..." class="text-right">
-                                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                    </nav>
-                                <!-- </div> -->
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>{{'SR. NO' | translate}}</th>
+                                            <th>{{'Description' | translate}}</th>
+                                            <th>{{'Date' | translate}}</th>
+                                            <th>{{'View' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                                            <td>
+                                                {{i+1}}
+                                            </td>
+                                            <td>
+                                                {{schema.description}}
+                                            </td>
+                                            <td>
+                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
+                                                        src="../../../../assets/image/img/pdficon.png"
+                                                        style=" height:20px; width:30px"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="card-footer py-4"> -->
+                            <nav aria-label="..." class="text-right">
+                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                            </nav>
+                            <!-- </div> -->
                             <!-- </div> -->
                         </div>
                     </div>
@@ -106,44 +112,47 @@ border-radius: 80px;">
                 <input type="radio" name="sections" id="option3">
                 <label for="option3" (click)="tabtype('AGRI EQUIPMENT')">{{'Agri Equipment' | translate}}</label>
                 <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Agri Equipment' | translate}}</h4>
+                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Agri Equipment' |
+                        translate}}</h4>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>{{'SR. NO' | translate}}</th>
-                                                <th>{{'Description' | translate}}</th>
-                                                <th>{{'Date' | translate}}</th>
-                                                <th>{{'View' | translate}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                                <td>
-                                                   {{i+1}}
-                                                </td>
-                                                <td>
-                                                    {{schema.description}}
-                                                </td>
-                                                <td>
-                                                    {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                                </td>
-                                                <td>
-                                                    {{schema.view}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- <div class="card-footer py-4"> -->
-                                    <nav aria-label="..." class="text-right">
-                                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                    </nav>
-                                <!-- </div> -->
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>{{'SR. NO' | translate}}</th>
+                                            <th>{{'Description' | translate}}</th>
+                                            <th>{{'Date' | translate}}</th>
+                                            <th>{{'View' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                                            <td>
+                                                {{i+1}}
+                                            </td>
+                                            <td>
+                                                {{schema.description}}
+                                            </td>
+                                            <td>
+                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
+                                                        src="../../../../assets/image/img/pdficon.png"
+                                                        style=" height:20px; width:30px"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="card-footer py-4"> -->
+                            <nav aria-label="..." class="text-right">
+                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                            </nav>
+                            <!-- </div> -->
                             <!-- </div> -->
                         </div>
                     </div>
@@ -151,46 +160,50 @@ border-radius: 80px;">
             </section>
             <section id="section4">
                 <input type="radio" name="sections" id="option4">
-                <label for="option4" (click)="tabtype('AGRI EQUIPMENT BANK')">{{'Agri Equipment Bank' | translate}}</label>
+                <label for="option4" (click)="tabtype('AGRI EQUIPMENT BANK')">{{'Agri Equipment Bank' |
+                    translate}}</label>
                 <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Agri Equipment Bank' | translate}}</h4>
+                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Agri Equipment Bank'
+                        | translate}}</h4>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>{{'SR. NO' | translate}}</th>
-                                                <th>{{'Description' | translate}}</th>
-                                                <th>{{'Date' | translate}}</th>
-                                                <th>{{'View' | translate}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                                <td>
-                                                    {{i+1}}
-                                                </td>
-                                                <td>
-                                                    {{schema.description}}
-                                                </td>
-                                                <td>
-                                                    {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                                </td>
-                                                <td>
-                                                    {{schema.view}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- <div class="card-footer py-4"> -->
-                                    <nav aria-label="..." class="text-right">
-                                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                    </nav>
-                                <!-- </div> -->
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>{{'SR. NO' | translate}}</th>
+                                            <th>{{'Description' | translate}}</th>
+                                            <th>{{'Date' | translate}}</th>
+                                            <th>{{'View' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                                            <td>
+                                                {{i+1}}
+                                            </td>
+                                            <td>
+                                                {{schema.description}}
+                                            </td>
+                                            <td>
+                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
+                                                        src="../../../../assets/image/img/pdficon.png"
+                                                        style=" height:20px; width:30px"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="card-footer py-4"> -->
+                            <nav aria-label="..." class="text-right">
+                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                            </nav>
+                            <!-- </div> -->
                             <!-- </div> -->
                         </div>
                     </div>
@@ -201,44 +214,47 @@ border-radius: 80px;">
                 <input type="radio" name="sections" id="option5">
                 <label for="option5" (click)="tabtype('EXPORT')">{{'Export' | translate}}</label>
                 <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Export' | translate}}</h4>
+                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Export' | translate}}
+                    </h4>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>{{'SR. NO' | translate}}</th>
-                                                <th>{{'Description' | translate}}</th>
-                                                <th>{{'Date' | translate}}</th>
-                                                <th>{{'View' | translate}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                                <td>
-                                                   {{i+1}}
-                                                </td>
-                                                <td>
-                                                    {{schema.description}}
-                                                </td>
-                                                <td>
-                                                    {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                                </td>
-                                                <td>
-                                                    {{schema.view}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- <div class="card-footer py-4"> -->
-                                    <nav aria-label="..." class="text-right">
-                                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                    </nav>
-                                <!-- </div> -->
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>{{'SR. NO' | translate}}</th>
+                                            <th>{{'Description' | translate}}</th>
+                                            <th>{{'Date' | translate}}</th>
+                                            <th>{{'View' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                                            <td>
+                                                {{i+1}}
+                                            </td>
+                                            <td>
+                                                {{schema.description}}
+                                            </td>
+                                            <td>
+                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
+                                                        src="../../../../assets/image/img/pdficon.png"
+                                                        style=" height:20px; width:30px"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="card-footer py-4"> -->
+                            <nav aria-label="..." class="text-right">
+                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                            </nav>
+                            <!-- </div> -->
                             <!-- </div> -->
                         </div>
                     </div>
@@ -253,40 +269,42 @@ border-radius: 80px;">
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>{{'SR. NO' | translate}}</th>
-                                                <th>{{'Description' | translate}}</th>
-                                                <th>{{'Date' | translate}}</th>
-                                                <th>{{'View' | translate}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                                <td>
-                                                   {{i+1}}
-                                                </td>
-                                                <td>
-                                                    {{schema.description}}
-                                                </td>
-                                                <td>
-                                                    {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                                </td>
-                                                <td>
-                                                    {{schema.view}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- <div class="card-footer py-4"> -->
-                                    <nav aria-label="..." class="text-right">
-                                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                    </nav>
-                                <!-- </div> -->
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>{{'SR. NO' | translate}}</th>
+                                            <th>{{'Description' | translate}}</th>
+                                            <th>{{'Date' | translate}}</th>
+                                            <th>{{'View' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                                            <td>
+                                                {{i+1}}
+                                            </td>
+                                            <td>
+                                                {{schema.description}}
+                                            </td>
+                                            <td>
+                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
+                                                        src="../../../../assets/image/img/pdficon.png"
+                                                        style=" height:20px; width:30px"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="card-footer py-4"> -->
+                            <nav aria-label="..." class="text-right">
+                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                            </nav>
+                            <!-- </div> -->
                             <!-- </div> -->
                         </div>
                     </div>
@@ -297,44 +315,47 @@ border-radius: 80px;">
                 <input type="radio" name="sections" id="option7">
                 <label for="option7" (click)="tabtype('SPECIAL CROP')">{{'Special Crop' | translate}}</label>
                 <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Special Crop' | translate}}</h4>
+                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Special Crop' |
+                        translate}}</h4>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>{{'SR. NO' | translate}}</th>
-                                                <th>{{'Description' | translate}}</th>
-                                                <th>{{'Date' | translate}}</th>
-                                                <th>{{'View' | translate}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                                <td>
-                                                   {{i+1}}
-                                                </td>
-                                                <td>
-                                                    {{schema.description}}
-                                                </td>
-                                                <td>
-                                                    {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                                </td>
-                                                <td>
-                                                    {{schema.view}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- <div class="card-footer py-4"> -->
-                                    <nav aria-label="..." class="text-right">
-                                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                    </nav>
-                                <!-- </div> -->
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>{{'SR. NO' | translate}}</th>
+                                            <th>{{'Description' | translate}}</th>
+                                            <th>{{'Date' | translate}}</th>
+                                            <th>{{'View' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                                            <td>
+                                                {{i+1}}
+                                            </td>
+                                            <td>
+                                                {{schema.description}}
+                                            </td>
+                                            <td>
+                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
+                                                        src="../../../../assets/image/img/pdficon.png"
+                                                        style=" height:20px; width:30px"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="card-footer py-4"> -->
+                            <nav aria-label="..." class="text-right">
+                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                            </nav>
+                            <!-- </div> -->
                             <!-- </div> -->
                         </div>
                     </div>
@@ -349,40 +370,42 @@ border-radius: 80px;">
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th>{{'SR. NO' | translate}}</th>
-                                                <th>{{'Description' | translate}}</th>
-                                                <th>{{'Date' | translate}}</th>
-                                                <th>{{'View' | translate}}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr
-                                                *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                                <td>
-                                                   {{i+1}}
-                                                </td>
-                                                <td>
-                                                    {{schema.description}}
-                                                </td>
-                                                <td>
-                                                    {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                                </td>
-                                                <td>
-                                                    {{schema.view}}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- <div class="card-footer py-4"> -->
-                                    <nav aria-label="..." class="text-right">
-                                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                    </nav>
-                                <!-- </div> -->
+                            <div class="table-responsive">
+                                <table class="table align-items-center table-flush">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>{{'SR. NO' | translate}}</th>
+                                            <th>{{'Description' | translate}}</th>
+                                            <th>{{'Date' | translate}}</th>
+                                            <th>{{'View' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr
+                                            *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                                            <td>
+                                                {{i+1}}
+                                            </td>
+                                            <td>
+                                                {{schema.description}}
+                                            </td>
+                                            <td>
+                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
+                                                        src="../../../../assets/image/img/pdficon.png"
+                                                        style=" height:20px; width:30px"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="card-footer py-4"> -->
+                            <nav aria-label="..." class="text-right">
+                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                            </nav>
+                            <!-- </div> -->
                             <!-- </div> -->
                         </div>
                     </div>
