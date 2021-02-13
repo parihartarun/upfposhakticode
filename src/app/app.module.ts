@@ -93,6 +93,7 @@ import { NotifiactionByDepartmentComponent } from './pages/fpo/notifiaction-by-d
 import { FarmerNotifictionByFpoComponent } from './pages/farmer/farmer-notifiction-by-fpo/farmer-notifiction-by-fpo.component';
 import { BuyeruserComponent } from './pages/buyer-treder/buyeruser/buyeruser.component';
 import { UserProfileDashboardComponent } from './pages/user-profile-dashboard/user-profile-dashboard.component';
+import { DepartmentAllUsersComponent } from './pages/department/department-all-users/department-all-users.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -195,6 +196,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ComplaintByFarmerComponent,
     BuyeruserComponent,
     UserProfileDashboardComponent,
+    DepartmentAllUsersComponent,
     DepartmentNotificationComponent,
     FpoNotifiactionComponent,
     NotifiactionByDepartmentComponent,

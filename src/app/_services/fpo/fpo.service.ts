@@ -116,8 +116,8 @@ export class FpoService {
   }
 
   /************************** License **********************************/
-  getLicense(masterId){
-    return  this.http.get<any>(this._url+'api/fpo/license/getFpoLicenseDetailsByFpoId/'+masterId).pipe(map((res:any)=>{
+  getLicense(masterId) {
+    return this.http.get<any>(this._url + 'api/fpo/license/getFpoLicenseDetailsByFpoId/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -373,6 +373,12 @@ export class FpoService {
     }));
   }
 
+  getCropsBySeasonId(seasonId) {
+    return this.http.get<any>(this._url + 'api/v1/cropMasterDetails/getCropsBySeasonId/' + seasonId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   getFarmerDetailsForCropSowing(farmerId) {
     return this.http.get<any>(this._url + '/api/fpos/cropSowing/getFarmerDetailsForCropSowing/' + farmerId).pipe(map((res: any) => {
       return res;
@@ -481,7 +487,7 @@ export class FpoService {
   }
   getAllNotificationByFpo(id) {
 
-    return this.http.get<any>(this._url + 'notification/fposend/' + id).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + '/notification/fponotification/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -490,12 +496,23 @@ export class FpoService {
       return res;
     }));
   }
+  getAllNotificationFpo(id) {
+
+    return this.http.get<any>(this._url + 'notification/viewfponotification/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getAllNotificationDept(id) {
+
+    return this.http.get<any>(this._url + 'notification/viewdeptnotification/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
   getAllStorageUnitByFpo(id) {
     return this.http.get<any>(this._url + 'api/collectioncenters/getAllByFpo/' + id);
   }
   getFarmMachineryBankByFpo(id) {
     return this.http.get<any>(this._url + 'api/farm/machinery/banks/getFarmMachineryBankByFpo/' + id);
-
   }
 }
 

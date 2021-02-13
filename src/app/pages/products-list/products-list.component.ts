@@ -133,6 +133,7 @@ onFilterChange($event)
   }
     
   open(event, content, item):any {
+   console.log("Selected Items ="+JSON.stringify(item));
     this.currentitem = item;
     this.indentloading = false;
     this.currentfpoid = item.id;
@@ -372,6 +373,7 @@ searchWithFilters()
 
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
+      cropVeriety:[item.cropVeriety],
       cropId: [item.cropid],
       fpoDeliveryAddress:[""],
       userId: [this.fpoDetail.userFpo.userId, Validators.required],

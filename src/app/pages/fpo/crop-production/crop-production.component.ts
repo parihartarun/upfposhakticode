@@ -40,12 +40,20 @@ export class CropProductionComponent implements OnInit {
       id:[]
     });
     this.getCropProduction();
-    this.getCropList();
+   // this.getCropList();
     this.getSeasonList();
   }
 
-  getCropList(){
-    this.api.getCropList().subscribe(
+  // getCropList(){
+  //   this.api.getCropList().subscribe(
+  //     response => {
+  //     console.log(response);
+  //     this.crops = response;
+  //   })
+  // }
+
+  getCropsBySeasonId(seasonId){
+    this.api.getCropsBySeasonId(seasonId).subscribe(
       response => {
       console.log(response);
       this.crops = response;

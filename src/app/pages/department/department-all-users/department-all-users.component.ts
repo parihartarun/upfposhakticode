@@ -12,11 +12,19 @@ import { UserService } from '../../../_services/user/user.service';
 })
 export class DepartmentAllUsersComponent implements OnInit {
 
-  filterForm: FormGroup;
   submitted = false;
   activeUsers: Array<any> = [];
   deActiveUsers: Array<any> = [];
   p: number = 1;
+  allData: Array<any> = [];
+  Reasons : Array<any> = [];
+  reasonSelectedForm: FormGroup;
+  currentUser: any;
+  valueOther = false;
+  chageData;
+  inputOthers: string;
+  reasons;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,82 +34,98 @@ export class DepartmentAllUsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.filterForm = this.formBuilder.group({
-      financial_year: [''],
-      season: ['']
-    });
-    this.getUsers();
+    this.reasonSelectedForm = this.formBuilder.group({
+      // reasons : [''],
+      });
+  
+      this.getAllUserDetails();
+      this.getReasons();
   }
 
-  getUsers() {
-    let users = [
-      {
-        sno:'01',        
-        fpoName: 'SHIVMURAT HITECH PRODUCER COMPANY LIMITED',
-        userName: 'Vishal',
-        district: "Agra",
-        requestDate:'21-12-2020',
-        email: "www.rampurkrishakfpo.in",
-        status:0
-       
-      },
-      {
-        sno: '02',
-        fpoName: 'SHIVMURAT HITECH PRODUCER COMPANY LIMITED',
-        userName: 'Vishal',
-        district: "Agra",
-        requestDate: '21-12-2020',
-        email: "www.rampurkrishakfpo.in",
-          status: 1
+  selectChange(e) {
+    this.chageData = e.target.value;
+    if (this.chageData == 'Others') {
+     this.valueOther = true;
+    } else {
+      this.valueOther = false;
+    }
+  }
 
-      },
-      {
-        sno: '03',
-        fpoName: 'SHIVMURAT HITECH PRODUCER COMPANY LIMITED',
-        userName: 'Vishal',
-        district: "Agra",
-        requestDate: '21-12-2020',
-        email: "www.rampurkrishakfpo.in",
-        status: 0,
-      },
-      {
-        sno: '04',
-        fpoName: 'SHIVMURAT HITECH PRODUCER COMPANY LIMITED',
-        userName: 'Vishal',
-        district: "Agra",
-        requestDate: '21-12-2020',
-        email: "www.rampurkrishakfpo.in",
-        status: 1
-      }
-    ]
-    this.activeUsers = users.filter(u => u.status == 0);
-    this.deActiveUsers = users.filter(u => u.status ==1)
+  getReasons() {
+    this.api.deactivategetReason().subscribe(resp => {
+      this.Reasons = resp;
+      this.Reasons.push({reasonId: this.Reasons.length + 1, reason: 'Others'});
+      console.log(this.Reasons);
+    });
+  }
 
+  getAllUserDetails(){
+    this.api.getAllUser().subscribe(resp => {
+    this.allData = resp;
+    console.log(this.allData);
+    this.activeUsers = this.allData.filter(u => u.enabled == true);
+    this.deActiveUsers = this.allData.filter(u => u.enabled == false);
+
+     });
   }
 
   filterProduction() {
-    this.getUsers();
+
+  }
+get formControls() {
+    return this.reasonSelectedForm.controls;
   }
 
-  get formControls() {
-    return this.filterForm.controls;
-  }
+  saveDeactivate() {
+    this.changeStatus(this.currentUser);
+}
   DeActiveUSer(user) {
-    this.changeStatus(user)
+    this.currentUser = user;
   }
+
   activeUSer(user) {
-
-    this.changeStatus(user)
+    this.changeActiveStatus(user);
   }
-  changeStatus(user) {  
 
-    this.api.updateUser(user).subscribe(response => {
+  changeActiveStatus(user) {
+    const activeUserData = {
+      userid : user.user_id,
+      masterId : 1,
+      username : user.user_name,
+      userrole: localStorage.getItem('userRole'),
+     };
+     console.log(activeUserData);
+     this.api.updateActiveUser(activeUserData).subscribe(response => {
       if (response) {
         this.toastr.success(response.message);
 
-        this.getUsers();
+        this.getAllUserDetails();
       } else {
-        this.toastr.error('Error! While Add complaint.');
+        this.toastr.error('Error! While Activate user.');
+      }
+    });
+  }
+
+
+  changeStatus(user) {
+ const deactiveUserData = {
+  userid : user.user_id,
+  masterId : 1,
+  username : user.user_name,
+  userrole: localStorage.getItem('userRole'),
+  reason : this.chageData,
+  };
+  if (this.chageData == 'Others') {
+deactiveUserData.reason = this.inputOthers;
+  }
+  console.log(deactiveUserData);
+    this.api.updateUser(deactiveUserData).subscribe(response => {
+      if (response) {
+        this.toastr.success(response.message);
+
+        this.getAllUserDetails();
+      } else {
+        this.toastr.error('Error! While Deactivate user.');
       }
     });
   }
@@ -109,12 +133,17 @@ export class DepartmentAllUsersComponent implements OnInit {
     this.api.deleteUser(user.id).subscribe(response => {
       if (response != '') {
         this.toastr.success('Delete successfully');
-        this.getUsers();
+        this.getAllUserDetails();
       } else {
         this.toastr.error('Error! While Add complaint.');
       }
     });
 
+  }
+
+  closeModal() {
+    this.getReasons();
+    this.valueOther = false;
   }
 
 }
