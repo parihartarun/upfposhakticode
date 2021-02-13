@@ -114,13 +114,14 @@ export class DepartmentComplaintsComponent implements OnInit {
   viewComplaint(complaint) {
     this.isViewComplaint = true;
     this.viewComp.assignedTo = complaint.assignBy;
-    this.viewComp.assigned_date = complaint.createDateTime;
-    this.viewComp.currentStatus = complaint.status;
+    this.viewComp.assigned_date = complaint.assigneddate;
+    this.viewComp.currentStatus = this.getStatus(complaint.status);
     this.viewComp.description = complaint.description;
-    this.viewComp.compalintDate = complaint.createDateTime;
+    this.viewComp.compalintDate = complaint.createdate;
     this.viewComp.remarks = complaint.createDateTime;
-    this.viewComp.title = complaint.title;
-    this.viewComp.name = complaint
+    this.viewComp.title = complaint.ftitle;
+    this.viewComp.name = complaint.fponame;
+    this.viewComp.email = complaint.fpoemail;
     window.scroll(0, 0)
     this.complaintForm = this.formBuilder.group({
       id: [complaint.id],
@@ -129,5 +130,19 @@ export class DepartmentComplaintsComponent implements OnInit {
       comment: ['', [Validators.required]],
       status: ['', [Validators.required]],
     });
+  }
+  getStatus(status) {
+    if (status == 0) {
+      return "OPEN"
+    } else if (status == 1) {
+      return "ASSOGNED"
+    }
+    else if (status == 2) {
+      return "RESOLVED"
+    }
+    else {
+      return "RESOLVED"
+    }
+
   }
 }

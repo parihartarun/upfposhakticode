@@ -19,6 +19,17 @@
             </div> -->
           </div>
         </div>
+        <div class="d-flex">
+          <ng-template #customLoadingTemplate>
+            
+        </ng-template>
+
+          <ngx-loading [show]="loading" [config]="{backdropBackgroundColour: '#ffffff', 
+          backdropBorderRadius: '1px',
+          primaryColour: '#926E01', 
+          secondaryColour: '#926E01', 
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+        </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">

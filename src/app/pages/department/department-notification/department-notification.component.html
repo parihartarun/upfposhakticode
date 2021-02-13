@@ -13,7 +13,7 @@
           <div class="row">
             <div class="col-9">
               <h3 class="mb-0">
-                Notifications
+                {{'Notifications'|translate}}
               </h3>
             </div>
           </div>
@@ -90,7 +90,7 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">{{'SR.NO'|translate}}</th>
-                <th scope="col">{{'FPO Name'|translate}}</th>
+                
                 <th scope="col">{{'DESCRIPTION'|translate}}</th>
                 <th scope="col">{{'NotificationsDate'|translate}}</th>
                 <!--<th scope="col"></th>-->
@@ -102,14 +102,11 @@
                   {{(p-1) * 10 + i + 1}}
                 </td>
                 <td>
-                  {{ notification.title}}
-                </td>
-                <td>
-                  {{notification.description}}
+                  {{notification.message}}
                 </td>
                 <td>
 
-                  {{ notification.uploadDate  | date: 'dd/MM/yyyy'}}
+                  {{ notification.createDate  | date: 'dd/MM/yyyy'}}
                 </td>
                 <!--<td class="text-right">
     <div ngbDropdown placement="bottom-right">

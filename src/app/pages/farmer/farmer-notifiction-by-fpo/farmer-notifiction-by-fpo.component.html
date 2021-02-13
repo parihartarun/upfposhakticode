@@ -1,0 +1,164 @@
+<div class="header bg-gradient-danger pb-7 pt-5 pt-md-8">
+  <div class="container-fluid">
+
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7 mp-7">
+  <div class="row" *ngIf="isViewComplaint">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row ">
+            <div class="col-11">
+              <h3 class="mt-2 p-2 bg-warning">
+                {{'Notifications' | translate}}
+              </h3>
+            </div>
+            <div class="col-1 text-right close  ">
+              <button class="btn btn-primary text-right mb-2 mr-2" (click)="close()">{{'close'|translate}}</button>
+            </div>
+          </div>
+        </div>
+        <hr class="m-0">
+        <!--<div class="card-body">
+          <div class="row">
+
+            <div class="col-4 mb-4">
+              <h4 class="mb-2">
+                {{'Name'|translate}} :
+              </h4>vishal
+            </div>
+
+            <div class="col-4 mb-4">
+              <h4 class="mb-2">
+                {{'Mobile' | translate}}:
+              </h4>8275518800
+            </div>
+
+            <div class="col-4 mb-4">
+              <h4 class="mb-2">
+                {{'Email'|translate}}:
+              </h4>v@gmial.com
+            </div>
+
+
+          </div>
+        </div>
+        <hr class="m-0">-->
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 mb-4">
+              <h4 class="mb-0">
+                {{'Notifications Details' | translate}}
+              </h4>
+            </div>
+            <div class="col-12">
+              <h4 class="mb-0">
+                {{'Farmer Name' | translate}}
+              </h4>
+            </div>
+            <div class="col-12 mb-4">
+
+              <span class="mb-2">
+                {{notification.createBy}}
+              </span>
+            </div>
+            <div class="col-12 mb-4">
+              <h4 class="mb-0">
+                {{'DESCRIPTION' | translate}}
+              </h4>
+            </div>
+            <div class="col-12 mb-4">
+              <span class="mb-2">
+                {{notification.message}}
+              </span>
+            </div>
+            <div class="col-12 mb-4">
+              <h4 class="mb-0">
+                {{'NotificationsDate' | translate}}
+              </h4>
+            </div>
+            <div class="col-12">
+              <span class="mb-2">
+                {{notification.createDate | date: 'dd/MM/yyyy'}}
+              </span>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col text-right">
+              <button class="btn btn-primary text-right mb-2" (click)="close()">{{'close'|translate}}</button>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">{{'Notifications Details'|translate}}</h3>
+            </div>
+
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+
+                <th scope="col">{{'SR. NO'|translate}}</th>
+                <th scope="col">{{'Farmer Name'|translate}}</th>
+                <th scope="col">{{'DESCRIPTION'|translate}}</th>
+                <th scope="col">{{'NotificationsDate'|translate}}</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let notification of notifications | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                <td>
+                  {{(p-1) * 10 + i + 1}}
+                </td>
+                <td>
+                  {{notification.createBy}}
+                </td>
+
+                <td>
+                  {{notification.message}}
+                </td>
+                <td>
+
+                  {{ notification.createDate  | date: 'dd/MM/yyyy'}}
+                </td>
+                <td class="text-right">
+                  <div ngbDropdown placement="bottom-right">
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      {{'Actions'|translate}}
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="viewNotifications(notification)">View</a>
+
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="..." class="text-right">
+            <pagination-controls></pagination-controls>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

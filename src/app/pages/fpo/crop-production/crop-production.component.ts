@@ -40,14 +40,21 @@ export class CropProductionComponent implements OnInit {
       id:[]
     });
     this.getCropProduction();
-    this.getCropList();
+   // this.getCropList();
     this.getSeasonList();
   }
 
-  getCropList(){
-    this.api.getCropList().subscribe(
+  // getCropList(){
+  //   this.api.getCropList().subscribe(
+  //     response => {
+  //     console.log(response);
+  //     this.crops = response;
+  //   })
+  // }
+
+  getCropsBySeasonId(seasonId){
+    this.api.getCropsBySeasonId(seasonId).subscribe(
       response => {
-      console.log(response);
       this.crops = response;
     })
   }
@@ -117,6 +124,10 @@ export class CropProductionComponent implements OnInit {
     if (this.productionForm.invalid) {
         return;
     }
+    this.productionForm.patchValue({
+      fpoId:localStorage.getItem('masterId'),
+      masterId:localStorage.getItem('masterId')
+    });
     var data = this.productionForm.value;
     // data['crop_id'] = {"cropId":this.productionForm.value.cropId};
     // data['verietyId'] = {"verietyId":this.productionForm.value.verietyId};

@@ -31,7 +31,7 @@ export class ComplaintByFarmerComponent implements OnInit {
   users: any[];
   fliterForm: FormGroup;
   filterResponse: any[];
-  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', farmerId: '' }
+  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', farmerId: '', name: "", mobile: "", email: "" }
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
@@ -61,7 +61,7 @@ export class ComplaintByFarmerComponent implements OnInit {
     this.api.getComplaintsFpoFarmer(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.filterResponse = response
-      this.complaints = this.filterResponse.filter(f => !f.status || f.status == 'OPEN');
+      this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
       this.fliterForm.controls['complaint'].setValue('New')
     });
 
@@ -112,15 +112,20 @@ export class ComplaintByFarmerComponent implements OnInit {
     this.isViewComplaint = false;
   }
   viewComplaint(complaint) {
+    this.api.getfamerDetail(complaint.farmerId).subscribe(f => {
+      f
+    })
     this.isViewComplaint = true;
     this.viewComp.farmerId = complaint.farmerId
-    this.viewComp.assignedTo = complaint.assignBy;
-    this.viewComp.assigned_date = complaint.createDateTime;
-    this.viewComp.currentStatus = complaint.status;
+    this.viewComp.assignedTo = complaint.assignby;
+    this.viewComp.assigned_date = complaint.assigneddate;
+    this.viewComp.currentStatus = this.getStatus(complaint.status);
     this.viewComp.description = complaint.description;
-    this.viewComp.compalintDate = complaint.uploadDate;
-    this.viewComp.remarks = complaint.fpoComment;
-    this.viewComp.title = complaint.title;
+    this.viewComp.compalintDate = complaint.createdate;
+    this.viewComp.remarks = complaint.deptcomment;
+    this.viewComp.title = complaint.ftitle;
+    this.viewComp.name = complaint.farmername,
+      this.viewComp.mobile = complaint.farmermobile
     window.scroll(0, 0);
     let myDate = new Date();
     this.complaintStatusForm = this.formBuilder.group({
@@ -129,18 +134,30 @@ export class ComplaintByFarmerComponent implements OnInit {
       appointmentDate: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
       comment: ['', [Validators.required]],
       status: ['', [Validators.required]],
-
-
-
     });
+    
   }
   filterComaplaint() {
     if (this.fliterForm.controls['complaint'].value === "New") {
-      this.complaints = this.filterResponse.filter(f => !f.status || f.status == 'OPEN');
+      this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
     } else {
       this.complaints = this.filterResponse.filter(f => f.status );
 
     }
+  }
+  getStatus(status) {
+    if (status == 0) {
+      return "OPEN"
+    } else if (status == 1) {
+      return "ASSIGNED"
+    }
+    else if (status == 2) {
+      return "RESOLVED"
+    }
+    else {
+      return "RESOLVED"
+    }
+
   }
 }
 

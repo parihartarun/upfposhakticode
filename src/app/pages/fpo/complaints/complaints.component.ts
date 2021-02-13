@@ -49,7 +49,7 @@ export class ComplaintsComponent implements OnInit {
       this.complaintsCatageriy = cs
     })
     this.complaintForm = this.formBuilder.group({
-        title: ['', [Validators.required]],
+        title: [''],
         desc: ['', [Validators.required]],
         filePath: [''],
         uploadFile: [''],
@@ -75,10 +75,11 @@ export class ComplaintsComponent implements OnInit {
       return;
     }
     let model = this.complaintForm.value;
+    let issuetype = Number(this.complaintForm.value.issueType) - 1;
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);  
     formData.append('description', this.complaintForm.value.desc);
-    formData.append('title', this.complaintForm.value.title.comp_type_en);
+    formData.append('title', this.complaintsCatageriy[issuetype].comp_type_en);
     formData.append('issue_type', this.complaintForm.value.issueType);
     formData.append("fpo_id", localStorage.getItem('masterId'))
     this.api.addComplaint(formData).subscribe(response => {
@@ -174,10 +175,7 @@ export class ComplaintsComponent implements OnInit {
       this.getComplaints();
     });
   }
-  /* Return true or false if it is the selected */
-  compareByOptionId(idFist, idSecond) {
-    return idFist && idSecond && idFist.id == idSecond.id;
-  }
+ 
   reset() {
     this.complaintForm.reset();
   }
@@ -187,13 +185,13 @@ export class ComplaintsComponent implements OnInit {
   viewComplaint(complaint) {
     this.isViewComplaint = true;
     this.viewComp.farmerId = complaint.farmerId
-    this.viewComp.assignedTo = complaint.assignBy;
-    this.viewComp.assigned_date = complaint.assign_date;
-    this.viewComp.currentStatus = complaint.status;
+    this.viewComp.assignedTo = complaint.assignby;
+    this.viewComp.assigned_date = complaint.createdate;
+    this.viewComp.currentStatus = this.getStatus(complaint.status);
     this.viewComp.description = complaint.description;
-    this.viewComp.compalintDate = complaint.createDateTime;
-    this.viewComp.remarks = complaint.deptComment;
-    this.viewComp.title = complaint.title;
+    this.viewComp.compalintDate = complaint.createdate;
+    this.viewComp.remarks = complaint.deptcomment;
+    this.viewComp.title = complaint.ftitle;
     window.scroll(0, 0);
     let myDate = new Date();
     //this.complaintStatusForm = this.formBuilder.group({
@@ -207,7 +205,20 @@ export class ComplaintsComponent implements OnInit {
 
     //});
   }
- 
+  getStatus(status) {
+    if (status == 0) {
+      return "OPEN"
+    } else if (status == 1) {
+      return "ASSOGNED"
+    }
+    else if (status == 2) {
+      return "RESOLVED"
+    }
+    else {
+      return "RESOLVED"
+    }
+
+  }
 }
 
 

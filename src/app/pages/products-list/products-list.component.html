@@ -1,4 +1,4 @@
- <!-- Full Page Image Header with Vertically Centered Content -->
+<!-- Full Page Image Header with Vertically Centered Content -->
 <div class="title">
   <ol class="breadcrumb  mb-0">
     <li><a class="mx-1 text-upfpo px-1" routerLink="">{{'Home' | translate}}</a> /</li>
@@ -12,10 +12,12 @@
       <div class="col-12 mt-5 text-center">
         <form class="mt-5 pb-5">
 
-          <div class="d-flex mx-5 mt-5 align-items-end justify-content-center">  
-            <input type="text" class="form-control d-inline search-text" name="topsearch" [(ngModel)]="dummysearchval" id="exampleFormControlInput1" placeholder="{{'searchplaceholder' |translate}}">
+          <div class="d-flex mx-5 mt-5 align-items-end justify-content-center">
+            <input type="text" class="form-control d-inline search-text" name="topsearch" [(ngModel)]="dummysearchval"
+              id="exampleFormControlInput1" placeholder="{{'searchplaceholder' |translate}}">
             <div class="dropdown d-inline searchDropDown">
-              <select class="btn d-inline btn-default search-btn dropdown-toggle" id="searchin" name="Searchin" [(ngModel)]="parsearchType" style="width:100%">
+              <select class="btn d-inline btn-default search-btn dropdown-toggle" id="searchin" name="Searchin"
+                [(ngModel)]="parsearchType" style="width:100%">
                 <option value="any">{{'Any' | translate }}</option>
                 <option value="crop">{{'Crop' | translate }}</option>
                 <option value="district">{{'District1' | translate }}</option>
@@ -23,7 +25,9 @@
                 <option value="services">{{'Services/ Products' | translate }}</option>
               </select>
             </div>
-            <button class="btn d-inline btn-block btn-product-search active search-btn" role="button" aria-pressed="true" (click)="newSearchWithFilters()" [disabled]="dummysearchval.length==0">{{'Search' | translate }}</button>
+            <button class="btn d-inline btn-block btn-product-search active search-btn" role="button"
+              aria-pressed="true" (click)="newSearchWithFilters()" [disabled]="dummysearchval.length==0">{{'Search' |
+              translate }}</button>
           </div>
           <div class="row">
             <div class="col-8">
@@ -42,15 +46,18 @@
 <section class="py-5 containerMain">
   <div class="container">
     <div class="d-flex p-2 ">
-      <button class="btn btn-sm btn-primary btn-product-search" (click)="sampleNavigate()">{{'Back' | translate }}</button>
+      <button class="btn btn-sm btn-primary btn-product-search" (click)="sampleNavigate()">{{'Back' | translate
+        }}</button>
     </div>
-<div class="d-flex">
-  <span class="d-inline-block my-2 mx-1">{{'filters' | translate }}</span> 
-  <span *ngIf ="selectedfilters.length==0" class="d-inline-block my-2 mx-1">{{'nofiltersselected' | translate }}</span>
-  <div *ngIf ="selectedfilters.length!=0" class="d-inline-block overflow-pills-container">
-<div *ngFor="let chipitem of selectedfilters" class="d-inline-block mx-1 my-2 upfpo-pills">{{chipitem.name}} ({{chipitem.type}})</div>
-</div>
-</div>
+    <div class="d-flex">
+      <span class="d-inline-block my-2 mx-1">{{'filters' | translate }}</span>
+      <span *ngIf="selectedfilters.length==0" class="d-inline-block my-2 mx-1">{{'nofiltersselected' | translate
+        }}</span>
+      <div *ngIf="selectedfilters.length!=0" class="d-inline-block overflow-pills-container">
+        <div *ngFor="let chipitem of selectedfilters" class="d-inline-block mx-1 my-2 upfpo-pills">{{chipitem.name}}
+          ({{chipitem.type}})</div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-3">
         <div class="card">
@@ -62,7 +69,9 @@
               <div class="filterDistrict">
                 <form>
                   <label class="form-check" *ngFor="let district of districts">
-                    <input class="form-check-input" type="checkbox" [value]="district.district_name" [name]="district.district_name" [(ngModel)]="district.is_active" (change)="selectDistrct(district)">
+                    <input class="form-check-input" type="checkbox" [value]="district.district_name"
+                      [name]="district.district_name" [(ngModel)]="district.is_active"
+                      (change)="selectDistrct(district)">
                     <span class="form-check-label">
                       {{district.district_name}}
                     </span>
@@ -94,7 +103,8 @@
               <div class="">
                 <form>
                   <label class="form-check" *ngFor="let q of quantities">
-                    <input class="form-check-input" type="checkbox" [value]="q.name" [name]="q.name" [(ngModel)]="q.selected" (change)="selectQuantity(q)">
+                    <input class="form-check-input" type="checkbox" [value]="q.name" [name]="q.name"
+                      [(ngModel)]="q.selected" (change)="selectQuantity(q)">
                     <span class="form-check-label">
                       {{q.minname | translate}}
                     </span>
@@ -118,24 +128,19 @@
               </div> <!-- card-body.// -->
             </div>
           </article>
-<article class="card-group-item my-2">
-  <header class="">
-    <h3 class="title">{{'cropandverieties' | translate }} </h3>
-  </header>
-  <ngx-loading [show]="!items" [config]="{backdropBackgroundColour: '#ffffff', 
+          <article class="card-group-item my-2">
+            <header class="">
+              <h3 class="title">{{'cropandverieties' | translate }} </h3>
+            </header>
+            <ngx-loading [show]="!items" [config]="{backdropBackgroundColour: '#ffffff', 
           backdropBorderRadius: '1px',
           primaryColour: '#926E01', 
           secondaryColour: '#926E01', 
           tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
-  <ngx-treeview *ngIf="items"
-
-  [items]="items"
-  [config]="config"
-  (selectedChange)="onSelectedChange($event)"
-  (filterChange)="onFilterChange($event)"
->
-</ngx-treeview>
-</article>
+            <ngx-treeview *ngIf="items" [items]="items" [config]="config" (selectedChange)="onSelectedChange($event)"
+              (filterChange)="onFilterChange($event)">
+            </ngx-treeview>
+          </article>
           <!-- <article class="card-group-item">
           <header class="card-header">
             <h3 class="title">{{'Crop' | translate }}</h3>
@@ -270,31 +275,31 @@
         </div> <!-- card.// -->
       </div>
       <div class="col-md-9">
-        <div class="row">  
+        <div class="row">
           <ng-template #customLoadingTemplate>
-              <!-- <div class="custom-class">
+            <!-- <div class="custom-class">
                   <h3>
                       
                   </h3>
 
               </div> -->
           </ng-template>
-       
+
           <ngx-loading [show]="loading" [config]="{backdropBackgroundColour: '#ffffff', 
           backdropBorderRadius: '1px',
           primaryColour: '#926E01', 
           secondaryColour: '#926E01', 
           tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
-          
-      </div>
-     
-        <div class="row">          
-    
+
+        </div>
+
+        <div class="row">
+
           <div class="col-md-6" *ngFor="let product of serachProduct | paginate: { itemsPerPage: 10, currentPage: p }">
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row no-gutters">
-                <div class="row">
-                  
+                <div class="row" routerLink="/fpo-details/{{product.id}}" style="cursor: pointer;">
+
                   <div class="col-md-4 mb-2">
                     <!-- <img src="../../../assets/img/onion.jpeg" class="card-img" alt="..."> -->
                     <img src="../../../assets/icons/cropplaceholder.jpg" class="card-img" alt="...">
@@ -336,15 +341,20 @@
                       <p class="card-text" *ngIf="!product.marketableSurplus">NA</p>
                     </div>
                   </div>
+                </div>
+                <div class="row w-100">
                   <div class="col-md-8">
                     <!-- <h4 class="mt-1">Actually Produced Quantity</h4> -->
                     <!-- <p class="card-text" *ngIf="product.actualProduction">{{product.actualProduction}}</p>
                   <p class="card-text" *ngIf="!product.actualProduction">NA</p> -->
-                    <button href="javascript:void(0)" (click)="open($event,mymodal,product)" class="btn btn-sm btn-primary btn-product-search">{{'createindent' | translate }}</button>
+                    <button href="javascript:void(0)" (click)="open($event,mymodal,product)"
+                      class="btn btn-sm btn-primary btn-product-search">{{'createindent' | translate }}</button>
                   </div>
 
                   <div class="col-md-4 text-right">
-                    <button href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search" [disabled]="true">{{'viewdetails' | translate }}</button>
+                    <button href="javascript:void(0)" (click)="open(mymodal)"
+                      class="btn btn-sm btn-primary btn-product-search" [disabled]="true">{{'viewdetails' | translate
+                      }}</button>
                   </div>
                 </div>
               </div>
@@ -415,12 +425,14 @@
         </div>
         <div class="card-footer py-4">
           <nav aria-label="..." class="text-right">
-            <pagination-controls *ngIf="serachProduct&&serachProduct.length>0" (pageChange)="p = $event"></pagination-controls>
+            <pagination-controls *ngIf="serachProduct&&serachProduct.length>0" (pageChange)="p = $event">
+            </pagination-controls>
           </nav>
           <div *ngIf="serachProduct?.length==0" class=" p-5 d-flex justify-content-center align-items-center">
-                       <img class="fatalimg" src="../../../assets/image/img/sad.jpg"/>            
+            <img class="fatalimg" src="../../../assets/image/img/sad.jpg" />
           </div>
-          <div *ngIf="serachProduct?.length==0" class="d-flex justify-content-center yellotext">{{ 'noitemsfound' | translate }}</div>
+          <div *ngIf="serachProduct?.length==0" class="d-flex justify-content-center yellotext">{{ 'noitemsfound' |
+            translate }}</div>
 
         </div>
       </div>
@@ -431,13 +443,13 @@
       <div *ngIf="isLoggeIn">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body mt-1 pt-1" *ngIf="!indentForm">
+        <div class="modal-body mt-1 pt-1" *ngIf="!indentForm || indentloading">
          <div class="loader-container">
-          <ngx-loading [show]="!indentForm || !indentcreated" [config]="{backdropBackgroundColour: '#ffffff', 
+          <ngx-loading [show]="!indentForm || indentloading" [config]="{backdropBackgroundColour: '#ffffff', 
           backdropBorderRadius: '1px',
           primaryColour: '#926E01', 
           secondaryColour: '#926E01', 
@@ -445,7 +457,13 @@
         </div>
           
         </div>
-        <div class="modal-body mt-1 pt-1" *ngIf="indentForm">
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && indentcreated">
+          <div class="d-flex w-100 align-items-center justify-content-center">  <img class="suc-img" src="../../../assets/image/img/successsubmit.png"></div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-2 text-sm"> <strong>{{ 'indentsucessmessage' | translate:{id:indentid} }}</strong> </div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-5 text-sm"><button (click)="closeModal()" class="btn btn-sm mt-5 btn-product-search" >{{'ok' | translate }}</button></div>
+        </div>
+
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
           <form role="form mt-1 p-1" [formGroup]="indentForm">
             <div class="row">
             <div class="col-5 text-sm text-bold">{{'FPO Name'| translate}}:</div>
@@ -488,7 +506,8 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span class="required">*</span></label>
+              <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span
+                  class="required">*</span></label>
               <div class="input-group input-group-alternative">
                 <input class="form-control" placeholder="{{'Quantity'|translate}}" type="text" formControlName="quantity">
               </div>
@@ -505,14 +524,15 @@
             <div class="form-group mb-3">
               <label class="form-control-label" for="input-delivery">{{'fpodeliveryaddr'|translate}}</label>
               <div class="input-group input-group-alternative">
-                <textarea class="form-control" id = "input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"  formControlName="fpoDeliveryAddress"></textarea>
+                <textarea class="form-control" id="input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"
+                  formControlName="fpoDeliveryAddress"></textarea>
               </div>
               <div *ngIf="submitted && formControls.fpoDeliveryAddress.errors" class="text-danger mt-1 text-xsm">
                 <div *ngIf="formControls.fpoDeliveryAddress.errors.required">{{'deleiveryrequired'| translate}}</div>
               </div>
             </div>
-            
-            
+
+
 
             <div class="text-center">
               <button type="submit" [disabled] = "!indentForm.valid" class="btn btn-login btn-product-search btn-primary my-4"(click)="save()">{{'Send'|translate}}</button>
@@ -532,8 +552,7 @@
         </div>
       </div>
 
-</ng-template>
-    </div>
+    </ng-template>
+  </div>
 
 </section>
-

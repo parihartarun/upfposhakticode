@@ -24,36 +24,31 @@
         </div>
         <hr class="m-0">
         <div class="card-body">
-          <!--<div class="row">
+          <div class="row">
             <div class="col-12 mb-4">
               <h2 class="mb-0 bg-warning">
                 {{'Details of Complainant/ Suggestion provider'|translate}}
               </h2>
             </div>
 
-          </div>-->
-          <!--<div class="row">
+          </div>
+          <div class="row">
 
             <div class="col-4 mb-4">
               <h4 class="mb-2">
                 {{'Name'|translate}}
-              </h4>vishal
+              </h4>{{viewComp.name}}
             </div>
 
-            <div class="col-4 mb-4">
-              <h4 class="mb-2">
-                {{'Mobile' |translate}}:
-              </h4>8275518800
-            </div>
-
+           
             <div class="col-4 mb-4">
               <h4 class="mb-2">
                 {{'Email'|translate}}:
-              </h4>v@gmial.com
+              </h4>{{viewComp.email}}
             </div>
 
 
-          </div>-->
+          </div>
           <div class="row">
             <div class="col-12 mb-4">
               <h2 class="mb-0 bg-warning">
@@ -201,16 +196,17 @@
                 </td>
               
                 <td>
-                  FPO Name
+                  {{ complaint.fponame}}
                 </td>
                 <td>
-                  {{complaint.title}}
+                  {{complaint.ftitle}}
                 </td>
                 <td>
-                  {{complaint.createDateTime| date: 'dd/MM/yyyy'}}
+                  {{complaint.createdate| date: 'dd/MM/yyyy'}}
                 </td>
                 <td>
-                  {{complaint.status}}
+                  <span *ngIf="complaint.status">{{getStatus(complaint.status)}}</span>
+                  <span *ngIf="!complaint.status">NA</span>
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
