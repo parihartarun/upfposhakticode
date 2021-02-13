@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from '../../../_services/department/department.service';
@@ -17,14 +17,11 @@ export class DepartmentAllUsersComponent implements OnInit {
   deActiveUsers: Array<any> = [];
   p: number = 1;
   allData: Array<any> = [];
-  Reasons : Array<any> = [];
+  Reasons: Array<any> = [];
   reasonSelectedForm: FormGroup;
   currentUser: any;
   valueOther = false;
   chageData;
-  inputOthers: string;
-  reasons;
-
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,9 +32,9 @@ export class DepartmentAllUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.reasonSelectedForm = this.formBuilder.group({
-      // reasons : [''],
+      reasons : ['', Validators.required],
+      inputOthers:['']
       });
-  
       this.getAllUserDetails();
       this.getReasons();
   }
@@ -55,14 +52,12 @@ export class DepartmentAllUsersComponent implements OnInit {
     this.api.deactivategetReason().subscribe(resp => {
       this.Reasons = resp;
       this.Reasons.push({reasonId: this.Reasons.length + 1, reason: 'Others'});
-      console.log(this.Reasons);
     });
   }
 
   getAllUserDetails(){
     this.api.getAllUser().subscribe(resp => {
     this.allData = resp;
-    console.log(this.allData);
     this.activeUsers = this.allData.filter(u => u.enabled == true);
     this.deActiveUsers = this.allData.filter(u => u.enabled == false);
 
@@ -94,7 +89,6 @@ get formControls() {
       username : user.user_name,
       userrole: localStorage.getItem('userRole'),
      };
-     console.log(activeUserData);
      this.api.updateActiveUser(activeUserData).subscribe(response => {
       if (response) {
         this.toastr.success(response.message);
@@ -116,9 +110,8 @@ get formControls() {
   reason : this.chageData,
   };
   if (this.chageData == 'Others') {
-deactiveUserData.reason = this.inputOthers;
+deactiveUserData.reason = this.reasonSelectedForm.controls['inputOthers'].value;
   }
-  console.log(deactiveUserData);
     this.api.updateUser(deactiveUserData).subscribe(response => {
       if (response) {
         this.toastr.success(response.message);
@@ -129,6 +122,7 @@ deactiveUserData.reason = this.inputOthers;
       }
     });
   }
+
   deleteCicular(user) {
     this.api.deleteUser(user.id).subscribe(response => {
       if (response != '') {
@@ -142,6 +136,7 @@ deactiveUserData.reason = this.inputOthers;
   }
 
   closeModal() {
+    this.ngOnInit();
     this.getReasons();
     this.valueOther = false;
   }
