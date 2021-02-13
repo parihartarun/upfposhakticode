@@ -53,3 +53,19 @@ body {
     border-color: #926e01 !important;
     color:#fff !important;
 }
+.Register .form-control-label{
+    cursor: pointer;
+}
+.Register .logo-image{
+    width: 35px !important;
+    height: 35px !important;
+}
+.r-box{
+    border: 1px solid #f1f1f1;
+    border-radius: 4px;
+    text-align: center;
+    background: #f1f1f1;
+}
+.r-box .form-control-label:hover, .r-box.selected .form-control-label{
+    color:#926e01;
+}

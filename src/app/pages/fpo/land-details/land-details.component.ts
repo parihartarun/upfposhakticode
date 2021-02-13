@@ -70,7 +70,7 @@ export class LandDetailsComponent implements OnInit {
   }
 
   getFarmerDetailList(){
-    this.fpoService.getFarmerDetailList().subscribe(
+    this.fpoService.getFarmerDetailList(localStorage.getItem('masterId')).subscribe(
       response => {
       console.log(response);
       this.FarmerLists = response;

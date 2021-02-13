@@ -39,7 +39,7 @@ export class ProductsListComponent implements AfterViewInit,OnInit {
     { selected:false, minname:"morethan200",maxname:"200",name:"300", type:"qty",quantity: 300, maxQuantity: 0 },
   ]
 
-
+  indentcreated:boolean = false;
   parsearchType: string;
   parval: string;
   topsearchval: string;
@@ -87,6 +87,9 @@ config:any = {
     ]
   };
   treeloaded: boolean=false;
+  indentloading: boolean=false;
+  currentitem: any;
+  indentid: string = "";
 
   onSelectedChange($event)
   {
@@ -130,16 +133,20 @@ onFilterChange($event)
   }
     
   open(event, content, item):any {
+    this.currentitem = item;
+    this.indentloading = false;
     this.currentfpoid = item.id;
+    this.indentForm=undefined
     if (sessionStorage.getItem('accessToken') != null) {
-      this.isLoggeIn = true;
-      
+      this.isLoggeIn = true; 
+
       this._fpoService.getfpoDetialById(item.id).subscribe(f => {
         this.fpoDetail = f;
-        this.createIndentForm(item);
+    
+        this.createIndentForm(this.currentitem);
        
+            
       })
-     
       this.modalService.open(content, { ariaLabelledBy: item.id }).result.then((result) => {
          
         this.closeResult = `Closed with: ${result}`;
@@ -147,8 +154,11 @@ onFilterChange($event)
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
           this.submitted = false;
       });
+
+      
     }
     else {
+      this.isLoggeIn=false;
       this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
@@ -233,8 +243,6 @@ console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows =
         this.loading=false;
       })
     });
-
-    
 
     this._activatedroute.queryParamMap.subscribe(params=>{
 
@@ -348,23 +356,29 @@ searchWithFilters()
     console.log("Fpo Id caught = "+this.currentfpoid)
     this.isLoggeIn = true;
     //this.modalService.dismissAll();
-    this.isLoggeIn = true;
+    //this.isLoggeIn = true;
     this._fpoService.getfpoDetialById(this.currentfpoid).subscribe(f => {
       this.fpoDetail = f;
-      this.createIndentForm(f);
+      this.createIndentForm(this.currentitem);
      
     })
   }
+  getToday():Date
+  {
+    return new Date();
+  }
   createIndentForm(item) {
+  
+
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
       cropId: [item.cropid],
-      fpoDeliveryAddress:["", Validators.required],
+      fpoDeliveryAddress:[""],
       userId: [this.fpoDetail.userFpo.userId, Validators.required],
       fpoName: [this.fpoDetail.fpoName],
       fpoEmail: [this.fpoDetail.fpoEmail],
       fulfillmentDate: ["", [Validators.required]],
-      quantity: ["", Validators.required],
+      quantity: [, [Validators.required,Validators.pattern(`[1-9]{1,}`)]],
       cropMaster: [],
       user: [],
       fpo:[]
@@ -378,9 +392,11 @@ searchWithFilters()
     
     this.submitted = true;
     // stop here if form is invalid
+   
     if (this.indentForm.invalid) {
       return;
     }
+    this.indentcreated = true;
     let user = {
       userId: this.fpoDetail.userFpo.userId,
     }
@@ -403,23 +419,38 @@ searchWithFilters()
     let date = new Date(this.indentForm.value.fulfillmentDate);
     //let newdate = this.newUYDate(date);
 
-
+    this.indentloading = true;
     this.indentForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd/MM/yyyy'); //whatever format you need. 
+    this.indentForm.value.fulfillmentDate = this.datePipe.transform(date, 'yyyy-MM-dd');
     this._productService.saveIndent(this.indentForm.value).subscribe(response => {
-
+     
+      if(response){
+        this.indentid = response;
+      this.indentForm.reset();
+        this.submitted = false;
+        this.indentcreated = true;
+        this.indentloading = false;
+      }
       if (response.message == "Enquiry created Successfully!") {
         //this.toastr.success(response.message);
-        this.indentForm.reset();
-        this.submitted = false;
-        this.modalService.dismissAll();
-      }
+        
+  }
       else {
         //this.toastr.error(response.message);
       }
 
     })
   }
+closeModal()
+{
+  this.indentcreated=false;
+  
+  this.modalService.dismissAll();
 }
+
+}
+
+
 
 interface District {
   id: number;

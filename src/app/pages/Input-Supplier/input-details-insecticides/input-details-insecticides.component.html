@@ -11,7 +11,7 @@
                 <div class="card-header border-0">
                     <div class="row">
                         <div class="col-9">
-                            <h3 class="mb-0">Insectices/Pesticides</h3>
+                            <h3 class="mb-0">{{'Insectices/Pesticides' | translate}}</h3>
                         </div>
                     </div>
                 </div>
@@ -24,18 +24,18 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Insectices/Pesticides <span class="required">*</span></label>
+                                        <label>{{'Insecticdes Type' | translate}}<span class="required">*</span></label>
                                         <select class="form-control">
-                                            <option>Select</option>
-                                            <option>Chemical Pesticides</option>
-                                            <option>Bio Pesticides</option>
-                                            <option>Herbicides</option>
+                                            <option>{{'Select Type' | translate}}</option>
+                                            <option>{{'Chemical Pesticides' | translate}}</option>
+                                            <option>{{'Bio Pesticides' | translate}}</option>
+                                            <option>{{'Herbicides' | translate}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Name of Manufacturer<span class="required">*</span></label>
+                                        <label>{{'Name of Manufacturer' | translate}}<span class="required">*</span></label>
                                         <input type="text" id="input-first-name"
                                             class="form-control form-control-alternative">
                                     </div>
@@ -44,14 +44,14 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Picture of Fertilizer packet</label>
+                                        <label>{{'Picture of Fertilizer packets' | translate}}</label>
                                         <input type="file" id="input-first-name"
                                             class="form-control form-control-alternative">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>Quantity<span class="required">*</span></label>
+                                        <label>{{'Quantity' | translate}}<span class="required">*</span></label>
                                         <input type="text" id="input-first-name"
                                             class="form-control form-control-alternative">
                                     </div>
@@ -60,14 +60,14 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>CIB & RC Number</label>
+                                        <label>{{'CIB & RC Number' | translate}}</label>
                                         <input type="text" id="input-first-name"
                                             class="form-control form-control-alternative">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>CIB & RC Issue Date</label>
+                                        <label>{{'CIB & RC Issue Date' | translate}}</label>
                                         <input type="date" id="input-first-name"
                                             class="form-control form-control-alternative">
                                     </div>
@@ -83,9 +83,10 @@
 
                 <div class="card-footer py-4 text-center">
 
-                    <button class="btn btn-yellow">Save</button>
+                    <button class="btn btn-yellow">{{'Save' | 
+                        translate}}</button>
                     <!-- <button class="btn btn-yellow">Save and continue</button> -->
-                    <button class="btn btn-warning">Reset</button>
+                    <button class="btn btn-warning">{{'Reset' | translate}}</button>
                 </div>
             </div>
         </div>
@@ -100,7 +101,7 @@
                     <div class="row">
                         <div class="col-9">
                             <h3 class="mb-0">
-                                Input Details Insecticdes/Pesticides
+                                 {{'Insecticdes/Pesticides Details' | translate}}
                             </h3>
                         </div>
                     </div>
@@ -109,10 +110,11 @@
                     <table class="table align-items-center table-flush">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">S.No</th>
-                                <th scope="col"> Insecticdes Type</th>
-                                <th scope="col">Insecticdes Manufacturer</th>
-                                <th scope="col">Quantity </th>
+                                <th scope="col">{{'S.no' | translate}}</th>
+                                <th scope="col"> {{'Insecticdes Type' | translate}}</th>
+                                <th scope="col">{{'Name of Manufacturer' | translate}}</th>
+                                <th scope="col">{{'Quantity' 
+                                    | translate}} </th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -131,11 +133,11 @@
                                 <td class="text-right">
                                     <div ngbDropdown placement="bottom-right">
                                         <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                                            Actions
+                                            {{'Actions' | translate}}
                                         </a>
                                         <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">{{'Edit' | translate}}</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">{{'Delete' | translate}}</a>
                                         </div>
                                     </div>
                                 </td>

@@ -103,7 +103,7 @@ export class StorageUnitComponent implements OnInit {
   }
 
   getStorageUnits(){
-    this.storageunitservice.getStorageUnits().subscribe(data=>{    
+    this.storageunitservice.getStorageUnits(localStorage.getItem('masterId')).subscribe(data=>{    
       this.storageUnits = data;
       console.log(data)
     });
@@ -144,7 +144,11 @@ export class StorageUnitComponent implements OnInit {
       gradingmachines:[false, [Validators.required]], 
       packagingmachines:[false, [Validators.required]],
       fpoRefId:localStorage.getItem('masterId'),
+      masterId:localStorage.getItem('masterId'),
       id:[equipment.id],
+    });
+    this.storageUnitForm.patchValue({
+      blockId:equipment.blockId
     });
     if(equipment.fascilities != '' && equipment.fascilities != null){
       this.splitString(equipment.fascilities)
@@ -223,6 +227,10 @@ export class StorageUnitComponent implements OnInit {
       fascilities: this.bindFacilities(), 
     });
 
+    this.storageUnitForm.patchValue({
+      fpoRefId:localStorage.getItem('masterId'),
+      masterId:localStorage.getItem('masterId')
+    });
     var finalData = this.storageUnitForm.value;
     delete finalData.gradingmachines;
     delete finalData.sortingmachines;

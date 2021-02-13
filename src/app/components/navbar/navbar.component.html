@@ -24,12 +24,22 @@
             <i class="ni ni-single-02"></i>
             <span>My profile</span>
           </a>
+          
           <a *ngIf="userRole == 'ROLE_FARMER'" routerLinkActive="active" [routerLink]="['/fpo/farmer-user-profile']" class="dropdown-item">
             <i class="ni ni-single-02"></i>
             <span>My profile</span>
           </a>
-          <div class="dropdown-divider"></div>
+          <a *ngIf="userRole == 'ROLE_BUYERSELLER'" routerLinkActive="active" [routerLink]="['/indent_history/buyer-user-profile']" class="dropdown-item">
+            <i class="ni ni-single-02"></i>
+            <span>My profile</span>
+          </a>
 
+          <a *ngIf="userRole == 'ROLE_INPUTSUPPLIER'" routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
+            <i class="ni ni-single-02"></i>
+            <span>My profile</span>
+          </a>
+
+          <div class="dropdown-divider"></div>
 
           <a href="javascript:void(0)" (click)="useLanguage('hi')" class="dropdown-item">{{'Hindi' | translate}}</a>
           <div class="dropdown-divider"></div>

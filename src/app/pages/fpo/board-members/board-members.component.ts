@@ -51,7 +51,7 @@ export class BoardMembersComponent implements OnInit {
   }
 
   getBoardMembers(){
-    this.api.getBoardMembers(this.memberForm.value).subscribe(data => {
+    this.api.getBoardMembers(localStorage.getItem('masterId')).subscribe(data => {
       console.log(data);
       this.members = data;
     },
@@ -99,9 +99,9 @@ export class BoardMembersComponent implements OnInit {
       this.api.deleteBoardMember(id).subscribe(response => {
         this.getBoardMembers();
         if(response != ''){
-          this.toastr.success('Storage Unit Deleted successfully.');
+          this.toastr.success('Board Member Deleted successfully.');
         }else{
-          this.toastr.error('Error! While Deleting Storage Unit.');
+          this.toastr.error('Error! While Deleting Board Member.');
         }
       },
         err => {
@@ -131,6 +131,11 @@ export class BoardMembersComponent implements OnInit {
       updatedBy:localStorage.getItem('userRole'),
       id:[member.id],
     });
+    this.memberForm.patchValue({
+      blockId:member.blockId,
+      panchayatId:member.panchayatId,
+      villageId:member.villageId
+    });
     this.edit = true;
     window.scroll(0,0);  
   }
@@ -142,16 +147,19 @@ export class BoardMembersComponent implements OnInit {
         return;
     }
     console.log(this.memberForm.value);
+    this.memberForm.patchValue({
+      masterId:localStorage.getItem('masterId')
+    });
     this.api.updateBoardMember(this.memberForm.value).subscribe(response => {
       console.log(response);
       if(response.id != ''){
-         this.toastr.success('Storage unit updated successfully.');
+         this.toastr.success('Board Member updated successfully.');
         this.submitted = false;
         this.edit = false;
         this.memberForm.reset();
         this.getBoardMembers();
       }else{
-          this.toastr.error('Error! While updating Storage unit.');
+          this.toastr.error('Error! While updating Board Member.');
       }
     },
       err => {
@@ -171,10 +179,15 @@ export class BoardMembersComponent implements OnInit {
     if (this.memberForm.invalid) {
         return;
     }
-    console.log(this.memberForm.value);
 
+    this.memberForm.patchValue({
+      masterId:localStorage.getItem('masterId')
+    });
+    console.log(this.memberForm.value);
     this.api.addBoardMember(this.memberForm.value).subscribe(response => {
-      this.toastr.success('Storage Unit Added successfully.');
+      this.toastr.success('Board Member Added successfully.');
+      //this.memberForm.reset();
+      //this.submitted = false;
       this.getBoardMembers();
     },
       err => {

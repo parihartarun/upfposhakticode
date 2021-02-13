@@ -88,7 +88,7 @@ export class RegisterComponent implements OnInit {
     //    console.log(err)
     //  })
   }
-  selectRegister(selectRegisterForm: any) {   
+  selectRegister(selectRegisterForm: any) {  
     this.selectRegisterForm = selectRegisterForm
     this.registerForm.controls['selectFormValue'].setValue(selectRegisterForm);
   }
