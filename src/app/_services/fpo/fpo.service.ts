@@ -278,7 +278,7 @@ export class FpoService {
   /************************** FPO's Photographs **********************************/
 
   getPhotographs(masterId) {
-    return this.http.get<any>(this._url + 'photo/'+masterId).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'photo/getPhotoByFpo/'+masterId).pipe(map((res: any) => {
       return res;
     }));
   };
