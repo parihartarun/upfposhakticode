@@ -72,6 +72,7 @@ export class DepartmentNotificationComponent implements OnInit {
          this.submitted = false;
          // this.edit = false;
          this.NotificationsForm.reset();
+         this.getNotificationByDept();
        } else {
          this.toastr.error('Error! While Updating License.');
        }
