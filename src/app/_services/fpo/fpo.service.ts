@@ -351,8 +351,8 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
 
-  getFarmerDetailList() {
-    return this.http.get<any>(this._url + 'api/Farmer/getFarmerDetails').pipe(map((res: any) => {
+  getFarmerDetailList(masterId) {
+    return this.http.get<any>(this._url + 'api/Farmer/getFarmerDetails/'+masterId).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -466,9 +466,31 @@ updateFarmerMachineryBankList(id:number,data:any){
 
   }
   getAllNotificationBydept(id) {
-    return this.http.get<any>(this._url + '/notification/fponotification/' + id).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'notification/fponotification/' + id).pipe(map((res: any) => {
       return res;
     }))
+  }
+  sendNotifiaction(data, formData) {
+    return this.http.post<any>(this._url + 'notification/farmersend', formData).pipe(map((res: any) => {
+      return res;
+    }))
+  }
+  getAllFarmer() {
+
+    return this.http.get<any>(this._url + 'api/farmer').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getAllNotificationByFpo(id) {
+
+    return this.http.get<any>(this._url + 'notification/fposend/'+id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getfamerDetail(id) {
+    return this.http.get<any>(this._url + 'fpocomplaint/farmerComplaint/' + id).pipe(map((res: any) => {
+      return res;
+    }));
   }
 }
 

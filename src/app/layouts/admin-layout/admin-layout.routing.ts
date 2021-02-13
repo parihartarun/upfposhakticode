@@ -48,6 +48,7 @@ import { FpoNotifiactionComponent } from '../../pages/fpo/fpo-notifiaction/fpo-n
 import { NotifiactionByDepartmentComponent } from '../../pages/fpo/notifiaction-by-department/notifiaction-by-department.component';
 import { BuyeruserComponent } from 'src/app/pages/buyer-treder/buyeruser/buyeruser.component';
 import { UserProfileDashboardComponent } from 'src/app/pages/user-profile-dashboard/user-profile-dashboard.component';
+import { FarmerNotifictionByFpoComponent } from '../../pages/farmer/farmer-notifiction-by-fpo/farmer-notifiction-by-fpo.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: DashboardComponent },
@@ -101,6 +102,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'department/dept-notification', component: DepartmentNotificationComponent },
   { path: 'fpo/fpo-notification', component: FpoNotifiactionComponent },
   { path: 'fpo/fpo-notificationByDept', component: NotifiactionByDepartmentComponent },
+  { path: 'farmer/farmerNotificationByFpo', component: FarmerNotifictionByFpoComponent },
 
 ];
 
