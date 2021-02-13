@@ -66,7 +66,7 @@ export class DepartmentComplaintsComponent implements OnInit {
     formData.append('status', this.complaintForm.value.status);
     this.api.updateStatus(this.complaintForm.value, formData).subscribe(response => {
       if (response.id != '') {
-        this.toastr.success(response);
+        this.toastr.success(response.message);
         this.submitted = false;        
         this.complaintForm.reset();
         this.getComplaints();
@@ -135,7 +135,7 @@ export class DepartmentComplaintsComponent implements OnInit {
     if (status == 0) {
       return "OPEN"
     } else if (status == 1) {
-      return "ASSOGNED"
+      return "ASSIGNED"
     }
     else if (status == 2) {
       return "RESOLVED"
