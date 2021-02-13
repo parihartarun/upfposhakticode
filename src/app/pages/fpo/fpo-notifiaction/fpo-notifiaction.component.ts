@@ -74,6 +74,7 @@ export class FpoNotifiactionComponent implements OnInit {
         this.toastr.success('complians successfully.');
         this.submitted = false;
         this.getNotificationByFPO();
+
         this.NotificationsForm.reset();
       } else {
         this.toastr.error('Error! While Updating License.');

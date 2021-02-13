@@ -49,7 +49,7 @@ export class ComplaintsComponent implements OnInit {
       this.complaintsCatageriy = cs
     })
     this.complaintForm = this.formBuilder.group({
-        title: ['', [Validators.required]],
+        title: [''],
         desc: ['', [Validators.required]],
         filePath: [''],
         uploadFile: [''],
@@ -75,10 +75,11 @@ export class ComplaintsComponent implements OnInit {
       return;
     }
     let model = this.complaintForm.value;
+    let issuetype = Number(this.complaintForm.value.issueType) - 1;
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);  
     formData.append('description', this.complaintForm.value.desc);
-    formData.append('title', this.complaintForm.value.title.comp_type_en);
+    formData.append('title', this.complaintsCatageriy[issuetype].comp_type_en);
     formData.append('issue_type', this.complaintForm.value.issueType);
     formData.append("fpo_id", localStorage.getItem('masterId'))
     this.api.addComplaint(formData).subscribe(response => {
@@ -174,10 +175,7 @@ export class ComplaintsComponent implements OnInit {
       this.getComplaints();
     });
   }
-  /* Return true or false if it is the selected */
-  compareByOptionId(idFist, idSecond) {
-    return idFist && idSecond && idFist.id == idSecond.id;
-  }
+ 
   reset() {
     this.complaintForm.reset();
   }
