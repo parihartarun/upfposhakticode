@@ -118,8 +118,8 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   /************************** License **********************************/
-  getLicense(){
-    return  this.http.get<any>(this._url+'api/fpo/license').pipe(map((res:any)=>{
+  getLicense(masterId){
+    return  this.http.get<any>(this._url+'api/fpo/license/getFpoLicenseDetailsByFpoId/'+masterId).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -150,8 +150,8 @@ updateFarmerMachineryBankList(id:number,data:any){
  
 
   /************************** Machinary banks **********************************/
-  getMachinaryBanks(){
-    return  this.http.get<any>(this._url+'api/farm/machinery/banks').pipe(map((res:any)=>{
+  getMachinaryBanks(masterId){
+    return  this.http.get<any>(this._url+'/api/farm/machinery/banks/getFarmMachineryBankByFpo/'+masterId).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -465,7 +465,11 @@ updateFarmerMachineryBankList(id:number,data:any){
     })); 
 
   }
- 
+  getAllNotificationBydept(id) {
+    return this.http.get<any>(this._url + '/notification/fponotification/' + id).pipe(map((res: any) => {
+      return res;
+    }))
+  }
 }
 
 

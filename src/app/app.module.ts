@@ -86,6 +86,9 @@ import { InputDetailsInsecticidesComponent } from './pages/Input-Supplier/input-
 import { MachineryComponent } from './pages/CHC/machinery/machinery.component';
 import { UserStatusComponent } from './pages/user-status/user-status.component';
 import { ComplaintByFarmerComponent } from './pages/fpo/complaint-by-farmer/complaint-by-farmer.component';
+import { DepartmentNotificationComponent } from './pages/department/department-notification/department-notification.component';
+import { FpoNotifiactionComponent } from './pages/fpo/fpo-notifiaction/fpo-notifiaction.component';
+import { NotifiactionByDepartmentComponent } from './pages/fpo/notifiaction-by-department/notifiaction-by-department.component';
 import { BuyeruserComponent } from './pages/buyer-treder/buyeruser/buyeruser.component';
 import { UserProfileDashboardComponent } from './pages/user-profile-dashboard/user-profile-dashboard.component';
 import { DepartmentAllUsersComponent } from './pages/department/department-all-users/department-all-users.component';
@@ -190,7 +193,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     ComplaintByFarmerComponent,
     BuyeruserComponent,
     UserProfileDashboardComponent,
-    DepartmentAllUsersComponent
+    DepartmentAllUsersComponent,
+    DepartmentNotificationComponent,
+    FpoNotifiactionComponent,
+    NotifiactionByDepartmentComponent,
   ],
   exports: [
     AuthHeaderComponent

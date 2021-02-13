@@ -431,13 +431,13 @@
       <div *ngIf="isLoggeIn">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body mt-1 pt-1" *ngIf="!indentForm">
+        <div class="modal-body mt-1 pt-1" *ngIf="!indentForm || indentloading">
          <div class="loader-container">
-          <ngx-loading [show]="!indentForm || !indentcreated" [config]="{backdropBackgroundColour: '#ffffff', 
+          <ngx-loading [show]="!indentForm || indentloading" [config]="{backdropBackgroundColour: '#ffffff', 
           backdropBorderRadius: '1px',
           primaryColour: '#926E01', 
           secondaryColour: '#926E01', 
@@ -445,7 +445,13 @@
         </div>
           
         </div>
-        <div class="modal-body mt-1 pt-1" *ngIf="indentForm">
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && indentcreated">
+          <div class="d-flex w-100 align-items-center justify-content-center">  <img class="suc-img" src="../../../assets/image/img/successsubmit.png"></div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-2 text-sm"> <strong>{{ 'indentsucessmessage' | translate:{id:indentid} }}</strong> </div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-5 text-sm"><button (click)="closeModal()" class="btn btn-sm mt-5 btn-product-search" >{{'ok' | translate }}</button></div>
+        </div>
+
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
           <form role="form mt-1 p-1" [formGroup]="indentForm">
             <div class="row">
             <div class="col-5 text-sm text-bold">{{'FPO Name'| translate}}:</div>
