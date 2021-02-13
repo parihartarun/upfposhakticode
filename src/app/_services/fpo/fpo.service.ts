@@ -483,12 +483,24 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
   getAllNotificationByFpo(id) {
 
-    return this.http.get<any>(this._url + 'notification/fposend/'+id).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + '/notification/fponotification/'+id).pipe(map((res: any) => {
       return res;
     }));
   }
   getfamerDetail(id) {
     return this.http.get<any>(this._url + 'fpocomplaint/farmerComplaint/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getAllNotificationFpo(id) {
+
+    return this.http.get<any>(this._url + 'notification/viewfponotification/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getAllNotificationDept(id) {
+
+    return this.http.get<any>(this._url + 'notification/viewdeptnotification/' + id).pipe(map((res: any) => {
       return res;
     }));
   }

@@ -28,21 +28,16 @@
             <div class="col-4 mb-4">
               <h4 class="mb-2">
                 {{'Name'|translate}} :
-              </h4>vishal
+              </h4>{{viewComp.name}}
             </div>
 
             <div class="col-4 mb-4">
               <h4 class="mb-2">
                 {{'Mobile' | translate}}:
-              </h4>8275518800
+              </h4>{{viewComp.mobile}}
             </div>
 
-            <div class="col-4 mb-4">
-              <h4 class="mb-2">
-                {{'Email'|translate}}:
-              </h4>v@gmial.com
-            </div>
-
+          
 
           </div>
         </div>
@@ -118,7 +113,7 @@
         <div class="card-body" *ngIf="complaintStatusForm && viewComp.currentStatus!='RESOLVED'">
           <div class="col-12 mb-4 mt-4 bg-warning">
             <h2 class="mb-0">
-              Update Complaint/ Suggestion Status
+              {{'Update Complaint/ Suggestion Status'|translate}}
             </h2>
           </div>
           <form [formGroup]="complaintStatusForm">
@@ -266,17 +261,17 @@
                   {{(p-1) * 10 + i + 1}}
                 </td>
                 <td>
-                  {{complaint.title}}
+                  {{complaint.ftitle}}
                 </td>
                 <td>
                   {{complaint.description}}
                 </td>
                 <td>
 
-                  {{complaint.createDateTime | date: 'dd/MM/yyyy'}}
+                  {{complaint.createdate | date: 'dd/MM/yyyy'}}
                 </td>
                 <td>
-                  <span *ngIf="complaint.status">{{complaint.status}}</span>
+                  <span *ngIf="complaint.status">{{getStatus(complaint.status)}}</span>
                   <span *ngIf="!complaint.status">NA</span>
                 </td>
                 <td class="text-right">

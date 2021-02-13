@@ -410,10 +410,10 @@
   "Type here to search": "खोजने के लिए यहां टाइप करें",
   "password": "पासवर्ड",
   "filters": "फ़िल्टर सूची",
-  "createindent":"इंडेंट बनाएं",
-  "ok":"ओके",
+  "createindent": "इंडेंट बनाएं",
+  "ok": "ओके",
   "nofiltersselected": "खाली है",
-  "indentsucessmessage":"इंडेंट सफलतापूर्वक दर्ज किया... इंडेंट आईडी {{id}}",
+  "indentsucessmessage": "इंडेंट सफलतापूर्वक दर्ज किया... इंडेंट आईडी {{id}}",
   "fpo registration date is required": "पंजीकरण की तिथि आवश्यक है",
   "SR. NO": "क्रमांक",
   "MEMBER NAME": "सदस्य का नाम",
@@ -594,5 +594,6 @@
   "Notifications Details": "अधिसूचना विवरण",
   "NotificationsDate": "अधिसूचना तिथि",
   "Notifications By Department": "अधिसूचना विभाग द्वारा",
-  "Department Name": "विभाग नाम"
+  "Department Name": "विभाग नाम",
+  "Category Deals In": "श्रेणी सौदों में"
 }
