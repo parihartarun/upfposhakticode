@@ -74,10 +74,10 @@ export class InputSupplierRegisterComponent implements OnInit {
       villageRefId: [''],
       userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
       recaptcha: ['', Validators.required],
-      userInputSeller:[],
+      userInputSeller: [],
+      seedId:[],  
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
-      confirmPassword: ['', Validators.required]
-    }, {
+      confirmPassword: ['', Validators.required]    }, {
       validator: MustMatch('password', 'confirmPassword')
     })
 
