@@ -86,11 +86,11 @@ export class FpoDetailsComponent implements OnInit {
       //   this.additionalservice = response;
       // });
 
-      this.api.getBoardMemberById(fpoId).subscribe(response => {
-        this.boardMember = response;
-        //alert("boardMember"+JSON.stringify(this.boardMember));  
+      // this.api.getBoardMemberById(fpoId).subscribe(response => {
+      //   this.boardMember = response;
+      //   //alert("boardMember"+JSON.stringify(this.boardMember));  
 
-      });
+      // });
 
     });
     this.getFpoPhohto();
