@@ -60,6 +60,12 @@ export class ByerSellRegisterComponent implements OnInit {
       streetName: ['', Validators.required],
       webSite: [''],
       recaptcha: ['', Validators.required],
+      gstNumber: [''],
+      tinNumber: [''],
+      PANnumber: [],
+      companyCategory: [],
+      commdityDealsIn: [],
+      varietyDealsIn: [],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       userBuyerSeller: [],
       confirmPassword: ['', Validators.required]
