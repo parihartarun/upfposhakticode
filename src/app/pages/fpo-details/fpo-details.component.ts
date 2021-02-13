@@ -48,43 +48,9 @@ export class FpoDetailsComponent implements OnInit {
   xAxisLabel: string = 'Crops';
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Quantity (in Qt.)';
-  multi = [
-    {
-      "name": "Gram",
-      "series": [
-        {
-          "name": "Marketable Surplus",
-          "value": 3500
-        }
-      ]
-    },
-
-    {
-      "name": "Lentil",
-      "series": [
-        {
-          "name": "Marketable Surplus",
-          "value": 1000
-        }
-      ]
-    },
-
-    {
-      "name": "Wheat",
-      "series": [
-        {
-          "name": "Marketable Surplus",
-          "value": 7000
-        },
-        {
-          "name": "Sold",
-          "value": 3000
-        }
-      ]
-    }
-  ];
+  multi = []
   colorScheme = {
-    domain: ['#ca1a1a', 'blue']
+    domain: ['blue','#ca1a1a']
   };
 
   constructor(private modalService: NgbModal, private api: FpoService, private _activatedroute: ActivatedRoute) { }
@@ -96,7 +62,7 @@ export class FpoDetailsComponent implements OnInit {
       this.getAllByFpo();
       this.getFarmMachineryBankByFpo();
     })
-
+    this.setGraphData();
     this._activatedroute.paramMap.subscribe(params => {
       let fpoId = Number(params.get('id'));
 
@@ -166,5 +132,119 @@ export class FpoDetailsComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+  setGraphData() {
+    this.multi = [
+      {
+        graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Rabi season (in Qt.)`,
+        graphDetails: [
+          {
+            "name": "Gram",
+            "series": [
+              {
+                "name": "Marketable Surplus",
+                "value": 3500
+              },
+              {
+                "name": "Sold",
+                "value": 0
+              }
+            ]
+          },
+
+          {
+            "name": "Lentil",
+            "series": [
+              {
+                "name": "Marketable Surplus",
+                "value": 1000
+              },
+              {
+                "name": "Sold",
+                "value": 0
+              }
+            ]
+          },
+
+          {
+            "name": "Wheat",
+            "series": [
+              {
+                "name": "Marketable Surplus",
+                "value": 7000
+              },
+              {
+                "name": "Sold",
+                "value": 3000
+              }
+            ]
+          }
+        ]
+      },
+      {
+        graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Zayad season (in Qt.)`,
+        graphDetails: [
+          {
+            "name": "Moong",
+            "series": [
+              {
+                "name": "Marketable Surplus",
+                "value": 950
+              },
+              {
+                "name": "Sold",
+                "value": 0
+              }
+            ]
+          },
+        ]
+      },
+      {
+        graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Kharif season (in Qt.)`,
+        graphDetails: [
+          {
+            "name": "Moong",
+            "series": [
+              {
+                "name": "Marketable Surplus",
+                "value": 450
+              },
+              {
+                "name": "Sold",
+                "value": 0
+              }
+            ]
+          },
+
+          {
+            "name": "Soyabean",
+            "series": [
+              {
+                "name": "Marketable Surplus",
+                "value": 8400
+              },
+              {
+                "name": "Sold",
+                "value": 0
+              }
+            ]
+          },
+
+          {
+            "name": "Urad",
+            "series": [
+              {
+                "name": "Marketable Surplus",
+                "value": 4300
+              },
+              {
+                "name": "Sold",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }

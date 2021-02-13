@@ -180,12 +180,17 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-6" *ngFor="let row of [].constructor(2)">
-            <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="multi" [xAxis]="showXAxis"
-              [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-              [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-              [legendTitle]="legendTitle" [legendPosition]="'below'">
-            </ngx-charts-bar-vertical-2d>
+          <div class="col-6" *ngFor="let row of multi">
+            <div class="row px-5 mb-0">
+              <strong> {{row.graphFor}}</strong>
+            </div>
+            <div class="row mb-3" style="border-bottom: solid;">
+              <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.graphDetails"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                [legendTitle]="legendTitle" [legendPosition]="'below'">
+              </ngx-charts-bar-vertical-2d>
+            </div>
           </div>
         </div>
       </div>
@@ -338,19 +343,19 @@
                     {{i+1}}
                   </td>
                   <td>
-                   {{row.district}}
+                    {{row.district}}
                   </td>
                   <td>
-                   {{row.address}}
+                    {{row.address}}
                   </td>
                   <td>
-                   {{row.storageType}}
+                    {{row.storageType}}
                   </td>
                   <td>
-                   {{row.storageCapacity}}
+                    {{row.storageCapacity}}
                   </td>
                   <td>
-                   {{row.fascilities}}
+                    {{row.fascilities}}
                   </td>
 
 
