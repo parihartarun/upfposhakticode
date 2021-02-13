@@ -23,6 +23,7 @@ export class DepartmentAllUsersComponent implements OnInit {
   valueOther = false;
   chageData;
   inputOthers: string;
+  reasons;
 
 
   constructor(
@@ -34,7 +35,7 @@ export class DepartmentAllUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.reasonSelectedForm = this.formBuilder.group({
-      reason : [''],
+      // reasons : [''],
       });
   
       this.getAllUserDetails();

@@ -179,7 +179,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"></span>
               </div>
-              <select class="form-control" [(ngModel)]="reason" (change)="selectChange($event)">
+              <select class="form-control" [(ngModel)]="reasons" (change)="selectChange($event)">
                 <option value="">{{'Select reason' | translate}}</option>
                 <option *ngFor="let reason of Reasons" [value]="reason.reason">{{reason.reason}}</option>
               </select>
