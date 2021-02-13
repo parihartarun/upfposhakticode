@@ -103,7 +103,7 @@ export class StorageUnitComponent implements OnInit {
   }
 
   getStorageUnits(){
-    this.storageunitservice.getStorageUnits().subscribe(data=>{    
+    this.storageunitservice.getStorageUnits(localStorage.getItem('masterId')).subscribe(data=>{    
       this.storageUnits = data;
       console.log(data)
     });
