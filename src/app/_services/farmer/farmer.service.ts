@@ -87,6 +87,12 @@ export class FarmerService {
       return res;
     }));
   }
+  getAllNotificationByFpo(id) {
+
+    return this.http.get<any>(this._url + 'notification/farmernotification/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
 
 }
