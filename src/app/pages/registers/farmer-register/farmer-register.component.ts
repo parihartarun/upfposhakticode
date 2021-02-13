@@ -5,6 +5,7 @@ import { AuthService } from '../../../_services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { ToastrService } from 'ngx-toastr';
+import { FpoService } from 'src/app/_services/fpo/fpo.service';
 
 
 @Component({
@@ -24,7 +25,9 @@ export class FarmerRegisterComponent implements OnInit {
   panchayts = [];
   villages = [];
   banks = [];
-  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router,private toastr:ToastrService) {
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router,
+    private toastr: ToastrService,
+    private fpoService: FpoService) {
   }
 
   ngOnInit() {
@@ -38,7 +41,7 @@ export class FarmerRegisterComponent implements OnInit {
 
 
   }
-  selectDistrict(districtId: any) {   
+  selectDistrict(districtId: any) {
     this.registerForm.controls['distRefId'].setValue(parseInt(districtId.currentTarget.value));
     this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
       this.blocks = block
@@ -49,6 +52,13 @@ export class FarmerRegisterComponent implements OnInit {
       this.panchayts = gp
     })
     this.registerForm.controls['blockRef'].setValue(blockId.currentTarget.value);
+  }
+  getALlFpoList() {
+    this.fpoService.getAllFpo().subscribe(res => {
+      if (res) {
+        console.log('pavan', res);
+      }
+    });
   }
   selectGramPanchayat(villagePanchayatId: any) {
 
@@ -71,12 +81,12 @@ export class FarmerRegisterComponent implements OnInit {
       category: ['', Validators.required],
       distRefId: ['', Validators.required],
       gender: ['', Validators.required],
-      createdBy:'ROLE_FARMER',
+      createdBy: 'ROLE_FARMER',
       deleted: [true],
       enabled: [true],
       farmerMob: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       farmerName: ['', Validators.required],
-    
+
       ifscCode: ['', Validators.required],
       parantsName: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
@@ -89,8 +99,8 @@ export class FarmerRegisterComponent implements OnInit {
       userFar: [],
       confirmPassword: ['', Validators.required]
     }, {
-        validator: MustMatch('password', 'confirmPassword'),
-       
+      validator: MustMatch('password', 'confirmPassword'),
+
     })
 
 
@@ -101,20 +111,20 @@ export class FarmerRegisterComponent implements OnInit {
   }
   get password() {
     return this.registerForm.get('password');
-  }  
-  register(): Observable<any>  {    
-    
+  }
+  register(): Observable<any> {
+
     this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
     this.registerForm.value
-   
+
     let user = {
       userName: this.registerForm.value.userName,
       password: this.registerForm.value.password,
-      roleRefId:6
+      roleRefId: 6
     }
     delete this.registerForm.value.password;
     delete this.registerForm.value.userName;
@@ -143,10 +153,10 @@ export class FarmerRegisterComponent implements OnInit {
     //  villagePanchayatId: ""
     //}
     //famerRegister.accountNo=
-    
+
     console.log(JSON.stringify(this.registerForm.value));
     this.api.registerUser(this.registerForm.value).subscribe(response => {
-     if (response.message == "SuccessFully Saved!") {
+      if (response.message == "SuccessFully Saved!") {
         this.toastr.success(response.message);
         this.registerForm.reset();
         this._router.navigate(['/login'])
@@ -154,9 +164,9 @@ export class FarmerRegisterComponent implements OnInit {
       else {
         this.toastr.error(response.message);
       }
-     
-   })
-     
+
+    })
+
   }
 
 
