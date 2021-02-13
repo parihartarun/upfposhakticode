@@ -1,497 +1,497 @@
- <!-- Full Page Image Header with Vertically Centered Content -->
- <header class="masthead">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col-12 text-center">
-         
-        </div>
-      </div>
-    </div>
-  </header>
-  
-  <!-- Page Content -->
-  <section class="py-5">
-    <div class="container" >
-      <div class="row">
-        <div class="col-md-4">
-            <div class="card card-profile shadow">   
-                <div class="card-body pt-0 pt-md-4">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="" *ngIf="fpo">
-                        <div>
-                          Name: <h4>{{fpo.fpoName}}</h4>
-                        </div>
-                        <div class="">
-                          Emai: <h4>{{fpo.fpoEmail}}</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <div class="card-profile-stats d-flex justify-content-center">
-                        <div>
-                          <span class="heading">22</span>
-                          <span class="description">Total Crops</span>
-                        </div>
-                        <div>
-                          <span class="heading">10</span>
-                          <span class="description">Production</span>
-                        </div>
-                        <div>
-                          <span class="heading">89</span>
-                          <span class="description">markatable Surplus</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            
-                </div>
-              </div>
-        </div>
-        <div class="col-md-8">      
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-xl-12 order-xl-1">
-                    <div class="card shadow">
-                      <div class="card-body">
-                        <div class="row">          
-                          <div class="col-md-12"><h3>Available Products:</h3></div>
+<!-- Full Page Image Header with Vertically Centered Content -->
+<header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
 
-                          <div class="col-md-12 horizontal-product">
-                            <div class="card mb-3">
-                              <div class="row no-gutters">
-                                <div class="col-md-3 mb-2">
-                                  <img src="../../../assets/img/carrot.jpeg" class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-5 mb-2">
-                                  <div class="card-body">
-                                    <p class="card-text">Pune, Maharashtra, India - 4220299</p>
-                                  </div>
-                                </div>
-                                <div class="col-md-4">
-                                  <h4 class="mt-1">Quantity: 450 Kg</h4>
-                                  <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="bg-light d-flex align-items-start justify-content-between px-6">
+  <div>
+    <button type="button" class="btn btn-link" routerLink="/home">{{'Home' | translate}}</button>
+  </div>
+  <div>
+    <button type="button" class="btn btn-link" routerLink="/home">{{'Back' | translate}}</button>
+  </div>
+</div>
+<!-- Page Content -->
+<section class="py-5">
+  <div class="container">
+    <div class="card card-profile shadow py-0">
+      <div class="card-header p-0">
+        <h3></h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">{{'FPO Name' | translate}}</th>
+                  <th scope="col">{{'Email' | translate}}</th>
+                  <th scope="col">{{'Agency (associated with)' | translate}}</th>
+                  <th scope="col">{{'Address' | translate}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {{fpo.fpoName}}
+                  </td>
+                  <td>
+                    {{fpo.fpoEmail}}
+                  </td>
+                  <td>
+                    {{fpo.agency}}
+                  </td>
+                  <td>
+                    {{fpo.fpoAddress}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-                          <div class="col-md-12 horizontal-product">
-                            <div class="card mb-3">
-                              <div class="row no-gutters">
-                                <div class="col-md-3 mb-2">
-                                  <img src="../../../assets/img/potato.jpeg" class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-5 mb-2">
-                                  <div class="card-body">
-                                    <p class="card-text">Pune, Maharashtra, India - 4220299</p>
-                                  </div>
-                                </div>
-                                <div class="col-md-4">
-                                  <h4 class="mt-1">Quantity: 450 Kg</h4>
-                                  <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                
-                          <div class="col-md-12 horizontal-product">
-                            <div class="card mb-3">
-                              <div class="row no-gutters">
-                                <div class="col-md-3 mb-2">
-                                  <img src="../../../assets/img/onion.jpeg" class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-5 mb-2">
-                                  <div class="card-body">
-                                    <p class="card-text">Pune, Maharashtra, India - 4220299</p>
-                                  </div>
-                                </div>
-                                <div class="col-md-4">
-                                  <h4 class="mt-1">Quantity: 450 Kg</h4>
-                                  <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </div>
-     
       </div>
     </div>
-    <div class="container" >
-      <div class="row">
-        
-        <br>
-        <div class="col-md-12">      
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-xl-12 order-xl-1">
-                    <div class="card shadow" style="margin-top: 10px;">
-                      <div class="card-body">
-                        <div class="row">          
-                          <div class="col-md-12"><h3> FPO Details</h3></div>
-                          <div   class="col-md-4 col-sm-12 col-xs-12 text-center">
-                            <img  class="card-img" src="../../../assets/img/img (1).gif"
-                             height="180px" width="100%" style="object-fit: cover;  object-positon: center center; object-fit: fill;"/>
-                             <div class="col-12">
-                              <div class="card-body">
-                                <p class="card-text">Felicitation of Vikash Path FPO by Honorable Chief Minister</p>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <div   class="card-img" class="col-md-4 col-sm-12 col-xs-12 text-center">
-                            <img class="card-img" src="../../../assets/img/img (2).gif" height="180px" width="100%" style="object-fit: cover;  object-positon: center center; object-fit: fill;"/>
-                          
-                            <div class="col-12">
-                              <div class="card-body">
-                                <p class="card-text">
-                                  Felicitation of FPO</p>
-                              </div>
-                            </div>
-                          </div>    
-                          <div   class="card-img" class="col-md-4 col-sm-12 col-xs-12 text-center">
-                            <img class="card-img" src="../../../assets/img/img (3).gif" height="180px" width="100%" style="object-fit: cover;  object-positon: center center; object-fit: fill;"/>
-                          
-                            <div class="col-12">
-                              <div class="card-body">
-                                <p class="card-text">Bio Fertilizer Production and Training Centre
-                                </p>
-                              </div>
-                            </div>
-                          </div>                         
-                        </div>
-                        <div class="row">
-                          <div class="col-md-3">
-                            <div class="board">
-                              <div class="panel panel-primary" style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">                    
-                                <div class="number text-center" style="margin: 10px;">
-                                  <h3>                    
-                                    <small>
-                                    910</small>                    
-                                   <br>
-                                    <small> Total Farmers</small>
-                                    <br>
-                                    <small>&nbsp;</small>  
-                                  </h3>
-                                </div>
-                               
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-3">
-                            <div class="board">
-                              <div class="panel panel-primary" style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">                    
-                                <div class="number text-center" style="margin: 10px;">
-                                  <h3>                    
-                                    <small>
-                                    1,015</small>                    
-                                   <br>
-                                    <small> Total Land</small>
-                                    <br>
-                                    <small>(in Ha.)</small>  
-                                  </h3>
-                                </div>
-                               
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-3">
-                            <div class="board">
-                              <div class="panel panel-primary" style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">                    
-                                <div class="number text-center" style="margin: 10px;">
-                                  <h3>                    
-                                    <small>
-                                    1</small>                    
-                                   <br>
-                                    <small> Farm Machinery Bank</small>
-                                    <br>
-                                    <small>&nbsp;</small>  
-                                  </h3>
-                                </div>
-                                
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-3">
-                            <div class="board">
-                              <div class="panel panel-primary" style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">                    
-                                <div class="number text-center" style="margin: 10px;">
-                                  <h3>                    
-                                    <small>
-                                    1</small>                    
-                                   <br>
-                                    <small>Seed Processing Unit</small>
-                                    <br>
-                                    <small>&nbsp;</small>  
-                                  </h3>
-                                </div>
-                                
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </div>
-     
+  </div>
+  <div class="container mt-4">
+    <div class="card shadow">
+      <div class="card-header p-0">
+        <h3>{{'FPO Details' | translate}}</h3>
       </div>
-    </div>
-    <div class="container" >
-      <div class="row">
-        
-        <br>
-        <div class="col-md-12">      
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-xl-12 order-xl-1">
-                    <div class="card shadow" style="margin-top: 10px;">
-                      <div class="card-body">
-                        <div class="row">          
-                          <div class="col-md-12"><h3> Product/Services</h3></div>
-
-                          <div   class="col-md-4 col-sm-12 col-xs-12 text-center">
-                            <img  class="card-img" src="../../../assets/img/productSevice.gif"
-                             height="180px" width="100%" style="object-fit: cover;  object-positon: center center; object-fit: fill;"/>
-                             <div class="col-12">
-                              <div class="card-body">
-                                <p class="card-text">Bio Fertilizer Production
-                                  Healthy Plant. Safe Produce</p>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <div   class="card-img" class="col-md-4 col-sm-12 col-xs-12 text-center">
-                            <img class="card-img" src="../../../assets/img/productSevice1.jpg" height="180px" width="100%" style="object-fit: cover;  object-positon: center center; object-fit: fill;"/>
-                          
-                            <div class="col-12">
-                              <div class="card-body">
-                                <p class="card-text">Bio Fertilizer Production
-                                  Healthy  Produce</p>
-                              </div>
-                            </div></div>                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </div>
-     
-      </div>
-    </div>
-   
-    <br>
-    <div class="container" >
-      <div class="">
-        <div class="col">
-          <div class="card shadow">
-            
-            <div class="card-header border-0">
-              <div class="row">
-                <div class="col-9">
-                  <h3 class="mb-0">Licenses</h3>
-                </div>
-                <!-- <div class="col-3 text-right">
-                  <button class="btn btn-primary text-right">Add Member</button>
-                </div> -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4 col-sm-12 col-xs-12 text-center" *ngFor="let row of fpo?.photoUpload">
+            <img class="card-img" [src]="row.filePath" height="180px" width="100%"
+              style="object-fit: cover;  object-positon: center center; object-fit: fill;" />
+            <div class="col-12">
+              <div class="card-body">
+                <p class="card-text">{{row.description}}</p>
               </div>
             </div>
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">{{'Sr. No' | translate}}</th>
-                    <th scope="col">Licenses Type</th>
-                    <th scope="col">Licenses Issued By</th>
-                    <th scope="col">Licenses Number</th>
-                    <th scope="col">Licenses Issue Date</th>
-                    <th scope="col">Licenses Valid Till</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let license of License | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                    <!-- <td>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="board">
+              <div class="panel panel-primary"
+                style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">
+                <div class="number text-center" style="margin: 10px;">
+                  <h3>
+                    <small>
+                      {{fpo.totalfarmers}}</small>
+                    <br>
+                    <small> {{'Total Farmers' | translate}}</small>
+                    <br>
+                    <small>&nbsp;</small>
+                  </h3>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="board">
+              <div class="panel panel-primary"
+                style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">
+                <div class="number text-center" style="margin: 10px;">
+                  <h3>
+                    <small>
+                      {{fpo.totalland}}</small>
+                    <br>
+                    <small> {{'Total Land (in Ha.)' | translate}}</small>
+                    <br>
+                    <small>&nbsp;</small>
+                  </h3>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="board">
+              <div class="panel panel-primary"
+                style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">
+                <div class="number text-center" style="margin: 10px;">
+                  <h3>
+                    <small>
+                      1</small>
+                    <br>
+                    <small> {{'Farm Machinery Bank' | translate}}</small>
+                    <br>
+                    <small>&nbsp;</small>
+                  </h3>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="board">
+              <div class="panel panel-primary"
+                style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">
+                <div class="number text-center" style="margin: 10px;">
+                  <h3>
+                    <small>
+                      {{fpo.seedprocessingunitno}}</small>
+                    <br>
+                    <small>{{'Seed Processing Unit' | translate}}</small>
+                    <br>
+                    <small>&nbsp;</small>
+                  </h3>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="card shadow">
+      <div class="card-header p-0">
+        <h3> {{'Product/Services' | translate}}</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4 col-sm-12 col-xs-12 text-center" *ngFor="let row of fpo?.fpoAdditionalServices">
+            <img class="card-img" [src]="row.filePath" height="180px" width="100%"
+              style="object-fit: cover;  object-positon: center center; object-fit: fill;" />
+            <div class="col-12">
+              <div class="card-body">
+                <p class="card-text">{{row.descriptions}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-4">
+    <div class="card shadow">
+      <div class="card-header p-0">
+        <h3>Season-wise Production </h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6" *ngFor="let row of multi">
+            <div class="row px-5 mb-0">
+              <strong> {{row.graphFor}}</strong>
+            </div>
+            <div class="row mb-3" style="border-bottom: solid;">
+              <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.graphDetails"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                [legendTitle]="legendTitle" [legendPosition]="'below'">
+              </ngx-charts-bar-vertical-2d>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <div class="card shadow">
+
+      <div class="card-header p-0">
+        <h3 class="mb-0">{{'Production Details (Annual)' | translate}}</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">{{'SR. NO' | translate}}</th>
+                <th scope="col">{{'Crops' | translate}}</th>
+                <th scope="col">{{'Crop Variety' | translate}}</th>
+                <th scope="col">{{'Marketable Surplus 2021 (In Qt.)' | translate}}</th>
+                <th scope="col">{{'Sold Quantity 2021 (In Qt.)' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let license of License | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                <!-- <td>
+                <input type="checkbox">
+              </td> -->
+                <td>
+                  -
+                </td>
+                <td>
+                  -
+                </td>
+                <td>
+                  -
+                </td>
+                <td>
+                  -
+                </td>
+                <td>
+                  -
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="container">
+    <div class="card shadow">
+
+      <div class="card-header p-0">
+        <h3 class="mb-0">{{'Other Details of FPO' | translate}}</h3>
+      </div>
+      <div class="card-body">
+        <div class="card mb-4">
+
+          <div class="card-header p-0">
+            <div class="row">
+              <div class="col-9">
+                <h3 class="mb-0">{{'Board Members' | translate}}</h3>
+              </div>
+              <!-- <div class="col-3 text-right">
+                  <button class="btn btn-primary text-right">Add Member</button>
+                </div> -->
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">{{'SR. NO' | translate}}</th>
+                  <th scope="col">{{'Member Name' | translate}}</th>
+                  <th scope="col">{{'Designations' | translate}}</th>
+                  <th scope="col">{{'Email' | translate}}</th>
+                  <th scope="col">{{'Mobile' | translate}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let row of fpo?.boardMember | paginate: { itemsPerPage: 10, currentPage: boardMemberPagination };let i=index">
+
+                  <td>
+                    {{i+1}}
+                  </td>
+                  <td>
+                    {{row.name}}
+                  </td>
+                  <td>
+                    {{row.designation}}
+                  </td>
+                  <td>
+                    {{row.email}}
+                  </td>
+                  <td>
+                    {{row.contactNo}}
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer py-4">
+            <nav aria-label="..." class="text-right">
+              <pagination-controls (pageChange)="boardMemberPagination = $event"></pagination-controls>
+            </nav>
+          </div>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-header p-0">
+            <div class="row">
+              <div class="col-9">
+                <h3 class="mb-0">{{'Warehouse / Cold Storage' | translate}}</h3>
+              </div>
+              <!-- <div class="col-3 text-right">
+                  <button class="btn btn-primary text-right">Add Member</button>
+                </div> -->
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">{{'SR. NO' | translate}}</th>
+                  <th scope="col">{{'District' | translate}}</th>
+                  <th scope="col">{{'Storage Center Address' | translate}}</th>
+                  <th scope="col">{{'Storage Center Type' | translate}}</th>
+                  <th scope="col">{{'Storage Capacity (in Mt.)' | translate}}</th>
+                  <th scope="col">{{'Available Facilities' | translate}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of coldStorage | paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+                  <!-- <td>
                       <input type="checkbox">
                     </td> -->
-                    <td>
-                    </td>
-                    <td>
-                      {{license.srNo}}
-                    </td>
-                    <td>
-                      {{license.licenseType}}
-                    </td>
-                    <td>
-                      {{license.licenseIssueBy}}
-                    </td>
-                    <td>
-                      {{license.licenseNumber}}
-                    </td>
-                    <td>
-                      {{license.licenseDate | date: 'dd/MM/yyyy'}}
-                    </td>
-                    <td>
-                      {{license.licenseValidtill | date: 'dd/MM/yyyy'}}
-                    </td>
-                   
-                  
-                   
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="card-footer py-4">
-              <nav aria-label="..." class="text-right">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-              </nav>
-            </div>
+
+                  <td>
+                    {{i+1}}
+                  </td>
+                  <td>
+                    {{row.district}}
+                  </td>
+                  <td>
+                    {{row.address}}
+                  </td>
+                  <td>
+                    {{row.storageType}}
+                  </td>
+                  <td>
+                    {{row.storageCapacity}}
+                  </td>
+                  <td>
+                    {{row.fascilities}}
+                  </td>
+
+
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer py-4">
+            <nav aria-label="..." class="text-right">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </nav>
           </div>
         </div>
-      </div>
-    </div>
-        
 
-    <br>
-    <div class="container" >
-      <div class="">
-        <div class="col">
-          <div class="card shadow">
-            
-            <div class="card-header border-0">
-              <div class="row">
-                <div class="col-9">
-                  <h3 class="mb-0">Board Members</h3>
-                </div>
-                <!-- <div class="col-3 text-right">
+        <div class="card mb-4">
+          <div class="card-header p-0">
+            <div class="row">
+              <div class="col-9">
+                <h3 class="mb-0">{{'Licenses' | translate}}</h3>
+              </div>
+              <!-- <div class="col-3 text-right">
                   <button class="btn btn-primary text-right">Add Member</button>
                 </div> -->
-              </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">{{'Sr. No' | translate}}</th>
-                    <th scope="col">Member Name</th>
-                    <th scope="col">Designations</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Mobile</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let board of boardMember | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                    <td>
-                    </td>
-                    <td>
-                      {{board.srNo}}
-                    </td>
-                    <td>
-                      {{board.name}}
-                    </td>
-                    <td>
-                      {{board.designation}}
-                    </td>
-                    <td>
-                      {{board.email}}
-                    </td>
-                    <td>
-                      {{board.contactNo}}
-                    </td>
-                   
-                   
-                   
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="card-footer py-4">
-              <nav aria-label="..." class="text-right">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-              </nav>
             </div>
           </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">{{'SR. NO' | translate}}</th>
+                  <th scope="col">{{'Licenses Type' | translate}}</th>
+                  <th scope="col">{{'Licenses Issued By' | translate}}</th>
+                  <th scope="col">{{'Licenses Number' | translate}}</th>
+                  <th scope="col">{{'Licenses From' | translate}}</th>
+                  <th scope="col">{{'Licenses To' | translate}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let row of fpo?.fpoLicenceDetails | paginate: { itemsPerPage: 10, currentPage: boardMemberPagination };let i=index">
+                  <!-- <td>
+                      <input type="checkbox">
+                    </td> -->
+
+                  <td>
+                    {{i+1}}
+                  </td>
+                  <td>
+                    {{row.licenceType}}
+                  </td>
+                  <td>
+                    {{row.licenceIssuedBy}}
+                  </td>
+                  <td>
+                    {{row.liceneceNumber}}
+                  </td>
+                  <td>
+                    {{row.issuedate}}
+                  </td>
+                  <td>
+                    {{row.licenceValidTill}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer py-4">
+            <nav aria-label="..." class="text-right">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </nav>
+          </div>
         </div>
-      </div>
-    </div>
 
+        <div class="card mb-4">
 
-    <br>
-    <div class="container" >
-      <div class="">
-        <div class="col">
-          <div class="card shadow">
-            
-            <div class="card-header border-0">
-              <div class="row">
-                <div class="col-9">
-                  <h3 class="mb-0">Farm Machinery Bank</h3>
-                </div>
-                <!-- <div class="col-3 text-right">
+          <div class="card-header p-0">
+            <div class="row">
+              <div class="col-9">
+                <h3 class="mb-0">{{'Farm Machinery Bank' | translate}}</h3>
+              </div>
+              <!-- <div class="col-3 text-right">
                   <button class="btn btn-primary text-right">Add Member</button>
                 </div> -->
-              </div>
             </div>
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col"></th>
-                    <th scope="col">{{'Sr. No' | translate}}</th>
-                    <th scope="col">Name Of Equipment</th>
-                    <th scope="col">No Of Equipment</th>
-                  
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let mech of machinerary | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                    
-                    <td> </td>
-                    <td>
-                      {{mech.srNo}}
-                    </td>
-                    <td>
-                      {{mech.nameOfEqu}}
-                    </td>
-                    <td>
-    
-                      {{mech.noOfEqu}}
-                    </td>
-                   
-                   
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="card-footer py-4">
-              <nav aria-label="..." class="text-right">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-              </nav>
-            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">{{'SR. NO' | translate}}</th>
+                  <th scope="col">{{'Name Of Equipment' | translate}}</th>
+                  <th scope="col">{{'No Of Equipment' | translate}}</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let mech of machinerary | paginate: { itemsPerPage: 10, currentPage: mechPagination };let i=index">
+
+                  <td>
+                    {{i+1}}
+                  </td>
+                  <td>
+                    {{mech.equpment_name}}
+                  </td>
+                  <td>
+
+                    {{mech.equpment_no}}
+                  </td>
+
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer py-4">
+            <nav aria-label="..." class="text-right">
+              <pagination-controls (pageChange)="mechPagination = $event"></pagination-controls>
+            </nav>
           </div>
         </div>
       </div>
     </div>
-    <br>
+  </div>
 
-    <div class="container">
-      <div class="row">
-        <!-- <div class="col-xl-4 mb-5 mb-xl-0">
+
+
+
+
+
+  <br>
+
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-xl-4 mb-5 mb-xl-0">
           <div class="card bg-gradient-default shadow">
             <div class="card-header bg-transparent" style="height: 160PX;">
               <div class="row align-items-center">
@@ -527,7 +527,7 @@
           </div>
         </div> -->
 
-        <!-- <div class="col-xl-4 mb-5 mb-xl-0">
+      <!-- <div class="col-xl-4 mb-5 mb-xl-0">
           <div class="card bg-gradient-default shadow">
             <div class="card-header bg-transparent" style="height: 160PX;">
               <div class="row align-items-center">
@@ -562,7 +562,7 @@
             </div>
           </div>
         </div> -->
-        <!-- <div class="col-xl-4 mb-5 mb-xl-0">
+      <!-- <div class="col-xl-4 mb-5 mb-xl-0">
           <div class="card bg-gradient-default shadow">
             <div class="card-header bg-transparent" style="height: 160PX;">
               <div class="row align-items-center">
@@ -598,52 +598,52 @@
             </div>
           </div>
         </div>        -->
-        <div class="mb-10"></div>
-      </div>
+      <div class="mb-10"></div>
     </div>
+  </div>
 
-   
-  
-    <ng-template #mymodal let-modal>
-      <div class="modal-header">
-        <h3 class="modal-title text-center">Enquiry Form</h3>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form role="form">
-          <div class="form-group mb-3">
-            <label class="form-control-label" for="input-username">Your Full Name</label>
-            <div class="input-group input-group-alternative">
-              <input class="form-control" placeholder="Full Name" type="text">
-            </div>
+
+
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h3 class="modal-title text-center">Enquiry Form</h3>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form role="form">
+        <div class="form-group mb-3">
+          <label class="form-control-label" for="input-username">Your Full Name</label>
+          <div class="input-group input-group-alternative">
+            <input class="form-control" placeholder="Full Name" type="text">
           </div>
-          <div class="form-group mb-3">
-            <label class="form-control-label" for="input-username">Email Address</label>
-            <div class="input-group input-group-alternative">
-              <input class="form-control" placeholder="Email" type="text">
-            </div>
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-control-label" for="input-username">Email Address</label>
+          <div class="input-group input-group-alternative">
+            <input class="form-control" placeholder="Email" type="text">
           </div>
-  
-          <div class="form-group mb-3">
-            <label class="form-control-label" for="input-username">Quantity Required</label>
-            <div class="input-group input-group-alternative">
-              <input class="form-control" placeholder="Quantity" type="text">
-            </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-control-label" for="input-username">Quantity Required</label>
+          <div class="input-group input-group-alternative">
+            <input class="form-control" placeholder="Quantity" type="text">
           </div>
-  
-          <div class="form-group mb-3">
-            <label class="form-control-label" for="input-username">Fulfilled Date</label>
-            <div class="input-group input-group-alternative">
-              <input class="form-control" placeholder="Fulfilled Date" type="date">
-            </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label class="form-control-label" for="input-username">Fulfilled Date</label>
+          <div class="input-group input-group-alternative">
+            <input class="form-control" placeholder="Fulfilled Date" type="date">
           </div>
-  
-          <div class="text-center">
-            <button type="submit" class="btn btn-login btn-product-search btn-primary my-4">Send</button>
-          </div>
-        </form>
-      </div>
-    </ng-template>
-  </section>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-login btn-product-search btn-primary my-4">Send</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</section>

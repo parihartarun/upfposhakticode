@@ -1,313 +1,311 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams  } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { environment }  from '../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FpoService {
-   //------------Dashboard Data ------------------------------
-  getDashboardData(){
-    return  this.http.get<any>(this._url+`api/fpo/dashboard`).pipe(map((res:any)=>{
+  //------------Dashboard Data ------------------------------
+  getDashboardData() {
+    return this.http.get<any>(this._url + `api/fpo/dashboard`).pipe(map((res: any) => {
       return res;
     }));
   }
-  getIndentByFpoId(fpoid){
-    let params:HttpParams  = new HttpParams();
-    params = params.append("fpoId",fpoid);
-    return  this.http.get<any>(this._url+`enquiry/findByFpo`,{params:params}).pipe(map((res:any)=>{
-      
+  getIndentByFpoId(fpoid) {
+    let params: HttpParams = new HttpParams();
+    params = params.append("fpoId", fpoid);
+    return this.http.get<any>(this._url + `enquiry/findByFpo`, { params: params }).pipe(map((res: any) => {
+
       return res;
     }));
   }
-  getChartDetails(masterId){
-    return  this.http.get<any>(this._url+`api/fpo/dashboard/getAllFpoDashboardData?master_id=`+masterId).pipe(map((res:any)=>{
+  getChartDetails(masterId) {
+    return this.http.get<any>(this._url + `api/fpo/dashboard/getAllFpoDashboardData?master_id=` + masterId).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getBlocks()
-  {
-    return  this.http.get<any>(this._url+`api/v1/block/getBlocks`).pipe(map((res:any)=>{
+  getBlocks() {
+    return this.http.get<any>(this._url + `api/v1/block/getBlocks`).pipe(map((res: any) => {
       return res;
     }));
   }
   //------------api for getting equipment list ------------------------------
-  getDistricts(){
-    return this.http.get<any>(this._url + 'api/v1/District/getDistricts' ).pipe(map((res: any) => {
+  getDistricts() {
+    return this.http.get<any>(this._url + 'api/v1/District/getDistricts').pipe(map((res: any) => {
       return res;
     }));
   }
 
   _url: string;
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this._url = environment.baseUrl;
   }
-//======================== apis added by kaustubh =====================================
+  //======================== apis added by kaustubh =====================================
   getAllFpo() {
-   
+
     return this.http.get<any>(this._url + 'api/fpos').pipe(map((res: any) => {
       return res;
     }));
   }
-getFpoProfileByUsername(username)
-{
-  return  this.http.get<any>(this._url+`api/fpos/getByUsername/${username}`).pipe(map((res:any)=>{
-    return res;
-  }));
-}
-
-updateProfile(data){
-  return  this.http.get<any>(this._url+`api/fpos/${data.fpoId}`, data).pipe(map((res:any)=>{
-    return res;
-  }));
-}
-
-
-//------------api for getting equipment list ------------------------------
-getEquipList(){
-  return  this.http.get<any>(this._url+'api/equipments').pipe(map((res:any)=>{
-    return res;
-  }));
-}
-
-getFarmerMachineryBankList(){
-  return  this.http.get<any>(this._url+'signin').pipe(map((res:any)=>{
-    return res;
-  }));
-}
-addFarmerMachineryBank(data:any){
-  return  this.http.get<any>(this._url+'signin').pipe(map((res:any)=>{
-    return res;
-  }));
-}
-deleteFarmerMachineryBankList(id:number){
-  return  this.http.get<any>(this._url+'signin').pipe(map((res:any)=>{
-    return res;
-  }));
-}
-updateFarmerMachineryBankList(id:number,data:any){
-  return  this.http.get<any>(this._url+'signin').pipe(map((res:any)=>{
-    return res;
-  }));
-}
-//=====================================================================================
-  getBoardMembers(masterId){
-    return  this.http.get<any>(this._url+'api/fpos/boardmember/'+masterId).pipe(map((res:any)=>{
+  getFpoProfileByUsername(username) {
+    return this.http.get<any>(this._url + `api/fpos/getByUsername/${username}`).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  addBoardMember(data){
-    return  this.http.post<any>(this._url+'api/fpos/boardmember', data).pipe(map((res:any)=>{
+  updateProfile(data) {
+    return this.http.get<any>(this._url + `api/fpos/${data.fpoId}`, data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  updateBoardMember(data){
-    return  this.http.put<any>(this._url+'api/fpos/boardmember/editBoardMember/'+data.id, data).pipe(map((res:any)=>{
+
+  //------------api for getting equipment list ------------------------------
+  getEquipList() {
+    return this.http.get<any>(this._url + 'api/equipments').pipe(map((res: any) => {
       return res;
     }));
   }
 
-  deleteBoardMember(id){
-    return  this.http.delete<any>(this._url+'api/fpos/boardmember/deleteBoardMember/'+id).pipe(map((res:any)=>{
+  getFarmerMachineryBankList() {
+    return this.http.get<any>(this._url + 'signin').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  addFarmerMachineryBank(data: any) {
+    return this.http.get<any>(this._url + 'signin').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  deleteFarmerMachineryBankList(id: number) {
+    return this.http.get<any>(this._url + 'signin').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  updateFarmerMachineryBankList(id: number, data: any) {
+    return this.http.get<any>(this._url + 'signin').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  //=====================================================================================
+  getBoardMembers(masterId) {
+    return this.http.get<any>(this._url + 'api/fpos/boardmember/' + masterId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  addBoardMember(data) {
+    return this.http.post<any>(this._url + 'api/fpos/boardmember', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  updateBoardMember(data) {
+    return this.http.put<any>(this._url + 'api/fpos/boardmember/editBoardMember/' + data.id, data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  deleteBoardMember(id) {
+    return this.http.delete<any>(this._url + 'api/fpos/boardmember/deleteBoardMember/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
 
   /************************** License **********************************/
-  getLicense(masterId){
-    return  this.http.get<any>(this._url+'api/fpo/license/getFpoLicenseDetailsByFpoId/'+masterId).pipe(map((res:any)=>{
+  getLicense(masterId) {
+    return this.http.get<any>(this._url + 'api/fpo/license/getFpoLicenseDetailsByFpoId/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getLicenseTypes(){
-    return  this.http.get<any>(this._url+'api/licenses').pipe(map((res:any)=>{
+  getLicenseTypes() {
+    return this.http.get<any>(this._url + 'api/licenses').pipe(map((res: any) => {
       return res;
     }));
   }
 
-  addLicense(data){
-    return  this.http.post<any>(this._url+'api/fpo/license', data).pipe(map((res:any)=>{
+  addLicense(data) {
+    return this.http.post<any>(this._url + 'api/fpo/license', data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  updateLicense(data){
-    return  this.http.put<any>(this._url+'api/fpo/license/updateLicense/'+data.id, data).pipe(map((res:any)=>{
+  updateLicense(data) {
+    return this.http.put<any>(this._url + 'api/fpo/license/updateLicense/' + data.id, data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  deleteLicense(id){
-    return  this.http.delete<any>(this._url+'api/fpo/license/deleteLicense/'+id).pipe(map((res:any)=>{
+  deleteLicense(id) {
+    return this.http.delete<any>(this._url + 'api/fpo/license/deleteLicense/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
- 
+
 
   /************************** Machinary banks **********************************/
-  getMachinaryBanks(masterId){
-    return  this.http.get<any>(this._url+'/api/farm/machinery/banks/getFarmMachineryBankByFpo/'+masterId).pipe(map((res:any)=>{
+  getMachinaryBanks(masterId) {
+    return this.http.get<any>(this._url + '/api/farm/machinery/banks/getFarmMachineryBankByFpo/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getEquipments(){
-    return  this.http.get<any>(this._url+'api/equipments').pipe(map((res:any)=>{
+  getEquipments() {
+    return this.http.get<any>(this._url + 'api/equipments').pipe(map((res: any) => {
       return res;
     }));
   }
 
-  addMachinaryBank(data){
-    return  this.http.post<any>(this._url+'api/farm/machinery/banks', data).pipe(map((res:any)=>{
+  addMachinaryBank(data) {
+    return this.http.post<any>(this._url + 'api/farm/machinery/banks', data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  updateMachinaryBank(data){
-    return  this.http.put<any>(this._url+'api/farm/machinery/banks/updateMachinery/'+data.id, data).pipe(map((res:any)=>{
+  updateMachinaryBank(data) {
+    return this.http.put<any>(this._url + 'api/farm/machinery/banks/updateMachinery/' + data.id, data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  deleteMachinaryBank(id){
-    return  this.http.delete<any>(this._url+'api/farm/machinery/banks/deleteMachinery/'+id).pipe(map((res:any)=>{
+  deleteMachinaryBank(id) {
+    return this.http.delete<any>(this._url + 'api/farm/machinery/banks/deleteMachinery/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
 
   /************************** FPO's Crop Production **********************************/
-  getCropProductionDetails(masterId){
-    return this.http.get<any>(this._url + 'marketablesurplus/getFpoCropProductionDetails/'+masterId).pipe(map((res: any) => {
+  getCropProductionDetails(masterId) {
+    return this.http.get<any>(this._url + 'marketablesurplus/getFpoCropProductionDetails/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  addCropProduction(data){
-    return  this.http.post<any>(this._url+'marketablesurplus', data).pipe(map((res:any)=>{
+  addCropProduction(data) {
+    return this.http.post<any>(this._url + 'marketablesurplus', data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  updateCropProduction(data){
-    return  this.http.put<any>(this._url+'marketablesurplus/update/'+data.id, data).pipe(map((res:any)=>{
+  updateCropProduction(data) {
+    return this.http.put<any>(this._url + 'marketablesurplus/update/' + data.id, data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  deleteCropProduction(id){
-    return  this.http.delete<any>(this._url+'marketablesurplus/delete/'+id).pipe(map((res:any)=>{
+  deleteCropProduction(id) {
+    return this.http.delete<any>(this._url + 'marketablesurplus/delete/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getFarmerWiseProductionReport(data){
+  getFarmerWiseProductionReport(data) {
     return this.http.post<any>(this._url + 'farmerWiseProductionReport/getFarmerProductionReport', data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  exportProductionReport(fileFormat){
-    return this.http.get<any>(this._url + 'marketablesurplus/exportProductionReport/'+fileFormat).pipe(map((res: any) => {
+  exportProductionReport(fileFormat) {
+    return this.http.get<any>(this._url + 'marketablesurplus/exportProductionReport/' + fileFormat).pipe(map((res: any) => {
       return res;
     }));
   }
 
   /************************** FPO's Sales Details **********************************/
-  getFpoSalesInfo(masterId){
-    return  this.http.get<any>(this._url+'fposalesdetails/getFpoSalesDetails/'+masterId).pipe(map((res:any)=>{
+  getFpoSalesInfo(masterId) {
+    return this.http.get<any>(this._url + 'fposalesdetails/getFpoSalesDetails/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  addFpoSalesInfo(data){
-    return  this.http.post<any>(this._url+'fposalesdetails/addFpoSalesDetails', data).pipe(map((res:any)=>{
+  addFpoSalesInfo(data) {
+    return this.http.post<any>(this._url + 'fposalesdetails/addFpoSalesDetails', data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  updateFpoSalesInfo(data){
-    return  this.http.put<any>(this._url+'fposalesdetails/updateFpoSalesDetails/'+data.id, data).pipe(map((res:any)=>{
+  updateFpoSalesInfo(data) {
+    return this.http.put<any>(this._url + 'fposalesdetails/updateFpoSalesDetails/' + data.id, data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  deleteFpoSalesInfo(id){
-    return  this.http.delete<any>(this._url+'fposalesdetails/deleteFpoSalesDetails/'+id).pipe(map((res:any)=>{
-      return res;
-    }));
-  }
-  
-    /************************** FPO's Services/Production **********************************/
-
-   getServices(){
-    return  this.http.get<any>(this._url+'fposervices/getall').pipe(map((res:any)=>{
+  deleteFpoSalesInfo(id) {
+    return this.http.delete<any>(this._url + 'fposalesdetails/deleteFpoSalesDetails/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  addService(data){
-    return  this.http.post<any>(this._url+'fposervices', data).pipe(map((res:any)=>{
+  /************************** FPO's Services/Production **********************************/
+
+  getServices() {
+    return this.http.get<any>(this._url + 'fposervices/getall').pipe(map((res: any) => {
       return res;
     }));
   }
 
-  updateService(data, id){
-    return  this.http.put<any>(this._url+'fposervices/'+id, data).pipe(map((res:any)=>{
+  addService(data) {
+    return this.http.post<any>(this._url + 'fposervices', data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  deleteService(id){
-    return  this.http.delete<any>(this._url+'fposervices/delete/'+id).pipe(map((res:any)=>{
+  updateService(data, id) {
+    return this.http.put<any>(this._url + 'fposervices/' + id, data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-   /************************** FPO's Photographs **********************************/
+  deleteService(id) {
+    return this.http.delete<any>(this._url + 'fposervices/delete/' + id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
-   getPhotographs(){
-    return  this.http.get<any>(this._url+'photo').pipe(map((res:any)=>{
+  /************************** FPO's Photographs **********************************/
+
+  getPhotographs() {
+    return this.http.get<any>(this._url + 'photo').pipe(map((res: any) => {
       return res;
     }));
   };
 
-  addPhotograph(data: any){
-    return  this.http.post<any>(this._url+'photo', data).pipe(map((res:any)=>{
+  addPhotograph(data: any) {
+    return this.http.post<any>(this._url + 'photo', data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  updatePhotograph(id:any,data: any) {
-    return this.http.put<any>(this._url + 'photo/'+id, data).pipe(map((res: any) => {
+  updatePhotograph(id: any, data: any) {
+    return this.http.put<any>(this._url + 'photo/' + id, data).pipe(map((res: any) => {
       return res;
     }));
   }
 
   // Delete photograph
-  deletePhotograph(id){
-    return  this.http.delete<any>(this._url+'photo/'+id).pipe(map((res:any)=>{
+  deletePhotograph(id) {
+    return this.http.delete<any>(this._url + 'photo/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
 
-/************************** FPO's  Complaints/ Suggestions **********************************/
+  /************************** FPO's  Complaints/ Suggestions **********************************/
   getComplaints_Suggestions() {
     return this.http.get<any>(this._url + 'complaint/catgories').pipe(map((res: any) => {
       return res;
     }));
   }
-  uopladFile(file:any) {
+  uopladFile(file: any) {
     return this.http.post<any>(this._url + 'complaint/upload', file).pipe(map((res: any) => {
       return res;
     }));
   }
   getComplaints(id) {
-    return this.http.get<any>(this._url + 'fpocomplaint/fpo/'+id).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'fpocomplaint/fpo/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -316,19 +314,19 @@ updateFarmerMachineryBankList(id:number,data:any){
       return res;
     }));
   }
-  addComplaint(data:any) {
+  addComplaint(data: any) {
     return this.http.post<any>(this._url + 'fpocomplaint', data).pipe(map((res: any) => {
       return res;
     }));
   }
   deleteCompliant(data) {
-    return this.http.delete<any>(this._url + 'complaint/'+data).pipe(map((res: any) => {
+    return this.http.delete<any>(this._url + 'complaint/' + data).pipe(map((res: any) => {
       return res;
     }));
   }
-  updateComplaint(data ,formdata) {
+  updateComplaint(data, formdata) {
     return this.http.put<any>(this._url + 'complaint/dept/' + data.id, formdata).pipe(map((res: any) => {
-   
+
       return res;
     }));
   }
@@ -340,7 +338,7 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
   /****************************************fpo land details************************************ */
   getLandDetailList(id) {
-    return this.http.get<any>(this._url + 'api/fpos/landfarmer/'+id).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/fpos/landfarmer/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -352,37 +350,37 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   getFarmerDetailList(masterId) {
-    return this.http.get<any>(this._url + 'api/Farmer/getFarmerDetails/'+masterId).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/Farmer/getFarmerDetails/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getCropList(){
+  getCropList() {
     return this.http.get<any>(this._url + 'api/v1/cropMasterDetails/getCropDetails').pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getSeasonList(){
+  getSeasonList() {
     return this.http.get<any>(this._url + '/api/v1/seasonMaster/getSeasons').pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getCropVarietiesByCropId(cropId){
-    return this.http.get<any>(this._url + 'api/v1/cropVarietyDetails/getCropVarietiesByCropId/'+cropId).pipe(map((res: any) => {
+  getCropVarietiesByCropId(cropId) {
+    return this.http.get<any>(this._url + 'api/v1/cropVarietyDetails/getCropVarietiesByCropId/' + cropId).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getCropsBySeasonId(seasonId){
-    return this.http.get<any>(this._url + 'api/v1/cropMasterDetails/getCropsBySeasonId/'+seasonId).pipe(map((res: any) => {
+  getCropsBySeasonId(seasonId) {
+    return this.http.get<any>(this._url + 'api/v1/cropMasterDetails/getCropsBySeasonId/' + seasonId).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getFarmerDetailsForCropSowing(farmerId){
-    return this.http.get<any>(this._url + '/api/fpos/cropSowing/getFarmerDetailsForCropSowing/'+farmerId).pipe(map((res: any) => {
+  getFarmerDetailsForCropSowing(farmerId) {
+    return this.http.get<any>(this._url + '/api/fpos/cropSowing/getFarmerDetailsForCropSowing/' + farmerId).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -427,7 +425,7 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
 
   deleteFarmer(id: any) {
-    return this.http.delete<any>(this._url + 'api/Farmer/deleteFarmer/'+id).pipe(map((res: any) => {
+    return this.http.delete<any>(this._url + 'api/Farmer/deleteFarmer/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -450,25 +448,25 @@ updateFarmerMachineryBankList(id:number,data:any){
 
   /*******************************production details************************* */
 
-   // =========================================profile page Apis by ======================
+  // =========================================profile page Apis by ======================
 
-   getBoardMemberById(data){
-    return  this.http.get<any>(this._url+ 'api/fpos/boardmember/getBoardMemberById/'+data).pipe(map((res:any)=>{
+  getBoardMemberById(data) {
+    return this.http.get<any>(this._url + 'api/fpos/boardmember/getBoardMemberById/' + data).pipe(map((res: any) => {
       return res;
-    }));    
+    }));
   }
 
 
-  getById(data:number){
-    return  this.http.get<any>(this._url+ 'api/fpos/' +data).pipe(map((res:any)=>{
+  getById(data: number) {
+    return this.http.get<any>(this._url + 'api/fpos/' + data).pipe(map((res: any) => {
       return res;
-    })); 
+    }));
   }
 
-  getAdditionServiceById(data:number){
-    return  this.http.get<any>(this._url+ '/api/fpos/FpoAdditionalServices/getFpoAdditionalServicesById/' +data).pipe(map((res:any)=>{
+  getAdditionServiceById(data: number) {
+    return this.http.get<any>(this._url + 'api/fpos/FpoAdditionalServices/getFpoAdditionalServicesById/' + data).pipe(map((res: any) => {
       return res;
-    })); 
+    }));
 
   }
   getAllNotificationBydept(id) {
@@ -489,7 +487,7 @@ updateFarmerMachineryBankList(id:number,data:any){
   }
   getAllNotificationByFpo(id) {
 
-    return this.http.get<any>(this._url + '/notification/fponotification/'+id).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + '/notification/fponotification/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -509,6 +507,12 @@ updateFarmerMachineryBankList(id:number,data:any){
     return this.http.get<any>(this._url + 'notification/viewdeptnotification/' + id).pipe(map((res: any) => {
       return res;
     }));
+  }
+  getAllStorageUnitByFpo(id) {
+    return this.http.get<any>(this._url + 'api/collectioncenters/getAllByFpo/' + id);
+  }
+  getFarmMachineryBankByFpo(id) {
+    return this.http.get<any>(this._url + 'api/farm/machinery/banks/getFarmMachineryBankByFpo/' + id);
   }
 }
 

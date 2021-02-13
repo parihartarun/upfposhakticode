@@ -131,11 +131,14 @@ export class BoardMembersComponent implements OnInit {
       updatedBy:localStorage.getItem('userRole'),
       id:[member.id],
     });
-    this.memberForm.patchValue({
-      blockId:member.blockId,
-      panchayatId:member.panchayatId,
-      villageId:member.villageId
-    });
+    setTimeout(()=>{                           //<<<---using ()=> syntax
+      this.memberForm.patchValue({
+        blockId:member.blockId,
+        panchayatId:member.panchayatId,
+        villageId:member.villageId
+      });
+    }, 3000);
+    
     this.edit = true;
     window.scroll(0,0);  
   }
@@ -186,8 +189,8 @@ export class BoardMembersComponent implements OnInit {
     console.log(this.memberForm.value);
     this.api.addBoardMember(this.memberForm.value).subscribe(response => {
       this.toastr.success('Board Member Added successfully.');
-      //this.memberForm.reset();
-      //this.submitted = false;
+      this.memberForm.reset();
+      this.submitted = false;
       this.getBoardMembers();
     },
       err => {

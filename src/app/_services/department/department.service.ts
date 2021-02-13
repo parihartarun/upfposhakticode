@@ -22,6 +22,7 @@ export class DepartmentService {
     }));
   }
 
+  // getCropsForSales(season){
   getCropsForSales(season) {
     return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropsBySeasonId/${season}`).pipe(map((res: any) => {
       return res;
@@ -81,6 +82,13 @@ export class DepartmentService {
   }
   getGuideline() {
     this.http.get<any>(this._url + 'fpoguidelines/getall').subscribe((res: any) => {
+      if (res) {
+        this.guideLineList.next(res);
+      }
+    })
+  }
+  getGuidelineByType(type) {
+    this.http.get<any>(this._url + 'fpoguidelines/' + type).subscribe((res: any) => {
       if (res) {
         this.guideLineList.next(res);
       }

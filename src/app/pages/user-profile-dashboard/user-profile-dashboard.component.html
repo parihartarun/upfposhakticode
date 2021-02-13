@@ -1,107 +1,83 @@
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="max-height: 300px;  background-size: cover; background-position: center top;">
-    <!-- Mask -->
-    <span class="mask bg-gradient-danger opacity-8"></span>
-    <!-- Header container -->
-    <div class="container-fluid d-flex align-items-center">
-      <div class="row">
-        <div class="col-lg-7 col-md-10">
-        </div>
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
       </div>
     </div>
   </div>
-  <div class="container-fluid mt--7">
-    <div class="row">
-     
-      <div class="col-xl-12 order-xl-1">
-        <div class="card shadow">
-          <div class="card-header bg-white border-0">
-            <div class="row align-items-center">
-              <div class="col-8">
-                <h3 class="mb-0">{{'My profile'|translate}}</h3>
-              </div>
-              <div class="col-4 text-right">
-              </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    
+    <div class="col-xl-12 order-xl-1">
+      <div class="card shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">{{'My profile'|translate}}</h3>
+            </div>
+            <div class="col-4 text-right">
             </div>
           </div>
-          <div class="card-body">
-            <form  >
-                <!-- [formGroup]="profileForm" -->
-              <input type="hidden" >
-              <h6 class="heading-small text-muted mb-4">{{'User information'|translate}}</h6>
-              <div class="pl-lg-4">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-userName">{{'Username'|translate}}</label>
-                      <input type="text" id="input-userName" class="form-control form-control-alternative" placeholder="userName">
-                      <!-- <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
-                        <div *ngIf="formControls.userName.errors.required">{{'username is required1'|translate}}</div>
-                      </div> -->
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-email">{{'Email'|translate}}</label>
-                      <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com">
-                      <!-- <div *ngIf="submitted && formControls.fpoEmail.errors" class="text-danger">
-                        <div *ngIf="formControls.fpoEmail.errors.required">{{'email is required'|translate}}</div>
-                        <div *ngIf="formControls.fpoEmail.errors.email">{{'Invalid Email Address'|translate}}</div>
-                      </div> -->
-                    </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="InputsupplierprofileForm" >
+            <!-- [formGroup]="profileForm" -->
+            <input type="hidden" >
+            <h6 class="heading-small text-muted mb-4">{{'User information'|translate}}</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">{{'Supplier Name'|translate}}</label>
+                    <input type="email" formControlName="contact_person" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com">
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-first-name">{{'Full name'| translate}}</label>
-                      <input type="text"  id="input-first-name" class="form-control form-control-alternative" placeholder="First name">
-                      <!-- <div *ngIf="submitted && formControls.fpoName.errors" class="text-danger">
-                        <div *ngIf="formControls.fpoName.errors.required">{{'Full Name is required'|transalte}}</div>
-                      </div> -->
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-last-name">{{'Registration No'|translate}}</label>
-                      <input type="text" id="input-last-name"  class="form-control form-control-alternative" placeholder="Last name">
-                      <!-- <div *ngIf="submitted && formControls.fmbno.errors" class="text-danger">
-                        <div *ngIf="formControls.fmbno.errors.required">{{'Registration No. is required'|translate}}</div>
-                      </div> -->
-                    </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-userName">{{'Username'|translate}}</label>
+                    <input type="text" formControlName="userName" id="input-userName" class="form-control form-control-alternative" placeholder="userName">
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <label class="input-label">{{'Agency' | translate}} <span class="required">*</span></label>
-                      <select class="form-control form-control-alternative">
-                        <option value="">
-                          {{'select Agency' |translate}}
-                        </option>
-                        <option value="NABARD">NABARD</option>
-                        <option value="SFAC">SFAC</option>
-                        <option value="UPBSN">UPBSN</option>
-                        <option value="UP State Bio-Energy Development Board">UP State Bio-Energy Development Board</option>
-                      </select>
-                      <!-- <div *ngIf="submitted && formControls.agency.errors" class="text-danger">
-                        <div *ngIf="formControls.agency.errors.required">{{'agency is required' |translate}}</div>
-                      </div> -->
-                    </div>
+             </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="input-label">{{'email' | translate}} <span class="required">*</span></label>
+                    <input type="text" formControlName="email" id="input-last-name"  class="form-control form-control-alternative" placeholder="email">
+                 </div>
+                </div>
+              </div>
+
+              <div class="row">
+               <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">{{'Mobile'|translate}}</label>
+                    <input type="text" formControlName="mobile_number" id="input-last-name"  class="form-control form-control-alternative" placeholder="mobileNumber">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">{{'Pincode'| translate}}</label>
+                    <input type="text" formControlName="pincode" id="input-first-name" class="form-control form-control-alternative" placeholder="pincode">
                   </div>
                 </div>
               </div>
-              <hr class="my-4" />
-              <!-- Address -->
-      
-              <div class="pl-lg-4">
-                <button type="button" class="btn btn-yellow btn-primary my-4" (click)="updateProfile()">
-                  {{'Update profile'| translate}}
-                </button>
-              </div>
-            </form>
-          </div>
+             
+            </div>
+            <hr class="my-4" />
+            <div class="pl-lg-4">
+              <button type="button" class="btn btn-yellow btn-primary my-4" (click)="updateProfile()">
+                {{'Update profile'| translate}}
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

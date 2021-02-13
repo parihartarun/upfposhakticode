@@ -15,6 +15,7 @@ export class DepartmentGuidelineComponent implements OnInit {
   guidelineForm: FormGroup;
   id = null;
   isEdit = false;
+  filterByType = '';
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, public departmentService: DepartmentService) { }
 
   ngOnInit(): void {
@@ -25,9 +26,15 @@ export class DepartmentGuidelineComponent implements OnInit {
     });
     this.departmentService.getGuideline();
   }
+  getGuidelineByType() {
+    if (!!!this.filterByType) {
+      this.departmentService.getGuideline();
+    } else {
+      this.departmentService.getGuidelineByType(this.filterByType);
+    }
+  }
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
-    console.log(' this.fileToUpload', this.fileToUpload);
   }
   addGuideline() {
     this.guidelineForm.markAllAsTouched();
@@ -68,6 +75,7 @@ export class DepartmentGuidelineComponent implements OnInit {
         this.toastr.success('Guideline updated successfully.');
         this.departmentService.getGuideline();
         this.guidelineForm.reset();
+        this.isEdit = false;
       } else {
         this.toastr.error('Something went wrong.');
       }
