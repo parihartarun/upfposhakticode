@@ -16,9 +16,13 @@ export class AuthHeaderComponent implements OnInit {
   isDropdownOpen = false;
   navText: any
   constructor(public translate: TranslateService, private route: Router, private _activatedroute: ActivatedRoute) {
-    translate.addLangs(['en', 'hi']);
-    translate.setDefaultLang('hi');
-    localStorage.setItem('language', 'hi');
+    console.log(localStorage.getItem('language'));
+    if(localStorage.getItem('language')){
+      translate.setDefaultLang(localStorage.getItem('language'));
+    }else{
+      translate.setDefaultLang('hi');
+      localStorage.setItem('language', 'hi');
+    }
   }
   useLanguage(language: string) {
     this.translate.use(language);

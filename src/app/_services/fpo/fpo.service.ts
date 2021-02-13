@@ -375,6 +375,12 @@ updateFarmerMachineryBankList(id:number,data:any){
     }));
   }
 
+  getCropsBySeasonId(seasonId){
+    return this.http.get<any>(this._url + 'api/v1/cropMasterDetails/getCropsBySeasonId/'+seasonId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   getFarmerDetailsForCropSowing(farmerId){
     return this.http.get<any>(this._url + '/api/fpos/cropSowing/getFarmerDetailsForCropSowing/'+farmerId).pipe(map((res: any) => {
       return res;

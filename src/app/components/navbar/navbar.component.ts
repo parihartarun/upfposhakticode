@@ -24,6 +24,7 @@ export class NavbarComponent implements OnInit {
       translate.setDefaultLang(localStorage.getItem('language'));
     }else{
       translate.setDefaultLang('hi');
+      localStorage.setItem('language', 'hi');
     }
   }
 
