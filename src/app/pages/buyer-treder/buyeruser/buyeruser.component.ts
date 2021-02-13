@@ -19,6 +19,10 @@ export class BuyeruserComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // this.api.getState().subscribe(s => {
+    //   this.states = s
+    // })
+
     this.buyerprofileForm = this.formBuilder.group({
       contactPerson: ['', Validators.required],
       userName: ['', Validators.required],

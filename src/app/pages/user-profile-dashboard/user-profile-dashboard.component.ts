@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/_services/auth/auth.service';
 import { InputSupplierService } from 'src/app/_services/InputSupplier/InputSupplier.services';
 
 @Component({
@@ -12,12 +13,46 @@ export class UserProfileDashboardComponent implements OnInit {
 
   InputsupplierprofileForm:FormGroup;
   userId:any;
-
+  districts = [];
+  blocks = [];
+  villages = [];
+  inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
+  isBulkSupplyingCompany: boolean=true 
   constructor(private formBuilder: FormBuilder,
      private toastr: ToastrService,
-     private inputservice:InputSupplierService) { }
+     private inputservice:InputSupplierService,
+     private api: AuthService) { }
+
+     selectDistrict(districtId: any) {
+      this.InputsupplierprofileForm.controls['blockRefId'].setValue(districtId.currentTarget.value);
+      this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(blocks => {
+        this.blocks = blocks;
+      })
+    }
+     selectBlock(blockId: any) {
+      this.InputsupplierprofileForm.controls['blockRefId'].setValue(blockId.currentTarget.value);
+      this.api.getVillageByBlock(parseInt(blockId.currentTarget.value)).subscribe(v => {
+        this.villages = v;
+      })
+      
+    }
+    selectVillage(villRefId: any) {
+      this.InputsupplierprofileForm.controls['villageRefId'].setValue(villRefId.currentTarget.value);
+    }
+    selectInputSupplierType(inputSupplierType: any) {
+      if (parseInt(inputSupplierType.currentTarget.value) == 1) {
+        this.isBulkSupplyingCompany = false;
+      } else {
+        this.isBulkSupplyingCompany = true;
+      }
+      this.InputsupplierprofileForm.controls['inputSupplierType'].setValue(inputSupplierType.currentTarget.value);
+    }
 
   ngOnInit(): void {
+
+    this.api.getDistrict().subscribe(d => {
+      this.districts = d
+    })
 
     this.InputsupplierprofileForm = this.formBuilder.group({
       userName:['', Validators.required],
@@ -27,9 +62,9 @@ export class UserProfileDashboardComponent implements OnInit {
       pincode:['',Validators.required],
       inputSupplierName:['',Validators.required],
       inputSupplierType:['',Validators.required],
-      distRefId:['',Validators.required],
-      blockRefId:['',Validators.required],
-      villageRefId:['',Validators.required],
+      distRefId: ['' ],
+      blockRefId:[''],
+      villageRefId:[''],
       seed_id:['',Validators.required],
       gstNumber:['',Validators.required],
       license_number:['',Validators.required],
@@ -64,6 +99,13 @@ export class UserProfileDashboardComponent implements OnInit {
      }
    })
   }
+
+
+
+
+
+
+
 
   updateProfile()
   {
