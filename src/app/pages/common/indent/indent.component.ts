@@ -9,6 +9,7 @@ import { FpoService } from 'src/app/_services/fpo/fpo.service';
 })
 export class IndentComponent implements OnInit {
   indents: any = [];
+  loading:boolean=false;
   p: number = 1;
   userid:number;
   userrole:string;
