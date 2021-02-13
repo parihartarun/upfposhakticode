@@ -20,7 +20,6 @@
   "Any": "कोई भी",
   "Crop": "फसलों",
   "Crops": "फ़सलें",
-
   "District": "जनपद",
   "FPO": "एफ.पी. ओ",
   "Search": "खोजें",
@@ -640,7 +639,6 @@
   "buildingName": "इमारत का नाम",
   "Supplier Name": "आपूर्तिकर्ता नाम",
   "Seed1": "बीज",
-  "Select Seed": "बीज का चयन करें"
-
-
+  "Select Seed": "बीज का चयन करें",
+  "FPO is required": "एफपीओ की आवश्यकता है"
 }

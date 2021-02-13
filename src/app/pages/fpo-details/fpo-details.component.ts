@@ -55,6 +55,7 @@ export class FpoDetailsComponent implements OnInit {
   colorScheme = {
     domain: ['blue', '#ca1a1a']
   };
+  pfoPhoto = [];
   constructor(private modalService: NgbModal, private api: FpoService, private _activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -85,14 +86,22 @@ export class FpoDetailsComponent implements OnInit {
       //   this.additionalservice = response;
       // });
 
-      this.api.getBoardMemberById(fpoId).subscribe(response => {
-        this.boardMember = response;
-        //alert("boardMember"+JSON.stringify(this.boardMember));  
+      // this.api.getBoardMemberById(fpoId).subscribe(response => {
+      //   this.boardMember = response;
+      //   //alert("boardMember"+JSON.stringify(this.boardMember));  
 
-      });
+      // });
 
     });
-
+    this.getFpoPhohto();
+  }
+  getFpoPhohto() {
+    this.api.getFpoPhoto(this.fpoId).subscribe((res: any) => {
+      if (res) {
+        console.log('res', res);
+        this.pfoPhoto = res;
+      }
+    })
   }
   getAllByFpo() {
     this.api.getAllStorageUnitByFpo(this.fpoId).subscribe((res: any) => {
