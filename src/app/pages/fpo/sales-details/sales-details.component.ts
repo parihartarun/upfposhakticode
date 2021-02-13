@@ -110,6 +110,7 @@ export class SalesDetailsComponent implements OnInit {
   }
 
   editFpoSalesInfo(sale){
+    this.getCropsBySeasonId(sale.season_id);
     this.getCropVarietiesByCropId(sale.crop_id);
     this.salesForm = this.formBuilder.group({
       season: [sale.season_id, [Validators.required]],
@@ -122,9 +123,10 @@ export class SalesDetailsComponent implements OnInit {
     });
     setTimeout(()=>{  
       this.salesForm.patchValue({
+        cropRefName:sale.crop_id,
         verietyId:sale.veriety_id
       });
-    }, 3000);
+    }, 1000);
     this.edit = true;
     window.scroll(0,0);
   }
