@@ -468,6 +468,9 @@
   "Sales Data": "Sales Data",
   "Select District": "Select District",
   "Select Crops": "Select Crops",
+  
+  
+
   "Description": "Description",
   "Seeds": "Seeds",
   "Fertilizer": "Fertilizer",
@@ -555,9 +558,14 @@
   "Insecticdes Type":"Insecticdes Type",
   "Chemical Pesticides":"Chemical Pesticides",
   "Bio Pesticides":"Bio Pesticides",
-  "Herbicides":"Herbicides"
+  "Herbicides":"Herbicides",
 
 
-
+  "Select FPO": "Select FPO",
+  "description is required": "description is required",
+  "Notifications Details": "Notifications Details",
+  "NotificationsDate": "Notifications Date",
+  "Notifications By Department": "Notifications By Department",
+  "Department Name": "Department Name"
 
 }
