@@ -164,8 +164,6 @@
 
 
 
-
-
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -175,11 +173,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
-      <!-- Modal body -->
       <div class="modal-body">
-      
-        <!-- <div class="col-lg-4">
-          <div class="form-group"> -->
             <label class="form-control-label">{{'Reason of deactivation' | translate}} </label>
             <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
@@ -189,17 +183,15 @@
                 <option value="">{{'Select reason' | translate}}</option>
                 <option *ngFor="let reason of Reasons" [value]="reason.reason">{{reason.reason}}</option>
               </select>
+            </div><br>
+
+            <div *ngIf="valueOther">
+              <input type="text" class="form-control" [(ngModel)]="inputOthers">
             </div>
-<!--            
-          </div>
-        </div> -->
-
-
-
       </div>
 
-      <!-- Modal footer -->
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveDeactivate()" >Save</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
 
