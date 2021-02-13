@@ -23,7 +23,7 @@ export class IndentComponent implements OnInit {
   }
   getIdent() {
     
-    
+    this.loading = true;
     this.indents = [ ],
     // localStorage.setItem('userRole', response.userRole);
     //localStorage.setItem('masterId', response.masterId);
@@ -32,18 +32,20 @@ export class IndentComponent implements OnInit {
     console.log("User role on Indent List Page  = "+this.userRole);
     console.log("Master Id on Indent List Page  = "+this.masterId);
     
-    if (this.userRole == 'ROLE_FPC') {  
+        if (this.userRole == 'ROLE_FPC') {  
       this.fpoService.getIndentByFpoId(this.masterId).subscribe(data=>{
         console.log("Data Has been received"+JSON.stringify(data));
         this.indents = data;
+        this.loading = false;
       })
 
-    } else if(this.userRole == 'ROLE_MIN') {
-      
-    } else if(this.userRole == 'ROLE_BUYERSELLER'){
-      
-    }else{
-      
+    }  else {
+      this.fpoService.getIndentByUserId(this.masterId).subscribe(data=>{
+        console.log("Data Has been received"+JSON.stringify(data));
+        this.indents = data;
+        this.loading = false;
+      })
+
     }
 
 
