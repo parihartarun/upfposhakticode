@@ -155,6 +155,7 @@ export class CropProductionComponent implements OnInit {
   editCropProduction(production){
     console.log(production);
     console.log(localStorage.getItem('userrole'));
+    this.getCropsBySeasonId(production.season_id);
     this.getCropVarietiesByCropId(production.crop_id);
     this.productionForm = this.formBuilder.group({
       season: [production.season_id, [Validators.required]],
@@ -168,9 +169,10 @@ export class CropProductionComponent implements OnInit {
     });
     setTimeout(()=>{                           //<<<---using ()=> syntax
       this.productionForm.patchValue({
+        cropId:production.crop_id,
         verietyId:production.veriety_id
       });
-    }, 3000);
+    }, 1000);
     this.productionForm.patchValue({
       verietyId:production.veriety_id
     });
