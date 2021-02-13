@@ -207,7 +207,7 @@ export class AddFarmerComponent implements OnInit {
         villagePanchayatId: farmerDetails.villagePanchayatId,
         villRefId:farmerDetails.villRefId
       });
-    }, 3000);
+    }, 1000);
     this.edit = true;
     window.scroll(0,0);
   }
