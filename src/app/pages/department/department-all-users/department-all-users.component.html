@@ -87,7 +87,7 @@
                       {{'Actions' | translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="activeUSer(u)">{{'Active' | translate}}</a>
+                      <a class="dropdown-item"  (click)="activeUSer(u)">{{'Active' | translate}}</a>
                       <!-- <a class="dropdown-item" href="javascript:void(0)" (click)="deleteUser(u)">Delete</a> -->
                     </div>
                   </div>
@@ -170,7 +170,7 @@
                     {{'Actions' | translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal" (click)="DeActiveUSer(u)" >{{'Deactive' | translate}}</a>
+                      <a class="dropdown-item"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal" (click)="DeActiveUSer(u)" >{{'Deactive' | translate}}</a>
                       <!-- <a class="dropdown-item" href="javascript:void(0)" (click)="deleteUser()">Delete</a> -->
                     </div>
                   </div>
@@ -191,7 +191,7 @@
 
 
 
-<div class="modal" id="myModal">
+<div class="modal" id="myModal" tabindex="-1">
   <div class="modal-dialog">
     <form [formGroup]="reasonSelectedForm">
     <div class="modal-content">
@@ -219,7 +219,7 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="saveDeactivate()" [disabled]="reasonSelectedForm.invalid" >{{'Save' | translate}}</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveDeactivate()" [disabled]="reasonSelectedForm.invalid" >{{'Save' | translate}}</button>
         <button type="button" class="btn btn-danger" (click)="closeModal()" data-dismiss="modal">{{'close' | translate}}</button>
       </div>
 
