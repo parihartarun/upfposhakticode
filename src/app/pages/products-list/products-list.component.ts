@@ -379,9 +379,7 @@ searchWithFilters()
       fpoEmail: [this.fpoDetail.fpoEmail],
       fulfillmentDate: ["", [Validators.required]],
       quantity: [, [Validators.required,Validators.pattern(`[1-9]{1,}`)]],
-      cropMaster: [],
-      user: [],
-      fpo:[]
+      
      
     })
   }
@@ -422,6 +420,8 @@ searchWithFilters()
     this.indentloading = true;
     this.indentForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd/MM/yyyy'); //whatever format you need. 
     this.indentForm.value.fulfillmentDate = this.datePipe.transform(date, 'yyyy-MM-dd');
+    this.indentForm.value.userId = localStorage.getItem('masterId');
+    console.log("Master Id Found While submitting the Indent = "+localStorage.getItem('masterId'));
     this._productService.saveIndent(this.indentForm.value).subscribe(response => {
      
       if(response){
