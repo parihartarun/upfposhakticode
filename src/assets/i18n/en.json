@@ -425,6 +425,8 @@
   "Indent": "Indent",
   "createindent": "Create Indent",
   "filters": "Filters",
+  "ok":"OK",
+  "indentsucessmessage":"Indent saved Successfully... Indent id {{id}}",
   "nofiltersselected": "list is empty.",
   "noitemsfound": "No items found..",
   "searchplaceholder": "Type here for search...",
