@@ -88,7 +88,7 @@
       </div>
       <div *ngIf="submitted && formControls.email.errors" class="text-danger">
         <div *ngIf="formControls.email.errors.required">{{'email is required'|translate}}</div>
-        <div *ngIf="formControls.email.errors.email">{{'Invalid Email Address'|translate}}</div>
+        <div *ngIf="formControls.email.errors.pattern">{{'Invalid Email Address'|translate}}</div>
       </div>
     </div>
 

@@ -66,7 +66,7 @@ export class InputSupplierRegisterComponent implements OnInit {
       license_number: ['', Validators.required],
       districtRefId: ['', Validators.required],
       deleted: [true],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
       gstNumber: ['', Validators.pattern("[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}")],
       mobile_number: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],

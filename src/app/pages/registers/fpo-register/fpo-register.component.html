@@ -148,7 +148,7 @@
       </div>
       <div *ngIf="submitted && formControls.fpoEmail.errors" class="text-danger">
         <div *ngIf="formControls.fpoEmail.errors.required">{{'fpo email is required' | translate}}</div>
-        <div *ngIf="formControls.fpoEmail.errors.email">{{'Invalid Email Address'|translate}}</div>
+        <div *ngIf="formControls.fpoEmail.errors.pattern">{{'Invalid Email Address'|translate}}</div>
       </div>
     </div>
     <div class="col-6">
