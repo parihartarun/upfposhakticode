@@ -50,7 +50,7 @@ export class ByerSellRegisterComponent implements OnInit {
       designationContactPerson: ['', Validators.required],
       districtRefId: ['', Validators.required],
       deleted: [true],     
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
       mobileNumber: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],         
       stateRefId: ['', Validators.required],
