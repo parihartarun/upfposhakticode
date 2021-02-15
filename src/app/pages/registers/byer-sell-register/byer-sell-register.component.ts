@@ -38,8 +38,6 @@ export class ByerSellRegisterComponent implements OnInit {
   }
   selectDistrict(districtRefId: any) {   
     this.registerForm.controls['districtRefId'].setValue(districtRefId.currentTarget.value);
-    
-   
   }
  
   createRegisterForm() {

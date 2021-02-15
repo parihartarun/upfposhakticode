@@ -68,15 +68,18 @@
                   {{indent?.status}}
                 </td>         
                 <td class="text-right" *ngIf="userRole == 'ROLE_FPC'">
-                  <div ngbDropdown *ngIf="userRole == 'ROLE_FPC'" placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" *ngIf="userRole == 'ROLE_FPC'" ngbDropdownToggle>
+                  <button class="btn btn-sm btn-primary" *ngIf="userRole == 'ROLE_FPC'" (click)="opendialog($event,detailform,indent)">
+                    {{'Actions'|translate}}
+                  </button> 
+                  <!-- <div ngbDropdown *ngIf="userRole == 'ROLE_FPC'" placement="bottom-right"> -->
+                    <!-- <a class="btn btn-sm btn-primary" *ngIf="userRole == 'ROLE_FPC'" ngbDropdownToggle>
                       {{'Actions'|translate}}
-                    </a>
-                    <div *ngIf="userRole == 'ROLE_FPC'" ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                    </a> -->
+                    <!-- <div *ngIf="userRole == 'ROLE_FPC'" ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow"> -->
                       <!--<a class="dropdown-item" href="javascript:void(0)">Edit</a>-->
-                      <a class="dropdown-item" *ngIf="userRole == 'ROLE_FPC'" href="javascript:void(0)">{{'Delete'|translate}}</a>
+                      <!-- <a class="dropdown-item" *ngIf="userRole == 'ROLE_FPC'" href="javascript:void(0)">{{'Delete'|translate}}</a>
                     </div>
-                  </div>
+                  </div> -->
                 </td>
               </tr>
              
@@ -92,3 +95,69 @@
     </div>
   </div>
 </div>
+<ng-template #detailform let-modal>
+  <div class="modal-header">
+    <h3 class="modal-title text-center">{{'indentdetails' | translate}}</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body mt-1 pt-1">
+    <form role="form mt-1 p-1" [formGroup]="indentForm">
+
+       <div class="form-group mb-3">
+        <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span
+            class="required">*</span></label>
+        <div class="input-group input-group-alternative">
+          <input class="form-control" placeholder="{{'Quantity'|translate}}" type="text" formControlName="quantity">
+        </div>
+        <!-- <div *ngIf="!submitted && formControls.quantity.touched && formControls.quantity.errors" class="text-danger mt-1 text-xsm">
+          
+          <div *ngIf="formControls.quantity.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+        </div>
+        <div *ngIf="submitted && formControls.quantity.errors" class="text-danger mt-1 text-xsm">
+          <div *ngIf="formControls.quantity.errors.required">{{'quantity is required'|translate}}</div>
+          <div *ngIf="formControls.quantity.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+        </div> -->
+      </div>
+      <div class="form-group mb-3">
+        <label class="form-control-label" for="input-username">{{'status'|translate}}<span
+            class="required">*</span></label>
+        <div class="input-group input-group-alternative">
+          <select class="form-control" formControlName="status">
+         <option  [value]="undefined" selected disabled>{{'status'|translate}}</option>
+         <option value="partially fulfilled" >{{'partially fulfilled'|translate}}</option>
+         <option value="fulfilled">{{'fulfilled'|translate}}</option>
+         <option value="rejected">{{'rejected'|translate}}</option>
+           </select>  
+          </div>
+        <!-- <div *ngIf="!submitted && formControls.quantity.touched && formControls.quantity.errors" class="text-danger mt-1 text-xsm">
+          
+          <div *ngIf="formControls.quantity.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+        </div>
+        <div *ngIf="submitted && formControls.quantity.errors" class="text-danger mt-1 text-xsm">
+          <div *ngIf="formControls.quantity.errors.required">{{'quantity is required'|translate}}</div>
+          <div *ngIf="formControls.quantity.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+        </div> -->
+      </div>
+
+      <div class="form-group mb-3">
+        <label class="form-control-label" for="input-delivery">{{'reason'|translate}}</label>
+        <div class="input-group input-group-alternative">
+          <textarea class="form-control" id="input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"
+            formControlName="reason"></textarea>
+        </div>
+        <div *ngIf="submitted && formControls.fpoDeliveryAddress.errors" class="text-danger mt-1 text-xsm">
+          <div *ngIf="formControls.fpoDeliveryAddress.errors.required">{{'deleiveryrequired'| translate}}</div>
+        </div>
+      </div>
+
+
+
+      <div class="text-center">
+        <button type="submit" [disabled] = "!indentForm.valid" class="btn btn-login btn-product-search btn-primary my-4"(click)="save()">{{'Send'|translate}}</button>
+      </div>
+    </form>
+  </div>
+ 
+</ng-template>
