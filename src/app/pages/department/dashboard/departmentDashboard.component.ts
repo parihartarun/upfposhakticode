@@ -9,11 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartmentDashboardComponent implements OnInit {
 
-  public datasets: any;
-  public data: any;
-  public salesChart;
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
   public prod = false;
   public surp = true;
 
@@ -21,7 +16,7 @@ export class DepartmentDashboardComponent implements OnInit {
 
   showXAxis: boolean = true;
   showYAxis: boolean = true;
-  // gradient: boolean = true;
+  gradient: boolean = true;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
   xAxisLabel: string = 'Crops';
@@ -41,52 +36,18 @@ export class DepartmentDashboardComponent implements OnInit {
 
   // Doughnut
   public doughnutChartLabels = [
-    "Download Sales",
-    "In-Store Sales",
-    "Mail-Order Sales"
+    "NABARD",
+    "SFAC",
+    "UPBSN","UP State Bio-Energy Development Board"
   ];
-  public doughnutChartData = [[350, 450, 100]];
+  public doughnutChartData = [[250, 150, 100, 20]];
   public doughnutChartType = "doughnut";
 
   ngOnInit() {
-
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.data = this.datasets[0];
-
-
-    var chartOrders = document.getElementById('chart-orders');
-
-    // parseOptions(Chart, chartOptions());
-
-
-    // var ordersChart = new Chart(chartOrders, {
-    //   type: 'bar',
-    //   options: chartExample2.options,
-    //   data: chartExample2.data
-    // });
-
-    // var chartSales = document.getElementById('chart-sales');
-
-    // this.salesChart = new Chart(chartSales, {
-    // 	type: 'line',
-    // 	options: chartExample1.options,
-    // 	data: chartExample1.data
-    // });
-
     this.setGraphData();
     this.productionGraph();
 
   }
-
-
-  public updateOptions() {
-    this.salesChart.data.datasets[0].data = this.data;
-    this.salesChart.update();
-  }
-
   setGraphData() {
     this.multi = [
       {
@@ -317,15 +278,10 @@ export class DepartmentDashboardComponent implements OnInit {
         {
           graphFor: `Total Actual Production in Zayad (in Qt.)`,
           graphDetails: [
-            {
-              "name": "moong",
-              "series": [
                 {
                   "name": "moong",
                   "value": 3500
                 }
-              ]
-            }
           ]
         }
       ],
@@ -333,24 +289,15 @@ export class DepartmentDashboardComponent implements OnInit {
         {
           graphFor: `Total Actual Production in Kharif (in Qt.)`,
           graphDetails: [
-            {
-              "name": "paddy",
-              "series": [
+
                 {
                   "name": "paddy",
                   "value": 2000
-                }
-              ]
-            },
-            {
-              "name": "Soyabean",
-              "series": [
+                },
                 {
                   "name": "Soyaean",
                   "value": 3500
                 }
-              ]
-            }
           ],
         }]
   }
