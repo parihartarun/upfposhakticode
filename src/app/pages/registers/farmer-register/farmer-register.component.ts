@@ -76,8 +76,8 @@ export class FarmerRegisterComponent implements OnInit {
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      accountNo: ['', Validators.required],
-      bankRefId: ['', Validators.required],
+      accountNo: [''],
+      bankRefId: [''],
       blockRef: ['', Validators.required],
       category: ['', Validators.required],
       distRefId: ['', Validators.required],
@@ -88,7 +88,7 @@ export class FarmerRegisterComponent implements OnInit {
       farmerMob: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       farmerName: ['', Validators.required],
 
-      ifscCode: ['', Validators.required],
+      ifscCode: [''],
       parantsName: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],

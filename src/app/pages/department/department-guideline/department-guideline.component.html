@@ -19,7 +19,7 @@
                     <form [formGroup]="guidelineForm">
                         <div class="pl-lg-4">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-last-name">{{'Guideline Type' |
                                             translate}} <span class="required">*</span></label>
@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">
                                             {{'Upload Document' | translate}} <span class="required">*</span>
@@ -49,6 +49,24 @@
                                         <input #myInput type="file" id="input-first-name"
                                             class="form-control form-control-alternative" formControlName="document"
                                             (change)="upload($event.target.files)" />
+                                        <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
+                                            class="text-danger">
+                                            <div>{{'Upload document is required' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">
+                                            {{'URL' | translate}} <span class="required">*</span>
+                                        </label>
+                                        <!--<small class="">
+                                          (File format should be .jpg, .png, .jpeg and .pdf)
+                                        </small>-->
+                                        <input #myInput type="text" id="input-first-name"
+                                            class="form-control form-control-alternative" formControlName="document" placeholder="www.google.com/"
+                                          />
                                         <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
                                             class="text-danger">
                                             <div>{{'Upload document is required' | translate}}</div>

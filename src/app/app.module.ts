@@ -96,6 +96,7 @@ import { FarmerNotifictionByFpoComponent } from './pages/farmer/farmer-notificti
 import { BuyeruserComponent } from './pages/buyer-treder/buyeruser/buyeruser.component';
 import { UserProfileDashboardComponent } from './pages/user-profile-dashboard/user-profile-dashboard.component';
 import { DepartmentAllUsersComponent } from './pages/department/department-all-users/department-all-users.component';
+import { UppercaseDirective } from './directive/uppercase.directive';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -175,6 +176,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     IndentComponent,
     LoginModelPopupComponent,
     OnlynumberDirective,
+    UppercaseDirective,
     FpoGuidelinesComponent,
     FarmerUserProfileComponent,
 
