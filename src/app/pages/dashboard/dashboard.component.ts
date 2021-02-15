@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 import { FpoService } from '../../_services/fpo/fpo.service';
 
+
+
 // core components
 import {
   chartOptions,
@@ -29,10 +31,14 @@ export class DashboardComponent implements OnInit {
     smallFarmers:0,
     land:0,
   };
+
+
+
   constructor(private api:FpoService){}
 
   ngOnInit() {
 
+  
     this.getDashboardDetails();
    // this.getChartDetails();
     this.datasets = [
@@ -59,12 +65,12 @@ export class DashboardComponent implements OnInit {
 			type: 'line',
 			options: chartExample1.options,
 			data: chartExample1.data
-		});
+    });
   }
 
   getDashboardDetails(){
     this.api.getDashboardData().subscribe(response => {
-      console.log(response);
+      console.log("FPO",response);
       this.totals = response;
     },
       err => {

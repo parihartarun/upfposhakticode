@@ -192,4 +192,93 @@
     </div>
     <div class="mb-10"></div>
   </div>
+</div><br>
+
+
+
+<div class="container-fluid mt--7 mb-7">
+  <div class="row">
+    <div class="form-check">
+      <label class="form-check-label" for="radio1">
+        Marketable Surplus &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="form-check-input" name="optradio" value="Surplus" (click)="SurplusMarket()" checked>
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label" for="radio2">
+        Actual Production&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="form-check-input" name="optradio" value="production" (click)="productionActual()">
+      </label>
+    </div>
+    </div>
+  <div class="card shadow">
+    <!-- <div class="card-header p-0">
+      <h3>Season-wise Production</h3>
+    </div> -->
+    <div class="card-body">
+        <div *ngIf="surp" class="row">
+        <div class="col-12" *ngFor="let row of multi">
+          <div class="row px-5 mb-0">
+            <strong> {{row.graphFor}}</strong> 
+          </div>
+          <div class="row mb-4" style="border-bottom: solid;">
+            <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.graphDetails"
+              [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+              [legendTitle]="legendTitle" [legendPosition]="'below'">
+            </ngx-charts-bar-vertical-2d>
+          </div>
+        </div>
+      </div>
+
+        <div *ngIf="prod" class="row">
+        <div class="col-12" *ngFor="let row of multi1">
+          <div class="row px-5 mb-0">
+            <strong> {{row.graphFor}}</strong> 
+          </div>
+          <div class="row mb-4" style="border-bottom: solid;">
+            <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme1" [results]="row.graphDetails"
+              [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+              [legendTitle]="legendTitle" [legendPosition]="'below'">
+            </ngx-charts-bar-vertical-2d>
+          </div>
+        </div>
+
+
+        <div class="col-12" *ngFor="let row of multi2">
+          <div class="row px-5 mb-0">
+            <strong> {{row.graphFor}}</strong> 
+          </div>
+          <div class="row mb-4" style="border-bottom: solid;">
+            <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme1" [results]="row.graphDetails"
+              [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+              [legendTitle]="legendTitle" [legendPosition]="'below'">
+            </ngx-charts-bar-vertical-2d>
+          </div>
+        </div>
+
+
+        <div class="col-12" *ngFor="let row of multi3">
+          <div class="row px-5 mb-0">
+            <strong> {{row.graphFor}}</strong> 
+          </div>
+          <div class="row mb-4" style="border-bottom: solid;">
+            <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme1" [results]="row.graphDetails"
+              [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+              [legendTitle]="legendTitle" [legendPosition]="'below'">
+            </ngx-charts-bar-vertical-2d>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="display: block;">
+  <canvas baseChart 
+    [data]="doughnutChartData"
+    [labels]="doughnutChartLabels"
+    [chartType]="doughnutChartType">
+  </canvas>
 </div>
