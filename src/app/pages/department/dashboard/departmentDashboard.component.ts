@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
+// import Chart from 'chart.js';
 
 // core components
 import {
@@ -46,14 +46,14 @@ export class DepartmentDashboardComponent implements OnInit {
     domain: ['#a29974', '#ca1a1a', '#f9b605', '#0e6655']
   };
 
-// Doughnut
-public doughnutChartLabels = [
-  "Download Sales",
-  "In-Store Sales",
-  "Mail-Order Sales"
-];
-public doughnutChartData = [[350, 450, 100]];
-public doughnutChartType = "doughnut";
+  // Doughnut
+  public doughnutChartLabels = [
+    "Download Sales",
+    "In-Store Sales",
+    "Mail-Order Sales"
+  ];
+  public doughnutChartData = [[350, 450, 100]];
+  public doughnutChartType = "doughnut";
 
   ngOnInit() {
 
@@ -66,24 +66,26 @@ public doughnutChartType = "doughnut";
 
     var chartOrders = document.getElementById('chart-orders');
 
-    parseOptions(Chart, chartOptions());
+    // parseOptions(Chart, chartOptions());
 
 
-    var ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });
+    // var ordersChart = new Chart(chartOrders, {
+    //   type: 'bar',
+    //   options: chartExample2.options,
+    //   data: chartExample2.data
+    // });
 
-    var chartSales = document.getElementById('chart-sales');
+    // var chartSales = document.getElementById('chart-sales');
 
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-    });
-    
+    // this.salesChart = new Chart(chartSales, {
+    // 	type: 'line',
+    // 	options: chartExample1.options,
+    // 	data: chartExample1.data
+    // });
+
     this.setGraphData();
+    this.productionGraph();
+
   }
 
 
@@ -285,7 +287,7 @@ public doughnutChartType = "doughnut";
                 "value": 0
               }
             ]
-          }, 
+          },
         ]
       }
     ]
@@ -299,41 +301,21 @@ public doughnutChartType = "doughnut";
         graphDetails: [
           {
             "name": "Gram",
-            "series": [
-              {
-                "name": "Gram",
-                "value": 3500
-              }
-            ]
+            "value": 3500
           },
 
           {
             "name": "Lentil",
-            "series": [
-              {
-                "name": "Lentil",
-                "value": 1000
-              }
-            ]
+            "value": 1000
           },
 
           {
             "name": "Wheat",
-            "series": [
-              {
-                "name": "Wheat",
-                "value": 4000
-              }
-            ]
+            "value": 4000
           },
           {
             "name": "chilli",
-            "series": [
-              {
-                "name": "chilli",
-                "value": 1000
-              }
-            ]
+            "value": 1000
           }
         ]
       }
@@ -352,47 +334,46 @@ public doughnutChartType = "doughnut";
               ]
             }
           ]
-            }
+        }
       ],
-          this.multi3 = [
+      this.multi3 = [
+        {
+          graphFor: `Total Actual Production in Kharif (in Qt.)`,
+          graphDetails: [
             {
-              graphFor: `Total Actual Production in Kharif (in Qt.)`,
-              graphDetails: [
+              "name": "paddy",
+              "series": [
                 {
                   "name": "paddy",
-                  "series": [
-                    {
-                      "name": "paddy",
-                      "value": 2000
-                    }
-                  ]
-                },
-                {
-                  "name": "Soyabean",
-                  "series": [
-                    {
-                      "name": "Soyaean",
-                      "value": 3500
-                    }
-                  ]
+                  "value": 2000
                 }
-              ],
-            }]
+              ]
+            },
+            {
+              "name": "Soyabean",
+              "series": [
+                {
+                  "name": "Soyaean",
+                  "value": 3500
+                }
+              ]
+            }
+          ],
+        }]
   }
 
 
   SurplusMarket() {
-console.log("SurplusMarket");
-this.setGraphData();
-this.surp = true;
-this.prod = false;
+    console.log("SurplusMarket");
+    this.setGraphData();
+    this.surp = true;
+    this.prod = false;
   }
 
-productionActual() {
-console.log("productionActual");
-this.productionGraph();
-this.prod = true;
-this.surp = false;
-}
+  productionActual() {
+    console.log("productionActual");
+    this.prod = true;
+    this.surp = false;
+  }
 
 }

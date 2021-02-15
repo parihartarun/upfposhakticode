@@ -20,6 +20,7 @@ import { DepartmentUplaodCircularComponent } from '../../pages/department/depart
 import { DepartmentReportComponent } from '../../pages/department/department-report/department-report.component';
 import { DepartmentCircularsComponent } from '../../pages/department/department-circulars/department-circulars.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ClipboardModule,
     NgxPaginationModule,
     NgxChartsModule,
+    ChartsModule
   ],
   declarations: [
 

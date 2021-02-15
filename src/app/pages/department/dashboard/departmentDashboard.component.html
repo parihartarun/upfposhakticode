@@ -1,5 +1,5 @@
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8 ">
-  <div class="container-fluid"> 
+  <div class="container-fluid">
     <div class="header-body">
       <!-- Card stats -->
       <div class="row mb-2">
@@ -147,14 +147,18 @@
             </div>
             <div class="col">
               <ul class="nav nav-pills justify-content-end">
-                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[0];updateOptions()">
-                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
+                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"
+                  (click)="data=datasets[0];updateOptions()">
+                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}"
+                    data-toggle="tab" (click)="clicked=true;clicked1=false">
                     <span class="d-none d-md-block">Month</span>
                     <span class="d-md-none">M</span>
                   </a>
                 </li>
-                <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[1];updateOptions()">
-                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
+                <li class="nav-item" data-toggle="chart" data-target="#chart-sales"
+                  (click)="data=datasets[1];updateOptions()">
+                  <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}"
+                    data-toggle="tab" (click)="clicked=false;clicked1=true">
                     <span class="d-none d-md-block">Week</span>
                     <span class="d-md-none">W</span>
                   </a>
@@ -200,24 +204,26 @@
   <div class="row">
     <div class="form-check">
       <label class="form-check-label" for="radio1">
-        Marketable Surplus &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="form-check-input" name="optradio" value="Surplus" (click)="SurplusMarket()" checked>
+        Marketable Surplus &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="form-check-input" name="optradio"
+          value="Surplus" (click)="SurplusMarket()" checked>
       </label>
     </div>
     <div class="form-check">
       <label class="form-check-label" for="radio2">
-        Actual Production&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="form-check-input" name="optradio" value="production" (click)="productionActual()">
+        Actual Production&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="form-check-input" name="optradio"
+          value="production" (click)="productionActual()">
       </label>
     </div>
-    </div>
+  </div>
   <div class="card shadow">
     <!-- <div class="card-header p-0">
       <h3>Season-wise Production</h3>
     </div> -->
     <div class="card-body">
-        <div *ngIf="surp" class="row">
+      <div *ngIf="surp" class="row">
         <div class="col-12" *ngFor="let row of multi">
           <div class="row px-5 mb-0">
-            <strong> {{row.graphFor}}</strong> 
+            <strong> {{row.graphFor}}</strong>
           </div>
           <div class="row mb-4" style="border-bottom: solid;">
             <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.graphDetails"
@@ -229,24 +235,24 @@
         </div>
       </div>
 
-        <div *ngIf="prod" class="row">
+      <div *ngIf="prod" class="row">
         <div class="col-12" *ngFor="let row of multi1">
           <div class="row px-5 mb-0">
-            <strong> {{row.graphFor}}</strong> 
+            <strong> {{row.graphFor}}</strong>
           </div>
           <div class="row mb-4" style="border-bottom: solid;">
-            <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme1" [results]="row.graphDetails"
+            <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="row.graphDetails"
               [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
               [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
               [legendTitle]="legendTitle" [legendPosition]="'below'">
-            </ngx-charts-bar-vertical-2d>
+            </ngx-charts-bar-vertical>
           </div>
         </div>
 
 
         <div class="col-12" *ngFor="let row of multi2">
           <div class="row px-5 mb-0">
-            <strong> {{row.graphFor}}</strong> 
+            <strong> {{row.graphFor}}</strong>
           </div>
           <div class="row mb-4" style="border-bottom: solid;">
             <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme1" [results]="row.graphDetails"
@@ -260,7 +266,7 @@
 
         <div class="col-12" *ngFor="let row of multi3">
           <div class="row px-5 mb-0">
-            <strong> {{row.graphFor}}</strong> 
+            <strong> {{row.graphFor}}</strong>
           </div>
           <div class="row mb-4" style="border-bottom: solid;">
             <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme1" [results]="row.graphDetails"
@@ -276,9 +282,6 @@
 </div>
 
 <div style="display: block;">
-  <canvas baseChart 
-    [data]="doughnutChartData"
-    [labels]="doughnutChartLabels"
-    [chartType]="doughnutChartType">
+  <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
   </canvas>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js';
+// import Chart from 'chart.js';
 import { FpoService } from '../../_services/fpo/fpo.service';
 
 
@@ -50,22 +50,22 @@ export class DashboardComponent implements OnInit {
 
     var chartOrders = document.getElementById('chart-orders');
 
-    parseOptions(Chart, chartOptions());
+    // parseOptions(Chart, chartOptions());
 
 
-    var ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });
+    // var ordersChart = new Chart(chartOrders, {
+    //   type: 'bar',
+    //   options: chartExample2.options,
+    //   data: chartExample2.data
+    // });
 
-    var chartSales = document.getElementById('chart-sales');
+    // var chartSales = document.getElementById('chart-sales');
 
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-    });
+    // this.salesChart = new Chart(chartSales, {
+		// 	type: 'line',
+		// 	options: chartExample1.options,
+		// 	data: chartExample1.data
+    // });
   }
 
   getDashboardDetails(){
