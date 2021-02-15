@@ -213,10 +213,10 @@
       </div>
       <div *ngIf="submitted && formControls.password.errors" class="text-danger">
         <div *ngIf="formControls.password.errors.required">{{'password is required'|translate}}</div>
-      </div>
-      <div *ngIf="submitted && registerForm.controls['password'].invalid" class="text-danger">
-        {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special
+        <div *ngIf="!!!formControls.password.errors.required && registerForm.controls['password'].invalid" class="text-danger">
+          {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special
         character'|translate}}
+        </div>
       </div>
     </div>
   </div>
@@ -233,7 +233,7 @@
       </div>
       <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
         <div *ngIf="formControls.confirmPassword.errors.required">{{'confirm password is required'|translate}}</div>
-        <div *ngIf="formControls.confirmPassword.errors.mustMatch">{{'password is not match'|translate}}</div>
+        <div *ngIf="formControls.confirmPassword.errors.mustMatch">{{'password does not match'|translate}}</div>
       </div>
     </div>
 

@@ -278,7 +278,7 @@
   "FPO Office Address": "एफपीओ कार्यालय का पता",
   "fpo office address is required": "एफपीओ कार्यालय का पता आवश्यकता है",
   "Create Password": "पासवर्ड बनाएं",
-  "password is required": "पासवर्ड आवश्यकता है",
+  "password is required": "पासवर्ड की आवश्यकता है",
   "Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character": "कृपया कम से कम 8 अक्षर दर्ज करें एक ऊपरी एक निचला केस लेटर एक  अंक एक विशेष वर्ण",
   "Confirm Password": "पासवर्ड की पुष्टि कीजिये",
   "confirm password is required": "पासवर्ड की आवश्यकता है",
@@ -517,7 +517,7 @@
   "All Complaint": "सब शिकायतें",
   "Machinery / Equipment": "मशीनरी उपकरण",
   "Insectices / Pestices": "कीटनाशक",
-  "AGENCY (ASSOCIATED WITH)": "एजेंसी (से संबद्ध)",
+  "Agency (associated with)": "एजेंसी (से संबद्ध)",
   "Product/Services": "सेवाएँ / उत्पाद",
   "Production Details (Annual)": "उत्पादन विवरण (वार्षिक)",
   "Other Details of FPO": "एफपीओ के अन्य विवरण",
@@ -643,5 +643,6 @@
   "FPO is required": "एफपीओ की आवश्यकता है",
   "Invalid GST Number": "जीएसटी नंबर अमान्य है",
   "Invalid PAN Number": "पैन नंबर अमान्य है",
-  "Category Deals is required": "श्रेणी सौदों की आवश्यकता है"
+  "Category Deals is required": "श्रेणी सौदों की आवश्यकता है",
+  "password does not match":"पासवर्ड मैच नहीं कर रहा है"
 }

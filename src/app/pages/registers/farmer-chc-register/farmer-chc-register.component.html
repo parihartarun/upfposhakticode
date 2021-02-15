@@ -14,7 +14,7 @@
         <div *ngIf="formControls.chcFmbName.errors.required">{{'equipment centre Name is required'|translate}}</div>
       </div>
     </div>
- 
+
     <div class="col-6">
       <label class="input-label">{{'Email'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -30,11 +30,11 @@
     </div>
 
   </div>
- 
+
   <div class="form-group row mb-3">
 
     <div class="col-6">
-      <label class="input-label">{{'District1'|translate}}  <span class="required">*</span></label>
+      <label class="input-label">{{'District1'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -66,7 +66,7 @@
   </div>
   <div class="form-group row mb-3">
     <div class="col-6">
-      <label class="input-label">{{'Village'|translate}}  <span class="required">*</span></label>
+      <label class="input-label">{{'Village'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -79,7 +79,7 @@
       <div *ngIf="submitted && formControls.villageRefId.errors" class="text-danger">
         <div *ngIf="formControls.villageRefId.errors.required">{{'Village is required1'| translate}}</div>
       </div>
-    </div> 
+    </div>
 
     <div class="col-6">
       <label class="input-label">{{'Contact Person'|translate}}<span class="required">*</span></label>
@@ -93,9 +93,9 @@
         <div *ngIf="formControls.contactPerson.errors.required">{{'contact person is required'|translate}}</div>
       </div>
     </div>
-    
+
   </div>
-  <div class="form-group row mb-3"> 
+  <div class="form-group row mb-3">
     <div class="col-6">
       <label class="input-label">{{'Mobile' | translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -122,7 +122,7 @@
         <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | tarnslate}}</div>
       </div>
     </div>
-   
+
   </div>
 
   <div class="form-group row mb-3">
@@ -136,7 +136,8 @@
         <input class="form-control" type="text" formControlName="firmRegistraionNumber">
       </div>
       <div *ngIf="submitted && formControls.firmRegistraionNumber.errors" class="text-danger">
-        <div *ngIf="formControls.firmRegistraionNumber.errors.required">{{'Firm Registration Number is required'|translate}}</div>
+        <div *ngIf="formControls.firmRegistraionNumber.errors.required">
+          {{'Firm Registration Number is required'|translate}}</div>
       </div>
 
     </div>
@@ -152,7 +153,7 @@
         <div *ngIf="formControls.allotmentNo.errors.required">{{'allotment number code is required'|translate}}</div>
       </div>
     </div>
-   
+
   </div>
   <div class="form-group row mb-3">
 
@@ -166,10 +167,11 @@
         <input class="form-control" type="text" formControlName="shopEstablishmentNumber">
       </div>
       <div *ngIf="submitted && formControls.shopEstablishmentNumber.errors" class="text-danger">
-        <div *ngIf="formControls.shopEstablishmentNumber.errors.required">{{'shop stablishment is required'|translate}}</div>
-      </div>      
+        <div *ngIf="formControls.shopEstablishmentNumber.errors.required">{{'shop stablishment is required'|translate}}
+        </div>
+      </div>
     </div>
-  
+
     <div class="col-6">
       <label class="input-label">{{'Username'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -189,7 +191,7 @@
 
     <div class="col-6">
 
-      <label class="input-label">{{'Create Password'|translate}}  <span class="required">*</span></label>
+      <label class="input-label">{{'Create Password'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -198,13 +200,14 @@
       </div>
       <div *ngIf="submitted && formControls.password.errors" class="text-danger">
         <div *ngIf="formControls.password.errors.required">{{'password is required'|translate}}</div>
-      </div>
-      <div *ngIf="submitted && registerForm.controls['password'].invalid" class="text-danger">
-        {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character'|translate}}
+        <div *ngIf="!!!formControls.password.errors.required && registerForm.controls['password'].invalid"
+          class="text-danger">
+          {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character'|translate}}
+        </div>
       </div>
     </div>
     <div class="col-6">
-      <label class="input-label"> {{'Confirm Password'|translate}}  <span class="required">*</span></label>
+      <label class="input-label"> {{'Confirm Password'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -213,19 +216,16 @@
       </div>
       <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
         <div *ngIf="formControls.confirmPassword.errors.required">{{'confirm password is required'|translate}}</div>
-        <div *ngIf="formControls.confirmPassword.errors.MustMatch">{{'password is not match'|translate}}</div>
+        <div *ngIf="formControls.confirmPassword.errors.MustMatch">{{'password does not match'|translate}}</div>
       </div>
     </div>
   </div>
 
 
-  <div class="form-group row mb-3">  
+  <div class="form-group row mb-3">
     <div class="col-6">
-      <ngx-recaptcha2 #captchaElem
-                      [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
-                      (success)="handleSuccess($event)"
-                      [useGlobalDomain]="false"
-                      formControlName="recaptcha">
+      <ngx-recaptcha2 #captchaElem [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
+        (success)="handleSuccess($event)" [useGlobalDomain]="false" formControlName="recaptcha">
       </ngx-recaptcha2>
     </div>
   </div>
@@ -233,4 +233,3 @@
     <button type="submit" class="btn btn-login btn-yellow btn-primary my-4">{{"Register"| translate}}</button>
   </div>
 </form>
-
