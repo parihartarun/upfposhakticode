@@ -58,13 +58,13 @@ export class InputSupplierRegisterComponent implements OnInit {
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      blockRefId: [''],
+      blockRefId: ['', Validators.required],
       inputSupplierName: ['', Validators.required],
       inputSupplierId: [''],
       inputSupplierType: ['', Validators.required],
       contactPerson: ['', Validators.required],
       license_number: ['', Validators.required],
-      districtRefId: [''],
+      districtRefId: ['', Validators.required],
       deleted: [true],
       email: ['', [Validators.required, Validators.email]],
       gstNumber: ['', Validators.pattern("[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}")],

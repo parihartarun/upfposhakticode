@@ -199,7 +199,7 @@
       <div *ngIf="submitted && formControls.password.errors" class="text-danger">
         <div *ngIf="formControls.password.errors.required">{{'password is required'|translate}}</div>
       </div>
-      <div *ngIf="registerForm.controls['password'].invalid" class="text-danger">
+      <div *ngIf="submitted && registerForm.controls['password'].invalid" class="text-danger">
         {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character'|translate}}
       </div>
     </div>
