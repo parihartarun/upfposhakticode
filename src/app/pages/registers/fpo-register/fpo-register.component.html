@@ -66,6 +66,7 @@
       </div>
       <div *ngIf="submitted && formControls.fpoName.errors" class="text-danger">
         <div *ngIf="formControls.fpoName.errors.required">{{'fpo name is required'|translate}}</div>
+        <!-- <div *ngIf="formControls.fpoName.errors.pattern"> {{'maximun 6 digit is required' | translate}}</div> -->
       </div>
     </div>
 
@@ -93,11 +94,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="fpoRegistrationNo" appOnlynumber>
+        <input class="form-control" type="text" formControlName="fpoRegistrationNo">
       </div>
       <div *ngIf="submitted && formControls.fpoRegistrationNo.errors" class="text-danger">
         <div *ngIf="formControls.fpoRegistrationNo.errors.required">{{'fpo registration number is required'|translate}}
         </div>
+        <div *ngIf="formControls.fpoRegistrationNo.errors.pattern"> {{'Invalid fpo registration number' | translate}}</div>
       </div>
     </div>
   </div>
@@ -190,8 +192,9 @@
       <div *ngIf="submitted && formControls.password.errors" class="text-danger">
         <div *ngIf="formControls.password.errors.required">{{'password is required'|translate}}</div>
       </div>
-      <div *ngIf="fpoRegisterForm.controls['password'].invalid">
-        {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character'|translate}}
+      <div *ngIf="submitted && fpoRegisterForm.controls['password'].invalid" class="text-danger">
+        {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special
+        character'|translate}}
       </div>
     </div>
   </div>
@@ -206,7 +209,7 @@
       </div>
       <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
         <div *ngIf="formControls.confirmPassword.errors.required">{{'confirm password is required'|translate}}</div>
-        <div *ngIf="formControls.confirmPassword.errors.MustMatch">{{'password is not match'|translate}}</div>
+        <div *ngIf="formControls.confirmPassword.errors.mustMatch">{{'password is not match'|translate}}</div>
       </div>
     </div>
   </div>

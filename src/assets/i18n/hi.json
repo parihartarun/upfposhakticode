@@ -640,5 +640,8 @@
   "Supplier Name": "आपूर्तिकर्ता नाम",
   "Seed1": "बीज",
   "Select Seed": "बीज का चयन करें",
-  "FPO is required": "एफपीओ की आवश्यकता है"
+  "FPO is required": "एफपीओ की आवश्यकता है",
+  "Invalid GST Number": "जीएसटी नंबर अमान्य है",
+  "Invalid PAN Number": "पैन नंबर अमान्य है",
+  "Category Deals is required": "श्रेणी सौदों की आवश्यकता है"
 }

@@ -18,7 +18,7 @@ export class SchemasComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.tabtype('SEEDS');
+    this.tabtype('Seeds');
   }
   tabtype(type) {
     this.schemaapi.getDashboardData(type).subscribe(response => {

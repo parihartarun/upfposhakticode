@@ -14,8 +14,8 @@ import { AuthService } from '../../../_services/auth/auth.service';
 })
 export class FpoRegisterComponent implements OnInit {
   fpoRegisterForm: FormGroup;
-  submitted= false;
-  districts = [   
+  submitted = false;
+  districts = [
   ];
   blocks = [{ district_id: 1, blockName: "mumbai" }];
   panchayts = [{ panchayat_id: 1, panchayat_name: "mumbai1" }];
@@ -41,7 +41,7 @@ export class FpoRegisterComponent implements OnInit {
   selectBlock(blockId: any) {
     this.fpoRegisterForm.controls['blockRef'].setValue(blockId.currentTarget.value);
   }
-  selectAgency(districtId: any) {   
+  selectAgency(districtId: any) {
     this.fpoRegisterForm.controls['agency'].setValue(districtId.currentTarget.value);
   }
   selectBanks(bankId: any) {
@@ -50,22 +50,22 @@ export class FpoRegisterComponent implements OnInit {
   createFpoRegisterForm() {
     this.fpoRegisterForm = this.fb.group({
       agency: ['', Validators.required],
-      fpoBankAccNo: ['', Validators.required],
-      fpoBankName: ['', Validators.required],
+      fpoBankAccNo: [''],
+      fpoBankName: [''],
       blockRef: ['', Validators.required],
-      fpoName: ['', Validators.required],
+      fpoName: ['', [Validators.required]],
       distRefId: ['', Validators.required],
-      fpoRegistrationNo: ['', Validators.required], 
+      fpoRegistrationNo: ['', [Validators.required,Validators.pattern("[0-9a-zA-Z]{1,30}")]],
       deleted: [true],
       fpolandLine: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
-      fpoEmail: ['', [Validators.required, Validators.email]],      
-      fpoIFSC: ['', Validators.required],
+      fpoEmail: ['', [Validators.required, Validators.email]],
+      fpoIFSC: [''],
       dateOfRegistration: ['', Validators.required],
       fpoAddress: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
       recaptcha: ['', Validators.required],
-      userFpo:[],
+      userFpo: [],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       confirmPassword: ['', Validators.required]
     }, {
@@ -75,9 +75,9 @@ export class FpoRegisterComponent implements OnInit {
   get formControls() {
     return this.fpoRegisterForm.controls;
   }
- 
+
   register() {
-    console.log(this.fpoRegisterForm.value);
+    console.log('this.formControls',this.formControls);
     this.submitted = true;
     // stop here if form is invalid
     if (this.fpoRegisterForm.invalid) {
@@ -86,7 +86,7 @@ export class FpoRegisterComponent implements OnInit {
     let user = {
       userName: this.fpoRegisterForm.value.userName,
       password: this.fpoRegisterForm.value.password,
-      roleRefId:4
+      roleRefId: 4
     }
     this.fpoRegisterForm.value.userFpo = user;
 
@@ -97,7 +97,7 @@ export class FpoRegisterComponent implements OnInit {
     //let newdate = this.newUYDate(date);
     this.fpoRegisterForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd/MM/yyyy'); //whatever format you need. 
     this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
-      
+
       if (response.message == "SuccessFully Saved!") {
         this.toastr.success(response.message);
         this.fpoRegisterForm.reset();
@@ -106,25 +106,25 @@ export class FpoRegisterComponent implements OnInit {
       else {
         this.toastr.error(response.message);
       }
-     
+
     })
   }
-  
+
 
   handleSuccess(e) {
     console.log("ReCaptcha", e);
   }
   newUYDate(pDate) {
-  let dd = pDate.split("/")[0].padStart(2, "0");
-  let mm = pDate.split("/")[1].padStart(2, "0");
-  let yyyy = pDate.split("/")[2].split(" ")[0];
-  let hh = pDate.split("/")[2].split(" ")[1].split(":")[0].padStart(2, "0");
-  let mi = pDate.split("/")[2].split(" ")[1].split(":")[1].padStart(2, "0");
-  let secs = pDate.split("/")[2].split(" ")[1].split(":")[2].padStart(2, "0");
+    let dd = pDate.split("/")[0].padStart(2, "0");
+    let mm = pDate.split("/")[1].padStart(2, "0");
+    let yyyy = pDate.split("/")[2].split(" ")[0];
+    let hh = pDate.split("/")[2].split(" ")[1].split(":")[0].padStart(2, "0");
+    let mi = pDate.split("/")[2].split(" ")[1].split(":")[1].padStart(2, "0");
+    let secs = pDate.split("/")[2].split(" ")[1].split(":")[2].padStart(2, "0");
 
-  mm = (parseInt(mm) - 1).toString(); // January is 0
+    mm = (parseInt(mm) - 1).toString(); // January is 0
 
-  return new Date(dd-mm-yyyy);
-}
+    return new Date(dd - mm - yyyy);
+  }
 
 }

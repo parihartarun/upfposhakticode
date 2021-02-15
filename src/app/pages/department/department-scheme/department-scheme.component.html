@@ -19,7 +19,7 @@
                     <form [formGroup]="schemeForm">
                         <div class="pl-lg-4">
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-last-name">{{'Schemes Type' |
                                             translate}} <span class="required">*</span></label>
@@ -46,7 +46,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">
                                             {{'Department name' | translate}} <span class="required">*</span>
@@ -64,7 +64,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">
                                             {{'Upload Document' | translate}} <span class="required">*</span>
@@ -78,6 +78,25 @@
                                         <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
                                             class="text-danger">
                                             <div>{{'Upload document is required' | translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">
+                                            {{'URL' | translate}} <span class="required">*</span>
+                                        </label>
+                                        <!--<small class="">
+                                          (File format should be .jpg, .png, .jpeg and .pdf)
+                                        </small>-->
+                                        <input type="text" id="input-first-name"
+                                            placeholder="{{'www.google.com/' | translate}}"
+                                            class="form-control form-control-alternative"
+                                            formControlName="departmentName">
+                                        <div *ngIf="departValidation.invalid && (departValidation.dirty || departValidation.touched)"
+                                            class="text-danger">
+                                            <div>{{'Department name is required' | translate}}</div>
                                         </div>
                                     </div>
                                 </div>

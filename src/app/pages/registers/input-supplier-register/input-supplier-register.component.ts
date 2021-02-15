@@ -21,7 +21,7 @@ export class InputSupplierRegisterComponent implements OnInit {
   blocks = [];
   villages = [];
   inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
-  isBulkSupplyingCompany: boolean=true 
+  isBulkSupplyingCompany: boolean = true
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
   }
 
@@ -43,7 +43,7 @@ export class InputSupplierRegisterComponent implements OnInit {
     this.api.getVillageByBlock(parseInt(blockId.currentTarget.value)).subscribe(v => {
       this.villages = v;
     })
-    
+
   }
   selectVillage(villRefId: any) {
     this.registerForm.controls['villageRefId'].setValue(villRefId.currentTarget.value);
@@ -57,27 +57,28 @@ export class InputSupplierRegisterComponent implements OnInit {
     this.registerForm.controls['inputSupplierType'].setValue(inputSupplierType.currentTarget.value);
   }
   createRegisterForm() {
-    this.registerForm = this.fb.group({    
-      blockRefId: [''],
+    this.registerForm = this.fb.group({
+      blockRefId: ['', Validators.required],
       inputSupplierName: ['', Validators.required],
       inputSupplierId: [''],
       inputSupplierType: ['', Validators.required],
       contactPerson: ['', Validators.required],
       license_number: ['', Validators.required],
-      districtRefId: ['' ],
+      districtRefId: ['', Validators.required],
       deleted: [true],
-      email:['', [Validators.required, Validators.email]],
-      gstNumber: [''],     
+      email: ['', [Validators.required, Validators.email]],
+      gstNumber: ['', Validators.pattern("[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}")],
       mobile_number: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
-      seed_id: [''],
-      villageRefId: [''],
+      seed_id: ['', Validators.required],
+      villageRefId: ['', Validators.required],
       userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
       recaptcha: ['', Validators.required],
       userInputSeller: [],
-      seedId:[],  
+      seedId: [],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
-      confirmPassword: ['', Validators.required]    }, {
+      confirmPassword: ['', Validators.required]
+    }, {
       validator: MustMatch('password', 'confirmPassword')
     })
 
@@ -100,14 +101,14 @@ export class InputSupplierRegisterComponent implements OnInit {
     let user = {
       userName: this.registerForm.value.userName,
       password: this.registerForm.value.password,
-      roleRefId:3
+      roleRefId: 3
     }
     delete this.registerForm.value.password;
     delete this.registerForm.value.userName;
     delete this.registerForm.value.confirmPassword;
     this.registerForm.value.userInputSeller = user;
     this.api.registerInputSupplier(this.registerForm.value).subscribe(response => {
-     
+
       if (response.message == "SuccessFully Saved!") {
         this.toastr.success(response.message);
         this.registerForm.reset();
