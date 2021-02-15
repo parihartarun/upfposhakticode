@@ -382,7 +382,7 @@ searchWithFilters()
       fpoName: [this.fpoDetail.fpoName],
       fpoEmail: [this.fpoDetail.fpoEmail],
       fulfillmentDate: ["", [Validators.required]],
-      quantity: [, [Validators.required,Validators.pattern(`[1-9]{1,}`)]],
+      quantity: [, [Validators.required,Validators.pattern(`^[+-]?([1-9]{1}[0-9]*\\.)?\\d+$`)]],
       
      
     })
