@@ -74,7 +74,9 @@ export class IndentComponent implements OnInit {
 
 this._productService.updateEnquiry(this.indentForm.value,this.currentItem.id).subscribe(data=>{
   console.log("Updated Successfully");
+
   this.modalService.dismissAll();
+  this.getIdent();
  // this.ngOnInit();
 })
   }
