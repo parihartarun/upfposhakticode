@@ -4,13 +4,6 @@ import { FpoService } from '../../_services/fpo/fpo.service';
 
 
 
-// core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2
-} from "../../variables/charts";
 
 @Component({
   selector: 'app-dashboard',

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { chartExample1, chartExample2, chartOptions, parseOptions } from 'src/app/variables/charts';
 import { FpoService } from '../../_services/fpo/fpo.service';
 @Component({
   selector: 'app-fpo-details',
