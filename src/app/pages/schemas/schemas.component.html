@@ -10,7 +10,7 @@ border-radius: 80px;">
         <div class="tabordion">
             <section id="section1">
                 <input type="radio" name="sections" id="option1" checked>
-                <label for="option1" (click)="tabtype('SEEDS')">{{'Seeds' | translate}}</label>
+                <label for="option1" (click)="tabtype('Seeds')">{{'Seeds' | translate}}</label>
                 <article>
                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Seeds' | translate}}
                     </h4>
@@ -31,6 +31,7 @@ border-radius: 80px;">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
+                                            <th>{{'URL' | translate}}</th>
                                             <th>{{'View' | translate}}</th>
                                         </tr>
                                     </thead>
@@ -45,6 +46,9 @@ border-radius: 80px;">
                                             </td>
                                             <td>
                                                 {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                {{schema.URL}}
                                             </td>
                                             <td>
                                                 <a href="{{baseUrl}}{{schema.filePath}}"><img
@@ -67,7 +71,7 @@ border-radius: 80px;">
             </section>
             <section id="section2">
                 <input type="radio" name="sections" id="option2">
-                <label for="option2" (click)="tabtype('FERTILIZER')">{{'Fertilizer' | translate}}</label>
+                <label for="option2" (click)="tabtype('Fertilizer')">{{'Fertilizer' | translate}}</label>
                 <article>
                     <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Fertilizer' |
                         translate}}</h4>
@@ -81,6 +85,7 @@ border-radius: 80px;">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
+                                            <th>{{'URL' | translate}}</th>
                                             <th>{{'View' | translate}}</th>
                                         </tr>
                                     </thead>
@@ -95,6 +100,9 @@ border-radius: 80px;">
                                             </td>
                                             <td>
                                                 {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                {{schema.URL}}
                                             </td>
                                             <td>
                                                 <a href="{{baseUrl}}{{schema.filePath}}"><img
@@ -117,7 +125,7 @@ border-radius: 80px;">
             </section>
             <section id="section3">
                 <input type="radio" name="sections" id="option3">
-                <label for="option3" (click)="tabtype('AGRI EQUIPMENT')">{{'Agri Equipment' | translate}}</label>
+                <label for="option3" (click)="tabtype('Agri Equipment')">{{'Agri Equipment' | translate}}</label>
                 <article>
                     <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Agri Equipment' |
                         translate}}</h4>
@@ -131,6 +139,7 @@ border-radius: 80px;">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
+                                            <th>{{'URL' | translate}}</th>
                                             <th>{{'View' | translate}}</th>
                                         </tr>
                                     </thead>
@@ -145,6 +154,9 @@ border-radius: 80px;">
                                             </td>
                                             <td>
                                                 {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                {{schema.URL}}
                                             </td>
                                             <td>
                                                 <a href="{{baseUrl}}{{schema.filePath}}"><img
@@ -167,7 +179,7 @@ border-radius: 80px;">
             </section>
             <section id="section4">
                 <input type="radio" name="sections" id="option4">
-                <label for="option4" (click)="tabtype('AGRI EQUIPMENT BANK')">{{'Agri Equipment Bank' |
+                <label for="option4" (click)="tabtype('Agri Equipment Bank')">{{'Agri Equipment Bank' |
                     translate}}</label>
                 <article>
                     <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Agri Equipment Bank'
@@ -182,6 +194,7 @@ border-radius: 80px;">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
+                                            <th>{{'URL' | translate}}</th>
                                             <th>{{'View' | translate}}</th>
                                         </tr>
                                     </thead>
@@ -196,6 +209,9 @@ border-radius: 80px;">
                                             </td>
                                             <td>
                                                 {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                {{schema.URL}}
                                             </td>
                                             <td>
                                                 <a href="{{baseUrl}}{{schema.filePath}}"><img
@@ -219,7 +235,7 @@ border-radius: 80px;">
 
             <section id="section5">
                 <input type="radio" name="sections" id="option5">
-                <label for="option5" (click)="tabtype('EXPORT')">{{'Export' | translate}}</label>
+                <label for="option5" (click)="tabtype('Export')">{{'Export' | translate}}</label>
                 <article>
                     <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Export' | translate}}
                     </h4>
@@ -233,6 +249,7 @@ border-radius: 80px;">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
+                                            <th>{{'URL' | translate}}</th>
                                             <th>{{'View' | translate}}</th>
                                         </tr>
                                     </thead>
@@ -247,6 +264,9 @@ border-radius: 80px;">
                                             </td>
                                             <td>
                                                 {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                {{schema.URL}}
                                             </td>
                                             <td>
                                                 <a href="{{baseUrl}}{{schema.filePath}}"><img
@@ -270,7 +290,7 @@ border-radius: 80px;">
 
             <section id="section6">
                 <input type="radio" name="sections" id="option6">
-                <label for="option6" (click)="tabtype('ORGANIC FARMING')">{{'Organic Farming' | translate}}</label>
+                <label for="option6" (click)="tabtype('Organic Farming')">{{'Organic Farming' | translate}}</label>
                 <article>
                     <h4 class="mb-4">{{'Organic Farming' | translate}}</h4>
                     <div class="row">
@@ -283,6 +303,7 @@ border-radius: 80px;">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
+                                            <th>{{'URL' | translate}}</th>
                                             <th>{{'View' | translate}}</th>
                                         </tr>
                                     </thead>
@@ -297,6 +318,9 @@ border-radius: 80px;">
                                             </td>
                                             <td>
                                                 {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                {{schema.URL}}
                                             </td>
                                             <td>
                                                 <a href="{{baseUrl}}{{schema.filePath}}"><img
@@ -320,7 +344,7 @@ border-radius: 80px;">
 
             <section id="section7">
                 <input type="radio" name="sections" id="option7">
-                <label for="option7" (click)="tabtype('SPECIAL CROP')">{{'Special Crop' | translate}}</label>
+                <label for="option7" (click)="tabtype('Special Crop')">{{'Special Crop' | translate}}</label>
                 <article>
                     <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Special Crop' |
                         translate}}</h4>
@@ -334,6 +358,7 @@ border-radius: 80px;">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
+                                            <th>{{'URL' | translate}}</th>
                                             <th>{{'View' | translate}}</th>
                                         </tr>
                                     </thead>
@@ -348,6 +373,9 @@ border-radius: 80px;">
                                             </td>
                                             <td>
                                                 {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                {{schema.URL}}
                                             </td>
                                             <td>
                                                 <a href="{{baseUrl}}{{schema.filePath}}"><img
@@ -371,7 +399,7 @@ border-radius: 80px;">
 
             <section id="section8">
                 <input type="radio" name="sections" id="option8">
-                <label for="option8" (click)="tabtype('FINANCE')">{{'Finance' | translate}}</label>
+                <label for="option8" (click)="tabtype('Finance')">{{'Finance' | translate}}</label>
                 <article>
                     <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">Finance</h4>
                     <div class="row">
@@ -384,6 +412,7 @@ border-radius: 80px;">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
+                                            <th>{{'URL' | translate}}</th>
                                             <th>{{'View' | translate}}</th>
                                         </tr>
                                     </thead>
@@ -398,6 +427,9 @@ border-radius: 80px;">
                                             </td>
                                             <td>
                                                 {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                {{schema.URL}}
                                             </td>
                                             <td>
                                                 <a href="{{baseUrl}}{{schema.filePath}}"><img
