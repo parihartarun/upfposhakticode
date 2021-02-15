@@ -380,9 +380,9 @@ searchWithFilters()
       fpoDeliveryAddress:[""],
       userId: [this.fpoDetail.userFpo.userId, Validators.required],
       fpoName: [this.fpoDetail.fpoName],
-      fpoEmail: [this.fpoDetail.fpoEmail],
-      fulfillmentDate: ["", [Validators.required]],
-      quantity: [, [Validators.required,Validators.pattern(`^[+-]?([1-9]{1}[0-9]*\\.)?\\d+$`)]],
+      fpoEmail: [this.fpoDetail.fpoEmail],  //^[0+-]?([1-9]*\\.)?\\d+$
+      fulfillmentDate: ["", [Validators.required]],//^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$
+      quantity: [, [Validators.required,Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
       
      
     })
