@@ -404,7 +404,7 @@
   "Quantity Required": "आवश्यक मात्रा",
   "quantity is required": "मात्रा आवश्यक है",
   "Fulfilled Date": "पूर्ति तिथि",
-  "Fulfillment Date":"पूर्ति तिथि",
+  "Fulfillment Date": "पूर्ति तिथि",
   "date is required": "पूर्ति तिथि आवश्यक है",
   "Send": "भेज दो",
   "Date": "तिथि",
@@ -645,5 +645,9 @@
   "Invalid GST Number": "जीएसटी नंबर अमान्य है",
   "Invalid PAN Number": "पैन नंबर अमान्य है",
   "Category Deals is required": "श्रेणी सौदों की आवश्यकता है",
-  "password does not match":"पासवर्ड मैच नहीं कर रहा है"
+  "password does not match": "पासवर्ड मैच नहीं कर रहा है",
+  "tnc is required": "नियमों और शर्तों की आवश्यकता है",
+  "I agree to the terms and conditions.": "मैं नियमों और शर्तों से सहमत हु।",
+  "Click here": "यहाँ क्लिक करें",
+  "to view in details": "विवरण में देखने के लिए"
 }
