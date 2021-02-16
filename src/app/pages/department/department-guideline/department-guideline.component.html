@@ -65,11 +65,11 @@
                                           (File format should be .jpg, .png, .jpeg and .pdf)
                                         </small>-->
                                         <input #myInput type="text" id="input-first-name"
-                                            class="form-control form-control-alternative" formControlName="document" placeholder="www.google.com/"
+                                            class="form-control form-control-alternative" formControlName="url" placeholder="www.google.com/"
                                           />
-                                        <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
+                                        <div *ngIf="urlValidation.invalid && (urlValidation.dirty || urlValidation.touched)"
                                             class="text-danger">
-                                            <div>{{'Upload document is required' | translate}}</div>
+                                            <div>{{'url is required' | translate}}</div>
                                         </div>
                                     </div>
                                 </div>
