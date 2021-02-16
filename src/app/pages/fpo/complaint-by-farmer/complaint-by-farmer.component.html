@@ -219,13 +219,13 @@
               <from role="form" [formGroup]="fliterForm" style="width:100%">
                 <div class="form-group row m-2 pb-2 pt-2">
 
-                  <div class="col-lg-3">
+                  <div class="col-lg-4">
                     <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
                       <input formControlName="complaint" value="New" class="custom-control-input" id="customRadio6" type="radio" checked="" (change)="filterComaplaint()">
                       <label class="custom-control-label" for="customRadio6">{{'New Compliant' | translate}}</label>
                     </div>
                   </div>
-                  <div class="col-lg-3">
+                  <div class="col-lg-4">
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
                       <input formControlName="complaint" value="all" class="custom-control-input" id="customRadio7" type="radio" (change)="filterComaplaint()">
                       <label class="custom-control-label" for="customRadio7">{{'All Complaint' | translate}}</label>
@@ -249,6 +249,7 @@
                 <th scope="col">{{'Complaints/ Suggestions Description' | translate}}</th>
                 <th scope="col">{{'Complaint/ Suggestion Date'|translate}}</th>
                 <th scope="col">{{'Complaints / Complaints Status of suggestion'|translate}}</th>
+                <th scope="col">{{'File'|translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -273,6 +274,11 @@
                 <td>
                   <span *ngIf="complaint.status">{{getStatus(complaint.status)}}</span>
                   <span *ngIf="!complaint.status">NA</span>
+                </td>
+                <td>
+                  <a download href="{{complaint.filepath}}">
+                    <i class="fas fa-file"></i>
+                  </a>
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
