@@ -97,6 +97,9 @@ import { BuyeruserComponent } from './pages/buyer-treder/buyeruser/buyeruser.com
 import { UserProfileDashboardComponent } from './pages/user-profile-dashboard/user-profile-dashboard.component';
 import { DepartmentAllUsersComponent } from './pages/department/department-all-users/department-all-users.component';
 import { UppercaseDirective } from './directive/uppercase.directive';
+import { NgxDatatableModule } from "@tusharghoshbd/ngx-datatable";
+import { DataTableModule } from './pages/data-table/data-table.module';
+import { TableSearchPipe } from './_helpers/table-search.pipe';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -117,6 +120,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxChartsModule,
     RouterModule,
     AppRoutingModule,
+    NgxDatatableModule,
+    DataTableModule,
     CarouselModule,
     NgxCaptchaModule,
     NgxPaginationModule,
@@ -208,6 +213,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FpoNotifiactionComponent,
     NotifiactionByDepartmentComponent,
     FarmerNotifictionByFpoComponent,
+    TableSearchPipe,
   ],
   exports: [
     AuthHeaderComponent

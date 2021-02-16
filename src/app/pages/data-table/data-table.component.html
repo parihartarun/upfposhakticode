@@ -1,0 +1,139 @@
+<div color="darken" class="jarviswidget">
+  <!-- table caption -->
+  <header *ngIf="captionRef">
+    <ng-content select="ngx-caption"></ng-content>
+  </header>
+  <div class="dataTables_wrapper">
+    <!-- search bar with page per item -->
+    <div class="row no-row-margin" style="margin-top: 5px;">
+      <div class="col-xs-6 col-sm-6 col-6 text-left">
+        <label style="font-weight: 100;">
+          <input type="text" [id]="'search_'+tableId" [(ngModel)]="searchText" (input)="onInputSearch()" name="search"
+            placeholder="Search" autocomplete="off" style="border-radius: 0px;" class="form-control input-md" />
+        </label>
+      </div>
+      <div class="col-sm-6 col-xs-6 col-6 text-right">
+        <label style="font-weight: 100;">
+          <select (change)="onChangeItemPerPage()" style="border-radius: 0px;" [(ngModel)]="options.rowPerPage"
+            name="rowPerPage" class="form-control" [id]="'itemPerPage_'+tableId">
+            <option *ngFor="let item of options.rowPerPageMenu" [ngValue]="item">{{item}}</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <div class="zui-wrapper">
+      <div class="zui-scroller" [style.margin-left]="styleParams.pinnedScollerMarginLeft+'px'">
+        <table [id]="tableId" class=" zui-table dataTable  {{tableClass}}" role="grid"
+          aria-describedby="DataTables_Table_0_info" width="100%">
+          <!-- table head code -->
+          <thead _ngcontent-qqc-c0="">
+            <tr role="row">
+              <th *ngIf="options.rowDetailTemplate" style=" text-align: center; vertical-align: middle;">
+                <div (click)="onClickRowDettailAllArrowOpen()"
+                  [class.triangle-right]="this.openRowDetailsId.size != this.data.length || this.data.length == 0 "
+                  [class.triangle-down]="this.openRowDetailsId.size == this.data.length && this.data.length != 0">
+                </div>
+              </th>
+              <!-- [style.min-width]="options.checkboxAsPin && styleParams.pinnedFlag ? '13px' : 'auto'"
+                                [style.max-width]="options.checkboxAsPin && styleParams.pinnedFlag ? '13px' : 'auto'"
+                                [class.zui-sticky-col]="options.checkboxAsPin && styleParams['pinnedFlag']" -->
+              <th *ngIf="options.checkboxes" style="text-align: center; vertical-align: middle;">
+                <input class="ngx-form-checkbox-head" type="checkbox" id="checkbox-all"
+                  [checked]="this.selectedCheckboxes.size == this.data.length && this.data.length != 0"
+                  (change)="onCheckboxSelectAll($event.target.checked)" />
+              </th>
+              <th>{{'SR. NO' | translate}}</th>
+              <th *ngFor="let column of columns; let i = index; trackBy: identify" (click)="onClickOrderBy(column, i)"
+                [style.min-width]="column.width+'px'" [style.max-width]="column.width+'px'"
+                [style.vertical-align]="column.vAlign && column.vAlign.head"
+                [style.text-align]="column.align && column.align.head" [class.zui-sticky-col]="column.pinned"
+                [style.margin-left]="column.pinnedMarginLeft+'px'" yy>
+                <span [class.wrap]="column.noWrap && column.noWrap.head"
+                  [class.sort-by]="column.sorting && column.sortingOrder==''"
+                  [class.sort-by-asc]="column.sorting && column.sortingOrder=='asc'"
+                  [class.sort-by-desc]="column.sorting && column.sortingOrder=='desc'">
+                  {{column.title | translate}}
+                </span>
+                <!-- [ngClass]="{sort-by:column.sorting==true, sort-by-asc:column.sorting==true&&column.sortingOrder=='asc', sort-by-desc:column.sorting==true&&column.sortingOrder=='desc'}"  -->
+                <!-- <div class="sorting"style="display: inline;"><span>&#8593;</span> <span>&#8595;</span></div>	 -->
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let row of data 
+                            | search:searchText 
+                            | sort:orderBy 
+                            | paginate: { id: 'pagination_'+tableId, itemsPerPage: options.rowPerPage, currentPage:currentPage }; 
+                            trackBy: identify; let i = index;">
+              <tr [ngClass]="{ 'cus-cursor-pointer':options.rowClickEvent}" (click)="onRowClick(row)">
+                <!-- row Detail code -->
+                <td *ngIf="options.rowDetailTemplate" style=" text-align: center; vertical-align: middle;">
+                  <div (click)="onClickRowDettailArrowOpen(row)"
+                    [class.triangle-right]="!openRowDetailsId.has(row._autoId)"
+                    [class.triangle-down]="openRowDetailsId.has(row._autoId)">
+                  </div>
+                </td>
+                <!-- checck box code -->
+                <!-- [style.min-width]="options.checkboxAsPin && styleParams.pinnedFlag ? '13px' : 'auto'"
+                                    [style.max-width]="options.checkboxAsPin && styleParams.pinnedFlag ? '13px' : 'auto'"
+                                    [class.zui-sticky-col]="options.checkboxAsPin && styleParams['pinnedFlag']" -->
+                <td *ngIf="options.checkboxes" style="text-align: center; vertical-align: middle;">
+                  <input class="ngx-form-checkbox" type="checkbox" id="checkbox-{{row._autoId}}"
+                    [checked]="selectedCheckboxes.has(row._autoId)" (change)="onCheckboxSelect(row)" />
+                </td>
+                <td>{{i+1}}</td>
+                <!-- dynamacally generated column -->
+                <td *ngFor="let column of columns;let j=index;" [style.min-width]="column.width+'px'"
+                  [style.max-width]="column.width+'px'" [class.wrap]="column.noWrap && column.noWrap.body"
+                  [style.vertical-align]="column.vAlign && column.vAlign.body"
+                  [style.text-align]="column.align && column.align.body" [class.zui-sticky-col]="column.pinned"
+                  [style.margin-left]="column.pinnedMarginLeft+'px'">
+                  <ng-container *ngIf="!column.cellTemplate">{{row[column.key]}}</ng-container>
+                  <ng-container *ngIf="column.cellTemplate" [ngTemplateOutlet]="column.cellTemplate"
+                    [ngTemplateOutletContext]="{
+                                            $implicit: row,
+                                            rowIndex: row._autoId,
+                                            columnValue: row[column.key]
+                                        }">
+                  </ng-container>
+
+                </td>
+              </tr>
+              <!-- row detail desccription code -->
+              <tr *ngIf="options.rowDetailTemplate && openRowDetailsId.has(row._autoId) ">
+                <td [attr.colspan]="columns.length+(options.checkboxes?1:0)+(options.rowDetailTemplate?1:0)">
+                  <ng-container [ngTemplateOutlet]="options.rowDetailTemplate" [ngTemplateOutletContext]="{
+                                            $implicit: row,
+                                            rowIndex: row._autoId
+                                        }">
+                  </ng-container>
+                </td>
+              </tr>
+            </ng-container>
+
+            <tr class="odd" *ngIf="!data.length && options.loader == false">
+              <td valign="top" [attr.colspan]="columns.length+(options.checkboxes?1:0)+(options.rowDetailTemplate?1:0)"
+                class="dataTables_empty">
+                {{options.emptyDataMessage}}
+              </td>
+            </tr>
+            <tr class="odd" *ngIf="options.loader == true">
+              <td valign="top" [attr.colspan]="columns.length+(options.checkboxes?1:0)+(options.rowDetailTemplate?1:0)"
+                class="dataTables_empty">
+                Loading...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row no-row-margin" style="margin-top: 5px;">
+      <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
+        <div>Showing {{dataShowing.start}} to {{dataShowing.end}} of {{dataShowing.len}} entries</div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-12 custom-pagination-align">
+        <pagination-controls [id]="'pagination_'+tableId" (pageChange)="onPageChange($event)"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
