@@ -404,6 +404,7 @@
   "FPO Email1": "FPO Email",
   "Quantity Required": "Quantity Required",
   "quantity is required": "quantity is required",
+  "Fulfillment Date": "Fulfillment Date",
   "Fulfilled Date": "Fulfilled Date",
   "Send": "Send",
   "Date": "Date",
@@ -439,6 +440,7 @@
   "zerotonintynine": "0 - 99",
   "hundredtohundrednintynine": "100 - 199",
   "morethan200": "More than 200",
+  
   "enterfpodeliveryaddr": "Please enter delivery Address.",
   "fpodeliveryaddr": "Delivery Address.",
   "deleiveryrequired": "Delivery address is required.",

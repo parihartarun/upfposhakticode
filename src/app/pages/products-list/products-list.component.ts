@@ -372,12 +372,11 @@ searchWithFilters()
   }
   createIndentForm(item) {
   
-
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
       cropVeriety:[item.cropVeriety],
       cropId: [item.cropid],
-      fpoDeliveryAddress:[""],
+      fpoDeliveryAddress:["",Validators.required],
       userId: [this.fpoDetail.userFpo.userId, Validators.required],
       fpoName: [this.fpoDetail.fpoName],
       fpoEmail: [this.fpoDetail.fpoEmail],  //^[0+-]?([1-9]*\\.)?\\d+$
