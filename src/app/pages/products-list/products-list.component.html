@@ -508,10 +508,9 @@
               <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span
                   class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="{{'Quantity'|translate}}" type="text" formControlName="quantity">
+                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text" formControlName="quantity">
               </div>
               <div *ngIf="!submitted && formControls.quantity.touched && formControls.quantity.errors" class="text-danger mt-1 text-xsm">
-                
                 <div *ngIf="formControls.quantity.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
               </div>
               <div *ngIf="submitted && formControls.quantity.errors" class="text-danger mt-1 text-xsm">

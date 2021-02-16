@@ -371,7 +371,7 @@ export class FpoService {
   }
 
   getSeasonList() {
-    return this.http.get<any>(this._url + '/api/v1/seasonMaster/getSeasons').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/v1/seasonMaster/getSeasons').pipe(map((res: any) => {
       return res;
     }));
   }
@@ -389,7 +389,7 @@ export class FpoService {
   }
 
   getFarmerDetailsForCropSowing(farmerId) {
-    return this.http.get<any>(this._url + '/api/fpos/cropSowing/getFarmerDetailsForCropSowing/' + farmerId).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/fpos/cropSowing/getFarmerDetailsForCropSowing/' + farmerId).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -496,7 +496,7 @@ export class FpoService {
   }
   getAllNotificationByFpo(id) {
 
-    return this.http.get<any>(this._url + '/notification/fponotification/' + id).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'notification/fponotification/' + id).pipe(map((res: any) => {
       return res;
     }));
   }
