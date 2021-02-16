@@ -35,7 +35,7 @@ export class CropShowingDetailsComponent implements OnInit {
       farmerId: ['', [Validators.required]],
       guardianName: [''],
       seasonRefName: ['',[Validators.required]],
-      baseland:[],
+      baseland:[''],
       masterId:localStorage.getItem('masterId'),
       sowingId:[]
     });
@@ -48,8 +48,8 @@ export class CropShowingDetailsComponent implements OnInit {
   initItemRows() {
     return this.formBuilder.group({
       sowingArea: ['', [Validators.required]],
-      cropId: ['', [Validators.required]],
-      verietyRef: ['',[Validators.required]],
+      cropRefName: [11, [Validators.required]],
+      verietyRef: [11,[Validators.required]],
       expectedYield:['', [Validators.required]],
       actualYield:['', [Validators.required]],
       masterId:localStorage.getItem('masterId')
@@ -93,6 +93,7 @@ export class CropShowingDetailsComponent implements OnInit {
   }
 
   getCropVarietiesByCropId(cropId){
+    console.log(cropId);
     this.api.getCropVarietiesByCropId(cropId).subscribe(
       response => {
       console.log(response);
@@ -139,9 +140,9 @@ export class CropShowingDetailsComponent implements OnInit {
     // data['verietyId'] = {"verietyId":this.cropSowingForm.value.verietyId};
     // delete data.cropId;
      console.log(data);
-    this.api.addCropProduction(data).subscribe(response => {
+    this.api.addFarmerCropSowingDetails(data).subscribe(response => {
       console.log(response);
-      this.toastr.success('Crop Production added successfully.');
+      this.toastr.success('Crop sowing details added successfully.');
       this.submitted = false;
       this.cropSowingForm.reset();
       this.getCropSowingDetails();
