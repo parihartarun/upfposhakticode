@@ -32,7 +32,6 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "@swimlane/ngx-charts": "^17.0.0",
-    "@swimlane/ngx-datatable": "^19.0.0",
     "bootstrap": "4.5.2",
     "chart.js": "2.9.3",
     "clipboard": "2.0.6",
