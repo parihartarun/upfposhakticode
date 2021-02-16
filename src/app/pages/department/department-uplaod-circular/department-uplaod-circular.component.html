@@ -23,18 +23,18 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <div class="form-group">
-                      <label class="form-control-label" for="">Description<span class="required">*</span></label>
+                      <label class="form-control-label" for="">{{'Description' | translate}}<span class="required">*</span></label>
                       <textarea class="form-control" formControlName="description" id="exampleFormControlTextarea12" rows="3"></textarea>
                     </div>
                     <div *ngIf="submitted && formControls.description.errors" class="text-danger">
-                      <div *ngIf="formControls.description.errors.required">description is required</div>
+                      <div *ngIf="formControls.description.errors.required">{{'description is required'|translate}}</div>
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
-                      Upload Circular <span class="required">*</span>
+                      {{'Upload Circular'|translate}} <span class="required">*</span>
                     </label>
                     <!--<small class="">
                       (File format should be .jpg, .png, .jpeg and .pdf)
@@ -42,15 +42,15 @@
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)"  />
                   </div>
                   <div *ngIf="submitted && formControls.uploadFile.errors" class="text-danger" >
-                    <div *ngIf="formControls.uploadFile.errors.required">file is required</div>
+                    <div *ngIf="formControls.uploadFile.errors.required">{{'file is required'|translate}}</div>
                   </div>
                 </div>
 
                 <div class="col-lg-12 text-center">
                   <div class="form-group mt-4">
-                    <button *ngIf="!isEdit" type="button" class="btn btn-primary mt-2 text-right" (click)="addUploadCircular()">Submit</button>
-                    <button *ngIf="isEdit" type="button" class="btn btn-primary mt-2 text-right" (click)="upadateCircular()">Update</button>
-                    <button type="button" class="btn btn-warning mt-2 text-right" (click)="reset()">Reset</button>
+                    <button *ngIf="!isEdit" type="button" class="btn btn-primary mt-2 text-right" (click)="addUploadCircular()">{{'Save'|translate}}</button>
+                    <button *ngIf="isEdit" type="button" class="btn btn-primary mt-2 text-right" (click)="upadateCircular()">{{'Edit'| translate}}</button>
+                    <button type="button" class="btn btn-warning mt-2 text-right" (click)="reset()">{{'Reset' |translate }}</button>
                   </div>
                 </div>
               </div>
@@ -67,8 +67,8 @@
   <!-- Table -->
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary text-right mb-2">Export PDF</button>
-      <button class="btn btn-warning text-right mb-2">Export Excel</button>
+      <button class="btn btn-primary text-right mb-2">{{'Export PDF'|translate}}</button>
+      <button class="btn btn-warning text-right mb-2">{{'Export Excel'|translate}}</button>
     </div>
   </div>
   <div class="row">
@@ -89,10 +89,10 @@
             <thead class="thead-light">
               <tr>
                 <!--<th scope="col">Select</th>-->
-                <th scope="col">S.No</th>
-                <th scope="col">Description</th>
-                <th scope="col">Upload Date</th>
-                <th scope="col">File (in Qt.)</th>
+                <th scope="col">{{'S.No'|translate}}</th>
+                <th scope="col">{{'Description'| translate}}</th>
+                <th scope="col">{{'Upload Date'| translate}}</th>
+                <th scope="col">{{'File' |translate}}</th>
                 <th scope="col"></th>
 
               </tr>
@@ -112,17 +112,17 @@
                   {{p.uploadedDate | date: 'dd/MM/yyyy'}}
                 </td>
                 <td>
-                  <a href="{{ p.filePath }}" download>View</a>
+                  <a href="{{ p.filePath }}" download><i class="fas fa-file"></i></a>
                 </td>
 
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
+                      {{'Actions'|translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="editCicular(p)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCicular(p)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editCicular(p)">{{'Edit'|tranalste}}</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCicular(p)">{{'Delete'|tanslate}}</a>
                     </div>
                   </div>
                 </td>

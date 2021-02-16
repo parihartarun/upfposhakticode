@@ -36,7 +36,7 @@ import { DepartmentCircularsComponent } from '../../pages/department/department-
     DepartmentDashboardComponent,
     DepartmentCircularsComponent,
     DepartmentReportComponent ,  
-    DepartmentUplaodCircularComponent,
+   
     DepartmentUserManagementComponent,
   ]
 })

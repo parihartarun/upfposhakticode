@@ -118,6 +118,8 @@
                 <th scope="col">{{'Deparment Name'|translate}}</th>
                 <th scope="col">{{'DESCRIPTION'|translate}}</th>
                 <th scope="col">{{'NotificationsDate'|translate}}</th>
+                <th scope="col">{{'File'|translate}}</th>
+             
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -137,15 +139,19 @@
 
                   {{ notification.createDate  | date: 'dd/MM/yyyy'}}
                 </td>
+                <td>
+                  <a download href="{{notification.filePath}}">
+                    <i class="fas fa-file"></i>
+                  </a>
+                </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      {{'Actions'|translate}}
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="viewNotifications(notification)">View</a>
+                    <a class="btn btn-sm btn-primary" (click)="viewNotifications(notification)">View</a>
+                     
+                    <!--<div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                      
 
-                    </div>
+                    </div>-->
                   </div>
                 </td>
               </tr>

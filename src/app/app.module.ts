@@ -97,6 +97,7 @@ import { BuyeruserComponent } from './pages/buyer-treder/buyeruser/buyeruser.com
 import { UserProfileDashboardComponent } from './pages/user-profile-dashboard/user-profile-dashboard.component';
 import { DepartmentAllUsersComponent } from './pages/department/department-all-users/department-all-users.component';
 import { UppercaseDirective } from './directive/uppercase.directive';
+import { DepartmentUplaodCircularComponent } from './pages/department/department-uplaod-circular/department-uplaod-circular.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -208,6 +209,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FpoNotifiactionComponent,
     NotifiactionByDepartmentComponent,
     FarmerNotifictionByFpoComponent,
+    DepartmentUplaodCircularComponent,
   ],
   exports: [
     AuthHeaderComponent
