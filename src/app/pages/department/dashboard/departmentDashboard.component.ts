@@ -40,7 +40,7 @@ export class DepartmentDashboardComponent implements OnInit {
     "SFAC",
     "UPBSN","UP State Bio-Energy Development Board"
   ];
-  public doughnutChartData = [[250, 150, 100, 20]];
+  public doughnutChartData = [[250, 150, 100,20]];
   public doughnutChartType = "doughnut";
 
   ngOnInit() {
