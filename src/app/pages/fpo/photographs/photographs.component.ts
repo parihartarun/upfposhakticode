@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -12,6 +12,9 @@ import { requiredFileType } from '../../../customValidation/requiredFileType';
   styleUrls: ['./photographs.component.css']
 })
 export class PhotographsComponent implements OnInit {
+  @ViewChild('myInput')
+  myInputVariable: ElementRef;
+  checkfileFormat = false;
 
   photographForm: FormGroup;
   submitted = false;
@@ -30,7 +33,7 @@ export class PhotographsComponent implements OnInit {
   ngOnInit(): void {
     this.photographForm = this.formBuilder.group({
       description: ['', [Validators.required]],
-      file: ['', [Validators.required, requiredFileType('png'), requiredFileType('jpeg')]],
+      file: ['', [Validators.required, requiredFileType('png')]],
       id:[''],
       fpo_id:localStorage.getItem('masterId')
     });
@@ -50,8 +53,26 @@ export class PhotographsComponent implements OnInit {
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
-  }
+    if (!this.validateFile(files[0].name)) {
+      this.checkfileFormat = true;
+      this.fileToUpload = null;
+      this.photographForm.controls['file'].setValue('');
+      return;
+    }
+    else {
 
+      this.checkfileFormat = false;
+    }
+  }
+  validateFile(name: String) {
+    var ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj" || ext.toLowerCase() == "jpeg") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
   addPhotograph() {
     this.submitted = true;
     // stop here if form is invalid
