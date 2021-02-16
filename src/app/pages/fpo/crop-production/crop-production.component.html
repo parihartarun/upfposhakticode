@@ -61,7 +61,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">{{'Actual Production (in Qt.)'|translate}}<span class="required">*</span></label>
-                    <input formControlName="actualQuantity" type="number" id="input-email" class="form-control form-control-alternative" >
+                    <input formControlName="actualQuantity" type="text" id="input-email" class="form-control form-control-alternative" appOnlynumber>
                     <div *ngIf="submitted && formControls.actualQuantity.errors" class="text-danger">
                       <div *ngIf="formControls.actualQuantity.errors.required">{{'Actual Production is required'|translate}}</div>
                     </div>  
@@ -72,7 +72,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'Marketable Surplus (in Qt.)'|translate}}<span class="required">*</span></label>
-                    <input formControlName="marketableQuantity" type="number" id="input-last-name" class="form-control form-control-alternative" >
+                    <input formControlName="marketableQuantity" type="text" id="input-last-name" class="form-control form-control-alternative" appOnlynumber >
                     <div *ngIf="submitted && formControls.marketableQuantity.errors" class="text-danger">
                       <div *ngIf="formControls.marketableQuantity.errors.required">{{'Marketable Surplus is required'|translate}}</div>
                     </div>  
