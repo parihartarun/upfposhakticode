@@ -93,10 +93,10 @@
                                         <input type="text" id="input-first-name"
                                             placeholder="{{'www.google.com/' | translate}}"
                                             class="form-control form-control-alternative"
-                                            formControlName="departmentName">
-                                        <div *ngIf="departValidation.invalid && (departValidation.dirty || departValidation.touched)"
+                                            formControlName="url">
+                                        <div *ngIf="urlValidation.invalid && (urlValidation.dirty || urlValidation.touched)"
                                             class="text-danger">
-                                            <div>{{'Department name is required' | translate}}</div>
+                                            <div>{{'url name is required' | translate}}</div>
                                         </div>
                                     </div>
                                 </div>

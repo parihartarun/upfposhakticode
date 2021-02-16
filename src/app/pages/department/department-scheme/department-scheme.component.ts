@@ -25,20 +25,26 @@ export class DepartmentSchemeComponent implements OnInit {
       description: new FormControl(null, Validators.required),
       departmentName: new FormControl(null, Validators.required),
       document: new FormControl(null, Validators.required),
+      url:new FormControl(null,Validators.required)
     });
     this.departmentService.getScheme();
   }
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
   }
+
   addSchemes() {
+    
     this.schemeForm.markAllAsTouched();
     if (this.schemeForm.valid) {
+    
       const formData: FormData = new FormData();
       formData.append('file', this.fileToUpload);
       formData.append('description', this.schemeForm.value.description);
       formData.append('title', this.schemeForm.value.schemes_type);
       formData.append('parent_department', this.schemeForm.value.departmentName);
+      formData.append('url',this.schemeForm.value.url);
+
       this.departmentService.uploadSchemes(formData);
       this.schemeForm.reset();
     }
@@ -47,6 +53,8 @@ export class DepartmentSchemeComponent implements OnInit {
     this.schemeForm.get('departmentName').patchValue(data.parentDepartment);
     this.schemeForm.get('description').patchValue(data.description);
     this.schemeForm.get('schemes_type').patchValue(data.schemeType);
+    this.schemeForm.get('url').patchValue(data.url);
+
     // this.schemeForm.get('document').patchValue(data.fileName);
     this.id = data.id;
     this.isEdit = true;
@@ -57,6 +65,8 @@ export class DepartmentSchemeComponent implements OnInit {
     formData.append('description', this.schemeForm.value.description);
     formData.append('title', this.schemeForm.value.schemes_type);
     formData.append('parent_department', this.schemeForm.value.departmentName);
+    formData.append('url', this.schemeForm.value.url);
+
     formData.append('id', this.id);
     this.departmentService.editSchemes(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {
@@ -76,4 +86,6 @@ export class DepartmentSchemeComponent implements OnInit {
   get descValidation() { return this.schemeForm.get('description'); }
   get departValidation() { return this.schemeForm.get('departmentName'); }
   get docValidation() { return this.schemeForm.get('document'); }
+  get urlValidation() { return this.schemeForm.get('url'); }
+
 }

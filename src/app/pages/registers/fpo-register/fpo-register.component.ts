@@ -58,7 +58,7 @@ export class FpoRegisterComponent implements OnInit {
       fpoRegistrationNo: ['', [Validators.required,Validators.pattern("[0-9a-zA-Z]{1,30}")]],
       deleted: [true],
       fpolandLine: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
-      fpoEmail: ['', [Validators.required, Validators.email]],
+      fpoEmail: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
       fpoIFSC: [''],
       dateOfRegistration: ['', Validators.required],
       fpoAddress: ['', Validators.required],

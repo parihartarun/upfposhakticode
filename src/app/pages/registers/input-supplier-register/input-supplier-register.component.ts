@@ -51,27 +51,37 @@ export class InputSupplierRegisterComponent implements OnInit {
   selectInputSupplierType(inputSupplierType: any) {
     if (parseInt(inputSupplierType.currentTarget.value) == 1) {
       this.isBulkSupplyingCompany = false;
+      this.registerForm.get('blockRefId').clearValidators();
+      this.registerForm.get('districtRefId').clearValidators();
+      this.registerForm.get('villageRefId').clearValidators();
+      this.registerForm.get('blockRefId').updateValueAndValidity();
+      this.registerForm.get('districtRefId').updateValueAndValidity();
+      this.registerForm.get('villageRefId').updateValueAndValidity();
     } else {
       this.isBulkSupplyingCompany = true;
+      this.registerForm.get('blockRefId').setValidators([Validators.required])
+      this.registerForm.get('districtRefId').setValidators([Validators.required])
+      this.registerForm.get('villageRefId').setValidators([Validators.required]);
+      this.registerForm.updateValueAndValidity();
     }
     this.registerForm.controls['inputSupplierType'].setValue(inputSupplierType.currentTarget.value);
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      blockRefId: ['', Validators.required],
+      blockRefId: [''],
       inputSupplierName: ['', Validators.required],
       inputSupplierId: [''],
       inputSupplierType: ['', Validators.required],
       contactPerson: ['', Validators.required],
       license_number: ['', Validators.required],
-      districtRefId: ['', Validators.required],
+      districtRefId: [''],
       deleted: [true],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
       gstNumber: ['', Validators.pattern("[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}")],
       mobile_number: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       seed_id: ['', Validators.required],
-      villageRefId: ['', Validators.required],
+      villageRefId: [''],
       userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
       recaptcha: ['', Validators.required],
       userInputSeller: [],
@@ -92,6 +102,8 @@ export class InputSupplierRegisterComponent implements OnInit {
     return this.registerForm.get('password');
   }
   register() {
+    console.log('this.formControls',this.formControls);
+    
     this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
