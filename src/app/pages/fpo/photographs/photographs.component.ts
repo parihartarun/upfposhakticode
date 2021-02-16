@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
 import { ToastrService } from 'ngx-toastr';
+import { requiredFileType } from '../../../customValidation/requiredFileType';
 
 @Component({
   selector: 'app-photographs',
@@ -29,7 +30,7 @@ export class PhotographsComponent implements OnInit {
   ngOnInit(): void {
     this.photographForm = this.formBuilder.group({
       description: ['', [Validators.required]],
-      file: ['', [Validators.required]],
+      file: ['', [Validators.required, requiredFileType('png'), requiredFileType('jpeg')]],
       id:[''],
       fpo_id:localStorage.getItem('masterId')
     });
