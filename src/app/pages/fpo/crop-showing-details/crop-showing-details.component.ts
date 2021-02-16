@@ -48,8 +48,8 @@ export class CropShowingDetailsComponent implements OnInit {
   initItemRows() {
     return this.formBuilder.group({
       sowingArea: ['', [Validators.required]],
-      cropRefName: [11, [Validators.required]],
-      verietyRef: [11,[Validators.required]],
+      cropRefName: [undefined, [Validators.required]],
+      verietyRef: [undefined,[Validators.required]],
       expectedYield:['', [Validators.required]],
       actualYield:['', [Validators.required]],
       masterId:localStorage.getItem('masterId')
@@ -59,9 +59,15 @@ export class CropShowingDetailsComponent implements OnInit {
   get formArr() {
     return this.cropSowingForm.get('list') as FormArray;
   }
-
+  setCropVarieties(event,i)
+  {
+    let list = this.cropSowingForm.get('list') as FormArray
+ list.at(i).get("verietyRef").setValue(event)
+  }
   addNewRow() {
-    this.formArr.push(this.initItemRows());
+    let varlist  =  this.cropSowingForm.get('list') as FormArray;
+    varlist.push(this.initItemRows());
+  return varlist;
   }
   
   deleteRow(index: number) {
@@ -92,7 +98,10 @@ export class CropShowingDetailsComponent implements OnInit {
     })
   }
 
-  getCropVarietiesByCropId(cropId){
+  getCropVarietiesByCropId(cropId,i){
+    let list = this.cropSowingForm.get('list') as FormArray
+
+    list.at(i).get("cropRefName").setValue(cropId)
     console.log(cropId);
     this.api.getCropVarietiesByCropId(cropId).subscribe(
       response => {
@@ -130,7 +139,7 @@ export class CropShowingDetailsComponent implements OnInit {
   addSowingDetails(){
     this.submitted = true;
     // stop here if form is invalid
-    console.log(this.cropSowingForm);
+    console.log("Values are = "+JSON.stringify(this.cropSowingForm.value));
     if (this.cropSowingForm.invalid) {
         return;
     }
