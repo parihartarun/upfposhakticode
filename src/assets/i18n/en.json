@@ -617,7 +617,9 @@
   "Area (Landmark)": "Area (Landmark)",
   "Commdity Deals in": "Commdity Deals in",
   "Seed1": "बीज",
-  "Select Seed": "Select Seed"
-
-
+  "Select Seed": "Select Seed",
+  "Marketable Surplus" : "Marketable Surplus",
+  "Actual Production" : "Actual Production",
+  "FPOs" : "FPOs",
+  "Total FPO" : "Total FPO"
 }

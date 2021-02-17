@@ -1,16 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-// import Chart from 'chart.js';
-
+import { FpoService } from 'src/app/_services/fpo/fpo.service';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './departmentDashboard.component.html',
-  styleUrls: ['./departmentDashboard.component.scss']
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class DepartmentDashboardComponent implements OnInit {
+export class FpoDashboardComponent implements OnInit {
 
   public prod = false;
   public surp = true;
+
+  public totals = {
+    otherFarmers: 0,
+    farmers: 0,
+    marginalFarmers: 0,
+    smallFarmers: 0,
+    land: 0,
+  };
 
   // Graph
 
@@ -34,23 +41,29 @@ export class DepartmentDashboardComponent implements OnInit {
     domain: ['#a29974', '#ca1a1a', '#f9b605', '#0e6655']
   };
 
-  productions:[];
-  districts:[];
 
-  // Doughnut
-  public doughnutChartLabels = [
-    "NABARD",
-    "SFAC",
-    "UPBSN", "UP State Bio-Energy Development Board"
-  ];
-  public doughnutChartData = [[250, 150, 100, 20]];
-  public doughnutChartType = "doughnut";
+  constructor(private api: FpoService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+
+    this.getDashboardDetails();
     this.setGraphData();
     this.productionGraph();
 
   }
+
+  getDashboardDetails() {
+    this.api.getDashboardData().subscribe(response => {
+      console.log("FPO", response);
+      this.totals = response;
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
+
   setGraphData() {
     this.multi = [
       {
@@ -275,52 +288,45 @@ export class DepartmentDashboardComponent implements OnInit {
             "value": 1000
           }
         ]
-      }
-    ],
-      this.multi2 = [
-        {
-          graphFor: `Total Actual Production in Zayad (in Qt.)`,
-          graphDetails: [
-            {
-              "name": "moong",
-              "value": 3500
-            }
-          ]
-        }
-      ],
-      this.multi3 = [
-        {
-          graphFor: `Total Actual Production in Kharif (in Qt.)`,
-          graphDetails: [
+      },
+      {
+        graphFor: `Total Actual Production in Zayad (in Qt.)`,
+        graphDetails: [
+          {
+            "name": "moong",
+            "value": 3500
+          }
+        ]
+      },
+      {
+        graphFor: `Total Actual Production in Kharif (in Qt.)`,
+        graphDetails: [
 
-            {
-              "name": "paddy",
-              "value": 2000
-            },
-            {
-              "name": "Soyaean",
-              "value": 3500
-            }
-          ],
-        }]
+          {
+            "name": "paddy",
+            "value": 2000
+          },
+          {
+            "name": "Soyaean",
+            "value": 3500
+          }
+        ],
+      }
+    ]
   }
 
 
   SurplusMarket() {
-    console.log("SurplusMarket");
+    console.log('SurplusMarket');
     this.setGraphData();
     this.surp = true;
     this.prod = false;
   }
 
   productionActual() {
-    console.log("productionActual");
+    console.log('productionActual');
     this.prod = true;
     this.surp = false;
-  }
-
-  selectCrops() {
-
   }
 
 }
