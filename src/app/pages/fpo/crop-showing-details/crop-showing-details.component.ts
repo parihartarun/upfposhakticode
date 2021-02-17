@@ -37,7 +37,6 @@ export class CropShowingDetailsComponent implements OnInit {
       seasonRefName: ['',[Validators.required]],
       baseland:[''],
       masterId:localStorage.getItem('masterId'),
-      sowingId:[]
     });
     this.getCropSowingDetails();
     this.getFarmers();
@@ -52,7 +51,8 @@ export class CropShowingDetailsComponent implements OnInit {
       verietyRef: [undefined,[Validators.required]],
       expectedYield:['', [Validators.required]],
       actualYield:['', [Validators.required]],
-      masterId:localStorage.getItem('masterId')
+      masterId:localStorage.getItem('masterId'),
+      sowingId:[]
     });
   }
 
@@ -145,10 +145,6 @@ export class CropShowingDetailsComponent implements OnInit {
     }
 
     var data = this.cropSowingForm.value;
-    // data['crop_id'] = {"cropId":this.cropSowingForm.value.cropId};
-    // data['verietyId'] = {"verietyId":this.cropSowingForm.value.verietyId};
-    // delete data.cropId;
-     console.log(data);
     this.api.addFarmerCropSowingDetails(data).subscribe(response => {
       console.log(response);
       this.toastr.success('Crop sowing details added successfully.');
