@@ -30,3 +30,6 @@ input[type=number] {
   width: 50%;
   margin: 0px auto;
 }
+tag-input {
+    width:95%;
+}

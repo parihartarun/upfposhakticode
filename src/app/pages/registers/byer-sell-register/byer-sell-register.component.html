@@ -308,7 +308,8 @@
           <span class="input-group-text"></span>
         </div>
         <!--<input class="form-control" type="text" formControlName="commdityDealsIn">-->
-        <tag-input formControlName ="commdityDealsIn" (onAdd)="onAdded($event)" (onSelect)="onSelected($event)" (onRemove)="onItemRemoved($event)">
+       
+        <tag-input formControlName="commdityDealsIn" (onAdd)="onAdded($event)" (onSelect)="onSelected($event)" (onRemove)="onItemRemoved($event)" [placeholder]="''" [secondaryPlaceholder]="''">
           <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems'></tag-input-dropdown>
         </tag-input>
       </div>
