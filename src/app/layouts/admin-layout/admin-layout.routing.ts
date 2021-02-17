@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
+import { FpoDashboardComponent } from '../../pages/fpo/dashboard/dashboard.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 
 
@@ -51,7 +51,7 @@ import { UserProfileDashboardComponent } from 'src/app/pages/user-profile-dashbo
 import { FarmerNotifictionByFpoComponent } from '../../pages/farmer/farmer-notifiction-by-fpo/farmer-notifiction-by-fpo.component';
 
 export const AdminLayoutRoutes: Routes = [
-  { path: 'fpo/dashboard', component: DashboardComponent },
+  { path: 'fpo/dashboard', component: FpoDashboardComponent },
   { path: 'fpo/user-profile', component: UserProfileComponent },
   { path: 'fpo/board-members', component: BoardMembersComponent },
   { path: 'fpo/license', component: LicenseComponent },
