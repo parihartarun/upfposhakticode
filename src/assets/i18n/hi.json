@@ -404,7 +404,7 @@
   "Quantity Required": "आवश्यक मात्रा",
   "quantity is required": "मात्रा आवश्यक है",
   "Fulfilled Date": "पूर्ति तिथि",
-  "Fulfillment Date":"पूर्ति तिथि",
+  "Fulfillment Date": "पूर्ति तिथि",
   "date is required": "पूर्ति तिथि आवश्यक है",
   "Send": "भेज दो",
   "Date": "तिथि",
@@ -514,8 +514,8 @@
   "fpo's Remarks": "एफपीओ की टिप्पणी",
   "Complaints/SuggestionsByFarmer": "शिकायतें / सुझाव किसान द्वारा",
   "status": "स्थिति",
-  "New Compliant": "नया शिकायतें",
-  "All Complaint": "सब शिकायतें",
+  "New Compliant": "लंबित शिकायत",
+  "All Complaint": "सब शिकायत",
   "Machinery / Equipment": "मशीनरी उपकरण",
   "Insectices / Pestices": "कीटनाशक",
   "Agency (associated with)": "एजेंसी (से संबद्ध)",
@@ -649,5 +649,16 @@
   "Marketable Surplus" : "विक्रय हेतु",
   "Actual Production" : "वास्तविक उत्पादन",
   "FPOs" : "एफपीओ",
-  "Total FPO" : "कुल एफपीओ"
+  "Total FPO" : "कुल एफपीओ",
+  
+  "tnc is required": "नियमों और शर्तों की आवश्यकता है",
+  "I agree to the terms and conditions.": "मैं नियमों और शर्तों से सहमत हु।",
+  "Click here": "यहाँ क्लिक करें",
+  "to view in details": "विवरण में देखने के लिए",
+  "Upload Date": "अपलोड की  तिथि",
+  "please enter value upto 999": "please enter value upto 999",
+  "only png,jpeg,jpg format is allow": "केवल पीएनजी, जेपीईजी, जेपीजी प्रारूप अनुमति देते हैं",
+  "only xls,xlsx,pdf,doc,docx format is allow": "only xls,xlsx,pdf,doc,docx format is allow"
+
+
 }

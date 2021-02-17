@@ -181,11 +181,12 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">{{'S.no'|translate}}</th>
-              
-                <th scope="col">{{'FPO Name'|translate}}</th>               
+
+                <th scope="col">{{'FPO Name'|translate}}</th>
                 <th scope="col">{{'Complaints/ Suggestions Category'|translate}}</th>
                 <th scope="col">{{'Complaint/ Suggestion Date'|translate}}</th>
                 <th scope="col">{{'Complaints / Complaints Status of suggestion'|translate}}</th>
+                <th scope="col">{{'File'|translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -194,7 +195,7 @@
                 <td>
                   {{i}}
                 </td>
-              
+
                 <td>
                   {{ complaint.fponame}}
                 </td>
@@ -208,6 +209,11 @@
                   <span *ngIf="complaint.status">{{getStatus(complaint.status)}}</span>
                   <span *ngIf="!complaint.status">NA</span>
                 </td>
+                <td>
+                  <a download href="{{complaint.filepath}}">
+                    <i class="fas fa-file"></i>
+                  </a>
+                </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
@@ -215,7 +221,7 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">{{'View'|translate}}</a>
-                     
+
                     </div>
                   </div>
                 </td>

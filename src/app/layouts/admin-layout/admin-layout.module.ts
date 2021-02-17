@@ -38,7 +38,7 @@ import { ChartsModule } from 'ng2-charts';
   declarations: [
     DepartmentCircularsComponent,
     DepartmentReportComponent ,  
-    DepartmentUplaodCircularComponent,
+   
     DepartmentUserManagementComponent,
   ]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/_services/department/department.service';
@@ -11,7 +11,9 @@ import { DepartmentService } from 'src/app/_services/department/department.servi
 export class DepartmentSchemeComponent implements OnInit {
 
   schemeList = this.departmentService.schemeList.asObservable();
-
+  @ViewChild('myInput')
+  myInputVariable: ElementRef;
+  checkfileFormat = false;
   fileToUpload: File = null;
   schemeForm: FormGroup;
   isEdit = false;
@@ -34,6 +36,25 @@ export class DepartmentSchemeComponent implements OnInit {
   }
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
+    if (!this.validateFile(files[0].name)) {
+      this.checkfileFormat = true;
+      this.fileToUpload = null;
+      this.schemeForm.controls['document'].setValue('');
+      return;
+    }
+    else {
+
+      this.checkfileFormat = false;
+    }
+  }
+  validateFile(name: String) {
+    var ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'xlsx' || ext.toLowerCase() == "xls" || ext.toLowerCase() == "pdf" || ext.toLowerCase() == "doc" || ext.toLowerCase() == "docx") {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
   onClickOrderBy(key: any) {
     this.orderBy = {
