@@ -625,6 +625,7 @@
   "Upload Date": "Upload Date",
   "View file": "फाइल देखें",
   "please enter value upto 999": "कृपया 999 तक मूल्य दर्ज करें",
-  "only png,jpeg,jpg format is allow": "only png,jpeg,jpg format allow"
+  "only png,jpeg,jpg format is allow": "only png,jpeg,jpg format allow",
+  "only xls,xlsx,pdf,doc,docx format is allow": "केवल xls,xlsx,pdf,doc,docx,प्रारूप की अनुमति है"
 
 }
