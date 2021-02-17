@@ -35,9 +35,8 @@ export class CropShowingDetailsComponent implements OnInit {
       farmerId: ['', [Validators.required]],
       guardianName: [''],
       seasonRefName: ['',[Validators.required]],
-      baseland:[],
+      baseland:[''],
       masterId:localStorage.getItem('masterId'),
-      sowingId:[]
     });
     this.getCropSowingDetails();
     this.getFarmers();
@@ -48,20 +47,27 @@ export class CropShowingDetailsComponent implements OnInit {
   initItemRows() {
     return this.formBuilder.group({
       sowingArea: ['', [Validators.required]],
-      cropId: ['', [Validators.required]],
-      verietyRef: ['',[Validators.required]],
+      cropRefName: [undefined, [Validators.required]],
+      verietyRef: [undefined,[Validators.required]],
       expectedYield:['', [Validators.required]],
       actualYield:['', [Validators.required]],
-      masterId:localStorage.getItem('masterId')
+      masterId:localStorage.getItem('masterId'),
+      sowingId:[]
     });
   }
 
   get formArr() {
     return this.cropSowingForm.get('list') as FormArray;
   }
-
+  setCropVarieties(event,i)
+  {
+    let list = this.cropSowingForm.get('list') as FormArray
+ list.at(i).get("verietyRef").setValue(event)
+  }
   addNewRow() {
-    this.formArr.push(this.initItemRows());
+    let varlist  =  this.cropSowingForm.get('list') as FormArray;
+    varlist.push(this.initItemRows());
+  return varlist;
   }
   
   deleteRow(index: number) {
@@ -92,7 +98,11 @@ export class CropShowingDetailsComponent implements OnInit {
     })
   }
 
-  getCropVarietiesByCropId(cropId){
+  getCropVarietiesByCropId(cropId,i){
+    let list = this.cropSowingForm.get('list') as FormArray
+
+    list.at(i).get("cropRefName").setValue(cropId)
+    console.log(cropId);
     this.api.getCropVarietiesByCropId(cropId).subscribe(
       response => {
       console.log(response);
@@ -129,19 +139,15 @@ export class CropShowingDetailsComponent implements OnInit {
   addSowingDetails(){
     this.submitted = true;
     // stop here if form is invalid
-    console.log(this.cropSowingForm);
+    console.log("Values are = "+JSON.stringify(this.cropSowingForm.value));
     if (this.cropSowingForm.invalid) {
         return;
     }
 
     var data = this.cropSowingForm.value;
-    // data['crop_id'] = {"cropId":this.cropSowingForm.value.cropId};
-    // data['verietyId'] = {"verietyId":this.cropSowingForm.value.verietyId};
-    // delete data.cropId;
-     console.log(data);
-    this.api.addCropProduction(data).subscribe(response => {
+    this.api.addFarmerCropSowingDetails(data).subscribe(response => {
       console.log(response);
-      this.toastr.success('Crop Production added successfully.');
+      this.toastr.success('Crop sowing details added successfully.');
       this.submitted = false;
       this.cropSowingForm.reset();
       this.getCropSowingDetails();
