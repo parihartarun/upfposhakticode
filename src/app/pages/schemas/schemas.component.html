@@ -1,6 +1,6 @@
 <section class="py-5 header" style="background-color: #e7e7e7;
 border-radius: 80px;">
-    <div class="container py-4" style="margin: auto; margin-top: -50px;max-width: 1398px;">
+    <div class="container py-4" style="margin: auto; margin-top: -50px;max-width: 1475px;">
         <nav class="navbar-light bg-light m-0">
             <a class="navbar-brand" href="#">{{'Home' | translate}}</a>/
             <a class="navbar-brand" href="#">{{'Schemes' | translate}}</a>
@@ -12,22 +12,88 @@ border-radius: 80px;">
                 <input type="radio" name="sections" id="option1" checked>
                 <label for="option1" (click)="tabtype('Seeds')">{{'Seeds' | translate}}</label>
                 <article>
-                   <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Seeds' | translate}}
+                    <h4 class="mb-4">{{'Seeds' | translate}}
                     </h4>
-                   <div class="row"><div class="col-md-8"></div>
-                    <div>
-                        <span style="font-size: 14px;"><b>Search</b></span>:<input type="text" >
-                     </div>
-                   </div>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div style="margin-left: 90px;">
+                            <span style="font-size: 14px;"><b>Search</b></span>:<input style="background: none;
+                        border: 1px solid #8e7615;" type="text">
+                        </div>
+                    </div>
 
                     <br>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
+                                <table class="table align-items-center table-flush schematable">
+                                    <thead>
+                                        <tr class="border_bottom">
+                                            <th>{{'SR. NO' | translate}}</th>
+                                            <th>{{'Description' | translate}}</th>
+                                            <th>{{'Date' | translate}}</th>
+                                            <th>{{'URL' | translate}}</th>
+                                            <th>{{'View' | translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="thead-light"
+                                            *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                                            <td>
+                                                {{i+1}}
+                                            </td>
+                                            <td>
+                                                {{schema.description}}
+                                            </td>
+                                            <td>
+                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                            </td>
+                                            <td>
+                                                {{schema.url}}
+                                            </td>
+                                            <!-- <td><i class="fa fa-file"></i></td> -->
+                                            <td>
+                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
+                                                        src="../../../../assets/image/img/pdficon.png"
+                                                        style=" height:20px; width:30px"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- <div class="card-footer py-4"> -->
+                            <!-- <nav aria-label="..." class="text-right"> -->
+                            <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
+                            <!-- </nav> -->
+                            <!-- </div> -->
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <section id="section2">
+                <input type="radio" name="sections" id="option2">
+                <label for="option2" (click)="tabtype('Fertilizer')">{{'Fertilizer' | translate}}</label>
+                <article>
+                    <h4 class="mb-4">{{'Fertilizer' | translate}}
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div style="margin-left: 90px;">
+                            <span style="font-size: 14px;"><b>Search</b></span>:<input style="background: none;
+                         border: 1px solid #8e7615;" type="text">
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <!-- <div class="card shadow"> -->
+                            <div class="table-responsive">
+                               <table class="table align-items-center table-flush schematable">
                                     <thead class="thead-light">
-                                        <tr>
+                                           <tr class="border_bottom">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
@@ -61,63 +127,9 @@ border-radius: 80px;">
                                 </table>
                             </div>
                             <!-- <div class="card-footer py-4"> -->
-                            <nav aria-label="..." class="text-right">
-                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                            </nav>
-                            <!-- </div> -->
-                            <!-- </div> -->
-                        </div>
-                    </div>
-                </article>
-            </section>
-            <section id="section2">
-                <input type="radio" name="sections" id="option2">
-                <label for="option2" (click)="tabtype('Fertilizer')">{{'Fertilizer' | translate}}</label>
-                <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Fertilizer' |
-                        translate}}</h4>
-                    <div class="row">
-                        <div class="col">
-                            <!-- <div class="card shadow"> -->
-                            <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>{{'SR. NO' | translate}}</th>
-                                            <th>{{'Description' | translate}}</th>
-                                            <th>{{'Date' | translate}}</th>
-                                            <th>{{'URL' | translate}}</th>
-                                            <th>{{'View' | translate}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr
-                                            *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                            <td>
-                                                {{i+1}}
-                                            </td>
-                                            <td>
-                                                {{schema.description}}
-                                            </td>
-                                            <td>
-                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                            </td>
-                                            <td>
-                                                {{schema.url}}
-                                            </td>
-                                            <td>
-                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
-                                                        src="../../../../assets/image/img/pdficon.png"
-                                                        style=" height:20px; width:30px"></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- <div class="card-footer py-4"> -->
-                            <nav aria-label="..." class="text-right">
-                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                            </nav>
+                            <!-- <nav aria-label="..." class="text-right"> -->
+                            <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
+                            <!-- </nav> -->
                             <!-- </div> -->
                             <!-- </div> -->
                         </div>
@@ -128,15 +140,22 @@ border-radius: 80px;">
                 <input type="radio" name="sections" id="option3">
                 <label for="option3" (click)="tabtype('Agri Equipment')">{{'Agri Equipment' | translate}}</label>
                 <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Agri Equipment' |
+                    <h4 class="mb-4">{{'Agri Equipment' |
                         translate}}</h4>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div style="margin-left: 90px;">
+                            <span style="font-size: 14px;"><b>Search</b></span>:<input style="background: none;
+                         border: 1px solid #8e7615;" type="text">
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
+                               <table class="table align-items-center table-flush schematable">
                                     <thead class="thead-light">
-                                        <tr>
+                                           <tr class="border_bottom">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
@@ -169,9 +188,10 @@ border-radius: 80px;">
                                 </table>
                             </div>
                             <!-- <div class="card-footer py-4"> -->
-                            <nav aria-label="..." class="text-right">
-                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                            </nav>
+                            <!-- <nav aria-label="..." class="text-right"> -->
+                                <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
+                       
+                                <!-- </nav> -->
                             <!-- </div> -->
                             <!-- </div> -->
                         </div>
@@ -183,15 +203,22 @@ border-radius: 80px;">
                 <label for="option4" (click)="tabtype('Agri Equipment Bank')">{{'Agri Equipment Bank' |
                     translate}}</label>
                 <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Agri Equipment Bank'
+                    <h4 class="mb-4">{{'Agri Equipment Bank'
                         | translate}}</h4>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div style="margin-left: 90px;">
+                            <span style="font-size: 14px;"><b>Search</b></span>:<input style="background: none;
+                         border: 1px solid #8e7615;" type="text">
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
+                               <table class="table align-items-center table-flush schematable">
                                     <thead class="thead-light">
-                                        <tr>
+                                           <tr class="border_bottom">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
@@ -224,9 +251,11 @@ border-radius: 80px;">
                                 </table>
                             </div>
                             <!-- <div class="card-footer py-4"> -->
-                            <nav aria-label="..." class="text-right">
+                            <!-- <nav aria-label="..." class="text-right"> -->
                                 <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                            </nav>
+                                <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
+                        
+                                <!-- </nav> -->
                             <!-- </div> -->
                             <!-- </div> -->
                         </div>
@@ -238,15 +267,22 @@ border-radius: 80px;">
                 <input type="radio" name="sections" id="option5">
                 <label for="option5" (click)="tabtype('Export')">{{'Export' | translate}}</label>
                 <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Export' | translate}}
+                    <h4 class="mb-4">{{'Export' | translate}}
                     </h4>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div style="margin-left: 90px;">
+                            <span style="font-size: 14px;"><b>Search</b></span>:<input style="background: none;
+                         border: 1px solid #8e7615;" type="text">
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
+                               <table class="table align-items-center table-flush schematable">
                                     <thead class="thead-light">
-                                        <tr>
+                                           <tr class="border_bottom">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
@@ -279,9 +315,11 @@ border-radius: 80px;">
                                 </table>
                             </div>
                             <!-- <div class="card-footer py-4"> -->
-                            <nav aria-label="..." class="text-right">
+                            <!-- <nav aria-label="..." class="text-right"> -->
                                 <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                            </nav>
+                                <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
+                          
+                                <!-- </nav> -->
                             <!-- </div> -->
                             <!-- </div> -->
                         </div>
@@ -295,12 +333,19 @@ border-radius: 80px;">
                 <article>
                     <h4 class="mb-4">{{'Organic Farming' | translate}}</h4>
                     <div class="row">
+                        <div class="col-md-8"></div>
+                        <div style="margin-left: 90px;">
+                            <span style="font-size: 14px;"><b>Search</b></span>:<input style="background: none;
+                         border: 1px solid #8e7615;" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
+                               <table class="table align-items-center table-flush schematable">
                                     <thead class="thead-light">
-                                        <tr>
+                                           <tr class="border_bottom">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
@@ -333,9 +378,11 @@ border-radius: 80px;">
                                 </table>
                             </div>
                             <!-- <div class="card-footer py-4"> -->
-                            <nav aria-label="..." class="text-right">
+                            <!-- <nav aria-label="..." class="text-right"> -->
                                 <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                            </nav>
+                                <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
+                       
+                                <!-- </nav> -->
                             <!-- </div> -->
                             <!-- </div> -->
                         </div>
@@ -347,15 +394,22 @@ border-radius: 80px;">
                 <input type="radio" name="sections" id="option7">
                 <label for="option7" (click)="tabtype('Special Crop')">{{'Special Crop' | translate}}</label>
                 <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">{{'Special Crop' |
+                    <h4 class="mb-4">{{'Special Crop' |
                         translate}}</h4>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div style="margin-left: 90px;">
+                            <span style="font-size: 14px;"><b>Search</b></span>:<input style="background: none;
+                         border: 1px solid #8e7615;" type="text">
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
+                               <table class="table align-items-center table-flush schematable">
                                     <thead class="thead-light">
-                                        <tr>
+                                           <tr class="border_bottom">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
@@ -402,14 +456,21 @@ border-radius: 80px;">
                 <input type="radio" name="sections" id="option8">
                 <label for="option8" (click)="tabtype('Finance')">{{'Finance' | translate}}</label>
                 <article>
-                    <h4 class="mb-4" style="background-color: rgb(243, 191, 22);padding: 10px;">Finance</h4>
+                    <h4 class="mb-4">Finance</h4>
+                    <div class="row">
+                        <div class="col-md-8"></div>
+                        <div style="margin-left: 90px;">
+                            <span style="font-size: 14px;"><b>Search</b></span>:<input style="background: none;
+                         border: 1px solid #8e7615;" type="text">
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <!-- <div class="card shadow"> -->
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
+                               <table class="table align-items-center table-flush schematable">
                                     <thead class="thead-light">
-                                        <tr>
+                                          <tr class="border_bottom">
                                             <th>{{'SR. NO' | translate}}</th>
                                             <th>{{'Description' | translate}}</th>
                                             <th>{{'Date' | translate}}</th>
@@ -418,7 +479,7 @@ border-radius: 80px;">
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr
+                                        <tr style=" border-bottom-style: solid; border-bottom-color:#fff"
                                             *ngFor="let schema of SchemasList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
                                             <td>
                                                 {{i+1}}
@@ -442,9 +503,11 @@ border-radius: 80px;">
                                 </table>
                             </div>
                             <!-- <div class="card-footer py-4"> -->
-                            <nav aria-label="..." class="text-right">
+                            <!-- <nav aria-label="..." class="text-right"> -->
                                 <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                            </nav>
+                                <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
+                          
+                                <!-- </nav> -->
                             <!-- </div> -->
                             <!-- </div> -->
                         </div>

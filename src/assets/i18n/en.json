@@ -35,7 +35,7 @@
   "FPO orientation workshop: 12-Oct-20": "FPO orientation workshop: 12-Oct-20",
   "View all": "View all",
   "Total FPOs": "Total FPO's",
-  "Total Farmers": "Total Farmer's",
+  "Total Farmers": "Total Farmers",
   "Marginal Farmers": "Marginal Farmers",
   "Total Land": "Total Land",
   "Total Crops": "Total Crops",
@@ -404,6 +404,7 @@
   "FPO Email1": "FPO Email",
   "Quantity Required": "Quantity Required",
   "quantity is required": "quantity is required",
+  "Fulfillment Date": "Fulfillment Date",
   "Fulfilled Date": "Fulfilled Date",
   "Send": "Send",
   "Date": "Date",
@@ -439,6 +440,7 @@
   "zerotonintynine": "0 - 99",
   "hundredtohundrednintynine": "100 - 199",
   "morethan200": "More than 200",
+  
   "enterfpodeliveryaddr": "Please enter delivery Address.",
   "fpodeliveryaddr": "Delivery Address.",
   "deleiveryrequired": "Delivery address is required.",
@@ -615,7 +617,9 @@
   "Area (Landmark)": "Area (Landmark)",
   "Commdity Deals in": "Commdity Deals in",
   "Seed1": "बीज",
-  "Select Seed": "Select Seed"
-
-
+  "Select Seed": "Select Seed",
+  "Marketable Surplus" : "Marketable Surplus",
+  "Actual Production" : "Actual Production",
+  "FPOs" : "FPOs",
+  "Total FPO" : "Total FPO"
 }

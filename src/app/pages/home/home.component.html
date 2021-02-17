@@ -299,10 +299,10 @@
                 </span>
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow homePageImageIcom">
                   <img _ngcontent-cnf-c175="" _ngcontent-vcn-c149="" src="../../../assets/image/img/logo.png" class="logo-image">
-                </div>  <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+                </div>  <img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">
               </div>
               <div class="tile_nember" *ngIf="fpo">
-                {{fpo}}
+                {{fpo |  number:'1.0-2'}}
               </div>
 
             </div>
@@ -313,12 +313,12 @@
                 <span class="set_span_titel">
                   {{'Total Farmers' | translate}}
 
-                </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+                </span> <img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow homePageImageIcom">
                   <img _ngcontent-cnf-c175="" _ngcontent-vcn-c149="" src="../../../assets/image/img/logo.png" class="logo-image">
                 </div></div>
               <div class="tile_nember" *ngIf="farmerDetails">
-                {{farmerDetails.totalfarmers}}
+                {{farmerDetails.totalfarmers |  number:'1.0-2'}}
               </div>
 
             </div>
@@ -330,9 +330,10 @@
                 <span class="set_span_titel">
                   {{'Farmers' | translate}}
                 </span>
+                <img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow homePageImageIcom">
                   <img _ngcontent-cnf-c175="" _ngcontent-vcn-c149="" src="../../../assets/image/img/logo.png" class="logo-image">
-                </div>             
+                </div>
               </div>
               <div>
                 <table rowspacing="20" style="width: 99%;">
@@ -340,21 +341,21 @@
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Marginal'|translate}}</td>
                       <td class="table_tile_number" *ngIf="farmerDetails">
-                        {{farmerDetails.marginalfarmers}}
+                        {{farmerDetails.marginalfarmers |  number:'1.0-2'}}
                         <!-- </a> -->
                       </td>
                     </tr>
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Small' |translate}}</td>
                       <td class="table_tile_number" *ngIf="farmerDetails">
-                        {{farmerDetails.smalltotal}}
+                        {{farmerDetails.smalltotal |  number:'1.0-2'}}
                         <!-- </a> -->
                       </td>
                     </tr>
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Others'| translate}}</td>
                       <td class="table_tile_number" *ngIf="farmerDetails">
-                        {{farmerDetails.bigfarmers}}
+                        {{farmerDetails.bigfarmers |  number:'1.0-2'}}
                         <!-- </a> -->
                       </td>
                     </tr>
@@ -372,11 +373,13 @@
                 <span class="set_span_titel">
                   {{'Total Land (in Ha.)' |translate}}
                 </span>
+                <img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow homePageImageIcom">
                   <img _ngcontent-cnf-c175="" _ngcontent-vcn-c149="" src="../../../assets/image/img/logo.png" class="logo-image">
-                </div>  </div>
-              <div class="tile_nember"  *ngIf="farmerDetails">
-                {{farmerDetails.totalland}}
+                </div>
+              </div>
+              <div class="tile_nember" *ngIf="farmerDetails">
+                {{farmerDetails.totalland |  number:'1.0-2'}}
               </div>
             </div>
             <!-- Land tile end -->
@@ -387,7 +390,7 @@
               <div>
                 <span class="set_span_titel">
                   {{'Production (in Qt.)' |translate}}
-                </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+                </span> <img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow homePageImageIcom">
                   <img _ngcontent-cnf-c175="" _ngcontent-vcn-c149="" src="../../../assets/image/img/logo.png" class="logo-image">
                 </div>
@@ -397,17 +400,17 @@
                   <tbody>
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Rabi' | translate }}</td>
-                      <td class="table_tile_number" >{{productionDetails.rabiprod}}</td>
+                      <td class="table_tile_number">{{productionDetails.rabiprod |  number:'1.0-2'}}</td>
                     </tr>
 
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Zayd' | translate}}</td>
-                      <td class="table_tile_number">{{productionDetails.zayadprod}}</td>
+                      <td class="table_tile_number">{{productionDetails.zayadprod |  number:'1.0-2'}}</td>
                     </tr>
 
                     <tr class="table_tile_tr">
                       <td class="table_tile_text">{{'Kharif' | translate}}</td>
-                      <td class="table_tile_number">{{productionDetails.kharifprod}}</td>
+                      <td class="table_tile_number">{{productionDetails.kharifprod |  number:'1.0-2' }}</td>
                     </tr>
 
 
@@ -424,7 +427,7 @@
               <div>
                 <span class="set_span_titel">
                   {{'Farm Machinery Bank'| translate}}
-                </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+                </span> <img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow homePageImageIcom">
                   <img _ngcontent-cnf-c175="" _ngcontent-vcn-c149="" src="../../../assets/image/img/logo.png" class="logo-image">
                 </div>
@@ -440,7 +443,7 @@
               <div>
                 <span class="set_span_titel">
                   {{'Warehouse / Cold Storage' | translate }}
-                </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">-->
+                </span> <img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="" style="">
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow homePageImageIcom">
                   <img _ngcontent-cnf-c175="" _ngcontent-vcn-c149="" src="../../../assets/image/img/logo.png" class="logo-image">
                 </div>
@@ -457,7 +460,7 @@
               <div>
                 <span class="set_span_titel">
                   {{'Seed Processing Unit' | translate}}
-                </span> <!--<img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="">-->
+                </span> <img class="set_span_titel_image" src="../../../assets/image/img/bg_box2.png" alt="">
                 <div _ngcontent-iol-c112="" class="icon icon-shape bg-info text-white rounded-circle shadow homePageImageIcom">
                   <img _ngcontent-cnf-c175="" _ngcontent-vcn-c149="" src="../../../assets/image/img/logo.png" class="logo-image">
                 </div>

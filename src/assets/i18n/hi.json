@@ -368,7 +368,7 @@
   "Crop Name is required": "फसल का नाम आवश्यक है",
   "Crop variety": "फसल की विविधता",
   "Select variety": "फसल की विविधता का चयन करें",
-  "Actual Production (in Qt.)": "वास्तविक उत्पादन (क्विन्टल में)*",
+  "Actual Production (in Qt.)": "वास्तविक उत्पादन (क्विन्टल में)",
   "Actual Production is required": "वास्तविक उत्पादन (क्विन्टल में) आवश्यक है",
   "Marketable Surplus (in Qt.)": "विक्रय हेतु मात्रा (क्विन्टल में)",
   "Marketable Surplus is required": "विक्रय हेतु मात्रा आवश्यक है",
@@ -404,6 +404,7 @@
   "Quantity Required": "आवश्यक मात्रा",
   "quantity is required": "मात्रा आवश्यक है",
   "Fulfilled Date": "पूर्ति तिथि",
+  "Fulfillment Date":"पूर्ति तिथि",
   "date is required": "पूर्ति तिथि आवश्यक है",
   "Send": "भेज दो",
   "Date": "तिथि",
@@ -644,5 +645,9 @@
   "Invalid GST Number": "जीएसटी नंबर अमान्य है",
   "Invalid PAN Number": "पैन नंबर अमान्य है",
   "Category Deals is required": "श्रेणी सौदों की आवश्यकता है",
-  "password does not match":"पासवर्ड मैच नहीं कर रहा है"
+  "password does not match":"पासवर्ड मैच नहीं कर रहा है",
+  "Marketable Surplus" : "विक्रय हेतु",
+  "Actual Production" : "वास्तविक उत्पादन",
+  "FPOs" : "एफपीओ",
+  "Total FPO" : "कुल एफपीओ"
 }

@@ -25,6 +25,7 @@ export class DepartmentGuidelineComponent implements OnInit {
       guideline_type: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       document: new FormControl(null, Validators.required),
+      url:new FormControl(null,Validators.required)
     });
     this.departmentService.getGuideline();
   }
@@ -56,6 +57,8 @@ export class DepartmentGuidelineComponent implements OnInit {
       formData.append('file', this.fileToUpload);
       formData.append('description', this.guidelineForm.value.description);
       formData.append('guideline_type', this.guidelineForm.value.guideline_type);
+      formData.append('url', this.guidelineForm.value.url);
+
       this.departmentService.addGuideline(formData);
       this.guidelineForm.reset();
     }
@@ -63,6 +66,7 @@ export class DepartmentGuidelineComponent implements OnInit {
   editGuideline(data) {
     this.guidelineForm.get('guideline_type').patchValue(data.fpoGuidelineType);
     this.guidelineForm.get('description').patchValue(data.description);
+    
     // this.guidelineForm.get('document').patchValue(data.fileName);
     this.id = data.id;
     this.isEdit = true;
@@ -97,4 +101,6 @@ export class DepartmentGuidelineComponent implements OnInit {
   get typeValidation() { return this.guidelineForm.get('guideline_type'); }
   get descValidation() { return this.guidelineForm.get('description'); }
   get docValidation() { return this.guidelineForm.get('document'); }
+  get urlValidation() { return this.guidelineForm.get('url'); }
+
 }
