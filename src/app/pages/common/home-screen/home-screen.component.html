@@ -1,0 +1,209 @@
+<div class="header">
+  <div class="logo mr-3">
+    <img class="logo-image" src="../../../assets/image/img/logo.png" />
+  </div>
+  <div class="text-center mainTitle ">
+    <span class="parent">{{'mainTitle' |translate}} </span>
+    <br>
+    <span class="child">
+      {{'mainTitle2' |translate}}
+    </span>
+  </div>
+
+  <div class="headingTitle">
+    <span class="gov">{{'Agriculture Department' | translate}}</span>
+    <br>
+    <span class="up">{{'Uttar Pradesh'|translate}}</span>
+
+  </div>
+</div>
+<section class="fms-wrapper">
+
+  <div class="innerContent">
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+        (click)="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span _ngcontent-aau-c122="" class="navbar-toggler-icon"></span>
+      </button>
+
+
+      <div class="collapse navbar-collapse" id="navbarToggleExternalContent" [ngClass]="{ in: isOpen }">
+        <ul class="navbar-nav ml-auto" *ngIf="!isLoggeIn">
+          <div class="triangle-topright"></div>
+          <li class="nav-item dropdown">
+            <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
+              <a class="languageText" ngbDropdownToggle>
+                <img class="nav-image nav-image1" src="../../../assets/image/img/language.png" />
+                {{'Language' | translate}}
+                <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
+              </a>
+              <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+                <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
+                <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
+              </div>
+            </div>
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/fpo_guidelines">
+              <img class="nav-image" src="../../../assets/image/img/fpomenu.png" />
+              {{'FPO guidelines' | translate}} <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/schema">
+              <img class="nav-image" src="../../../assets/image/img/scemenu.png" />
+              {{'Schemes' | translate}} <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="!isLoggeIn">
+            <a class="nav-link" routerLink="/login">
+              <img class="nav-image" src="../../../assets/image/img/signup.png" />
+              {{'Login' | translate}} <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register">
+              <img class="nav-image" src="../../../assets/image/img/signup.png" />
+              {{'Sign Up' | translate}} <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          <!--<li class="nav-item dropdown">
+                <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
+                  <a class="languageText" ngbDropdownToggle>
+  
+                    <img class="nav-image sign-up" src="../../../assets/image/img/usermenu.png" />
+                    {{'Sign Up' | translate}}
+                    <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
+                  </a>
+                  <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+                    <a class="dropdown-item" routerLink="/register/1" routerLinkActive="active"><b>{{'FPO' | translate}}</b></a>
+                    <a class="dropdown-item" routerLink="/register/2" routerLinkActive="active">{{'Farmer' | translate}}</a>
+                    <a class="dropdown-item" routerLink="/register/3" routerLinkActive="active">{{'Buyer/ Seller' | translate}}</a>
+                    <a class="dropdown-item" routerLink="/register/4" routerLinkActive="active">{{'Input Supplier' | translate}}</a>
+                    <a class="dropdown-item" routerLink="/register/5" routerLinkActive="active">{{'CHC/FMB' | translate}}</a>-->
+          <!--<a class="dropdown-item" routerLink="/register/6" routerLinkActive="active">{{'Equipment Centre' | translate}}</a>-->
+          <!--</div>
+  
+  
+                </div>
+  
+  
+              </li>-->
+        </ul>
+        <ul class="navbar-nav ml-auto login" *ngIf="isLoggeIn">
+          <div class="triangle-topright"></div>
+          <li class="nav-item dropdown">
+            <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
+              <a class="languageText" ngbDropdownToggle>
+                <img class="nav-image nav-image1" src="../../../assets/image/img/language.png" />
+                {{'Language' | translate}}
+                <img class="arrowImage" src="../../../assets/image/img/arrodwon.png" alt="logo">
+              </a>
+              <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+                <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
+                <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
+              </div>
+            </div>
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <img class="nav-image" src="../../../assets/image/img/fpomenu.png" />
+              {{'FPO' | translate}} <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="#">
+              <img class="nav-image" src="../../../assets/image/img/scemenu.png" />
+              {{'Schemes' | translate}} <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          <li class="nav-item" *ngIf="isLoggeIn">
+            <a class="nav-link" href="javascript:void(0)" (click)="logout()">
+              <img class="nav-image" src="../../../assets/image/img/signup.png" />
+              {{'Logout' | translate}} <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+        </ul>
+
+
+      </div>
+    </nav>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="footer footerBox">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-7 text-center">
+
+          <!-- Accessibility Statement -->
+
+
+          <a href="/accessibilityen" title="Accessibility Statement">
+            {{'Accessibility' |translate}}
+          </a>
+          |
+          <a href="/privacypolicyen" title="Privacy Policy">
+            {{'Privacy Policy' | translate}}
+          </a>
+          |
+          <!--Hyper Linnking Policy  -->
+          <a href="/hyperlinkingpolicyen" title="HyperLinking Policy">
+            {{'Hyper Linking Policy' | translate}}
+          </a>
+          |
+
+          <!-- Copyright Policy -->
+
+
+          <a href="/copyrightpolicyen" title="Copyright Policy">
+            {{'Copyright Policy' | translate }}
+          </a>
+
+          |
+
+          <a href="/termsconditionsen" title="Terms and Conditions">
+            {{'Terms and Conditions' | translate }}
+          </a>
+          |
+          <a href="/disclaimeren" title="Disclaimer">
+            {{'Disclaimer' | translate}}
+          </a>
+
+          |
+          <!--Help  -->
+
+
+          <a href="/helpen" title="Help">
+
+            {{'Help' | translate}}
+          </a>
+
+
+          <p>
+            {{'footerText1' | translate}}
+
+          </p>
+          <p>
+            {{'footerText2' | translate}}
+            .
+          </p>
+        </div>
+        <div class="col-sm-5 text-center">
+          <p style="margin: 0;"> {{'footerText3' | translate}}</p>
+          <p> {{'footerText4' | translate}}</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

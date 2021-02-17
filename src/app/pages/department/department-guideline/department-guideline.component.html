@@ -115,28 +115,9 @@
           <div>
             <h3 class="mb-0">{{'Guidelines List' | translate}}</h3>
           </div>
-          <div class="cust-head">
-            <div class="mr-2">
-              <input type="text" [id]="'search_'+tableId" [(ngModel)]="searchText" (input)="onInputSearch()"
-                name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
-            </div>
-            <div>
-              <select class="custom-control custom-select" name="filterByType" [(ngModel)]="filterByType"
-                (change)="getGuidelineByType();p=1">
-                <option value="null" disabled>
-                  {{'Select Guideline Type' | translate}}</option>
-                <option value="">
-                  {{'All' | translate}}</option>
-                <option [value]="'PREREGISTRATION'">
-                  {{'Pre-PFO Registration' | translate}}</option>
-                <option [value]="'POSTREGISTRATION'">
-                  {{'Post-PFO Registration' | translate}}</option>
-              </select>
-            </div>
-          </div>
         </div>
         <div class="card-body">
-          <div class="table-responsive border border-dark">
+          <div class="border border-dark">
             <div class="cust-head mx-3 p-3">
               <div class="mr-2">
                 <input type="text" [id]="'search_'+tableId" [(ngModel)]="searchText" (input)="onInputSearch()"
@@ -161,8 +142,8 @@
               <thead class="">
                 <tr>
                   <th scope="col">{{'Serial no.' | translate}}</th>
-                  <th scope="col" (click)="onClickOrderBy('description')">{{'Description' | translate}}</th>
-                  <th scope="col" (click)="onClickOrderBy('uploadDate')">{{'Date' | translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('description')">{{'Description' | translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('uploadDate')">{{'Date' | translate}}</th>
                   <th scope="col">{{'View Details' | translate}}</th>
                   <th scope="col">{{'Actions' | translate}}</th>
                 </tr>
@@ -203,20 +184,20 @@
                 </tr>
               </tbody>
             </table>
-            <div class="row mx-0" style="margin-top: 5px;">
+            <div class="row mx-0 mt-2" style="align-items: center;">
               <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
-                <div>Showing 1 of 4 entries</div>
+                <!-- <div>Showing 1 of 4 entries</div> -->
               </div>
               <div class="col-xs-12 col-sm-6 col-12 custom-pagination-align">
-                <pagination-controls  (pageChange)="currentPage = $event"></pagination-controls>
+                <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
               </div>
             </div>
           </div>
-          <div class="card-footer py-4">
+          <!-- <div class="card-footer py-4">
             <nav aria-label="..." class="text-right">
               <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
             </nav>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

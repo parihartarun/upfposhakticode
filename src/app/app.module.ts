@@ -104,6 +104,7 @@ import { DepartmentDashboardComponent } from './pages/department/dashboard/depar
 
 import { ChartsModule } from 'ng2-charts';
 import { FpoDashboardComponent } from './pages/fpo/dashboard/dashboard.component';
+import { HomeScreenComponent } from './pages/common/home-screen/home-screen.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -221,7 +222,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FarmerNotifictionByFpoComponent,
     TableSearchPipe,
     DepartmentDashboardComponent,
-    FpoDashboardComponent
+    FpoDashboardComponent,
+    HomeScreenComponent
   ],
   exports: [
     AuthHeaderComponent
