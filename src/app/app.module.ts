@@ -98,6 +98,7 @@ import { UserProfileDashboardComponent } from './pages/user-profile-dashboard/us
 import { DepartmentAllUsersComponent } from './pages/department/department-all-users/department-all-users.component';
 import { UppercaseDirective } from './directive/uppercase.directive';
 import { DepartmentDashboardComponent } from './pages/department/dashboard/departmentDashboard.component';
+import { DepartmentUplaodCircularComponent } from './pages/department/department-uplaod-circular/department-uplaod-circular.component';
 
 import { ChartsModule } from 'ng2-charts';
 import { FpoDashboardComponent } from './pages/fpo/dashboard/dashboard.component';
@@ -214,6 +215,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FpoNotifiactionComponent,
     NotifiactionByDepartmentComponent,
     FarmerNotifictionByFpoComponent,
+    DepartmentUplaodCircularComponent,
     DepartmentDashboardComponent,
     FpoDashboardComponent
   ],
