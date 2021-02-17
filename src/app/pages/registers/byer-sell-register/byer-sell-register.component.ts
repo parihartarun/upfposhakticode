@@ -1,9 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
+
+
 
 
 
@@ -13,6 +18,7 @@ import { AuthService } from '../../../_services/auth/auth.service';
   styleUrls: ['./byer-sell-register.component.css']
 })
 export class ByerSellRegisterComponent implements OnInit {
+  [x: string]: any;
   registerForm: FormGroup;
   submitted = false;
   bsValue = new Date();
@@ -21,7 +27,7 @@ export class ByerSellRegisterComponent implements OnInit {
   states = [];
   districts = [];
   blocks = [];
-  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService, private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -114,5 +120,28 @@ export class ByerSellRegisterComponent implements OnInit {
   handleSuccess(e) {
     console.log("ReCaptcha", e);
   }
+  //requestAutocompleteItems(text: string) {
+  //  this.api.getAllTags(text).subscribe(t => {
+  //    return t
+  //  })
+  //}
+  public requestAutocompleteItems = (text: string): Observable<string[]> => {
+    let arr=[
+      'item1', 'item2', 'item3'
+    ]
+    return of(arr);
+   
 
+  };
+  onAdded($event: any) {
+    console.log("Fire Added");
+  }
+
+  onSelected($event: any) {
+    console.log("Fire Selected");
+  }
+
+  onItemRemoved($event: any) {
+    console.log("Fire Removed");
+  }
 }

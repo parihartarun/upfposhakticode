@@ -106,6 +106,8 @@ import { DepartmentUplaodCircularComponent } from './pages/department/department
 import { ChartsModule } from 'ng2-charts';
 import { FpoDashboardComponent } from './pages/fpo/dashboard/dashboard.component';
 
+import { TagInputModule } from 'ngx-chips';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -134,6 +136,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgMarqueeModule,
     NgxChartsModule,
     ChartsModule,
+    TagInputModule, 
     ToastrModule.forRoot({
       timeOut: 10000,
     }),
