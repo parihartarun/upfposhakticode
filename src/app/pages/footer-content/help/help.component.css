@@ -1,0 +1,10 @@
+p{
+    color: black;
+    margin: 5px;
+}
+strong{
+    font-weight: 600 !important;
+}
+td{
+    white-space: pre-wrap;
+}

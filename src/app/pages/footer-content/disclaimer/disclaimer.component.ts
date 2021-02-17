@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-privacy-policy',
-  templateUrl: './privacy-policy.component.html',
-  styleUrls: ['./privacy-policy.component.css']
+  selector: 'app-disclaimer',
+  templateUrl: './disclaimer.component.html',
+  styleUrls: ['./disclaimer.component.css']
 })
-export class PrivacyPolicyComponent implements OnInit {
+export class DisclaimerComponent implements OnInit {
 
+ 
   constructor(public translate: TranslateService) { }
   lang = '';
   ngOnInit(): void {
