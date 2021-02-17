@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/_services/department/department.service';
@@ -18,6 +18,9 @@ export class DepartmentGuidelineComponent implements OnInit {
   id = null;
   isEdit = false;
   filterByType = '';
+  orderBy: { order: string, key: string } = { order: '', key: '' };
+  searchText = '';
+  currentPage=1;
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, public departmentService: DepartmentService) { }
 
   ngOnInit(): void {
@@ -28,6 +31,17 @@ export class DepartmentGuidelineComponent implements OnInit {
       url:new FormControl(null,Validators.required)
     });
     this.departmentService.getGuideline();
+  }
+  onClickOrderBy(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
+
+  }
+  onInputSearch() {
+    this.currentPage = 1;
   }
   getGuidelineByType() {
     if (!!!this.filterByType) {

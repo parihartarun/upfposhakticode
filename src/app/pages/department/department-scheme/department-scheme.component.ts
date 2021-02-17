@@ -18,6 +18,9 @@ export class DepartmentSchemeComponent implements OnInit {
   schemeForm: FormGroup;
   isEdit = false;
   id = null;
+  orderBy: { order: string, key: string } = { order: '', key: '' };
+  currentPage = 1;
+  searchText = '';
   constructor(private formBuilder: FormBuilder, public departmentService: DepartmentService, private toastr: ToastrService) { }
 
 
@@ -27,7 +30,7 @@ export class DepartmentSchemeComponent implements OnInit {
       description: new FormControl(null, Validators.required),
       departmentName: new FormControl(null, Validators.required),
       document: new FormControl(null, Validators.required),
-      url:new FormControl(null,Validators.required)
+      url: new FormControl(null, Validators.required)
     });
     this.departmentService.getScheme();
   }
@@ -53,18 +56,28 @@ export class DepartmentSchemeComponent implements OnInit {
       return false;
     }
   }
+  onClickOrderBy(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
 
+  }
+  onInputSearch() {
+    this.currentPage = 1;
+  }
   addSchemes() {
-    
+
     this.schemeForm.markAllAsTouched();
     if (this.schemeForm.valid) {
-    
+
       const formData: FormData = new FormData();
       formData.append('file', this.fileToUpload);
       formData.append('description', this.schemeForm.value.description);
       formData.append('title', this.schemeForm.value.schemes_type);
       formData.append('parent_department', this.schemeForm.value.departmentName);
-      formData.append('url',this.schemeForm.value.url);
+      formData.append('url', this.schemeForm.value.url);
 
       this.departmentService.uploadSchemes(formData);
       this.schemeForm.reset();

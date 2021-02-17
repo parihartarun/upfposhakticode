@@ -24,6 +24,9 @@
         <h3></h3>
       </div> -->
       <div class="card-body">
+        <!-- <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+          [options]="options" [data]="fpo" [columns]="fpoColumn">
+        </app-data-table> -->
         <div class="row p-3">
           <div class="table-responsive">
             <table class="table align-items-center table-flush">
@@ -204,46 +207,9 @@
         <h3 class="mb-0">{{'Production Details (Annual)' | translate}}</h3>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">{{'SR. NO' | translate}}</th>
-                <th scope="col">{{'Crops' | translate}}</th>
-                <th scope="col">{{'Crop Variety' | translate}}</th>
-                <th scope="col">{{'Marketable Surplus 2021 (In Qt.)' | translate}}</th>
-                <th scope="col">{{'SOLD QUANTITY 2021 (IN QT.)' | translate}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let license of License | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                <!-- <td>
-                <input type="checkbox">
-              </td> -->
-                <td>
-                  -
-                </td>
-                <td>
-                  -
-                </td>
-                <td>
-                  -
-                </td>
-                <td>
-                  -
-                </td>
-                <td>
-                  -
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-footer py-4">
-          <nav aria-label="..." class="text-right">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-          </nav>
-        </div>
+        <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+          [options]="options" [data]="[]" [columns]="productionColumn">
+        </app-data-table>
       </div>
     </div>
   </div>
@@ -261,45 +227,10 @@
           <div class="card-header p-0">
             <h3 class="mb-0">{{'Board Members' | translate}}</h3>
           </div>
-          <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">{{'SR. NO' | translate}}</th>
-                  <th scope="col">{{'Member Name' | translate}}</th>
-                  <th scope="col">{{'Designations' | translate}}</th>
-                  <th scope="col">{{'Email' | translate}}</th>
-                  <th scope="col">{{'Mobile' | translate}}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  *ngFor="let row of fpo?.boardMember | paginate: { itemsPerPage: 10, currentPage: boardMemberPagination };let i=index">
-
-                  <td>
-                    {{i+1}}
-                  </td>
-                  <td>
-                    {{row.name}}
-                  </td>
-                  <td>
-                    {{row.designation}}
-                  </td>
-                  <td>
-                    {{row.email}}
-                  </td>
-                  <td>
-                    {{row.contactNo}}
-                  </td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="card-footer py-4">
-            <nav aria-label="..." class="text-right">
-              <pagination-controls (pageChange)="boardMemberPagination = $event"></pagination-controls>
-            </nav>
+          <div class="card-body" *ngIf="fpo?.boardMember">
+            <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+              [options]="options" [data]="fpo?.boardMember" [columns]="boardMemCol">
+            </app-data-table>
           </div>
         </div>
 
@@ -307,54 +238,10 @@
           <div class="card-header p-0">
             <h3 class="mb-0">{{'Warehouse / Cold Storage' | translate}}</h3>
           </div>
-          <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">{{'SR. NO' | translate}}</th>
-                  <th scope="col">{{'District' | translate}}</th>
-                  <th scope="col">{{'Storage Center Address' | translate}}</th>
-                  <th scope="col">{{'Storage Center Type' | translate}}</th>
-                  <th scope="col">{{'Storage Capacity (in Mt.)' | translate}}</th>
-                  <th scope="col">{{'Available Facilities' | translate}}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  *ngFor="let row of coldStorage | paginate: { itemsPerPage: 10, currentPage: storageUnitPagination };let i=index">
-                  <!-- <td>
-                      <input type="checkbox">
-                    </td> -->
-
-                  <td>
-                    {{i+1}}
-                  </td>
-                  <td>
-                    {{row.district}}
-                  </td>
-                  <td>
-                    {{row.address}}
-                  </td>
-                  <td>
-                    {{row.storageType}}
-                  </td>
-                  <td>
-                    {{row.storageCapacity}}
-                  </td>
-                  <td>
-                    {{row.fascilities}}
-                  </td>
-
-
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="card-footer py-4">
-            <nav aria-label="..." class="text-right">
-              <pagination-controls (pageChange)="storageUnitPagination = $event"></pagination-controls>
-            </nav>
+          <div class="card-body">
+            <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+              [options]="options" [data]="coldStorage" [columns]="storageUnitCol">
+            </app-data-table>
           </div>
         </div>
 
@@ -362,51 +249,10 @@
           <div class="card-header p-0">
             <h3 class="mb-0">{{'Licenses' | translate}}</h3>
           </div>
-          <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">{{'SR. NO' | translate}}</th>
-                  <th scope="col">{{'Licenses Type' | translate}}</th>
-                  <th scope="col">{{'Licenses Issued By' | translate}}</th>
-                  <th scope="col">{{'Licenses Number' | translate}}</th>
-                  <th scope="col">{{'Licenses From' | translate}}</th>
-                  <th scope="col">{{'Licenses To' | translate}}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  *ngFor="let row of fpo?.fpoLicenceDetails | paginate: { itemsPerPage: 10, currentPage: boardMemberPagination };let i=index">
-                  <!-- <td>
-                      <input type="checkbox">
-                    </td> -->
-
-                  <td>
-                    {{i+1}}
-                  </td>
-                  <td>
-                    {{row.licenceType}}
-                  </td>
-                  <td>
-                    {{row.licenceIssuedBy}}
-                  </td>
-                  <td>
-                    {{row.liceneceNumber}}
-                  </td>
-                  <td>
-                    {{row.issuedate}}
-                  </td>
-                  <td>
-                    {{row.licenceValidTill}}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="card-footer py-4">
-            <nav aria-label="..." class="text-right">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </nav>
+          <div class="card-body" *ngIf="fpo?.fpoLicenceDetails">
+            <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+              [options]="options" [data]="fpo?.fpoLicenceDetails" [columns]="licenseColumn">
+            </app-data-table>
           </div>
         </div>
 
@@ -415,40 +261,10 @@
           <div class="card-header p-0">
             <h3 class="mb-0">{{'Farm Machinery Bank' | translate}}</h3>
           </div>
-          <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">{{'SR. NO' | translate}}</th>
-                  <th scope="col">{{'Name Of Equipment' | translate}}</th>
-                  <th scope="col">{{'No Of Equipment' | translate}}</th>
-
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  *ngFor="let mech of machinerary | paginate: { itemsPerPage: 10, currentPage: mechPagination };let i=index">
-
-                  <td>
-                    {{i+1}}
-                  </td>
-                  <td>
-                    {{mech.equpment_name}}
-                  </td>
-                  <td>
-
-                    {{mech.equpment_no}}
-                  </td>
-
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="card-footer py-4">
-            <nav aria-label="..." class="text-right">
-              <pagination-controls (pageChange)="mechPagination = $event"></pagination-controls>
-            </nav>
+          <div class="card-body">
+            <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+              [options]="options" [data]="machinerary" [columns]="machinaryBColumn">
+            </app-data-table>
           </div>
         </div>
       </div>
