@@ -70,7 +70,7 @@
         <li *ngIf="userRole == 'ROLE_FARMER'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['farmer/farmerNotificationByFpo']" class="nav-link">
             <i class="ni ni-tv-2 text-white"></i>
-            {{'Notifications' | translate}}
+            {{'Notifications' | translate}}<span class="badge badge-light ml-2" style="color: #000;;">{{notificationCount}}</span>
           </a>
         </li>
         <li *ngIf="userRole == 'ROLE_MIN'" class="nav-item">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FarmerService } from 'src/app/_services/farmer/farmer.service';
 
 declare interface RouteInfo {
     path: string;
@@ -46,11 +47,22 @@ export class SidebarComponent implements OnInit {
   public menuItemsCrops: any[];
   public isCollapsed = true;
   userRole: any;
+  notificationCount = 0;
+  notifications: any;
+  notificationCall
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private _farmerService:FarmerService) { }
 
   ngOnInit() {
-    this.userRole = localStorage.getItem('userRole');
+
+    this.notificationCall = setInterval(() => {
+      // this.getAllNotification(); 
+    }, 5000);
+    
+      
+  
+  this.userRole = localStorage.getItem('userRole');
     console.log(this.userRole);
     if (this.userRole == 'ROLE_FPC') {
       this.menuItemsCrops = ROUTES_MANAGE_SALES.filter(menuItem => menuItem);
@@ -68,4 +80,25 @@ export class SidebarComponent implements OnInit {
       });
     }
   }
+
+  // getAllNotification() {
+  //   this._farmerService.getAllNotificationByFpo(localStorage.getItem('masterId')).subscribe(us => {
+  //     this.notifications = us;
+  //     // this.notificationCount = 0;
+  //     this.notifications.forEach(element => {
+  //       if (element.read == null) {
+  //         this.notificationCount++;
+  //       }
+  //     });
+  //   })
+  // }
+
+  // clearNotifications(){
+  //   this.notifications.forEach(element => {
+  //     if (element.read == null) {
+  //       this.notificationCount;
+  //     }
+  //   });
+  // }
+
 }

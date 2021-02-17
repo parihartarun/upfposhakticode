@@ -24,13 +24,10 @@ export class FarmerNotifictionByFpoComponent implements OnInit {
    ) { }
 
   ngOnInit(): void {
+
     this._farmerService.getAllNotificationByFpo(localStorage.getItem('masterId')).subscribe(us => {
       this.notifications = us;
     })
-
-
-
-
 
   }
   reset() {
