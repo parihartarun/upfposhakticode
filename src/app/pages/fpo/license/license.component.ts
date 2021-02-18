@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { FpoService } from 'src/app/_services/fpo/fpo.service';
 
-import { FpoService } from '../../../_services/fpo/fpo.service';
+
 
 @Component({
   selector: 'app-license',

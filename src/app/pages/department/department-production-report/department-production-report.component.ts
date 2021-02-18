@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../_services/auth/auth.service';
-import { DepartmentService } from '../../../_services/department/department.service';
-import { FpoService } from '../../../_services/fpo/fpo.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/_services/auth/auth.service';
+import { DepartmentService } from 'src/app/_services/department/department.service';
 
 
 @Component({

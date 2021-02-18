@@ -3,9 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/_services/auth/auth.service';
+import { FpoService } from 'src/app/_services/fpo/fpo.service';
 import { StorageUnitService } from 'src/app/_services/storage_units/storage_units.service';
 
-import { FpoService } from '../../../_services/fpo/fpo.service';
+
 
 @Component({
   selector: 'app-storage-unit',

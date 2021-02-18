@@ -2,8 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { DepartmentService } from '../../../_services/department/department.service';
-import { FpoService } from '../../../_services/fpo/fpo.service';
+import { DepartmentService } from 'src/app/_services/department/department.service';
+
 
 @Component({
   selector: 'app-department-uplaod-circular',

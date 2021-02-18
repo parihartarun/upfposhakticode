@@ -304,8 +304,8 @@
                 <div class="row" routerLink="/fpo-details/{{product.id}}" style="cursor: pointer;">
 
                   <div class="col-md-4 mb-2">
-                    <!-- <img src="../../../assets/img/onion.jpeg" class="card-img" alt="..."> -->
-                    <img src="../../../assets/icons/cropplaceholder.jpg" class="card-img" alt="...">
+                    <!-- <img src="assets/img/onion.jpeg" class="card-img" alt="..."> -->
+                    <img src="assets/icons/cropplaceholder.jpg" class="card-img" alt="...">
                   </div>
                   <div class="col-md-8 mb-2">
                     <a>
@@ -368,7 +368,7 @@
             <div class="card mb-3">
               <div class="row no-gutters">
                 <div class="col-md-3 mb-2">
-                  <img src="../../../assets/img/onion.jpeg" class="card-img" alt="...">
+                  <img src="assets/img/onion.jpeg" class="card-img" alt="...">
                 </div>
                 <div class="col-md-5 mb-2">
                   <div class="card-body">
@@ -388,7 +388,7 @@
             <div class="card mb-3">
               <div class="row no-gutters">
                 <div class="col-md-3 mb-2">
-                  <img src="../../../assets/img/onion2.jpeg" class="card-img" alt="...">
+                  <img src="assets/img/onion2.jpeg" class="card-img" alt="...">
                 </div>
                 <div class="col-md-5 mb-2">
                   <div class="card-body">
@@ -408,7 +408,7 @@
             <div class="card mb-3">
               <div class="row no-gutters">
                 <div class="col-md-3 mb-2">
-                  <img src="../../../assets/img/onion3.jpeg" class="card-img" alt="...">
+                  <img src="assets/img/onion3.jpeg" class="card-img" alt="...">
                 </div>
                 <div class="col-md-5 mb-2">
                   <div class="card-body">
@@ -431,7 +431,7 @@
             </pagination-controls>
           </nav>
           <div *ngIf="serachProduct?.length==0" class=" p-5 d-flex justify-content-center align-items-center">
-            <img class="fatalimg" src="../../../assets/image/img/sad.jpg" />
+            <img class="fatalimg" src="assets/image/img/sad.jpg" />
           </div>
           <div *ngIf="serachProduct?.length==0" class="d-flex justify-content-center yellotext">{{ 'noitemsfound' |
             translate }}</div>
@@ -460,7 +460,7 @@
           
         </div>
         <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && indentcreated">
-          <div class="d-flex w-100 align-items-center justify-content-center">  <img class="suc-img" src="../../../assets/image/img/successsubmit.png"></div>
+          <div class="d-flex w-100 align-items-center justify-content-center">  <img class="suc-img" src="assets/image/img/successsubmit.png"></div>
           <div class="d-flex w-100 align-items-center justify-content-center mt-2 text-sm"> <strong>{{ 'indentsucessmessage' | translate:{id:indentid} }}</strong> </div>
           <div class="d-flex w-100 align-items-center justify-content-center mt-5 text-sm"><button (click)="closeModal()" class="btn btn-sm mt-5 btn-product-search" >{{'ok' | translate }}</button></div>
         </div>

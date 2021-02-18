@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/_services/auth/auth.service';
-import { BuyerSellerService } from '../../../_services/BuyerSeller/buyerseller.services'
+import { BuyerSellerService } from 'src/app/_services/BuyerSeller/buyerseller.services';
+
 
 @Component({
   selector: 'app-buyeruser',

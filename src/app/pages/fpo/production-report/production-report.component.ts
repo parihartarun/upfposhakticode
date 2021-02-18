@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FpoService } from 'src/app/_services/fpo/fpo.service';
 
-import { FpoService } from '../../../_services/fpo/fpo.service';
+
 
 @Component({
   selector: 'app-production-report',
