@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
 
@@ -27,7 +28,11 @@ export class ByerSellRegisterComponent implements OnInit {
   states = [];
   districts = [];
   blocks = [];
+  crops = [];
+  cropids = [];
+  _url: string;
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService, private http: HttpClient) {
+    this._url = environment.baseUrl;
   }
 
   ngOnInit() {
@@ -126,15 +131,27 @@ export class ByerSellRegisterComponent implements OnInit {
   //  })
   //}
   public requestAutocompleteItems = (text: string): Observable<string[]> => {
-    let arr=[
-      'item1', 'item2', 'item3'
-    ]
-    return of(arr);
-   
+ 
+  let arr=[]
+    return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropsBySearch/${text}`).pipe(map((res: any) => {
+      this.crops = res;     
+        res.map(c => {
+        arr.push(c.cropName)
+      });
+     
+      return arr
+    }));
 
   };
   onAdded($event: any) {
+    $event
+    let filterCrop=[]
+    filterCrop = this.crops.filter(c => c.cropName === $event.value)   
+    filterCrop.map(c => {
+      this.cropids.push(c.cropId)
+    });
     console.log("Fire Added");
+
   }
 
   onSelected($event: any) {
@@ -142,6 +159,47 @@ export class ByerSellRegisterComponent implements OnInit {
   }
 
   onItemRemoved($event: any) {
+    $event
+    let filterCrop = null
+
+    filterCrop = this.crops.filter(c => c.cropName === $event.value);
+    this.cropids=this.cropids.filter(item => item != filterCrop[0].cropId)
+    console.log("Fire Removed");
+  }
+
+  public requestVarietyDealsInAutocompleteItems = (text: string): Observable<string[]> => {
+
+    let arr = []
+    return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropsBySearch/${text}`).pipe(map((res: any) => {
+      this.crops = res;
+      res.map(c => {
+        arr.push(c.cropName)
+      });
+
+      return arr
+    }));
+
+  };
+
+  onAddedVarietyDealsIn($event: any) {
+    $event
+    let filterCrop = []
+    filterCrop = this.crops.filter(c => c.cropName === $event.value)
+    filterCrop.map(c => {
+      this.cropids.push(c.cropId)
+    });
+    console.log("Fire Added");
+
+  }
+
+ 
+
+  removedVarietyDealsIn($event: any) {
+    $event
+    let filterCrop = null
+
+    filterCrop = this.crops.filter(c => c.cropName === $event.value);
+    this.cropids = this.cropids.filter(item => item != filterCrop[0].cropId)
     console.log("Fire Removed");
   }
 }
