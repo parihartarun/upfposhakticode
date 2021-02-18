@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { environment } from '../../../../environments/environment';
-import { FpoService } from '../../../_services/fpo/fpo.service';
+import { FpoService } from 'src/app/_services/fpo/fpo.service';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-fpo-guidelines',

@@ -135,48 +135,49 @@
 
   <br />
 
-  <!-- Table -->
-  <div class="row" *ngIf="!isEdit">
-    <div class="col">
-      <div class="card shadow">
-        <div class="card-header border-0 cust-head">
-          <div>
-            <h3>{{'Schemes List' | translate}}</h3>
-          </div>
-          <div>
-            <input type="text" [id]="'search_'+tableId" [(ngModel)]="searchText" (input)="onInputSearch()" name="search"
-              placeholder="Search" autocomplete="off" class="form-control input-md" />
-          </div>
-        </div>
-        <div class="table-responsive">
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">{{'Serial no.' | translate}}</th>
-                <th scope="col" (click)="onClickOrderBy('description')">{{'Description' | translate}}</th>
-                <th scope="col" (click)="onClickOrderBy('uploadDate')">{{'Date' | translate}}</th>
-                <th scope="col">{{'View Details' | translate}}</th>
-                <th scope="col">{{'Actions' | translate}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                *ngFor="let p of (schemeList | async) | tableSearch:searchText  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: p };let i=index">
-                <td>
-                  {{i+1}}
-                </td>
-                <td>
-                  {{p.description}}
-                </td>
-                <td *ngIf="!!p.uploadDate">
-                  {{p.uploadDate | date: 'dd/MM/yyyy'}}
-                </td>
-                <td *ngIf="!!!p.uploadDate">
-                  {{p.createDate | date: 'dd/MM/yyyy'}}
-                </td>
-                <td>
-                  <a href="{{p.filePath}}" download><img src="../../../../assets/image/img/pdficon.png"
-                      style=" height:20px; width:30px"></a>
+    <!-- Table -->
+    <div class="row" *ngIf="!isEdit">
+        <div class="col">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row">
+                        <div class="col-9">
+                            <h3 class="mb-0">{{'Schemes List' | translate}}</h3>
+                        </div>
+                        <!-- <div class="col-3 text-right">
+                <button class="btn btn-primary text-right">Add Member</button>
+              </div> -->
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">{{'Serial no.' | translate}}</th>
+                                <th scope="col">{{'Description' | translate}}</th>
+                                <th scope="col">{{'Date' | translate}}</th>
+                                <th scope="col">{{'View Details' | translate}}</th>
+                                <th scope="col">{{'Actions' | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of (schemeList | async) | paginate: { itemsPerPage: 10, currentPage: p }">
+                                <td>
+                                    {{p.id}}
+                                </td>
+                                <td>
+                                    {{p.description}}
+                                </td>
+                                <td *ngIf="!!p.uploadDate">
+                                    {{p.uploadDate | date: 'dd/MM/yyyy'}}
+                                </td>
+                                <td *ngIf="!!!p.uploadDate">
+                                    {{p.createDate | date: 'dd/MM/yyyy'}}
+                                </td>
+                                <td>
+                                    <a href="{{p.filePath}}" download><img
+                                            src="assets/image/img/pdficon.png"
+                                            style=" height:20px; width:30px"></a>
 
                 </td>
                 <td class="text-center">
