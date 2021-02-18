@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { FpoService } from '../../../_services/fpo/fpo.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment }  from '../../../../environments/environment';
+import { requiredFileType } from '../../../customValidation/requiredFileType';
 
 @Component({
   selector: 'app-services',
@@ -12,6 +13,9 @@ import { environment }  from '../../../../environments/environment';
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent implements OnInit {
+  @ViewChild('myInput')
+  myInputVariable: ElementRef;
+  checkfileFormat = false;
   serviceForm: FormGroup;
   submitted = false;
   services:Array<any>=[];
@@ -19,6 +23,8 @@ export class ServicesComponent implements OnInit {
   edit = false;
   fileToUpload: File = null;
   baseUrl: string;
+ 
+  
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
@@ -50,7 +56,26 @@ export class ServicesComponent implements OnInit {
   }
   handleFileInput(files: FileList) {
     console.log(files);
-      this.fileToUpload = files.item(0);
+    this.fileToUpload = files.item(0);
+    if (!this.validateFile(files[0].name)) {
+      this.checkfileFormat = true;
+      this.fileToUpload = null;
+      this.serviceForm.controls['file'].setValue('');
+      return;
+    }
+    else {
+
+      this.checkfileFormat = false;
+    }
+  }
+  validateFile(name: String) {
+    var ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj" || ext.toLowerCase() == "jpeg") {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   addService() {

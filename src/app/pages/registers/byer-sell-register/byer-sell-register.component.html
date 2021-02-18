@@ -54,8 +54,12 @@
         <input class="form-control" type="text" formControlName="designationContactPerson">
       </div>
       <div *ngIf="submitted && formControls.designationContactPerson.errors" class="text-danger">
-        <div *ngIf="formControls.designationContactPerson.errors.required">{{'designation Contact Person is
-          required'|translate}}</div>
+        <div *ngIf="formControls.designationContactPerson.errors.required">
+          {{
+'designation Contact Person is
+          required'|translate
+          }}
+        </div>
       </div>
 
     </div>
@@ -214,8 +218,10 @@
       <div *ngIf="submitted && formControls.password.errors" class="text-danger">
         <div *ngIf="formControls.password.errors.required">{{'password is required'|translate}}</div>
         <div *ngIf="!!!formControls.password.errors.required && registerForm.controls['password'].invalid" class="text-danger">
-          {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special
-        character'|translate}}
+          {{
+'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special
+        character'|translate
+          }}
         </div>
       </div>
     </div>
@@ -324,11 +330,25 @@
 
     <div class="col-6">
       <ngx-recaptcha2 #captchaElem [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
-        (success)="handleSuccess($event)" [useGlobalDomain]="false" formControlName="recaptcha">
+                      (success)="handleSuccess($event)" [useGlobalDomain]="false" formControlName="recaptcha">
       </ngx-recaptcha2>
     </div>
 
 
+  </div>
+  <div class="form-group row mb-3">
+
+    <div class="col-12">
+
+      <div class="tnc">
+        <input class="form-control" type="checkbox" formControlName="tnc">
+        <span><span class="required pl-1">*</span>{{'I agree to the terms and conditions.'|translate}}<a href="#">{{'Click here'|translate}}</a>{{'to view in details' |translate }}</span>
+
+      </div>
+      <div *ngIf="submitted && formControls.tnc.errors" class="text-danger tncError">
+        <div *ngIf="formControls.tnc.errors.required"> {{'tnc is required'|translate}}</div>
+      </div>
+    </div>
   </div>
 
   <div class="text-center">

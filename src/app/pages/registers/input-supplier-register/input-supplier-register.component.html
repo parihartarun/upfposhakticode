@@ -11,7 +11,8 @@
         <input class="form-control" type="text" formControlName="inputSupplierName">
       </div>
       <div *ngIf="submitted && formControls.inputSupplierName.errors" class="text-danger">
-        <div *ngIf="formControls.inputSupplierName.errors.required">{{'input Supplier Name is required'|translate}}
+        <div *ngIf="formControls.inputSupplierName.errors.required">
+          {{'input Supplier Name is required'|translate}}
         </div>
       </div>
     </div>
@@ -42,107 +43,110 @@
         <input class="form-control" type="text" formControlName="contactPerson">
       </div>
       <div *ngIf="submitted && formControls.contactPerson.errors" class="text-danger">
-        <div *ngIf="formControls.contactPerson.errors.required">{{'contact person is required'|translate}}<</div> </div>
+        <div *ngIf="formControls.contactPerson.errors.required">{{'contact person is required'|translate}}</div> </div>
             </div> <div class="col-6">
 
-            <label class="input-label">{{'Mobile' | translate}}<span class="required">*</span></label>
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"></span>
-              </div>
-              <input class="form-control" type="text" formControlName="mobile_number" appOnlynumber>
-            </div>
-            <div *ngIf="submitted && formControls.mobile_number.errors" class="text-danger">
-              <div *ngIf="formControls.mobile_number.errors.required">{{'mobile number is required'|translate}}</div>
-              <div *ngIf="formControls.mobile_number.errors.pattern"> {{'Mobile number should be 10 digit1'|translate}}
-              </div>
-            </div>
+      <label class="input-label">{{'Mobile' | translate}}<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" formControlName="mobile_number" appOnlynumber>
+      </div>
+      <div *ngIf="submitted && formControls.mobile_number.errors" class="text-danger">
+        <div *ngIf="formControls.mobile_number.errors.required">{{'mobile number is required'|translate}}</div>
+        <div *ngIf="formControls.mobile_number.errors.pattern">
+          {{'Mobile number should be 10 digit1'|translate}}
         </div>
       </div>
-      <div class="form-group row mb-3">
-        <div class="col-6">
-          <label class="input-label">{{'Input Supplier Type'|translate}} <span class="required">*</span></label>
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"></span>
-            </div>
-            <select class="form-control" formControlName="inputSupplierType" (change)="selectInputSupplierType($event)">
-              <option value="">{{'Select Input Supplier Type'|translate}}</option>
-              <option *ngFor="let ist of inputSupplierTypes" [value]="ist.id">{{ist.name}}</option>
-            </select>
-          </div>
-          <div *ngIf="submitted && formControls.inputSupplierType.errors" class="text-danger">
-            <div *ngIf="formControls.inputSupplierType.errors.required">{{'input supplier type is required'|translate}}
-            </div>
-          </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <div class="col-6">
+      <label class="input-label">{{'Input Supplier Type'|translate}} <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
         </div>
-        <div class="col-6">
-
-          <label class="input-label">{{'Email'|translate}}<span class="required">*</span></label>
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"></span>
-            </div>
-            <input class="form-control" type="text" formControlName="email">
-          </div>
-          <div *ngIf="submitted && formControls.email.errors" class="text-danger">
-            <div *ngIf="formControls.email.errors.required">{{'email is required'|translate}}</div>
-            <div *ngIf="formControls.email.errors.pattern">{{'Invalid Email Address'|translate}}</div>
-          </div>
+        <select class="form-control" formControlName="inputSupplierType" (change)="selectInputSupplierType($event)">
+          <option value="">{{'Select Input Supplier Type'|translate}}</option>
+          <option *ngFor="let ist of inputSupplierTypes" [value]="ist.id">{{ist.name}}</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.inputSupplierType.errors" class="text-danger">
+        <div *ngIf="formControls.inputSupplierType.errors.required">
+          {{'input supplier type is required'|translate}}
         </div>
       </div>
-      <div class="form-group row mb-3" *ngIf="isBulkSupplyingCompany">
+    </div>
+    <div class="col-6">
 
-        <div class="col-6">
-          <label class="input-label">{{'District1'|translate}} <span class="required">*</span></label>
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"></span>
-            </div>
-            <select class="form-control" formControlName="districtRefId" (change)="selectDistrict($event)">
-              <option value="">{{'SelectDistrict1'|translate}}</option>
-              <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}
-              </option>
-            </select>
-          </div>
-          <div *ngIf="submitted && formControls.districtRefId.errors" class="text-danger">
-            <div *ngIf="formControls.districtRefId.errors.required">{{'district is required'|translate}}</div>
-          </div>
+      <label class="input-label">{{'Email'|translate}}<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
         </div>
-        <div class="col-6">
-          <label class="input-label">{{'Block1'|translate}} <span class="required">*</span></label>
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"></span>
-            </div>
-            <select class="form-control" formControlName="blockRefId" (change)="selectBlock($event)">
-              <option value="">{{'Select Block'| translate}} </option>
-              <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
-            </select>
-          </div>
-          <div *ngIf="submitted && formControls.blockRefId.errors" class="text-danger">
-            <div *ngIf="formControls.blockRefId.errors.required">{{'block is required'| translate}}</div>
-          </div>
-        </div>
+        <input class="form-control" type="text" formControlName="email">
       </div>
-      <div class="form-group row mb-3">
-        <div class="col-6" *ngIf="isBulkSupplyingCompany">
-          <label class="input-label">{{'Village'|translate}} <span class="required">*</span></label>
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"></span>
-            </div>
-            <select class="form-control" formControlName="villageRefId" (change)="selectVillage($event)">
-              <option value="">{{'Select Village'|translate}}</option>
-              <option *ngFor="let v of villages" [value]="v.villageId">{{v.villageName}}</option>
-            </select>
-          </div>
-          <div *ngIf="submitted && formControls.villageRefId.errors" class="text-danger">
-            <div *ngIf="formControls.villageRefId.errors.required">{{'Village is required1'| translate}}</div>
-          </div>
-        </div>
+      <div *ngIf="submitted && formControls.email.errors" class="text-danger">
+        <div *ngIf="formControls.email.errors.required">{{'email is required'|translate}}</div>
+        <div *ngIf="formControls.email.errors.pattern">{{'Invalid Email Address'|translate}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3" *ngIf="isBulkSupplyingCompany">
 
-        <!--<div class="col-6">
+    <div class="col-6">
+      <label class="input-label">{{'District1'|translate}} <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="districtRefId" (change)="selectDistrict($event)">
+          <option value="">{{'SelectDistrict1'|translate}}</option>
+          <option *ngFor="let district of districts" [value]="district.district_id">
+            {{district.district_name}}
+          </option>
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.districtRefId.errors" class="text-danger">
+        <div *ngIf="formControls.districtRefId.errors.required">{{'district is required'|translate}}</div>
+      </div>
+    </div>
+    <div class="col-6">
+      <label class="input-label">{{'Block1'|translate}} <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="blockRefId" (change)="selectBlock($event)">
+          <option value="">{{'Select Block'| translate}} </option>
+          <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.blockRefId.errors" class="text-danger">
+        <div *ngIf="formControls.blockRefId.errors.required">{{'block is required'| translate}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <div class="col-6" *ngIf="isBulkSupplyingCompany">
+      <label class="input-label">{{'Village'|translate}} <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="villageRefId" (change)="selectVillage($event)">
+          <option value="">{{'Select Village'|translate}}</option>
+          <option *ngFor="let v of villages" [value]="v.villageId">{{v.villageName}}</option>
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.villageRefId.errors" class="text-danger">
+        <div *ngIf="formControls.villageRefId.errors.required">{{'Village is required1'| translate}}</div>
+      </div>
+    </div>
+
+    <!--<div class="col-6">
       <label class="input-label">Seed<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -160,104 +164,117 @@
         <div *ngIf="formControls.seed_id.errors.required">seed is required</div>
       </div>
     </div>-->
-        <div class="col-6">
-          <label class="input-label">{{'Category Deals In'|translate}}<span class="required">*</span></label>
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"></span>
-            </div>
-            <input class="form-control" type="text" formControlName="seed_id" appOnlynumber>
-          </div>
-          <div *ngIf="submitted && formControls.seed_id.errors" class="text-danger">
-            <div *ngIf="formControls.seed_id.errors.required">{{'Category Deals is required'|translate}}</div>
-          </div>
+    <div class="col-6">
+      <label class="input-label">{{'Category Deals In'|translate}}<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
         </div>
+        <input class="form-control" type="text" formControlName="seed_id" appOnlynumber>
+      </div>
+      <div *ngIf="submitted && formControls.seed_id.errors" class="text-danger">
+        <div *ngIf="formControls.seed_id.errors.required">{{'Category Deals is required'|translate}}</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="form-group row mb-3">
+    <div class="col-6">
+      <label class="input-label">{{'Pincode'|translate}}<span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" maxlength="6" formControlName="pincode" appOnlynumber>
+      </div>
+      <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
+        <div *ngIf="formControls.pincode.errors.required">{{'pin code is required'|translate}}</div>
+        <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | translate}}</div>
+      </div>
+    </div>
+    <div class="col-6">
+      <label class="input-label">{{'GST Number'|translate}} </label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="text" formControlName="gstNumber" appUppercase>
+      </div>
+      <div *ngIf="submitted && formControls.gstNumber.errors" class="text-danger">
+        <div *ngIf="formControls.gstNumber.errors.pattern">{{'Invalid GST Number'|translate}}</div>
 
       </div>
-      <div class="form-group row mb-3">
-        <div class="col-6">
-          <label class="input-label">{{'Pincode'|translate}}<span class="required">*</span></label>
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"></span>
-            </div>
-            <input class="form-control" type="text" maxlength="6" formControlName="pincode" appOnlynumber>
-          </div>
-          <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
-            <div *ngIf="formControls.pincode.errors.required">{{'pin code is required'|translate}}</div>
-            <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | translate}}</div>
-          </div>
+
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <div class="col-6">
+      <label class="input-label">{{'License Number'|translate}} <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
         </div>
-        <div class="col-6">
-          <label class="input-label">{{'GST Number'|translate}} </label>
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"></span>
-            </div>
-            <input class="form-control" type="text" formControlName="gstNumber" appUppercase>
-          </div>
-          <div *ngIf="submitted && formControls.gstNumber.errors" class="text-danger">
-            <div *ngIf="formControls.gstNumber.errors.pattern">{{'Invalid GST Number'|translate}}</div>
+        <input class="form-control" type="text" formControlName="license_number" appOnlynumber>
+      </div>
+      <div *ngIf="submitted && formControls.license_number.errors" class="text-danger">
+        <div *ngIf="formControls.license_number.errors.required">{{'license Number is required'| translate}}</div>
+      </div>
+    </div>
+    <div class="col-6">
 
-          </div>
-
+      <label class="input-label">{{'Create Password'|translate}} <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <input class="form-control" type="password" formControlName="password">
+      </div>
+      <div *ngIf="submitted && formControls.password.errors" class="text-danger">
+        <div *ngIf="formControls.password.errors.required">{{'password is required'|translate}}</div>
+        <div *ngIf="!!!formControls.password.errors.required && registerForm.controls['password'].invalid"
+             class="text-danger">
+          {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character'|translate}}
         </div>
       </div>
-      <div class="form-group row mb-3">
-        <div class="col-6">
-          <label class="input-label">{{'License Number'|translate}} <span class="required">*</span></label>
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"></span>
-            </div>
-            <input class="form-control" type="text" formControlName="license_number" appOnlynumber>
-          </div>
-          <div *ngIf="submitted && formControls.license_number.errors" class="text-danger">
-            <div *ngIf="formControls.license_number.errors.required">{{'license Number is required'| translate}}</div>
-          </div>
-        </div>
-        <div class="col-6">
+    </div>
+  </div>
 
-          <label class="input-label">{{'Create Password'|translate}} <span class="required">*</span></label>
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"></span>
-            </div>
-            <input class="form-control" type="password" formControlName="password">
-          </div>
-          <div *ngIf="submitted && formControls.password.errors" class="text-danger">
-            <div *ngIf="formControls.password.errors.required">{{'password is required'|translate}}</div>
-            <div *ngIf="!!!formControls.password.errors.required && registerForm.controls['password'].invalid"
-              class="text-danger">
-              {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character'|translate}}
-            </div>
-          </div>
+  <div class="form-group row mb-3">
+
+
+    <div class="col-6">
+      <label class="input-label">{{'Confirm Password'|translate}} <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
         </div>
+        <input class="form-control" type="password" formControlName="confirmPassword">
       </div>
-
-      <div class="form-group row mb-3">
-
-
-        <div class="col-6">
-          <label class="input-label">{{'Confirm Password'|translate}} <span class="required">*</span></label>
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text"></span>
-            </div>
-            <input class="form-control" type="password" formControlName="confirmPassword">
-          </div>
-          <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
-            <div *ngIf="formControls.confirmPassword.errors.required">{{'confirm password is required'|translate}}</div>
-            <div *ngIf="formControls.confirmPassword.errors.MustMatch">{{'password does not match'|translate}}</div>
-          </div>
-        </div>
-        <div class="col-6">
-          <ngx-recaptcha2 #captchaElem [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
-            (success)="handleSuccess($event)" [useGlobalDomain]="false" formControlName="recaptcha">
-          </ngx-recaptcha2>
-        </div>
+      <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
+        <div *ngIf="formControls.confirmPassword.errors.required">{{'confirm password is required'|translate}}</div>
+        <div *ngIf="formControls.confirmPassword.errors.MustMatch">{{'password does not match'|translate}}</div>
       </div>
-      <div class="text-center">
-        <button type="submit" class="btn btn-login btn-yellow btn-primary my-4">{{"Register"| translate}}</button>
+    </div>
+    <div class="col-6">
+      <ngx-recaptcha2 #captchaElem [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
+                      (success)="handleSuccess($event)" [useGlobalDomain]="false" formControlName="recaptcha">
+      </ngx-recaptcha2>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+    <div class="col-12">
+      <div class="tnc">
+        <input class="form-control" type="checkbox" formControlName="tnc">
+        <span><span class="required pl-1">*</span>{{'I agree to the terms and conditions.'|translate}}<a href="#">{{'Click here'|translate}}</a>{{'to view in details' |translate }}</span>
+
       </div>
+      <div *ngIf="submitted && formControls.tnc.errors" class="text-danger tncError">
+        <div *ngIf="formControls.tnc.errors.required"> {{'tnc is required'|translate}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-login btn-yellow btn-primary my-4">{{"Register"| translate}}</button>
+  </div>
 </form>

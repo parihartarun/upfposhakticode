@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/_services/department/department.service';
@@ -9,13 +9,18 @@ import { DepartmentService } from 'src/app/_services/department/department.servi
   styleUrls: ['./department-guideline.component.css']
 })
 export class DepartmentGuidelineComponent implements OnInit {
-
+  @ViewChild('myInput')
+  myInputVariable: ElementRef;
+  checkfileFormat = false;
   guideLineList = this.departmentService.guideLineList.asObservable();
   fileToUpload: File = null;
   guidelineForm: FormGroup;
   id = null;
   isEdit = false;
   filterByType = '';
+  orderBy: { order: string, key: string } = { order: '', key: '' };
+  searchText = '';
+  currentPage=1;
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, public departmentService: DepartmentService) { }
 
   ngOnInit(): void {
@@ -27,6 +32,17 @@ export class DepartmentGuidelineComponent implements OnInit {
     });
     this.departmentService.getGuideline();
   }
+  onClickOrderBy(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
+
+  }
+  onInputSearch() {
+    this.currentPage = 1;
+  }
   getGuidelineByType() {
     if (!!!this.filterByType) {
       this.departmentService.getGuideline();
@@ -36,6 +52,25 @@ export class DepartmentGuidelineComponent implements OnInit {
   }
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
+    if (!this.validateFile(files[0].name)) {
+      this.checkfileFormat = true;
+      this.fileToUpload = null;
+      this.guidelineForm.controls['document'].setValue('');
+      return;
+    }
+    else {
+
+      this.checkfileFormat = false;
+    }
+  }
+  validateFile(name: String) {
+    var ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'xlsx' || ext.toLowerCase() == "xls" || ext.toLowerCase() == "pdf" || ext.toLowerCase() == "doc" || ext.toLowerCase() == "docx") {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
   addGuideline() {
     this.guidelineForm.markAllAsTouched();

@@ -13,3 +13,21 @@ input[type=number] {
   color: rgb(82, 95, 127);
   cursor: pointer
 }
+.tnc input {
+  width: 20px;
+  height: 20px;
+}
+
+.tnc {
+  align-items: center;
+  display: flex;
+  text-align: center;
+  width: 50%;
+  margin: 0px auto;
+}
+
+.tncError {
+  width: 50%;
+  margin: 0px auto;
+}
+

@@ -286,8 +286,9 @@
                 <th scope="col">{{'Complaints/ Suggestions Category' | translate}}</th>
                 <th scope="col">{{'Complaints/ Suggestions Description' | translate}}</th>
                 <th scope="col">{{'Complaint/ Suggestion Date'|translate}}</th>
-             
+
                 <th scope="col">{{'Complaints / Complaints Status of suggestion'|translate}}</th>
+                <th scope="col">{{'File'|translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -312,6 +313,11 @@
                 <td>
                   <span *ngIf="complaint.status">{{getStatus(complaint.status)}}</span>
                   <span *ngIf="!complaint.status">NA</span>
+                </td>
+                <td>
+                  <a download href="{{complaint.filepath}}">
+                    <i class="fas fa-file"></i>
+                  </a>
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">

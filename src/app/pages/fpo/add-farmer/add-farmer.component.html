@@ -156,7 +156,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-pincode">{{'Pincode'| translate}}<span class="required">*</span></label>
-                    <input class="form-control" type="number" formControlName="pincode">
+                    <input class="form-control" type="text" formControlName="pincode" appOnlynumber>
 
                   <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
                     <div *ngIf="formControls.pincode.errors.required">{{'Pincode is required'| translate}}</div>
@@ -167,7 +167,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-mobile">{{'Mobile'| translate}}<span class="required">*</span></label>
-                    <input type="number" formControlName="farmerMob" id="input-mobile" class="form-control">
+                    <input type="text" formControlName="farmerMob" id="input-mobile" class="form-control" appOnlynumber>
                   <div *ngIf="submitted && formControls.farmerMob.errors" class="text-danger">
                     <div *ngIf="formControls.farmerMob.errors.required">{{'mobile is requiredv</div>
                     <span *ngIf="formControls.farmerMob.errors.pattern"> {{'mobile number should be 10 digit'| translate}}</span>

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { GetTranslationService } from 'src/app/_helpers/get-translation.service';
 import { FpoService } from '../../_services/fpo/fpo.service';
 @Component({
   selector: 'app-fpo-details',
@@ -9,6 +10,7 @@ import { FpoService } from '../../_services/fpo/fpo.service';
 })
 export class FpoDetailsComponent implements OnInit {
 
+  @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
   closeResult: string;
   fpo: any = {};
   p: number = 0;
@@ -38,6 +40,7 @@ export class FpoDetailsComponent implements OnInit {
   };
   fpoId;
   view: any[] = [400, 400];
+  options = {};
 
   // options
   showXAxis: boolean = true;
@@ -54,7 +57,15 @@ export class FpoDetailsComponent implements OnInit {
     domain: ['blue', '#ca1a1a']
   };
   pfoPhoto = [];
-  constructor(private modalService: NgbModal, private api: FpoService, private _activatedroute: ActivatedRoute) { }
+  boardMemCol: any = [];
+  storageUnitCol = [];
+  licenseColumn = [];
+  machinaryBColumn = [];
+  productionColumn = [];
+  fpoColumn = [];
+  constructor(private modalService: NgbModal,
+    public getTranslationService: GetTranslationService,
+    private api: FpoService, private _activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
     ///////////////////////Apis/////////////////////////
@@ -62,7 +73,8 @@ export class FpoDetailsComponent implements OnInit {
       this.fpoId = param.id;
       this.getAllByFpo();
       this.getFarmMachineryBankByFpo();
-    })
+    });
+    this.setColumnHeader();
     this.setGraphData();
     this.goBackUrl = localStorage.getItem('fpoSearchUrl');
 
@@ -92,6 +104,47 @@ export class FpoDetailsComponent implements OnInit {
 
     });
     this.getFpoPhohto();
+  }
+  async setColumnHeader() {
+
+    this.boardMemCol = [
+      { key: 'name', title: 'Member Name' },
+      { key: 'designation', title: 'Designations' },
+      { key: 'email', title: 'Email' },
+      { key: 'contactNo', title: 'Mobile' },
+    ];
+    this.storageUnitCol = [
+      { key: 'district', title: 'District' },
+      { key: 'address', title: 'Storage Center Address' },
+      { key: 'storageType', title: 'Storage Center Type' },
+      { key: 'storageCapacity', title: 'Storage Capacity (in Mt.)' },
+      { key: 'fascilities', title: 'Available Facilities' }
+    ];
+    this.licenseColumn = [
+      { key: 'licenceType', title: 'Licenses Type' },
+      { key: 'licenceIssuedBy', title: 'Licenses Issued By' },
+      { key: 'liceneceNumber', title: 'Licenses Number' },
+      { key: 'issuedate', title: 'Licenses From' },
+      { key: 'licenceValidTill', title: 'Licenses To' },
+    ];
+    this.machinaryBColumn = [
+      { key: 'equpment_name', title: 'Name Of Equipment' },
+      { key: 'equpment_no', title: 'No Of Equipment' },
+    ];
+    this.productionColumn = [
+      { key: 'a', title: 'Crops' },
+      { key: 'b', title: 'Crop Variety' },
+      { key: 'c', title: 'Marketable Surplus 2021 (In Qt.)' },
+      { key: 'd', title: 'SOLD QUANTITY 2021 (IN QT.)' },
+    ];
+    this.fpoColumn = [
+      { key: 'fpoName', title: 'FPO Name' },
+      { key: 'fpoEmail', title: 'Email' },
+      { key: 'agency', title: 'Agency (associated with)' },
+      { key: 'fpoAddress', title: 'Address' },
+
+
+    ]
   }
   getFpoPhohto() {
     this.api.getFpoPhoto(this.fpoId).subscribe((res: any) => {
