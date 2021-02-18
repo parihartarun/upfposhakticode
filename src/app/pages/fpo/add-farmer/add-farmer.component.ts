@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MustMatch } from '../../../_helpers/constomMatchValidor';
-import { AuthService } from '../../../_services/auth/auth.service';
-import { FpoService } from '../../../_services/fpo/fpo.service';
 import { ToastrService } from 'ngx-toastr';
+import { MustMatch } from 'src/app/_helpers/constomMatchValidor';
+import { AuthService } from 'src/app/_services/auth/auth.service';
+import { FpoService } from 'src/app/_services/fpo/fpo.service';
 
 @Component({
   selector: 'app-add-farmer',
