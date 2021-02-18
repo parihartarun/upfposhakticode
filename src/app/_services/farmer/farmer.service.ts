@@ -40,6 +40,12 @@ export class FarmerService {
       return res;
     }));
   }
+  getFarmernotification(id,isread) {
+    return this.http.get<any>(this._url + 'notification/fponotification/' + id+"/"+isread).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   addLandDetails(data: any) {
     return this.http.post<any>(this._url + 'landdetail/land', data).pipe(map((res: any) => {
       return res;
@@ -94,5 +100,11 @@ export class FarmerService {
     }));
   }
 
+
+  updateNotification(id) {
+    return this.http.put<any>(this._url + `notification/`,id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
 }

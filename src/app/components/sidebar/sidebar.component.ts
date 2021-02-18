@@ -50,16 +50,33 @@ export class SidebarComponent implements OnInit {
   notificationCount = 0;
   notifications: any;
   notificationCall
+  fpoid: any;
 
   constructor(private router: Router,
     private _farmerService:FarmerService) { }
 
   ngOnInit() {
 
-    this.notificationCall = setInterval(() => {
-      // this.getAllNotification(); 
-    }, 5000);
+    // this.notificationCall = setInterval(() => {
+    //   // this.getAllNotification(); 
+    // }, 5000);
+  
     
+    this._farmerService.getFarmerProfileByUsername(localStorage.getItem('masterId')).subscribe(us => {
+     
+      console.log(us);
+ 
+      this.fpoid = us.fpoRefId;
+      console.log(this.fpoid,"fpoidtest");
+       // this.notifications = us;
+     this.getAllNotification();
+ 
+     })
+ 
+     this._farmerService.getFarmers().subscribe(res=>{
+       console.log(res,"farmerdata");
+     })
+ 
       
   
   this.userRole = localStorage.getItem('userRole');
@@ -81,8 +98,34 @@ export class SidebarComponent implements OnInit {
     }
   }
 
+
+
+  getAllNotification() {
+    console.log(this.fpoid, "fpoId");
+    this._farmerService.getFarmernotification(this.fpoid,false).subscribe(us=>{
+      this.notifications = us;
+      console.log(us);
+      this.notifications.forEach(element => {
+              if (element.read == null || element.read == false) {
+                this.notificationCount++;
+              }
+            });
+    })
+  }
+
+
+  updatenotification()
+  {
+    this._farmerService.updateNotification(this.fpoid).subscribe(res=>{
+      this.router.navigate(['farmer/farmerNotificationByFpo']);
+      console.log(res);
+      res.read = true;
+    })
+  }
+
+  // isread:false;
   // getAllNotification() {
-  //   this._farmerService.getAllNotificationByFpo(localStorage.getItem('masterId')).subscribe(us => {
+  //   this._farmerService.getFarmernotification(localStorage.getItem('masterId'),this.isread).subscribe(us => {
   //     this.notifications = us;
   //     // this.notificationCount = 0;
   //     this.notifications.forEach(element => {

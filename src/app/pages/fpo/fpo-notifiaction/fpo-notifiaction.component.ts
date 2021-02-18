@@ -26,6 +26,7 @@ export class FpoNotifiactionComponent implements OnInit {
   ngOnInit(): void {
     this.api.getAllFarmer().subscribe(us => {
       this.farmers = us;
+      console.log(us,"farmer");
     })
     this.getNotificationByFPO();
     
@@ -47,6 +48,8 @@ export class FpoNotifiactionComponent implements OnInit {
   getNotificationByFPO() {
     this.api.getAllNotificationFpo(localStorage.getItem('masterId')).subscribe(us => {
       this.notifications = us;
+console.log(this.notifications,"fetch");
+
     })
   }
 
@@ -69,7 +72,7 @@ export class FpoNotifiactionComponent implements OnInit {
     formData.append('fpo_id', localStorage.getItem('masterId'));
     formData.append("role", localStorage.getItem('userRole'))
     this.api.sendNotifiaction(this.NotificationsForm.value, formData).subscribe(response => {
-      console.log(response);
+      console.log(response,"fetchdata");
       if (response.id != '') {
         this.toastr.success('complians successfully.');
         this.submitted = false;

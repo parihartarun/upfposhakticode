@@ -19,42 +19,65 @@ export class FarmerNotifictionByFpoComponent implements OnInit {
   p: number = 1;
   isViewComplaint = false;
   notification: any
+  fpoid: any;
   constructor(private formBuilder: FormBuilder, private api: FpoService, private route: Router,
     private toastr: ToastrService, private _farmerService: FarmerService
    ) { }
 
   ngOnInit(): void {
 
-    this._farmerService.getAllNotificationByFpo(localStorage.getItem('masterId')).subscribe(us => {
-      this.notifications = us;
+    this._farmerService.getFarmerProfileByUsername(localStorage.getItem('masterId')).subscribe(us => {
+     
+     console.log(us);
+
+     this.fpoid = us.fpoRefId;
+     console.log(this.fpoid,"fpoidtest");
+      // this.notifications = us;
+    this.getAllNotification();
+
     })
 
-  }
-  reset() {
-    this.NotificationsForm.reset();
+    this._farmerService.getFarmers().subscribe(res=>{
+      console.log(res,"farmerdata");
+    })
+
+
   }
 
+
+
+
+  // reset() {
+  //   this.NotificationsForm.reset();
+  // }
+
   getAllNotification() {
+    console.log(this.fpoid, "fpoId");
+    this._farmerService.getFarmernotification(this.fpoid,false).subscribe(us=>{
+      this.notifications = us;
+      console.log(us);
+    })
+  }
     // this.api.getAllnotifocation().subscribe(response => {
     //   console.log(response);
     //   this.notifications = response;
     // });
 
-  }
-  viewNotifications(notification) {
-    this.isViewComplaint = true;
-    this.notification = notification
-  }
-  sendNotifications() {
+  // }
+  // viewNotifications(notification) {
+  //   this.isViewComplaint = true;
+  //   this.notification = notification
+  // }
+  // sendNotifications() {
 
-  }
-  close() {
-    this.isViewComplaint = false;
-  }
+  // }
+  // close() {
+  //   this.isViewComplaint = false;
+  // }
 
-  get formControls() {
-    return this.NotificationsForm.controls;
-  }
+  // get formControls() {
+  //   return this.NotificationsForm.controls;
+  // }
   // sendNotifications() {  
   //   this.submitted = true;
   //   // stop here if form is invalid
@@ -75,5 +98,7 @@ export class FarmerNotifictionByFpoComponent implements OnInit {
   //   });
   // }
 
-}
+// }
 
+
+}
