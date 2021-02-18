@@ -52,7 +52,7 @@ export class ProductsListComponent implements AfterViewInit,OnInit {
 config:any = {
   hasAllCheckBox: false,
   hasFilter: false,
-  hasCollapseExpand: false,
+  hasCollapseExpand: true,
   decoupleChildFromParent: false,
   maxHeight: 500
 }
@@ -185,9 +185,13 @@ onFilterChange($event)
   getItems(parentChildObj) {
     let itemsArray = [];
     parentChildObj.forEach(set => {
+      
       set.checked = false;
-      set.collapsed = false;
-      itemsArray.push(new TreeviewItem(set))
+      set.collapsed = true;
+      let sampleitm = new TreeviewItem(set);
+     // sampleitm.setCollapsedRecursive(false);
+      sampleitm.collapsed = true;
+      itemsArray.push(new TreeviewItem(sampleitm))
     });
     return itemsArray;
   }
@@ -204,8 +208,8 @@ onFilterChange($event)
       console.log("Crops received"+JSON.stringify(c));
    
    c.forEach(cropElement => {
-    let itm:any ={}
-itm["text"] = cropElement.cropName;
+    let itm:any ={collapsed:true}
+itm["text"] = ""+cropElement.cropName;
 itm["value"] = cropElement.cropName;
 
 console.log("Item Packed as here"+JSON.stringify(itm));
@@ -215,17 +219,17 @@ let croptypes = [];
  cropElement.cropTypes.forEach(cropTypeElement => {
  
 let croptypeItem = {};
-  croptypeItem["text"] = cropTypeElement.verietyName;
+  croptypeItem["text"] = ""+cropTypeElement.verietyName;
   croptypeItem["value"] = cropElement.cropName+"@"+cropTypeElement.verietyName;
   croptypeItem["checked"] = false;
-  croptypeItem["collapsed"] = false;
+  //croptypeItem["collapsed"] = true;
   croptypes.push(croptypeItem);  
 });
 console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows = "+JSON.stringify(croptypes));
   
   // console.log("Crop Types of the Crop"+JSON.stringify(croptypes))
    itm["children"] = croptypes;
-
+   //itm["collapsed"] = true; 
 
      this.items2.push(itm);
   
@@ -282,6 +286,7 @@ console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows =
       //   this.topsearchval = undefined      
       //   this.loading = false;
       // });
+      this.clearFilters();
       this.searchWithFilters();  
     }     
 
@@ -389,6 +394,26 @@ searchWithFilters()
   get formControls() {
     return this.indentForm.controls;
   }
+  
+  clearFilters()
+  {
+    this.quantities.forEach(element=>{
+      element.selected = false;
+    })
+    this.districts.forEach(element=>{
+      element.is_active=false;
+    })
+    this.items.forEach(element => { 
+      element.checked = false; 
+       if(element.children)
+       {
+        element.children.forEach(childelement => {
+          childelement.checked = false;
+        });
+       }
+    });
+this.selectedfilters=[];
+  }
   save() {
     
     this.submitted = true;
@@ -460,4 +485,5 @@ interface District {
   id: number;
   district_name: string;
   isDistrict: false;
+  is_active:boolean;
 }

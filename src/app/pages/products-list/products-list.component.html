@@ -57,6 +57,9 @@
         <div *ngFor="let chipitem of selectedfilters" class="d-inline-block mx-1 my-2 upfpo-pills">{{chipitem.name}}
           ({{chipitem.type}})</div>
       </div>
+      <div class="d-inline-block" *ngIf="selectedfilters.length > 0">
+      <button class="btn btn-sm my-1 mx-2 btn-product-search btn-danger" (click)="clearFilters()"><span class="text-xsm">{{'clearfilter' | translate}}</span></button>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-3">
@@ -508,10 +511,9 @@
               <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span
                   class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="{{'Quantity'|translate}}" type="text" formControlName="quantity">
+                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text" formControlName="quantity">
               </div>
               <div *ngIf="!submitted && formControls.quantity.touched && formControls.quantity.errors" class="text-danger mt-1 text-xsm">
-                
                 <div *ngIf="formControls.quantity.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
               </div>
               <div *ngIf="submitted && formControls.quantity.errors" class="text-danger mt-1 text-xsm">

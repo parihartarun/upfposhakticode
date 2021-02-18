@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -9,16 +9,22 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { AuthGuardService } from './_helpers/auth-guard.service';
 import { HomeComponent } from './pages/home/home.component';
 import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
+import { HomeScreenComponent } from './pages/common/home-screen/home-screen.component';
 
-const routes: Routes =[
+const routes: Routes = [
   {
-    path: '', component: HomeComponent ,
-   
+    path: '', component: HomeComponent,
+
   },
   {
     path: 'home', component: HomeComponent
   },
-  { path: 'fpo_guidelines', component: FpoGuidelinesComponent }, 
+  {
+    path: 'content',
+    component: HomeScreenComponent,
+    loadChildren: () => import('./pages/footer-content/footer-content.module').then(m => m.FooterContentModule)
+  },
+  { path: 'fpo_guidelines', component: FpoGuidelinesComponent },
   {
     path: '',
     component: AdminLayoutComponent,
@@ -28,7 +34,7 @@ const routes: Routes =[
         loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
       }
     ],
-    canActivate:[AuthGuardService]
+    canActivate: [AuthGuardService]
   }, {
     path: '',
     component: AuthLayoutComponent,
@@ -41,7 +47,7 @@ const routes: Routes =[
   }, {
     path: '**',
     redirectTo: 'home',
-     pathMatch: 'full'
+    pathMatch: 'full'
   }
 ];
 
