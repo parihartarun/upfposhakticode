@@ -90,6 +90,7 @@ config:any = {
   indentloading: boolean=false;
   currentitem: any;
   indentid: string = "";
+  fpolist: any;
 
   onSelectedChange($event)
   {
@@ -197,12 +198,19 @@ onFilterChange($event)
   }
   ngOnInit() {
    
+     
+
    this.api.getDistrictBystateId(9).subscribe(d => {
       this.districts = new Array()
       this.districts = d
       
     })
-   
+
+this._fpoService.getAllFpo().subscribe(localfpolist=>{
+ //console.log("Got Fpo List here = "+ JSON.stringify(localfpolist))
+  this.fpolist = localfpolist;
+
+})   
     this.api.getCrops().subscribe(c => {
       this.items2=[];
       console.log("Crops received"+JSON.stringify(c));
@@ -307,6 +315,9 @@ searchWithFilters()
         break;
           case 'crop':
             httpParams =  httpParams.append("filtercrop",""+data.name);
+          break;
+          case 'fpo':
+            httpParams =  httpParams.append("fpo",""+data.name);
           break;  
     }  
     
@@ -343,6 +354,28 @@ searchWithFilters()
       this.selecteddists = this.selecteddists.filter(item=>item!=district.district_name);
       this.selectedfilters = this.selectedfilters.filter(filter => filter.name!=district.district_name);
       console.log("selected districtes" +JSON.stringify(this.selectedfilters));
+    }
+    
+    this.searchWithFilters();
+  
+  }
+
+  selectFpo(fpo: any) {
+    console.log("Selected Fpo here "+JSON.stringify(fpo));
+  
+    
+    if (fpo.is_active) {
+    //this.searchCriteria.push(district)
+    //this.selecteddists.push(fpo.fpoName);
+    this.selectedfilters.push({name:fpo.fpoName,type:"fpo"})
+    console.log("selected fpo" +JSON.stringify(this.selectedfilters)); 
+  } else {
+     // delete this.searchCriteria[this.searchCriteria.findIndex(item => item.is_active == district.is_active)];
+      
+      //delete this.selecteddists[this.selecteddists.findIndex(item => item == district.district_name)];
+      //this.selecteddists = this.selecteddists.filter(item=>item!=fpo.fpoName);
+      this.selectedfilters = this.selectedfilters.filter(filter => filter.name!=fpo.fpoName);
+      console.log("selected fpos" +JSON.stringify(this.selectedfilters));
     }
     
     this.searchWithFilters();
@@ -403,6 +436,9 @@ searchWithFilters()
     this.districts.forEach(element=>{
       element.is_active=false;
     })
+    this.fpolist.forEach(element=>{
+      element.is_active=false;
+    })  
     this.items.forEach(element => { 
       element.checked = false; 
        if(element.children)

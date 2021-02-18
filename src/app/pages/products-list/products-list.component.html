@@ -207,39 +207,41 @@
           <!-- </div>
         </article>  -->
           <!-- card-group-item.// -->
-          <!-- <article class="card-group-item">
-          <header class="card-header">
-            <h3 class="title">{{'FPO' | translate }}</h3>
-          </header>
-          <div class="filter-content">
-            <div class="card-body">
-              <form>
-                <label class="form-check">
+          <article class="card-group-item my-2">
+            <header class="">
+              <h3 class="title">{{'FPO' | translate }}</h3>
+            </header>
+            <div class="filter-content">
+              <div class="filterDistrict">
+                <form>
+                  <label class="form-check" *ngFor="let fpo of fpolist">
+                    <input class="form-check-input" type="checkbox" [value]="fpo.fpolist"
+                      [name]="fpo.fpoName" [(ngModel)]="fpo.is_active"
+                      (change)="selectFpo(fpo)">
+                    <span class="form-check-label">
+                      {{fpo.fpoName}}
+                    </span>
+                  </label> <!-- form-check.// -->
+                  <!--<label class="form-check">
                   <input class="form-check-input" type="checkbox" value="">
                   <span class="form-check-label">
-                    {{'Mehroni Jaiv Urja Producer Company Limited' | translate }}
-                  </span> -->
-          <!-- </label> -->
-          <!-- form-check.// -->
-          <!-- <label class="form-check">
-          <input class="form-check-input" type="checkbox" value="">
-          <span class="form-check-label">
-            {{'Safal Kisaan Producer Company Limited' | translate }}
-           </span> -->
-          <!-- </label>  -->
-          <!-- form-check.// -->
-          <!-- <label class="form-check">
-          <input class="form-check-input" type="checkbox" value="">
-          <span class="form-check-label">
-            {{'Shri Annagerbha Bio-Energy Farmer Producer Company Limited' | translate }}
-          </span>
-        </label>   -->
-          <!-- form-check.// -->
-          <!-- </form> -->
-          <!-- </div>  -->
-          <!-- card-body.// -->
-          <!-- </div>
-        </article> -->
+                    {{'PRAYAGRAJ' | translate }}
+                  </span>
+                </label>-->
+                  <!-- form-check.//-->
+                  <!--<label class="form-check">
+                  <input class="form-check-input" type="checkbox" value="">
+                  <span class="form-check-label">
+                    {{'DODA' | translate }}
+                  </span>
+                </label>-->
+                  <!-- form-check.// -->
+                </form>
+
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- card-group-item.// -->
+          
           <!-- <article class="card-group-item">
           <header class="card-header">
             <h3 class="title">{{'Services/ Products' | translate }} </h3>
