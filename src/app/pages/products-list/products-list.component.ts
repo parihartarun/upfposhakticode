@@ -282,6 +282,7 @@ console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows =
       //   this.topsearchval = undefined      
       //   this.loading = false;
       // });
+      this.clearFilters();
       this.searchWithFilters();  
     }     
 
@@ -389,6 +390,26 @@ searchWithFilters()
   get formControls() {
     return this.indentForm.controls;
   }
+  
+  clearFilters()
+  {
+    this.quantities.forEach(element=>{
+      element.selected = false;
+    })
+    this.districts.forEach(element=>{
+      element.is_active=false;
+    })
+    this.items.forEach(element => { 
+      element.checked = false; 
+       if(element.children)
+       {
+        element.children.forEach(childelement => {
+          childelement.checked = false;
+        });
+       }
+    });
+this.selectedfilters=[];
+  }
   save() {
     
     this.submitted = true;
@@ -460,4 +481,5 @@ interface District {
   id: number;
   district_name: string;
   isDistrict: false;
+  is_active:boolean;
 }
