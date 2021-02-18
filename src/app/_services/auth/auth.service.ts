@@ -128,10 +128,10 @@ export class AuthService {
       return res;
     }));
   }
-  getAllTags(data): Observable<any> {
-    const url = `https://my.api.com/search?q=${data}`;
-    return this.http.get<any>(url).pipe(map((res: any) => {
-      return res;
+  getVariety(data): Observable<any> {
+    return this.http.post<any>(this._url + `api/v1/cropVarietyDetails/getCropVarietyByMultipleCropId`, data).pipe(map((v: any) => {
+      
+      return v;
     }));
   
   }

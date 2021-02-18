@@ -279,10 +279,10 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="PANnumber" appUppercase>
+        <input class="form-control" type="text" formControlName="panNumber" appUppercase>
       </div>
-      <div *ngIf="submitted && formControls.PANnumber.errors" class="text-danger">
-        <div *ngIf="formControls.PANnumber.errors.pattern">{{'Invalid PAN Number'|translate}}</div>
+      <div *ngIf="submitted && formControls.panNumber.errors" class="text-danger">
+        <div *ngIf="formControls.panNumber.errors.pattern">{{'Invalid PAN Number'|translate}}</div>
 
       </div>
     </div>

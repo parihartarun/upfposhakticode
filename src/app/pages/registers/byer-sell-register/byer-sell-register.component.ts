@@ -32,7 +32,8 @@ export class ByerSellRegisterComponent implements OnInit {
   blocks = [];
   crops = [];
   cropids = [];
-  verieties=[]
+  verieties = [];
+  verietyIds = []
   _url: string;
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService, private http: HttpClient) {
     this._url = environment.baseUrl;
@@ -72,9 +73,9 @@ export class ByerSellRegisterComponent implements OnInit {
       streetName: ['', Validators.required],
       webSite: [''],
       recaptcha: ['', Validators.required],
-      gstNumber: ['',Validators.pattern("[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}")],
+      gstNumber: ['', Validators.pattern("[0-9a-zA-Z]{0,100}")],
       tinNumber: [''],
-      PANnumber: ['',Validators.pattern("[A-Z]{5}[0-9]{4}[A-Z]{1}")],
+      panNumber: ['',Validators.pattern("[A-Z]{5}[0-9]{4}[A-Z]{1}")],
       companyCategory: ['', Validators.required],
       commdityDealsIn: [],
       varietyDealsIn: [],
@@ -113,6 +114,8 @@ export class ByerSellRegisterComponent implements OnInit {
     delete this.registerForm.value.userName;
     delete this.registerForm.value.confirmPassword;
     this.registerForm.value.userBuyerSeller = user;
+    this.registerForm.value.commdityDealsIn = this.cropids.toString();
+    this.registerForm.value.varietyDealsIn = this.verietyIds.toString();
     this.api.registerBuyerSeller(this.registerForm.value).subscribe(response => {
       if (response.message == "SuccessFully Saved!") {
         this.toastr.success(response.message);
@@ -147,7 +150,7 @@ export class ByerSellRegisterComponent implements OnInit {
     }));
 
   };
-  onAdded($event: any) {
+  onAdded($event: any){
     $event
     let filterCrop=[]
     filterCrop = this.crops.filter(c => c.cropName === $event.value)   
@@ -155,42 +158,47 @@ export class ByerSellRegisterComponent implements OnInit {
       this.cropids.push(c.cropId)
     });
     let searchData = {
-      cropids: this.cropids
+      cropids: this.cropids.toString()
     }
-    return this.http.post<any>(this._url + `api/v1/cropVarietyDetails/getCropVarietyByMultipleCropId`, searchData).pipe(map((v: any) => {
-      this.verieties=v
-      return this.verieties;
-    }));
+    this.api.getVariety(searchData).subscribe(v => {
+      this.verieties = v
+    })
+   
    }
-
+ 
   onSelected($event: any) {
     console.log("Fire Selected");
   }
 
-  onItemRemoved($event: any) {
+  onItemRemoved($event: any):Observable<any> {
     $event
     let filterCrop = null
 
     filterCrop = this.crops.filter(c => c.cropName === $event.value);
-    this.cropids=this.cropids.filter(item => item != filterCrop[0].cropId)
+    this.cropids = this.cropids.filter(item => item != filterCrop[0].cropId)
     console.log("Fire Removed");
+    return
   }
 
   public requestVarietyDealsInAutocompleteItems = (text: string): Observable<string[]> => {
     if (this.cropids.length ==0) {
       return
     }
-    this.verieties.filter(v=>v)
+    let arr=[]
+    this.verieties.map(c => {
+      c
+      arr.push(c.verietyName)
+    })  
 
-    return of(this.verieties)
+    return of(arr)
   };
 
   onAddedVarietyDealsIn($event: any) {
     $event
-    let filterCrop = []
-    filterCrop = this.crops.filter(c => c.cropName === $event.value)
-    filterCrop.map(c => {
-      this.cropids.push(c.cropId)
+    let filterVeriety = []
+    filterVeriety = this.verieties.filter(c => c.verietyName === $event.value)
+    filterVeriety.map(c => {
+      this.verietyIds.push(c.verietyId)
     });
     console.log("Fire Added");
 
@@ -200,10 +208,11 @@ export class ByerSellRegisterComponent implements OnInit {
 
   removedVarietyDealsIn($event: any) {
     $event
-    let filterCrop = null
+    let filterverieties = null
 
-    filterCrop = this.crops.filter(c => c.cropName === $event.value);
-    this.cropids = this.cropids.filter(item => item != filterCrop[0].cropId)
+    filterverieties = this.verieties.filter(c => c.verietyName === $event.value);
+    this.verietyIds = this.verietyIds.filter(item => item != filterverieties[0].verietyId)
+  
     console.log("Fire Removed");
   }
 }
