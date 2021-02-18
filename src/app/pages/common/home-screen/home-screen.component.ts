@@ -11,6 +11,7 @@ export class HomeScreenComponent implements OnInit {
 
   isOpen = false;
   isHome = '';
+  isLoggeIn
   constructor(private route: Router, public translate: TranslateService) {
     if (localStorage.getItem('language')) {
       translate.setDefaultLang(localStorage.getItem('language'));
