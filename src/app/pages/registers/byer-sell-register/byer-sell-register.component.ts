@@ -8,8 +8,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { MustMatch } from '../../../_helpers/constomMatchValidor';
 import { AuthService } from '../../../_services/auth/auth.service';
-import { MustMatch } from 'src/app/_helpers/constomMatchValidor';
-import { AuthService } from 'src/app/_services/auth/auth.service';
+
 
 
 
@@ -33,6 +32,7 @@ export class ByerSellRegisterComponent implements OnInit {
   blocks = [];
   crops = [];
   cropids = [];
+  verieties=[]
   _url: string;
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService, private http: HttpClient) {
     this._url = environment.baseUrl;
@@ -75,7 +75,7 @@ export class ByerSellRegisterComponent implements OnInit {
       gstNumber: ['',Validators.pattern("[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}")],
       tinNumber: [''],
       PANnumber: ['',Validators.pattern("[A-Z]{5}[0-9]{4}[A-Z]{1}")],
-      companyCategory: [],
+      companyCategory: ['', Validators.required],
       commdityDealsIn: [],
       varietyDealsIn: [],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
@@ -135,7 +135,8 @@ export class ByerSellRegisterComponent implements OnInit {
   //}
   public requestAutocompleteItems = (text: string): Observable<string[]> => {
  
-  let arr=[]
+    let arr = []
+
     return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropsBySearch/${text}`).pipe(map((res: any) => {
       this.crops = res;     
         res.map(c => {
@@ -153,9 +154,14 @@ export class ByerSellRegisterComponent implements OnInit {
     filterCrop.map(c => {
       this.cropids.push(c.cropId)
     });
-    console.log("Fire Added");
-
-  }
+    let searchData = {
+      cropids: this.cropids
+    }
+    return this.http.post<any>(this._url + `api/v1/cropVarietyDetails/getCropVarietyByMultipleCropId`, searchData).pipe(map((v: any) => {
+      this.verieties=v
+      return this.verieties;
+    }));
+   }
 
   onSelected($event: any) {
     console.log("Fire Selected");
@@ -171,21 +177,12 @@ export class ByerSellRegisterComponent implements OnInit {
   }
 
   public requestVarietyDealsInAutocompleteItems = (text: string): Observable<string[]> => {
-
-    let arr = []
-    let searchData = {
-      text: text,
-      cropids:this.cropids
+    if (this.cropids.length ==0) {
+      return
     }
-    return this.http.post<any>(this._url + `api/v1/cropVarietyDetails/getCropVarietyByMultipleCropId`, searchData).pipe(map((res: any) => {
-      this.crops = res;
-      res.map(c => {
-        arr.push(c.cropName)
-      });
+    this.verieties.filter(v=>v)
 
-      return arr
-    }));
-
+    return of(this.verieties)
   };
 
   onAddedVarietyDealsIn($event: any) {

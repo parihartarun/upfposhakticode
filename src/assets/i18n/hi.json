@@ -645,12 +645,12 @@
   "Invalid GST Number": "जीएसटी नंबर अमान्य है",
   "Invalid PAN Number": "पैन नंबर अमान्य है",
   "Category Deals is required": "श्रेणी सौदों की आवश्यकता है",
-  "password does not match":"पासवर्ड मैच नहीं कर रहा है",
-  "Marketable Surplus" : "विक्रय हेतु",
-  "Actual Production" : "वास्तविक उत्पादन",
-  "FPOs" : "एफपीओ",
-  "Total FPO" : "कुल एफपीओ",
-  
+  "password does not match": "पासवर्ड मैच नहीं कर रहा है",
+  "Marketable Surplus": "विक्रय हेतु",
+  "Actual Production": "वास्तविक उत्पादन",
+  "FPOs": "एफपीओ",
+  "Total FPO": "कुल एफपीओ",
+
   "tnc is required": "नियमों और शर्तों की आवश्यकता है",
   "I agree to the terms and conditions.": "मैं नियमों और शर्तों से सहमत हु।",
   "Click here": "यहाँ क्लिक करें",
@@ -658,7 +658,12 @@
   "Upload Date": "अपलोड की  तिथि",
   "please enter value upto 999": "please enter value upto 999",
   "only png,jpeg,jpg format is allow": "केवल पीएनजी, जेपीईजी, जेपीजी प्रारूप अनुमति देते हैं",
-  "only xls,xlsx,pdf,doc,docx format is allow": "only xls,xlsx,pdf,doc,docx format is allow"
+  "only xls,xlsx,pdf,doc,docx format is allow": "only xls,xlsx,pdf,doc,docx format is allow",
+  "Select Company Category": "कंपनी श्रेणी का चयन करें",
+  "Company Category is required": "कंपनी श्रेणी का आवश्यकता है",
+  "register under the society acts": "सोसायटी अधिनियम के तहत पंजीकरण",
+  "register under the company acts": "कंपनी अधिनियमcके तहत पंजीकरण"
+
 
 
 }

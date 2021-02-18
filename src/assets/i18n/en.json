@@ -618,10 +618,10 @@
   "Commdity Deals in": "Commdity Deals in",
   "Seed1": "बीज",
   "Select Seed": "Select Seed",
-  "Marketable Surplus" : "Marketable Surplus",
-  "Actual Production" : "Actual Production",
-  "FPOs" : "FPOs",
-  "Total FPO" : "Total FPO", 
+  "Marketable Surplus": "Marketable Surplus",
+  "Actual Production": "Actual Production",
+  "FPOs": "FPOs",
+  "Total FPO": "Total FPO",
   "tnc is required": "terms and conditions is required",
   "I agree to the terms and conditions. Click here to view in details": "I agree to the terms and conditions.",
   "Click here": "Click here",
@@ -630,6 +630,10 @@
   "View file": "फाइल देखें",
   "please enter value upto 999": "कृपया 999 तक मूल्य दर्ज करें",
   "only png,jpeg,jpg format is allow": "only png,jpeg,jpg format allow",
-  "only xls,xlsx,pdf,doc,docx format is allow": "केवल xls,xlsx,pdf,doc,docx,प्रारूप की अनुमति है"
+  "only xls,xlsx,pdf,doc,docx format is allow": "only xls,xlsx,pdf,doc,docx format is allow",
+  "Select Company Category": "Select Company Category",
+  "Company Category is required": "Company Category is required",
+  "register under the society acts": "register under the society acts",
+  "register under the company acts": "register under the company acts"
 
 }
