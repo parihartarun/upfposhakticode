@@ -10,7 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class HomeScreenComponent implements OnInit {
 
   isOpen = false;
-  constructor(private route: Router,public translate: TranslateService) {
+  isHome = '';
+  constructor(private route: Router, public translate: TranslateService) {
     if (localStorage.getItem('language')) {
       translate.setDefaultLang(localStorage.getItem('language'));
     } else {
@@ -20,6 +21,8 @@ export class HomeScreenComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   this.isHome=this.route.url;
+
   }
   useLanguage(language: string) {
     localStorage.setItem('language', language);

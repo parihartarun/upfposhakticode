@@ -33,6 +33,12 @@
       <div class="collapse navbar-collapse" id="navbarToggleExternalContent" [ngClass]="{ in: isOpen }">
         <ul class="navbar-nav ml-auto" *ngIf="!isLoggeIn">
           <div class="triangle-topright"></div>
+          <li class="nav-item" *ngIf="isHome!=='/' || isHome!=='/home'">
+            <a class="nav-link" routerLink="/">
+              <img class="nav-image" src="../../../assets/image/img/fpomenu.png" />
+              {{'Home' | translate}} <span class="sr-only">(current)</span>
+            </a>
+          </li>
           <li class="nav-item dropdown">
             <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
               <a class="languageText" ngbDropdownToggle>
