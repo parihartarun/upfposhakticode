@@ -170,7 +170,11 @@ export class ByerSellRegisterComponent implements OnInit {
   public requestVarietyDealsInAutocompleteItems = (text: string): Observable<string[]> => {
 
     let arr = []
-    return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropsBySearch/${text}`).pipe(map((res: any) => {
+    let searchData = {
+      text: text,
+      cropids:this.cropids
+    }
+    return this.http.post<any>(this._url + `api/v1/cropVarietyDetails/getCropVarietyByMultipleCropId`, searchData).pipe(map((res: any) => {
       this.crops = res;
       res.map(c => {
         arr.push(c.cropName)
