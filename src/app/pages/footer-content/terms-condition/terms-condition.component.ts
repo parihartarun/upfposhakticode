@@ -12,10 +12,10 @@ export class TermsConditionComponent implements OnInit {
   constructor(public translate: TranslateService) { }
   lang = '';
   ngOnInit(): void {
-    this.lang = localStorage.getItem('language');
+    // this.lang = localStorage.getItem('language');
     this.translate.onLangChange.subscribe(res => {
       if (res) {
-        this.lang = res.lang;
+        // this.lang = res.lang;
       }
     })
   }
