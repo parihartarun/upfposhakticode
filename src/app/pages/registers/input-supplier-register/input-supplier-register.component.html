@@ -43,8 +43,9 @@
         <input class="form-control" type="text" formControlName="contactPerson">
       </div>
       <div *ngIf="submitted && formControls.contactPerson.errors" class="text-danger">
-        <div *ngIf="formControls.contactPerson.errors.required">{{'contact person is required'|translate}}</div> </div>
-            </div> <div class="col-6">
+        <div *ngIf="formControls.contactPerson.errors.required">{{'contact person is required'|translate}}</div>
+      </div>
+    </div> <div class="col-6">
 
       <label class="input-label">{{'Mobile' | translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -163,19 +164,19 @@
       <div *ngIf="submitted && formControls.seed_id.errors" class="text-danger">
         <div *ngIf="formControls.seed_id.errors.required">seed is required</div>
       </div>
-    </div>-->
+    </div>
     <div class="col-6">
-      <label class="input-label">{{'Category Deals In'|translate}}<span class="required">*</span></label>
+      <label class="input-label">{{'category deals in'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="seed_id" appOnlynumber>
+        <input class="form-control" type="text" formcontrolname="seed_id" apponlynumber>
       </div>
-      <div *ngIf="submitted && formControls.seed_id.errors" class="text-danger">
-        <div *ngIf="formControls.seed_id.errors.required">{{'Category Deals is required'|translate}}</div>
+      <div *ngif="submitted && formcontrols.seed_id.errors" class="text-danger">
+        <div *ngif="formcontrols.seed_id.errors.required">{{'category deals is required'|translate}}</div>
       </div>
-    </div>
+    </div>-->
 
   </div>
   <div class="form-group row mb-3">
@@ -239,22 +240,87 @@
     </div>
   </div>
 
+
+  <hr />
+  <h3>{{'Category deals in'|translate}}</h3>
   <div class="form-group row mb-3">
 
-
     <div class="col-6">
-      <label class="input-label">{{'Confirm Password'|translate}} <span class="required">*</span></label>
+      <label class="input-label">{{'Seed'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="password" formControlName="confirmPassword">
+        <select class="form-control" formControlName="seed_id">
+          <option value="">{{'Select Seed'|translate}}</option>
+          <option *ngFor="let district of districts" [value]="district.district_id">
+            {{district.district_name}}
+          </option>
+        </select>
       </div>
-      <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
-        <div *ngIf="formControls.confirmPassword.errors.required">{{'confirm password is required'|translate}}</div>
-        <div *ngIf="formControls.confirmPassword.errors.MustMatch">{{'password does not match'|translate}}</div>
+      <div *ngIf="submitted && formControls.seed_id.errors" class="text-danger">
+        <div *ngIf="formControls.seed_id.errors.required">{{'speed is required'|translate}}</div>
       </div>
     </div>
+    <div class="col-6">
+      <label class="input-label">{{'Fertilizer'|translate}} <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="Fertilizer">
+          <option value="Select Fertilizer">{{'Select Fertilizer'| translate}}</option>
+          <option value="Normal">{{'Normal'| translate}} </option>
+          <option value="Organic">{{'Organic'| translate}} </option>
+          <option value="Both">{{'Both'| translate}} </option>
+
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.Fertilizer.errors" class="text-danger">
+        <div *ngIf="formControls.Fertilizer.errors.required">{{'Fertilizer  is required'| translate}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+
+    <div class="col-6">
+      <label class="input-label">{{'Insecticide/ Pesticide'|translate}} <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="cide">
+          <option value="">{{'Select Insecticide/ Pesticide'|translate}}</option>
+          <option value="Insecticide">{{'Insecticide'|translate}}</option>
+          <option value="Pesticide">{{'Pesticide'|translate}}</option>
+
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.cide.errors" class="text-danger">
+        <div *ngIf="formControls.cide.errors.required">{{'pesticide is required'|translate}}</div>
+      </div>
+    </div>
+    <div class="col-6">
+      <label class="input-label">{{'Equipment'|translate}} <span class="required">*</span></label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="Equipment">
+          <option value="">{{'Select Equipment'| translate}}</option>
+          <option value="Irrigation Equipment">{{'Irrigation Equipment'| translate}} </option>
+          <option value="Farm Machinery">{{'Farm Machinery'| translate}} </option>
+
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.Equipment.errors" class="text-danger">
+        <div *ngIf="formControls.Equipment.errors.required">{{'Equipment is required'| translate}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+
+
     <div class="col-6">
       <ngx-recaptcha2 #captchaElem [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
                       (success)="handleSuccess($event)" [useGlobalDomain]="false" formControlName="recaptcha">
@@ -273,7 +339,6 @@
       </div>
     </div>
   </div>
-
   <div class="text-center">
     <button type="submit" class="btn btn-login btn-yellow btn-primary my-4">{{"Register"| translate}}</button>
   </div>

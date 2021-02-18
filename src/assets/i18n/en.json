@@ -616,7 +616,7 @@
   "variety Deals In": "Variety Deals In",
   "Area (Landmark)": "Area (Landmark)",
   "Commdity Deals in": "Commdity Deals in",
-  "Seed1": "बीज",
+  "Seed1": "Seed",
   "Select Seed": "Select Seed",
   "Marketable Surplus": "Marketable Surplus",
   "Actual Production": "Actual Production",
@@ -627,13 +627,27 @@
   "Click here": "Click here",
   "to view in details": "to view in details",
   "Upload Date": "Upload Date",
-  "View file": "फाइल देखें",
-  "please enter value upto 999": "कृपया 999 तक मूल्य दर्ज करें",
+  "View file": "View file",
+  "please enter value upto 999": "please enter value upto 999",
   "only png,jpeg,jpg format is allow": "only png,jpeg,jpg format allow",
   "only xls,xlsx,pdf,doc,docx format is allow": "only xls,xlsx,pdf,doc,docx format is allow",
   "Select Company Category": "Select Company Category",
   "Company Category is required": "Company Category is required",
   "register under the society acts": "register under the society acts",
-  "register under the company acts": "register under the company acts"
+  "register under the company acts": "register under the company acts",
+  "Category deals in": "Category deals in",
+  "speed is required": "speed is required",
+  "Select Fertilizer": "Select Fertilizer",
+  "Normal": "Normal",
+  "Both": "Both",
+  "Insecticide / Pesticide": "Insecticide / Pesticide",
+  "Select Insecticide/ Pesticide": "Select Insecticide/ Pesticide",
+  "Insecticide": "Insecticide",
+  "Pesticide": "Pesticide",
+  "pesticide is required": "insecticide/ pesticide is required",
+  "Equipment": "Equipment",
+  "Equipment is required": "Equipment is required"
+  
+
 
 }

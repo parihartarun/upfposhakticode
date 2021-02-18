@@ -90,6 +90,9 @@ export class InputSupplierRegisterComponent implements OnInit {
       recaptcha: ['', Validators.required],
       userInputSeller: [],
       seedId: [],
+      Fertilizer: [],
+      cide: [],
+      Equipment:[],
       tnc: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],     
       confirmPassword: ['', Validators.required]

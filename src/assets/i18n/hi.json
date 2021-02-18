@@ -656,13 +656,26 @@
   "Click here": "यहाँ क्लिक करें",
   "to view in details": "विवरण में देखने के लिए",
   "Upload Date": "अपलोड की  तिथि",
-  "please enter value upto 999": "please enter value upto 999",
+  "please enter value upto 999": "कृपया 999 तक मूल्य दर्ज करें",
   "only png,jpeg,jpg format is allow": "केवल पीएनजी, जेपीईजी, जेपीजी प्रारूप अनुमति देते हैं",
-  "only xls,xlsx,pdf,doc,docx format is allow": "only xls,xlsx,pdf,doc,docx format is allow",
+  "only xls,xlsx,pdf,doc,docx format is allow": "only xls,xlsx,pdf,doc,docx प्रारूप अनुमति देते हैं",
   "Select Company Category": "कंपनी श्रेणी का चयन करें",
   "Company Category is required": "कंपनी श्रेणी का आवश्यकता है",
   "register under the society acts": "सोसायटी अधिनियम के तहत पंजीकरण",
-  "register under the company acts": "कंपनी अधिनियमcके तहत पंजीकरण"
+  "register under the company acts": "कंपनी अधिनियम के तहत पंजीकरण",
+  "Category deals in": "में श्रेणी सौदों",
+  "speed is required": "बीज की आवश्यकता है",
+  "Select Fertilizer": "उर्वरक का चयन करें",
+  "Normal": "साधारण",
+  "Both": "दोनों",
+  "Insecticide/ Pesticide": "कीटनाशक",
+  "Select Insecticide/ Pesticide": "कीटनाशक का चयन करें",
+  "Insecticide": "कीटनाशक",
+  "Pesticide": "पेस्टनाशी",
+  "pesticide is required": "कीटनाशक की आवश्यकता है",
+  "Equipment": "उपकरण",
+  "Equipment is required": "उपकरण की आवश्यकता है"
+ 
 
 
 
