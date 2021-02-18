@@ -54,9 +54,9 @@ export class HomeComponent implements OnInit {
       this.username = localStorage.getItem('username');
     }
     this.slides = [
-      { image: '../../../assets/image/img/slider/1.jpg', text: 'Connect with buyers and exporters' },
-      { image: '../../../assets/image/img/slider/3.jpg', text: 'Get information about FPO registration' },
-      { image: '../../../assets/image/img/slider/4.jpg', text: 'Get information about seeds, fertilizers, agricultural implements etc' }
+      { image: 'assets/image/img/slider/1.jpg', text: 'Connect with buyers and exporters' },
+      { image: 'assets/image/img/slider/3.jpg', text: 'Get information about FPO registration' },
+      { image: 'assets/image/img/slider/4.jpg', text: 'Get information about seeds, fertilizers, agricultural implements etc' }
     ];
     this.api.getfarmerDetails().subscribe(h => {
       this.farmerDetails = h

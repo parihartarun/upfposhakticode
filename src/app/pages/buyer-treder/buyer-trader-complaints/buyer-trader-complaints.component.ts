@@ -2,8 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FarmerService } from '../../../_services/farmer/farmer.service';
-import { FpoService } from '../../../_services/fpo/fpo.service';
+import { FarmerService } from 'src/app/_services/farmer/farmer.service';
+import { FpoService } from 'src/app/_services/fpo/fpo.service';
 
 @Component({
   selector: 'app-buyer-trader-complaints',

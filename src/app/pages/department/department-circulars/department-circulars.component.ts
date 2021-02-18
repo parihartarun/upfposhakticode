@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DepartmentService } from '../../../_services/department/department.service';
-import { FpoService } from '../../../_services/fpo/fpo.service';
+import { DepartmentService } from 'src/app/_services/department/department.service';
+
 
 @Component({
   selector: 'app-department-circulars',

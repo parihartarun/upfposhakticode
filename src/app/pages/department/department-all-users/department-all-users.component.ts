@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { DepartmentService } from '../../../_services/department/department.service';
-import { UserService } from '../../../_services/user/user.service';
+import { UserService } from 'src/app/_services/user/user.service';
+
 
 @Component({
   selector: 'app-department-all-users',
