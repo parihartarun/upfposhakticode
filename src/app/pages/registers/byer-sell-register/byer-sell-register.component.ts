@@ -57,7 +57,7 @@ export class ByerSellRegisterComponent implements OnInit {
  
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      area: ['', Validators.required],
+      area: [''],
       buildingName: ['', Validators.required],
       buyerSellerId: [''],
       buyerSellerName: ['', Validators.required],
@@ -73,9 +73,9 @@ export class ByerSellRegisterComponent implements OnInit {
       streetName: ['', Validators.required],
       webSite: [''],
       recaptcha: ['', Validators.required],
-      gstNumber: ['', Validators.pattern("[0-9a-zA-Z]{0,100}")],
+      gstNumber: [''],
       tinNumber: [''],
-      panNumber: ['',Validators.pattern("[A-Z]{5}[0-9]{4}[A-Z]{1}")],
+      panNumber: [''],
       companyCategory: ['', Validators.required],
       commdityDealsIn: [],
       varietyDealsIn: [],

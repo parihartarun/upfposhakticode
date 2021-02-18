@@ -194,7 +194,7 @@
       </div>
     </div>
     <div class="col-6">
-      <label class="input-label">{{'GST Number'|translate}} </label>
+      <label class="input-label">{{'GST Number'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -202,8 +202,8 @@
         <input class="form-control" type="text" formControlName="gstNumber" appUppercase>
       </div>
       <div *ngIf="submitted && formControls.gstNumber.errors" class="text-danger">
+        <div *ngIf="formControls.gstNumber.errors.required">{{'gst number is required'|translate}}</div>
         <div *ngIf="formControls.gstNumber.errors.pattern">{{'Invalid GST Number'|translate}}</div>
-
       </div>
 
     </div>
@@ -246,7 +246,7 @@
   <div class="form-group row mb-3">
 
     <div class="col-6">
-      <label class="input-label">{{'Seed'|translate}} <span class="required">*</span></label>
+      <label class="input-label">{{'Seed'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -258,12 +258,10 @@
           </option>
         </select>
       </div>
-      <div *ngIf="submitted && formControls.seed_id.errors" class="text-danger">
-        <div *ngIf="formControls.seed_id.errors.required">{{'speed is required'|translate}}</div>
-      </div>
+      
     </div>
     <div class="col-6">
-      <label class="input-label">{{'Fertilizer'|translate}} <span class="required">*</span></label>
+      <label class="input-label">{{'Fertilizer'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -284,7 +282,7 @@
   <div class="form-group row mb-3">
 
     <div class="col-6">
-      <label class="input-label">{{'Insecticide/ Pesticide'|translate}} <span class="required">*</span></label>
+      <label class="input-label">{{'Insecticide/ Pesticide'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -301,7 +299,7 @@
       </div>
     </div>
     <div class="col-6">
-      <label class="input-label">{{'Equipment'|translate}} <span class="required">*</span></label>
+      <label class="input-label">{{'Equipment'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
