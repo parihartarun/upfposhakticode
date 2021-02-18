@@ -57,6 +57,9 @@
         <div *ngFor="let chipitem of selectedfilters" class="d-inline-block mx-1 my-2 upfpo-pills">{{chipitem.name}}
           ({{chipitem.type}})</div>
       </div>
+      <div class="d-inline-block" *ngIf="selectedfilters.length > 0">
+      <button class="btn btn-sm my-1 mx-2 btn-product-search btn-danger">{{'clearfilter' | translate}}</button>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-3">
