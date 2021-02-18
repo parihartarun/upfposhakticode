@@ -21,7 +21,7 @@ export class InputSupplierRegisterComponent implements OnInit {
   blocks = [];
   villages = [];
   inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
-  isBulkSupplyingCompany: boolean = true
+  isBulkSupplyingCompany: boolean = false;
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
   }
 
@@ -51,6 +51,9 @@ export class InputSupplierRegisterComponent implements OnInit {
   selectInputSupplierType(inputSupplierType: any) {
     if (parseInt(inputSupplierType.currentTarget.value) == 1) {
       this.isBulkSupplyingCompany = false;
+      this.registerForm.get('blockRefId').patchValue('');
+      this.registerForm.get('districtRefId').patchValue('');
+      this.registerForm.get('villageRefId').patchValue('');
       this.registerForm.get('blockRefId').clearValidators();
       this.registerForm.get('districtRefId').clearValidators();
       this.registerForm.get('villageRefId').clearValidators();
@@ -68,25 +71,26 @@ export class InputSupplierRegisterComponent implements OnInit {
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      blockRefId: [''],
+      blockRefId: ['', Validators.required],
       inputSupplierName: ['', Validators.required],
       inputSupplierId: [''],
       inputSupplierType: ['', Validators.required],
       contactPerson: ['', Validators.required],
       license_number: ['', Validators.required],
-      districtRefId: [''],
+      districtRefId: ['', Validators.required],
       deleted: [true],
       email: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
       gstNumber: ['', Validators.pattern("[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}")],
       mobile_number: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       seed_id: ['', Validators.required],
-      villageRefId: [''],
+      villageRefId: ['', Validators.required],
       userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
       recaptcha: ['', Validators.required],
       userInputSeller: [],
       seedId: [],
-      password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
+      tnc: ['', Validators.required],
+      password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],     
       confirmPassword: ['', Validators.required]
     }, {
       validator: MustMatch('password', 'confirmPassword')

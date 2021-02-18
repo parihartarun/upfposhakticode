@@ -193,7 +193,7 @@ export class LandDetailsComponent implements OnInit {
         farmerId: [landDetail.farmerId, [Validators.required]],
         guardianName: [landDetail.parantsName, [Validators.required]],
         ownerShip: [landDetail.ownership, [Validators.required]],
-        land_area: [landDetail.landArea, [Validators.required]],
+        land_area: [landDetail.landArea, [Validators.required, Validators.pattern(/^\d{0,3}(\.\d{1,2})?$/)]],
         isorganc: [landDetail.isorganc, [Validators.required]],
         masterId: localStorage.getItem('masterId'),
         updatedBy: localStorage.getItem('userRole'),
@@ -205,7 +205,7 @@ export class LandDetailsComponent implements OnInit {
         farmerId: localStorage.getItem('masterId'),
        
         ownerShip: [landDetail.ownership, [Validators.required]],
-        land_area: [landDetail.landArea, [Validators.required]],
+        land_area: [landDetail.landArea, [Validators.required, Validators.pattern(/^\d{0,2}(\.\d{1,2})?$/)]],
         isorganc: [landDetail.isorganc, [Validators.required]],
         masterId: localStorage.getItem('masterId'),
         updatedBy: localStorage.getItem('userRole'),

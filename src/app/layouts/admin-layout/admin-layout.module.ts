@@ -19,6 +19,8 @@ import { DepartmentUserManagementComponent } from '../../pages/department/depart
 import { DepartmentUplaodCircularComponent } from '../../pages/department/department-uplaod-circular/department-uplaod-circular.component';
 import { DepartmentReportComponent } from '../../pages/department/department-report/department-report.component';
 import { DepartmentCircularsComponent } from '../../pages/department/department-circulars/department-circulars.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -29,14 +31,14 @@ import { DepartmentCircularsComponent } from '../../pages/department/department-
     HttpClientModule,
     NgbModule,
     ClipboardModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxChartsModule,
+    ChartsModule
   ],
   declarations: [
-    
-    DepartmentDashboardComponent,
     DepartmentCircularsComponent,
     DepartmentReportComponent ,  
-    DepartmentUplaodCircularComponent,
+   
     DepartmentUserManagementComponent,
   ]
 })

@@ -158,7 +158,7 @@ export class FpoService {
 
   /************************** Machinary banks **********************************/
   getMachinaryBanks(masterId) {
-    return this.http.get<any>(this._url + '/api/farm/machinery/banks/getFarmMachineryBankByFpo/' + masterId).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/farm/machinery/banks/getFarmMachineryBankByFpo/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -390,6 +390,12 @@ export class FpoService {
 
   getFarmerDetailsForCropSowing(farmerId) {
     return this.http.get<any>(this._url + 'api/fpos/cropSowing/getFarmerDetailsForCropSowing/' + farmerId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  addFarmerCropSowingDetails(data){
+    return this.http.post<any>(this._url + 'fpoCropSowing/addFarmerCropSowingDetails', data).pipe(map((res: any) => {
       return res;
     }));
   }

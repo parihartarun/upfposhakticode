@@ -99,6 +99,10 @@ export class StorageUnitComponent implements OnInit {
     this.storageunitservice.getDistrictByFpoId(localStorage.getItem('masterId')).subscribe(data=>{   
       console.log(data); 
       this.districtlist = [data];
+      this.storageUnitForm.patchValue({
+        distId: data.district_id
+      })
+      this.getBlocksByDistrictId(data.district_id);
     });
   }
 

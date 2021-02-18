@@ -1,57 +1,56 @@
 <div class="header bg-gradient-danger pb-7 pt-5 pt-md-8">
-    <div class="container-fluid">
+  <div class="container-fluid">
 
-    </div>
+  </div>
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--7 mp-7">
-    <div class="row">
-        <div class="col">
-            <div class="card shadow">
-                <div class="card-header border-0">
-                    <div class="row">
-                        <div class="col-9">
-                            <h3 class="mb-0">{{'Schemes' | translate}}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form [formGroup]="schemeForm">
-                        <div class="pl-lg-4">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-last-name">{{'Schemes Type' |
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">{{'Schemes' | translate}}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="schemeForm">
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-last-name">{{'Schemes Type' |
                                             translate}} <span class="required">*</span></label>
-                                        <select formControlName="schemes_type"
-                                            class="custom-control custom-select mb-1">
-                                            <option value="null" disabled>
-                                                {{'Select Schemes Type' | translate}}</option>
-                                            <option [value]="'Seeds'"> {{'Seeds' | translate}}</option>
-                                            <option [value]="'Fertilizer'"> {{'Fertilizer' | translate}}</option>
-                                            <option [value]="'Agri Equipment'"> {{'Agri Equipment' | translate}}
-                                            </option>
-                                            <option [value]="'Agri Equipment Bank'"> {{'Agri Equipment Bank' |
+                    <select formControlName="schemes_type" class="custom-control custom-select mb-1">
+                      <option value="null" disabled>
+                        {{'Select Schemes Type' | translate}}</option>
+                      <option [value]="'Seeds'"> {{'Seeds' | translate}}</option>
+                      <option [value]="'Fertilizer'"> {{'Fertilizer' | translate}}</option>
+                      <option [value]="'Agri Equipment'"> {{'Agri Equipment' | translate}}
+                      </option>
+                      <option [value]="'Agri Equipment Bank'"> {{'Agri Equipment Bank' |
                                                 translate}}
-                                            </option>
-                                            <option [value]="'Export'"> {{'Export' | translate}}</option>
-                                            <option [value]="'Organic Farming'"> {{'Organic Farming' | translate}}
-                                            </option>
-                                            <option [value]="'Special Crop'"> {{'Special Crop' | translate}}</option>
-                                            <option [value]="'Finance'"> {{'Finance' | translate}}</option>
-                                        </select>
-                                        <div *ngIf="typeValidation.invalid && (typeValidation.dirty || typeValidation.touched)"
-                                            class="text-danger">
-                                            <div>{{'Schemes type is required' | translate}}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-first-name">
-                                            {{'Department name' | translate}} <span class="required">*</span>
-                                        </label>
-                                        <!--<small class="">
+                      </option>
+                      <option [value]="'Export'"> {{'Export' | translate}}</option>
+                      <option [value]="'Organic Farming'"> {{'Organic Farming' | translate}}
+                      </option>
+                      <option [value]="'Special Crop'"> {{'Special Crop' | translate}}</option>
+                      <option [value]="'Finance'"> {{'Finance' | translate}}</option>
+                    </select>
+                    <div *ngIf="typeValidation.invalid && (typeValidation.dirty || typeValidation.touched)"
+                      class="text-danger">
+                      <div>{{'Schemes type is required' | translate}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
+                      {{'Department name' | translate}} <span class="required">*</span>
+                    </label>
+                    <!--<small class="">
                                           (File format should be .jpg, .png, .jpeg and .pdf)
                                         </small>-->
                                         <input type="text" id="input-first-name"
@@ -65,145 +64,144 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-first-name">
-                                            {{'Upload Document' | translate}} <span class="required">*</span>
-                                        </label>
-                                        <!--<small class="">
+                                  <div class="form-group">
+                                    <label class="form-control-label" for="input-first-name">
+                                      {{'Upload Document' | translate}} <span class="required">*</span>
+                                    </label>
+                                    <!--<small class="">
+    (File format should be .jpg, .png, .jpeg and .pdf)
+  </small>-->
+                                    <input #myInput type="file" id="input-first-name"
+                                           class="form-control form-control-alternative" formControlName="document"
+                                           (change)="upload($event.target.files)" />
+                                    <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
+                                         class="text-danger">
+                                      <div>{{'Upload document is required' | translate}}</div>
+                                    </div>
+                                    <div *ngIf="checkfileFormat" class="text-danger">{{'only xls,xlsx,pdf,doc,docx format is allow'| translate}}</div>
+                                  </div>
+                                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
+                      {{'URL' | translate}} <span class="required">*</span>
+                    </label>
+                    <!--<small class="">
                                           (File format should be .jpg, .png, .jpeg and .pdf)
                                         </small>-->
-                                        <input #myInput type="file" id="input-first-name"
-                                            class="form-control form-control-alternative" formControlName="document"
-                                            (change)="upload($event.target.files)" />
-                                        <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
-                                            class="text-danger">
-                                            <div>{{'Upload document is required' | translate}}</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="input-first-name">
-                                            {{'URL' | translate}} <span class="required">*</span>
-                                        </label>
-                                        <!--<small class="">
-                                          (File format should be .jpg, .png, .jpeg and .pdf)
-                                        </small>-->
-                                        <input type="text" id="input-first-name"
-                                            placeholder="{{'www.google.com/' | translate}}"
-                                            class="form-control form-control-alternative"
-                                            formControlName="url">
-                                        <div *ngIf="urlValidation.invalid && (urlValidation.dirty || urlValidation.touched)"
-                                            class="text-danger">
-                                            <div>{{'url name is required' | translate}}</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <div class="form-group mb-1">
-                                            <label class="form-control-label" for="">{{'Description' | translate}} <span
-                                                    class="required">*</span></label>
-                                            <textarea class="form-control" formControlName="description"
-                                                id="exampleFormControlTextarea12" rows="3"></textarea>
-                                        </div>
-                                        <div *ngIf="descValidation.invalid && (descValidation.dirty || descValidation.touched)"
-                                            class="text-danger">
-                                            <div>{{'Description is required'| translate}}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <button *ngIf="!isEdit" class="btn btn-primary text-right" (click)="addSchemes()">
-                                            {{'Add Schemes' | translate}}</button>
-                                        <button *ngIf="isEdit" class="btn btn-primary text-right" (click)="updateSchemes()">
-                                            {{'Update Schemes' | translate}}</button>
-                                        <button *ngIf="isEdit" class="btn btn-primary text-right" (click)="isEdit=false;schemeForm.reset();">
-                                            {{'Cancel' | translate}}</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <br />
-
-    <!-- Table -->
-    <div class="row" *ngIf="!isEdit">
-        <div class="col">
-            <div class="card shadow">
-                <div class="card-header border-0">
-                    <div class="row">
-                        <div class="col-9">
-                            <h3 class="mb-0">{{'Schemes List' | translate}}</h3>
-                        </div>
-                        <!-- <div class="col-3 text-right">
-                <button class="btn btn-primary text-right">Add Member</button>
-              </div> -->
+                    <input type="text" id="input-first-name" placeholder="{{'www.google.com/' | translate}}"
+                      class="form-control form-control-alternative" formControlName="url">
+                    <div *ngIf="urlValidation.invalid && (urlValidation.dirty || urlValidation.touched)"
+                      class="text-danger">
+                      <div>{{'url name is required' | translate}}</div>
                     </div>
+                  </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">{{'Serial no.' | translate}}</th>
-                                <th scope="col">{{'Description' | translate}}</th>
-                                <th scope="col">{{'Date' | translate}}</th>
-                                <th scope="col">{{'View Details' | translate}}</th>
-                                <th scope="col">{{'Actions' | translate}}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let p of (schemeList | async) | paginate: { itemsPerPage: 10, currentPage: p }">
-                                <td>
-                                    {{p.id}}
-                                </td>
-                                <td>
-                                    {{p.description}}
-                                </td>
-                                <td *ngIf="!!p.uploadDate">
-                                    {{p.uploadDate | date: 'dd/MM/yyyy'}}
-                                </td>
-                                <td *ngIf="!!!p.uploadDate">
-                                    {{p.createDate | date: 'dd/MM/yyyy'}}
-                                </td>
-                                <td>
-                                    <a href="{{p.filePath}}" download><img
-                                            src="../../../../assets/image/img/pdficon.png"
-                                            style=" height:20px; width:30px"></a>
 
-                                </td>
-                                <td class="text-center">
-                                    <div ngbDropdown placement="bottom-center">
-                                        <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                                            {{'Actions' | translate}}
-                                        </a>
-                                        <div ngbDropdownMenu class=" dropdown-menu-center dropdown-menu-arrow">
-                                            <a class="dropdown-item" (click)="editSchemes(p)">{{'Edit' |
-                                                translate}}</a>
-                                            <a class="dropdown-item" (click)="deleteSchemes(p.id)">{{'Delete' |
-                                                translate}}</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <div class="form-group mb-1">
+                      <label class="form-control-label" for="">{{'Description' | translate}} <span
+                          class="required">*</span></label>
+                      <textarea class="form-control" formControlName="description" id="exampleFormControlTextarea12"
+                        rows="3"></textarea>
+                    </div>
+                    <div *ngIf="descValidation.invalid && (descValidation.dirty || descValidation.touched)"
+                      class="text-danger">
+                      <div>{{'Description is required'| translate}}</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="card-footer py-4">
-                    <nav aria-label="..." class="text-right">
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                    </nav>
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <button *ngIf="!isEdit" class="btn btn-primary text-right" (click)="addSchemes()">
+                      {{'Add Schemes' | translate}}</button>
+                    <button *ngIf="isEdit" class="btn btn-primary text-right" (click)="updateSchemes()">
+                      {{'Update Schemes' | translate}}</button>
+                    <button *ngIf="isEdit" class="btn btn-primary text-right"
+                      (click)="isEdit=false;schemeForm.reset();">
+                      {{'Cancel' | translate}}</button>
+                  </div>
                 </div>
+              </div>
+
             </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
+
+  <br />
+
+  <!-- Table -->
+  <div class="row" *ngIf="!isEdit">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0 cust-head">
+          <div>
+            <h3>{{'Schemes List' | translate}}</h3>
+          </div>
+          <div>
+            <input type="text" [id]="'search_'+tableId" [(ngModel)]="searchText" (input)="onInputSearch()" name="search"
+              placeholder="Search" autocomplete="off" class="form-control input-md" />
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">{{'Serial no.' | translate}}</th>
+                <th scope="col" (click)="onClickOrderBy('description')">{{'Description' | translate}}</th>
+                <th scope="col" (click)="onClickOrderBy('uploadDate')">{{'Date' | translate}}</th>
+                <th scope="col">{{'View Details' | translate}}</th>
+                <th scope="col">{{'Actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let p of (schemeList | async) | tableSearch:searchText  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+                <td>
+                  {{i+1}}
+                </td>
+                <td>
+                  {{p.description}}
+                </td>
+                <td *ngIf="!!p.uploadDate">
+                  {{p.uploadDate | date: 'dd/MM/yyyy'}}
+                </td>
+                <td *ngIf="!!!p.uploadDate">
+                  {{p.createDate | date: 'dd/MM/yyyy'}}
+                </td>
+                <td>
+                  <a href="{{p.filePath}}" download><img src="../../../../assets/image/img/pdficon.png"
+                      style=" height:20px; width:30px"></a>
+
+                </td>
+                <td class="text-center">
+                  <div ngbDropdown placement="bottom-center">
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      {{'Actions' | translate}}
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-center dropdown-menu-arrow">
+                      <a class="dropdown-item" (click)="editSchemes(p)">{{'Edit' |
+                                                translate}}</a>
+                      <a class="dropdown-item" (click)="deleteSchemes(p.id)">{{'Delete' |
+                                                translate}}</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
