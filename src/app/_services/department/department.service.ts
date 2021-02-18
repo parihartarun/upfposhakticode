@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'

@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MustMatch } from '../../../_helpers/constomMatchValidor';
-import { AuthService } from '../../../_services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { ToastrService } from 'ngx-toastr';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
+import { MustMatch } from 'src/app/_helpers/constomMatchValidor';
+import { AuthService } from 'src/app/_services/auth/auth.service';
 
 
 @Component({

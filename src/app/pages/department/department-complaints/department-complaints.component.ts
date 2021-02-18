@@ -3,10 +3,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../../_services/auth/auth.service';
-import { DepartmentService } from '../../../_services/department/department.service';
-import { FpoService } from '../../../_services/fpo/fpo.service';
-import { UserService } from '../../../_services/user/user.service';
+import { AuthService } from 'src/app/_services/auth/auth.service';
+import { DepartmentService } from 'src/app/_services/department/department.service';
+import { UserService } from 'src/app/_services/user/user.service';
+
 
 @Component({
   selector: 'app-department-complaints',

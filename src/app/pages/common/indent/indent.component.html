@@ -41,7 +41,8 @@
                 <th scope="col">{{'Crop Name'|translate}}</th>
                 <th scope="col">{{'Cropveriety'|translate}}</th>
                 <th scope="col">{{'Quantity Required'|translate}}</th>
-                <th scope="col">{{'Fulfilled Date'|translate}}</th>
+                <th scope="col">{{'Fulfillment Date'|translate}}</th>
+                <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
                 <th scope="col">{{'status'|translate}}</th>
                 <th scope="col" *ngIf="userRole == 'ROLE_FPC'"></th>
               </tr>
@@ -61,8 +62,12 @@
                 <td>
                   {{indent?.quantity}}
                 </td>
+                
                 <td>
                   {{indent?.fulfillmentDate}}
+                </td>
+                <td>
+                  {{indent?.deliveryAddress}}
                 </td>
                  <td>
                   {{indent?.status}}
@@ -106,7 +111,7 @@
     <form role="form mt-1 p-1" [formGroup]="indentForm">
 
        <div class="form-group mb-3">
-        <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span
+        <label class="form-control-label" for="input-username">{{'Quantity to be fulfilled'|translate}}<span
             class="required">*</span></label>
         <div class="input-group input-group-alternative">
           <input class="form-control" placeholder="{{'Quantity'|translate}}" type="text" formControlName="quantity">

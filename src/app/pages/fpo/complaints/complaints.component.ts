@@ -5,9 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DATE } from 'ngx-bootstrap/chronos/units/constants';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../../_services/auth/auth.service';
-
-import { FpoService } from '../../../_services/fpo/fpo.service';
+import { AuthService } from 'src/app/_services/auth/auth.service';
+import { FpoService } from 'src/app/_services/fpo/fpo.service';
 
 @Component({
   selector: 'app-complaints',

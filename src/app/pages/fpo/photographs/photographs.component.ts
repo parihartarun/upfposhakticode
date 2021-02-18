@@ -2,9 +2,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { FpoService } from '../../../_services/fpo/fpo.service';
+
 import { ToastrService } from 'ngx-toastr';
-import { requiredFileType } from '../../../customValidation/requiredFileType';
+import { requiredFileType } from 'src/app/customValidation/requiredFileType';
+
+import { FpoService } from 'src/app/_services/fpo/fpo.service';
 
 @Component({
   selector: 'app-photographs',
