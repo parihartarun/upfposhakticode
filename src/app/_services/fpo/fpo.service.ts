@@ -503,7 +503,7 @@ export class FpoService {
   }
   getAllNotificationByFpo(id) {
 
-    return this.http.get<any>(this._url + '/notification/fponotification/' + id).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'notification/fponotification/' + id).pipe(map((res: any) => {
       return res;
     }));
   }

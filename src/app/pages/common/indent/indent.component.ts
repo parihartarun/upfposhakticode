@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
@@ -31,8 +31,8 @@ export class IndentComponent implements OnInit {
    this.currentItem = item;
     
     this.indentForm = this.fb.group({
-      status: [undefined],
-      quantity:[undefined],
+      status: [undefined,Validators.required],
+      quantity:[undefined,[Validators.required,Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$')]],
       reason: [""],     
     })
 
@@ -68,6 +68,8 @@ export class IndentComponent implements OnInit {
 
 
   }
+
+  
   save()
   {
     console.log("data serializes - "+JSON.stringify(this.indentForm.value));
