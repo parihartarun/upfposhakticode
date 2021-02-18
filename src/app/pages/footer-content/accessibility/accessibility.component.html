@@ -27,10 +27,26 @@
     <p>
       {{'accessibilityP6' | translate}}
     </p>
-    <p>
-      {{'accessibilityP7' | translate}}
-      Web Accessibility Initiative (WAI) और Web Content Accessibility Guidelines (WCAG) और Web Accessibility Initiative (WAI) 
-      {{'accessibilityP8' | translate}}
+    <p *ngIf="lang==='en'">
+      Agriculture Department, Uttar Pradesh is providing accessible and usable products to everyone. In doing so, we
+      designed our website to conform with AA standard of W3C's Web Accessibility Initiative (WAI) External website that
+      opens in a new window, and the guidelines of Web Content Accessibility Guidelines (WCAG) and Web Accessibility
+      Initiative (WAI). If you have any problems using our website, please get in touch, and we will do our best to
+      cater for your needs.
+    </p>
+    <p *ngIf="lang==='hi'">
+      कृषि विभाग, उत्तर प्रदेश हर किसी के लिए सुलभ और उपयोगी उत्पाद प्रदान कर रहा है। ऐसा करने में, हमने अपनी वेबसाइट को
+      बाहरी वेबसाइट जो एक नई विंडो में खुलती है, के लिए डब्ल्यू3सी <a href="https://www.w3.org/WAI/" target="_blank">
+        Web Accessibility Initiative (WAI) </a>
+      और <a href="https://www.w3.org/TR/WAI-WEBCONTENT/" target="_blank"> Web Content
+        Accessibility Guidelines (WCAG) </a> और <a href="https://www.w3.org/WAI/" target="_blank"> Web Accessibility
+        Initiative (WAI)</a> . के दिशा-निर्देशों
+      के एए मानकों के
+      अनुरूप
+      डिजाइन किया है। यदि आपकों हमारी वेबसाइट का उपयोग करने में कोई भी समस्या है, तो कृपया हमसे <a href=""
+        target="_blank"> get in touch
+      </a>, हम आपकी
+      जरूरतों को पूरा करने की पूरी कोशिश करेंगे।
     </p>
     <p>
       <strong>

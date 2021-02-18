@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-accessibility',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccessibilityComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(public translate: TranslateService) { }
+  lang = '';
   ngOnInit(): void {
+    this.lang = localStorage.getItem('language');
+    this.translate.onLangChange.subscribe(res => {
+      if (res) {
+        this.lang = res.lang;
+      }
+    })
   }
 
 }
