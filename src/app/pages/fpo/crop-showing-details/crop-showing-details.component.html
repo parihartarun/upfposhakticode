@@ -75,7 +75,14 @@
                   <div formArrayName="list">
                     <div  *ngFor="let itemRow of cropSowingForm.get('list')['controls']; let i=index"  [formGroupName]="i">
                       <div class="card shadow p-3 mb-2">
-
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="form-group text-right">
+                              <button class="btn btn-sm btn-danger mt-4" (click)="deleteRow(i)"><i class="fa fa-trash" aria-hidden="true"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       <div class="row">
                       <div class="col-lg-4">
                         <div class="form-group">
@@ -110,9 +117,9 @@
                         </div>
                       </div>
                       <div class="col-lg-4">
-                        <div class="form-group text-right">
-                          <button class="btn btn-sm btn-danger mt-4" (click)="deleteRow(i)"><i class="fa fa-trash" aria-hidden="true"></i>
-                          </button>
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-first-name">Sowing Area<span class="required">*</span></label>
+                          <input formControlName="sowingArea" type="text" [id]="i+'sowingArea'" class="form-control form-control-alternative" appOnlynumber>
                         </div>
                       </div>
                     </div>
@@ -120,20 +127,20 @@
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-first-name">Sowing Area<span class="required">*</span></label>
-                          <input formControlName="sowingArea" type="text" id="input-first-name" class="form-control form-control-alternative" appOnlynumber>
+                          <label class="form-control-label" for="input-first-name">Markatable Surplus<span class="required">*</span></label>
+                          <input formControlName="markatableSurplus" type="text" [id]="i+'markatable_surplus'" class="form-control form-control-alternative" appOnlynumber>
                         </div>
                       </div>
                       <div class="col-lg-4">
                         <div class="form-group">
                           <label class="form-control-label" for="input-first-name">Expected Yield<span class="required">*</span></label>
-                          <input formControlName="expectedYield" type="text" id="input-first-name" class="form-control form-control-alternative" appOnlynumber>
+                          <input formControlName="expectedYield" type="text" [id]="i+'ex_yield'" class="form-control form-control-alternative" appOnlynumber>
                         </div>
                       </div>
                       <div class="col-lg-4">
                         <div class="form-group">
                           <label class="form-control-label" for="input-first-name">Actual Yield<span class="required">*</span></label>
-                          <input formControlName="actualYield" type="text" id="input-first-name" class="form-control form-control-alternative" appOnlynumber>
+                          <input formControlName="actualYield" type="text" [id]="i+'actual_yeild'" class="form-control form-control-alternative" appOnlynumber>
                         </div>
                       </div>
                     </div>
@@ -181,6 +188,7 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
+                <th scope="col"></th>
                 <th scope="col">S.No</th>
                 <th scope="col">Farmer Name</th>
                 <th scope="col">Farmer's Father/ Husband Name</th>
@@ -189,194 +197,54 @@
                 <th scope="col">Crop Variety</th>
                 <th scope="col">Sowing Area (in Ha.)</th>
                 <th scope="col">Expected yield (in Qt.)</th>
-
+                <th scope="col">Actual yield (in Qt.)</th>
+                <th scope="col">Markatable surplus(in Qt.)</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let d of data | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
                 <td>
-                  O1
-                </td>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Ramsaini
+                  <input type="checkbox">
                 </td>
                 <td>
-                  Rabi
+                  {{(p-1) * 10 + i + 1}}
                 </td>
                 <td>
-                  Wheat
+                 {{d.farmer_name}}
+                 </td>
+                <td>
+                  {{d.father_husband_name}}
                 </td>
                 <td>
-                  HD3086
+                  {{d.season_name}}
                 </td>
-                <td>2.0</td>
-                <td>10</td>
+                <td>
+                  {{d.crop_name}}
+                </td>
+                <td>
+                  {{d.crop_veriety}}
+                </td>
+                <td>
+                  {{d.sowing_area}}
+                </td>
+                <td>
+                  {{d.ex_yield}}
+                </td>
+                <td>
+                  {{d.actual_yield}}
+                </td>
+                <td>
+                  {{d.markatable_surplus}}
+                </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                    <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
                       Actions
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  O2
-                </td>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Ramsaini
-                </td>
-                <td>
-                  Rabi
-                </td>
-                <td>
-                  Wheat
-                </td>
-                <td>
-                  HD3086
-                </td>
-                <td>2.0</td>
-                <td>10</td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  O3
-                </td>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Ramsaini
-                </td>
-                <td>
-                  Rabi
-                </td>
-                <td>
-                  Wheat
-                </td>
-                <td>
-                  HD3086
-                </td>
-                <td>2.0</td>
-                <td>10</td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  O4
-                </td>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Ramsaini
-                </td>
-                <td>
-                  Rabi
-                </td>
-                <td>
-                  Wheat
-                </td>
-                <td>
-                  HD3086
-                </td>
-                <td>2.0</td>
-                <td>10</td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td>
-                  O5
-                </td>
-                <th scope="row">
-                  <div class="media align-items-center">
-                    <div class="media-body">
-                      <span class="mb-0 text-sm">Argon Design System</span>
-                    </div>
-                  </div>
-                </th>
-                <td>
-                  Ramsaini
-                </td>
-                <td>
-                  Rabi
-                </td>
-                <td>
-                  Wheat
-                </td>
-                <td>
-                  HD3086
-                </td>
-                <td>2.0</td>
-                <td>10</td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="editCropSowingDetails(d)">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(d.id)">Delete</a>
                     </div>
                   </div>
                 </td>

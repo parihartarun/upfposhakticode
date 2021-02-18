@@ -20,6 +20,7 @@ export class CropShowingDetailsComponent implements OnInit {
   crops:Array<any>=[];
   cropVarieties:Array<any>=[];
   seasons:Array<any>=[];
+  data:Array<any>=[];
   p:number = 1;
   edit = false;
 
@@ -52,6 +53,7 @@ export class CropShowingDetailsComponent implements OnInit {
       verietyRef: [undefined,[Validators.required]],
       expectedYield:['', [Validators.required]],
       actualYield:['', [Validators.required]],
+      markatableSurplus:['', [Validators.required]],
       masterId:localStorage.getItem('masterId'),
       sowingId:[]
     });
@@ -60,11 +62,11 @@ export class CropShowingDetailsComponent implements OnInit {
   get formArr() {
     return this.cropSowingForm.get('list') as FormArray;
   }
-  setCropVarieties(event,i)
-  {
+  setCropVarieties(event,i){
     let list = this.cropSowingForm.get('list') as FormArray
- list.at(i).get("verietyRef").setValue(event)
+    list.at(i).get("verietyRef").setValue(event)
   }
+  
   addNewRow() {
     let varlist  =  this.cropSowingForm.get('list') as FormArray;
     varlist.push(this.initItemRows());
@@ -101,7 +103,6 @@ export class CropShowingDetailsComponent implements OnInit {
 
   getCropVarietiesByCropId(cropId,i){
     let list = this.cropSowingForm.get('list') as FormArray
-
     list.at(i).get("cropRefName").setValue(cropId)
     console.log(cropId);
     this.api.getCropVarietiesByCropId(cropId).subscribe(
@@ -112,14 +113,29 @@ export class CropShowingDetailsComponent implements OnInit {
   }
 
   getFarmerDetails(farmerId){
-    console.log(farmerId);
-    this.api.getFarmerDetailsForCropSowing(farmerId).subscribe(response => {
+    this.api.getFarmerCropSowingDetails({'masterId':localStorage.getItem('masterId'), 'farmerId':farmerId}).subscribe(response => {
       console.log(response);
+      let list = this.cropSowingForm.get('list') as FormArray
+      console.log(list);
+      let control = <FormArray>this.cropSowingForm.controls.list;
+      response.forEach(x => {
+        let d = {
+          sowingArea: [x.sowing_area, [Validators.required]],
+          cropRefName: [x.crop_id, [Validators.required]],
+          verietyRef: [x.veriety_id,[Validators.required]],
+          expectedYield:[x.ex_yield, [Validators.required]],
+          actualYield:[x.actual_yield, [Validators.required]],
+          markatableSurplus:[x.markatable_surplus, [Validators.required]],
+          masterId:localStorage.getItem('masterId'),
+          sowingId:[x.sowing_id]
+        }
+        console.log(x)
+        control.push(this.formBuilder.group(d));
+      })
       if(response != null){
         this.cropSowingForm.controls.baseland.patchValue(response.land_area);
         this.cropSowingForm.controls.guardianName.patchValue(response.parantsName);
       }
-
     },
       err => {
         console.log(err)
@@ -128,8 +144,9 @@ export class CropShowingDetailsComponent implements OnInit {
   }
 
   getCropSowingDetails(){
-    this.api.getFarmerDetailsForCropSowing(localStorage.getItem('masterId')).subscribe(response => {
+    this.api.getFarmerCropSowingDetails({'masterId':localStorage.getItem('masterId')}).subscribe(response => {
       console.log(response);
+      this.data = response;
     },
       err => {
         console.log(err)
@@ -157,5 +174,9 @@ export class CropShowingDetailsComponent implements OnInit {
         console.log(err)
       }
     );
+  }
+
+  editCropSowingDetails(){
+
   }
 }
