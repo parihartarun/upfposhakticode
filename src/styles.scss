@@ -74,6 +74,9 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+.card-header{
+    z-index:0
+}
 th.sort { 
     position: relative;
 }

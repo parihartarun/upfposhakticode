@@ -389,8 +389,14 @@ export class FpoService {
     }));
   }
 
+  getFarmerCropSowingDetails(data) {
+    return this.http.post<any>(this._url + 'fpoCropSowing/getFarmerCropSowingDetails/', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   getFarmerDetailsForCropSowing(farmerId) {
-    return this.http.get<any>(this._url + 'api/fpos/cropSowing/getFarmerDetailsForCropSowing/' + farmerId).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'fpoCropSowing/getFarmerDetailsForCropSowing/'+farmerId).pipe(map((res: any) => {
       return res;
     }));
   }

@@ -19,7 +19,7 @@
           <form [formGroup]="guidelineForm">
             <div class="pl-lg-4">
               <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'Guideline Type' |
                                             translate}} <span class="required">*</span></label>
@@ -37,54 +37,84 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
-                      {{'Upload Document' | translate}} <span class="required">*</span>
+                      {{'URL' | translate}}
+                       <!-- <span class="required">*</span> -->
                     </label>
-                    <!--<small class="">
-                                          (File format should be .jpg, .png, .jpeg and .pdf)
-                                        </small>-->
+                    <input #myInput type="text" class="form-control form-control-alternative"
+                      formControlName="url" placeholder="www.google.com/" />
+                    <!-- <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
+                      class="text-danger">
+                      <div>{{'URL is required' | translate}}</div>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
+                      {{'Hindi Upload Document' | translate}} 
+                      <!-- <span class="required">*</span> -->
+                    </label>
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
-                      formControlName="document" (change)="upload($event.target.files)" />
-                    <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
+                      formControlName="file" (change)="upload($event.target.files)" />
+                    <!-- <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
                       class="text-danger">
                       <div>{{'Upload document is required' | translate}}</div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
-                      {{'URL' | translate}} <span class="required">*</span>
+                      {{'English Upload Document' | translate}}
+                       <!-- <span class="required">*</span> -->
                     </label>
-                    <!--<small class="">
-                                          (File format should be .jpg, .png, .jpeg and .pdf)
-                                        </small>-->
-                    <input #myInput type="text" id="input-first-name" class="form-control form-control-alternative"
-                      formControlName="document" placeholder="www.google.com/" />
-                    <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
+                   <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
+                      formControlName="h_file" (change)="upload($event.target.files)" />
+                    <!-- <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
                       class="text-danger">
-                      <div>{{'URL is required' | translate}}</div>
+                      <div>{{'Upload document is required' | translate}}</div>
+                    </div> -->
+                  </div>
+                </div>
+
+                
+
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <div class="form-group mb-1">
+                      <label class="form-control-label" for="">{{'English Description' | translate}}
+                         <!-- <span class="required">*</span> -->
+                        </label>
+                      <textarea class="form-control" formControlName="description" 
+                        rows="3"></textarea>
                     </div>
+                    <!-- <div *ngIf="descValidation.invalid && (descValidation.dirty || descValidation.touched)"
+                      class="text-danger">
+                      <div>{{'Description is required'| translate}}</div>
+                    </div> -->
                   </div>
                 </div>
 
                 <div class="col-lg-12">
                   <div class="form-group">
                     <div class="form-group mb-1">
-                      <label class="form-control-label" for="">{{'Description' | translate}} <span
-                          class="required">*</span></label>
-                      <textarea class="form-control" formControlName="description" id="exampleFormControlTextarea12"
+                      <label class="form-control-label" for="">{{'Hindi Description' | translate}} 
+                        <!-- <span class="required">*</span> -->
+                        </label>
+                      <textarea class="form-control" formControlName="hindi_desc"
                         rows="3"></textarea>
                     </div>
-                    <div *ngIf="descValidation.invalid && (descValidation.dirty || descValidation.touched)"
+                    <!-- <div *ngIf="descValidation.invalid && (descValidation.dirty || descValidation.touched)"
                       class="text-danger">
                       <div>{{'Description is required'| translate}}</div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
+
                 <div class="col-lg-12">
                   <div class="form-group">
                     <button *ngIf="!isEdit" class="btn btn-primary text-right" (click)="addGuideline()">
