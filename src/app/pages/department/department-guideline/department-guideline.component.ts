@@ -20,15 +20,32 @@ export class DepartmentGuidelineComponent implements OnInit {
   filterByType = '';
   orderBy: { order: string, key: string } = { order: '', key: '' };
   searchText = '';
-  currentPage=1;
+  currentPage = 1;
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, public departmentService: DepartmentService) { }
 
   ngOnInit(): void {
     this.guidelineForm = this.formBuilder.group({
-      guideline_type: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required),
-      document: new FormControl(null, Validators.required),
-      url:new FormControl(null,Validators.required)
+      // guideline_type: new FormControl(null, Validators.required),
+      // description: new FormControl(null, Validators.required),
+      // document: new FormControl(null, Validators.required),
+      // url:new FormControl(null,Validators.required)
+
+      // file: new FormControl(null, Validators.required),
+      // h_file:new FormControl(null, Validators.required),
+      // description: new FormControl(null, Validators.required),
+      // hindi_desc: new FormControl(null, Validators.required),
+      // guideline_type: new FormControl(null, Validators.required),
+      // url: new FormControl(null, Validators.required),
+
+
+      file: [''],
+      h_file: [''],
+      description: ['', [Validators.required]],
+      hindi_desc: [''],
+      url:[''],
+      guideline_type: ['', [Validators.required]],
+      // masterId: localStorage.getItem('masterId'),
+
     });
     this.departmentService.getGuideline();
   }
@@ -55,7 +72,7 @@ export class DepartmentGuidelineComponent implements OnInit {
     if (!this.validateFile(files[0].name)) {
       this.checkfileFormat = true;
       this.fileToUpload = null;
-      this.guidelineForm.controls['filePath'].setValue('');
+      this.guidelineForm.controls['file'].setValue('');
       return;
     }
     else {
@@ -77,21 +94,21 @@ export class DepartmentGuidelineComponent implements OnInit {
     if (this.guidelineForm.valid) {
       const formData: FormData = new FormData();
       // formData.append('file', this.fileToUpload);
-      formData.append('filePath', this.guidelineForm.value.filePath);
-      formData.append('hinFilePath', this.guidelineForm.value.hinFilePath);
-      formData.append('description', this.guidelineForm.value.description);
-      formData.append('hindiDescription', this.guidelineForm.value.hindiDescription);
+      formData.append('file', this.fileToUpload);
+      formData.append('h_file', this.guidelineForm.value.h_file);
+       formData.append('hindi_desc', this.guidelineForm.value.hindi_desc);
+       formData.append('description', this.guidelineForm.value.description);
       formData.append('guideline_type', this.guidelineForm.value.guideline_type);
       formData.append('url', this.guidelineForm.value.url);
 
-      this.departmentService.addGuideline(formData,this.guidelineForm.value.hindiDescription);
+      this.departmentService.addGuideline(formData);
       this.guidelineForm.reset();
     }
   }
   editGuideline(data) {
     this.guidelineForm.get('guideline_type').patchValue(data.fpoGuidelineType);
     this.guidelineForm.get('description').patchValue(data.description);
-    
+
     // this.guidelineForm.get('document').patchValue(data.fileName);
     this.id = data.id;
     this.isEdit = true;
