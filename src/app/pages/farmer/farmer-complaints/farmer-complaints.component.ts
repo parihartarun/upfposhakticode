@@ -51,7 +51,7 @@ export class FarmerComplaintsComponent implements OnInit {
         title: [''],
         desc: ['', [Validators.required]],
         filePath: [''],
-        uploadFile: [''],
+        uploadFile: ['', [Validators.required]],
         issueType: ['', [Validators.required]],
         masterId: localStorage.getItem('masterId'),
        
@@ -158,15 +158,16 @@ export class FarmerComplaintsComponent implements OnInit {
   }
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
-    //if (!this.validateFile(files[0].name)) {
-    //  this.checkfileFormat = true;
-    //  this.myInputVariable.nativeElement.value = "";
-    //  return;
-    //}
-    //else {
+    if (!this.validateFile(files[0].name)) {
+      this.checkfileFormat = true;
+      this.myInputVariable.nativeElement.value = "";
+      this.complaintForm.controls['uploadFile'].setValue('');
+      return;
+    }
+    else {
 
-    //  this.checkfileFormat = false;
-    //}
+      this.checkfileFormat = false;
+    }
   }
 
   selectComplaint(complaint) {
