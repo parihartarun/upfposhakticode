@@ -295,7 +295,7 @@ console.log("Packed Object for the Crop" + cropElement.cropName+"is as follows =
       //   this.loading = false;
       // });
       this.clearFilters();
-      this.searchWithFilters();  
+        
     }     
 
 searchWithFilters()
@@ -449,7 +449,8 @@ searchWithFilters()
        }
     });
 this.selectedfilters=[];
-  }
+this.searchWithFilters();  
+}
   save() {
     
     this.submitted = true;

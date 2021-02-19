@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
 export class SearchComponent implements OnInit {
 
   constructor( public router:Router) { }
-
+  searchkey:string;
   ngOnInit(): void {
   }
 
-  sreach(){
-    this.router.navigate(['fpo/dashboard']);
+  search(){
+    //this.router.navigate(['fpo/dashboard']);
+    this.router.navigate(["/products/"+this.searchkey+"/any"]);    
   }
 }
