@@ -646,5 +646,7 @@
   "Pesticide": "Pesticide",
   "pesticide is required": "insecticide/ pesticide is required",
   "Equipment": "Equipment",
-  "Equipment is required": "Equipment is required"
+  "Equipment is required": "Equipment is required",
+  "Resolved Complaint": "Resolved Complaint",
+  "CATEGORY": "CATEGORY"
 }

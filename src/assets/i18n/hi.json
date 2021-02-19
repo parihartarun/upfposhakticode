@@ -674,5 +674,7 @@
   "Pesticide": "पेस्टनाशी",
   "pesticide is required": "कीटनाशक की आवश्यकता है",
   "Equipment": "उपकरण",
-  "Equipment is required": "उपकरण की आवश्यकता है"
+  "Equipment is required": "उपकरण की आवश्यकता है",
+  "Resolved Complaint": "हल किया हुआ शिकायत",
+  "CATEGORY": "श्रेणी"
 }

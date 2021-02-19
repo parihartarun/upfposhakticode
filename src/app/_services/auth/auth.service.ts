@@ -124,7 +124,7 @@ export class AuthService {
     }));
   }
   getDeptmentUser() {
-    return this.http.get<any>(this._url + '/api/v1/user/dept/1').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/v1/user/dept/1').pipe(map((res: any) => {
       return res;
     }));
   }

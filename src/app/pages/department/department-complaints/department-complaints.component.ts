@@ -15,6 +15,7 @@ import { UserService } from 'src/app/_services/user/user.service';
 })
 export class DepartmentComplaintsComponent implements OnInit {
   complaintForm: FormGroup;
+  fliterForm: FormGroup;
   submitted = false;
   complaintsCatageriy: Array<any> = [];
   complaints: Array<any> = [];
@@ -24,7 +25,9 @@ export class DepartmentComplaintsComponent implements OnInit {
   myInputVariable: ElementRef;
   fileToUpload: File = null;
   isViewComplaint = false;
-  users : Array<any> =[];
+  users: Array<any> = [];
+  filterResponse: any[];
+
   viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', name: "", mobile: "", email:"" }
   constructor(
     private formBuilder: FormBuilder,
@@ -39,7 +42,10 @@ export class DepartmentComplaintsComponent implements OnInit {
     this.authService.getDeptmentUser().subscribe(u => {
       this.users=u
     })
+    this.fliterForm = this.formBuilder.group({
+      complaint: ['New']
 
+    });
    
     fpoId: localStorage.getItem('masterId')
     this.getComplaints();
@@ -49,6 +55,9 @@ export class DepartmentComplaintsComponent implements OnInit {
    
     this.api.getComplaints().subscribe(response => {      
       this.complaints = response;
+      this.filterResponse = response
+      this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
+      this.fliterForm.controls['complaint'].setValue('New')
     });
 
   }
@@ -144,5 +153,17 @@ export class DepartmentComplaintsComponent implements OnInit {
       return "RESOLVED"
     }
 
+  }
+  filterComaplaint() {
+    if (this.fliterForm.controls['complaint'].value === "New") {
+      this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
+    }
+    else if (this.fliterForm.controls['complaint'].value === "resolved") {
+      this.complaints = this.filterResponse.filter(f => this.getStatus(f.status) === 'RESOLVED');
+    }
+    else {
+      this.complaints = this.filterResponse.filter(f => f.status);
+
+    }
   }
 }

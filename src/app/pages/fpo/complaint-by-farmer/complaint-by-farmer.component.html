@@ -227,8 +227,14 @@
                   </div>
                   <div class="col-lg-4">
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input formControlName="complaint" value="all" class="custom-control-input" id="customRadio7" type="radio" (change)="filterComaplaint()">
-                      <label class="custom-control-label" for="customRadio7">{{'All Complaint' | translate}}</label>
+                      <input formControlName="complaint" value="resolved" class="custom-control-input" id="customRadio7" type="radio" (change)="filterComaplaint()">
+                      <label class="custom-control-label" for="customRadio7">{{'Resolved Complaint' | translate}}</label>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
+                      <input formControlName="complaint" value="all" class="custom-control-input" id="customRadio8" type="radio" (change)="filterComaplaint()">
+                      <label class="custom-control-label" for="customRadio8">{{'All Complaint' | translate}}</label>
                     </div>
                   </div>
 
@@ -245,10 +251,10 @@
               <tr>
                 <!--<th scope="col"></th>-->
                 <th scope="col">{{'SR. NO' | translate}}</th>
-                <th scope="col">{{'Complaints/ Suggestions Category' | translate}}</th>
-                <th scope="col">{{'Complaints/ Suggestions Description' | translate}}</th>
-                <th scope="col">{{'Complaint/ Suggestion Date'|translate}}</th>
-                <th scope="col">{{'Complaints / Complaints Status of suggestion'|translate}}</th>
+                <th scope="col">{{'CATEGORY' | translate}}</th>
+                <th scope="col" >{{'Description' | translate}}</th>
+                <th scope="col">{{'Date'|translate}}</th>
+                <th scope="col">{{'status'|translate}}</th>
                 <th scope="col">{{'File'|translate}}</th>
                 <th scope="col"></th>
               </tr>
@@ -264,7 +270,7 @@
                 <td>
                   {{complaint.ftitle}}
                 </td>
-                <td>
+                <td >
                   {{complaint.description}}
                 </td>
                 <td>
@@ -282,13 +288,13 @@
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      {{'Actions'|translate}}
+                    <a class="btn btn-sm btn-primary" (click)="viewComplaint(complaint)">
+                      {{'View'|translate}}
                     </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                    <!--<div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">{{'View'|translate}}</a>
 
-                    </div>
+                    </div>-->
                   </div>
                 </td>
 
