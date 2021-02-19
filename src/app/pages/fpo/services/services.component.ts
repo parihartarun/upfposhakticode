@@ -17,18 +17,18 @@ export class ServicesComponent implements OnInit {
   checkfileFormat = false;
   serviceForm: FormGroup;
   submitted = false;
-  services:Array<any>=[];
-  p:number = 1;
+  services: Array<any> = [];
+  p: number = 1;
   edit = false;
   fileToUpload: File = null;
   baseUrl: string;
- 
-  
+
+
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
     private route: Router,
-    private toastr:ToastrService
+    private toastr: ToastrService
   ) {
     this.baseUrl = environment.baseUrl;
   }
@@ -38,12 +38,12 @@ export class ServicesComponent implements OnInit {
       servicename: ['', [Validators.required]],
       descriptions: ['', [Validators.required]],
       file: ['', [Validators.required]],
-      id:['']
+      id: ['']
     });
     this.getServices();
   }
 
-  getServices(){
+  getServices() {
     this.api.getServices().subscribe(response => {
       console.log(response);
       this.services = response;
@@ -81,22 +81,23 @@ export class ServicesComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     if (this.serviceForm.invalid) {
-        return;
+      return;
     }
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
     formData.append('description', this.serviceForm.value.descriptions);
     formData.append('servicename', this.serviceForm.value.servicename);
+    formData.append('fpo_id', localStorage.getItem('masterId'));
 
     this.api.addService(formData).subscribe(response => {
       console.log(response);
-      if(response.id != ''){
+      if (response.id != '') {
         this.toastr.success('Service/Production added successfully.');
         this.submitted = false;
         this.serviceForm.reset();
         this.getServices();
-      }else{
-          this.toastr.error('Error! While adding Service/Production.');
+      } else {
+        this.toastr.error('Error! While adding Service/Production.');
       }
     },
       err => {
@@ -105,22 +106,22 @@ export class ServicesComponent implements OnInit {
     );
   }
 
-  editService(service){
+  editService(service) {
     this.serviceForm = this.formBuilder.group({
       servicename: [service.servicename, [Validators.required]],
       descriptions: [service.descriptions, [Validators.required]],
-      file:[''],
-      id:[service.id]
+      file: [''],
+      id: [service.id]
     });
     this.edit = true;
-    window.scroll(0,0);  
+    window.scroll(0, 0);
   }
-  
-  updateService(){
+
+  updateService() {
     this.submitted = true;
     // stop here if form is invalid
     if (this.serviceForm.invalid) {
-        return;
+      return;
     }
 
     const formData: FormData = new FormData();
@@ -131,11 +132,11 @@ export class ServicesComponent implements OnInit {
 
     this.api.updateService(formData, this.serviceForm.value.id).subscribe(response => {
       console.log(response);
-        this.toastr.success('Service/Production updated successfully.');
-        this.submitted = false;
-        this.edit = false;
-        this.serviceForm.reset();
-        this.getServices();
+      this.toastr.success('Service/Production updated successfully.');
+      this.submitted = false;
+      this.edit = false;
+      this.serviceForm.reset();
+      this.getServices();
     },
       err => {
         console.log(err)
@@ -143,8 +144,8 @@ export class ServicesComponent implements OnInit {
     );
   }
 
-  confirmDelete(id){
-    if(confirm("Are you sure to delete this item.")) {
+  confirmDelete(id) {
+    if (confirm("Are you sure to delete this item.")) {
       this.api.deleteService(id).subscribe(response => {
         this.toastr.success('Service/Production Deleted successfully.');
         this.getServices();
@@ -155,14 +156,14 @@ export class ServicesComponent implements OnInit {
       );
     }
   }
-  
-  resetForm(){
+
+  resetForm() {
     this.serviceForm.reset();
   }
 
-  get formControls(){
+  get formControls() {
     return this.serviceForm.controls;
   }
 
-  
+
 }

@@ -35,7 +35,9 @@
           <div class="triangle-topright"></div>
           <li class="nav-item" *ngIf="isHome!=='/' || isHome!=='/home'">
             <a class="nav-link" routerLink="/">
-              <img class="nav-image" src="../../../assets/image/img/fpomenu.png" />
+              <span style="color: #474200;background: #e1cb00;padding: 6px;border-radius: 2px;">
+                <i class="fas fa-home fa-1x" style="margin-top: 5px;"></i>
+              </span>
               {{'Home' | translate}} <span class="sr-only">(current)</span>
             </a>
           </li>
