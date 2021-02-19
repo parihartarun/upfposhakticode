@@ -652,7 +652,6 @@
   "Actual Production": "वास्तविक उत्पादन",
   "FPOs": "एफपीओ",
   "Total FPO": "कुल एफपीओ",
-
   "tnc is required": "नियमों और शर्तों की आवश्यकता है",
   "I agree to the terms and conditions.": "मैं नियमों और शर्तों से सहमत हु।",
   "Click here": "यहाँ क्लिक करें",
@@ -701,8 +700,16 @@
   "accessibilityP35": "अनुकूलित पाठ का आकार:",
   "accessibilityP36": "वेब पृष्ठों पर पाठ का आकार ब्राउज़र के माध्यम से या अभिगम्यता विकल्प पृष्ठ के माध्यम से या प्रत्येक पृष्ठ के शीर्ष पर मौजूद पाठ आकार पर माउस क्लिक करके, बदला जा सकता है।",
   "URL": "यूआरएल",
-  "English Upload Document":"अंग्रेजी अपलोड दस्तावेज़",
-  "Hindi Upload Document":"हिंदी अपलोड दस्तावेज़",
-  "Hindi Description":"हिंदी विवरण",
-  "English Description":"अंग्रेजी विवरण"
+  "English Upload Document": "अंग्रेजी अपलोड दस्तावेज़",
+  "Hindi Upload Document": "हिंदी अपलोड दस्तावेज़",
+  "Hindi Description": "हिंदी विवरण",
+  "English Description": "अंग्रेजी विवरण",
+  "Current Password": "वर्तमान पासवर्ड",
+  "New Password": "नया पासवर्ड",
+  "Confirm New Password":"नए पासवर्ड की पुष्टि करें",
+  "Current password is required":"वर्तमान पासवर्ड की आवश्यकता है",
+  "New password is required":"नया पासवर्ड आवश्यक है",
+  "Update Password":"पासवर्ड अपडेट करें",
+  "Change Password": "पासवर्ड बदलें"
+
 }

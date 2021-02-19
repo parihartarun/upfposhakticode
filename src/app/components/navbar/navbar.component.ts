@@ -61,7 +61,7 @@ export class NavbarComponent implements OnInit {
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
       this.username = localStorage.getItem('username');
-      this.userId = localStorage.getItem('masterId');
+      this.userId = localStorage.getItem('userId');
     }
     this.createchangePasswordForm();
   }
