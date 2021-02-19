@@ -124,7 +124,20 @@ export class AuthService {
     }));
   }
   getDeptmentUser() {
-    return this.http.get<any>(this._url + '/api/v1/user/dept/1').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'api/v1/user/dept/1').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getVariety(data): Observable<any> {
+    return this.http.post<any>(this._url + `api/v1/cropVarietyDetails/getCropVarietyByMultipleCropId`, data).pipe(map((v: any) => {
+      
+      return v;
+    }));
+  
+  }
+  getSeed(): Observable<any> {
+
+    return this.http.get<any>(this._url + 'api/v1/seedmaster/getSeeds').pipe(map((res: any) => {
       return res;
     }));
   }

@@ -180,17 +180,14 @@
       </div>
     </div>
     <div class="col-6">
-      <label class="input-label">{{'Area (Landmark)'|translate}} <span class="required">*</span></label>
+      <label class="input-label">{{'Area (Landmark)'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
         <input class="form-control" type="text" formControlName="area">
       </div>
-      <div *ngIf="submitted && formControls.area.errors" class="text-danger">
-        <div *ngIf="formControls.area.errors.required">{{'area is required'|translate}}</div>
-
-      </div>
+      
     </div>
   </div>
   <div class="form-group row mb-3">
@@ -218,10 +215,7 @@
       <div *ngIf="submitted && formControls.password.errors" class="text-danger">
         <div *ngIf="formControls.password.errors.required">{{'password is required'|translate}}</div>
         <div *ngIf="!!!formControls.password.errors.required && registerForm.controls['password'].invalid" class="text-danger">
-          {{
-'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special
-        character'|translate
-          }}
+          {{'Please enter atleast 8 characters; one upper, one lower case letter, one digit, one special character'|translate}}
         </div>
       </div>
     </div>
@@ -257,10 +251,7 @@
         </div>
         <input class="form-control" type="text" formControlName="gstNumber" appUppercase>
       </div>
-      <div *ngIf="submitted && formControls.gstNumber.errors" class="text-danger">
-        <div *ngIf="formControls.gstNumber.errors.pattern">{{'Invalid GST Number'|translate}}</div>
-
-      </div>
+     
     </div>
     <div class="col-6">
       <label class="input-label">{{'TIN Number'|translate}}</label>
@@ -282,35 +273,40 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="PANnumber" appUppercase>
+        <input class="form-control" type="text" formControlName="panNumber" appUppercase>
       </div>
-      <div *ngIf="submitted && formControls.PANnumber.errors" class="text-danger">
-        <div *ngIf="formControls.PANnumber.errors.pattern">{{'Invalid PAN Number'|translate}}</div>
-
-      </div>
+     
     </div>
+   
     <div class="col-6">
       <label class="input-label">{{'Company Category'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="companyCategory">
-      </div>
+        <select class="form-control" formControlName="companyCategory">
+          <option value="">{{'Select Company Category'|translate}}</option>
+          <option value="register under the society acts">{{'register under the society acts'|translate}}</option>
+          <option value="register under the company acts">{{'register under the company acts'|translate}}</option>
 
+        </select>
+      </div>
+      
     </div>
 
   </div>
   <div class="form-group row mb-3">
-
-
     <div class="col-6">
       <label class="input-label">{{'Commdity Deals in'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="commdityDealsIn">
+        <!--<input class="form-control" type="text" formControlName="commdityDealsIn">-->
+       
+        <tag-input formControlName="commdityDealsIn" (onAdd)="onAdded($event)" (onSelect)="onSelected($event)" (onRemove)="onItemRemoved($event)" [placeholder]="''" [secondaryPlaceholder]="''">
+          <tag-input-dropdown [autocompleteObservable]='requestAutocompleteItems'></tag-input-dropdown>
+        </tag-input>
       </div>
 
     </div>
@@ -320,7 +316,10 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="varietyDealsIn">
+        <!--<input class="form-control" type="text" formControlName="varietyDealsIn">-->
+        <tag-input formControlName="varietyDealsIn" (onAdd)="onAddedVarietyDealsIn($event)"  (onRemove)="removedVarietyDealsIn($event)" [placeholder]="''" [secondaryPlaceholder]="''">
+          <tag-input-dropdown [autocompleteObservable]='requestVarietyDealsInAutocompleteItems'></tag-input-dropdown>
+        </tag-input>
       </div>
 
     </div>
@@ -342,8 +341,7 @@
 
       <div class="tnc">
         <input class="form-control" type="checkbox" formControlName="tnc">
-        <span><span class="required pl-1">*</span>{{'I agree to the terms and conditions.'|translate}}<a href="#">{{'Click here'|translate}}</a>{{'to view in details' |translate }}</span>
-
+        <span><span class="required pl-1">* </span>{{'I agree to the terms and conditions.'|translate}} <a href="#">{{'Click here'|translate}}</a> {{'to view in details' |translate }}</span>
       </div>
       <div *ngIf="submitted && formControls.tnc.errors" class="text-danger tncError">
         <div *ngIf="formControls.tnc.errors.required"> {{'tnc is required'|translate}}</div>

@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   //baseUrl: 'http://52.178.39.78/',
  baseUrl:'https://api-upfposhakti.azurewebsites.net/',
- //baseUrl:'http://13.71.46.191:8085/fpoapp/',
+// baseUrl:'http://13.71.46.191:8085/fpoapp/',
   //baseUrl: 'http://localhost:80/',
 };
 

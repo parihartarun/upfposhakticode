@@ -43,8 +43,9 @@
         <input class="form-control" type="text" formControlName="contactPerson">
       </div>
       <div *ngIf="submitted && formControls.contactPerson.errors" class="text-danger">
-        <div *ngIf="formControls.contactPerson.errors.required">{{'contact person is required'|translate}}</div> </div>
-            </div> <div class="col-6">
+        <div *ngIf="formControls.contactPerson.errors.required">{{'contact person is required'|translate}}</div>
+      </div>
+    </div> <div class="col-6">
 
       <label class="input-label">{{'Mobile' | translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -94,7 +95,7 @@
       </div>
     </div>
   </div>
-  <div class="form-group row mb-3" *ngIf="isBulkSupplyingCompany">
+  <div class="form-group row mb-3" >
 
     <div class="col-6">
       <label class="input-label">{{'District1'|translate}} <span class="required">*</span></label>
@@ -113,7 +114,7 @@
         <div *ngIf="formControls.districtRefId.errors.required">{{'district is required'|translate}}</div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-6" *ngIf="isBulkSupplyingCompany">
       <label class="input-label">{{'Block1'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -163,19 +164,19 @@
       <div *ngIf="submitted && formControls.seed_id.errors" class="text-danger">
         <div *ngIf="formControls.seed_id.errors.required">seed is required</div>
       </div>
-    </div>-->
+    </div>
     <div class="col-6">
-      <label class="input-label">{{'Category Deals In'|translate}}<span class="required">*</span></label>
+      <label class="input-label">{{'category deals in'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="seed_id" appOnlynumber>
+        <input class="form-control" type="text" formcontrolname="seed_id" apponlynumber>
       </div>
-      <div *ngIf="submitted && formControls.seed_id.errors" class="text-danger">
-        <div *ngIf="formControls.seed_id.errors.required">{{'Category Deals is required'|translate}}</div>
+      <div *ngif="submitted && formcontrols.seed_id.errors" class="text-danger">
+        <div *ngif="formcontrols.seed_id.errors.required">{{'category deals is required'|translate}}</div>
       </div>
-    </div>
+    </div>-->
 
   </div>
   <div class="form-group row mb-3">
@@ -193,7 +194,7 @@
       </div>
     </div>
     <div class="col-6">
-      <label class="input-label">{{'GST Number'|translate}} </label>
+      <label class="input-label">{{'GST Number'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -201,8 +202,8 @@
         <input class="form-control" type="text" formControlName="gstNumber" appUppercase>
       </div>
       <div *ngIf="submitted && formControls.gstNumber.errors" class="text-danger">
+        <div *ngIf="formControls.gstNumber.errors.required">{{'gst number is required'|translate}}</div>
         <div *ngIf="formControls.gstNumber.errors.pattern">{{'Invalid GST Number'|translate}}</div>
-
       </div>
 
     </div>
@@ -238,7 +239,6 @@
       </div>
     </div>
   </div>
-
   <div class="form-group row mb-3">
 
 
@@ -252,9 +252,85 @@
       </div>
       <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
         <div *ngIf="formControls.confirmPassword.errors.required">{{'confirm password is required'|translate}}</div>
-        <div *ngIf="formControls.confirmPassword.errors.MustMatch">{{'password does not match'|translate}}</div>
+        <div *ngIf="formControls.confirmPassword.errors.MustMatch">{{'password is not match'|translate}}</div>
       </div>
     </div>
+  </div>
+
+
+  <hr />
+  <h3>{{'Category deals in'|translate}}</h3>
+  <div class="form-group row mb-3">
+
+    <div class="col-6">
+      <label class="input-label">{{'Seed'|translate}}</label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="seed_id">
+          <option value="">{{'Select Seed'|translate}}</option>
+          <option *ngFor="let s of seeds" [value]="s.seedId">
+            {{s.seedName}}
+          </option>
+        </select>
+      </div>
+
+    </div>
+    <div class="col-6">
+      <label class="input-label">{{'Fertilizer'|translate}}</label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="Fertilizer">
+          <option value="">{{'Select Fertilizer'|translate}}</option>
+          <option value="Normal">Normal </option>
+          <option value="Organic">Organic </option>
+          <option value="Both">Both </option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+  <div class="form-group row mb-3">
+
+    <div class="col-6">
+      <label class="input-label">{{'Insecticide/ Pesticide'|translate}}</label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="cide">
+          <option value="">{{'Select Insecticide/ Pesticide'|translate}}</option>
+          <option value="insecticide">Insecticide</option>
+          <option value="pesticide">Pesticide</option>
+
+        </select>
+      </div>
+      <div *ngIf="submitted && formControls.cide.errors" class="text-danger">
+        <div *ngIf="formControls.cide.errors.required">{{'pesticide is required'|translate}}</div>
+      </div>
+    </div>
+    <div class="col-6">
+      <label class="input-label">{{'Equipment'|translate}}</label>
+      <div class="input-group input-group-alternative">
+        <div class="input-group-prepend">
+          <span class="input-group-text"></span>
+        </div>
+        <select class="form-control" formControlName="Equipment">
+          <option value="">{{'Select Equipment'| translate}}</option>
+          <option value="Irrigation Equipment">Irrigation Equipment </option>
+          <option value="Farm Machinery">Farm Machinery </option>
+
+        </select>
+      </div>
+      
+    </div>
+  </div>
+  <div class="form-group row mb-3">
+
+
     <div class="col-6">
       <ngx-recaptcha2 #captchaElem [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
                       (success)="handleSuccess($event)" [useGlobalDomain]="false" formControlName="recaptcha">
@@ -265,7 +341,7 @@
     <div class="col-12">
       <div class="tnc">
         <input class="form-control" type="checkbox" formControlName="tnc">
-        <span><span class="required pl-1">*</span>{{'I agree to the terms and conditions.'|translate}}<a href="#">{{'Click here'|translate}}</a>{{'to view in details' |translate }}</span>
+        <span><span class="required pl-1">* </span>{{'I agree to the terms and conditions.'|translate}} <a href="#">{{'Click here'|translate}}</a> {{'to view in details' |translate }}</span>
 
       </div>
       <div *ngIf="submitted && formControls.tnc.errors" class="text-danger tncError">
@@ -273,7 +349,6 @@
       </div>
     </div>
   </div>
-
   <div class="text-center">
     <button type="submit" class="btn btn-login btn-yellow btn-primary my-4">{{"Register"| translate}}</button>
   </div>

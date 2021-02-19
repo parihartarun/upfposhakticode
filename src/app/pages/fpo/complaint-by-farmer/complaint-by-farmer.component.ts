@@ -141,7 +141,11 @@ export class ComplaintByFarmerComponent implements OnInit {
   filterComaplaint() {
     if (this.fliterForm.controls['complaint'].value === "New") {
       this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
-    } else {
+    }
+    else if (this.fliterForm.controls['complaint'].value === "resolved") {
+      this.complaints = this.filterResponse.filter(f => this.getStatus(f.status) === 'RESOLVED');
+    }
+    else {
       this.complaints = this.filterResponse.filter(f => f.status );
 
     }
