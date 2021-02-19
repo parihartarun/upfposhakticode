@@ -318,14 +318,14 @@
                   <span *ngIf="!complaint.status">NA</span>
                 </td>
                 <td>
-                  <a download href="{{complaint.filePath}}">
+                  <a download href="{{complaint.filepath}}" target="_blank">
                     <i class="fas fa-file"></i>
                   </a>
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      {{'Actions'|translate}}
+                    <a class="btn btn-sm btn-primary">
+                      {{'View'|translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">{{'View'|translate}}</a>
