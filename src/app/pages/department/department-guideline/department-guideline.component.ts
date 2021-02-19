@@ -55,7 +55,7 @@ export class DepartmentGuidelineComponent implements OnInit {
     if (!this.validateFile(files[0].name)) {
       this.checkfileFormat = true;
       this.fileToUpload = null;
-      this.guidelineForm.controls['document'].setValue('');
+      this.guidelineForm.controls['filePath'].setValue('');
       return;
     }
     else {
@@ -76,12 +76,15 @@ export class DepartmentGuidelineComponent implements OnInit {
     this.guidelineForm.markAllAsTouched();
     if (this.guidelineForm.valid) {
       const formData: FormData = new FormData();
-      formData.append('file', this.fileToUpload);
+      // formData.append('file', this.fileToUpload);
+      formData.append('filePath', this.guidelineForm.value.filePath);
+      formData.append('hinFilePath', this.guidelineForm.value.hinFilePath);
       formData.append('description', this.guidelineForm.value.description);
+      formData.append('hindiDescription', this.guidelineForm.value.hindiDescription);
       formData.append('guideline_type', this.guidelineForm.value.guideline_type);
       formData.append('url', this.guidelineForm.value.url);
 
-      this.departmentService.addGuideline(formData);
+      this.departmentService.addGuideline(formData,this.guidelineForm.value.hindiDescription);
       this.guidelineForm.reset();
     }
   }

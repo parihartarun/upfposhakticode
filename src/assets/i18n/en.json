@@ -669,5 +669,6 @@
   "accessibilityP33": "Keyboard Support",
   "accessibilityP34": "The website can be browsed using a keyboard by pressing the Tab and Shift + Tab keys.",
   "accessibilityP35": "Customized Text Size:",
-  "accessibilityP36": "The size of the text on the Web pages can be changed either through the browser, through the Accessibility Options page or by clicking on the text sizing icons present at the top of each page."
+  "accessibilityP36": "The size of the text on the Web pages can be changed either through the browser, through the Accessibility Options page or by clicking on the text sizing icons present at the top of each page.",
+  "URL":"URL"
 }

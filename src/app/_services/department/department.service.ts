@@ -95,8 +95,8 @@ export class DepartmentService {
       }
     })
   }
-  addGuideline(data) {
-    this.http.post<any>(this._url + 'fpoguidelines/uploadFPOGuideline', data).subscribe((res: any) => {
+  addGuideline(data,hindi_desc) {
+    this.http.post<any>(this._url + 'fpoguidelines/uploadFPOGuideline', data,hindi_desc).subscribe((res: any) => {
       if (res == true || res) {
         this.toastr.success('Guideline added successfully.');
         this.getGuideline();
