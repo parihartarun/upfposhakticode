@@ -647,6 +647,7 @@
   "pesticide is required": "insecticide/ pesticide is required",
   "Equipment": "Equipment",
   "Equipment is required": "Equipment is required",
-  "Resolved Complaint": "Resolved Complaint",
-  "CATEGORY": "CATEGORY"
+  "Resolved Complaint": "Resolved Complaints",
+  "CATEGORY": "CATEGORY",
+  "File format should be png,jpeg and pdf": "file format should be .png, .jpeg and .pdf"
 }

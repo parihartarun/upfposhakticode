@@ -229,20 +229,23 @@
                     <textarea formControlName="desc" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
 
                     <div *ngIf="submitted && formControls.desc.errors" class="text-danger">
-                      <div *ngIf="formControls.comment.errors.required">{{'Complaints/ Suggestions description is required' | translate}}</div>
+                      <div *ngIf="formControls.desc.errors.required">{{'Complaints/ Suggestions description is required' | translate}}</div>
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
-                      {{'Attach File' | translate}}
+                      {{'Attach File' | translate}}<span class="required">*</span>
                     </label>
                     <!--<small class="">
-                      (File format should be .jpg, .png, .jpeg and .pdf)
-                    </small>-->
+    (File format should be .jpg, .png, .jpeg and .pdf)
+  </small>-->
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)" />
-                    <div *ngIf="checkfileFormat" class="text-danger">{{'File is not in format' | translate}} </div>
+                    <div *ngIf="submitted && formControls.desc.errors" class="text-danger">
+                      <div *ngIf="formControls.uploadFile.errors.required">{{'File is required' | translate}}</div>
+                    </div>
+                    <div *ngIf="checkfileFormat" class="text-danger">{{'File format should be png,jpeg and pdf' | translate}} </div>
 
                   </div>
 
@@ -282,12 +285,12 @@
             <thead class="thead-light">
               <tr>
                 <!--<th scope="col"></th>-->
+                
                 <th scope="col">{{'SR. NO' | translate}}</th>
-                <th scope="col">{{'Complaints/ Suggestions Category' | translate}}</th>
-                <th scope="col">{{'Complaints/ Suggestions Description' | translate}}</th>
-                <th scope="col">{{'Complaint/ Suggestion Date'|translate}}</th>
-
-                <th scope="col">{{'Complaints / Complaints Status of suggestion'|translate}}</th>
+                <th scope="col">{{'CATEGORY' | translate}}</th>
+                <th scope="col">{{'Description' | translate}}</th>
+                <th scope="col">{{'Date'|translate}}</th>
+                <th scope="col">{{'status'|translate}}</th>
                 <th scope="col">{{'File'|translate}}</th>
                 <th scope="col"></th>
               </tr>
