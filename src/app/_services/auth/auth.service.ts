@@ -135,5 +135,11 @@ export class AuthService {
     }));
   
   }
+  getSeed(): Observable<any> {
+
+    return this.http.get<any>(this._url + 'api/v1/seedmaster/getSeeds').pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
 }
