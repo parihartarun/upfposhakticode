@@ -49,9 +49,11 @@ export class LandDetailsComponent implements OnInit {
         isorganc: ['', [Validators.required]],
         masterId: localStorage.getItem('masterId'),
         updatedBy: localStorage.getItem('userRole'),
-        landId: ['']
+        landId: [''],
+        registrationNumber: [''],
       });
       this.getLandDetailList(this.master_id);
+
     }
     else {
       this.landDetailForm = this.formBuilder.group({
@@ -61,20 +63,31 @@ export class LandDetailsComponent implements OnInit {
         isorganc: ['', [Validators.required]],
         masterId: localStorage.getItem('masterId'),
         updatedBy: localStorage.getItem('userRole'),
-        landId: ['']
+        landId: [''],
+        registrationNumber: [''],
       });
       this.getFarmerLandDetailList(this.master_id);
     }
     console.log(this.landDetailForm.value);
     
     this.getFarmerDetailList();
+    
   }
 
   getFarmerDetailList(){
     this.fpoService.getFarmerDetailList(localStorage.getItem('masterId')).subscribe(
       response => {
       console.log(response);
-      this.FarmerLists = response;
+        this.FarmerLists = response;
+       
+      })
+  }
+  getFarmerDetailFarmerformUpPardarshi(registrationNumber) {
+    let regNo = 863286218031926
+    this.fpoService.getfarmerDetailfromUpardarshi(regNo).subscribe(
+      response => {
+        console.log(response);
+        this.FarmerLists = response;
       })
   }
 
@@ -198,7 +211,9 @@ export class LandDetailsComponent implements OnInit {
         isorganc: [landDetail.isorganc, [Validators.required]],
         masterId: localStorage.getItem('masterId'),
         updatedBy: localStorage.getItem('userRole'),
-        landId: [landDetail.landId]
+        landId: [landDetail.landId],
+        registrationNumber: [''],
+       
       });
     }
     else {
@@ -210,7 +225,8 @@ export class LandDetailsComponent implements OnInit {
         isorganc: [landDetail.isorganc, [Validators.required]],
         masterId: localStorage.getItem('masterId'),
         updatedBy: localStorage.getItem('userRole'),
-        landId: [landDetail.landId]
+        landId: [landDetail.landId],
+        registrationNumber: [''],
       });
     }
     
@@ -266,5 +282,13 @@ export class LandDetailsComponent implements OnInit {
     else {
       return false
     }
+  }
+  selectFarmer(farmer) {
+    let registrationNumber = this.landDetailForm.controls['registrationNumber'].setValue(farmer.currentTarget.value);    
+    this.getFarmerDetailFarmerformUpPardarshi(registrationNumber);
+  }
+  fetchDetail(farmer) {
+    let registrationNumber = this.landDetailForm.controls['registrationNumber'];
+    this.getFarmerDetailFarmerformUpPardarshi(registrationNumber);
   }
 }
