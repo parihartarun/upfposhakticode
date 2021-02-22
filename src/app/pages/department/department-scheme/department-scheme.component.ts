@@ -26,11 +26,21 @@ export class DepartmentSchemeComponent implements OnInit {
 
   ngOnInit(): void {
     this.schemeForm = this.formBuilder.group({
-      schemes_type: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required),
-      departmentName: new FormControl(null, Validators.required),
-      document: new FormControl(null, Validators.required),
-      url: new FormControl(null, Validators.required)
+      // schemes_type: new FormControl(null, Validators.required),
+      // description: new FormControl(null, Validators.required),
+      // departmentName: new FormControl(null, Validators.required),
+      // document: new FormControl(null, Validators.required),
+      // url: new FormControl(null, Validators.required)
+      file: [''],
+      h_file: [''],
+      description: ['', [Validators.required]],
+      hindi_desc: [''],
+      url: [''],
+      guideline_type: [''],
+      title : [''],
+      parent_department : [''],
+
+
     });
     this.departmentService.getScheme();
   }
@@ -75,9 +85,11 @@ export class DepartmentSchemeComponent implements OnInit {
       const formData: FormData = new FormData();
       formData.append('file', this.fileToUpload);
       formData.append('description', this.schemeForm.value.description);
-      formData.append('title', this.schemeForm.value.schemes_type);
-      formData.append('parent_department', this.schemeForm.value.departmentName);
+      formData.append('title', this.schemeForm.value.title);
+      formData.append('parent_department', this.schemeForm.value.parent_department);
       formData.append('url', this.schemeForm.value.url);
+      formData.append('hindi_desc', this.schemeForm.value.hindi_desc);
+
 
       this.departmentService.uploadSchemes(formData);
       this.schemeForm.reset();

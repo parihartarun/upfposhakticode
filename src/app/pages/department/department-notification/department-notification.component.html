@@ -48,13 +48,14 @@
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
-                      {{'Attach File' | translate}}
+                      {{'Attach File' | translate}}<span class="required">*</span>
                     </label>
-              
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)" />
                     <div *ngIf="submitted && formControls.message.errors" class="text-danger mt-2">
                       <div *ngIf="formControls.uploadFile.errors.required">{{'File is required'| translate}}</div>
                     </div>
+                    <div *ngIf="checkfileFormat" class="text-danger">{{'File format should be png,jpeg and pdf' | translate}}
+                  </div>
 
                   </div>
 

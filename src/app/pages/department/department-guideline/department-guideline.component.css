@@ -1,17 +1,6 @@
 th{
     cursor: pointer
 }
-.custom-pagination-align{
-    text-align: right !important;
-}
-.custom-data-entries-align{
-    text-align: left !important;
-}
-@media screen and (max-width: 576px){
-    .custom-pagination-align{
-        text-align: center !important;
-    }
-    .custom-data-entries-align{
-        text-align: center !important;
-    }
+.card-body {
+    font-size: 13px;
 }

@@ -105,6 +105,9 @@ import { DepartmentUplaodCircularComponent } from './pages/department/department
 
 import { ChartsModule } from 'ng2-charts';
 import { FpoDashboardComponent } from './pages/fpo/dashboard/dashboard.component';
+import { HomeScreenComponent } from './pages/common/home-screen/home-screen.component';
+
+import { TagInputModule } from 'ngx-chips';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -134,6 +137,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgMarqueeModule,
     NgxChartsModule,
     ChartsModule,
+    TagInputModule, 
     ToastrModule.forRoot({
       timeOut: 10000,
     }),
@@ -223,7 +227,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DepartmentUplaodCircularComponent,
     TableSearchPipe,
     DepartmentDashboardComponent,
-    FpoDashboardComponent
+    FpoDashboardComponent,
+    HomeScreenComponent
   ],
   exports: [
     AuthHeaderComponent

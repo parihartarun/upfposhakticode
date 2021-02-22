@@ -1,9 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { MustMatch } from 'src/app/_helpers/constomMatchValidor';
-import { AuthService } from 'src/app/_services/auth/auth.service';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
+import { MustMatch } from '../../../_helpers/constomMatchValidor';
+import { AuthService } from '../../../_services/auth/auth.service';
+
+
+
 
 
 
@@ -14,6 +21,7 @@ import { AuthService } from 'src/app/_services/auth/auth.service';
   styleUrls: ['./byer-sell-register.component.css']
 })
 export class ByerSellRegisterComponent implements OnInit {
+  [x: string]: any;
   registerForm: FormGroup;
   submitted = false;
   bsValue = new Date();
@@ -22,7 +30,13 @@ export class ByerSellRegisterComponent implements OnInit {
   states = [];
   districts = [];
   blocks = [];
-  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
+  crops = [];
+  cropids = [];
+  verieties = [];
+  verietyIds = []
+  _url: string;
+  constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService, private http: HttpClient) {
+    this._url = environment.baseUrl;
   }
 
   ngOnInit() {
@@ -43,7 +57,7 @@ export class ByerSellRegisterComponent implements OnInit {
  
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      area: ['', Validators.required],
+      area: [''],
       buildingName: ['', Validators.required],
       buyerSellerId: [''],
       buyerSellerName: ['', Validators.required],
@@ -59,10 +73,10 @@ export class ByerSellRegisterComponent implements OnInit {
       streetName: ['', Validators.required],
       webSite: [''],
       recaptcha: ['', Validators.required],
-      gstNumber: ['',Validators.pattern("[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}")],
+      gstNumber: [''],
       tinNumber: [''],
-      PANnumber: ['',Validators.pattern("[A-Z]{5}[0-9]{4}[A-Z]{1}")],
-      companyCategory: [],
+      panNumber: [''],
+      companyCategory: ['', Validators.required],
       commdityDealsIn: [],
       varietyDealsIn: [],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
@@ -100,6 +114,8 @@ export class ByerSellRegisterComponent implements OnInit {
     delete this.registerForm.value.userName;
     delete this.registerForm.value.confirmPassword;
     this.registerForm.value.userBuyerSeller = user;
+    this.registerForm.value.commdityDealsIn = this.cropids.toString();
+    this.registerForm.value.varietyDealsIn = this.verietyIds.toString();
     this.api.registerBuyerSeller(this.registerForm.value).subscribe(response => {
       if (response.message == "SuccessFully Saved!") {
         this.toastr.success(response.message);
@@ -115,5 +131,88 @@ export class ByerSellRegisterComponent implements OnInit {
   handleSuccess(e) {
     console.log("ReCaptcha", e);
   }
+  //requestAutocompleteItems(text: string) {
+  //  this.api.getAllTags(text).subscribe(t => {
+  //    return t
+  //  })
+  //}
+  public requestAutocompleteItems = (text: string): Observable<string[]> => {
+ 
+    let arr = []
 
+    return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropsBySearch/${text}`).pipe(map((res: any) => {
+      this.crops = res;     
+        res.map(c => {
+        arr.push(c.cropName)
+      });
+     
+      return arr
+    }));
+
+  };
+  onAdded($event: any){
+    $event
+    let filterCrop=[]
+    filterCrop = this.crops.filter(c => c.cropName === $event.value)   
+    filterCrop.map(c => {
+      this.cropids.push(c.cropId)
+    });
+    let searchData = {
+      cropids: this.cropids.toString()
+    }
+    this.api.getVariety(searchData).subscribe(v => {
+      this.verieties = v
+    })
+   
+   }
+ 
+  onSelected($event: any) {
+    console.log("Fire Selected");
+  }
+
+  onItemRemoved($event: any):Observable<any> {
+    $event
+    let filterCrop = null
+
+    filterCrop = this.crops.filter(c => c.cropName === $event.value);
+    this.cropids = this.cropids.filter(item => item != filterCrop[0].cropId)
+    console.log("Fire Removed");
+    return
+  }
+
+  public requestVarietyDealsInAutocompleteItems = (text: string): Observable<string[]> => {
+    if (this.cropids.length ==0) {
+      return
+    }
+    let arr=[]
+    this.verieties.map(c => {
+      c
+      arr.push(c.verietyName)
+    })  
+
+    return of(arr)
+  };
+
+  onAddedVarietyDealsIn($event: any) {
+    $event
+    let filterVeriety = []
+    filterVeriety = this.verieties.filter(c => c.verietyName === $event.value)
+    filterVeriety.map(c => {
+      this.verietyIds.push(c.verietyId)
+    });
+    console.log("Fire Added");
+
+  }
+
+ 
+
+  removedVarietyDealsIn($event: any) {
+    $event
+    let filterverieties = null
+
+    filterverieties = this.verieties.filter(c => c.verietyName === $event.value);
+    this.verietyIds = this.verietyIds.filter(item => item != filterverieties[0].verietyId)
+  
+    console.log("Fire Removed");
+  }
 }

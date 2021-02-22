@@ -51,17 +51,17 @@ export class FarmerChcRegisterComponent implements OnInit {
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      allotmentNo: ['', Validators.required],
+      allotmentNo: [''],
       blockRefId: ['', Validators.required],     
       chcFmbName: ['', Validators.required],
       contactPerson: ['', Validators.required],      
       distRefId: ['', Validators.required],
       deleted: [true],
       email: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
-      firmRegistraionNumber: ['', Validators.required],
+      firmRegistraionNumber: [''],
       mobileNumber: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
-      shopEstablishmentNumber: ['', Validators.required],
+      shopEstablishmentNumber: [''],
       villageRefId: ['', Validators.required],
       userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
       recaptcha: ['', Validators.required],

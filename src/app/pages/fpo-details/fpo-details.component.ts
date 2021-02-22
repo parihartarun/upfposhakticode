@@ -132,9 +132,9 @@ export class FpoDetailsComponent implements OnInit {
       { key: 'equpment_no', title: 'No Of Equipment' },
     ];
     this.productionColumn = [
-      { key: 'a', title: 'Crops' },
-      { key: 'b', title: 'Crop Variety' },
-      { key: 'c', title: 'Marketable Surplus 2021 (In Qt.)' },
+      { key: 'cropRefName', title: 'Crops' },
+      { key: 'cropType', title: 'Crop Variety' },
+      { key: 'marketableSurplus', title: 'Marketable Surplus 2021 (In Qt.)' },
       { key: 'd', title: 'SOLD QUANTITY 2021 (IN QT.)' },
     ];
     this.fpoColumn = [
