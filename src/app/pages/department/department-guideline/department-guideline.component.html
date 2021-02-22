@@ -42,63 +42,68 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
                       {{'Documents' | translate}}
-                       <span class="required">*</span> :
-                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadio" id="inlineRadio1" value="url" (change)="changetype($event.target.value)">
-                        <label class="form-check-label" for="inlineRadio1" >URL</label>
+                      <span class="required">*</span> :
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
+                          [(ngModel)]="docRadio" name="inlineRadio" id="inlineRadio1" value="url">
+                        <label class="form-check-label" for="inlineRadio1">URL</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadio" id="inlineRadio2" value="file" (change)="changetype($event.target.value)">
+                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
+                          [(ngModel)]="docRadio" name="inlineRadio" id="inlineRadio2" value="file">
                         <label class="form-check-label" for="inlineRadio2">File Upload</label>
                       </div>
                     </label>
-                    </div>
-                    </div>
+                  </div>
+                </div>
 
 
-                    <div class="col-lg-12">
-                      <div *ngIf="isfile" class="form-group">
-                        <label class="form-control-label" for="input-first-name">
-                          {{'File' | translate}}
-                           <span class="required">*</span> :
-                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="hindi_upload" (change)="changefiletype($event.target.value)">
-                            <label class="form-check-label" for="inlineRadio1">Hindi Upload</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="english_upload" (change)="changefiletype($event.target.value)">
-                            <label class="form-check-label" for="inlineRadio2">english Upload</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="both" (change)="changefiletype($event.target.value)">
-                            <label class="form-check-label" for="inlineRadio2">Both</label>
-                          </div>
-                        </label>
-                        </div>
-                        </div>
+                <div class="col-lg-12" *ngIf="docRadio==='file'">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
+                      {{'File' | translate}}
+                      <span class="required">*</span> :
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
+                          [(ngModel)]="fileRadio" name="inlineRadioOptions" id="inlineRadio1" value="hindi_upload">
+                        <label class="form-check-label" for="inlineRadio1">Hindi Upload</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
+                          [(ngModel)]="fileRadio" name="inlineRadioOptions" id="inlineRadio2" value="english_upload">
+                        <label class="form-check-label" for="inlineRadio2">english Upload</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
+                          [(ngModel)]="fileRadio" name="inlineRadioOptions" id="inlineRadio2" value="both">
+                        <label class="form-check-label" for="inlineRadio2">Both</label>
+                      </div>
+                    </label>
+                  </div>
+                </div>
 
-                <div  class="col-lg-12">
-                  <div *ngIf="isurl" class="form-group">
+                <div class="col-lg-12" *ngIf="docRadio==='url'">
+                  <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
                       {{'URL' | translate}}
-                       <!-- <span class="required">*</span> -->
+                      <!-- <span class="required">*</span> -->
                     </label>
-                    <input #myInput type="text" class="form-control form-control-alternative"
-                      formControlName="url" placeholder="www.google.com/" />
+                    <input #myInput type="text" class="form-control form-control-alternative" formControlName="url"
+                      placeholder="www.google.com/" />
                     <!-- <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
                       class="text-danger">
                       <div>{{'URL is required' | translate}}</div>
                     </div> -->
                   </div>
                 </div>
-                <div *ngIf="ishindi" class="col-lg-6">
+                <div class="col-lg-6" *ngIf="fileRadio==='both' || fileRadio==='hindi_upload'">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
-                      {{'Hindi Upload Document' | translate}} 
+                      {{'Hindi Upload Document' | translate}}
                       <!-- <span class="required">*</span> -->
                     </label>
-                    <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
-                      formControlName="file" (change)="upload($event.target.files)" />
+                    <input type="file" id="input-first-name" class="form-control form-control-alternative"
+                      formControlName="h_file" (change)="uploadHindi($event.target.files)" />
                     <!-- <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
                       class="text-danger">
                       <div>{{'Upload document is required' | translate}}</div>
@@ -106,13 +111,13 @@
                   </div>
                 </div>
 
-                <div *ngIf="isenglish" class="col-lg-6">
-                  <div  class="form-group">
+                <div class="col-lg-6" *ngIf="fileRadio==='both' || fileRadio==='english_upload'">
+                  <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
                       {{'English Upload Document' | translate}}
-                       <!-- <span class="required">*</span> -->
+                      <!-- <span class="required">*</span> -->
                     </label>
-                   <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
+                    <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
                       formControlName="h_file" (change)="upload($event.target.files)" />
                     <!-- <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
                       class="text-danger">
@@ -121,15 +126,14 @@
                   </div>
                 </div>
 
-                
-                <div class="col-lg-12">
-                  <div *ngIf="ishindi" class="form-group">
+
+                <div class="col-lg-12" *ngIf="fileRadio==='both' || fileRadio==='hindi_upload'">
+                  <div class="form-group">
                     <div class="form-group mb-1">
-                      <label class="form-control-label" for="">{{'Hindi Description' | translate}} 
+                      <label class="form-control-label" for="">{{'Hindi Description' | translate}}
                         <!-- <span class="required">*</span> -->
-                        </label>
-                      <textarea class="form-control" formControlName="hindi_desc"
-                        rows="3"></textarea>
+                      </label>
+                      <textarea class="form-control" formControlName="hindi_desc" rows="3"></textarea>
                     </div>
                     <!-- <div *ngIf="descValidation.invalid && (descValidation.dirty || descValidation.touched)"
                       class="text-danger">
@@ -138,14 +142,13 @@
                   </div>
                 </div>
 
-                <div class="col-lg-12">
-                  <div *ngIf="isenglish" class="form-group">
+                <div class="col-lg-12" *ngIf="fileRadio==='both' || fileRadio==='english_upload'">
+                  <div class="form-group">
                     <div class="form-group mb-1">
                       <label class="form-control-label" for="">{{'English Description' | translate}}
-                         <!-- <span class="required">*</span> -->
-                        </label>
-                      <textarea class="form-control" formControlName="description" 
-                        rows="3"></textarea>
+                        <!-- <span class="required">*</span> -->
+                      </label>
+                      <textarea class="form-control" formControlName="description" rows="3"></textarea>
                     </div>
                     <!-- <div *ngIf="descValidation.invalid && (descValidation.dirty || descValidation.touched)"
                       class="text-danger">
@@ -211,7 +214,8 @@
               <thead class="">
                 <tr>
                   <th scope="col">{{'Serial no.' | translate}}</th>
-                  <th scope="col" class="sort" (click)="onClickOrderBy('description')">{{'Description' | translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('description')">{{'Description' | translate}}
+                  </th>
                   <th scope="col" class="sort" (click)="onClickOrderBy('uploadDate')">{{'Date' | translate}}</th>
                   <th scope="col">{{'View Details' | translate}}</th>
                   <th scope="col">{{'Actions' | translate}}</th>
