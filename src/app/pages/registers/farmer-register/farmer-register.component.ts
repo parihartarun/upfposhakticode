@@ -76,7 +76,7 @@ export class FarmerRegisterComponent implements OnInit {
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      accountNo: [''],
+      accountNo: ['', [Validators.pattern("[0-9 ]{11,16}")]],
       bankRefId: [''],
       blockRef: ['', Validators.required],
       category: ['', Validators.required],

@@ -51,7 +51,7 @@ export class FpoRegisterComponent implements OnInit {
   createFpoRegisterForm() {
     this.fpoRegisterForm = this.fb.group({
       agency: ['', Validators.required],
-      fpoBankAccNo: [''],
+      fpoBankAccNo: ['', [Validators.pattern("[0-9 ]{11,16}")]],
       fpoBankName: [''],
       blockRef: ['', Validators.required],
       fpoName: ['', [Validators.required]],

@@ -704,5 +704,6 @@
   "English Upload Document": "अंग्रेजी अपलोड दस्तावेज़",
   "Hindi Upload Document": "हिंदी अपलोड दस्तावेज़",
   "Hindi Description": "हिंदी विवरण",
-  "English Description": "अंग्रेजी विवरण"
+  "English Description": "अंग्रेजी विवरण",
+  "bank account Number should be minmun 11 digit and maximun 16": "बैंक खाता संख्या शून्य से 11 अंकों और अधिकतम 16 होनी चाहिए"
 }

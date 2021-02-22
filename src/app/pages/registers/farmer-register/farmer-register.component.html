@@ -296,7 +296,7 @@
         <input class="form-control" type="text" formControlName="accountNo" appOnlynumber>
       </div>
       <div *ngIf="submitted && formControls.accountNo.errors" class="text-danger">
-        <div *ngIf="formControls.accountNo.errors.required">{{'bank account Number is required'|translate}}</div>
+        <div *ngIf="formControls.accountNo.errors.pattern"> {{'bank account Number should be minmun 11 digit and maximun 16'|translate}}</div>
       </div>
     </div>
   </div>
