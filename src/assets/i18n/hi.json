@@ -710,12 +710,6 @@
   "Current password is required":"वर्तमान पासवर्ड की आवश्यकता है",
   "New password is required":"नया पासवर्ड आवश्यक है",
   "Update Password":"पासवर्ड अपडेट करें",
-  "Change Password": "पासवर्ड बदलें"
-
-}
-  "English Upload Document": "अंग्रेजी अपलोड दस्तावेज़",
-  "Hindi Upload Document": "हिंदी अपलोड दस्तावेज़",
-  "Hindi Description": "हिंदी विवरण",
-  "English Description": "अंग्रेजी विवरण",
+  "Change Password": "पासवर्ड बदलें",
   "bank account Number should be minmun 11 digit and maximun 16": "बैंक खाता संख्या शून्य से 11 अंकों और अधिकतम 16 होनी चाहिए"
 }

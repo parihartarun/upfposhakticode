@@ -702,13 +702,7 @@
   "Current password is required": "Current password is required",
   "New password is required": "New password is required",
   "Update Password": "Update Password",
-  "Change Password": "Change Password"
-}
-  "URL": "URL",
-  "English Upload Document": "English Upload Document",
-  "Hindi Upload Document": "Hindi Upload Document ",
-  "Hindi Description": "Hindi Description",
-  "English Description": "English Description",
+  "Change Password": "Change Password",  
   "bank account Number should be minmun 11 digit and maximun 16": "bank account Number should be minmun 11 digit and maximun 16"
 
 }
