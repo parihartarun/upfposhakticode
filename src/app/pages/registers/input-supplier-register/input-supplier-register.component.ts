@@ -23,8 +23,9 @@ export class InputSupplierRegisterComponent implements OnInit {
   villages = [];
   seeds=[]
   inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
-
+  categoryDeals=[];
   isBulkSupplyingCompany: boolean = false;
+  isCategoryDealIn = false;
   tempFertilizer = [{ name: 'Normal' }, { name: 'Organic' }, { name: 'Both' }]
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
   }
@@ -99,8 +100,11 @@ export class InputSupplierRegisterComponent implements OnInit {
       seedId: [],
       Fertilizer: [''],
       cide: [''],
-      Equipment:[''],
+      Equipment: [''],
+      isCategoryDealIn:[this.isCategoryDealIn],
       tnc: ['', Validators.required],
+      categoryDealIn: [],
+     
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],     
       confirmPassword: ['', Validators.required]
     }, {
@@ -150,5 +154,17 @@ export class InputSupplierRegisterComponent implements OnInit {
 
   handleSuccess(e) {
     console.log("ReCaptcha", e);
+  }
+  selectCategoryDeals(event: any, categoryDealIn:any) {   
+
+    if (event.target.checked) {
+      //this.searchCriteria.push(district)
+
+      this.categoryDeals.push(event.target.value);
+
+    } else {
+
+      this.categoryDeals = this.categoryDeals.filter(filter => filter != event.target.value);
+    }
   }
 }
