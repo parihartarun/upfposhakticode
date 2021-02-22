@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { elementAt } from 'rxjs/operators';
 import { GetTranslationService } from 'src/app/_helpers/get-translation.service';
 import { FpoService } from '../../_services/fpo/fpo.service';
 @Component({
@@ -63,6 +64,7 @@ export class FpoDetailsComponent implements OnInit {
   machinaryBColumn = [];
   productionColumn = [];
   fpoColumn = [];
+  GraphDetails: any;
   constructor(private modalService: NgbModal,
     public getTranslationService: GetTranslationService,
     private api: FpoService, private _activatedroute: ActivatedRoute) { }
@@ -82,6 +84,7 @@ export class FpoDetailsComponent implements OnInit {
       let fpoId = Number(params.get('id'));
 
       this.api.getfpoDetialById(fpoId).subscribe((res: any) => {
+        console.log(res, "details");
         if (res) {
           this.fpo = res;
         }
@@ -155,7 +158,9 @@ export class FpoDetailsComponent implements OnInit {
     })
   }
   getAllByFpo() {
+    console.log(this.fpoId);
     this.api.getAllStorageUnitByFpo(this.fpoId).subscribe((res: any) => {
+
       if (res) {
         this.coldStorage = res;
       }
@@ -198,117 +203,90 @@ export class FpoDetailsComponent implements OnInit {
     }
   }
   setGraphData() {
+
+    this.api.getgraphData(this.fpoId).subscribe(res => {
+      console.log(res, "FPO");
+      this.GraphDetails = res;
+
+    
+
+
+    // console.log(this.GraphDetails,"graphdatatest")
+
+    // this.GraphDetails = [
+    //   {
+    //     "crop_name": "Assam Lemon",
+    //     "veriety": null,
+    //     "season_name": "Rabi",
+    //     "total_markatable": 20,
+    //     "total_sold": null
+    //   },
+    //   {
+    //     "crop_name": "Antirrhinum",
+    //     "veriety": null,
+    //     "season_name": "Rabi",
+    //     "total_markatable": 200,
+    //     "total_sold": null
+    //   },
+    // ]
+
+     let graphDetailsRabi = [];
+     let graphDetailszayad = [];
+     let graphDetailsKharif = [];
+    this.GraphDetails.forEach( ele =>{
+      if(ele.season_name=="Rabi"){
+        let obj = {
+          name:ele.crop_name,
+          series:[]
+        }
+        obj.series = [{name: ele.crop_name, value:ele.total_markatable}];
+        graphDetailsRabi.push(obj);
+      }
+      else if(ele.season_name=="Zayad")
+      {
+        let obj = {
+          name:ele.crop_name,
+          series:[]
+        }
+        obj.series = [{name: ele.crop_name, value:ele.total_markatable}];
+        graphDetailszayad.push(obj);
+      }
+
+      else{
+        let obj = {
+          name:ele.crop_name,
+          series:[]
+        }
+        obj.series = [{name: ele.crop_name, value:ele.total_markatable}];
+        graphDetailsKharif.push(obj);
+      }
+    })
+
+
+    
+    console.log(graphDetailsRabi, "Rabi");
+    console.log(graphDetailszayad, "zayad");
+    console.log(graphDetailsKharif, "kharif");
+
+
+
     this.multi = [
       {
-        graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Rabi season (in Qt.)`,
-        graphDetails: [
-          {
-            "name": "Gram",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 3500
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Lentil",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 1000
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Wheat",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 7000
-              },
-              {
-                "name": "Sold",
-                "value": 3000
-              }
-            ]
-          }
-        ]
+        graphFor: `   Marketable Surplus and Sold Quantity with FPO for Rabi season (in Qt.)`,
+        graphDetails: graphDetailsRabi
       },
       {
         graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Zayad season (in Qt.)`,
-        graphDetails: [
-          {
-            "name": "Moong",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 950
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-        ]
+        graphDetails: graphDetailszayad
       },
       {
         graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Kharif season (in Qt.)`,
-        graphDetails: [
-          {
-            "name": "Moong",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 450
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Soyabean",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 8400
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Urad",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 4300
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        graphDetails: graphDetailsKharif
       }
     ]
+  })
+
   }
+
+
 }

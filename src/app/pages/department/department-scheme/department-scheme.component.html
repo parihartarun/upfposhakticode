@@ -50,51 +50,113 @@
                     <label class="form-control-label" for="input-first-name">
                       {{'Department name' | translate}} <span class="required">*</span>
                     </label>
-                    <!--<small class="">
-                                          (File format should be .jpg, .png, .jpeg and .pdf)
-                                        </small>-->
-                                        <input type="text" id="input-first-name"
-                                            placeholder="{{'Department name' | translate}}"
-                                            class="form-control form-control-alternative"
-                                            formControlName="departmentName">
-                                        <div *ngIf="departValidation.invalid && (departValidation.dirty || departValidation.touched)"
-                                            class="text-danger">
-                                            <div>{{'Department name is required' | translate}}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                  <div class="form-group">
-                                    <label class="form-control-label" for="input-first-name">
-                                      {{'Upload Document' | translate}} <span class="required">*</span>
-                                    </label>
-                                    <!--<small class="">
-    (File format should be .jpg, .png, .jpeg and .pdf)
-  </small>-->
-                                    <input #myInput type="file" id="input-first-name"
-                                           class="form-control form-control-alternative" formControlName="document"
-                                           (change)="upload($event.target.files)" />
-                                    <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
-                                         class="text-danger">
-                                      <div>{{'Upload document is required' | translate}}</div>
-                                    </div>
-                                    <div *ngIf="checkfileFormat" class="text-danger">{{'only xls,xlsx,pdf,doc,docx format is allow'| translate}}</div>
-                                  </div>
-                                </div>
+                    <input type="text" id="input-first-name" placeholder="{{'Department name' | translate}}"
+                      class="form-control form-control-alternative" formControlName="parent_department">
+                    <!-- <div *ngIf="departValidation.invalid && (departValidation.dirty || departValidation.touched)"
+                      class="text-danger">
+                      <div>{{'Department name is required' | translate}}</div>
+                    </div> -->
+                  </div>
+                </div>  
 
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
+                      {{'Documents' | translate}}
+                       <span class="required">*</span> :
+                       <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="url" value="url" (change)="changetype($event.target.value)">
+                        <label class="form-check-label" for="url" >URL</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="file" value="file" (change)="changetype($event.target.value)">
+                        <label class="form-check-label" for="file">File Upload</label>
+                      </div>
+                    </label>
+                    </div>
+                    </div>
+
+
+                    <div class="col-lg-12">
+                      <div *ngIf="isfile" class="form-group">
+                        <label class="form-control-label" for="input-first-name">
+                          {{'File' | translate}}
+                           <span class="required">*</span> :
+                           <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="RadioOptions" id="hindi_upload" value="hindi_upload" (change)="changefiletype($event.target.value)">
+                            <label class="form-check-label" for="hindi_upload">Hindi Upload</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="RadioOptions" id="english_upload" value="english_upload" (change)="changefiletype($event.target.value)">
+                            <label class="form-check-label" for="english_upload">english Upload</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="RadioOptions" id="both" value="both" (change)="changefiletype($event.target.value)">
+                            <label class="form-check-label" for="both">Both</label>
+                          </div>
+                        </label>
+                        </div>
+                        </div>
+
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
                       {{'URL' | translate}} <span class="required">*</span>
                     </label>
-                    <!--<small class="">
-                                          (File format should be .jpg, .png, .jpeg and .pdf)
-                                        </small>-->
                     <input type="text" id="input-first-name" placeholder="{{'www.google.com/' | translate}}"
                       class="form-control form-control-alternative" formControlName="url">
                     <div *ngIf="urlValidation.invalid && (urlValidation.dirty || urlValidation.touched)"
                       class="text-danger">
                       <div>{{'url name is required' | translate}}</div>
+                    </div> 
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
+                      {{'Hindi Upload Document' | translate}} <span class="required">*</span>
+                    </label>
+                    <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
+                      formControlName="hindi_desc" (change)="upload($event.target.files)" />
+                    <!-- <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
+                      class="text-danger">
+                      <div>{{'Upload document is required' | translate}}</div>
+                    </div> -->
+                    <div *ngIf="checkfileFormat" class="text-danger">
+                      {{'only xls,xlsx,pdf,doc,docx format is allow'| translate}}</div>
+                  </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
+                      {{'English Upload Document' | translate}} <span class="required">*</span>
+                    </label>
+                    <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
+                      formControlName="description" (change)="upload($event.target.files)" />
+                    <!-- <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
+                      class="text-danger">
+                      <div>{{'Upload document is required' | translate}}</div>
+                    </div> -->
+                    <div *ngIf="checkfileFormat" class="text-danger">
+                      {{'only xls,xlsx,pdf,doc,docx format is allow'| translate}}</div>
+                  </div>
+                </div>
+
+
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <div class="form-group mb-1">
+                      <label class="form-control-label" for="">{{'Hindi Description' | translate}} <span
+                          class="required">*</span></label>
+                      <textarea class="form-control" formControlName="hindi_desc" id="exampleFormControlTextarea12"
+                        rows="3"></textarea>
+                    </div>
+                    <div *ngIf="descValidation.invalid && (descValidation.dirty || descValidation.touched)"
+                      class="text-danger">
+                      <div>{{'Description is required'| translate}}</div>
                     </div>
                   </div>
                 </div>

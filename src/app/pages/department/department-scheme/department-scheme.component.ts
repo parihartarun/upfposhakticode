@@ -21,6 +21,12 @@ export class DepartmentSchemeComponent implements OnInit {
   orderBy: { order: string, key: string } = { order: '', key: '' };
   currentPage = 1;
   searchText = '';
+  isurl: boolean = false;
+  isfile: boolean = false;
+  ishindi: boolean = false;;
+  isenglish: boolean = false;;
+  isboth: boolean = false;;
+
   constructor(private formBuilder: FormBuilder, public departmentService: DepartmentService, private toastr: ToastrService) { }
 
 
@@ -34,6 +40,44 @@ export class DepartmentSchemeComponent implements OnInit {
     });
     this.departmentService.getScheme();
   }
+
+  changetype(e)
+  {
+    //  console.log(e);
+     if(e == 'url')
+     {
+       this.isurl = true;
+       this.isfile=false;
+     }
+     else{
+     this.isurl = false;
+     this.isfile=true;
+     }
+  }
+
+
+  changefiletype(e)
+  {
+    console.log(e);
+     if(e == 'hindi_upload')
+     {
+        this.ishindi = true;
+        this.isenglish = false;
+       
+     }
+     else if(e == 'english_upload')
+     {
+      this.ishindi = false;
+      this.isenglish = true;
+      
+     }
+     else{
+      this.ishindi = true;
+      this.isenglish = true;
+     
+     }
+  }
+
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
     if (!this.validateFile(files[0].name)) {

@@ -77,7 +77,9 @@ export class DepartmentGuidelineComponent implements OnInit {
     if (this.guidelineForm.valid) {
       const formData: FormData = new FormData();
       formData.append('file', this.fileToUpload);
-      formData.append('description', this.guidelineForm.value.description);
+      formData.append('h_file', this.guidelineForm.value.hinFilePath);
+       formData.append('hindi_desc', this.guidelineForm.value.hindi_desc);
+       formData.append('description', this.guidelineForm.value.description);
       formData.append('guideline_type', this.guidelineForm.value.guideline_type);
       formData.append('url', this.guidelineForm.value.url);
 
@@ -88,7 +90,11 @@ export class DepartmentGuidelineComponent implements OnInit {
   editGuideline(data) {
     this.guidelineForm.get('guideline_type').patchValue(data.fpoGuidelineType);
     this.guidelineForm.get('description').patchValue(data.description);
-    
+    this.guidelineForm.get('file').patchValue(data.file);
+    this.guidelineForm.get('h_file').patchValue(data.hinFilePath);
+    this.guidelineForm.get('hindi_desc').patchValue(data.hindiDescription);
+    this.guidelineForm.get('url').patchValue(data.url);
+
     // this.guidelineForm.get('document').patchValue(data.fileName);
     this.id = data.id;
     this.isEdit = true;

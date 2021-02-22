@@ -72,6 +72,13 @@ export class FpoService {
   }
 
 
+  getgraphData(masterId)
+  {
+    return this.http.get<any>(this._url + `api/fpos/graphdetail/` + masterId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   //------------api for getting equipment list ------------------------------
   getEquipList() {
     return this.http.get<any>(this._url + 'api/equipments').pipe(map((res: any) => {
