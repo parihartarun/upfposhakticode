@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -19,7 +19,9 @@ export class FpoNotifiactionComponent implements OnInit {
   notifications = [];
   p: number = 1;
   fileToUpload:any
-  
+  checkfileFormat: boolean = false;
+  @ViewChild('myInput')
+  myInputVariable: ElementRef;
   farmers:any[]
   constructor(private formBuilder: FormBuilder, private api: FpoService, private route: Router, private toastr: ToastrService
     , private _departmentService: DepartmentService) { }
@@ -88,7 +90,27 @@ export class FpoNotifiactionComponent implements OnInit {
 
   }
   upload(files: FileList) {
-    this.fileToUpload = files.item(0);
+    if (!this.validateFile(files[0].name)) {
+      this.checkfileFormat = true;
+      this.myInputVariable.nativeElement.value = "";
+      this.NotificationsForm.controls['uploadFile'].setValue('');
+      return;
+    }
+    else {
+
+      this.checkfileFormat = false;
+    }
+  }
+
+
+  validateFile(name: String) {
+    var ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
  
 
