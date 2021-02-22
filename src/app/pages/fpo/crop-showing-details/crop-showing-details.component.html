@@ -12,7 +12,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">{{"Add FPO's Crop Production"|translate}}</h3>
+              <h3 class="mb-0">{{"Add Crop Sowing Details"|translate}}</h3>
             </div>
           </div>
         </div>
@@ -127,20 +127,20 @@
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-first-name">Markatable Surplus<span class="required">*</span></label>
-                          <input formControlName="marketableQuantity" type="text" [id]="i+'markatable_surplus'" class="form-control form-control-alternative" appOnlynumber>
-                        </div>
-                      </div>
-                      <div class="col-lg-4">
-                        <div class="form-group">
                           <label class="form-control-label" for="input-first-name">Expected Yield<span class="required">*</span></label>
                           <input formControlName="expectedYield" type="text" [id]="i+'ex_yield'" class="form-control form-control-alternative" appOnlynumber>
                         </div>
                       </div>
                       <div class="col-lg-4">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-first-name">Actual Yield<span class="required">*</span></label>
+                          <label class="form-control-label" for="input-first-name">Actual Yield</label>
                           <input formControlName="actualYield" type="text" [id]="i+'actual_yeild'" class="form-control form-control-alternative" appOnlynumber>
+                        </div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-first-name">Markatable Surplus</label>
+                          <input formControlName="marketableQuantity" type="text" [id]="i+'markatable_surplus'" class="form-control form-control-alternative" appOnlynumber>
                         </div>
                       </div>
                     </div>
@@ -177,7 +177,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">{{"FPO's Crop Productions"|translate}}</h3>
+              <h3 class="mb-0">{{"Crop Sowing Details"|translate}}</h3>
             </div>
             <!-- <div class="col-3 text-right">
               <button class="btn btn-primary text-right">Add Member</button>
@@ -191,7 +191,7 @@
                 <th scope="col"></th>
                 <th scope="col">S.No</th>
                 <th scope="col">Farmer Name</th>
-                <th scope="col">Farmer's Father/ Husband Name</th>
+                <th scope="col">Father/ Husband Name</th>
                 <th scope="col">Season</th>
                 <th scope="col">Crop Name</th>
                 <th scope="col">Crop Variety</th>
@@ -203,7 +203,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let d of data | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+              <tr *ngFor="let d of cropSowingData | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
                 <td>
                   <input type="checkbox">
                 </td>
@@ -244,7 +244,7 @@
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="editCropSowingDetails(d, content)">Edit</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(d.id)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(d.crop_id)">Delete</a>
                     </div>
                   </div>
                 </td>
@@ -360,27 +360,27 @@
                 <div class="row">
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-first-name">Markatable Surplus<span class="required">*</span></label>
-                      <input formControlName="marketableQuantity" type="text" class="form-control form-control-alternative" appOnlynumber>
-                    </div>
-                  </div>
-                  <div class="col-lg-4">
-                    <div class="form-group">
                       <label class="form-control-label" for="input-first-name">Expected Yield<span class="required">*</span></label>
                       <input formControlName="expectedYield" type="text" class="form-control form-control-alternative" appOnlynumber>
                     </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <label class="form-control-label" for="input-first-name">Actual Yield<span class="required">*</span></label>
+                      <label class="form-control-label" for="input-first-name">Actual Yield</label>
                       <input formControlName="actualYield" type="text" class="form-control form-control-alternative" appOnlynumber>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-first-name">Markatable Surplus</label>
+                      <input formControlName="marketableQuantity" type="text" class="form-control form-control-alternative" appOnlynumber>
                     </div>
                   </div>
                 </div>
               </div>
             <div class="card-footer py-4 text-center">
               <button type="button" class="btn btn-yellow btn-primary my-4" (click)="updateSowingDetails()">
-                {{'Save' | translate}}
+                {{'Update' | translate}}
               </button>
             </div>
           </div>

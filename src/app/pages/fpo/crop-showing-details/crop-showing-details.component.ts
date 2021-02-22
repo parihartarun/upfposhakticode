@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FpoService } from 'src/app/_services/fpo/fpo.service';
+import { ProductionService } from 'src/app/_services/production/production.service';
+import { CommonService } from 'src/app/_services/common/common.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-crop-showing-details',
@@ -13,6 +14,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CropShowingDetailsComponent implements OnInit {
   closeResult = '';
+
+  //cropSowingData: BehaviorSubject<any> = new BehaviorSubject([]);
+  cropSowingData:Array<any>=[];
 
   cropSowingForm: FormGroup;
   cropSowingUpdateForm: FormGroup;
@@ -24,13 +28,17 @@ export class CropShowingDetailsComponent implements OnInit {
   cropVarieties:Array<any>=[];
   varieties:Array<any>=[];
   seasons:Array<any>=[];
-  data:Array<any>=[];
   p:number = 1;
   edit = false;
-
+  orderBy: { order: string, key: string } = { order: '', key: '' };
+  currentPage = 1;
+  searchText = '';
+  sowingError:boolean = false;
+  
   constructor(
     private formBuilder: FormBuilder,
-    private api: FpoService,
+    private commonService:CommonService,
+    private api: ProductionService,
     private route: Router,
     private toastr:ToastrService,
     private modalService: NgbModal
@@ -45,6 +53,7 @@ export class CropShowingDetailsComponent implements OnInit {
       baseland:[''],
       masterId:localStorage.getItem('masterId'),
     });
+    
     this.getCropSowingDetails();
     this.getFarmers();
     this.getCropList();
@@ -57,8 +66,8 @@ export class CropShowingDetailsComponent implements OnInit {
       cropRefName: [undefined, [Validators.required]],
       verietyRef: [undefined,[Validators.required]],
       expectedYield:['', [Validators.required]],
-      actualYield:['', [Validators.required]],
-      marketableQuantity:['', [Validators.required]],
+      actualYield:[''],
+      marketableQuantity:[''],
       masterId:localStorage.getItem('masterId'),
       sowingId:[''],
       crop_id:['']
@@ -80,7 +89,7 @@ export class CropShowingDetailsComponent implements OnInit {
   }
 
   getFarmers(){
-    this.api.getFarmerDetailList(localStorage.getItem('masterId')).subscribe(
+    this.commonService.getFarmerDetailList(localStorage.getItem('masterId')).subscribe(
       response => {
       console.log(response);
       this.farmers = response;
@@ -88,7 +97,7 @@ export class CropShowingDetailsComponent implements OnInit {
   }
 
   getSeasonList(){
-    this.api.getSeasonList().subscribe(
+    this.commonService.getSeasonList().subscribe(
       response => {
       console.log(response);
       this.seasons = response;
@@ -96,7 +105,7 @@ export class CropShowingDetailsComponent implements OnInit {
   }
 
   getCropList(){
-    this.api.getCropList().subscribe(
+    this.commonService.getCropList().subscribe(
       response => {
       console.log(response);
       this.crops = response;
@@ -108,7 +117,7 @@ export class CropShowingDetailsComponent implements OnInit {
     let list = this.cropSowingForm.get('list') as FormArray
     list.at(i).get("cropRefName").setValue(cropId)
     console.log(cropId);
-    this.api.getCropVarietiesByCropId(cropId).subscribe(
+    this.commonService.getCropVarietiesByCropId(cropId).subscribe(
       response => {
       console.log(response);
       this.cropVarieties = response;
@@ -161,7 +170,7 @@ export class CropShowingDetailsComponent implements OnInit {
   getCropSowingDetails(){
     this.api.getFarmerCropSowingDetails({'masterId':localStorage.getItem('masterId')}).subscribe(response => {
       console.log(response);
-      this.data = response;
+      this.cropSowingData = response;
     },
       err => {
         console.log(err)
@@ -172,8 +181,9 @@ export class CropShowingDetailsComponent implements OnInit {
   addSowingDetails(){
     this.submitted = true;
     // stop here if form is invalid
-    console.log(this.cropSowingForm.value);
-    if (this.cropSowingForm.invalid) {
+    console.log(this.cropSowingForm);
+    if (this.cropSowingForm.invalid ) {
+        this.sowingError = true;
         return;
     }
 
@@ -203,8 +213,8 @@ export class CropShowingDetailsComponent implements OnInit {
       cropRefName: [data.crop_master_id, [Validators.required]],
       verietyRef: [data.veriety_ref,[Validators.required]],
       expectedYield:[data.ex_yield, [Validators.required]],
-      actualYield:[data.actual_yield, [Validators.required]],
-      marketableQuantity:[data.marketable_quantity, [Validators.required]],
+      actualYield:[data.actual_yield],
+      marketableQuantity:[data.marketable_quantity],
       sowingId:[data.sowing_id],
       crop_id:[data.crop_id],
       masterId:localStorage.getItem('masterId'),
@@ -223,17 +233,51 @@ export class CropShowingDetailsComponent implements OnInit {
   }
 
   updateSowingDetails(){
+    this.submitted = true;
+    // stop here if form is invalid
     console.log(this.cropSowingUpdateForm.value);
+    if (this.cropSowingUpdateForm.invalid) {
+        return;
+    }
+
+    var data = this.cropSowingUpdateForm.value;
+    this.api.updateFarmerCropSowingDetails(data).subscribe(response => {
+      console.log(response);
+      this.toastr.success('Crop sowing details updated successfully.');
+      this.submitted = false;
+      this.getCropSowingDetails();
+    },
+      err => {
+        console.log(err)
+      }
+    );
   }
 
   getVarieties(cropId){
-    this.api.getCropVarietiesByCropId(cropId).subscribe(
+    this.commonService.getCropVarietiesByCropId(cropId).subscribe(
       response => {
         console.log(response);
       this.varieties = response;
     })
   }
 
+  confirmDelete(id){
+    console.log(id);
+    if(confirm("Are you sure to delete this item.")) {
+      this.api.deleteFarmerCropSowingDetails(id).subscribe(response => {
+        this.getCropSowingDetails();
+        if(response != ''){
+          this.toastr.success('Sowing details Deleted successfully.');
+        }else{
+          this.toastr.error('Error! While Deleting Crop Sowing.');
+        }
+      },
+        err => {
+          console.log(err)
+        }
+      );
+    }
+  }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

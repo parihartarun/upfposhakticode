@@ -407,6 +407,18 @@ export class FpoService {
     }));
   }
 
+  updateFarmerCropSowingDetails(data){
+    return this.http.put<any>(this._url + 'fpoCropSowing/updateFarmerCropSowingDetails/'+data.crop_id, data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  deleteFarmerCropSowingDetails(cropId){
+    return this.http.delete<any>(this._url + 'fpoCropSowing/deleteCropSowingDetails/'+cropId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   addLandDetails(data: any) {
     return this.http.post<any>(this._url + 'api/fpos/land', data).pipe(map((res: any) => {
       return res;
