@@ -21,6 +21,11 @@ export class DepartmentGuidelineComponent implements OnInit {
   orderBy: { order: string, key: string } = { order: '', key: '' };
   searchText = '';
   currentPage = 1;
+  isurl: boolean = false;
+  isfile: boolean = false;
+  ishindi: boolean = false;;
+  isenglish: boolean = false;;
+  isboth: boolean = false;;
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, public departmentService: DepartmentService) { }
 
   ngOnInit(): void {
@@ -89,6 +94,44 @@ export class DepartmentGuidelineComponent implements OnInit {
       return false;
     }
   }
+
+  changetype(e)
+  {
+    //  console.log(e);
+     if(e == 'url')
+     {
+       this.isurl = true;
+       this.isfile=false;
+     }
+     else{
+     this.isurl = false;
+     this.isfile=true;
+     }
+  }
+
+
+  changefiletype(e)
+  {
+    console.log(e);
+     if(e == 'hindi_upload')
+     {
+        this.ishindi = true;
+        this.isenglish = false;
+       
+     }
+     else if(e == 'english_upload')
+     {
+      this.ishindi = false;
+      this.isenglish = true;
+      
+     }
+     else{
+      this.ishindi = true;
+      this.isenglish = true;
+     
+     }
+  }
+
   addGuideline() {
     this.guidelineForm.markAllAsTouched();
     if (this.guidelineForm.valid) {
@@ -108,6 +151,10 @@ export class DepartmentGuidelineComponent implements OnInit {
   editGuideline(data) {
     this.guidelineForm.get('guideline_type').patchValue(data.fpoGuidelineType);
     this.guidelineForm.get('description').patchValue(data.description);
+    this.guidelineForm.get('file').patchValue(data.file);
+    this.guidelineForm.get('h_file').patchValue(data.h_file);
+    this.guidelineForm.get('hindi_desc').patchValue(data.hindi_desc);
+    this.guidelineForm.get('url').patchValue(data.url);
 
     // this.guidelineForm.get('document').patchValue(data.fileName);
     this.id = data.id;
