@@ -245,10 +245,10 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="number" formControlName="fpoBankAccNo">
+        <input class="form-control" type="number" minlength="11" maxlength="16" formControlName="fpoBankAccNo">
       </div>
       <div *ngIf="submitted && formControls.fpoBankAccNo.errors" class="text-danger">
-        <div *ngIf="formControls.fpoBankAccNo.errors.required"> {{'bank account Number is required'|translate}}</div>
+        <div *ngIf="formControls.fpoBankAccNo.errors.pattern"> {{'bank account Number should be minmun 11 digit and maximun 16'|translate}}</div>
       </div>
     </div>
 

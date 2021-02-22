@@ -349,7 +349,7 @@
   "Input Supplier Type": "Input Supplier Type",
   "Select Input Supplier Type": "Select Input Supplier Type",
   "input supplier type is required": "input supplier type is required",
-  "Seed": "Seed Number",
+  "Seed": "Seed",
   "GST Number": "GST Number",
   "gst number is required": "gst number is required",
   "license Number is required": "License Number is required",
@@ -703,4 +703,12 @@
   "New password is required": "New password is required",
   "Update Password": "Update Password",
   "Change Password": "Change Password"
+}
+  "URL": "URL",
+  "English Upload Document": "English Upload Document",
+  "Hindi Upload Document": "Hindi Upload Document ",
+  "Hindi Description": "Hindi Description",
+  "English Description": "English Description",
+  "bank account Number should be minmun 11 digit and maximun 16": "bank account Number should be minmun 11 digit and maximun 16"
+
 }

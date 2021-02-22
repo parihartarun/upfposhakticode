@@ -339,14 +339,14 @@
   "Firm Registration Number is required": "फर्म पंजीकरण संख्या आवश्यकता है",
   "Allotment Number": "आबंटन संख्या",
   "allotment number code is required": "आबंटन संख्या का आवश्यकता है",
-  "Shop Stablishment (Regn. No.)": "दुकान की स्थापना (Regn. No.)",
-  "shop stablishment is required": "दुकान की स्थापना (Regn. No.) आवश्यकता है",
+  "Shop Stablishment (Regn. No.)": "दुकान की स्थापना (पंजीकरण संख्या)",
+  "shop stablishment is required": "दुकान की स्थापना (पंजीकरण संख्या) आवश्यकता है",
   "Input Supplier Name": "इनपुट प्रदाता का नाम",
   "input Supplier Name is required": "इनपुट प्रदाता का नाम आवश्यकता है",
   "Input Supplier Type": "इनपुट प्रदाता ",
   "Select Input Supplier Type": "इनपुट प्रदाता प्रकार का चयन करें",
   "input supplier type is required": "इनपुट प्रदाता प्रकार का आवश्यकता है",
-  "Seed": "बीज नंबर",
+  "Seed": "बीज",
   "GST Number": "जीएसटी नंबर",
   "gst number is required": "जीएसटी नंबर का आवश्यकता है",
   "license Number is required": "लाइसेंस संख्या आवश्यक है",
@@ -712,4 +712,10 @@
   "Update Password":"पासवर्ड अपडेट करें",
   "Change Password": "पासवर्ड बदलें"
 
+}
+  "English Upload Document": "अंग्रेजी अपलोड दस्तावेज़",
+  "Hindi Upload Document": "हिंदी अपलोड दस्तावेज़",
+  "Hindi Description": "हिंदी विवरण",
+  "English Description": "अंग्रेजी विवरण",
+  "bank account Number should be minmun 11 digit and maximun 16": "बैंक खाता संख्या शून्य से 11 अंकों और अधिकतम 16 होनी चाहिए"
 }

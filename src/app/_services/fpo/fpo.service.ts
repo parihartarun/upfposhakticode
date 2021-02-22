@@ -551,6 +551,9 @@ export class FpoService {
   getFpoPhoto(id) {
     return this.http.get<any>(this._url + 'photo/getPhotoByFpo/' + id);
   }
+  getfarmerDetailfromUpardarshi(id) {
+    return this.http.get<any>(this._url + 'upagri/getUpAgriArea/' + id);
+  }
 }
 
 
