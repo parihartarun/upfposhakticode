@@ -102,7 +102,13 @@ export class FarmerComplaintsComponent implements OnInit {
       return;
     }
     let model = this.complaintForm.value;
-    let issuetype = Number(this.complaintForm.value.issueType) - 1;
+    var issuetype=0
+    if (Number(this.complaintForm.value.issueType) > 0) {
+      issuetype = Number(this.complaintForm.value.issueType) - 1;
+    }
+    else {
+      issuetype=13
+    }
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
     formData.append('description', this.complaintForm.value.desc);
