@@ -196,6 +196,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
 
 
+
     this.api.getDistrictBystateId(9).subscribe(d => {
       this.districts = new Array()
       this.districts = d
@@ -250,14 +251,6 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
         this.loading = false;
       })
     });
-
-    this._activatedroute.params.subscribe(params => {
-
-      console.log('params',params);
-
-    })
-
-
   }
   sampleNavigate() {
     this._rouetr.navigate([""]);
@@ -397,12 +390,14 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   }
   createIndentForm(item) {
 
+    console.log('pavan', this.fpoDetail);
+
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
       cropVeriety: [item.cropVeriety],
       cropId: [item.cropid],
       fpoDeliveryAddress: ["", Validators.required],
-      userId: [this.fpoDetail.userFpo.userId, Validators.required],
+      userId: [this.fpoDetail.userFpo?.userId, Validators.required],
       fpoName: [this.fpoDetail.fpoName],
       fpoEmail: [this.fpoDetail.fpoEmail],  //^[0+-]?([1-9]*\\.)?\\d+$
       fulfillmentDate: ["", [Validators.required]],//^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$
