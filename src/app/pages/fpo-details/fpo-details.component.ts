@@ -73,6 +73,8 @@ export class FpoDetailsComponent implements OnInit {
     ///////////////////////Apis/////////////////////////
     this._activatedroute.params.subscribe(param => {
       this.fpoId = param.id;
+
+      console.log(this.fpoId);
       this.getAllByFpo();
       this.getFarmMachineryBankByFpo();
       this.getproductetails();
@@ -213,10 +215,16 @@ export class FpoDetailsComponent implements OnInit {
   setGraphData() {
     let graphdetailsrabi = [];
     let graphdetailszayad = [];
-    let graphdetailskhalif = []
+    let graphdetailskhalif = [];
+    
 
-    this.api.getgraphDetails(this.fpoId).subscribe((res) => {
+    console.log(this.fpoId, "id");
+
+    this.api.getverticalgraph(this.fpoId).subscribe((res) => {
+      console.log(res, "graphalldata")
+
       res.forEach(element => {
+
         if (element.season_name == "Rabi") {
           let obj = {
             name: element.crop_name,
@@ -229,9 +237,10 @@ export class FpoDetailsComponent implements OnInit {
             }
           ]
           graphdetailsrabi.push(obj);
-        }
+          console.log(graphdetailsrabi, "rabi");
 
-       else if (element.season_name == "Zayad") {
+        }
+        else if (element.season_name == "Zayad") {
           let obj = {
             name: element.crop_name,
             series: []
@@ -243,9 +252,10 @@ export class FpoDetailsComponent implements OnInit {
             }
           ]
           graphdetailszayad.push(obj);
+          console.log(graphdetailszayad, "zayad")
         }
 
-        else {
+        else if (element.season_name == "Kharif") {
           let obj = {
             name: element.crop_name,
             series: []
@@ -257,8 +267,8 @@ export class FpoDetailsComponent implements OnInit {
             }
           ]
           graphdetailskhalif.push(obj);
+          console.log(graphdetailskhalif, "Kharif")
         }
-
       });
 
 
