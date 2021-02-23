@@ -68,11 +68,7 @@ export class FarmerService {
       return res;
     }));
   }
-  getInputComplaints(masterId) {
-    return this.http.get<any>(this._url + 'fpocomplaint/inputsupplier/' + masterId).pipe(map((res: any) => {
-      return res;
-    }));
-  }
+ 
   addComplaint(complaint:any,data: any) {
     return this.http.post<any>(this._url + 'complaint', data).pipe(map((res: any) => {
       return res;
@@ -83,11 +79,7 @@ export class FarmerService {
       return res;
     }));
   }
-  addInputComplaint(complaint: any, data: any) {
-    return this.http.post<any>(this._url + 'fpocomplaint/inputsupplier', data).pipe(map((res: any) => {
-      return res;
-    }));
-  }
+  
   getAllNotificationByFpo(id) {
 
     return this.http.get<any>(this._url + 'notification/farmernotification/' + id).pipe(map((res: any) => {

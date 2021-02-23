@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FarmerService } from 'src/app/_services/farmer/farmer.service';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
+import { InputSupplierService } from '../../../_services/InputSupplier/InputSupplier.services';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class FarmerComplaintsComponent implements OnInit {
     private api: FpoService,
     private route: Router,
     private toastr: ToastrService,
-    private farmerService: FarmerService
+    private farmerService: FarmerService,
+    private inputSupplierService: InputSupplierService
   ) { }
 
   ngOnInit(): void {
@@ -87,7 +89,7 @@ export class FarmerComplaintsComponent implements OnInit {
   }
   getInputComplaints() {
 
-    this.farmerService.getInputComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
+    this.inputSupplierService.getInputComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.complaints = response;
     });
@@ -123,7 +125,7 @@ export class FarmerComplaintsComponent implements OnInit {
     }
     if (this.roleType == "ROLE_INPUTSUPPLIER") {
       formData.append("supplier_id", localStorage.getItem('masterId'))
-      this.farmerService.addInputComplaint(this.complaintForm.value, formData).subscribe(response => {
+      this.inputSupplierService.addInputComplaint(this.complaintForm.value, formData).subscribe(response => {
         if (response != '') {
           this.toastr.success('Complaint Added Succefully.');
           this.submitted = false;

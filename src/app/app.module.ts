@@ -228,7 +228,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TableSearchPipe,
     DepartmentDashboardComponent,
     FpoDashboardComponent,
-    HomeScreenComponent
+    HomeScreenComponent,
+   
   ],
   exports: [
     AuthHeaderComponent
