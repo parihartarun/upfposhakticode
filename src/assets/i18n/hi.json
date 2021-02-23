@@ -39,7 +39,7 @@
   "Marginal Farmers": "सीमान्त किसान",
   "Total Land": "कुल भूमि (हेक्टेयर में)",
   "Total Crops": "कुल फसल",
-  "Markatable Surplus": "विक्रय हेतु",
+  "Markatable Surplus": "विक्रय हेतु मात्रा",
   "Productions": "उत्पादन",
   "Performance": "कामगिरी",
   "Total Indents": "कुल संज्ञा",
@@ -715,5 +715,27 @@
   "Insecticide / Pesticide": "कीटनाशक",
   "Pesticide": "पेस्टनाशी",
   "Equipment": "उपकरण",
-  "Both":"दोनों"
+  "Both":"दोनों",
+
+  "Crop Sowing Details":"किसान की फसल बुवाई का विवरण",
+  "Select Farmer Name":"किसान नाम का चयन करें",
+  "Please select farmer":"कृपया किसान का चयन करें",
+  "Please select season":"कृपया मौसम का चयन करें",
+  "Add Sowing":"बुवाई जोड़ें",
+  "Sowing Area":"बुवाई क्षेत्र",
+  "Expected Yield":"अपेक्षित उत्पादन",
+  "Actual Yield":"वास्तविक उत्पादन",
+  "Some of the fields of sowing details are empty or invalid.":"बुवाई विवरण के कुछ क्षेत्र खाली या अमान्य हैं.",
+  "Father":"पिता",
+  "Husband":"पति",
+  "Sowing":"बुवाई",
+  "in Ha":"हेक्टर में",
+  "Expected":"अपेक्षित",
+  "yield":"उत्पादन",
+  "Actual":"वास्तविक",
+  "Markatable":"विक्रय हेतु",
+  "surplus":"मात्रा",
+  "in Qt":"क्विन्टल में",
+  "Update Crop Sowing":"फसल बुवाई का अद्यतन करें"
+
 }

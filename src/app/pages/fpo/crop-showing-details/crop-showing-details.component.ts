@@ -34,6 +34,9 @@ export class CropShowingDetailsComponent implements OnInit {
   currentPage = 1;
   searchText = '';
   sowingError:boolean = false;
+  mqError:boolean = false;
+  msQuantityPercentage:number;
+  farmerLogin = false;
   
   constructor(
     private formBuilder: FormBuilder,
@@ -45,6 +48,10 @@ export class CropShowingDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if(localStorage.getItem('userRole') == 'ROLE_FARMER'){
+      this.farmerLogin = true;
+    }
+
     this.cropSowingForm  = this.formBuilder.group({
       list: this.formBuilder.array([this.initItemRows()]),
       farmerId: ['', [Validators.required]],
@@ -55,9 +62,15 @@ export class CropShowingDetailsComponent implements OnInit {
     });
     
     this.getCropSowingDetails();
-    this.getFarmers();
+    this.getMarkatableQuantityMeasurements();
     this.getCropList();
     this.getSeasonList();
+
+    if(this.farmerLogin == true){
+      this.getFarmerDetails(localStorage.getItem('masterId'));
+    }else{
+      this.getFarmers();
+    }
   }
 
   initItemRows() {
@@ -104,6 +117,13 @@ export class CropShowingDetailsComponent implements OnInit {
     })
   }
 
+  getCropsBySeasonId(seasonId){
+    this.commonService.getCropsBySeasonId(seasonId).subscribe(
+      response => {
+      this.crops = response;
+    })
+  }
+
   getCropList(){
     this.commonService.getCropList().subscribe(
       response => {
@@ -135,42 +155,45 @@ export class CropShowingDetailsComponent implements OnInit {
       if(response != null){
         this.cropSowingForm.controls.baseland.patchValue(response.land_area);
         this.cropSowingForm.controls.guardianName.patchValue(response.parantsName);
+        if(this.farmerLogin == true){
+          this.farmers = [
+            {
+              farmerId:farmerId,
+              farmerName:response.farmerName
+            }
+          ];
+          this.cropSowingForm.controls.farmerId.patchValue(farmerId);
+        }
       }
     },
       err => {
         console.log(err)
       }
     );
-    // this.api.getFarmerCropSowingDetails({'masterId':localStorage.getItem('masterId'), 'farmerId':farmerId}).subscribe(response => {
-    //   console.log(response);
-    //   let list = this.cropSowingForm.get('list') as FormArray
-    //   list.removeAt(0);
-    //   response.forEach(x => {
-    //     let d = {
-    //       sowingArea: [x.sowing_area, [Validators.required]],
-    //       cropRefName: [x.crop_master_id, [Validators.required]],
-    //       verietyRef: [x.veriety_id,[Validators.required]],
-    //       expectedYield:[x.ex_yield, [Validators.required]],
-    //       actualYield:[x.actual_yield, [Validators.required]],
-    //       marketableQuantity:[x.marketable_quantity, [Validators.required]],
-    //       masterId:localStorage.getItem('masterId'),
-    //       sowingId:[x.sowing_id],
-    //       crop_id:[x.crop_id]
-    //     }
-    //     console.log(x)
-    //     list.push(this.formBuilder.group(d));
-    //   })
-    // },
-    //   err => {
-    //     console.log(err)
-    //   }
-    // );
   }
 
   getCropSowingDetails(){
-    this.api.getFarmerCropSowingDetails({'masterId':localStorage.getItem('masterId')}).subscribe(response => {
+    var data = {};
+    data['masterId'] = localStorage.getItem('masterId');
+
+    if(this.farmerLogin == true){
+      data['farmerId'] = localStorage.getItem('masterId');
+    }
+    this.api.getFarmerCropSowingDetails(data).subscribe(response => {
       console.log(response);
       this.cropSowingData = response;
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
+  getMarkatableQuantityMeasurements(){
+    this.commonService.getMarkatableQuantityMeasurements().subscribe(response => {
+      console.log(response);
+      //this.msQuantityPercentage = response;
+      this.msQuantityPercentage = 20;
     },
       err => {
         console.log(err)
@@ -181,9 +204,12 @@ export class CropShowingDetailsComponent implements OnInit {
   addSowingDetails(){
     this.submitted = true;
     // stop here if form is invalid
-    console.log(this.cropSowingForm);
-    if (this.cropSowingForm.invalid ) {
-        this.sowingError = true;
+    this.sowingError = false;
+    if(this.cropSowingForm.controls.list.status == 'INVALID'){
+      this.sowingError = true;
+    }
+
+    if (this.cropSowingForm.invalid) {
         return;
     }
 
@@ -201,8 +227,30 @@ export class CropShowingDetailsComponent implements OnInit {
     );
   }
 
+  checkMQ(i){
+    var mq = (120 * this.cropSowingForm.value.list[i]['actualYield']) / 100;
+    this.mqError = false;
+    if(this.cropSowingForm.value.list[i]['marketableQuantity'] > mq){
+      this.mqError = true;
+      return true;
+    }
+    return false;
+  }
+
+  reset(){
+    this.submitted = false;
+    this.cropSowingForm.reset();
+    this.sowingError = false;
+  }
+
+
   editCropSowingDetails(data, content){
     console.log(data);
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
     this.getVarieties(data.crop_master_id);
     this.cropSowingUpdateForm  = this.formBuilder.group({
       farmerId: [data.farmer_id, [Validators.required]],
@@ -225,11 +273,6 @@ export class CropShowingDetailsComponent implements OnInit {
         verietyRef:data.veriety_ref
       });
     }, 2000);
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
   }
 
   updateSowingDetails(){
@@ -287,5 +330,21 @@ export class CropShowingDetailsComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  sortOrder(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
+
+  }
+  onInputSearch() {
+    this.currentPage = 1;
+  }
+
+  get formControls(){
+    return this.cropSowingForm.controls;
   }
 }

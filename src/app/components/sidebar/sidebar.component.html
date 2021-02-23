@@ -306,12 +306,6 @@
               {{'Crop Showing Details' | translate}}
             </a>
           </li>
-          <li *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_FARMER'" class=" nav-item">
-            <a routerLinkActive="active" [routerLink]="['fpo/production-details']" class="nav-link">
-              <i class="fa fa-university text-white"></i>
-              {{'Production Details' | translate}}
-            </a>
-          </li>
           <li *ngIf="userRole == 'ROLE_FPC'" class=" nav-item">
             <a routerLinkActive="active" [routerLink]="['/userDetails']" class="nav-link">
               <i class="fa fa-plus-square text-white"></i>
