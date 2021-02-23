@@ -1,12 +1,12 @@
 <!-- Full Page Image Header with Vertically Centered Content -->
-<div class="title">
+<div class="title d-none">
   <ol class="breadcrumb  mb-0">
     <li><a class="mx-1 text-upfpo px-1" routerLink="">{{'Home' | translate}}</a> /</li>
     <li><a class="mx-1 text-upfpo px-1" role="button"> {{'Search' | translate}} </a></li>
 
   </ol>
 </div>
-<header class="masthead">
+<!-- <header class="masthead">
   <div class="container h-100">
     <div class="row h-100 pt-5 align-items-center">
       <div class="col-12 mt-5 text-center">
@@ -39,13 +39,36 @@
       </div>
     </div>
   </div>
-</header>
+</header> -->
 
 
 <!-- Page Content -->
-<section class="py-5 containerMain">
+<section class="py-3 containerMain">
   <div class="container">
-    <div class="d-flex p-2 ">
+    <div class="row mb-3 d-flex justify-content-center">
+      <div class="col-9">
+        <div class="d-flex mx-5  align-items-end justify-content-center" style="border: solid;">
+          <div class="dropdown d-inline searchDropDown">
+            <select class="btn d-inline btn-default search-btn dropdown-toggle" id="searchin" name="Searchin"
+              [(ngModel)]="parsearchType" style="width: 100%;border-right: solid;border-radius: 0;">
+              <option value="any">{{'Any' | translate }}</option>
+              <option value="crop">{{'Crop' | translate }}</option>
+              <option value="district">{{'District1' | translate }}</option>
+              <option value="fpo_name">{{'FPO' | translate }}</option>
+              <option value="services">{{'Services/ Products' | translate }}</option>
+            </select>
+          </div>
+          <input type="text" class="form-control d-inline search-text" name="topsearch" [(ngModel)]="dummysearchval"
+            style="border-radius: 0;" id="exampleFormControlInput1" placeholder="{{'searchplaceholder' |translate}}">
+
+          <button class="btn d-inline btn-block btn-product-search active search-btn" role="button" aria-pressed="true"
+            style="border-radius: 0;" (click)="newSearchWithFilters()" [disabled]="dummysearchval.length==0">{{'Search' |
+            translate }}</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="d-flex p-2 ">
       <button class="btn btn-sm btn-primary btn-product-search" (click)="sampleNavigate()">{{'Back' | translate
         }}</button>
     </div>
@@ -58,9 +81,10 @@
           ({{chipitem.type}})</div>
       </div>
       <div class="d-inline-block" *ngIf="selectedfilters.length > 0">
-      <button class="btn btn-sm my-1 mx-2 btn-product-search btn-danger" (click)="clearFilters()"><span class="text-xsm">{{'clearfilter' | translate}}</span></button>
+        <button class="btn btn-sm my-1 mx-2 btn-product-search btn-danger" (click)="clearFilters()"><span
+            class="text-xsm">{{'clearfilter' | translate}}</span></button>
       </div>
-    </div>
+    </div> -->
     <div class="row">
       <div class="col-md-3">
         <div class="card">
@@ -215,9 +239,8 @@
               <div class="filterDistrict">
                 <form>
                   <label class="form-check" *ngFor="let fpo of fpolist">
-                    <input class="form-check-input" type="checkbox" [value]="fpo.fpolist"
-                      [name]="fpo.fpoName" [(ngModel)]="fpo.is_active"
-                      (change)="selectFpo(fpo)">
+                    <input class="form-check-input" type="checkbox" [value]="fpo.fpolist" [name]="fpo.fpoName"
+                      [(ngModel)]="fpo.is_active" (change)="selectFpo(fpo)">
                     <span class="form-check-label">
                       {{fpo.fpoName}}
                     </span>
@@ -241,7 +264,7 @@
               </div> <!-- card-body.// -->
             </div>
           </article> <!-- card-group-item.// -->
-          
+
           <!-- <article class="card-group-item">
           <header class="card-header">
             <h3 class="title">{{'Services/ Products' | translate }} </h3>
@@ -281,6 +304,7 @@
       </div>
       <div class="col-md-9">
         <div class="row">
+
           <ng-template #customLoadingTemplate>
             <!-- <div class="custom-class">
                   <h3>
@@ -299,132 +323,54 @@
         </div>
 
         <div class="row">
-
-          <div class="col-md-6" *ngFor="let product of serachProduct | paginate: { itemsPerPage: 10, currentPage: p }">
-            <div class="card mb-3" style="max-width: 540px;">
-              <div class="row no-gutters">
-                <div class="row" routerLink="/fpo-details/{{product.id}}" style="cursor: pointer;">
-
-                  <div class="col-md-4 mb-2">
-                    <!-- <img src="assets/img/onion.jpeg" class="card-img" alt="..."> -->
-                    <img src="assets/icons/cropplaceholder.jpg" class="card-img" alt="...">
+          <div class="col-lg-6 mb-4"
+            *ngFor="let product of serachProduct | paginate: { itemsPerPage: 10, currentPage: p }">
+            <div class="card card-stats box_shadow card_2">
+              <h1>{{product.nodal}}</h1>
+              <div class="row">
+                <div class="col-lg-4 col-sm-4">
+                  <div class="gray_color1 d-flex justify-content-center">
+                    <img src="assets/icons/cropplaceholder.jpg">
                   </div>
-                  <div class="col-md-8 mb-2">
-                    <a>
-                      <div class="card-body">
-                        <!-- <h4 class="card-title">FPO</h4> -->
-                        <p class="card-text"><a routerLink="/fpo-details/{{product.id}}">{{product.nodal}}</a></p>
+                </div>
+                <div class="col-lg-8 col-sm-8">
+                  <div class="row">
+                    <div class="col-md-12">
+
+                      <div class="mcq">
+                        <ul>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Crop Name:
+                            </span> {{product.crops}}
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Crop Veriety:
+                            </span> {{product.cropVeriety}}
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> District:
+                            </span> {{product.district}}
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Marketable Surplus:
+                            </span> {{product.marketableSurplus}}
+                            {{'quintal' | translate }}
+                          </li>
+                        </ul>
                       </div>
-                    </a>
-
-                  </div>
-                  <div class="col-md-6 mb-2">
-                    <div class="card-body p-0">
-                      <!-- <h4 class="card-title">Crop</h4> -->
-                      <p class="card-text" *ngIf="product.crops">{{product.crops}}</p>
-                      <p class="card-text" *ngIf="!product.crops">NA</p>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-2">
-                    <div class="card-bod p-0">
-                      <!-- <h4 class="card-title">Crop Variety</h4> -->
-                      <p class="card-text" *ngIf="product.cropVeriety">{{product.cropVeriety}}</p>
-                      <p class="card-text" *ngIf="!product.cropVeriety">NA</p>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-2">
-                    <div class="card-body p-0">
-                      <!-- <h4 class="card-title">District</h4> -->
-                      <p class="card-text" *ngIf="product.district">{{product.district}}</p>
-                      <p class="card-text" *ngIf="!product.district">NA</p>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-2">
-                    <div class="card-body p-0">
-                      <!-- <h4 class="card-title">Marketable Surplus</h4> -->
-                      <p class="card-text" *ngIf="product.marketableSurplus">{{product.marketableSurplus}} {{'quintal' | translate }}</p>
-                      <p class="card-text" *ngIf="!product.marketableSurplus">NA</p>
                     </div>
                   </div>
                 </div>
-                <div class="row w-100">
-                  <div class="col-md-8">
-                    <!-- <h4 class="mt-1">Actually Produced Quantity</h4> -->
-                    <!-- <p class="card-text" *ngIf="product.actualProduction">{{product.actualProduction}}</p>
-                  <p class="card-text" *ngIf="!product.actualProduction">NA</p> -->
-                    <button href="javascript:void(0)" (click)="open($event,mymodal,product)"
-                      class="btn btn-sm btn-primary btn-product-search">{{'createindent' | translate }}</button>
-                  </div>
-
-                  <div class="col-md-4 text-right">
-                    <button href="javascript:void(0)" (click)="open(mymodal)"
-                      class="btn btn-sm btn-primary btn-product-search" [disabled]="true">{{'viewdetails' | translate}}</button>
-                  </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-12 d-flex justify-content-between">
+                  <button class="mx-0 mr-3 btn btn-sm btn-primary" (click)="open($event,mymodal,product)" type="button"
+                    style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
+                  <button class="mx-0 btn btn-sm btn-success"
+                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
                 </div>
               </div>
             </div>
-
-
-            <!--<div class="col-md-12"><h3>Horizontal Products:</h3></div>
-          <div class="col-md-12 horizontal-product">
-            <div class="card mb-3">
-              <div class="row no-gutters">
-                <div class="col-md-3 mb-2">
-                  <img src="assets/img/onion.jpeg" class="card-img" alt="...">
-                </div>
-                <div class="col-md-5 mb-2">
-                  <div class="card-body">
-                    <h4 class="card-title">FPO Name</h4>
-                    <p class="card-text">Pune, Maharashtra, India - 4220299</p>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <h4 class="mt-1">Quantity: 450 Kg</h4>
-                  <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-12 horizontal-product">
-            <div class="card mb-3">
-              <div class="row no-gutters">
-                <div class="col-md-3 mb-2">
-                  <img src="assets/img/onion2.jpeg" class="card-img" alt="...">
-                </div>
-                <div class="col-md-5 mb-2">
-                  <div class="card-body">
-                    <h4 class="card-title">FPO Name</h4>
-                    <p class="card-text">Pune, Maharashtra, India - 4220299</p>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <h4 class="mt-1">Quantity: 450 Kg</h4>
-                  <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-12 horizontal-product">
-            <div class="card mb-3">
-              <div class="row no-gutters">
-                <div class="col-md-3 mb-2">
-                  <img src="assets/img/onion3.jpeg" class="card-img" alt="...">
-                </div>
-                <div class="col-md-5 mb-2">
-                  <div class="card-body">
-                    <h4 class="card-title">FPO Name</h4>
-                    <p class="card-text">Pune, Maharashtra, India - 4220299</p>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <h4 class="mt-1">Quantity: 450 Kg</h4>
-                  <a href="javascript:void(0)" (click)="open(mymodal)" class="btn btn-sm btn-primary btn-product-search">Send Enquiry</a>
-                </div>
-              </div>
-            </div>
-          </div>-->
           </div>
         </div>
         <div class="card-footer py-4">
@@ -443,67 +389,69 @@
     </div>
 
     <ng-template #mymodal let-modal>
-      
+
       <div *ngIf="isLoggeIn">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
-          <button type="button" class="close" aria-label="Close" [disabled]="indentloading" (click)="modal.dismiss('Cross click')">
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+            (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body mt-1 pt-1" *ngIf="!indentForm || indentloading">
-         <div class="loader-container">
-          <ngx-loading [show]="!indentForm || indentloading" [config]="{backdropBackgroundColour: '#ffffff', 
+          <div class="loader-container">
+            <ngx-loading [show]="!indentForm || indentloading" [config]="{backdropBackgroundColour: '#ffffff', 
           backdropBorderRadius: '1px',
           primaryColour: '#926E01', 
           secondaryColour: '#926E01', 
-          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>  
-        </div>
-          
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+          </div>
+
         </div>
         <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && indentcreated">
-          <div class="d-flex w-100 align-items-center justify-content-center">  <img class="suc-img" src="assets/image/img/successsubmit.png"></div>
-          <div class="d-flex w-100 align-items-center justify-content-center mt-2 text-sm"> <strong>{{ 'indentsucessmessage' | translate:{id:indentid} }}</strong> </div>
-          <div class="d-flex w-100 align-items-center justify-content-center mt-5 text-sm"><button (click)="closeModal()" class="btn btn-sm mt-5 btn-product-search" >{{'ok' | translate }}</button></div>
+          <div class="d-flex w-100 align-items-center justify-content-center"> <img class="suc-img"
+              src="assets/image/img/successsubmit.png"></div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-2 text-sm">
+            <strong>{{ 'indentsucessmessage' | translate:{id:indentid} }}</strong> </div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-5 text-sm"><button
+              (click)="closeModal()" class="btn btn-sm mt-5 btn-product-search">{{'ok' | translate }}</button></div>
         </div>
 
         <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
           <form role="form mt-1 p-1" [formGroup]="indentForm">
             <div class="row">
-            <div class="col-3 text-sm text-bold">{{'FPO Name'| translate}}:</div>
-            <div class="col-9 text-sm">{{fpoDetail.fpoName}}</div>
+              <div class="col-3 text-sm text-bold">{{'FPO Name'| translate}}:</div>
+              <div class="col-9 text-sm">{{fpoDetail.fpoName}}</div>
             </div>
             <div class="row">
               <div class="col-3 text-sm text-bold">{{'FPO Email1'|translate}}:</div>
               <div class="col-9 text-sm ">{{fpoDetail.fpoEmail}}</div>
-              </div>
+            </div>
             <div class="form-group mb-3">
-              
-               
+
+
               <!-- <label class="form-control-label" for="input-username">{{'FPO Name'| translate}}<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
                 <input class="form-control" placeholder="Full Name" disabled type="text" formControlName="fpoName">
               </div> -->
-             
-             
+
+
             </div>
             <div class="form-group mb-3">
-               
+
               <!-- <label class="form-control-label" for="input-username">{{'FPO Email1'|translate}}<span class="required">*</span></label>
               <div class="input-group input-group-alternative">
                 <input class="form-control" placeholder="Email" disabled type="text"  formControlName="fpoEmail">
               </div> -->
-            
+
             </div>
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'Fulfillment Date' | translate }}<span class="required">*</span></label>
+              <label class="form-control-label" for="input-username">{{'Fulfillment Date' | translate }}<span
+                  class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input type="text"
-                       placeholder="{{'Date'|translate}}"
-                       class="form-control"
-                       [minDate]="getToday()"
-                       bsDatepicker
-                       [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }" formControlName="fulfillmentDate">
+                <input type="text" placeholder="{{'Date'|translate}}" class="form-control" [minDate]="getToday()"
+                  bsDatepicker [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }"
+                  formControlName="fulfillmentDate">
               </div>
               <div *ngIf="submitted && formControls.fulfillmentDate.errors" class="text-danger mt-1 text-xsm">
                 <div *ngIf="formControls.fulfillmentDate.errors.required">{{'date is required'| translate}}</div>
@@ -513,9 +461,11 @@
               <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span
                   class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text" formControlName="quantity">
+                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text"
+                  formControlName="quantity">
               </div>
-              <div *ngIf="!submitted && formControls.quantity.touched && formControls.quantity.errors" class="text-danger mt-1 text-xsm">
+              <div *ngIf="!submitted && formControls.quantity.touched && formControls.quantity.errors"
+                class="text-danger mt-1 text-xsm">
                 <div *ngIf="formControls.quantity.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
               </div>
               <div *ngIf="submitted && formControls.quantity.errors" class="text-danger mt-1 text-xsm">
@@ -526,7 +476,7 @@
 
             <div class="form-group mb-3">
               <label class="form-control-label" for="input-delivery">{{'fpodeliveryaddr'|translate}}<span
-                class="required">*</span> </label>
+                  class="required">*</span> </label>
               <div class="input-group input-group-alternative">
                 <textarea class="form-control" id="input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"
                   formControlName="fpoDeliveryAddress"></textarea>
@@ -539,7 +489,8 @@
 
 
             <div class="text-center">
-              <button type="submit" [disabled] = "!indentForm.valid" class="btn btn-login btn-product-search btn-primary my-4"(click)="save()">{{'Send'|translate}}</button>
+              <button type="submit" [disabled]="!indentForm.valid"
+                class="btn btn-login btn-product-search btn-primary my-4" (click)="save()">{{'Send'|translate}}</button>
             </div>
           </form>
         </div>

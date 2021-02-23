@@ -133,3 +133,17 @@ input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="date"]::-webkit-inner-spin-button {
   display: none;
 }
+.box_shadow{ box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);}
+.card_2{ background-color: #fff; padding: 20px;}
+.card_2 > h1{ font-size: 1rem; color: #4d575d; border-bottom: 1px solid rgba(0, 0, 0, 0.125); padding-bottom: 10px;}
+.card_2 > p{ font-size: 14px; color: #606262;}
+.gray_color1{ padding: 0rem 0rem; background-color: #fff; margin-top: 10px; border-radius: 3px;}
+.gray_color1 > img{ width: 100%; height: 135px; max-width: 180px;border: 1px solid #d4720d;}
+.mcq{ width: 100%; float: left;}
+.mcq > ul{ list-style-type: none; margin: 8px 0px 0px; padding: 0px 0px; width: 100%; float: left;}
+.mcq > ul > li > span{ font-weight: 500; color: #606262; font-size: 0.9rem; width: 100%;}
+.mcq > ul > li{ float: left; width: 100%; font-size: 0.8rem; font-weight: 400; color: #606262; border-bottom: 1px solid #f9f9f9; padding: 7px 0px;}
+.mcq > ul > li:last-child{border-bottom: none;}
+.mcq > ul > li > a{ font-size: 0.8rem; font-weight: 400; color: #606262; margin: 0px 20px 0px 0px;}
+.mcq > ul > li > a > span{ margin-right: 3px;}
+.mcq_txt{ font-size: 0.9rem; font-weight: 500; color: #606262; margin-top: 5px; margin-bottom: 5px;}

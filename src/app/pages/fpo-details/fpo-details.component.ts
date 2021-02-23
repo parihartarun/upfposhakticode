@@ -216,7 +216,7 @@ export class FpoDetailsComponent implements OnInit {
     let graphdetailsrabi = [];
     let graphdetailszayad = [];
     let graphdetailskhalif = [];
-    
+
 
     console.log(this.fpoId, "id");
 
@@ -237,7 +237,6 @@ export class FpoDetailsComponent implements OnInit {
             }
           ]
           graphdetailsrabi.push(obj);
-          console.log(graphdetailsrabi, "rabi");
 
         }
         else if (element.season_name == "Zayad") {
@@ -252,7 +251,6 @@ export class FpoDetailsComponent implements OnInit {
             }
           ]
           graphdetailszayad.push(obj);
-          console.log(graphdetailszayad, "zayad")
         }
 
         else if (element.season_name == "Kharif") {

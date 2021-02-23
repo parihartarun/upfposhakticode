@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../_services/auth/auth.service';
 import { FpoService } from '../../_services/fpo/fpo.service';
 import { ProductService } from '../../_services/product/product.service';
+import { FpoSearchService } from 'src/app/_services/fpo/fpo-search.service';
 
 @Component({
   selector: 'app-products-list',
@@ -123,7 +124,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
   indentForm: FormGroup;
 
-  constructor(private modalService: NgbModal, private _rouetr: Router, private _productService: ProductService, private _activatedroute: ActivatedRoute,
+  constructor(private modalService: NgbModal,
+    public fpoSearchService: FpoSearchService, private _rouetr: Router, private _productService: ProductService, private _activatedroute: ActivatedRoute,
     private api: AuthService, private _fpoService: FpoService, private fb: FormBuilder, private datePipe: DatePipe, private toastr: ToastrService) { }
   ngAfterViewInit(): void {
     this.treeloaded = false;
@@ -194,7 +196,13 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   }
   ngOnInit() {
 
-
+    this._activatedroute.params.subscribe(param => {
+      if (param) {
+        this.parval = param.val;
+        this.parsearchType = param.searchType;
+        this.fpoSearchService.getDistrictBystateId(this.parval, this.parsearchType);
+      }
+    });
 
 
     this.api.getDistrictBystateId(9).subscribe(d => {
@@ -243,8 +251,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       let val = params.get('val');
       let searchType = params.get('searchType');
       this.dummysearchval = params.get('val');
-      this.parval = params.get('val');
-      this.parsearchType = params.get('searchType');
+      // this.parval = params.get('val');
+      // this.parsearchType = params.get('searchType');
       this.loading = true;
       this._productService.getSearchProduct(val, searchType).subscribe(s => {
         this.serachProduct = s;
