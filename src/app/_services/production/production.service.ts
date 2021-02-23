@@ -19,11 +19,6 @@ export class ProductionService {
   }
 
   getFarmerCropSowingDetails(data) {
-    // this.http.get<any>(this._url + 'fpoCropSowing/getFarmerCropSowingDetails/', data).subscribe((res: any) => {
-    //   if (res) {
-    //     this.cropSowingData.next(res);
-    //   }
-    // })
     return this.http.post<any>(this._url + 'fpoCropSowing/getFarmerCropSowingDetails/', data).pipe(map((res: any) => {
       return res;
     }));
