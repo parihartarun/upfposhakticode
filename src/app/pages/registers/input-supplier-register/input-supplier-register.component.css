@@ -26,5 +26,15 @@ input[type=number] {
   width: 50%;
   margin: 0px auto;
 }
-
+.categorydeals input {
+  width: 20px;
+  height: 20px;
+}
+.categorydeals span{
+  margin-left: 2%;
+  line-height: 31px;
+}
+.categorydeals .custom-control.custom-radio,.categorydeals input {
+  cursor: pointer
+}
 
