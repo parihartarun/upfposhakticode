@@ -37,4 +37,12 @@ input[type=number] {
 .categorydeals .custom-control.custom-radio,.categorydeals input {
   cursor: pointer
 }
+.category {
+    float:left;
+    width:50%;
+}
+.categoryRight {
+  float: right;
+  width: 50%;
+}
 
