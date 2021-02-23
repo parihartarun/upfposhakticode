@@ -290,7 +290,7 @@ export class FpoService {
       return res;
     }));
   };
-
+  
   addPhotograph(data: any) {
     return this.http.post<any>(this._url + 'photo', data).pipe(map((res: any) => {
       return res;
@@ -561,6 +561,16 @@ export class FpoService {
   getfarmerDetailfromUpardarshi(id) {
     return this.http.get<any>(this._url + 'upagri/getUpAgriArea/' + id);
   }
+
+
+  getgraphDetails(masterId)
+  {
+    return this.http.get<any>(this._url + 'api/fpos/graphdetail/' + masterId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+
 }
 
 

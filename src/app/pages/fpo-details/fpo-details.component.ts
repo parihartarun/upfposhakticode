@@ -64,6 +64,7 @@ export class FpoDetailsComponent implements OnInit {
   productiondata = []
   productionColumn = [];
   fpoColumn = [];
+  graphdetailsrabi: any;
   constructor(private modalService: NgbModal,
     public getTranslationService: GetTranslationService,
     private api: FpoService, private _activatedroute: ActivatedRoute) { }
@@ -92,19 +93,8 @@ export class FpoDetailsComponent implements OnInit {
       this.api.getById(fpoId).subscribe(response => {
         this.data1 = response;
       });
-
-      // this.api.getAdditionServiceById(fpoId).subscribe(response => {
-      //   //  alert("addiational"+JSON.stringify(response));
-      //   this.additionalservice = response;
-      // });
-
-      // this.api.getBoardMemberById(fpoId).subscribe(response => {
-      //   this.boardMember = response;
-      //   //alert("boardMember"+JSON.stringify(this.boardMember));  
-
-      // });
-
     });
+
     this.getFpoPhohto();
   }
   async setColumnHeader() {
@@ -165,17 +155,7 @@ export class FpoDetailsComponent implements OnInit {
     });
   }
 
-getproductetails(){
-  this.api.getproductiondetail(this.fpoId).subscribe((res)=>{
-    console.log(res,"productiondata")
 
-
-    if(res){
-    this.productiondata = res;
-
-    }
-  })
-}
 
   getFarmMachineryBankByFpo() {
     this.api.getFarmMachineryBankByFpo(this.fpoId).subscribe((res: any) => {
@@ -213,118 +193,95 @@ getproductetails(){
       return `with: ${reason}`;
     }
   }
-  setGraphData() {
-    this.multi = [
-      {
-        graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Rabi season (in Qt.)`,
-        graphDetails: [
-          {
-            "name": "Gram",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 3500
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
 
-          {
-            "name": "Lentil",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 1000
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
 
-          {
-            "name": "Wheat",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 7000
-              },
-              {
-                "name": "Sold",
-                "value": 3000
-              }
-            ]
-          }
-        ]
-      },
-      {
-        graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Zayad season (in Qt.)`,
-        graphDetails: [
-          {
-            "name": "Moong",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 950
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-        ]
-      },
-      {
-        graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Kharif season (in Qt.)`,
-        graphDetails: [
-          {
-            "name": "Moong",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 450
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
 
-          {
-            "name": "Soyabean",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 8400
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Urad",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 4300
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          }
-        ]
+  getproductetails() {
+    this.api.getproductiondetail(this.fpoId).subscribe((res) => {
+      console.log(res, "productiondata")
+      if (res) {
+        this.productiondata = res;
       }
-    ]
+    })
+
+    // this.graphdetailsrabi = res
+
   }
+
+
+
+  setGraphData() {
+    let graphdetailsrabi = [];
+    let graphdetailszayad = [];
+    let graphdetailskhalif = []
+
+    this.api.getgraphDetails(this.fpoId).subscribe((res) => {
+      res.forEach(element => {
+        if (element.season_name == "Rabi") {
+          let obj = {
+            name: element.crop_name,
+            series: []
+          }
+          obj.series = [
+            {
+              name: element.crop_name,
+              value: element.total_markatable
+            }
+          ]
+          graphdetailsrabi.push(obj);
+        }
+
+       else if (element.season_name == "Zayad") {
+          let obj = {
+            name: element.crop_name,
+            series: []
+          }
+          obj.series = [
+            {
+              name: element.crop_name,
+              value: element.total_markatable
+            }
+          ]
+          graphdetailszayad.push(obj);
+        }
+
+        else {
+          let obj = {
+            name: element.crop_name,
+            series: []
+          }
+          obj.series = [
+            {
+              name: element.crop_name,
+              value: element.total_markatable
+            }
+          ]
+          graphdetailskhalif.push(obj);
+        }
+
+      });
+
+
+
+      this.multi = [
+        {
+
+          graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Rabi season (in Qt.)`,
+          graphDetails: graphdetailsrabi
+        },
+        {
+          graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Zayad season (in Qt.)`,
+          graphDetails: graphdetailszayad
+        },
+        {
+          graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Kharif season (in Qt.)`,
+          graphDetails: graphdetailskhalif
+        }
+      ]
+
+    });
+
+  }
+
+
 }
