@@ -284,8 +284,8 @@ export class LandDetailsComponent implements OnInit {
     }
   }
   selectFarmer(farmer) {
-    //let registrationNumber = this.landDetailForm.controls['registrationNumber'].setValue(farmer.currentTarget.value);    
-    //this.getFarmerDetailFarmerformUpPardarshi(registrationNumber);
+    let registrationNumber = this.landDetailForm.controls['registrationNumber'].setValue(farmer.currentTarget.value);    
+    this.getFarmerDetailFarmerformUpPardarshi(registrationNumber);
   }
   fetchDetail(farmer) {
     //let registrationNumber = this.landDetailForm.controls['registrationNumber'];
