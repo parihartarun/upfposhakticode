@@ -1,0 +1,35 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - upfposhaktidev
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@master
+
+    - uses: azure/docker-login@v1
+      with:
+        login-server: https://contregistryupfpodev.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_ca14cb3ce39245659c7f099fda5401c3 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_a238955195aa43d99dbb7fa4c8fb389d }}
+
+    - run: |
+        docker build . -t contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ca14cb3ce39245659c7f099fda5401c3 }}/upfposhaktidev-img:${{ github.sha }}
+        docker push contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ca14cb3ce39245659c7f099fda5401c3 }}/upfposhaktidev-img:${{ github.sha }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'upfposhaktidev'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_50cb06f830f6484c87a574684cafda2c }}
+        images: 'contregistryupfpodev.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ca14cb3ce39245659c7f099fda5401c3 }}/upfposhaktidev-img:${{ github.sha }}'
