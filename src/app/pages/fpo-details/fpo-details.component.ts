@@ -61,6 +61,7 @@ export class FpoDetailsComponent implements OnInit {
   storageUnitCol = [];
   licenseColumn = [];
   machinaryBColumn = [];
+  productiondata = []
   productionColumn = [];
   fpoColumn = [];
   constructor(private modalService: NgbModal,
@@ -73,6 +74,7 @@ export class FpoDetailsComponent implements OnInit {
       this.fpoId = param.id;
       this.getAllByFpo();
       this.getFarmMachineryBankByFpo();
+      this.getproductetails();
     });
     this.setColumnHeader();
     this.setGraphData();
@@ -132,10 +134,10 @@ export class FpoDetailsComponent implements OnInit {
       { key: 'equpment_no', title: 'No Of Equipment' },
     ];
     this.productionColumn = [
-      { key: 'cropRefName', title: 'Crops' },
-      { key: 'cropType', title: 'Crop Variety' },
-      { key: 'marketableSurplus', title: 'Marketable Surplus 2021 (In Qt.)' },
-      { key: 'd', title: 'SOLD QUANTITY 2021 (IN QT.)' },
+      { key: 'crop_name', title: 'Crops' },
+      { key: 'season_name', title: 'Season' },
+      { key: 'total_markatable', title: 'Marketable Surplus 2021 (In Qt.)' },
+      { key: 'total_sold', title: 'SOLD QUANTITY 2021 (IN QT.)' },
     ];
     this.fpoColumn = [
       { key: 'fpoName', title: 'FPO Name' },
@@ -158,9 +160,23 @@ export class FpoDetailsComponent implements OnInit {
     this.api.getAllStorageUnitByFpo(this.fpoId).subscribe((res: any) => {
       if (res) {
         this.coldStorage = res;
+        console.log(this.coldStorage);
       }
     });
   }
+
+getproductetails(){
+  this.api.getproductiondetail(this.fpoId).subscribe((res)=>{
+    console.log(res,"productiondata")
+
+
+    if(res){
+    this.productiondata = res;
+
+    }
+  })
+}
+
   getFarmMachineryBankByFpo() {
     this.api.getFarmMachineryBankByFpo(this.fpoId).subscribe((res: any) => {
       if (res) {

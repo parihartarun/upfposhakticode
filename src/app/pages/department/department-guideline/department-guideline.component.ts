@@ -14,6 +14,7 @@ export class DepartmentGuidelineComponent implements OnInit {
   checkfileFormat = false;
   guideLineList = this.departmentService.guideLineList.asObservable();
   fileToUpload: File = null;
+  fileToHindiUpload: File = null;
   guidelineForm: FormGroup;
   id = null;
   isEdit = false;
@@ -25,7 +26,9 @@ export class DepartmentGuidelineComponent implements OnInit {
   isfile: boolean = false;
   ishindi: boolean = false;;
   isenglish: boolean = false;;
-  isboth: boolean = false;;
+  isboth: boolean = false;
+  docRadio = '';
+  fileRadio = '';
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, public departmentService: DepartmentService) { }
 
   ngOnInit(): void {
@@ -47,7 +50,7 @@ export class DepartmentGuidelineComponent implements OnInit {
       h_file: [''],
       description: ['', [Validators.required]],
       hindi_desc: [''],
-      url:[''],
+      url: [''],
       guideline_type: ['', [Validators.required]],
       // masterId: localStorage.getItem('masterId'),
 
@@ -85,6 +88,19 @@ export class DepartmentGuidelineComponent implements OnInit {
       this.checkfileFormat = false;
     }
   }
+  uploadHindi(files: FileList) {
+    this.fileToHindiUpload = files.item(0);
+    if (!this.validateFile(files[0].name)) {
+      this.checkfileFormat = true;
+      this.fileToHindiUpload = null;
+      this.guidelineForm.controls['file'].setValue('');
+      return;
+    }
+    else {
+
+      this.checkfileFormat = false;
+    }
+  }
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
     if (ext.toLowerCase() == 'xlsx' || ext.toLowerCase() == "xls" || ext.toLowerCase() == "pdf" || ext.toLowerCase() == "doc" || ext.toLowerCase() == "docx") {
@@ -95,42 +111,8 @@ export class DepartmentGuidelineComponent implements OnInit {
     }
   }
 
-  changetype(e)
-  {
-    //  console.log(e);
-     if(e == 'url')
-     {
-       this.isurl = true;
-       this.isfile=false;
-     }
-     else{
-     this.isurl = false;
-     this.isfile=true;
-     }
-  }
 
 
-  changefiletype(e)
-  {
-    console.log(e);
-     if(e == 'hindi_upload')
-     {
-        this.ishindi = true;
-        this.isenglish = false;
-       
-     }
-     else if(e == 'english_upload')
-     {
-      this.ishindi = false;
-      this.isenglish = true;
-      
-     }
-     else{
-      this.ishindi = true;
-      this.isenglish = true;
-     
-     }
-  }
 
   addGuideline() {
     this.guidelineForm.markAllAsTouched();
@@ -138,9 +120,9 @@ export class DepartmentGuidelineComponent implements OnInit {
       const formData: FormData = new FormData();
       // formData.append('file', this.fileToUpload);
       formData.append('file', this.fileToUpload);
-      formData.append('h_file', this.guidelineForm.value.h_file);
-       formData.append('hindi_desc', this.guidelineForm.value.hindi_desc);
-       formData.append('description', this.guidelineForm.value.description);
+      formData.append('h_file', this.fileToHindiUpload);
+      formData.append('hindi_desc', this.guidelineForm.value.hindi_desc);
+      formData.append('description', this.guidelineForm.value.description);
       formData.append('guideline_type', this.guidelineForm.value.guideline_type);
       formData.append('url', this.guidelineForm.value.url);
 
@@ -150,11 +132,28 @@ export class DepartmentGuidelineComponent implements OnInit {
   }
   editGuideline(data) {
     this.guidelineForm.get('guideline_type').patchValue(data.fpoGuidelineType);
-    this.guidelineForm.get('description').patchValue(data.description);
     this.guidelineForm.get('file').patchValue(data.file);
     this.guidelineForm.get('h_file').patchValue(data.h_file);
-    this.guidelineForm.get('hindi_desc').patchValue(data.hindi_desc);
-    this.guidelineForm.get('url').patchValue(data.url);
+    if (data.url) {
+      this.guidelineForm.get('url').patchValue(data.url);
+      this.docRadio = 'url';
+    } else {
+      this.docRadio = 'file';
+      if (data.description && data.hindiDescription) {
+        this.guidelineForm.get('hindi_desc').patchValue(data.hindiDescription);
+        this.fileRadio = 'both';
+        this.guidelineForm.get('description').patchValue(data.description);
+      } else if (data.description) {
+        this.guidelineForm.get('description').patchValue(data.description);
+        this.fileRadio = 'english_upload';
+      } else if (data.hindiDescription) {
+        this.guidelineForm.get('description').patchValue(data.description);
+        this.fileRadio = 'hindi_upload';
+
+      }
+
+    }
+
 
     // this.guidelineForm.get('document').patchValue(data.fileName);
     this.id = data.id;
@@ -173,8 +172,11 @@ export class DepartmentGuidelineComponent implements OnInit {
   updateGuideline() {
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
+    formData.append('h_file', this.fileToHindiUpload);
+    formData.append('hindi_desc', this.guidelineForm.value.hindi_desc);
     formData.append('description', this.guidelineForm.value.description);
     formData.append('guideline_type', this.guidelineForm.value.guideline_type);
+    formData.append('url', this.guidelineForm.value.url);
     formData.append('id', this.id);
     this.departmentService.updateGuideline(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {

@@ -31,6 +31,13 @@ export class FpoService {
     }));
   }
 
+  getproductiondetail(masterId)
+  {
+    return this.http.get<any>(this._url + `api/fpos/productiondetail/` + masterId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   getChartDetails(masterId) {
     return this.http.get<any>(this._url + `api/fpo/dashboard/getAllFpoDashboardData?master_id=` + masterId).pipe(map((res: any) => {
       return res;
