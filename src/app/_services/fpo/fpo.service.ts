@@ -565,7 +565,7 @@ export class FpoService {
   }
 
 
-  getgraphDetails(masterId)
+  getverticalgraph(masterId)
   {
     return this.http.get<any>(this._url + 'api/fpos/graphdetail/' + masterId).pipe(map((res: any) => {
       return res;
