@@ -15,22 +15,21 @@ export class DepartmentSchemeComponent implements OnInit {
   myInputVariable: ElementRef;
   checkfileFormat = false;
   fileToUpload: File = null;
+  fileToHindiUpload: File = null;
   schemeForm: FormGroup;
   isEdit = false;
   id = null;
   orderBy: { order: string, key: string } = { order: '', key: '' };
   currentPage = 1;
   searchText = '';
+  docRadio = '';
+  fileRadio = '';
+
   constructor(private formBuilder: FormBuilder, public departmentService: DepartmentService, private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
     this.schemeForm = this.formBuilder.group({
-      // schemes_type: new FormControl(null, Validators.required),
-      // description: new FormControl(null, Validators.required),
-      // departmentName: new FormControl(null, Validators.required),
-      // document: new FormControl(null, Validators.required),
-      // url: new FormControl(null, Validators.required)
       file: [''],
       h_file: [''],
       description: ['', [Validators.required]],
@@ -49,7 +48,7 @@ export class DepartmentSchemeComponent implements OnInit {
     if (!this.validateFile(files[0].name)) {
       this.checkfileFormat = true;
       this.fileToUpload = null;
-      this.schemeForm.controls['document'].setValue('');
+      this.schemeForm.controls['file'].setValue('');
       return;
     }
     else {
@@ -57,6 +56,21 @@ export class DepartmentSchemeComponent implements OnInit {
       this.checkfileFormat = false;
     }
   }
+
+  uploadHindi(files: FileList) {
+    this.fileToHindiUpload = files.item(0);
+    if (!this.validateFile(files[0].name)) {
+      this.checkfileFormat = true;
+      this.fileToHindiUpload = null;
+      this.schemeForm.controls['hindi_desc'].setValue('');
+      return;
+    }
+    else {
+
+      this.checkfileFormat = false;
+    }
+  }
+
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
     if (ext.toLowerCase() == 'xlsx' || ext.toLowerCase() == "xls" || ext.toLowerCase() == "pdf" || ext.toLowerCase() == "doc" || ext.toLowerCase() == "docx") {

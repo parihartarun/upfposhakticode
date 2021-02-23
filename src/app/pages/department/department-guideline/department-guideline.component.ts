@@ -33,26 +33,12 @@ export class DepartmentGuidelineComponent implements OnInit {
 
   ngOnInit(): void {
     this.guidelineForm = this.formBuilder.group({
-      // guideline_type: new FormControl(null, Validators.required),
-      // description: new FormControl(null, Validators.required),
-      // document: new FormControl(null, Validators.required),
-      // url:new FormControl(null,Validators.required)
-
-      // file: new FormControl(null, Validators.required),
-      // h_file:new FormControl(null, Validators.required),
-      // description: new FormControl(null, Validators.required),
-      // hindi_desc: new FormControl(null, Validators.required),
-      // guideline_type: new FormControl(null, Validators.required),
-      // url: new FormControl(null, Validators.required),
-
-
       file: [''],
       h_file: [''],
       description: ['', [Validators.required]],
       hindi_desc: [''],
       url: [''],
       guideline_type: ['', [Validators.required]],
-      // masterId: localStorage.getItem('masterId'),
 
     });
     this.departmentService.getGuideline();
@@ -63,8 +49,8 @@ export class DepartmentGuidelineComponent implements OnInit {
       'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
       'key': key
     };
-
   }
+
   onInputSearch() {
     this.currentPage = 1;
   }
@@ -111,21 +97,16 @@ export class DepartmentGuidelineComponent implements OnInit {
     }
   }
 
-
-
-
   addGuideline() {
     this.guidelineForm.markAllAsTouched();
     if (this.guidelineForm.valid) {
       const formData: FormData = new FormData();
-      // formData.append('file', this.fileToUpload);
       formData.append('file', this.fileToUpload);
       formData.append('h_file', this.fileToHindiUpload);
       formData.append('hindi_desc', this.guidelineForm.value.hindi_desc);
       formData.append('description', this.guidelineForm.value.description);
       formData.append('guideline_type', this.guidelineForm.value.guideline_type);
       formData.append('url', this.guidelineForm.value.url);
-
       this.departmentService.addGuideline(formData);
       this.guidelineForm.reset();
     }
