@@ -54,7 +54,7 @@ export class FpoDetailsComponent implements OnInit {
   multi = [];
   goBackUrl = '';
   colorScheme = {
-    domain: ['blue', '#ca1a1a']
+    domain: ['#90EE90','#FFA07A']
   };
   pfoPhoto = [];
   boardMemCol: any = [];
