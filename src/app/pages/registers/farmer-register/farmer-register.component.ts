@@ -100,7 +100,8 @@ export class FarmerRegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       userFar: [],
       tnc: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      upBSMId: [""],
     }, {
       validator: MustMatch('password', 'confirmPassword'),
 

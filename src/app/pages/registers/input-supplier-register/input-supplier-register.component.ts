@@ -101,7 +101,8 @@ export class InputSupplierRegisterComponent implements OnInit {
       Fertilizer: [''],
       cide: [''],
       Equipment: [''],
-      isCategoryDealIn:[this.isCategoryDealIn],
+      isCategoryDealIn: [this.isCategoryDealIn],
+      categoryDeal:[],
       tnc: ['', Validators.required],
       categoryDealIn: [],
      
@@ -138,6 +139,7 @@ export class InputSupplierRegisterComponent implements OnInit {
     delete this.registerForm.value.userName;
     delete this.registerForm.value.confirmPassword;
     this.registerForm.value.userInputSeller = user;
+    this.registerForm.value.categoryDealIn = this.categoryDeals.toString();
     this.api.registerInputSupplier(this.registerForm.value).subscribe(response => {
 
       if (response.message == "SuccessFully Saved!") {
