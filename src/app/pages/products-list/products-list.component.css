@@ -126,7 +126,7 @@ a {
   background-color: #f8f9fe;
 }
 .filterDistrict {
-  max-height: 100px; 
+  max-height: 345px; 
   overflow-y: scroll;
 }
 input[type="date"]::-webkit-calendar-picker-indicator,
@@ -147,3 +147,13 @@ input[type="date"]::-webkit-inner-spin-button {
 .mcq > ul > li > a{ font-size: 0.8rem; font-weight: 400; color: #606262; margin: 0px 20px 0px 0px;}
 .mcq > ul > li > a > span{ margin-right: 3px;}
 .mcq_txt{ font-size: 0.9rem; font-weight: 500; color: #606262; margin-top: 5px; margin-bottom: 5px;}
+header > h3{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  padding-bottom: 10px;}
+  .search-bar {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: #b0bec5!important;
+    padding: 5px;
+  }
