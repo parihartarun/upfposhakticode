@@ -559,7 +559,7 @@ export class FpoService {
     return this.http.get<any>(this._url + 'photo/getPhotoByFpo/' + id);
   }
   getfarmerDetailfromUpardarshi(id) {
-    return this.http.get<any>('http://13.71.46.191:8085/fpoapp/upagri/getUpAgri/2055153400000').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'upagri/getUpAgriArea/' + id).pipe(map((res: any) => {
       return res;
     }));
   }

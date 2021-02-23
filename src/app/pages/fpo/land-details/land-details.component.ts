@@ -29,7 +29,7 @@ export class LandDetailsComponent implements OnInit {
   edit = false;
   master_id = localStorage.getItem('masterId');
   farmerId:any
-
+  land_area=0
  constructor(
     private formBuilder: FormBuilder,
     private fpoService: FpoService,
@@ -45,7 +45,7 @@ export class LandDetailsComponent implements OnInit {
         farmerId: ['', [Validators.required]],
         guardianName: ['', [Validators.required]],
         ownerShip: ['', [Validators.required]],
-        land_area: ['', [Validators.required]],
+        land_area: [this.land_area, [Validators.required, Validators.pattern(/^\d{0,3}(\.\d{1,2})?$/)]],
         isorganc: ['', [Validators.required]],
         masterId: localStorage.getItem('masterId'),
         updatedBy: localStorage.getItem('userRole'),
@@ -59,7 +59,7 @@ export class LandDetailsComponent implements OnInit {
       this.landDetailForm = this.formBuilder.group({
         farmerId: localStorage.getItem('masterId'),   
         ownerShip: ['', [Validators.required]],
-        land_area: ['', [Validators.required]],
+        land_area: [this.land_area, [Validators.required, Validators.pattern(/^\d{0,3}(\.\d{1,2})?$/)]],
         isorganc: ['', [Validators.required]],
         masterId: localStorage.getItem('masterId'),
         updatedBy: localStorage.getItem('userRole'),
@@ -83,8 +83,8 @@ export class LandDetailsComponent implements OnInit {
       })
   }
   getFarmerDetailFarmerformUpPardarshi(registrationNumber) {
-    let regNo = 863286218031926
-    this.fpoService.getfarmerDetailfromUpardarshi(regNo).subscribe(
+   
+    this.fpoService.getfarmerDetailfromUpardarshi(registrationNumber).subscribe(
       response => {
         console.log(response);
         this.FarmerLists = response;
@@ -102,7 +102,7 @@ export class LandDetailsComponent implements OnInit {
     this.farmerService.getFarmerLandDetailList(id).subscribe(
       response => {
         console.log(response);
-        this.landDetails = response;
+
       })
   }
 
@@ -284,8 +284,9 @@ export class LandDetailsComponent implements OnInit {
     }
   }
   selectFarmer(farmer) {
-    let registrationNumber = this.landDetailForm.controls['registrationNumber'].setValue(farmer.currentTarget.value);    
-    this.getFarmerDetailFarmerformUpPardarshi(registrationNumber);
+  
+    let registrationNumber = this.FarmerLists.find(f => f.farmerId == Number(farmer.currentTarget.value))  
+    this.getFarmerDetailFarmerformUpPardarshi(registrationNumber.upBSMId);
   }
   fetchDetail(farmer) {
     //let registrationNumber = this.landDetailForm.controls['registrationNumber'];
