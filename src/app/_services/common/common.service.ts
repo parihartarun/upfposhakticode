@@ -27,6 +27,13 @@ export class CommonService {
     }));
   }
 
+
+  getCropsBySeasonId(seasonId) {
+    return this.http.get<any>(this._url + 'api/v1/cropMasterDetails/getCropsBySeasonId/' + seasonId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  
   getCropList() {
     return this.http.get<any>(this._url + 'api/v1/cropMasterDetails/getCropDetails').pipe(map((res: any) => {
       return res;
@@ -35,6 +42,12 @@ export class CommonService {
 
   getCropVarietiesByCropId(cropId) {
     return this.http.get<any>(this._url + 'api/v1/cropVarietyDetails/getCropVarietiesByCropId/' + cropId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  getMarkatableQuantityMeasurements(){
+    return this.http.get<any>(this._url + 'api/Farmer/getFarmerDetails/').pipe(map((res: any) => {
       return res;
     }));
   }

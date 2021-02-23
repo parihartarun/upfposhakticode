@@ -71,7 +71,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">{{'Email address' | translate}}</label>
+                    <label class="form-control-label" for="input-email">{{'Email address' | translate}}<span class="required">*</span></label>
                     <input formControlName="email" type="email" id="input-email" class="form-control form-control-alternative">
                     <div *ngIf="submitted && formControls.email.errors" class="text-danger">
                       <div *ngIf="formControls.email.errors.required">{{'Email is required' | translate}}</div>
