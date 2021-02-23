@@ -79,7 +79,8 @@ export class ComplaintsComponent implements OnInit {
       issuetype = Number(this.complaintForm.value.issueType) - 1;
     }
     else {
-      issuetype = 13
+
+      issuetype = this.complaintsCatageriy.length-1
     }
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);  

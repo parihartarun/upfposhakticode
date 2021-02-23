@@ -714,5 +714,6 @@
   "bank account Number should be minmun 11 digit and maximun 16": "बैंक खाता संख्या शून्य से 11 अंकों और अधिकतम 16 होनी चाहिए",
   "Insecticide / Pesticide": "कीटनाशक",
   "Pesticide": "पेस्टनाशी",
-  "Equipment": "उपकरण"
+  "Equipment": "उपकरण",
+  "CATEGORY": "श्रेणी"
 }
