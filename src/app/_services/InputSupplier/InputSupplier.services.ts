@@ -28,4 +28,16 @@ export class InputSupplierService {
     }));
   }
 
+
+
+  // ----------------------------Seeds-------------------------------------------------
+
+
+  getallseeds(){
+    return  this.http.get<any>(this._url+'inputsupplier/seed/getall').pipe(map((res:any)=>{
+          return res;
+        }));
+  }
+
+
 }

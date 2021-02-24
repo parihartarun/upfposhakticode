@@ -17,21 +17,28 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form [formGroup]="seedForm" (ngSubmit)="addseeds()">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Crop Name' | translate}}<span class="required">*</span></label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" required>
-
+                    <!-- <input type="text" id="input-first-name" class="form-control form-control-alternative" required> -->
+                    <!-- [compareWith]="compareByOptionId" -->
+                    <select class="form-control" formControlName="crop_id" (change)="selectcrops($event)">
+                      <option value="">{{'Select Crop' | translate}}</option>
+                      <option *ngFor="let cc of croplist" [value]="cc.cropId">{{cc.cropName}}</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Variety' | translate}}<span class="required">*</span></label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" required>
-
+                    <!-- <input type="text" id="input-first-name" class="form-control form-control-alternative" required> -->
+                    <select class="form-control" formControlName="variety_id">
+                      <!-- <option value="">{{'Select Complaint/Suggestions' | translate}}</option> -->
+                      <option *ngFor="let cc of croplist" [value]="cc.cropId">{{cc.cropName}}</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -39,27 +46,29 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Picture of Seeds' | translate}}<span class="required">*</span></label>
-                    <input type="file" id="input-first-name" class="form-control form-control-alternative" required>
+                    <input type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="file" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>{{'company / Brand' | translate}}<span class="required">*</span></label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" required>
+                    <label>{{'Quantity' | translate}}<span class="required">*</span></label>
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative" formControlName="quantity" required>
                   </div>
                 </div>
+
+
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>{{'Quantity' | translate}}<span class="required">*</span></label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" required>
+                    <label>{{'company / Brand' | translate}}</label>
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative" formControlName="company">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Seed Certification Number' | translate}}</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative">
+                    <input type="text" id="input-first-name" class="form-control form-control-alternative" formControlName="certification_no">
                   </div>
                 </div>
               </div>
@@ -67,20 +76,20 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Certificate-valid From' | translate}}</label>
-                    <input type="date" id="input-first-name" class="form-control form-control-alternative">
+                    <input type="date" id="input-first-name" class="form-control form-control-alternative" formControlName="valid_from" >
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Certificate-valid to' | translate}}</label>
-                    <input type="date" id="input-first-name" class="form-control form-control-alternative">
+                    <input type="date" id="input-first-name" class="form-control form-control-alternative" formControlName="valid_to" >
                   </div>
                 </div>
               </div>
             </div>
           </form>
         </div>
-   <div class="card-footer py-4 text-center">
+        <div class="card-footer py-4 text-center">
           <button class="btn btn-yellow">{{'Save' | translate}}</button>
           <button class="btn btn-warning">{{'Reset' | translate}}</button>
         </div>
@@ -113,19 +122,19 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let sdata of getallSeeds; index as i">
               <tr>
                 <td>
-                  O1
+                  {{i+1}}
                 </td>
                 <td>
-                  wheat
+                 {{sdata.cropId}}
                 </td>
                 <td>
-                  new wheat
+                 {{sdata.variety}}
                 </td>
                 <td>
-                  3
+                  {{sdata.quantity}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">

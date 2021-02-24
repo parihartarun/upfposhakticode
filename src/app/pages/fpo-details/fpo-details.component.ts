@@ -85,7 +85,7 @@ export class FpoDetailsComponent implements OnInit {
 
     this._activatedroute.paramMap.subscribe(params => {
       let fpoId = Number(params.get('id'));
-
+console.log(this.fpoId,"Id");
       this.api.getfpoDetialById(fpoId).subscribe((res: any) => {
         if (res) {
           this.fpo = res;

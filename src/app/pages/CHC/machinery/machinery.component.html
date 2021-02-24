@@ -21,32 +21,42 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Equipment Available' | translate}} <span
+                                        <label>{{'Equipment Category' | translate}} <span
                                                 class="required">*</span></label>
                                         <select class="form-control" (change)="ChangingValue($event.target.value)">
                                             <option value="select">{{'Select Type' | translate}}</option>
-                                            <option value="chemical">{{'Tractor' | translate}}</option>
+                                            <!-- <option value="chemical">{{'Tractor' | translate}}</option>
                                             <option value="bio">{{'Trolley' | translate}}</option>
                                             <option value="bio">{{'Thresher' | translate}}</option>
                                             <option value="bio">{{'Harvester' | translate}}</option>
-                                            <option value="bio">{{'other implements' | translate}}</option>
+                                            <option value="bio">{{'other implements' | translate}}</option> -->
+                                            <option value="chemical">{{'Farm Machinery' | translate}}</option>
+                                            <option value="bio">{{'Irrigation' | translate}}</option>
 
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Equipment Capacity' | translate}} <span class="required">*</span></label>
+                                        <label>{{'Equipment' | translate}} <span class="required">*</span></label>
                                         <input type="text" id="input-first-name"
                                             class="form-control form-control-alternative">
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Equipment Purchase Year' | translate}} <span class="required">*</span></label>
+                                        <label>{{'Equipment Capacity' | translate}} <span
+                                                class="required">*</span></label>
+                                        <input type="text" id="input-first-name"
+                                            class="form-control form-control-alternative">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Equipment Purchase Year' | translate}} <span
+                                                class="required">*</span></label>
                                         <input type="date" id="input-first-name"
                                             class="form-control form-control-alternative">
                                     </div>
@@ -59,41 +69,67 @@
                                     </div>
                                 </div>
 
-                            </div>
-
-                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Equipment Manufacturer' | translate}} <span class="required">*</span></label>
+                                        <label>{{'Equipment Manufacturer (company/Brand)' | translate}} <span
+                                                class="required">*</span></label>
                                         <input type="text" id="input-first-name"
                                             class="form-control form-control-alternative">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Latitude and Longitude of CHC/FMB' | translate}}</label>
+                                        <label>{{'Quantity Available' | translate}}</label>
                                         <input type="date" id="input-first-name"
                                             class="form-control form-control-alternative">
                                     </div>
                                 </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Rent/day' | translate}}</label>
+                                        <input type="text" id="input-first-name"
+                                            class="form-control form-control-alternative" value=" Rs.">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Whether Govt.-assistance used in procurement of Equipment' |
+                                            translate}}</label>
+                                        <!-- <input type="text" id="input-first-name"
+                                            class="form-control form-control-alternative"> -->
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="input-first-name">
+                                                    {{'Documents' | translate}}
+                                                    <span class="required">*</span> :
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
+                                                          [(ngModel)]="formRadio" name="inlineRadio" id="inlineRadio1" value="yes">
+                                                        <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                                      </div>
+                                                      <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
+                                                          [(ngModel)]="formRadio" name="inlineRadio" id="inlineRadio2" value="No">
+                                                        <label class="form-check-label" for="inlineRadio2">No</label>
+                                                      </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" *ngIf="formRadio ==='yes'">
+                                    <div class="form-group">
+                                        <label>{{'Govt. Scheme under which -assistance was provided' |
+                                            translate}}</label>
+                                        <input type="text" id="input-first-name"
+                                            class="form-control form-control-alternative">
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>{{'Whether Govt.-assistance used in procurement of Equipment' | translate}}</label>
-                                        <input type="text" id="input-first-name"
-                                            class="form-control form-control-alternative">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>{{'Govt. Scheme under which -assistance was provided' | translate}}</label>
-                                        <input type="text" id="input-first-name"
-                                            class="form-control form-control-alternative">
-                                    </div>
-                                </div>
-                            </div>
+                           
 
                         </div>
                     </form>
@@ -115,7 +151,7 @@
                     <div class="row">
                         <div class="col-9">
                             <h3 class="mb-0">
-                               {{'Machinery/Equipment details' | translate}}
+                                {{'Machinery/Equipment details' | translate}}
                             </h3>
                         </div>
                     </div>
