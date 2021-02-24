@@ -27,5 +27,15 @@ export class BuyerSellerService {
       return res;
     }));
   }
+  getBuyerComplaints(masterId) {
+    return this.http.get<any>(this._url + '' + masterId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  addBuyerComplaint(complaint: any, data: any) {
+    return this.http.post<any>(this._url + '', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
 }

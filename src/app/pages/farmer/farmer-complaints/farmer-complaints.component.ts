@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FarmerService } from 'src/app/_services/farmer/farmer.service';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
+import { BuyerSellerService } from '../../../_services/BuyerSeller/buyerseller.services';
+import { ChcFmbService } from '../../../_services/chc_fmb/chc-fmb.service';
 import { InputSupplierService } from '../../../_services/InputSupplier/InputSupplier.services';
 
 
@@ -36,7 +38,10 @@ export class FarmerComplaintsComponent implements OnInit {
     private route: Router,
     private toastr: ToastrService,
     private farmerService: FarmerService,
-    private inputSupplierService: InputSupplierService
+    private inputSupplierService: InputSupplierService,
+    private chcFmbService: ChcFmbService,
+    private buyerSellerService: BuyerSellerService
+
   ) { }
 
   ngOnInit(): void {
@@ -81,7 +86,7 @@ export class FarmerComplaintsComponent implements OnInit {
   }
   getCHCComplaints() {
 
-    this.farmerService.getCHCComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
+    this.chcFmbService.getCHCComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.complaints = response;
     });
@@ -90,6 +95,14 @@ export class FarmerComplaintsComponent implements OnInit {
   getInputComplaints() {
 
     this.inputSupplierService.getInputComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
+      console.log(response);
+      this.complaints = response;
+    });
+
+  }
+  getBuyerComplaints() {
+
+    this.buyerSellerService.getBuyerComplaints(Number(localStorage.getItem('masterId'))).subscribe(response => {
       console.log(response);
       this.complaints = response;
     });
@@ -114,6 +127,7 @@ export class FarmerComplaintsComponent implements OnInit {
     formData.append('description', this.complaintForm.value.desc);
     formData.append('title', this.complaintsCatageriy[issuetype].comp_type_en);
     formData.append('issue_type', this.complaintForm.value.issueType);
+    formData.append('role', this.roleType);
     if (this.roleType == "ROLE_FARMER") {
       formData.append("farmer_id", localStorage.getItem('masterId'))
       formData.append("fpo_id ", this.fpoId)
@@ -130,7 +144,7 @@ export class FarmerComplaintsComponent implements OnInit {
       });
     }
     if (this.roleType == "ROLE_INPUTSUPPLIER") {
-      formData.append("supplier_id", localStorage.getItem('masterId'))
+      formData.append("masterId", localStorage.getItem('masterId'))
       this.inputSupplierService.addInputComplaint(this.complaintForm.value, formData).subscribe(response => {
         if (response != '') {
           this.toastr.success('Complaint Added Succefully.');
@@ -144,8 +158,8 @@ export class FarmerComplaintsComponent implements OnInit {
       });
     }
     if (this.roleType == "ROLE_CHCFMB") {
-      formData.append("chc_fmb_id", localStorage.getItem('masterId'))
-      this.farmerService.addCHCComplaint(this.complaintForm.value, formData).subscribe(response => {
+      formData.append("masterId", localStorage.getItem('masterId'))
+      this.chcFmbService.addCHCComplaint(this.complaintForm.value, formData).subscribe(response => {
         if (response != '') {
           this.toastr.success('Complaint Added Succefully.');
           this.submitted = false;
@@ -156,6 +170,22 @@ export class FarmerComplaintsComponent implements OnInit {
           this.toastr.error('Error! While Add complaint.');
         }
       });
+
+    }
+    if (this.roleType == "ROLE_BUYERSELLER") {
+      formData.append("masterId", localStorage.getItem('masterId'))
+      this.buyerSellerService.addBuyerComplaint(this.complaintForm.value, formData).subscribe(response => {
+        if (response != '') {
+          this.toastr.success('Complaint Added Succefully.');
+          this.submitted = false;
+          this.edit = false;
+          this.complaintForm.reset();
+          this.getCHCComplaints();
+        } else {
+          this.toastr.error('Error! While Add complaint.');
+        }
+      });
+
     }
 
     
