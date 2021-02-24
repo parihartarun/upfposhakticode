@@ -216,7 +216,7 @@ console.log(this.fpoId,"Id");
     let graphdetailsrabi = [];
     let graphdetailszayad = [];
     let graphdetailskhalif = [];
-    
+
 
     console.log(this.fpoId, "id");
 
@@ -237,7 +237,6 @@ console.log(this.fpoId,"Id");
             }
           ]
           graphdetailsrabi.push(obj);
-          console.log(graphdetailsrabi, "rabi");
 
         }
         else if (element.season_name == "Zayad") {
@@ -252,7 +251,6 @@ console.log(this.fpoId,"Id");
             }
           ]
           graphdetailszayad.push(obj);
-          console.log(graphdetailszayad, "zayad")
         }
 
         else if (element.season_name == "Kharif") {

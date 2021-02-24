@@ -19,15 +19,26 @@
 
   </div>
 </div>
+
 <nav class="navbar navbar-expand-lg navbar-light" *ngIf="isHome">
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" (click)="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    (click)="toggleNavbar()" aria-controls="navbarSupportedContent" aria-expanded="false"
+    aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngClass]="{ in: isOpen }">
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggeIn">
       <div class="triangle-topright"></div>
+      <li class="nav-item" *ngIf="isHomePage!=='/' || isHomePage!=='/home'">
+        <a class="nav-link" routerLink="/">
+          <span style="color: #474200;background: #e1cb00;padding: 6px;border-radius: 2px;">
+            <i class="fas fa-home fa-1x" style="margin-top: 5px;"></i>
+          </span>
+          {{'Home' | translate}} <span class="sr-only">(current)</span>
+        </a>
+      </li>
       <li class="nav-item dropdown">
         <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
           <a class="languageText" ngbDropdownToggle>
@@ -48,7 +59,7 @@
           {{'FPO guidelines' | translate}} <span class="sr-only">(current)</span>
         </a>
       </li>
-      
+
       <li class="nav-item">
         <a class="nav-link" routerLink="/schema">
           <img class="nav-image" src="assets/image/img/scemenu.png" />
@@ -119,16 +130,15 @@
           {{'Schemes' | translate}} <span class="sr-only">(current)</span>
         </a>
       </li>
-     
+
       <li class="nav-item" *ngIf="isLoggeIn">
         <a class="nav-link" href="javascript:void(0)" (click)="logout()">
           <img class="nav-image" src="assets/image/img/signup.png" />
           {{'Logout' | translate}} <span class="sr-only">(current)</span>
         </a>
       </li>
-      
+
     </ul>
 
   </div>
 </nav>
-

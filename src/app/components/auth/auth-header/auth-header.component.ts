@@ -15,6 +15,7 @@ export class AuthHeaderComponent implements OnInit {
   isOpen = false;
   isDropdownOpen = false;
   navText: any
+  isHomePage=''
   constructor(public translate: TranslateService, private route: Router, private _activatedroute: ActivatedRoute) {
     console.log(localStorage.getItem('language'));
     if(localStorage.getItem('language')){
@@ -30,6 +31,9 @@ export class AuthHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isHomePage=this.route.url;
+    console.log('homepage',this.isHomePage);
+    
     this._activatedroute.paramMap.subscribe(params => {
      
     });
