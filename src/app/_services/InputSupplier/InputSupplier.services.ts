@@ -39,5 +39,29 @@ export class InputSupplierService {
         }));
   }
 
+  uploadFile(file: any) {
+    return this.http.post<any>(this._url + 'inputsupplier/seed/download/', file).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
+  addseed(data: any) {
+    return this.http.post<any>(this._url + 'fposeed', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+ 
+  updateseed(data, formdata) {
+    return this.http.put<any>(this._url + 'inputsupplier/seed/' + data.id, formdata).pipe(map((res: any) => {
+
+      return res;
+    }));
+  }
+
+
+  deleteseed(data) {
+    return this.http.delete<any>(this._url + 'inputsupplier/seed/' + data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 }
