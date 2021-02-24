@@ -23,7 +23,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Crop Name' | translate}}<span class="required">*</span></label>
-                    <!-- <input type="text" id="input-first-name" class="form-control form-control-alternative" required> -->
+                    <!-- <input type="text" id="input-first-name"class="form-control" required> -->
                     <!-- [compareWith]="compareByOptionId" -->
                     <select class="form-control" formControlName="crop_id" (change)="selectcrops($event)">
                       <option value="">{{'Select Crop' | translate}}</option>
@@ -34,7 +34,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Variety' | translate}}<span class="required">*</span></label>
-                    <!-- <input type="text" id="input-first-name" class="form-control form-control-alternative" required> -->
+                    <!-- <input type="text" id="input-first-name"class="form-control" required> -->
                     <select class="form-control" formControlName="variety_id">
                       <!-- <option value="">{{'Select Complaint/Suggestions' | translate}}</option> -->
                       <option *ngFor="let cc of croplist" [value]="cc.cropId">{{cc.cropName}}</option>
@@ -46,13 +46,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Picture of Seeds' | translate}}<span class="required">*</span></label>
-                    <input type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="file" required>
+                    <input type="file" id="input-first-name" class="form-control" formControlName="file" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Quantity' | translate}}<span class="required">*</span></label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" formControlName="quantity" required>
+                    <input type="text" id="input-first-name"class="form-control" formControlName="quantity" required>
                   </div>
                 </div>
 
@@ -62,13 +62,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'company / Brand' | translate}}</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" formControlName="company">
+                    <input type="text" id="input-first-name"class="form-control" formControlName="company">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Seed Certification Number' | translate}}</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" formControlName="certification_no">
+                    <input type="text" id="input-first-name"class="form-control" formControlName="certification_no">
                   </div>
                 </div>
               </div>
@@ -76,13 +76,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Certificate-valid From' | translate}}</label>
-                    <input type="date" id="input-first-name" class="form-control form-control-alternative" formControlName="valid_from" >
+                    <input type="date" id="input-first-name"class="form-control" formControlName="valid_from" >
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Certificate-valid to' | translate}}</label>
-                    <input type="date" id="input-first-name" class="form-control form-control-alternative" formControlName="valid_to" >
+                    <input type="date" id="input-first-name"class="form-control" formControlName="valid_to" >
                   </div>
                 </div>
               </div>

@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./machinery.component.css']
 })
 export class MachineryComponent implements OnInit {
-  formRadio:''
+  formRadio = ''
+
   constructor() { }
 
   ngOnInit(): void {
@@ -24,6 +25,11 @@ export class MachineryComponent implements OnInit {
     this.fieldArray.splice(index, 1);
   }
 
+  ChangingValue(e)
+  {
+     console.log(e);
+     this.formRadio=e;
+    }
  
 
 }
