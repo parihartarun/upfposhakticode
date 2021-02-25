@@ -30,7 +30,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   selecteddists: Array<string> = [];
   selectedquantitis: Array<number> = [];
   p: number = 1;
-  districts: Array<District> = [];
+  districts: any = [];
   isDistrict: false;
   searchCriteria: Array<any> = [];
   fpoDetail: any
@@ -123,10 +123,88 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
 
   indentForm: FormGroup;
-
+  districtObserver = this.fpoSearchService.districtObserver.asObservable();
+  fpoObserver = this.fpoSearchService.fpoObserver.asObservable();
   constructor(private modalService: NgbModal,
     public fpoSearchService: FpoSearchService, private _rouetr: Router, private _productService: ProductService, private _activatedroute: ActivatedRoute,
     private api: AuthService, private _fpoService: FpoService, private fb: FormBuilder, private datePipe: DatePipe, private toastr: ToastrService) { }
+
+
+  ngOnInit() {
+
+    this._activatedroute.params.subscribe(param => {
+      if (param) {
+        this.parval = param.val;
+        this.parsearchType = param.searchType;
+        this.fpoSearchService.getDistrict(this.parval, this.parsearchType);
+        this.fpoSearchService.getFpo(this.parval, this.parsearchType);
+        this.fpoSearchService.getCrops(this.parval, this.parsearchType);
+      }
+    });
+
+
+    // this.api.getDistrictBystateId(9).subscribe(d => {
+    //   this.districts = new Array()
+    //   this.districts = d
+
+    // });
+    this.districtObserver.subscribe(data => {
+      this.districts = data;
+    });
+    this.fpoObserver.subscribe(data => {
+      this.fpolist = data;
+
+    })
+    // this._fpoService.getAllFpo().subscribe(localfpolist => {
+    //   //console.log("Got Fpo List here = "+ JSON.stringify(localfpolist))
+    //   this.fpolist = localfpolist;
+
+    // })
+    this.api.getCrops().subscribe(c => {
+      this.items2 = [];
+      c.forEach(cropElement => {
+        let itm: any = { collapsed: true }
+        itm["text"] = "" + cropElement.cropName;
+        itm["value"] = cropElement.cropName;
+
+
+        let croptypes = [];
+
+        cropElement.cropTypes.forEach(cropTypeElement => {
+
+          let croptypeItem = {};
+          croptypeItem["text"] = "" + cropTypeElement.verietyName;
+          croptypeItem["value"] = cropElement.cropName + "@" + cropTypeElement.verietyName;
+          croptypeItem["checked"] = false;
+          //croptypeItem["collapsed"] = true;
+          croptypes.push(croptypeItem);
+        });
+
+        // console.log("Crop Types of the Crop"+JSON.stringify(croptypes))
+        itm["children"] = croptypes;
+        //itm["collapsed"] = true; 
+
+        this.items2.push(itm);
+
+      });
+      // console.log("")
+      this.items = this.getItems([...this.items2]);
+    })
+
+    this._activatedroute.paramMap.subscribe(params => {
+      let val = params.get('val');
+      let searchType = params.get('searchType');
+      this.dummysearchval = params.get('val');
+      // this.parval = params.get('val');
+      // this.parsearchType = params.get('searchType');
+      this.loading = true;
+      this._productService.getSearchProduct(val, searchType).subscribe(s => {
+        this.serachProduct = s;
+        this.loading = false;
+      })
+    });
+  }
+
   ngAfterViewInit(): void {
     this.treeloaded = false;
   }
@@ -193,72 +271,6 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       itemsArray.push(new TreeviewItem(sampleitm))
     });
     return itemsArray;
-  }
-  ngOnInit() {
-
-    this._activatedroute.params.subscribe(param => {
-      if (param) {
-        this.parval = param.val;
-        this.parsearchType = param.searchType;
-        this.fpoSearchService.getDistrictBystateId(this.parval, this.parsearchType);
-      }
-    });
-
-
-    this.api.getDistrictBystateId(9).subscribe(d => {
-      this.districts = new Array()
-      this.districts = d
-
-    })
-
-    this._fpoService.getAllFpo().subscribe(localfpolist => {
-      //console.log("Got Fpo List here = "+ JSON.stringify(localfpolist))
-      this.fpolist = localfpolist;
-
-    })
-    this.api.getCrops().subscribe(c => {
-      this.items2 = [];
-      c.forEach(cropElement => {
-        let itm: any = { collapsed: true }
-        itm["text"] = "" + cropElement.cropName;
-        itm["value"] = cropElement.cropName;
-
-
-        let croptypes = [];
-
-        cropElement.cropTypes.forEach(cropTypeElement => {
-
-          let croptypeItem = {};
-          croptypeItem["text"] = "" + cropTypeElement.verietyName;
-          croptypeItem["value"] = cropElement.cropName + "@" + cropTypeElement.verietyName;
-          croptypeItem["checked"] = false;
-          //croptypeItem["collapsed"] = true;
-          croptypes.push(croptypeItem);
-        });
-
-        // console.log("Crop Types of the Crop"+JSON.stringify(croptypes))
-        itm["children"] = croptypes;
-        //itm["collapsed"] = true; 
-
-        this.items2.push(itm);
-
-      });
-      // console.log("")
-      this.items = this.getItems([...this.items2]);
-    })
-
-    this._activatedroute.paramMap.subscribe(params => {
-      let val = params.get('val');
-      let searchType = params.get('searchType');
-      this.dummysearchval = params.get('val');
-      // this.parval = params.get('val');
-      // this.parsearchType = params.get('searchType');
-      this.loading = true;
-      this._productService.getSearchProduct(val, searchType).subscribe(s => {
-        this.serachProduct = s;
-        this.loading = false;
-      })
-    });
   }
   sampleNavigate() {
     this._rouetr.navigate([""]);
@@ -331,21 +343,21 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     console.log("Selected District here " + JSON.stringify(district));
 
 
-    if (district.is_active) {
-      //this.searchCriteria.push(district)
-      this.selecteddists.push(district.district_name);
-      this.selectedfilters.push({ name: district.district_name, type: "district" })
-      console.log("selected districtes" + JSON.stringify(this.selectedfilters));
-    } else {
-      // delete this.searchCriteria[this.searchCriteria.findIndex(item => item.is_active == district.is_active)];
+    // if (district.is_active) {
+    //   //this.searchCriteria.push(district)
+    //   this.selecteddists.push(district.district_name);
+    //   this.selectedfilters.push({ name: district.district_name, type: "district" })
+    //   console.log("selected districtes" + JSON.stringify(this.selectedfilters));
+    // } else {
+    //   // delete this.searchCriteria[this.searchCriteria.findIndex(item => item.is_active == district.is_active)];
 
-      //delete this.selecteddists[this.selecteddists.findIndex(item => item == district.district_name)];
-      this.selecteddists = this.selecteddists.filter(item => item != district.district_name);
-      this.selectedfilters = this.selectedfilters.filter(filter => filter.name != district.district_name);
-      console.log("selected districtes" + JSON.stringify(this.selectedfilters));
-    }
+    //   //delete this.selecteddists[this.selecteddists.findIndex(item => item == district.district_name)];
+    //   this.selecteddists = this.selecteddists.filter(item => item != district.district_name);
+    //   this.selectedfilters = this.selectedfilters.filter(filter => filter.name != district.district_name);
+    //   console.log("selected districtes" + JSON.stringify(this.selectedfilters));
+    // }
 
-    this.searchWithFilters();
+    // this.searchWithFilters();
 
   }
 

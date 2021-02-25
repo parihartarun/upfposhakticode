@@ -117,3 +117,10 @@ th.sort:after {
 .card .table th{
     cursor: pointer;
 }
+.sticky-nav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999;
+    background: #cfaf12 !important;
+    width: 100% !important;
+  }

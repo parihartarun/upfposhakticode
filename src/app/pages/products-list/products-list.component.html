@@ -45,7 +45,7 @@
 <!-- Page Content -->
 <section class="pb-3 containerMain">
   <div class="container">
-    <div class="row mb-3 d-flex justify-content-center search-bar p-2">
+    <div class="row mb-3 d-flex justify-content-center p-2">
       <div class="col-9">
         <div class="d-flex mx-5  align-items-end justify-content-center" style="border: solid;">
           <div class="dropdown d-inline searchDropDown">
@@ -96,11 +96,10 @@
               <div class="filterDistrict">
                 <form>
                   <label class="form-check" *ngFor="let district of districts">
-                    <input class="form-check-input" type="checkbox" [value]="district.district_name"
-                      [name]="district.district_name" [(ngModel)]="district.is_active"
-                      (change)="selectDistrct(district)">
+                    <input class="form-check-input" type="checkbox" [value]="district.name" [name]="district.name"
+                      [(ngModel)]="district.is_active" (change)="selectDistrct(district)">
                     <span class="form-check-label">
-                      {{district.district_name}}
+                      {{district.name}}
                     </span>
                   </label> <!-- form-check.// -->
                   <!--<label class="form-check">
@@ -238,11 +237,11 @@
             <div class="filter-content">
               <div class="filterDistrict">
                 <form>
-                  <label class="form-check" *ngFor="let fpo of fpolist">
-                    <input class="form-check-input" type="checkbox" [value]="fpo.fpolist" [name]="fpo.fpoName"
+                  <label class="form-check" *ngFor="let fpo of fpolist;let i=index">
+                    <input class="form-check-input" type="checkbox" [value]="fpo.name" name="fpoName{{i}}"
                       [(ngModel)]="fpo.is_active" (change)="selectFpo(fpo)">
                     <span class="form-check-label">
-                      {{fpo.fpoName}}
+                      {{fpo.name}}
                     </span>
                   </label> <!-- form-check.// -->
                   <!--<label class="form-check">
@@ -327,10 +326,10 @@
             *ngFor="let product of serachProduct | paginate: { itemsPerPage: 10, currentPage: p }">
             <div class="card card-stats box_shadow card_2">
               <h1>{{product.nodal}}</h1>
-              <div class="row">
+              <div class="row" routerLink="/fpo-details/{{product.id}}">
                 <div class="col-lg-4 col-sm-4">
                   <div class="gray_color1 d-flex justify-content-center">
-                    <img src="assets/icons/cropplaceholder.jpg">
+                    <img src="assets/image/wheat.jpeg">
                   </div>
                 </div>
                 <div class="col-lg-8 col-sm-8">
@@ -340,21 +339,21 @@
                       <div class="mcq">
                         <ul>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Crop Name:
-                            </span> {{product.crops}}
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Crop:
+                            </span> <strong> {{product.crops}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Crop Veriety:
-                            </span> {{product.cropVeriety}}
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Veriety:
+                            </span><strong> {{product.cropVeriety}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> District:
-                            </span> {{product.district}}
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Place:
+                            </span><strong> {{product.district}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Marketable Surplus:
-                            </span> {{product.marketableSurplus}}
-                            {{'quintal' | translate }}
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Quantity:
+                            </span><strong> {{product.marketableSurplus}}
+                              {{'quintal' | translate }}</strong>
                           </li>
                         </ul>
                       </div>
@@ -364,10 +363,10 @@
               </div>
               <div class="row mt-2">
                 <div class="col-12 d-flex justify-content-between">
-                  <button class="mx-0 mr-3 btn btn-sm btn-primary" (click)="open($event,mymodal,product)" type="button"
-                    style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
-                  <button class="mx-0 btn btn-sm btn-success"
+                  <button class="mx-0 btn btn-sm btn-success" disabled
                     (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
+                  <button class="mx-0 btn btn-sm btn-primary" (click)="open($event,mymodal,product)" type="button"
+                    style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
               </div>
             </div>
