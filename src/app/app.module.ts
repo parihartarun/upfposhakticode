@@ -109,6 +109,7 @@ import { HomeScreenComponent } from './pages/common/home-screen/home-screen.comp
 
 import { TagInputModule } from 'ngx-chips';
 import { DepartmentAllComplaintsComponent } from './pages/department/department-all-complaints/department-all-complaints.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -138,7 +139,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgMarqueeModule,
     NgxChartsModule,
     ChartsModule,
-    TagInputModule, 
+    TagInputModule, NgxSpinnerModule,
     ToastrModule.forRoot({
       timeOut: 10000,
     }),
@@ -231,7 +232,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FpoDashboardComponent,
     HomeScreenComponent,
     DepartmentAllComplaintsComponent,
-   
+
   ],
   exports: [
     AuthHeaderComponent

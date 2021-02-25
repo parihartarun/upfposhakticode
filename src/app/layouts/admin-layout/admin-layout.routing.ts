@@ -99,7 +99,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/complaintsByfarmer', component: ComplaintByFarmerComponent },
   { path: 'indent_history/buyer-user-profile', component: BuyeruserComponent },
   {path:'user-profile',component:UserProfileDashboardComponent},
-
   { path: 'department/dept-notification', component: DepartmentNotificationComponent },
   { path: 'fpo/fpo-notification', component: FpoNotifiactionComponent },
   { path: 'fpo/fpo-notificationByDept', component: NotifiactionByDepartmentComponent },
