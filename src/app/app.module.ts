@@ -108,6 +108,7 @@ import { FpoDashboardComponent } from './pages/fpo/dashboard/dashboard.component
 import { HomeScreenComponent } from './pages/common/home-screen/home-screen.component';
 
 import { TagInputModule } from 'ngx-chips';
+import { DepartmentAllComplaintsComponent } from './pages/department/department-all-complaints/department-all-complaints.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -228,7 +229,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     TableSearchPipe,
     DepartmentDashboardComponent,
     FpoDashboardComponent,
-    HomeScreenComponent
+    HomeScreenComponent,
+    DepartmentAllComplaintsComponent,
+   
   ],
   exports: [
     AuthHeaderComponent

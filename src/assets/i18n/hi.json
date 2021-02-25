@@ -657,7 +657,7 @@
   "Click here": "यहाँ क्लिक करें",
   "to view in details": "विवरण में देखने के लिए",
   "Upload Date": "अपलोड की  तिथि",
-  "please enter value upto 999": "कृपया 999 तक मूल्य दर्ज करें",
+  "please enter value upto 999": "कृपया 999 तक मूल्य अंक दर्ज करें",
   "only png,jpeg,jpg format is allow": "केवल पीएनजी, जेपीईजी, जेपीजी प्रारूप अनुमति देते हैं",
   "only xls,xlsx,pdf,doc,docx format is allow": "only xls,xlsx,pdf,doc,docx format is allow",
   "accessibilityTitle": "अभिगम्‍यता वक्‍तव्‍य",
@@ -737,5 +737,9 @@
   "surplus":"मात्रा",
   "in Qt":"क्विन्टल में",
   "Update Crop Sowing":"फसल बुवाई का अद्यतन करें"
+
+  "Equipment": "उपकरण",
+  "CATEGORY": "श्रेणी",
+  "Complaints/Suggestions by fpo": "शिकायतें / सुझाव एफ.पी.ओ द्वारा"
 
 }

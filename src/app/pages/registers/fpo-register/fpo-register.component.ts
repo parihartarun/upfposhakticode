@@ -64,7 +64,7 @@ export class FpoRegisterComponent implements OnInit {
       dateOfRegistration: ['', Validators.required],
       fpoAddress: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
-      userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
+      userName: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-_]{6,20}")]],
       recaptcha: ['', Validators.required],
       userFpo: [],
       tnc: ['', Validators.required],

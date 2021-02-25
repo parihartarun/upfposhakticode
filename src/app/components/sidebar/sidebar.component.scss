@@ -3,3 +3,9 @@
     color: #fff;
     font-weight: 800;
 }
+.navbar-vertical.navbar-expand-md .navbar-brand-img {
+  max-height: 5.5rem;
+}
+.navbar-vertical .navbar-collapse:before {
+  margin: 0rem -1rem;
+}

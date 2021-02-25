@@ -94,7 +94,7 @@ export class InputSupplierRegisterComponent implements OnInit {
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       seed_id: [''],
       villageRefId: ['', Validators.required],
-      userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
+      userName: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-_]{6,20}")]],
       recaptcha: ['', Validators.required],
       userInputSeller: [],
       seedId: [],
