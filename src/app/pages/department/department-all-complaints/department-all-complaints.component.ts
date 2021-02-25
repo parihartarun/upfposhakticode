@@ -58,22 +58,41 @@ export class DepartmentAllComplaintsComponent implements OnInit {
     url = this.route.url
     if (url === "/deptInput/complaints") {
       role = "ROLE_INPUTSUPPLIER";
-    }
-    else if (url === "/deptBuyer/complaints") {
-      role = "ROLE_BUYERSELLER";
-    }
-    else if (url === "/deptCHC/complaints") {
-      role = "ROLE_CHCFMB";
-    }
-      this.api.getAllComplaints(role).subscribe(response => {
-      this.complaints = response;
+      this.api.getAllComplaintInputSupplier(role).subscribe(response => {
+        this.complaints = response;
         this.filterResponse = response
         if (!this.filterResponse || this.filterResponse.length <= 0) {
           return
         }
-      this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
-      this.fliterForm.controls['complaint'].setValue('New')
-    });
+        this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
+        this.fliterForm.controls['complaint'].setValue('New')
+      });
+    }
+    else if (url === "/deptBuyer/complaints") {
+      role = "ROLE_BUYERSELLER";
+      this.api.getAllComplaintBuyerSeller(role).subscribe(response => {
+        this.complaints = response;
+        this.filterResponse = response
+        if (!this.filterResponse || this.filterResponse.length <= 0) {
+          return
+        }
+        this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
+        this.fliterForm.controls['complaint'].setValue('New')
+      });
+    }
+    else if (url === "/deptCHC/complaints") {
+      role = "ROLE_CHCFMB";
+      this.api.getAllComplaintChcFmb(role).subscribe(response => {
+        this.complaints = response;
+        this.filterResponse = response
+        if (!this.filterResponse || this.filterResponse.length <= 0) {
+          return
+        }
+        this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
+        this.fliterForm.controls['complaint'].setValue('New')
+      });
+    }
+     
 
   }
 
@@ -139,14 +158,21 @@ export class DepartmentAllComplaintsComponent implements OnInit {
   viewComplaint(complaint) {
     this.isViewComplaint = true;
     this.viewComp.assignedTo = complaint.assignBy;
-    this.viewComp.assigned_date = complaint.assigneddate;
+    this.viewComp.assigned_date = complaint.assign_date;
     this.viewComp.currentStatus = this.getStatus(complaint.status);
     this.viewComp.description = complaint.description;
-    this.viewComp.compalintDate = complaint.createDateTime;
+    this.viewComp.compalintDate = complaint.updateDate;
     this.viewComp.remarks = complaint.createDateTime;
     this.viewComp.title = complaint.title;
-    this.viewComp.name = complaint.fponame;
-    this.viewComp.email = complaint.fpoemail;
+    if (complaint.role == 'ROLE_INPUTSUPPLIER'){
+      this.viewComp.name = complaint.inputSupplierName;
+    } else if (complaint.role == 'ROLE_BUYERSELLER') {
+      this.viewComp.name = complaint.buyerSellerName;
+    }
+    else if (complaint.role == 'ROLE_CHCFMB') {
+      this.viewComp.name = complaint.chcFmbName;
+    }
+    this.viewComp.email = complaint.email;
     window.scroll(0, 0)
     this.complaintForm = this.formBuilder.group({
       id: [complaint.id],
@@ -158,12 +184,12 @@ export class DepartmentAllComplaintsComponent implements OnInit {
     });
   }
   getStatus(status) {
-    if (status == "OPEN") {
+    if (status == 0) {
       return "OPEN"
-    } else if (status == "ASSIGNED") {
+    } else if (status == 1) {
       return "ASSIGNED"
     }
-    else if (status == "RESOLVED") {
+    else if (status == 2) {
       return "RESOLVED"
     }
     else {
