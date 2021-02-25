@@ -28,12 +28,12 @@ export class BuyerSellerService {
     }));
   }
   getBuyerComplaints(masterId) {
-    return this.http.get<any>(this._url + '' + masterId).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'fpocomplaint/buyerseller' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }
   addBuyerComplaint(complaint: any, data: any) {
-    return this.http.post<any>(this._url + '', data).pipe(map((res: any) => {
+    return this.http.post<any>(this._url + 'fpocomplaint/buyerseller', data).pipe(map((res: any) => {
       return res;
     }));
   }
