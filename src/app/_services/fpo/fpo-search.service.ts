@@ -11,6 +11,7 @@ export class FpoSearchService {
   _url: string;
   districtObserver: BehaviorSubject<any> = new BehaviorSubject([]);
   fpoObserver: BehaviorSubject<any> = new BehaviorSubject([]);
+  cropsObserver: BehaviorSubject<any> = new BehaviorSubject([]);
 
   constructor(private http: HttpClient) {
     this._url = environment.baseUrl;
@@ -28,9 +29,7 @@ export class FpoSearchService {
   }
   getCrops(keyword, type) {
     this.http.get<any>(this._url + `api/search/filters/crops?in=${type}&val=${keyword}`).subscribe((res: any) => {
-      // this.fpoObserver.next(res);
-      console.log('all crops', res);
-
+      this.cropsObserver.next(res);
     })
   }
 }

@@ -87,6 +87,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       },
     ]
   };
+  cropsTree: any;
   treeloaded: boolean = false;
   indentloading: boolean = false;
   currentitem: any;
@@ -125,6 +126,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   indentForm: FormGroup;
   districtObserver = this.fpoSearchService.districtObserver.asObservable();
   fpoObserver = this.fpoSearchService.fpoObserver.asObservable();
+  cropsObserver = this.fpoSearchService.cropsObserver.asObservable();
+  node: any = {};
   constructor(private modalService: NgbModal,
     public fpoSearchService: FpoSearchService, private _rouetr: Router, private _productService: ProductService, private _activatedroute: ActivatedRoute,
     private api: AuthService, private _fpoService: FpoService, private fb: FormBuilder, private datePipe: DatePipe, private toastr: ToastrService) { }
@@ -160,6 +163,22 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     //   this.fpolist = localfpolist;
 
     // })
+    this.cropsObserver.subscribe(data => {
+      data.forEach(el => {
+        if (el) {
+          this.node = {};
+          this.node.text = el.name;
+          this.node.value = el.id;
+          el.cropVeriety.forEach(child => {
+            this.node.children.push({
+              text: child.verietyName,
+              value: child.verietyId
+            });
+          });
+        }
+      })
+      console.log('final node data', this.node);
+    });
     this.api.getCrops().subscribe(c => {
       this.items2 = [];
       c.forEach(cropElement => {
@@ -522,4 +541,15 @@ interface District {
   district_name: string;
   isDistrict: false;
   is_active: boolean;
+}
+
+interface Treeview {
+  text: any,
+  value: any,
+  children: [
+    {
+      text: any,
+      value: any,
+    }
+  ]
 }
