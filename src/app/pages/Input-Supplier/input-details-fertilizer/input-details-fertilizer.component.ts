@@ -1,4 +1,11 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/_services/auth/auth.service';
+import { FpoService } from 'src/app/_services/fpo/fpo.service';
+import { InputSupplierService } from 'src/app/_services/InputSupplier/InputSupplier.services';
 
 
   @Component({
@@ -15,12 +22,19 @@ export class InputDetailsFertilizerComponent implements OnInit {
   chemicalchecked: boolean;
   biochecked: boolean;
   organicchecked: boolean;
+    fertilizerDetails: any;
  
 
-  constructor() { }
+  constructor(private fb: FormBuilder,
+    private inputsupplierfertiservice: InputSupplierService,
+     private fposervice: FpoService,
+     private route: Router,
+    private toastr: ToastrService,
+    private authService: AuthService,
+    private datePipe: DatePipe) { }
 
   ngOnInit(): void {
-
+this.Getallfertilizer();
   }
 
   public fieldArray: Array<any> = [];
@@ -48,36 +62,18 @@ export class InputDetailsFertilizerComponent implements OnInit {
     this.subtype = type
   }
 
-  // ChangingValue(e) {
-  //   console.log(e)
-
-  //   if (e == 'chemical') {
-  //     this.chemicalchecked = true;
-  //     this.biochecked = false;
-  //     this.organicchecked = false;
-
-  //   }
-  //   else if (e == 'bio') {
-  //     this.biochecked = true;
-  //     this.chemicalchecked = false;
-  //     this.organicchecked = false;
-
-  //   } else {
-  //     this.organicchecked = true;
-  //     this.chemicalchecked = false;
-  //     this.biochecked = false;
-
-
-  //   }
-
-  //   if (e != 'select')
-  //     this.selected = true
-
-  // }
-
   ChangingtypeValue(e)
   {
     console.log(e);
+  }
+
+
+  Getallfertilizer()
+  {
+      this.inputsupplierfertiservice.getallfertilizer().subscribe((res)=>{
+        console.log(res);
+        this.fertilizerDetails = res;
+      })
   }
 
 }

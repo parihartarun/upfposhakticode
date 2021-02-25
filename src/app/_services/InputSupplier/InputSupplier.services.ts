@@ -65,6 +65,135 @@ export class InputSupplierService {
     }));
   }
 
+// ------------------------ Fertilizer -----------------------------------
+
+
+getallfertilizer(){
+  return  this.http.get<any>(this._url+'inputsupplier/fertilizer/getall').pipe(map((res:any)=>{
+        return res;
+      }));
+}
+
+uploadFilefertilizer(file: any) {
+  return this.http.post<any>(this._url + 'inputsupplier/fertilizer/download/', file).pipe(map((res: any) => {
+    return res;
+  }));
+}
+
+addfertilizer(data: any) {
+  return this.http.post<any>(this._url + 'inputsupplier/fertilizer/', data).pipe(map((res: any) => {
+    return res;
+  }));
+}
+
+updatefertilizer(data, formdata) {
+  return this.http.put<any>(this._url + '/inputsupplier/fertilizer/' + data.id, formdata).pipe(map((res: any) => {
+
+    return res;
+  }));
+}
+
+
+deletefertilizer(data) {
+  return this.http.delete<any>(this._url + 'inputsupplier/fertilizer/' + data).pipe(map((res: any) => {
+    return res;
+  }));
+}
+
+// ---------------- Machinery -----------------------------------
+
+getallMachinery(){
+  return  this.http.get<any>(this._url+'inputsupplier/machinery/getall').pipe(map((res:any)=>{
+        return res;
+      }));
+}
+
+uploadFileMachinery(file: any) {
+  return this.http.post<any>(this._url + 'inputsupplier/machinery/download/', file).pipe(map((res: any) => {
+    return res;
+  }));
+}
+
+addMachinery(data: any) {
+  return this.http.post<any>(this._url + 'inputsupplier/machinery/', data).pipe(map((res: any) => {
+    return res;
+  }));
+}
+
+mtype()
+{
+  return this.http.get<any>(this._url + 'inputsupplier/machinery/equipmenttype/getall').pipe(map((res:any)=>{
+    return res;
+  }))
+}
+
+
+updateMachinery(data, formdata) {
+  return this.http.put<any>(this._url + 'inputsupplier/machinery/' + data.id, formdata).pipe(map((res: any) => {
+
+    return res;
+  }));
+}
+
+
+deleteMachinery(data) {
+  return this.http.delete<any>(this._url + 'inputsupplier/machinery/' + data).pipe(map((res: any) => {
+    return res;
+  }));
+}
+
+
+// ---------------- insecticide -----------------------------------
+
+getallinsecticide(){
+  return  this.http.get<any>(this._url+'inputsupplier/insecticide/getall').pipe(map((res:any)=>{
+        return res;
+      }));
+}
+
+uploadFileinsecticide(file: any) {
+  return this.http.post<any>(this._url + 'inputsupplier/insecticide/download/', file).pipe(map((res: any) => {
+    return res;
+  }));
+}
+
+addinsecticide(data: any) {
+  return this.http.post<any>(this._url + 'inputsupplier/insecticide/', data).pipe(map((res: any) => {
+    return res;
+  }));
+}
+
+insecttypes()
+{
+
+  return this.http.get<any>(this._url + 'inputsupplier/insecticide/insecticidetype/getall').pipe(map((res: any) => {
+    return res;
+  }));
+
+ 
+}
+
+updateinsecticide(data, formdata) {
+  return this.http.put<any>(this._url + 'inputsupplier/insecticide/' + data.id, formdata).pipe(map((res: any) => {
+
+    return res;
+  }));
+}
+
+
+deleteinsecticide(data) {
+  return this.http.delete<any>(this._url + 'inputsupplier/insecticide/' + data).pipe(map((res: any) => {
+    return res;
+  }));
+}
+
+
+
+
+
+// -------------------Compaints ----------------------------------
+
+
   getInputComplaints(masterId) {
     return this.http.get<any>(this._url + 'fpocomplaint/inputsupplier/' + masterId).pipe(map((res: any) => {
       return res;

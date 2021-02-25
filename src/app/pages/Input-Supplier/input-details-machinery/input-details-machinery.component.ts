@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InputSupplierService } from 'src/app/_services/InputSupplier/InputSupplier.services';
 
 @Component({
   selector: 'app-input-details-machinery',
@@ -6,27 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input-details-machinery.component.css']
 })
 export class InputDetailsMachineryComponent implements OnInit {
+  machinerydetails: any;
+  mtypes: any;
 
-  constructor() { }
+  constructor(private inputmachineryservice : InputSupplierService) { }
 
   ngOnInit(): void {
+    this.mtype();
+    this.Machinerydata();
   }
 
-  public fieldArray: Array<any> = [];
-  private newAttribute: any = {};
 
-  addFieldValue() {
-    this.fieldArray.push(this.newAttribute)
-    this.newAttribute = {};
+  mtype()
+  {
+    this.inputmachineryservice.mtype().subscribe((res)=>{
+      this.mtypes = res;
+    })
   }
 
-  deleteFieldValue(index) {
-    this.fieldArray.splice(index, 1);
-  }
-
-  ChangingValue(e) {
-    console.log(e);
-
-}
+ Machinerydata()
+ {
+   this.inputmachineryservice.getallMachinery().subscribe((res)=>{
+   this.machinerydetails = res;
+  })
+ }
 
 }

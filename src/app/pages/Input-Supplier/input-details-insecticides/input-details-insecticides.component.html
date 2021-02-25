@@ -16,8 +16,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="card-body">
                     <form>
                         <div class="pl-lg-4">
@@ -25,12 +23,10 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Insecticdes Type' | translate}}<span class="required">*</span></label>
-                                        <select class="form-control">
-                                            <option>{{'Select Type' | translate}}</option>
-                                            <option>{{'Chemical Pesticides' | translate}}</option>
-                                            <option>{{'Bio Pesticides' | translate}}</option>
-                                            <option>{{'Herbicides' | translate}}</option>
-                                        </select>
+                                         <select class="form-control" >
+                                            <option value="">{{'Select Type' | translate}}</option>
+                                            <option *ngFor="let insect of insecttypelist" [value]="insect.id">{{insect.insecticideType}}</option>
+                                          </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -118,32 +114,27 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody *ngFor="let idata of insecticidedetails; index as i">
                             <tr>
                                 <td>
-                                    O1
+                                    {{i+1}}
                                 </td>
-                                <td>Chemical</td>
+                                <td> {{idata.insecticideTypeId}}</td>
                                 <td>
-                                    A
+                                   {{idata.manufacturerName}}
                                 </td>
                                 <td>
-                                    xyz
+                                    {{idata.quantity}}
                                 </td>
-                                <td class="text-right">
-                                    <div ngbDropdown placement="bottom-right">
-                                        <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                                            {{'Actions' | translate}}
-                                        </a>
-                                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="javascript:void(0)">{{'Edit' | translate}}</a>
-                                            <a class="dropdown-item" href="javascript:void(0)">{{'Delete' | translate}}</a>
-                                        </div>
+                                <td>
+
+                                    <div style="font-size: 20px;text-indent: 10px;">
+                                        <i class="fas fa-edit"></i>
+                                        <i class="fas fa-trash-alt"></i>
+
                                     </div>
                                 </td>
                             </tr>
-
-                    
 
                         </tbody>
                     </table>

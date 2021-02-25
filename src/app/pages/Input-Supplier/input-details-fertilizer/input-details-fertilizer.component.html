@@ -4,7 +4,7 @@
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--7 mp-7">
-    <!-- Table -->
+    <!-- Form -->
     <div class="row">
         <div class="col">
             <div class="card shadow">
@@ -16,7 +16,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form >
+                        <!-- [formGroup]="fertilizerForm" (ngSubmit)="addfertilizer()" -->
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -150,28 +151,24 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody *ngFor="let fdata of fertilizerDetails; index as i ">
                             <tr>
                                 <td>
-                                    O1
+                                    {{1+1}}
                                 </td>
                                 <td>Chemical
                                   </td>
                                 <td>
-                                    A
+                                    {{fdata.fertilizerGrade}}
                                 </td>
                                 <td>
-                                    xyz
+                                    {{fdata.manufacturerName}}
                                 </td>
-                                <td class="text-right">
-                                    <div ngbDropdown placement="bottom-right">
-                                        <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                                            {{'Actions' | translate}}
-                                        </a>
-                                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item" href="javascript:void(0)">{{'Edit' | translate}}</a>
-                                            <a class="dropdown-item" href="javascript:void(0)">{{'Delete' | translate}}</a>
-                                        </div>
+                                <td>
+                                    <div style="font-size: 20px;text-indent: 10px;">
+                                        <i class="fas fa-edit"></i>
+                                        <i class="fas fa-trash-alt"></i>
+
                                     </div>
                                 </td>
                             </tr>
