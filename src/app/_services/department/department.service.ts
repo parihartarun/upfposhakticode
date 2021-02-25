@@ -180,7 +180,12 @@ export class DepartmentService {
       return res;
     }))
    
-}
+  }
+  getAllComplaints(role:any) {
+    return this.http.get<any>(this._url + 'fpocomplaint/getAllComplaintIsChcBs/' + role).pipe(map((res: any) => {
+      return res;
+    }));
+  }
  
 }
 

@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../_services/auth/auth.service';
 import { DepartmentService } from '../../../_services/department/department.service';
@@ -26,7 +26,7 @@ export class DepartmentAllComplaintsComponent implements OnInit {
   isViewComplaint = false;
   users: Array<any> = [];
   filterResponse: any[];
-
+  roleType: any;
   viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', name: "", mobile: "", email: "" }
   constructor(
     private formBuilder: FormBuilder,
@@ -34,10 +34,12 @@ export class DepartmentAllComplaintsComponent implements OnInit {
     private route: Router,
     private toastr: ToastrService,
     private userService: UserService,
-    private authService: AuthService, private datePipe: DatePipe
+    private authService: AuthService, private datePipe: DatePipe,
+    private _activatedroute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.roleType = localStorage.getItem('userRole')
     this.authService.getDeptmentUser().subscribe(u => {
       this.users = u
     })
@@ -45,16 +47,30 @@ export class DepartmentAllComplaintsComponent implements OnInit {
       complaint: ['New']
 
     });
-
     fpoId: localStorage.getItem('masterId')
+
     this.getComplaints();
   }
 
   getComplaints() {
-
-    this.api.getComplaints().subscribe(response => {
+    let url = "";
+    let role = "";
+    url = this.route.url
+    if (url === "/deptInput/complaints") {
+      role = "ROLE_INPUTSUPPLIER";
+    }
+    else if (url === "/deptBuyer/complaints") {
+      role = "ROLE_BUYERSELLER";
+    }
+    else if (url === "/deptCHC/complaints") {
+      role = "ROLE_CHCFMB";
+    }
+      this.api.getAllComplaints(role).subscribe(response => {
       this.complaints = response;
-      this.filterResponse = response
+        this.filterResponse = response
+        if (!this.filterResponse || this.filterResponse.length <= 0) {
+          return
+        }
       this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
       this.fliterForm.controls['complaint'].setValue('New')
     });
@@ -72,6 +88,7 @@ export class DepartmentAllComplaintsComponent implements OnInit {
     formData.append('assign_to', this.complaintForm.value.assign_to);
     formData.append('comment', this.complaintForm.value.comment);
     formData.append('status', this.complaintForm.value.status);
+    formData.append('role', this.complaintForm.value.role);
     this.api.updateStatus(this.complaintForm.value, formData).subscribe(response => {
       if (response.id != '') {
         this.toastr.success(response.message);
@@ -125,9 +142,9 @@ export class DepartmentAllComplaintsComponent implements OnInit {
     this.viewComp.assigned_date = complaint.assigneddate;
     this.viewComp.currentStatus = this.getStatus(complaint.status);
     this.viewComp.description = complaint.description;
-    this.viewComp.compalintDate = complaint.createdate;
+    this.viewComp.compalintDate = complaint.createDateTime;
     this.viewComp.remarks = complaint.createDateTime;
-    this.viewComp.title = complaint.ftitle;
+    this.viewComp.title = complaint.title;
     this.viewComp.name = complaint.fponame;
     this.viewComp.email = complaint.fpoemail;
     window.scroll(0, 0)
@@ -137,15 +154,16 @@ export class DepartmentAllComplaintsComponent implements OnInit {
       appointmentDate: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
       comment: ['', [Validators.required]],
       status: ['', [Validators.required]],
+      role: [complaint.role],
     });
   }
   getStatus(status) {
-    if (status == 0) {
+    if (status == "OPEN") {
       return "OPEN"
-    } else if (status == 1) {
+    } else if (status == "ASSIGNED") {
       return "ASSIGNED"
     }
-    else if (status == 2) {
+    else if (status == "RESOLVED") {
       return "RESOLVED"
     }
     else {
@@ -154,6 +172,9 @@ export class DepartmentAllComplaintsComponent implements OnInit {
 
   }
   filterComaplaint() {
+    if (!this.complaints ||this.complaints.length <= 0) {
+      return
+    }
     if (this.fliterForm.controls['complaint'].value === "New") {
       this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
     }
