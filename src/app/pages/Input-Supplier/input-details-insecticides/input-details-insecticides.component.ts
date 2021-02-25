@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InputSupplierService } from 'src/app/_services/InputSupplier/InputSupplier.services';
 
 @Component({
   selector: 'app-input-details-insecticides',
@@ -6,26 +7,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./input-details-insecticides.component.css']
 })
 export class InputDetailsInsecticidesComponent implements OnInit {
+  insecttypelist: any;
+  insecticidedetails: any;
 
-  constructor() { }
+  constructor(private inputinsectservice: InputSupplierService) { }
 
   ngOnInit(): void {
+    this.types();
+    this.getallinsecticidesdata();
+
   }
 
-  public fieldArray: Array<any> = [];
-  private newAttribute: any = {};
 
-  addFieldValue() {
-    this.fieldArray.push(this.newAttribute)
-    this.newAttribute = {};
+  types() {
+    this.inputinsectservice.insecttypes().subscribe((res) => {
+      this.insecttypelist = res;
+      console.log(res, "type");
+    })
   }
 
-  deleteFieldValue(index) {
-    this.fieldArray.splice(index, 1);
-  }
 
-  ChangingValue(e) {
-    console.log(e);
+  getallinsecticidesdata() {
+    this.inputinsectservice.getallinsecticide().subscribe((res) => {
+      this.insecticidedetails = res;
+      console.log(this.insecticidedetails,"")
+    })
   }
 
 }

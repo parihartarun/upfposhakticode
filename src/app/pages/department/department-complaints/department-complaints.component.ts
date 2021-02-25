@@ -27,7 +27,7 @@ export class DepartmentComplaintsComponent implements OnInit {
   isViewComplaint = false;
   users: Array<any> = [];
   filterResponse: any[];
-
+  roleType:any
   viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', name: "", mobile: "", email:"" }
   constructor(
     private formBuilder: FormBuilder,
@@ -39,6 +39,7 @@ export class DepartmentComplaintsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.roleType = localStorage.getItem('userRole')
     this.authService.getDeptmentUser().subscribe(u => {
       this.users=u
     })
@@ -73,6 +74,7 @@ export class DepartmentComplaintsComponent implements OnInit {
     formData.append('assign_to', this.complaintForm.value.assign_to);
     formData.append('comment', this.complaintForm.value.comment);
     formData.append('status', this.complaintForm.value.status);
+    formData.append('role', "ROLE_FPC");
     this.api.updateStatus(this.complaintForm.value, formData).subscribe(response => {
       if (response.id != '') {
         this.toastr.success(response.message);

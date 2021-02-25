@@ -76,8 +76,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'department/sales-report', component: DepartmentSalesReportComponent },
   { path: 'department/circulars', component: DepartmentCircularsComponent },
   { path: 'department/upload-circulars', component: DepartmentUplaodCircularComponent },
-  { path: 'department/complaints', component: DepartmentComplaintsComponent },
-  { path: 'depart/complaints', component: DepartmentAllComplaintsComponent },
+  { path: 'department/complaints', component: DepartmentComplaintsComponent },  
   { path: 'department/user-management', component: DepartmentUserManagementComponent },
   { path: 'department/all-users', component: DepartmentAllUsersComponent },
   { path: 'department/guideline', component: DepartmentGuidelineComponent },
@@ -104,5 +103,9 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/fpo-notificationByDept', component: NotifiactionByDepartmentComponent },
   { path: 'farmer/farmerNotificationByFpo', component: FarmerNotifictionByFpoComponent },
   { path: 'farmer/myFPo', component: FpoDetailsComponent },
+  { path: 'deptInput/complaints', component: DepartmentAllComplaintsComponent },
+  { path: 'deptBuyer/complaints', component: DepartmentAllComplaintsComponent },
+  { path: 'deptCHC/complaints', component: DepartmentAllComplaintsComponent },
+ 
 ];
 
