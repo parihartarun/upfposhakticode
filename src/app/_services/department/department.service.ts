@@ -180,7 +180,22 @@ export class DepartmentService {
       return res;
     }))
    
-}
+  }
+  getAllComplaintBuyerSeller(role:any) {
+    return this.http.get<any>(this._url + 'fpocomplaint/getAllComplaintBuyerSeller/' + role).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getAllComplaintInputSupplier(role: any) {
+    return this.http.get<any>(this._url + 'fpocomplaint/getAllComplaintInputSupplier/' + role).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getAllComplaintChcFmb(role: any) {
+    return this.http.get<any>(this._url + 'fpocomplaint/getAllComplaintChcFmb/' + role).pipe(map((res: any) => {
+      return res;
+    }));
+  }
  
 }
 
