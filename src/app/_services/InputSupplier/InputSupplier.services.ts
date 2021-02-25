@@ -64,7 +64,7 @@ export class InputSupplierService {
       return res;
     }));
   }
-}
+
   getInputComplaints(masterId) {
     return this.http.get<any>(this._url + 'fpocomplaint/inputsupplier/' + masterId).pipe(map((res: any) => {
       return res;

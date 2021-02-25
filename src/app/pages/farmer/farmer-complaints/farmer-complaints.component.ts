@@ -180,7 +180,7 @@ export class FarmerComplaintsComponent implements OnInit {
           this.submitted = false;
           this.edit = false;
           this.complaintForm.reset();
-          this.getCHCComplaints();
+          this.getBuyerComplaints();
         } else {
           this.toastr.error('Error! While Add complaint.');
         }

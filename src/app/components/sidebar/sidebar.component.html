@@ -203,7 +203,7 @@
             </a>
           </li>
           <li *ngIf="userRole == 'ROLE_BUYERSELLER' && userRole != 'ROLE_MIN' && userRole != 'ROLE_FARMER' && userRole != 'ROLE_FPC'&& userRole != 'ROLE_CHCFMB' && userRole != 'ROLE_INPUTSUPPLIER'" class="nav-item">
-            <a routerLinkActive="active" [routerLink]="['input/complaints']" class="nav-link">
+            <a routerLinkActive="active" [routerLink]="['byer/complaints']" class="nav-link">
               <i class="ni fa fa-archive text-white"></i>
               {{'Complaints/Suggestions' | translate}}
             </a>
@@ -321,21 +321,17 @@
               {{'User Details Status' | translate}}
             </a>
           </li>
+         
+
         </ul>
       </div>
       <div *ngIf="userRole == 'ROLE_MIN'">
-        <h6 class="navbar-heading mt-2">{{'User Management' |translate}}</h6>
+       
         <!-- Heading -->
-          <li *ngIf="userRole == 'ROLE_INPUTSUPPLIER'" class=" nav-item">
-            <a routerLinkActive="active" [routerLink]="['/input-insect']" class="nav-link">
-              <i class="fa fa-university text-white"></i>
-              {{'Insectices / Pestices' | translate}}
-            </a>
-          </li>
-        </ul>
+          
 
         <div>
-          <hr class="my-3">
+         
           <!-- Heading -->
           <h6 *ngIf="this.userRole == 'ROLE_FPC'" class="navbar-heading">{{'Farmer Details' | translate}}</h6>
           <ul class="navbar-nav">
@@ -390,5 +386,5 @@
 
       </div>
     </div>
-  
+  </div>
 </nav>

@@ -87,7 +87,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'indent_history', component: IndentComponent },
   { path: 'fpo/farmer-user-profile', component: FarmerUserProfileComponent },
   { path: 'farmer/complaints', component: FarmerComplaintsComponent },
-  { path: 'byer/complaints', component: BuyerTraderComplaintsComponent },
+  { path: 'byer/complaints', component: FarmerComplaintsComponent },
   { path: 'chc/complaints', component: FarmerComplaintsComponent },
   { path: 'input/complaints', component: FarmerComplaintsComponent },
   { path: 'input-seed', component: InputDetailsSeedsComponent },
