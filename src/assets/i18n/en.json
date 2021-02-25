@@ -628,7 +628,7 @@
   "to view in details": "to view in details",
   "Upload Date": "Upload Date",
   "View file": "View file",
-  "please enter value upto 999": "please enter value upto 999",
+  "please enter value upto 999": "please enter value digit upto 999 ",
   "only png,jpeg,jpg format is allow": "only png,jpeg,jpg format allow",
   "only xls,xlsx,pdf,doc,docx format is allow": "only xls,xlsx,pdf,doc,docx format is allow",
   "Select Company Category": "Select Company Category",
@@ -723,6 +723,8 @@
   "Markatable":"Markatable",
   "surplus":"surplus",
   "in Qt":"in Qt",
-  "Update Crop Sowing":"Update Crop Sowing"
-  
+  "Update Crop Sowing":"Update Crop Sowing",
+ 
+  "Complaints/Suggestions by fpo": "Complaints/Suggestions By FPO"
+
 }

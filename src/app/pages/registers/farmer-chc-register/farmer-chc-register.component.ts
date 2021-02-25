@@ -63,7 +63,7 @@ export class FarmerChcRegisterComponent implements OnInit {
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       shopEstablishmentNumber: [''],
       villageRefId: ['', Validators.required],
-      userName: ['', [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
+      userName: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-_]{6,20}")]],
       recaptcha: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       user: [],

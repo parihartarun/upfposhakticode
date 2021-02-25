@@ -63,31 +63,15 @@ export class FarmerService {
       return res;
     }));
   }
-  getCHCComplaints(masterId) {
-    return this.http.get<any>(this._url + 'fpocomplaint/chcfmb/' + masterId).pipe(map((res: any) => {
-      return res;
-    }));
-  }
-  getInputComplaints(masterId) {
-    return this.http.get<any>(this._url + 'fpocomplaint/inputsupplier/' + masterId).pipe(map((res: any) => {
-      return res;
-    }));
-  }
+ 
+ 
   addComplaint(complaint:any,data: any) {
     return this.http.post<any>(this._url + 'complaint', data).pipe(map((res: any) => {
       return res;
     }));
   }
-  addCHCComplaint(complaint: any, data: any) {
-    return this.http.post<any>(this._url + 'fpocomplaint/chcfmb', data).pipe(map((res: any) => {
-      return res;
-    }));
-  }
-  addInputComplaint(complaint: any, data: any) {
-    return this.http.post<any>(this._url + 'fpocomplaint/inputsupplier', data).pipe(map((res: any) => {
-      return res;
-    }));
-  }
+ 
+  
   getAllNotificationByFpo(id) {
 
     return this.http.get<any>(this._url + 'notification/farmernotification/' + id).pipe(map((res: any) => {
