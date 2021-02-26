@@ -233,6 +233,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FpoDashboardComponent,
     HomeScreenComponent,
     DepartmentAllComplaintsComponent,
+    FPOAllUserComponent
    
   ],
   exports: [
