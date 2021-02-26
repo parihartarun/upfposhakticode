@@ -17,73 +17,60 @@
                 </div>
 
                 <div class="card-body">
-                    <form>
+                    <form [formGroup]="insectForm">
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Insecticdes Type' | translate}}<span class="required">*</span></label>
-                                         <select class="form-control" >
+                                         <select class="form-control" formControlName="insecticide_type_id">
                                             <option value="">{{'Select Type' | translate}}</option>
                                             <option *ngFor="let insect of insecttypelist" [value]="insect.id">{{insect.insecticideType}}</option>
                                           </select>
                                     </div>
                                 </div>
+                               
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Name of Manufacturer' | translate}}<span class="required">*</span></label>
-                                        <input type="text" id="input-first-name"
-                                            class="form-control form-control-alternative">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>{{'Picture of Fertilizer packets' | translate}}</label>
-                                        <input type="file" id="input-first-name"
-                                            class="form-control form-control-alternative">
+                                        <label>{{'Picture of Fertilizer packets' | translate}}<span class="required">*</span></label>
+                                        <input type="file" id="input-first-name" FormControlName="file" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Quantity' | translate}}<span class="required">*</span></label>
-                                        <input type="text" id="input-first-name"
-                                            class="form-control form-control-alternative">
+                                        <input type="text" id="input-first-name" FormControlName="quantity" class="form-control form-control-alternative">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Name of Manufacturer' | translate}}</label>
+                                        <input type="text" id="input-first-name" FormControlName="manufacturer_name" class="form-control form-control-alternative">
+                                    </div>
+                                </div> 
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'CIB & RC Number' | translate}}</label>
-                                        <input type="text" id="input-first-name"
-                                            class="form-control form-control-alternative">
+                                        <input type="text" id="input-first-name" FormControlName="cib_rc_number" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'CIB & RC Issue Date' | translate}}</label>
-                                        <input type="date" id="input-first-name"
-                                            class="form-control form-control-alternative">
+                                        <input type="date" id="input-first-name" FormControlName="cib_rc_issuedate" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                             </div>
                         </div>
+                       
                     </form>
                 </div>
-
-
-
-
-
                 <div class="card-footer py-4 text-center">
-
-                    <button class="btn btn-yellow">{{'Save' | 
-                        translate}}</button>
-                    <!-- <button class="btn btn-yellow">Save and continue</button> -->
+                    <button type="submit" class="btn btn-yellow" (click)="addinsecticides()">{{'Save' |  translate}}</button>
                     <button class="btn btn-warning">{{'Reset' | translate}}</button>
                 </div>
+              
             </div>
         </div>
     </div>

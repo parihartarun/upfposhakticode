@@ -34,9 +34,6 @@ export class InputDetailsSeedsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCropList();
-
-
-
     this.seedForm = this.fb.group({
       certification_no: [''],
       company: [''],
@@ -51,7 +48,6 @@ export class InputDetailsSeedsComponent implements OnInit {
 
     this.allseeds();
 
-  
   }
 
   getCropList() {
