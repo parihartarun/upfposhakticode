@@ -102,8 +102,8 @@ deletefertilizer(data) {
 
 // ---------------- Machinery -----------------------------------
 
-getallMachinery(){
-  return  this.http.get<any>(this._url+'inputsupplier/machinery/getall').pipe(map((res:any)=>{
+getallMachinery(masterId){
+  return  this.http.get<any>(this._url+'inputsupplier/machinery/getall/'+masterId).pipe(map((res:any)=>{
         return res;
       }));
 }
@@ -114,7 +114,7 @@ uploadFileMachinery(file: any) {
   }));
 }
 
-addMachinery(data: any) {
+addMachinery(data:any) {
   return this.http.post<any>(this._url + 'inputsupplier/machinery/', data).pipe(map((res: any) => {
     return res;
   }));
@@ -145,8 +145,8 @@ deleteMachinery(data) {
 
 // ---------------- insecticide -----------------------------------
 
-getallinsecticide(){
-  return  this.http.get<any>(this._url+'inputsupplier/insecticide/getall').pipe(map((res:any)=>{
+getallinsecticide(masterId){
+  return  this.http.get<any>(this._url+'inputsupplier/insecticide/getall/' +masterId).pipe(map((res:any)=>{
         return res;
       }));
 }
@@ -157,8 +157,8 @@ uploadFileinsecticide(file: any) {
   }));
 }
 
-addinsecticide(data: any) {
-  return this.http.post<any>(this._url + 'inputsupplier/insecticide/', data).pipe(map((res: any) => {
+addinsecticide(FormData) {
+  return this.http.post<any>(this._url + 'inputsupplier/insecticide/',FormData).pipe(map((res: any) => {
     return res;
   }));
 }

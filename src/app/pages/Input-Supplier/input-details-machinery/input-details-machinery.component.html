@@ -16,71 +16,70 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form [formGroup]="machineryForm">
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Machinery Category' | translate}} <span
                                                 class="required">*</span></label>
-                                                <select class="form-control" >
-                                                    <option value="">{{'Select Type' | translate}}</option>
-                                                    <option *ngFor="let mach of mtypes" [value]="mach.id">{{mach.equipType}}</option>
-                                                  </select>
+                                        <select class="form-control" formControlName="mchinery_type_id">
+                                            <option value="">{{'Select Type' | translate}}</option>
+                                            <option *ngFor="let mach of mtypes" [value]="mach.id">{{mach.equipType}}
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Name of the Machinery' | translate}} <span
                                                 class="required">*</span></label>
-                                        <input type="text" id="input-first-name"
+                                        <input type="text" id="input-first-name" formControlName="machinery_name_id"
                                             class="form-control form-control-alternative">
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Picture of the Machinery' | translate}}<span
+                                                class="required">*</span></label>
+                                        <input type="file" id="input-first-name" formControlName="file" (change)="upload($event.target.files)"
+                                            class="form-control form-control-alternative">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Quantity' | translate}}<span class="required">*</span></label>
+                                        <input type="text" id="input-first-name" formControlName="quantity"
+                                            class="form-control form-control-alternative">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Name of Manufacturer' | translate}}
+                                        </label>
+                                        <input type="text" id="input-first-name" formControlName="manufacturer_name"
+                                            class="form-control form-control-alternative">
+                                    </div>
+                                </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Technical specifications of the Machinery' | translate}}</label>
-                                        <input type="text" id="input-first-name"
+                                        <input type="text" id="input-first-name" formControlName=""
                                             class="form-control form-control-alternative">
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>{{'Name of Manufacturer' | translate}} <span class="required">*</span>
-                                        </label>
-                                        <input type="text" id="input-first-name"
-                                            class="form-control form-control-alternative">
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>{{'Picture of the Machinery' | translate}}</label>
-                                        <input type="file" id="input-first-name"
-                                            class="form-control form-control-alternative">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label>{{'Quantity' | translate}}</label>
-                                        <input type="text" id="input-first-name"
-                                            class="form-control form-control-alternative">
-                                    </div>
-                                </div>
                             </div>
+                        </div>
+                        <div class="card-footer py-4 text-center">
+                            <button type="submit" class="btn btn-yellow" (click)="addmachinery()">{{'Save' | translate}}</button>
+                            <!-- <button class="btn btn-yellow">Save and continue</button> -->
+                            <button class="btn btn-warning">{{'Reset' | translate}}</button>
                         </div>
                     </form>
                 </div>
-                <div class="card-footer py-4 text-center">
-                    <button class="btn btn-yellow">{{'Save' | translate}}</button>
-                    <!-- <button class="btn btn-yellow">Save and continue</button> -->
-                    <button class="btn btn-warning">{{'Reset' | translate}}</button>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -113,16 +112,16 @@
                         <tbody *ngFor="let mdata of machinerydetails; index as i">
                             <tr>
                                 <td>
-                                   {{i+1}}
+                                    {{i+1}}
                                 </td>
                                 <td>
-                                    Irrigation Equipment
+                                    {{mdata.type}}
                                 </td>
                                 <td>
-                                   {{mdata.manufacturerName}}
+                                    {{mdata.manufacturer_name}}
                                 </td>
                                 <td>
-                                   {{mdata.quantity}}
+                                    {{mdata.quantity}}
                                 </td>
                                 <td>
                                     <div style="font-size: 20px;text-indent: 10px;">
