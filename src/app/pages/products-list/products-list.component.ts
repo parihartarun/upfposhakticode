@@ -181,7 +181,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   }
   fetchnewData() {
     this.searchData();
-    this._rouetr.navigate(['/products', this.dummysearchval, this.parsearchType])
+    this._rouetr.navigate(['/products', this.filterParams.val, this.filterParams.in]);
   }
   ngAfterViewInit(): void {
     this.treeloaded = false;

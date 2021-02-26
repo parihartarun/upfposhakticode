@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -9,18 +9,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AuthHeaderComponent implements OnInit {
 
+  @HostListener('window:scroll', ['$event'])
+
+  onWindowScroll(e) {
+    let element = document.querySelector('.navbar');
+    if (window.pageYOffset > element.clientHeight) {
+      element.classList.add('sticky-nav');
+    } else {
+      element.classList.remove('sticky-nav');
+    }
+  }
   isLoggeIn = false;
   username = '';
   isHome = true;
   isOpen = false;
   isDropdownOpen = false;
   navText: any
-  isHomePage=''
+  isHomePage = ''
   constructor(public translate: TranslateService, private route: Router, private _activatedroute: ActivatedRoute) {
     console.log(localStorage.getItem('language'));
-    if(localStorage.getItem('language')){
+    if (localStorage.getItem('language')) {
       translate.setDefaultLang(localStorage.getItem('language'));
-    }else{
+    } else {
       translate.setDefaultLang('hi');
       localStorage.setItem('language', 'hi');
     }
@@ -31,20 +41,20 @@ export class AuthHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isHomePage=this.route.url;
-    console.log('homepage',this.isHomePage);
-    
+    this.isHomePage = this.route.url;
+    console.log('homepage', this.isHomePage);
+
     this._activatedroute.paramMap.subscribe(params => {
-     
+
     });
-   
-    if(sessionStorage.getItem('accessToken') != null){
+
+    if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
       this.username = localStorage.getItem('username');
     }
   }
 
-  logout(){
+  logout() {
     sessionStorage.removeItem('accessToken');
     localStorage.removeItem('username');
     localStorage.removeItem('userrole');
