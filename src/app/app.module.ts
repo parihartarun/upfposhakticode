@@ -111,6 +111,7 @@ import { TagInputModule } from 'ngx-chips';
 import { DepartmentAllComplaintsComponent } from './pages/department/department-all-complaints/department-all-complaints.component';
 import { FPOAllUserComponent } from './pages/fpo/fpoall-user/fpoall-user.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { CanDeactivateGuard } from './_helpers/can-deactivate.guard';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -234,14 +235,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeScreenComponent,
     DepartmentAllComplaintsComponent,
     FPOAllUserComponent
-   
+
   ],
   exports: [
     AuthHeaderComponent
   ],
   providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    AuthGuardService],
+    AuthGuardService, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

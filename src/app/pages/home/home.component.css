@@ -166,7 +166,7 @@ marquee {
     background: #fff;
     min-height: 100px;
     border-right: 15px solid #ccc;
-    padding-bottom: 1.4%;
+    /* padding-bottom: 1.4%; */
   }
   .set_name {
     color: #020202dd;

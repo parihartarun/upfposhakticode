@@ -11,5 +11,9 @@ export class AdminLayoutComponent implements OnInit {
 
   ngOnInit() {
   }
+  canDeactivate() {
+    let isLoggeIn = sessionStorage.getItem("accessToken");
+    return !!isLoggeIn ? true : false;
+  }
 
 }

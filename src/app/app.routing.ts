@@ -9,6 +9,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { AuthGuardService } from './_helpers/auth-guard.service';
 import { HomeComponent } from './pages/home/home.component';
 import { HomeScreenComponent } from './pages/common/home-screen/home-screen.component';
+import { CanDeactivateGuard } from './_helpers/can-deactivate.guard';
 
 const routes: Routes = [
   {
@@ -33,7 +34,8 @@ const routes: Routes = [
         loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
       }
     ],
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    canDeactivate: [CanDeactivateGuard]
   }, {
     path: '',
     component: AuthLayoutComponent,
