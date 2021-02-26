@@ -51,6 +51,7 @@ import { UserProfileDashboardComponent } from 'src/app/pages/user-profile-dashbo
 import { FarmerNotifictionByFpoComponent } from '../../pages/farmer/farmer-notifiction-by-fpo/farmer-notifiction-by-fpo.component';
 import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.component';
 import { DepartmentAllComplaintsComponent } from '../../pages/department/department-all-complaints/department-all-complaints.component';
+import { FPOAllUserComponent } from '../../pages/fpo/fpoall-user/fpoall-user.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: FpoDashboardComponent },
@@ -106,6 +107,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'deptInput/complaints', component: DepartmentAllComplaintsComponent },
   { path: 'deptBuyer/complaints', component: DepartmentAllComplaintsComponent },
   { path: 'deptCHC/complaints', component: DepartmentAllComplaintsComponent },
+  { path: 'fpoUser/fpoUser', component: FPOAllUserComponent },
  
 ];
 
