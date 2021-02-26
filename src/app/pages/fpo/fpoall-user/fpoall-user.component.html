@@ -52,34 +52,34 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">{{'S.no' | translate}}</th>
-                <th scope="col">{{'FPO Name' | translate}}</th>
-                <th scope="col">{{'User Name' | translate}}</th>
+                <th scope="col">{{'Farmer Name' | translate}}</th>
+                <th scope="col">{{'Username' | translate}}</th>
                 <th scope="col">{{'District Name' | translate}}</th>
-                <th scope="col">{{'Request Date' | translate}}</th>
-                <th scope="col">{{'Email' | translate}}</th>
+                <!--<th scope="col">{{'Request Date' | translate}}</th>-->
+              <th scope="col">{{'Mobile' | translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let u of deActiveUsers | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                 <td>
-                  {{i+1}}
+                  {{(p-1) * 10 + i + 1}}
                 </td>
                 <td>
-                  {{u.fpo_name}}
+                  {{u.farmerName}}
                 </td>
                 <td>
-                  {{u.user_name}}
+                  {{u.userName}}
                 </td>
                 <td>
-                  {{u.district_name}}
+                  {{u.districtName}}
                 </td>
-                <td>
+                <!--<td>
                   {{u.date_of_regi}}
-                </td>
-                <td>
-                  {{u.fpo_email}}
-                </td>
+                </td>-->
+              <td>
+                {{u.farmerMob}}
+              </td>
 
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
@@ -136,33 +136,33 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">{{'S.no' | translate}}</th>
-                <th scope="col">{{'FPO Name' | translate}}</th>
-                <th scope="col">{{'User Name' | translate}}</th>
+                <th scope="col">{{'Farmer Name' | translate}}</th>
+                <th scope="col">{{'Username' | translate}}</th>
                 <th scope="col">{{'District Name' | translate}}</th>
-                <th scope="col">{{'Request Date' | translate}}</th>
-                <th scope="col">{{'Email' | translate}}</th>
+                <!--<th scope="col">{{'Request Date' | translate}}</th>-->
+              <th scope="col">{{'Mobile' | translate}}</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let u of activeUsers | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                 <td>
-                  {{i+1}}
+                  {{(p-1) * 10 + i + 1}}
                 </td>
                 <td>
-                  {{u.fpo_name}}
+                  {{u.farmerName}}
                 </td>
                 <td>
-                  {{u.user_name}}
+                  {{u.userName}}
                 </td>
                 <td>
-                  {{u.district_name}}
+                  {{u.districtName}}
                 </td>
-                <td>
+                <!--<td>
                   {{u.date_of_regi}}
-                </td>
-                <td>
-                  {{u.fpo_email}}
-                </td>
+                </td>-->
+              <td>
+                {{u.farmerMob}}
+              </td>
 
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
