@@ -16,26 +16,24 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form >
-                        <!-- [formGroup]="fertilizerForm" (ngSubmit)="addfertilizer()" -->
-                        <div class="pl-lg-4">
+                    <form [formGroup]="fertilizerForm" (ngSubmit)="addfertilizer()">
+                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Fertilizer Type' | translate}}<span class="required">*</span></label>
-                                        <select class="form-control" (change)="selectvalue($event.target.value)">
-                                            <option value="select">{{'Select Type' | translate}}</option>
-                                            <option value="chemical">{{'Chemical Fertilizer' | translate}}</option>
-                                            <option value="bio">{{'Bio Fertilizer' | translate}}</option>
-                                            <option value="organic">{{'Organic' | translate}}</option>
+                                            <select class="form-control" formControlName="type_id" (change)="selectvalue($event.target.value)">
+                                                <option value="">{{'Select Type' | translate}}</option>
+                                                <option *ngFor="let ferti of fertilizertypelist" [value]="ferti.id">{{ferti.fertilizerType}}
+                                                </option>
                                             </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <div class="form-group" *ngIf="fertitype == 'chemical'">
+                                    <div class="form-group" *ngIf="fertitype == '1'">
                                         <label>{{'Chemical Fertilizer' | translate}} <span class="required">*</span></label>
-                                        <select class="form-control" (change)="selectedtype($event.target.value)">
-                                            <option>{{'Urea' | translate}}</option>
+                                        <select class="form-control" formControlName="name_id" (change)="selectedtype($event.target.value)">
+                                            <!-- <option>{{'Urea' | translate}}</option>
                                             <option>{{'DAP' | translate}}</option>
                                             <option>{{'NPK' | translate}}</option>
                                             <option>{{'MOP' | translate}}</option>
@@ -43,31 +41,40 @@
                                             <option>{{'zinc' | translate}}</option>
                                             <option>{{'Micro Nutrient Mixture' | translate}}</option>
                                             <option>{{'Sulphur' | translate}}</option>
-                                            <option value="other">{{'Other' | translate}}</option>
+                                            <option value="other">{{'Other' | translate}}</option> -->
+                                            <option value="">{{'Select Type' | translate}}</option>
+                                            <option *ngFor="let fertisub of subtype" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
+                                            </option>
                                         </select>
                                     </div>
 
-                                    <div class="form-group" *ngIf="fertitype == 'bio'">
+                                    <div class="form-group" *ngIf="fertitype == '2'">
                                         <label>{{'Bio Fertilizer' | translate}}<span class="required">*</span></label>
-                                        <select class="form-control" (change)="selectedtype($event.target.value)">
-                                            <option>{{'Rhizobium' | translate}}</option>
+                                        <select class="form-control" formControlName="name_id" (change)="selectedtype($event.target.value)">
+                                            <!-- <option>{{'Rhizobium' | translate}}</option>
                                             <option>{{'Culture' | translate}}</option>
                                             <option>{{'PSB' | translate}}</option>
                                             <option>{{'BGA' | translate}}</option>
                                             <option>{{'Azotobacter' | translate}}</option>
-                                            <option value="other">{{'Other' | translate}}</option>
+                                            <option value="other">{{'Other' | translate}}</option> -->
+                                            <option value="">{{'Select Type' | translate}}</option>
+                                            <option *ngFor="let fertisub of subtype" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
+                                            </option>
                                         </select>
                                     </div>
 
-                                    <div class="form-group" *ngIf="fertitype == 'organic'">
+                                    <div class="form-group" *ngIf="fertitype == '3'">
                                         <label>{{'Organic' | translate}}<span class="required">*</span></label>
-                                        <select class="form-control" (change)="selected($event.traget.value)">
-                                            <option>{{'Vermi Compost' | translate}}</option>
+                                        <select class="form-control" formControlName="name_id" (change)="selected($event.traget.value)">
+                                            <!-- <option>{{'Vermi Compost' | translate}}</option>
                                             <option>{{'Nadep Compost' | translate}}</option>
                                             <option>{{'City Compost' | translate}}</option>
                                             <option>{{'Jiva Mrit' | translate}}</option>
                                             <option>{{'Ghan Jiva Mrit' | translate}}</option>
-                                            <option value="other">{{'Other' | translate}}</option>
+                                            <option value="other">{{'Other' | translate}}</option> -->
+                                            <option value="">{{'Select Type' | translate}}</option>
+                                            <option *ngFor="let fertisub of subtype" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -76,7 +83,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label> {{'Fertilizer grade' | translate}}<span class="required">*</span> </label>
-                                        <select class="form-control">
+                                        <select class="form-control" formControlName="fertilizer_grade">
                                             <option>A</option>
                                             <option>B</option>
                                             <option>C</option>
@@ -87,8 +94,7 @@
                                 <div class="col-lg-6">
                                     <div *ngIf="subtype == 'other'" class="form-group">
                                         <label>{{'Other' | translate}}</label>
-                                        <input type="text" id="input-first-name"
-                                            class="form-control form-control-alternative">
+                                        <input type="text" id="input-first-name" formControlName="name_id" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                             </div>
@@ -97,16 +103,14 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Name of Manufacturer' | translate}} <span class="required">*</span></label>
-                                        <input type="text" id="input-first-name"
-                                            class="form-control form-control-alternative">
+                                        <input type="text" id="input-first-name" formControlName="manufacturer_name" class="form-control form-control-alternative">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Picture of Fertilizer packets' | translate}}</label>
-                                        <input type="file" id="input-first-name"
-                                            class="form-control form-control-alternative">
+                                        <input type="file" id="input-first-name" formControlName="file" (change)="upload($event.target.files)" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                             </div>
@@ -116,8 +120,8 @@
                     </form>
                 </div>
                 <div class="card-footer py-4 text-center">
-                    <button class="btn btn-yellow">{{'Save' | translate}}</button>
-                    <!-- <button class="btn btn-yellow">Save and continue</button> -->
+                    <button *ngIf="!isEdit" type="submit" class="btn btn-yellow" (click)="addfertilizer()">{{'Save' | translate}}</button>
+                    <button *ngIf="isEdit" class="btn btn-yellow text-right" (click)="updatefertilizer()"> {{'Update' | translate}}</button>
                     <button class="btn btn-warning">{{'Reset' |  translate}}</button>
                 </div>
             </div>
@@ -154,21 +158,20 @@
                         <tbody *ngFor="let fdata of fertilizerDetails; index as i ">
                             <tr>
                                 <td>
-                                    {{1+1}}
+                                    {{i+1}}
                                 </td>
-                                <td>Chemical
+                                <td>{{fdata.fertilizer_type}}
                                   </td>
                                 <td>
-                                    {{fdata.fertilizerGrade}}
+                                    {{fdata.fertilizer_grade}}
                                 </td>
                                 <td>
-                                    {{fdata.manufacturerName}}
+                                    {{fdata.manufacturer_name}}
                                 </td>
                                 <td>
                                     <div style="font-size: 20px;text-indent: 10px;">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-alt"></i>
-
+                                        <i class="fas fa-edit" (click)="editfertilizer(fdata)"></i>
+                                        <i class="fas fa-trash-alt" (click)="deletefertilizer(fdata)"></i>
                                     </div>
                                 </td>
                             </tr>

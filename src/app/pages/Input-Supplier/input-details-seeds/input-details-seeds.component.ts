@@ -21,13 +21,16 @@ export class InputDetailsSeedsComponent implements OnInit {
   fileToUpload: File = null;
   checkfileFormat: boolean = false;
   myInputVariable: ElementRef;
-  // districts = [];
-  // blocks = [];
+  inputid: string;
+  crop_id: any;
+  varietylist: any;
+  id = null;
+  isEdit = false;
 
-  constructor( private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
     private inputsupplierseedservice: InputSupplierService,
-     private fposervice: FpoService,
-     private route: Router,
+    private fposervice: FpoService,
+    private route: Router,
     private toastr: ToastrService,
     private authService: AuthService,
     private datePipe: DatePipe) { }
@@ -38,13 +41,13 @@ export class InputDetailsSeedsComponent implements OnInit {
       certification_no: [''],
       company: [''],
       crop_id: ['', Validators.required],
-      file:['',[Validators.required]],
-      quantity:[''],
-      valid_from:[''],
-      valid_to:[''],
-      variety_id:['']
+      file: ['', [Validators.required]],
+      quantity: [''],
+      valid_from: [''],
+      valid_to: [''],
+      variety_id: ['']
     })
-    inputid: localStorage.getItem('masterId')
+    this.inputid = localStorage.getItem('masterId')
 
     this.allseeds();
 
@@ -54,97 +57,118 @@ export class InputDetailsSeedsComponent implements OnInit {
     this.fposervice.getCropList().subscribe((res) => {
       this.croplist = res;
       console.log(res, "croplist");
-
-
-      // this.fposervice.getCropVarietiesByCropId(res.cropId).subscribe(v => {
-      //   console.log(v,"variety");
-      // })
-  
+      this.crop_id = res.cropId
     })
   }
 
 
-
-  selectcrops(crop_id: any) {
-    this.seedForm.controls['cropId'].setValue(parseInt(crop_id.currentTarget.value));
-    this.fposervice.getCropVarietiesByCropId(parseInt(crop_id.currentTarget.value)).subscribe(v => {
-      console.log(v,"variety");
+  selectcrops(e) {
+    this.seedForm.controls['crop_id'].setValue(parseInt(e));
+    this.fposervice.getCropVarietiesByCropId(e).subscribe(v => {
+      this.varietylist = v;
+      console.log(v, "variety");
     })
   }
-  // selectBlock(blockId: any) {
-  //   this.fposervice.getGramPanchayat(parseInt(blockId.currentTarget.value)).subscribe(gp => {
-  //     this.panchayts = gp
-  //   })
-  //   this.registerForm.controls['blockRef'].setValue(blockId.currentTarget.value);
-  // }
 
 
   allseeds() {
-    this.inputsupplierseedservice.getallseeds().subscribe((res) => {
+    this.inputid = localStorage.getItem('masterId')
+    this.inputsupplierseedservice.getallseeds(this.inputid).subscribe((res) => {
       this.getallSeeds = res;
       console.log(res, "seeddata");
     })
   }
 
-
-  // createseedForm(){
-  //   this.seedForm = this.fb.group({
-  //     certification_no: [''],
-  //     company: [''],
-  //     crop_id: ['', Validators.required],
-  //     file:[''],
-  //     quantity:[''],
-  //     valid_from:[''],
-  //     valid_to:[''],
-  //     variety_id:['']
-  //   })
-  // }
-
-
-  addseeds()
-  {
+  addseeds() {
     this.submitted = true;
-    if (this.seedForm.invalid) {
-      return;
-    }
-    let model = this.seedForm.value;
-    let issuetype = Number(this.seedForm.value.issueType) - 1;
-    const formData: FormData = new FormData();
-    formData.append('certification_no', this.seedForm.value.certification_no);
-     formData.append('company', this.seedForm.value.company);
-     formData.append('crop_id', this.seedForm.value.crop_id);
-     formData.append('quantity', this.seedForm.value.quantity);
-     formData.append('valid_from', this.seedForm.value.valid_from);
-     formData.append('valid_to', this.seedForm.value.valid_to);
-     formData.append('variety_id', this.seedForm.value.variety_id);
+   
+    var splittedDateto = this.seedForm.value.valid_to.split('-')
+    var splittedDatefrom = this.seedForm.value.valid_from.split('-')
 
+
+    let model = this.seedForm.value;
+    const formData: FormData = new FormData();
+    formData.append('file', this.fileToUpload);
+    formData.append('certification_no', this.seedForm.value.certification_no);
+    formData.append('company', this.seedForm.value.company);
+    formData.append('crop_id', this.seedForm.value.crop_id);
+    formData.append('quantity', this.seedForm.value.quantity);
+    formData.append('valid_from', this.seedForm.value.valid_from);
+    formData.append('valid_to', this.seedForm.value.valid_to);
+    // formData.append('valid_from', splittedDatefrom[2]+'-' + splittedDatefrom[1] + '-' + splittedDatefrom[0]);
+    // formData.append('valid_to', splittedDateto[2]+'-' + splittedDateto[1] + '-' + splittedDateto[0] );
+    formData.append('variety_id', this.seedForm.value.variety_id);
     formData.append("input_supplier_id ", localStorage.getItem('masterId'))
     this.inputsupplierseedservice.addseed(formData).subscribe(response => {
-      if (response!= '') {
+      if (response != '') {
         this.toastr.success('seeds Added Succefully.');
         this.submitted = false;
-        // this.edit = false;
+        this.isEdit = false;
         this.seedForm.reset();
-        this.getallSeeds();
+        this.allseeds();
       } else {
         this.toastr.error('Error! While Add seeds.');
       }
     });
   }
 
-  get formControls() {
-    return this.seedForm.controls;
+  editseed(data) {
+    this.seedForm.get('certification_no').patchValue(data.certification_no);
+    this.seedForm.get('file').patchValue(data.file);
+    this.seedForm.get('certification_no').patchValue(data.certification_no);
+    this.seedForm.get('company').patchValue(data.company);
+    this.seedForm.get('quantity').patchValue(data.quantity);
+   this.seedForm.get('crop_id'). patchValue(data.crop_id);
+   this.seedForm.get('quantity'). patchValue(data.quantity);
+   this.seedForm.get('valid_from'). patchValue(data.valid_from);
+   this.seedForm.get('valid_to'). patchValue(data.valid_to);
+   this.seedForm.get('variety_id'). patchValue(data.variety_id);
+    this.id = data.id;
+    this.isEdit = true;
   }
+
+
+
+  updatseed() {
+    const formData: FormData = new FormData();
+    formData.append('file', this.fileToUpload);
+    formData.append('certification_no', this.seedForm.value.certification_no);
+    formData.append('company', this.seedForm.value.company);
+    formData.append('crop_id', this.seedForm.value.crop_id);
+    formData.append('quantity', this.seedForm.value.quantity);
+    formData.append('valid_from', this.seedForm.value.valid_from);
+    formData.append('valid_to', this.seedForm.value.valid_to);
+     // formData.append('valid_from', splittedDatefrom[2]+'-' + splittedDatefrom[1] + '-' + splittedDatefrom[0]);
+    // formData.append('valid_to', splittedDateto[2]+'-' + splittedDateto[1] + '-' + splittedDateto[0] );
+    formData.append('variety_id', this.seedForm.value.variety_id);
+    formData.append("input_supplier_id ", localStorage.getItem('masterId'))
+
+    formData.append('id', this.id);
+    this.inputsupplierseedservice.updateseed(this.id, formData).subscribe((res: any) => {
+      if (res == true || res) {
+        this.toastr.success(' updated successfully.');
+        this.inputsupplierseedservice.getallseeds(this.id);
+        this.seedForm.reset();
+        this.isEdit = false;
+      } else {
+        this.toastr.error('Something went wrong.');
+      }
+    })
+  }
+
+
+
+
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
     if (!this.validateFile(files[0].name)) {
       this.checkfileFormat = true;
       this.myInputVariable.nativeElement.value = "";
-      this.seedForm.controls['uploadFile'].setValue('');
+      this.seedForm.controls['file'].setValue('');
       return;
     }
     else {
-    
+
       this.checkfileFormat = false;
     }
   }
@@ -152,7 +176,7 @@ export class InputDetailsSeedsComponent implements OnInit {
 
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase()=="pdf") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
       return true;
     }
     else {
@@ -163,11 +187,11 @@ export class InputDetailsSeedsComponent implements OnInit {
   deleteseeds(seed) {
     this.inputsupplierseedservice.deleteseed(seed.id).subscribe(response => {
       if (response != '') {
-        this.toastr.success('Delete successfully');      
-        this.getallSeeds();
+        this.toastr.success('Delete successfully');
+        this.allseeds();
       } else {
         this.toastr.error('Error! While Add seed.');
-      }    
+      }
     });
   }
 

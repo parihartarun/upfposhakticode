@@ -33,8 +33,8 @@ export class InputSupplierService {
   // ----------------------------Seeds-------------------------------------------------
 
 
-  getallseeds(){
-    return  this.http.get<any>(this._url+'inputsupplier/seed/getall').pipe(map((res:any)=>{
+  getallseeds(masterId){
+    return  this.http.get<any>(this._url+`inputsupplier/seed/getall/`+masterId).pipe(map((res:any)=>{
           return res;
         }));
   }
@@ -45,14 +45,14 @@ export class InputSupplierService {
     }));
   }
 
-  addseed(data: any) {
-    return this.http.post<any>(this._url + 'fposeed', data).pipe(map((res: any) => {
+  addseed(formdata) {
+    return this.http.post<any>(this._url + 'inputsupplier/seed/', formdata).pipe(map((res: any) => {
       return res;
     }));
   }
  
   updateseed(data, formdata) {
-    return this.http.put<any>(this._url + 'inputsupplier/seed/' + data.id, formdata).pipe(map((res: any) => {
+    return this.http.put<any>(this._url + 'inputsupplier/seed/' + data, formdata).pipe(map((res: any) => {
 
       return res;
     }));
@@ -68,8 +68,8 @@ export class InputSupplierService {
 // ------------------------ Fertilizer -----------------------------------
 
 
-getallfertilizer(){
-  return  this.http.get<any>(this._url+'inputsupplier/fertilizer/getall').pipe(map((res:any)=>{
+getallfertilizer(masterId){
+  return  this.http.get<any>(this._url+'inputsupplier/fertilizer/getall/' +masterId).pipe(map((res:any)=>{
         return res;
       }));
 }
@@ -80,6 +80,21 @@ uploadFilefertilizer(file: any) {
   }));
 }
 
+ftype()
+{
+  return this.http.get<any>(this._url + 'inputsupplier/fertilizer/fertilizertype/getall').pipe(map((res:any)=>{
+    return res;
+  }))
+}
+
+fsubtype(id)
+{
+  return this.http.get<any>(this._url + 'inputsupplier/fertilizer/fertilizername/'+id).pipe(map((res:any)=>{
+    return res;
+  }))
+}
+
+
 addfertilizer(data: any) {
   return this.http.post<any>(this._url + 'inputsupplier/fertilizer/', data).pipe(map((res: any) => {
     return res;
@@ -87,7 +102,7 @@ addfertilizer(data: any) {
 }
 
 updatefertilizer(data, formdata) {
-  return this.http.put<any>(this._url + '/inputsupplier/fertilizer/' + data.id, formdata).pipe(map((res: any) => {
+  return this.http.put<any>(this._url + 'inputsupplier/fertilizer/' + data, formdata).pipe(map((res: any) => {
 
     return res;
   }));
@@ -114,8 +129,8 @@ uploadFileMachinery(file: any) {
   }));
 }
 
-addMachinery(data:any) {
-  return this.http.post<any>(this._url + 'inputsupplier/machinery/', data).pipe(map((res: any) => {
+addMachinery(formdata) {
+  return this.http.post<any>(this._url + 'inputsupplier/machinery/', formdata).pipe(map((res: any) => {
     return res;
   }));
 }
@@ -129,15 +144,15 @@ mtype()
 
 
 updateMachinery(data, formdata) {
-  return this.http.put<any>(this._url + 'inputsupplier/machinery/' + data.id, formdata).pipe(map((res: any) => {
+  return this.http.put<any>(this._url + 'inputsupplier/machinery/' + data, formdata).pipe(map((res: any) => {
 
     return res;
   }));
 }
 
 
-deleteMachinery(data) {
-  return this.http.delete<any>(this._url + 'inputsupplier/machinery/' + data).pipe(map((res: any) => {
+deleteMachinery(id) {
+  return this.http.delete<any>(this._url + 'inputsupplier/machinery/' + id).pipe(map((res: any) => {
     return res;
   }));
 }
@@ -146,7 +161,7 @@ deleteMachinery(data) {
 // ---------------- insecticide -----------------------------------
 
 getallinsecticide(masterId){
-  return  this.http.get<any>(this._url+'inputsupplier/insecticide/getall/' +masterId).pipe(map((res:any)=>{
+  return  this.http.get<any>(this._url+`inputsupplier/insecticide/getall/${masterId}`).pipe(map((res:any)=>{
         return res;
       }));
 }
@@ -158,7 +173,7 @@ uploadFileinsecticide(file: any) {
 }
 
 addinsecticide(FormData) {
-  return this.http.post<any>(this._url + 'inputsupplier/insecticide/',FormData).pipe(map((res: any) => {
+  return this.http.post<any>(this._url + 'inputsupplier/insecticide/', FormData).pipe(map((res: any) => {
     return res;
   }));
 }
@@ -174,7 +189,7 @@ insecttypes()
 }
 
 updateinsecticide(data, formdata) {
-  return this.http.put<any>(this._url + 'inputsupplier/insecticide/' + data.id, formdata).pipe(map((res: any) => {
+  return this.http.put<any>(this._url + 'inputsupplier/insecticide/' + data, formdata).pipe(map((res: any) => {
 
     return res;
   }));
