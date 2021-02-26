@@ -9,11 +9,18 @@ import { environment } from 'src/environments/environment';
 })
 export class FpoService {
   //------------Dashboard Data ------------------------------
-  getDashboardData() {
-    return this.http.get<any>(this._url + `api/fpo/dashboard`).pipe(map((res: any) => {
+  getDashboardData(fpoId) {
+    return this.http.get<any>(this._url + `fpoDashboard/farmerDetails/`+fpoId).pipe(map((res: any) => {
       return res;
     }));
   }
+
+  getDepartmentDashboardData(){
+    return this.http.get<any>(this._url + `departmentDashboard/getDeptDashBoardData/`).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   getIndentByFpoId(fpoid) {
     let params: HttpParams = new HttpParams();
     params = params.append("fpoId", fpoid);
@@ -571,7 +578,21 @@ export class FpoService {
       return res;
     }));
   }
-
+  getAllFPOUser(fpoId:any) {
+    return this.http.get<any>(this._url + `api/Farmer/getAllUserToFpo/`+ fpoId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  updateActiveUser(user) {
+    return this.http.put<any>(this._url + 'api/Farmer/activateUser', user).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  updateUser(user) {
+    return this.http.put<any>(this._url + 'api/Farmer/deactivateFarmerUser', user).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
 }
 

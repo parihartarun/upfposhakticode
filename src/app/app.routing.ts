@@ -8,7 +8,6 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 
 import { AuthGuardService } from './_helpers/auth-guard.service';
 import { HomeComponent } from './pages/home/home.component';
-import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
 import { HomeScreenComponent } from './pages/common/home-screen/home-screen.component';
 
 const routes: Routes = [
@@ -24,7 +23,7 @@ const routes: Routes = [
     component: HomeScreenComponent,
     loadChildren: () => import('./pages/footer-content/footer-content.module').then(m => m.FooterContentModule)
   },
-  { path: 'fpo_guidelines', component: FpoGuidelinesComponent },
+  // { path: 'fpo_guidelines', component: FpoGuidelinesComponent },
   {
     path: '',
     component: AdminLayoutComponent,

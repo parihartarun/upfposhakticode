@@ -8,15 +8,21 @@ import { FpoService } from 'src/app/_services/fpo/fpo.service';
 })
 export class FpoDashboardComponent implements OnInit {
 
-  public prod = false;
-  public surp = true;
+  public markatable_surplus = true;
+  public actual_production = false;
+  public sales_production = false;
+  
+  chartOption:any;
+  actualProduction:Array<any>=[];
+  markatableProduction:Array<any>=[];
 
   public totals = {
-    otherFarmers: 0,
-    farmers: 0,
-    marginalFarmers: 0,
-    smallFarmers: 0,
-    land: 0,
+    totalFpoFarmer: 0,
+    totalMarginalFarmer: 0,
+    totalSmallFarmer: 0,
+    totalOtherFarmer: 0,
+    landArea: 0,
+    crops:0
   };
 
   // Graph
@@ -42,20 +48,22 @@ export class FpoDashboardComponent implements OnInit {
   };
 
 
-  constructor(private api: FpoService) { }
+  constructor(private api: FpoService) { 
+  }
 
   ngOnInit(): void {
-
+    this.chartOption = 'surplus';
     this.getDashboardDetails();
-    this.setGraphData();
-    this.productionGraph();
-
   }
 
   getDashboardDetails() {
-    this.api.getDashboardData().subscribe(response => {
+    console.log(localStorage.getItem('masterId'));
+    this.api.getDashboardData(localStorage.getItem('masterId')).subscribe(response => {
       console.log("FPO", response);
       this.totals = response;
+      this.actualProduction = response.fpoActualQty;
+      this.setMarkatableProduction(response.fpoMarketableProduction);
+      this.setActualProduction(response.fpoActualProduction);
     },
       err => {
         console.log(err)
@@ -63,270 +71,134 @@ export class FpoDashboardComponent implements OnInit {
     );
   }
 
-
-  setGraphData() {
-    this.multi = [
-      {
-        graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Rabi season (in Qt.)`,
-        graphDetails: [
-          {
-            "name": "Gram",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 3500
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Lentil",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 1000
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Wheat",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 4000
-              },
-              {
-                "name": "Sold",
-                "value": 2000
-              }
-            ]
-          },
-
-          {
-            "name": "Flax Seed",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 150
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Chilli",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 912
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Brinjal",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 100
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Peas & Beans",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 100
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Cauliflower",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 120
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-        ]
-      },
-      {
-        graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Zayad season (in Qt.)`,
-        graphDetails: [
-          {
-            "name": "Moong",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 950
-              },
-              {
-                "name": "Sold",
-                "value": 100
-              }
-            ]
-          },
-        ]
-      },
-      {
-        graphFor: `Total Marketable Surplus and Sold Quantity with FPO for Kharif season (in Qt.)`,
-        graphDetails: [
-          {
-            "name": "Paddy",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 3500
-              },
-              {
-                "name": "Sold",
-                "value": 850
-              }
-            ]
-          },
-
-          {
-            "name": "Soyabean",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 5400
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Urad",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 4300
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-
-          {
-            "name": "Bottle Gourd",
-            "series": [
-              {
-                "name": "Marketable Surplus",
-                "value": 1900
-              },
-              {
-                "name": "Sold",
-                "value": 0
-              }
-            ]
-          },
-        ]
+  setMarkatableProduction(data){
+    var rabiData= [];
+    var kharifData= [];
+    var zayadData= [];
+    if(data['fpoTotMarRabi'].length > 0){
+      var td = data['fpoTotMarRabi'];
+      console.log(td[0]);
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['series'] = [
+            {
+              "name": "Marketable Surplus",
+              "value": td[i].totMarkProd
+            }
+          ];
+          rabiData.push(ob);
       }
-    ]
-  }
+    }
 
-  productionGraph() {
-
-    this.multi1 = [
-      {
-        graphFor: `Total Actual Production in Rabi (in Qt.)`,
-        graphDetails: [
-          {
-            "name": "Gram",
-            "value": 3500
-          },
-
-          {
-            "name": "Lentil",
-            "value": 1000
-          },
-
-          {
-            "name": "Wheat",
-            "value": 4000
-          },
-          {
-            "name": "chilli",
-            "value": 1000
-          }
-        ]
-      },
-      {
-        graphFor: `Total Actual Production in Zayad (in Qt.)`,
-        graphDetails: [
-          {
-            "name": "moong",
-            "value": 3500
-          }
-        ]
-      },
-      {
-        graphFor: `Total Actual Production in Kharif (in Qt.)`,
-        graphDetails: [
-
-          {
-            "name": "paddy",
-            "value": 2000
-          },
-          {
-            "name": "Soyaean",
-            "value": 3500
-          }
-        ],
+    if(data['fpoTotMarKharif'].length > 0){
+      var td = data['fpoTotMarKharif'];
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['series'] = [
+            {
+              "name": "Marketable Surplus",
+              "value": td[i].totMarkProd
+            }
+          ];
+          kharifData.push(ob);
       }
-    ]
+    }
+
+    if(data['fpoTotMarZayad'].length > 0){
+      var td = data['fpoTotMarZayad'];
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['series'] = [
+            {
+              "name": "Marketable Surplus",
+              "value": td[i].totMarkProd
+            }
+          ];
+          zayadData.push(ob);
+      }
+    }
+    this.markatableProduction = [
+      {
+        title: `Total Marketable Surplus in Rabi season (in Qt.)`,
+        data: rabiData
+      },
+      {
+        title: `Total Marketable Surplus in Zayad season (in Qt.)`,
+        data: kharifData
+      },
+      {
+        title: `Total Marketable Surplus in Kharif season (in Qt.)`,
+        data:zayadData
+      }
+    ];
   }
 
+  setActualProduction(data){
+    console.log(data);
+    var rabiData1 = [];
+    var kharifData1 = [];
+    var zayadData1 = [];
+    if(data['fpoActProdRabi'].length > 0){
+      var td = data['fpoActProdRabi'];
+      console.log(td[0]);
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['series'] = td[i].totAcProd;
+          rabiData1.push(ob);
+      }
+    }
 
-  SurplusMarket() {
-    console.log('SurplusMarket');
-    this.setGraphData();
-    this.surp = true;
-    this.prod = false;
+    if(data['fpoActProdKharif'].length > 0){
+      var td = data['fpoActProdKharif'];
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['series'] = td[i].totAcProd;
+          kharifData1.push(ob);
+      }
+    }
+
+    if(data['fpoActProdZayad'].length > 0){
+      var td = data['fpoActProdZayad'];
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['value'] = td[i].totAcProd;
+          zayadData1.push(ob);
+      }
+    }
+    
+    this.actualProduction = [
+      {
+        title: `Total Actual Production in Rabi (in Qt.)`,
+        data: rabiData1
+      },
+      {
+        title: `Total Actual Production in Zayad (in Qt.)`,
+        data: kharifData1
+      },
+      {
+        title: `Total Actual Production in Kharif (in Qt.)`,
+        data:zayadData1
+      }
+    ];
   }
 
-  productionActual() {
-    console.log('productionActual');
-    this.prod = true;
-    this.surp = false;
+  showGraphs(tab){
+    this.markatable_surplus = false;
+    this.actual_production = false;
+    this.sales_production = false;
+    if(tab == 'markatable_surplus'){
+      this.markatable_surplus = true;
+    }else if(tab == 'actual_production'){
+      this.actual_production = true;
+    }else if(tab == 'sales_production'){
+      this.sales_production = true;
+    }
   }
 
 }
