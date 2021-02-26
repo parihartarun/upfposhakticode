@@ -191,20 +191,20 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     console.log("Selected Items =" + JSON.stringify(item));
     this.currentitem = item;
     this.indentloading = false;
-    this.currentfpoid = item.id;
+    this.currentfpoid = item.fpoid;
     this.indentForm = undefined
 
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
 
-      this._fpoService.getfpoDetialById(item.id).subscribe(f => {
+      this._fpoService.getfpoDetialById(item.fpoid).subscribe(f => {
         this.fpoDetail = f;
 
         this.createIndentForm(this.currentitem);
 
 
       })
-      this.modalService.open(content, { ariaLabelledBy: item.id }).result.then((result) => {
+      this.modalService.open(content, { ariaLabelledBy: item.fpoid }).result.then((result) => {
 
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
