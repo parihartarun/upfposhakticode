@@ -15,19 +15,21 @@ import { SchemasComponent } from 'src/app/pages/schemas/schemas.component';
 
 
 export const AuthLayoutRoutes: Routes = [
-   
-    { path: 'login', component: LoginComponent },
-    { path: 'fpo-details/:id', component: FpoDetailsComponent },
-    
-    { path: 'register', component: RegisterComponent },
-    //{ path: 'home', component: HomeDummyComponent },
-    { path: 'products/:val/:searchType', component: ProductsListComponent },
-    { path: 'products', component: ProductsListComponent },
-    { path: 'farmer-register', component: FarmerRegisterComponent },
-    { path: 'fpo-register', component: FpoRegisterComponent },
-    { path: 'bye-seller-register', component: ByerSellRegisterComponent },
+
+  { path: 'login', component: LoginComponent },
+  { path: 'fpo-details/:id', component: FpoDetailsComponent },
+
+  { path: 'register', component: RegisterComponent },
+  //{ path: 'home', component: HomeDummyComponent },
+  { path: 'products/:val/:searchType', component: ProductsListComponent },
+  { path: 'products', component: ProductsListComponent },
+  { path: 'farmer-register', component: FarmerRegisterComponent },
+  { path: 'fpo-register', component: FpoRegisterComponent },
+  { path: 'bye-seller-register', component: ByerSellRegisterComponent },
   { path: 'input-suppler-register', component: InputSupplierRegisterComponent },
   { path: 'schema', component: SchemasComponent },
-  
+  { path: 'fpo_guidelines', component: FpoGuidelinesComponent },
+
+
 
 ];

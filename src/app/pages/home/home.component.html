@@ -139,8 +139,8 @@
     <div class="container-fluid">
       <div class="row">
 
-        <div class="col-md-2 col-sm-12">
-          <div class="notificationBox">
+        <div class="col-md-2 col-sm-12 p-0">
+          <div class="notificationBox" style="margin-left: 13%;">
             <h4 class="set_notifications">
               {{'Notifications' | translate }}
             </h4>
@@ -217,7 +217,7 @@
                 <div class="form-group has-feedback">
                   <div class="form-group">
                     <div id="filterDate2">
-                      <input type="text" id="homesearch" class="form-control"
+                      <input type="text" id="homesearch" class="form-control" style="border-radius: 0;"
                         placeholder="{{'Type here to search'|translate}}" [(ngModel)]="searchValue"
                         (input)="selectValue()">
                     </div>
@@ -228,7 +228,7 @@
               <div class="col-md-2" style="padding: 0px;">
                 <div class="dropdown searchDropDown ">
                   <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" [(ngModel)]="searchType"
-                    style="width:100%">
+                    style="width:100%;border-radius: 0;">
                     <option value="any">{{'Any' | translate }}</option>
                     <option value="crop">{{'Crop' | translate }}</option>
                     <option value="district">{{'District1' | translate }}</option>

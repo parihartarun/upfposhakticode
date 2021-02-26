@@ -50,7 +50,7 @@
         <div class="d-flex mx-5  align-items-end justify-content-center" style="border: solid;">
           <div class="dropdown d-inline searchDropDown">
             <select class="btn d-inline btn-default search-btn dropdown-toggle" id="searchin" name="Searchin"
-              [(ngModel)]="parsearchType" style="width: 100%;border-right: solid;border-radius: 0;">
+              [(ngModel)]="filterParams.in" style="width: 100%;border-right: solid;border-radius: 0;">
               <option value="any">{{'Any' | translate }}</option>
               <option value="crop">{{'Crop' | translate }}</option>
               <option value="district">{{'District1' | translate }}</option>
@@ -58,11 +58,12 @@
               <option value="services">{{'Services/ Products' | translate }}</option>
             </select>
           </div>
-          <input type="text" class="form-control d-inline search-text" name="topsearch" [(ngModel)]="dummysearchval"
+          <input type="text" class="form-control d-inline search-text" name="topsearch" [(ngModel)]="filterParams.val"
             style="border-radius: 0;" id="exampleFormControlInput1" placeholder="{{'searchplaceholder' |translate}}">
 
-          <button class="btn d-inline btn-block btn-product-search active search-btn" role="button" aria-pressed="true"
-            style="border-radius: 0;" (click)="newSearchWithFilters()" [disabled]="dummysearchval.length==0">{{'Search' |
+          <button class="btn d-inline btn-block btn-product-search active search-btn" role="button"
+            (click)="fetchnewData();" aria-pressed="true" style="border-radius: 0;"
+            [disabled]="dummysearchval.length==0">{{'Search' |
             translate }}</button>
         </div>
       </div>
@@ -88,7 +89,7 @@
     <div class="row">
       <div class="col-md-3">
         <div class="card">
-          <article class="card-group-item my-2">
+          <article class="card-group-item my-2" *ngIf="districts?.length">
             <header class="">
               <h3 class="title">{{'District1' | translate }}</h3>
             </header>
@@ -129,108 +130,31 @@
               <div class="">
                 <form>
                   <label class="form-check" *ngFor="let q of quantities">
-                    <input class="form-check-input" type="checkbox" [value]="q.name" [name]="q.name"
-                      [(ngModel)]="q.selected" (change)="selectQuantity(q)">
+                    <input class="form-check-input" type="radio" [value]="q.value" name="Qt"
+                      [(ngModel)]="filterParams.quantity[0]" (change)="selectQuantity(q)">
                     <span class="form-check-label">
                       {{q.minname | translate}}
                     </span>
-                  </label> <!-- form-check.// -->
-                  <!--<label class="form-check">
-                  <input class="form-check-input" type="checkbox" value="">
-                  <span class="form-check-label">
-                  300
-                  </span>
-                </label>-->
-                  <!-- form-check.// -->
-                  <!--<label class="form-check">
-                  <input class="form-check-input" type="checkbox" value="">
-                  <span class="form-check-label">
-                     500
-                  </span>
-                </label>-->
-                  <!-- form-check.// -->
+                  </label>
                 </form>
 
-              </div> <!-- card-body.// -->
+              </div>
             </div>
           </article>
           <article class="card-group-item my-2">
             <header class="">
               <h3 class="title">{{'cropandverieties' | translate }} </h3>
             </header>
-            <ngx-loading [show]="!items" [config]="{backdropBackgroundColour: '#ffffff', 
+            <ngx-loading [show]="!treeView" [config]="{backdropBackgroundColour: '#ffffff', 
           backdropBorderRadius: '1px',
           primaryColour: '#926E01', 
           secondaryColour: '#926E01', 
           tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
-            <ngx-treeview *ngIf="items" [items]="items" [config]="config" (selectedChange)="onSelectedChange($event)"
-              (filterChange)="onFilterChange($event)">
+            <ngx-treeview *ngIf="treeView" [items]="treeView" [config]="config"
+              (selectedChange)="onSelectedChange($event)">
             </ngx-treeview>
           </article>
-          <!-- <article class="card-group-item">
-          <header class="card-header">
-            <h3 class="title">{{'Crop' | translate }}</h3>
-          </header>
-          <div class="filter-content">
-            <div class="card-body">
-              <form>
-                <label class="form-check">
-                  <input class="form-check-input" type="checkbox" value="">
-                  <span class="form-check-label">
-                    {{'Anthurium' | translate }}
-                  </span>
-                </label>
-                <label class="form-check">
-                  <input class="form-check-input" type="checkbox" value="">
-                  <span class="form-check-label">
-                   {{'Bhut Jalakia' | translate }}
-                  </span>
-                </label>   form-check.
-                <label class="form-check">
-                  <input class="form-check-input" type="checkbox" value="">
-                  <span class="form-check-label">
-                     {{'Cabbage' | translate }}
-                  </span>
-                </label>   form-check.//
-              </form>
-
-            </div>  card-body.//
-          </div>
-        </article>  card-group-item.// -->
-          <!-- <article class="card-group-item">
-          <header class="card-header">
-            <h3 class="title">{{'Variety' | translate }}</h3>
-          </header>
-          <div class="filter-content">
-            <div class="card-body">
-              <form>
-                <label class="form-check">
-                  <input class="form-check-input" type="checkbox" value="">
-                  <span class="form-check-label">
-                    {{'Midori ? GreenVariety' | translate }}
-                  </span> -->
-          <!-- </label> form-check.//
-        <label class="form-check">
-          <input class="form-check-input" type="checkbox" value="">
-          <span class="form-check-label">
-            {{'Agnihotri' | translate }}
-          </span> -->
-          <!-- </label>   -->
-          <!-- form-check.// -->
-          <!-- <label class="form-check">
-          <input class="form-check-input" type="checkbox" value="">
-          <span class="form-check-label">
-            {{'Lambada (white obake)' | translate }}
-          </span>
-        </label>   -->
-          <!-- form-check.// -->
-          <!-- </form> -->
-          <!-- </div>  -->
-          <!-- card-body.// -->
-          <!-- </div>
-        </article>  -->
-          <!-- card-group-item.// -->
-          <article class="card-group-item my-2">
+          <article class="card-group-item my-2" *ngIf="fpolist?.length">
             <header class="">
               <h3 class="title">{{'FPO' | translate }}</h3>
             </header>
@@ -243,90 +167,34 @@
                     <span class="form-check-label">
                       {{fpo.name}}
                     </span>
-                  </label> <!-- form-check.// -->
-                  <!--<label class="form-check">
-                  <input class="form-check-input" type="checkbox" value="">
-                  <span class="form-check-label">
-                    {{'PRAYAGRAJ' | translate }}
-                  </span>
-                </label>-->
-                  <!-- form-check.//-->
-                  <!--<label class="form-check">
-                  <input class="form-check-input" type="checkbox" value="">
-                  <span class="form-check-label">
-                    {{'DODA' | translate }}
-                  </span>
-                </label>-->
-                  <!-- form-check.// -->
+                  </label>
                 </form>
 
               </div> <!-- card-body.// -->
             </div>
-          </article> <!-- card-group-item.// -->
-
-          <!-- <article class="card-group-item">
-          <header class="card-header">
-            <h3 class="title">{{'Services/ Products' | translate }} </h3>
-          </header>
-          <div class="filter-content">
-            <div class="card-body">
-              <form>
-                <label class="form-check">
-                  <input class="form-check-input" type="checkbox" value="">
-                  <span class="form-check-label">
-                    {{'Vermicompost' | translate }}
-                  </span>
-                </label>  -->
-          <!-- form-check.// -->
-          <!-- <label class="form-check">
-          <input class="form-check-input" type="checkbox" value="">
-          <span class="form-check-label">
-            {{'Seed Processing Unit' | translate }}
-          </span> -->
-          <!-- </label>   -->
-          <!-- <label class="form-check">
-          <input class="form-check-input" type="checkbox" value="">
-          <span class="form-check-label">
-            {{'Seed Distribution Agency' | translate }}
-          </span>
-        </label>   -->
-          <!-- </form> -->
-          <!-- </div>  -->
-          <!-- card-body.// -->
-          <!-- </div>
-        </article>  -->
-          <!-- card-group-item.// -->
-
-
-
+          </article>
         </div> <!-- card.// -->
       </div>
       <div class="col-md-9">
         <div class="row">
 
           <ng-template #customLoadingTemplate>
-            <!-- <div class="custom-class">
-                  <h3>
-                      
-                  </h3>
 
-              </div> -->
           </ng-template>
 
-          <ngx-loading [show]="loading" [config]="{backdropBackgroundColour: '#ffffff', 
+          <!-- <ngx-loading [show]="loading" [config]="{backdropBackgroundColour: '#ffffff', 
           backdropBorderRadius: '1px',
           primaryColour: '#926E01', 
           secondaryColour: '#926E01', 
-          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading> -->
 
         </div>
 
         <div class="row">
-          <div class="col-lg-6 mb-4"
-            *ngFor="let product of serachProduct | paginate: { itemsPerPage: 10, currentPage: p }">
+          <div class="col-lg-6 mb-4" *ngFor="let product of filteredData">
             <div class="card card-stats box_shadow card_2">
-              <h1>{{product.nodal}}</h1>
-              <div class="row" routerLink="/fpo-details/{{product.id}}">
+              <h1>{{product.fpo}}</h1>
+              <div class="row" routerLink="/fpo-details/{{product.fpoid}}">
                 <div class="col-lg-4 col-sm-4">
                   <div class="gray_color1 d-flex justify-content-center">
                     <img src="assets/image/wheat.jpeg">
@@ -340,11 +208,11 @@
                         <ul>
                           <li>
                             <span><i class="fas fa-caret-right" aria-hidden="true"></i> Crop:
-                            </span> <strong> {{product.crops}}</strong>
+                            </span> <strong> {{product.crop}}</strong>
                           </li>
                           <li>
                             <span><i class="fas fa-caret-right" aria-hidden="true"></i> Veriety:
-                            </span><strong> {{product.cropVeriety}}</strong>
+                            </span><strong> {{product.variety}}</strong>
                           </li>
                           <li>
                             <span><i class="fas fa-caret-right" aria-hidden="true"></i> Place:
@@ -352,7 +220,7 @@
                           </li>
                           <li>
                             <span><i class="fas fa-caret-right" aria-hidden="true"></i> Quantity:
-                            </span><strong> {{product.marketableSurplus}}
+                            </span><strong> {{product.currentMarketable?product.currentMarketable:'-'}}
                               {{'quintal' | translate }}</strong>
                           </li>
                         </ul>
@@ -373,14 +241,19 @@
           </div>
         </div>
         <div class="card-footer py-4">
-          <nav aria-label="..." class="text-right">
-            <pagination-controls *ngIf="serachProduct&&serachProduct.length>0" (pageChange)="p = $event">
-            </pagination-controls>
-          </nav>
-          <div *ngIf="serachProduct?.length==0" class=" p-5 d-flex justify-content-center align-items-center">
+          <ng-container *ngIf="totalCount">
+            <span
+              *ngFor="let row of [].constructor(totalCount) | paginate: { itemsPerPage: filterParams.limit, currentPage: filterParams.page }">
+            </span>
+            <nav aria-label="..." class="text-right">
+              <pagination-controls (pageChange)="filterParams.page = $event;searchData();">
+              </pagination-controls>
+            </nav>
+          </ng-container>
+          <div *ngIf="!!!filteredData?.length" class=" p-5 d-flex justify-content-center align-items-center">
             <img class="fatalimg" src="assets/image/img/sad.jpg" />
           </div>
-          <div *ngIf="serachProduct?.length==0" class="d-flex justify-content-center yellotext">{{ 'noitemsfound' |
+          <div *ngIf="!!!filteredData?.length" class="d-flex justify-content-center yellotext">{{ 'noitemsfound' |
             translate }}</div>
 
         </div>

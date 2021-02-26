@@ -51,6 +51,7 @@
     "ngx-clipboard": "13.0.1",
     "ngx-loading": "^8.0.0",
     "ngx-pagination": "^5.0.0",
+    "ngx-spinner": "^10.0.1",
     "ngx-toastr": "^13.0.0",
     "ngx-treeview": "^10.0.2",
     "ngx-ui-loader": "^10.0.0",
