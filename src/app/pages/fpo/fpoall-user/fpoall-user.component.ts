@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { FpoService } from '../../../_services/fpo/fpo.service';
 import { UserService } from '../../../_services/user/user.service';
 
 @Component({
@@ -27,7 +28,8 @@ export class FPOAllUserComponent implements OnInit {
     private formBuilder: FormBuilder,
     private api: UserService,
     private route: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private fpoService: FpoService
   ) { }
 
   ngOnInit(): void {
@@ -56,10 +58,10 @@ export class FPOAllUserComponent implements OnInit {
   }
 
   getAllUserDetails() {
-    this.api.getAllUser().subscribe(resp => {
+    this.fpoService.getAllFPOUser(Number(localStorage.getItem('masterId'))).subscribe(resp => {
       this.allData = resp;
-      this.activeUsers = this.allData.filter(u => u.enabled == true);
-      this.deActiveUsers = this.allData.filter(u => u.enabled == false);
+      this.activeUsers = this.allData.filter(u => u.userEnabled == true);
+      this.deActiveUsers = this.allData.filter(u => u.userEnabled == false);
 
     });
   }
@@ -84,12 +86,12 @@ export class FPOAllUserComponent implements OnInit {
 
   changeActiveStatus(user) {
     const activeUserData = {
-      userid: user.user_id,
-      masterId: 1,
-      username: user.user_name,
+      userid: user.userId,
+      masterId: Number(localStorage.getItem('masterId')),
+      username: user.userName,
       userrole: localStorage.getItem('userRole'),
     };
-    this.api.updateActiveUser(activeUserData).subscribe(response => {
+    this.fpoService.updateActiveUser(activeUserData).subscribe(response => {
       if (response) {
         this.toastr.success(response.message);
 
@@ -103,16 +105,16 @@ export class FPOAllUserComponent implements OnInit {
 
   changeStatus(user) {
     const deactiveUserData = {
-      userid: user.user_id,
-      masterId: 1,
-      username: user.user_name,
+      userid: user.userId,
+      masterId: Number(localStorage.getItem('masterId')),
+      username: user.userName,
       userrole: localStorage.getItem('userRole'),
       reason: this.chageData,
     };
     if (this.chageData == 'Others') {
       deactiveUserData.reason = this.reasonSelectedForm.controls['inputOthers'].value;
     }
-    this.api.updateUser(deactiveUserData).subscribe(response => {
+    this.fpoService.updateUser(deactiveUserData).subscribe(response => {
       if (response) {
         this.toastr.success(response.message);
 
