@@ -19,11 +19,12 @@ export class DepartmentDashboardComponent implements OnInit {
   markatableProduction:Array<any>=[];
 
   public totals = {
-    otherFarmers: 0,
-    farmers: 0,
-    marginalFarmers: 0,
-    smallFarmers: 0,
-    land: 0,
+    totalFpo: 0,
+    landArea: 0,
+    totalfarmers: 0,
+    totalMarginalFarmer: 0,
+    totalSmallFarmer: 0,
+    totalOtherFarmer: 0
   };
 
   // Graph

@@ -17,11 +17,12 @@ export class FpoDashboardComponent implements OnInit {
   markatableProduction:Array<any>=[];
 
   public totals = {
-    otherFarmers: 0,
-    farmers: 0,
-    marginalFarmers: 0,
-    smallFarmers: 0,
-    land: 0,
+    totalFpoFarmer: 0,
+    totalMarginalFarmer: 0,
+    totalSmallFarmer: 0,
+    totalOtherFarmer: 0,
+    landArea: 0,
+    crops:0
   };
 
   // Graph
