@@ -167,7 +167,7 @@ console.log(this.fpoId,"Id");
     });
   }
   getDashboardDetails() {
-    this.api.getDashboardData().subscribe(response => {
+    this.api.getDashboardData(localStorage.getItem('masterId')).subscribe(response => {
       console.log(response);
       this.totals = response;
     },

@@ -9,7 +9,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">{{'Total Farmers' | translate}}</h5>
-                    <span class="h2 font-weight-bold mb-0">{{totals.farmers}}</span>
+                    <span class="h2 font-weight-bold mb-0">{{totals.totalFpoFarmer | number}}</span>
                   </div>
                 </div>
               </div>
@@ -21,7 +21,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">{{'Marginal Farmers' | translate}}</h5>
-                    <span class="h2 font-weight-bold mb-0">{{totals.marginalFarmers}}</span>
+                    <span class="h2 font-weight-bold mb-0">{{totals.totalMarginalFarmer | number}}</span>
                   </div>
                 </div>
               </div>
@@ -33,7 +33,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">{{'Small' | translate}}</h5>
-                    <span class="h2 font-weight-bold mb-0">{{totals.smallFarmers}}</span>
+                    <span class="h2 font-weight-bold mb-0">{{totals.totalSmallFarmer | number}}</span>
                   </div>
                 </div>
               </div>
@@ -45,7 +45,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">{{'Other' | translate}}</h5>
-                    <span class="h2 font-weight-bold mb-0">{{totals.otherFarmers}}</span>
+                    <span class="h2 font-weight-bold mb-0">{{totals.totalOtherFarmer | number}}</span>
                   </div>
                 </div>
               </div>
@@ -58,8 +58,8 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">{{'Total Land' | translate}}</h5>
-                    <span class="h2 font-weight-bold mb-0">{{totals.land}}</span>
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{'Total Land (in Ha.)' | translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{totals.landArea | number}}</span>
                   </div>
                 </div>
               </div>
@@ -71,7 +71,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">{{'Crops' | translate}}</h5>
-                    <span class="h2 font-weight-bold mb-0">465</span>
+                    <span class="h2 font-weight-bold mb-0">{{totals.crops | number}}</span>
                   </div>
                 </div>
               </div>
@@ -83,31 +83,49 @@
   </div> 
   <br>
 
-  <div class="container-fluid mt--7 mb-7">
+  <div class="container-fluid mt--7 mb-7 dashboard">
     <div class="row">
+      <div class="col-lg-9">
         <div class="form-check">
-          <label class="form-check-label" for="radio1">
-            {{'Marketable Surplus' | translate}} &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="form-check-input"
-              name="optradio" value="Surplus" (click)="SurplusMarket()" checked>
+          <label class="form-check-label" for="radio1"  >
+            <input type="radio" class="form-check-input" name="optradio" value="surplus" (click)="showGraphs('markatable_surplus')" checked>
+            {{'Marketable Surplus' | translate}} &nbsp;&nbsp;&nbsp;&nbsp;
           </label>
         </div>
         <div class="form-check">
           <label class="form-check-label" for="radio2">
-            {{'Actual Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="form-check-input"
-              name="optradio" value="production" (click)="productionActual()">
+            <input type="radio" class="form-check-input" name="optradio" value="production" (click)="showGraphs('actual_production')" >
+            {{'Actual Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="radio2">
+            <input type="radio" class="form-check-input" name="optradio" value="sales" (click)="showGraphs('sales_production')">
+            {{'Sales Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </label>
+        </div>
+      </div>
+        <div class="col-lg-3">
+          <div class="form-group">
+            <select class="custom-control custom-select">
+              <option value="">{{'Select financial year'|translate}}</option>
+              <option value="2019-2020">2019-2020</option>
+              <option value="2020-2021" selected>2020-2021</option>
+              <!-- <option>C</option> -->
+            </select>
+          </div>
         </div>
       </div> <br>
 
       <div class="card shadow">
         <div class="card-body">
-          <div *ngIf="surp" class="row">
-            <div class="col-12" *ngFor="let row of multi">
+          <div *ngIf="markatable_surplus" class="row">
+            <div class="col-12" *ngFor="let row of markatableProduction">
               <div class="row px-5 mb-0">
-                <strong> {{row.graphFor}}</strong>
+                <strong> {{row.title}}</strong>
               </div>
               <div class="row mb-4" style="border-bottom: solid;">
-                <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.graphDetails"
+                <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
                   [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
                   [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
                   [legendTitle]="legendTitle" [legendPosition]="'below'">
@@ -116,8 +134,23 @@
             </div>
           </div>
     
-          <div *ngIf="prod" class="row">
-            <div class="col-12" *ngFor="let row of multi1">
+          <div *ngIf="actual_production" class="row">
+            <div class="col-12" *ngFor="let row of actualProduction">
+              <div class="row px-5 mb-0">
+                <strong> {{row.title}}</strong>
+              </div>
+              <div class="row mb-4" style="border-bottom: solid;">
+                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="row.data"
+                  [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                  [legendTitle]="legendTitle" [legendPosition]="'below'">
+                </ngx-charts-bar-vertical>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="sales_production" class="row">
+            <div class="col-12" *ngFor="let row of multi2">
               <div class="row px-5 mb-0">
                 <strong> {{row.graphFor}}</strong>
               </div>
@@ -130,6 +163,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
   </div>

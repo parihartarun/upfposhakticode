@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getDashboardDetails(){
-    this.api.getDashboardData().subscribe(response => {
+    this.api.getDashboardData(localStorage.getItem('masterId')).subscribe(response => {
       console.log("FPO",response);
       this.totals = response;
     },
