@@ -743,5 +743,10 @@
   "Complaints/Suggestions by Buyer/Trader": "शिकायतें / सुझाव खरीदार/ विक्रेता द्वारा",
   "Complaints/Suggestions by CHC/FMB": "शिकायतें / सुझाव उपकरण केंद्र (सीएचसी/ एफएमबी) द्वारा",
   "name": "नाम",
-  "File1": "फ़ाइल"
+  "File1": "फ़ाइल",
+  "Farmer Users": "किसान उपयोगकर्ता",
+  "All Inactive Farmer Users": "सभी निष्क्रिय किसान उपयोगकर्ता",
+  "All Active Farmer Users": "सभी सक्रिय किसान उपयोगकर्ता"
+
+
 }
