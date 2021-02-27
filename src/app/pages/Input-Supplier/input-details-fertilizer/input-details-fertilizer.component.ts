@@ -147,8 +147,9 @@ fertilizertype()
     formData.append('id', this.id);
     this.inputsupplierfertiservice.updatefertilizer(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {
-        this.toastr.success('Machinery updated successfully.');
-        this.inputsupplierfertiservice.getallMachinery(this.id);
+        this.toastr.success('Fertilizer updated successfully.');
+        this.Getallfertilizer();
+        // this.inputsupplierfertiservice.getallMachinery(this.id);
         this.fertilizerForm.reset();
         this.isEdit = false;
       } else {

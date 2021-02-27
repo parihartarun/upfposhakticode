@@ -145,7 +145,7 @@ mtype()
 
 updateMachinery(data, formdata) {
   return this.http.put<any>(this._url + 'inputsupplier/machinery/' + data, formdata).pipe(map((res: any) => {
-
+// return this.http.put<any>(this._url+'/inputsupplier/machinery/update/{id}'+data.id,formdata)
     return res;
   }));
 }

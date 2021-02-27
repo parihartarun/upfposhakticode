@@ -93,7 +93,7 @@ export class InputDetailsMachineryComponent implements OnInit {
 
 
   editmachinery(data) {
-    this.machineryForm.get('machinery_name_id').patchValue(data.fpoGuidelineType);
+    this.machineryForm.get('machinery_name_id').patchValue(data.machinery_name_id);
     this.machineryForm.get('file').patchValue(data.file);
     this.machineryForm.get('manufacturer_name').patchValue(data.manufacturer_name);
     this.machineryForm.get('mchinery_type_id').patchValue(data.mchinery_type_id);
@@ -119,7 +119,8 @@ export class InputDetailsMachineryComponent implements OnInit {
     this.inputmachineryservice.updateMachinery(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {
         this.toastr.success('Machinery updated successfully.');
-        this.inputmachineryservice.getallMachinery(this.id);
+        this.Machinerydata();
+        // this.inputmachineryservice.getallMachinery(this.id);
         this.machineryForm.reset();
         this.isEdit = false;
       } else {
