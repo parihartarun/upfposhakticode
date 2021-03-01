@@ -571,7 +571,21 @@ export class FpoService {
       return res;
     }));
   }
-
+  getAllFPOUser(fpoId:any) {
+    return this.http.get<any>(this._url + `api/Farmer/getAllUserToFpo/`+ fpoId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  updateActiveUser(user) {
+    return this.http.put<any>(this._url + 'api/Farmer/activateUser', user).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  updateUser(user) {
+    return this.http.put<any>(this._url + 'api/Farmer/deactivateFarmerUser', user).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
 }
 
