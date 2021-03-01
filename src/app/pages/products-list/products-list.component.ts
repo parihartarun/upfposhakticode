@@ -10,11 +10,12 @@ import { AuthService } from '../../_services/auth/auth.service';
 import { FpoService } from '../../_services/fpo/fpo.service';
 import { ProductService } from '../../_services/product/product.service';
 import { FpoSearchService } from 'src/app/_services/fpo/fpo-search.service';
+import { LabelType, Options } from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css']
+  styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements AfterViewInit, OnInit {
   isLoggeIn = false;
@@ -63,6 +64,22 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   currentitem: any;
   indentid: string = "";
   fpolist: any;
+  options: Options = {
+    floor: 0,
+    ceil: 201,
+    hideLimitLabels: true,
+
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return "" + value;
+        case LabelType.High:
+          return value > 200 ? value-1 + "+" : "" + value;
+        default:
+          return "" + value;
+      }
+    }
+  };
 
   onSelectedChange(event) {
     if (!!event.length) {
@@ -104,6 +121,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     val: '',
     page: 1,
     limit: 20,
+    qtymin: 0,
+    qtymax: 201,
     cropverietyIds: [],
     districtIds: [],
     fpoIds: [],
@@ -327,6 +346,9 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   }
   getToday(): Date {
     return new Date();
+  }
+  quantityFilter() {
+    this.searchData();
   }
   createIndentForm(item) {
 

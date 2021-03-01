@@ -112,6 +112,7 @@ import { DepartmentAllComplaintsComponent } from './pages/department/department-
 import { FPOAllUserComponent } from './pages/fpo/fpoall-user/fpoall-user.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CanDeactivateGuard } from './_helpers/can-deactivate.guard';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -140,7 +141,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BsDatepickerModule.forRoot(),
     NgMarqueeModule,
     NgxChartsModule,
-    ChartsModule,
+    ChartsModule, NgxSliderModule,
     TagInputModule, NgxSpinnerModule,
     ToastrModule.forRoot({
       timeOut: 10000,
