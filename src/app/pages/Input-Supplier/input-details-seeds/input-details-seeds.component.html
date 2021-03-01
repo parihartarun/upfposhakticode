@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="seedForm" (ngSubmit)="addseeds()">
+          <form [formGroup]="seedForm">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
@@ -25,7 +25,7 @@
                     <label>{{'Crop Name' | translate}}<span class="required">*</span></label>
                     <!-- <input type="text" id="input-first-name"class="form-control" required> -->
                     <!-- [compareWith]="compareByOptionId" -->
-                    <select class="form-control" formControlName="crop_id" (change)="selectcrops($event)">
+                    <select class="form-control" formControlName="crop_id" (change)="selectcrops($event.target.value)">
                       <option value="">{{'Select Crop' | translate}}</option>
                       <option *ngFor="let cc of croplist" [value]="cc.cropId">{{cc.cropName}}</option>
                     </select>
@@ -37,7 +37,7 @@
                     <!-- <input type="text" id="input-first-name"class="form-control" required> -->
                     <select class="form-control" formControlName="variety_id">
                       <!-- <option value="">{{'Select Complaint/Suggestions' | translate}}</option> -->
-                      <option *ngFor="let cc of croplist" [value]="cc.cropId">{{cc.cropName}}</option>
+                      <option *ngFor="let vv of varietylist" [value]="vv.verietyId">{{vv.verietyName}}</option>
                     </select>
                   </div>
                 </div>
@@ -46,13 +46,14 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Picture of Seeds' | translate}}<span class="required">*</span></label>
-                    <input type="file" id="input-first-name" class="form-control" formControlName="file" required>
+                    <input type="file" id="input-first-name" formControlName="file"
+                      (change)="upload($event.target.files)" class="form-control form-control-alternative">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Quantity' | translate}}<span class="required">*</span></label>
-                    <input type="text" id="input-first-name"class="form-control" formControlName="quantity" required>
+                    <input type="text" id="input-first-name" class="form-control" formControlName="quantity" required>
                   </div>
                 </div>
 
@@ -62,13 +63,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'company / Brand' | translate}}</label>
-                    <input type="text" id="input-first-name"class="form-control" formControlName="company">
+                    <input type="text" id="input-first-name" class="form-control" formControlName="company">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Seed Certification Number' | translate}}</label>
-                    <input type="text" id="input-first-name"class="form-control" formControlName="certification_no">
+                    <input type="text" id="input-first-name" class="form-control" formControlName="certification_no">
                   </div>
                 </div>
               </div>
@@ -76,13 +77,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Certificate-valid From' | translate}}</label>
-                    <input type="date" id="input-first-name"class="form-control" formControlName="valid_from" >
+                    <input type="date" id="input-first-name" class="form-control" formControlName="valid_from">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Certificate-valid to' | translate}}</label>
-                    <input type="date" id="input-first-name"class="form-control" formControlName="valid_to" >
+                    <input type="date" id="input-first-name" class="form-control" formControlName="valid_to">
                   </div>
                 </div>
               </div>
@@ -90,7 +91,10 @@
           </form>
         </div>
         <div class="card-footer py-4 text-center">
-          <button class="btn btn-yellow">{{'Save' | translate}}</button>
+          <button *ngIf="!isEdit" type="submit" class="btn btn-yellow" (click)="addseeds()">{{'Save' |
+            translate}}</button>
+          <button *ngIf="isEdit" class="btn btn-yellow text-right" (click)="updatseed()">
+            {{'Update' | translate}}</button>
           <button class="btn btn-warning">{{'Reset' | translate}}</button>
         </div>
       </div>
@@ -128,20 +132,20 @@
                   {{i+1}}
                 </td>
                 <td>
-                 {{sdata.cropId}}
+                  {{sdata.crop_name}}
                 </td>
                 <td>
-                 {{sdata.variety}}
+                  {{sdata.crop_veriety}}
                 </td>
                 <td>
                   {{sdata.quantity}}
                 </td>
                 <td>
                   <div style="font-size: 20px;text-indent: 10px;">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash-alt"></i>
+                    <i class="fas fa-edit" (click)="editseed(sdata)"></i>
+                    <i class="fas fa-trash-alt" (click)="deleteseeds(sdata)"></i>
 
-                </div>
+                  </div>
                 </td>
               </tr>
             </tbody>

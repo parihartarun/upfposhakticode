@@ -123,4 +123,10 @@ th.sort:after {
     z-index: 999;
     background: #cfaf12 !important;
     width: 100% !important;
-  }
+}
+.dashboard .form-check{
+    display: inline;
+}
+.dashboard .form-group{
+    margin-bottom: 0.5rem !important;
+}

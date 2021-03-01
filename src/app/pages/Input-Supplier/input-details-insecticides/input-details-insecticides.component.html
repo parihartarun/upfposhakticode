@@ -33,7 +33,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Picture of Fertilizer packets' | translate}}<span class="required">*</span></label>
-                                        <input type="file" id="input-first-name" FormControlName="file" class="form-control form-control-alternative">
+                                        <input type="file" id="input-first-name" FormControlName="file" (change)="upload($event.target.files)" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -63,13 +63,15 @@
                                 </div>
                             </div>
                         </div>
-                       
+                        <div class="card-footer py-4 text-center">
+                            <button *ngIf="!isEdit" type="submit" class="btn btn-yellow" (click)="addinsecticides()">{{'Save' | translate}}</button>
+                            <button *ngIf="isEdit" class="btn btn-yellow text-right" (click)="updatinsect()">
+                                {{'Update' | translate}}</button>
+                           <button class="btn btn-warning">{{'Reset' | translate}}</button>
+                        </div>
                     </form>
                 </div>
-                <div class="card-footer py-4 text-center">
-                    <button type="submit" class="btn btn-yellow" (click)="addinsecticides()">{{'Save' |  translate}}</button>
-                    <button class="btn btn-warning">{{'Reset' | translate}}</button>
-                </div>
+              
               
             </div>
         </div>
@@ -106,9 +108,9 @@
                                 <td>
                                     {{i+1}}
                                 </td>
-                                <td> {{idata.insecticideTypeId}}</td>
+                                <td> {{idata.insecticide_type}}</td>
                                 <td>
-                                   {{idata.manufacturerName}}
+                                   {{idata.manufacturer_name}}
                                 </td>
                                 <td>
                                     {{idata.quantity}}
@@ -116,8 +118,8 @@
                                 <td>
 
                                     <div style="font-size: 20px;text-indent: 10px;">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-alt"></i>
+                                        <i class="fas fa-edit" (click)="editinsect(idata)"></i>
+                                        <i class="fas fa-trash-alt" (click)="deleteinsect(idata)"></i>
 
                                     </div>
                                 </td>

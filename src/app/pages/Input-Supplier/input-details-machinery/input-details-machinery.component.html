@@ -4,7 +4,7 @@
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--7 mp-7">
-    <!-- Table -->
+    <!-- form -->
     <div class="row">
         <div class="col">
             <div class="card shadow">
@@ -65,7 +65,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Technical specifications of the Machinery' | translate}}</label>
-                                        <input type="text" id="input-first-name" formControlName=""
+                                        <input type="text" id="input-first-name" formControlName="specification"
                                             class="form-control form-control-alternative">
                                     </div>
                                 </div>
@@ -73,8 +73,8 @@
                             </div>
                         </div>
                         <div class="card-footer py-4 text-center">
-                            <button type="submit" class="btn btn-yellow" (click)="addmachinery()">{{'Save' | translate}}</button>
-                            <!-- <button class="btn btn-yellow">Save and continue</button> -->
+                            <button *ngIf="!isEdit" type="submit" class="btn btn-yellow" (click)="addmachinery()">{{'Save' | translate}}</button>
+                            <button *ngIf="isEdit" class="btn btn-yellow text-right" (click)="updatemachinery()">  {{'Update' | translate}}</button>
                             <button class="btn btn-warning">{{'Reset' | translate}}</button>
                         </div>
                     </form>
@@ -125,8 +125,8 @@
                                 </td>
                                 <td>
                                     <div style="font-size: 20px;text-indent: 10px;">
-                                        <i class="fas fa-edit"></i>
-                                        <i class="fas fa-trash-alt"></i>
+                                        <i class="fas fa-edit"  (click)="editmachinery(mdata)"></i>
+                                        <i class="fas fa-trash-alt" (click)="deletemachinery(mdata)"></i>
                                     </div>
                                 </td>
                             </tr>
