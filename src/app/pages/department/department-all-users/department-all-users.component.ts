@@ -22,7 +22,12 @@ export class DepartmentAllUsersComponent implements OnInit {
   currentUser: any;
   valueOther = false;
   chageData;
+  searchText = '';
+  orderBy: { order: string, key: string } = { order: '', key: '' };
+  activePagination = 1;
 
+  searchTextActive = '';
+  orderByActive: { order: string, key: string } = { order: '', key: '' };
   constructor(
     private formBuilder: FormBuilder,
     private api: UserService,
@@ -32,17 +37,17 @@ export class DepartmentAllUsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.reasonSelectedForm = this.formBuilder.group({
-      reasons : ['', Validators.required],
-      inputOthers:['']
-      });
-      this.getAllUserDetails();
-      this.getReasons();
+      reasons: ['', Validators.required],
+      inputOthers: ['']
+    });
+    this.getAllUserDetails();
+    this.getReasons();
   }
 
   selectChange(e) {
     this.chageData = e.target.value;
     if (this.chageData == 'Others') {
-     this.valueOther = true;
+      this.valueOther = true;
     } else {
       this.valueOther = false;
     }
@@ -51,29 +56,29 @@ export class DepartmentAllUsersComponent implements OnInit {
   getReasons() {
     this.api.deactivategetReason().subscribe(resp => {
       this.Reasons = resp;
-      this.Reasons.push({reasonId: this.Reasons.length + 1, reason: 'Others'});
+      this.Reasons.push({ reasonId: this.Reasons.length + 1, reason: 'Others' });
     });
   }
 
-  getAllUserDetails(){
+  getAllUserDetails() {
     this.api.getAllUser().subscribe(resp => {
-    this.allData = resp;
-    this.activeUsers = this.allData.filter(u => u.enabled == true);
-    this.deActiveUsers = this.allData.filter(u => u.enabled == false);
+      this.allData = resp;
+      this.activeUsers = this.allData.filter(u => u.enabled == true);
+      this.deActiveUsers = this.allData.filter(u => u.enabled == false);
 
-     });
+    });
   }
 
   filterProduction() {
 
   }
-get formControls() {
+  get formControls() {
     return this.reasonSelectedForm.controls;
   }
 
   saveDeactivate() {
     this.changeStatus(this.currentUser);
-}
+  }
   DeActiveUSer(user) {
     this.currentUser = user;
   }
@@ -84,12 +89,12 @@ get formControls() {
 
   changeActiveStatus(user) {
     const activeUserData = {
-      userid : user.user_id,
-      masterId : 1,
-      username : user.user_name,
+      userid: user.user_id,
+      masterId: 1,
+      username: user.user_name,
       userrole: localStorage.getItem('userRole'),
-     };
-     this.api.updateActiveUser(activeUserData).subscribe(response => {
+    };
+    this.api.updateActiveUser(activeUserData).subscribe(response => {
       if (response) {
         this.toastr.success(response.message);
 
@@ -102,16 +107,16 @@ get formControls() {
 
 
   changeStatus(user) {
- const deactiveUserData = {
-  userid : user.user_id,
-  masterId : 1,
-  username : user.user_name,
-  userrole: localStorage.getItem('userRole'),
-  reason : this.chageData,
-  };
-  if (this.chageData == 'Others') {
-deactiveUserData.reason = this.reasonSelectedForm.controls['inputOthers'].value;
-  }
+    const deactiveUserData = {
+      userid: user.user_id,
+      masterId: 1,
+      username: user.user_name,
+      userrole: localStorage.getItem('userRole'),
+      reason: this.chageData,
+    };
+    if (this.chageData == 'Others') {
+      deactiveUserData.reason = this.reasonSelectedForm.controls['inputOthers'].value;
+    }
     this.api.updateUser(deactiveUserData).subscribe(response => {
       if (response) {
         this.toastr.success(response.message);
@@ -140,5 +145,18 @@ deactiveUserData.reason = this.reasonSelectedForm.controls['inputOthers'].value;
     this.getReasons();
     this.valueOther = false;
   }
-
+  onClickOrderBy(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
+  }
+  onClickOrderByActive(key: any) {
+    this.orderByActive = {
+      ...this.orderByActive,
+      'order': this.orderByActive.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
+  }
 }

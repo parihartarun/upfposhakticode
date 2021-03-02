@@ -23,7 +23,8 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'Financial year' | translate}}</label>
-                    <select  formControlName="finYear"  class="custom-control custom-select mb-3" (change)="selectFinancialYear($event)">
+                    <select formControlName="finYear" class="custom-control custom-select mb-3"
+                      (change)="selectFinancialYear($event)">
                       <option value="{{getCurrentFinancialYear()}}">{{this.getCurrentFinancialYear()}}</option>
                     </select>
                   </div>
@@ -31,7 +32,8 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'Season' | translate}}</label>
-                    <select  formControlName="seasonId" (change)="selectSeason($event)" class="custom-control custom-select mb-3">
+                    <select formControlName="seasonId" (change)="selectSeason($event)"
+                      class="custom-control custom-select mb-3">
                       <option value="">{{'Select Season' | translate}}</option>
                       <option *ngFor="let season of seasons" [value]="season.seasonId">{{season.season}}</option>
                     </select>
@@ -40,16 +42,18 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'District' | translate}}</label>
-                    <select  formControlName="distId"  class="custom-control custom-select mb-3" (change)="selectDistrict($event)">
+                    <select formControlName="distId" class="custom-control custom-select mb-3"
+                      (change)="selectDistrict($event)">
                       <option value="">{{'Select District' | translate}}</option>
-                      <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
+                      <option *ngFor="let district of districts" [value]="district.district_id">
+                        {{district.district_name}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'Crops' | translate}}</label>
-                    <select  formControlName="cropId"  class="custom-control custom-select mb-3">
+                    <select formControlName="cropId" class="custom-control custom-select mb-3">
                       <option value="">{{'Select Crops' | translate}}</option>
                       <option *ngFor="let crop of crops" [value]="crop.cropId">{{crop.cropName}}</option>
                     </select>
@@ -57,7 +61,8 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group mt-4">
-                    <button class="btn btn-primary mt-2 text-right" (click)="viewReport()">{{'View Reports' | translate}}</button>
+                    <button class="btn btn-primary mt-2 text-right"
+                      (click)="viewReport()">{{'View Reports' | translate}}</button>
                   </div>
                 </div>
               </div>
@@ -91,37 +96,49 @@
             </div> -->
           </div>
         </div>
-        <div class="table-responsive">
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">{{'District' | translate}}</th>
-                <th scope="col">{{'FPO Name' | translate}}</th>
-                <th scope="col">{{'Crop Name' | translate}}</th>
-                <th scope="col">{{'Crop variety' | translate}}</th>
-                <th scope="col">{{'Quantity Sold (in Qt.)' | translate}}</th>
-                
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let p of salesReport | paginate: { itemsPerPage: 10, currentPage: p }">
-                <td>
-                 {{p.district_name}}
-                </td>
-                <td>
-                  {{p.fpo_name}}d
-                </td>
-                <td>
-                 {{p.crop_name}}
-                </td>
-                <td>
-                 {{p.crop_veriety}}
-                </td>
-                <td>
-                  {{p.sold_quantity}}
-                </td>
-               
-                <!--<td class="text-right">
+        <div class="border border-dark m-4">
+          <div class="cust-head mx-3 p-3">
+            <div class="mr-2">
+              <input type="text" [id]="'search'" [(ngModel)]="searchText" (input)="p=1" style="border-radius: 0;"
+                name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
+            </div>
+            <div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('district_name')">{{'District' | translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('fpo_name')">{{'FPO Name' | translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('crop_name')">{{'Crop Name' | translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('crop_veriety')">{{'Crop variety' | translate}}
+                  </th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('sold_quantity')">
+                    {{'Quantity Sold (in Qt.)' | translate}}</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let p of salesReport | tableSearch:searchText  | sort:orderBy | paginate: { itemsPerPage: 10, currentPage: p }">
+                  <td>
+                    {{p.district_name}}
+                  </td>
+                  <td>
+                    {{p.fpo_name}}d
+                  </td>
+                  <td>
+                    {{p.crop_name}}
+                  </td>
+                  <td>
+                    {{p.crop_veriety}}
+                  </td>
+                  <td>
+                    {{p.sold_quantity}}
+                  </td>
+
+                  <!--<td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
                       Actions
@@ -132,17 +149,17 @@
                     </div>
                   </div>
                 </td>-->
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card-footer py-4">
-          <nav aria-label="..." class="text-right">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-          </nav>
+                </tr>
+              </tbody>
+            </table>
+            <div class="card-footer py-4">
+              <nav aria-label="..." class="text-right">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </nav>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-

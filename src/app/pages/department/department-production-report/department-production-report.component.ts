@@ -19,18 +19,20 @@ export class DepartmentProductionReportComponent implements OnInit {
   p: number = 1;
   districts = [];
   crops = [];
-  seasons= [];
+  seasons = [];
   reportData;
   stateID = 9;
+  searchText = '';
+  orderBy: { order: string, key: string } = { order: '', key: '' };
 
   productionReportForm: FormGroup;
   financialYear = [];
   constructor(
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
     private api: DepartmentService,
     private route: Router,
     private authServie: AuthService,
-    private toastr:ToastrService
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -38,13 +40,13 @@ export class DepartmentProductionReportComponent implements OnInit {
       this.districts = d
     });
 
-    this.api.getSeason().subscribe(s=>{
+    this.api.getSeason().subscribe(s => {
       this.seasons = s;
     });
 
     this.productionReportForm = this.formBuilder.group({
-      finYear: ['',Validators.required],
-      distId: ['',Validators.required],
+      finYear: ['', Validators.required],
+      distId: ['', Validators.required],
       cropId: ['', Validators.required],
       seasonId: ['', Validators.required]
       // masterId: localStorage.getItem('masterId'),
@@ -58,9 +60,9 @@ export class DepartmentProductionReportComponent implements OnInit {
     return this.productionReportForm.controls;
   }
 
-  viewReport() { 
-    this.api.departViewReport(this.productionReportForm.value).subscribe(resp =>{
-      if(resp<=0){
+  viewReport() {
+    this.api.departViewReport(this.productionReportForm.value).subscribe(resp => {
+      if (resp <= 0) {
         this.toastr.error('data not available.');
       }
       this.reportData = resp;
@@ -70,7 +72,7 @@ export class DepartmentProductionReportComponent implements OnInit {
 
   selectDistrict(districtId: any) {
     this.productionReportForm.controls['distId'].setValue(parseInt(districtId.currentTarget.value));
-    
+
   }
   getCurrentFinancialYear() {
     var fiscalyear = "";
@@ -86,18 +88,25 @@ export class DepartmentProductionReportComponent implements OnInit {
   selectFinancialYear(year) {
     this.productionReportForm.controls['finYear'].setValue(year.currentTarget.value);
   }
-  selectCrops(crop){
+  selectCrops(crop) {
     this.productionReportForm.controls['cropId'].setValue(crop.currentTarget.value);
   }
 
   seasonIDD;
-  selectSeason(e){;
-    this.seasonIDD =  e.target.value;
+  selectSeason(e) {
+    ;
+    this.seasonIDD = e.target.value;
     this.api.getCrops(this.seasonIDD).subscribe(c => {
       this.crops = c;
     });
   }
 
-  
+  onClickOrderBy(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
+  }
 
 }

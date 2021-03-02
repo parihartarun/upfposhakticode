@@ -20,6 +20,8 @@ export class DepartmentSalesReportComponent implements OnInit {
   seasons = [];
   stateID = 9;
   salesReport;
+  searchText = '';
+  orderBy: { order: string, key: string } = { order: '', key: '' };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +33,7 @@ export class DepartmentSalesReportComponent implements OnInit {
   ngOnInit(): void {
     this.filterForm = this.formBuilder.group({
       finYear: ['', Validators.required],
-      distId: ['',Validators.required],
+      distId: ['', Validators.required],
       cropId: ['', Validators.required],
       seasonId: ['', Validators.required]
       // masterId: localStorage.getItem('masterId'),
@@ -42,7 +44,7 @@ export class DepartmentSalesReportComponent implements OnInit {
     })
 
 
-    this.api.getSeason().subscribe(s=>{
+    this.api.getSeason().subscribe(s => {
       this.seasons = s;
     })
   }
@@ -74,25 +76,31 @@ export class DepartmentSalesReportComponent implements OnInit {
     this.filterForm.controls['distId'].setValue(parseInt(districtId.currentTarget.value));
   }
 
-  selectCrops(crop){
+  selectCrops(crop) {
     this.filterForm.controls['cropId'].setValue(crop.currentTarget.value);
   }
   seasonIDD
-  selectSeason(e){
-    this.seasonIDD =  e.target.value;
+  selectSeason(e) {
+    this.seasonIDD = e.target.value;
     this.api.getCropsForSales(this.seasonIDD).subscribe(c => {
       this.crops = c;
-  });
-}
+    });
+  }
 
-  viewReport() { 
-    this.api.departViewReportSales(this.filterForm.value).subscribe(resp =>{
-      if(resp<=0){
+  viewReport() {
+    this.api.departViewReportSales(this.filterForm.value).subscribe(resp => {
+      if (resp <= 0) {
         this.toastr.error('data not available.');
       }
       this.salesReport = resp;
     });
   }
-
+  onClickOrderBy(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
+  }
 
 }
