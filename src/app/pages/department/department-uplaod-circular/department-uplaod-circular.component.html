@@ -23,11 +23,14 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <div class="form-group">
-                      <label class="form-control-label" for="">{{'Description' | translate}}<span class="required">*</span></label>
-                      <textarea class="form-control" formControlName="description" id="exampleFormControlTextarea12" rows="3"></textarea>
+                      <label class="form-control-label" for="">{{'Description' | translate}}<span
+                          class="required">*</span></label>
+                      <textarea class="form-control" formControlName="description" id="exampleFormControlTextarea12"
+                        rows="3"></textarea>
                     </div>
                     <div *ngIf="submitted && formControls.description.errors" class="text-danger">
-                      <div *ngIf="formControls.description.errors.required">{{'description is required'|translate}}</div>
+                      <div *ngIf="formControls.description.errors.required">{{'description is required'|translate}}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -39,18 +42,22 @@
                     <!--<small class="">
                       (File format should be .jpg, .png, .jpeg and .pdf)
                     </small>-->
-                    <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)"  />
+                    <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
+                      formControlName="uploadFile" (change)="upload($event.target.files)" />
                   </div>
-                  <div *ngIf="submitted && formControls.uploadFile.errors" class="text-danger" >
+                  <div *ngIf="submitted && formControls.uploadFile.errors" class="text-danger">
                     <div *ngIf="formControls.uploadFile.errors.required">{{'file is required'|translate}}</div>
                   </div>
                 </div>
 
                 <div class="col-lg-12 text-center">
                   <div class="form-group mt-4">
-                    <button *ngIf="!isEdit" type="button" class="btn btn-primary mt-2 text-right" (click)="addUploadCircular()">{{'Save'|translate}}</button>
-                    <button *ngIf="isEdit" type="button" class="btn btn-primary mt-2 text-right" (click)="upadateCircular()">{{'Edit'| translate}}</button>
-                    <button type="button" class="btn btn-warning mt-2 text-right" (click)="reset()">{{'Reset' |translate }}</button>
+                    <button *ngIf="!isEdit" type="button" class="btn btn-primary mt-2 text-right"
+                      (click)="addUploadCircular()">{{'Save'|translate}}</button>
+                    <button *ngIf="isEdit" type="button" class="btn btn-primary mt-2 text-right"
+                      (click)="upadateCircular()">{{'Edit'| translate}}</button>
+                    <button type="button" class="btn btn-warning mt-2 text-right"
+                      (click)="reset()">{{'Reset' |translate }}</button>
                   </div>
                 </div>
               </div>
@@ -84,68 +91,81 @@
       </div> -->
           </div>
         </div>
-        <div class="table-responsive">
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <!--<th scope="col">Select</th>-->
-                <th scope="col">{{'S.No'|translate}}</th>
-                <th scope="col">{{'Description'| translate}}</th>
-                <th scope="col">{{'Upload Date'| translate}}</th>
-                <th scope="col">{{'File' |translate}}</th>
-                <th scope="col"></th>
+        <div class="border border-dark m-4">
+          <div class="cust-head mx-3 p-3">
+            <div class="mr-2">
+              <input type="text" [id]="'search'" [(ngModel)]="searchText" (input)="p=1" style="border-radius: 0;"
+                name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
+            </div>
+            <div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <thead class="thead-light">
+                <tr>
+                  <!--<th scope="col">Select</th>-->
+                  <th scope="col">{{'S.No'|translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('description')">{{'Description'| translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('uploadedDate')">{{'Upload Date'| translate}}</th>
+                  <th scope="col">{{'File' |translate}}</th>
+                  <th scope="col"></th>
 
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let p of uploadCircular | paginate: { itemsPerPage: 10, currentPage: p } let i = index">
-                <!--<td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let p of uploadCircular | tableSearch:searchText  | sort:orderBy | paginate: { itemsPerPage: 10, currentPage: p } let i = index">
+                  <!--<td>
                   <input class="form-control select" type="checkbox" id="exampleFormControlTextarea12" />
                 </td>-->
-                <td>
-                  {{i+1}}
-                </td>
-                <td>
-                  {{p.description}}
-                </td>
-                <td>
-                  {{p.uploadedDate | date: 'dd/MM/yyyy'}}
-                </td>
-                <td>
-                  <a href="{{ p.filePath }}" download><i class="fas fa-file"></i></a>
-                </td>
+                  <td>
+                    {{i+1}}
+                  </td>
+                  <td>
+                    {{p.description}}
+                  </td>
+                  <td>
+                    {{p.uploadedDate | date: 'dd/MM/yyyy'}}
+                  </td>
+                  <td>
+                    <a href="{{ p.filePath }}" download><i class="fas fa-file"></i></a>
+                  </td>
 
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      {{'Actions'|translate}}
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="editCicular(p)">{{'Edit'|tranalste}}</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCicular(p)">{{'Delete'|tanslate}}</a>
+                  <td class="text-right">
+                    <div ngbDropdown placement="bottom-right">
+                      <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                        {{'Actions'|translate}}
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                        <a class="dropdown-item" href="javascript:void(0)"
+                          (click)="editCicular(p)">{{'Edit'|translate}}</a>
+                        <a class="dropdown-item" href="javascript:void(0)"
+                          (click)="deleteCicular(p)">{{'Delete'|translate}}</a>
+                      </div>
                     </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row mx-0 mt-2" style="align-items: center;">
+              <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
+                <!-- <div>Showing 1 of 4 entries</div> -->
+              </div>
+              <div class="col-xs-12 col-sm-6 col-12 custom-pagination-align">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-footer py-4">
+        <!-- <div class="card-footer py-4">
           <nav aria-label="..." class="text-right">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </nav>
-        </div>
-        <!--<div class="row">
-          <div class="col text-center">
-
-            <button class="btn btn-warning text-right mb-2">Delete</button>
-          </div>
-        </div>-->
+        </div> -->
       </div>
-      
+
     </div>
   </div>
-  
+
 </div>
-
-

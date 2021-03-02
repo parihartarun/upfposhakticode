@@ -1,33 +1,45 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'tableSearch'
+  name: 'tableSearch',
+  pure: false
 })
 export class TableSearchPipe implements PipeTransform {
 
-  transform(value: any, ...args: any): any {
-    if (!args) {
-      return value;
+    transform(items: any, term: string, excludes: any = []): any {
+      if (!term || !items) return items;
+  
+      return TableSearchPipe.filter(items, term, excludes);
     }
-    return value.filter(val => {
-      let rVal = (val.id?.toString().toLocaleLowerCase().includes(args)) 
-      || (val.description?.toLocaleLowerCase().includes(args))
-
-      || (val.farmer_name?.toLocaleLowerCase().includes(args))
-      || (val.father_husband_name?.toLocaleLowerCase().includes(args))
-      || (val.season_name?.toLocaleLowerCase().includes(args))
-      || (val.crop_name?.toLocaleLowerCase().includes(args))
-      || (val.crop_veriety?.toLocaleLowerCase().includes(args))
-      || (val.sowing_area?.toString().toLocaleLowerCase().includes(args))
-      || (val.ex_yield?.toString().toLocaleLowerCase().includes(args))
-      || (val.actual_yield?.toString().toLocaleLowerCase().includes(args))
-      || (val.marketable_quantity?.toString().toLocaleLowerCase().includes(args)
-      || (val.message?.toString().toLocaleLowerCase().includes(args))
-      || (val.createDate?.toString().toLocaleLowerCase().includes(args))
-      
-      );
-      return rVal;
-    });
-  }
-
+  
+    static filter(items: Array<{ [key: string]: any }>, term: string, excludes: any): Array<{ [key: string]: any }> {
+  
+      const toCompare = term.toLowerCase();
+  
+      function checkInside(item: any, term: string) {
+        
+        if (typeof item === "string" && item.toString().toLowerCase().includes(toCompare)) {
+          return true;
+        }
+  
+        for (let property in item) {
+          if (item[property] === null || item[property] == undefined || excludes.includes(property)) {
+            continue;
+          }
+          if (typeof item[property] === 'object') {
+            if (checkInside(item[property], term)) {
+              return true;
+            }
+          }
+          else if (item[property].toString().toLowerCase().includes(toCompare)) {
+            return true;
+          }
+        }
+        return false;
+      }
+  
+      return items.filter(function (item) {
+        return checkInside(item, term);
+      });
+    }
 }

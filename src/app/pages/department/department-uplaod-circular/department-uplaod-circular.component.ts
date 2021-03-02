@@ -21,6 +21,9 @@ export class DepartmentUplaodCircularComponent implements OnInit {
   myInputVariable: ElementRef;
   checkfileFormat = false;
   isEdit = false;
+  searchText = '';
+  orderBy: { order: string, key: string } = { order: '', key: '' };
+
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
@@ -32,19 +35,19 @@ export class DepartmentUplaodCircularComponent implements OnInit {
     this.uploadCircularForm = this.formBuilder.group({
       description: ['', Validators.required],
       uploadFile: [''],
-      
+
     });
     this.getUploadCircular();
   }
 
   getUploadCircular() {
-    
+
     this.api.getAllCircluarUpload().subscribe(cu => {
       this.uploadCircular = cu;
     })
   }
 
-  
+
 
   get formControls() {
     return this.uploadCircularForm.controls;
@@ -52,9 +55,9 @@ export class DepartmentUplaodCircularComponent implements OnInit {
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
     this.checkfileFormat = false;
-   
+
   }
- 
+
   addUploadCircular() {
     this.submitted = true;
     if (this.uploadCircularForm.invalid) {
@@ -62,7 +65,7 @@ export class DepartmentUplaodCircularComponent implements OnInit {
     }
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
-    formData.append('description ', this.uploadCircularForm.value.description);   
+    formData.append('description ', this.uploadCircularForm.value.description);
     this.api.addUploadCircular(formData).subscribe(response => {
       if (response) {
         this.toastr.success(response.message);
@@ -101,20 +104,26 @@ export class DepartmentUplaodCircularComponent implements OnInit {
     this.uploadCircularForm = this.formBuilder.group({
       description: [circular.description, Validators.required],
       uploadFile: [''],
-      id:circular.id
+      id: circular.id
     });
-   
+
     window.scroll(0, 0);
   }
-  deleteCicular(circular) {  
-      this.api.deleteCircular(circular.id).subscribe(response => {
-        if (response != '') {
-          this.toastr.success('Delete successfully');
-          this.getUploadCircular();
-        } else {
-          this.toastr.error('Error! While Add complaint.');
-        }
-      });
-    
+  deleteCicular(circular) {
+    this.api.deleteCircular(circular.id).subscribe(response => {
+      if (response != '') {
+        this.toastr.success('Delete successfully');
+        this.getUploadCircular();
+      } else {
+        this.toastr.error('Error! While Add complaint.');
+      }
+    });
+  }
+  onClickOrderBy(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
   }
 }
