@@ -22,6 +22,8 @@ export class TableSearchPipe implements PipeTransform {
       || (val.ex_yield?.toString().toLocaleLowerCase().includes(args))
       || (val.actual_yield?.toString().toLocaleLowerCase().includes(args))
       || (val.marketable_quantity?.toString().toLocaleLowerCase().includes(args)
+      || (val.message?.toString().toLocaleLowerCase().includes(args))
+      || (val.createDate?.toString().toLocaleLowerCase().includes(args))
       
       );
       return rVal;

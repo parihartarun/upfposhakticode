@@ -22,6 +22,9 @@ export class DepartmentNotificationComponent implements OnInit {
   checkfileFormat: boolean = false;
   @ViewChild('myInput')
   myInputVariable: ElementRef;
+  searchText = '';
+  orderBy: { order: string, key: string } = { order: '', key: '' };
+
   constructor(private formBuilder: FormBuilder, private api: FpoService, private route: Router, private toastr: ToastrService
     , private _departmentService: DepartmentService) { }
 
@@ -110,6 +113,13 @@ export class DepartmentNotificationComponent implements OnInit {
     else {
       return false;
     }
+  }
+  onClickOrderBy(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
   }
 }
 

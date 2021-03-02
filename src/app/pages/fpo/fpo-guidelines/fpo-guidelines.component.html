@@ -104,7 +104,7 @@
                     <tr
                       *ngFor="let indent of fpoGuideLines | tableSearch:searchText  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                       <td>
-                        {{ i + 1}}
+                        {{(p-1) * 10 + i + 1}}
                       </td>
 
                       <td>
