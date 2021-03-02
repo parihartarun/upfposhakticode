@@ -225,7 +225,7 @@
             <div>
               <from role="form" [formGroup]="fliterForm" style="width:100%">
                 <select class="custom-control custom-select" name="filterByType" formControlName="complaint"
-                  (change)="filterComaplaint();p=1" style="border-radius: 0;">
+                  (change)="filterComaplaint();p=1" style="border-radius: 0;z-index: unset;">
                   <option value="New">
                     {{'New Compliant'| translate}}</option>
                   <option [value]="'resolved'">
