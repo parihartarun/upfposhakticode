@@ -20,6 +20,9 @@ export class FpoGuidelinesComponent implements OnInit {
   isOpen = false;
   isLoggeIn = false;
   username = '';
+  searchText = '';
+  orderBy: { order: string, key: string } = { order: '', key: '' };
+
   constructor(private formBuilder: FormBuilder, private api: FpoService, public translate: TranslateService) {
     this.baseUrl = environment.baseUrl;
     if(localStorage.getItem('language')){
@@ -62,12 +65,19 @@ export class FpoGuidelinesComponent implements OnInit {
       })
     } else {
       this.fpoGuideLineFrom.controls['isPostRegistration'].setValue('isPerRegistration');
-      this.isPost = true;
+      this.isPost = false;
       this.api.getFPOGuideLinePreRegistration().subscribe(fg => {
         this.fpoGuideLines = fg
       })
     }
     
    
+  }
+  onClickOrderBy(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
   }
 }
