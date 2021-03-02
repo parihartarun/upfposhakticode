@@ -27,6 +27,9 @@ export class DepartmentAllComplaintsComponent implements OnInit {
   users: Array<any> = [];
   filterResponse: any[];
   roleType: any;
+  
+  orderBy: { order: string, key: string } = { order: '', key: '' };
+  searchText = '';
   viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', name: "", mobile: "", email: "" }
   constructor(
     private formBuilder: FormBuilder,
@@ -198,9 +201,9 @@ export class DepartmentAllComplaintsComponent implements OnInit {
 
   }
   filterComaplaint() {
-    if (!this.complaints ||this.complaints.length <= 0) {
-      return
-    }
+    // if (!this.complaints ||this.complaints.length <= 0) {
+    //   return
+    // }
     if (this.fliterForm.controls['complaint'].value === "New") {
       this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
     }
@@ -211,5 +214,12 @@ export class DepartmentAllComplaintsComponent implements OnInit {
       this.complaints = this.filterResponse.filter(f => f.status);
 
     }
+  }
+  onClickOrderBy(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
   }
 }

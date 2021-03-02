@@ -27,8 +27,10 @@ export class DepartmentComplaintsComponent implements OnInit {
   isViewComplaint = false;
   users: Array<any> = [];
   filterResponse: any[];
-  roleType:any
-  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', name: "", mobile: "", email:"" }
+  roleType: any
+  orderBy: { order: string, key: string } = { order: '', key: '' };
+  searchText = '';
+  viewComp = { title: "", compalintDate: '', description: '', currentStatus: '', assignedTo: '', assigned_date: '', remarks: '', name: "", mobile: "", email: "" }
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
@@ -41,20 +43,20 @@ export class DepartmentComplaintsComponent implements OnInit {
   ngOnInit(): void {
     this.roleType = localStorage.getItem('userRole')
     this.authService.getDeptmentUser().subscribe(u => {
-      this.users=u
+      this.users = u
     })
     this.fliterForm = this.formBuilder.group({
       complaint: ['New']
 
     });
-   
+
     fpoId: localStorage.getItem('masterId')
     this.getComplaints();
   }
 
   getComplaints() {
-   
-    this.api.getComplaints().subscribe(response => {      
+
+    this.api.getComplaints().subscribe(response => {
       this.complaints = response;
       this.filterResponse = response
       this.complaints = this.filterResponse.filter(f => !f.status || this.getStatus(f.status) == 'OPEN');
@@ -78,7 +80,7 @@ export class DepartmentComplaintsComponent implements OnInit {
     this.api.updateStatus(this.complaintForm.value, formData).subscribe(response => {
       if (response.id != '') {
         this.toastr.success(response.message);
-        this.submitted = false;        
+        this.submitted = false;
         this.complaintForm.reset();
         this.getComplaints();
         this.isViewComplaint = false;
@@ -91,12 +93,12 @@ export class DepartmentComplaintsComponent implements OnInit {
   get formControls() {
     return this.complaintForm.controls;
   }
-  
+
 
   selectComplaint(complaint) {
     this.complaintForm.controls['title'].setValue(complaint.currentTarget.value);
   }
-  
+
   deleteCompliant(complaint) {
     this.api.deleteCompliant(complaint.id).subscribe(response => {
       if (response != '') {
@@ -107,8 +109,8 @@ export class DepartmentComplaintsComponent implements OnInit {
       }
     });
   }
- 
- 
+
+
   compareByOptionId(idFist, idSecond) {
     return idFist && idSecond && idFist.id == idSecond.id;
   }
@@ -118,7 +120,7 @@ export class DepartmentComplaintsComponent implements OnInit {
   close() {
     this.isViewComplaint = false;
   }
-  
+
   getToday(): string {
     return new Date().toISOString().split('T')[0]
   }
@@ -167,5 +169,12 @@ export class DepartmentComplaintsComponent implements OnInit {
       this.complaints = this.filterResponse.filter(f => f.status);
 
     }
+  }
+  onClickOrderBy(key: any) {
+    this.orderBy = {
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    };
   }
 }

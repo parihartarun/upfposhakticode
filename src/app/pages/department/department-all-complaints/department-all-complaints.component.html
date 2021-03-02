@@ -92,39 +92,47 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label">{{'Appointed'| translate}} <span class="required">*</span></label>
+                      <label class="form-control-label">{{'Appointed'| translate}} <span
+                          class="required">*</span></label>
 
                       <select class="form-control" formControlName="assign_to">
                         <option value="">{{'Select User'|translate}}</option>
                         <option *ngFor="let u of users" [value]="u.userId">{{u.userName}}</option>
                       </select>
                       <div *ngIf="submitted && formControls.assign_to.errors" class="text-danger">
-                        <div *ngIf="formControls.assign_to.errors.required">{{'Appointed to is required'| translate}}</div>
+                        <div *ngIf="formControls.assign_to.errors.required">{{'Appointed to is required'| translate}}
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
                       <label class="form-control-label" for="input-email">{{'Appointment Date' |translate}}:</label>
-                      <input formControlName="appointmentDate" type="text" disabled id="input-email" class="form-control form-control-alternative">
+                      <input formControlName="appointmentDate" type="text" disabled id="input-email"
+                        class="form-control form-control-alternative">
                       <div *ngIf="submitted && formControls.appointmentDate.errors" class="text-danger">
-                        <div *ngIf="formControls.appointmentDate.errors.required">{{'appointment date is required'|translate}}</div>
+                        <div *ngIf="formControls.appointmentDate.errors.required">
+                          {{'appointment date is required'|translate}}</div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label" for="">{{'Department Comments'|translate}}:<span class="required">*</span></label>
-                      <textarea formControlName="comment" class="form-control" id="exampleFormControlTextarea12" rows="3"></textarea>
+                      <label class="form-control-label" for="">{{'Department Comments'|translate}}:<span
+                          class="required">*</span></label>
+                      <textarea formControlName="comment" class="form-control" id="exampleFormControlTextarea12"
+                        rows="3"></textarea>
 
                       <div *ngIf="submitted && formControls.comment.errors" class="text-danger">
-                        <div *ngIf="formControls.comment.errors.required">{{'department comments is required'|translate}}</div>
+                        <div *ngIf="formControls.comment.errors.required">
+                          {{'department comments is required'|translate}}</div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label class="form-control-label">{{'Change status'|translate}}: <span class="required">*</span></label>
+                      <label class="form-control-label">{{'Change status'|translate}}: <span
+                          class="required">*</span></label>
 
                       <select class="form-control" formControlName="status">
                         <option value="">{{'Select Status'|translate}}</option>
@@ -140,7 +148,8 @@
 
 
                   <div class="card-footer text-center">
-                    <button type="submit" class="btn btn-yellow btn-primary my-4" (click)="updateSatus()">{{'Update Status' |translate}}</button>
+                    <button type="submit" class="btn btn-yellow btn-primary my-4"
+                      (click)="updateSatus()">{{'Update Status' |translate}}</button>
 
                     <button class="btn btn-warning text-right" (click)="reset()">{{'Reset'|translate}}</button>
                   </div>
@@ -167,30 +176,34 @@
     <div class="col">
       <div class="card shadow">
 
-        <div class="card-header border-0">
+        <div class="card-header">
           <div class="row">
-            <div class="col-3">
+            <div class="col-12">
               <h3 class="mb-0">{{'Complaints/ Suggestions' | translate}}</h3>
             </div>
-            <div class="col-9">
+            <!-- <div class="col-9">
               <from role="form" [formGroup]="fliterForm" style="width:100%">
                 <div class="form-group row m-2 pb-2 pt-2">
 
                   <div class="col-lg-4">
                     <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
-                      <input formControlName="complaint" value="New" class="custom-control-input" id="customRadio6" type="radio" checked="" (change)="filterComaplaint()">
+                      <input formControlName="complaint" value="New" class="custom-control-input" id="customRadio6"
+                        type="radio" checked="" (change)="filterComaplaint()">
                       <label class="custom-control-label" for="customRadio6">{{'New Compliant' | translate}}</label>
                     </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input formControlName="complaint" value="resolved" class="custom-control-input" id="customRadio7" type="radio" (change)="filterComaplaint()">
-                      <label class="custom-control-label" for="customRadio7">{{'Resolved Complaint' | translate}}</label>
+                      <input formControlName="complaint" value="resolved" class="custom-control-input" id="customRadio7"
+                        type="radio" (change)="filterComaplaint()">
+                      <label class="custom-control-label"
+                        for="customRadio7">{{'Resolved Complaint' | translate}}</label>
                     </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                      <input formControlName="complaint" value="all" class="custom-control-input" id="customRadio8" type="radio" (change)="filterComaplaint()">
+                      <input formControlName="complaint" value="all" class="custom-control-input" id="customRadio8"
+                        type="radio" (change)="filterComaplaint()">
                       <label class="custom-control-label" for="customRadio8">{{'All Complaint' | translate}}</label>
                     </div>
                   </div>
@@ -199,76 +212,109 @@
                 </div>
 
               </from>
-            </div>
+            </div> -->
           </div>
         </div>
-        <div class="table-responsive">
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">{{'S.no'|translate}}</th>
-                <th scope="col">{{'name'|translate}}</th>
-                <th scope="col">{{'CATEGORY' | translate}}</th>
-                <th scope="col">{{'Description' | translate}}</th>
-                <th scope="col">{{'Date'|translate}}</th>
-                <th scope="col">{{'status'|translate}}</th>
-                <th scope="col">{{'File1'|translate}}</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let complaint of complaints | paginate: { itemsPerPage: 10, currentPage: p } let i = index">
-                <td>
-                  {{ (p-1) * 10 + i + 1}}
-                </td>
+        <div class="border border-dark m-4">
+          <div class="cust-head mx-3 p-3">
+            <div class="mr-2">
+              <input type="text" [id]="'search_'+tableId" [(ngModel)]="searchText" (input)="p=1"
+                style="border-radius: 0;" name="search" placeholder="Search" autocomplete="off"
+                class="form-control input-md" />
+            </div>
+            <div>
+              <from role="form" [formGroup]="fliterForm" style="width:100%">
+                <select class="custom-control custom-select" name="filterByType" formControlName="complaint"
+                  (change)="filterComaplaint();p=1" style="border-radius: 0;">
+                  <option value="New">
+                    {{'New Compliant'| translate}}</option>
+                  <option [value]="'resolved'">
+                    {{'Resolved Complaint'| translate}}</option>
+                  <option [value]="'all'">
+                    {{'All Complaint'| translate}}</option>
+                </select>
+              </from>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">{{'S.no'|translate}}</th>
+                  <th scope="col" class="sort">{{'name'|translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('title')">{{'CATEGORY' | translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('description')">{{'Description' | translate}}
+                  </th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('updateDate')">{{'Date'|translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('status')">{{'status'|translate}}</th>
+                  <th scope="col" class="sort" (click)="onClickOrderBy('filepath')">{{'File1'|translate}}</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let complaint of complaints | tableSearch:searchText  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: p } let i = index">
+                  <td>
+                    {{ (p-1) * 10 + i + 1}}
+                  </td>
 
-                <td *ngIf="complaint.role=='ROLE_INPUTSUPPLIER'">
-                  {{ complaint.inputSupplierName}}
-                </td>
-                <td *ngIf="complaint.role=='ROLE_BUYERSELLER'">
-                  {{ complaint.buyerSellerName}}
-                </td>
-                <td *ngIf="complaint.role=='ROLE_CHCFMB'">
-                  {{ complaint.chcFmbName}}
-                </td>
-                <td>
-                  {{complaint.title}}
-                </td>
-                <td>
-                  {{complaint.description}}
-                </td>
-                <td>
-                  {{complaint.updateDate| date: 'dd/MM/yyyy'}}
-                </td>
-                <td>
-                  <span *ngIf="complaint.status">{{getStatus(complaint.status)}}</span>
-                  <span *ngIf="!complaint.status">NA</span>
-                </td>
-                <td>
-                  <a download href="{{complaint.filePath}}" target="_blank">
-                    <i class="fas fa-file"></i>
-                  </a>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" (click)="viewComplaint(complaint)">
-                      {{'View'|translate}}
+                  <td *ngIf="complaint.role=='ROLE_INPUTSUPPLIER'">
+                    {{ complaint.inputSupplierName}}
+                  </td>
+                  <td *ngIf="complaint.role=='ROLE_BUYERSELLER'">
+                    {{ complaint.buyerSellerName}}
+                  </td>
+                  <td *ngIf="complaint.role=='ROLE_CHCFMB'">
+                    {{ complaint.chcFmbName}}
+                  </td>
+                  <td>
+                    {{complaint.title}}
+                  </td>
+                  <td>
+                    {{complaint.description}}
+                  </td>
+                  <td>
+                    {{complaint.updateDate| date: 'dd/MM/yyyy'}}
+                  </td>
+                  <td>
+                    <span *ngIf="complaint.status">{{getStatus(complaint.status)}}</span>
+                    <span *ngIf="!complaint.status">NA</span>
+                  </td>
+                  <td>
+                    <a download href="{{complaint.filePath}}" target="_blank">
+                      <i class="fas fa-file"></i>
                     </a>
-                    <!--<div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                  </td>
+                  <td class="text-right">
+                    <div ngbDropdown placement="bottom-right">
+                      <a class="btn btn-sm btn-primary" (click)="viewComplaint(complaint)">
+                        {{'View'|translate}}
+                      </a>
+                      <!--<div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
         <a class="dropdown-item" href="javascript:void(0)" (click)="viewComplaint(complaint)">{{'View'|translate}}</a>
 
       </div>-->
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row mx-0 mt-2" style="align-items: center;">
+            <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
+              <!-- <div>Showing 1 of 4 entries</div> -->
+            </div>
+            <div class="col-xs-12 col-sm-6 col-12 custom-pagination-align">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+          </div>
         </div>
-        <div class="card-footer py-4">
+        <!-- <div class="card-footer py-4">
           <nav aria-label="..." class="text-right">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </nav>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
