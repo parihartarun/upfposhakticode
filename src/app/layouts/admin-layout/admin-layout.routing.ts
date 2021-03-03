@@ -52,6 +52,7 @@ import { FarmerNotifictionByFpoComponent } from '../../pages/farmer/farmer-notif
 import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.component';
 import { DepartmentAllComplaintsComponent } from '../../pages/department/department-all-complaints/department-all-complaints.component';
 import { FPOAllUserComponent } from '../../pages/fpo/fpoall-user/fpoall-user.component';
+import { FarmerDashboardComponent } from '../../pages/farmer/farmer-dashboard/farmer-dashboard.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: FpoDashboardComponent },
@@ -98,7 +99,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'userDetails', component: UserStatusComponent },   
   { path: 'fpo/complaintsByfarmer', component: ComplaintByFarmerComponent },
   { path: 'indent_history/buyer-user-profile', component: BuyeruserComponent },
-  {path:'user-profile',component:UserProfileDashboardComponent},
+  { path: 'user-profile',component:UserProfileDashboardComponent},
   { path: 'department/dept-notification', component: DepartmentNotificationComponent },
   { path: 'fpo/fpo-notification', component: FpoNotifiactionComponent },
   { path: 'fpo/fpo-notificationByDept', component: NotifiactionByDepartmentComponent },
@@ -108,6 +109,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'deptBuyer/complaints', component: DepartmentAllComplaintsComponent },
   { path: 'deptCHC/complaints', component: DepartmentAllComplaintsComponent },
   { path: 'fpoUser/fpoUser', component: FPOAllUserComponent },
- 
+  { path: 'farmer/dashboard', component:FarmerDashboardComponent}
 ];
 

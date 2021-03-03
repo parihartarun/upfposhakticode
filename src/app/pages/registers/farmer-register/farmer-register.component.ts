@@ -107,8 +107,6 @@ export class FarmerRegisterComponent implements OnInit {
 
     })
 
-
-
   }
   get formControls() {
     return this.registerForm.controls;
@@ -173,6 +171,16 @@ export class FarmerRegisterComponent implements OnInit {
 
   }
 
+  getFarmerDataFromUpAgriPardarshi(){
+    console.log(this.registerForm.value.upBSMId);
+    if(this.registerForm.value.upBSMId == ''){
+      alert('Please enter Farmer Registration Number');
+      return;
+    }
+    this.api.getFarmerDataFromUpAgriPardarshi(this.registerForm.value.upBSMId).subscribe(response => {
+      console.log(response);
+    })
+  }
 
   handleSuccess(e) {
     console.log("ReCaptcha", e);

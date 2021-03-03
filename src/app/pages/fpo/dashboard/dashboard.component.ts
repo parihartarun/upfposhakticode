@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
+import { CommonService } from 'src/app/_services/common/common.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,8 @@ export class FpoDashboardComponent implements OnInit {
   chartOption:any;
   actualProduction:Array<any>=[];
   markatableProduction:Array<any>=[];
+  salesProduction:Array<any>=[];
+  finYears:[];
 
   public totals = {
     totalFpoFarmer: 0,
@@ -35,10 +38,6 @@ export class FpoDashboardComponent implements OnInit {
   xAxisLabel: string = 'Crops';
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Quantity (in Qt.)';
-  multi = [];
-  multi1 = [];
-  multi2 = [];
-  multi3 = []
   goBackUrl = '';
   colorScheme = {
     domain: ['blue', '#ca1a1a']
@@ -48,22 +47,35 @@ export class FpoDashboardComponent implements OnInit {
   };
 
 
-  constructor(private api: FpoService) { 
+  constructor(private api: FpoService, private common:CommonService) { 
   }
 
   ngOnInit(): void {
     this.chartOption = 'surplus';
-    this.getDashboardDetails();
+    this.getFinancialYears();
+    this.getDashboardDetails('2021-2020');
   }
 
-  getDashboardDetails() {
-    console.log(localStorage.getItem('masterId'));
-    this.api.getDashboardData(localStorage.getItem('masterId')).subscribe(response => {
+  getFinancialYears(){
+    this.common.getFinancialYears().subscribe(response => {
+      console.log(response);
+      this.finYears = response;
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
+
+  getDashboardDetails(finYear) {
+    this.api.getDashboardData({fpoId:localStorage.getItem('masterId'), finYear: finYear}).subscribe(response => {
       console.log("FPO", response);
       this.totals = response;
       this.actualProduction = response.fpoActualQty;
       this.setMarkatableProduction(response.fpoMarketableProduction);
       this.setActualProduction(response.fpoActualProduction);
+      this.setSalesProduction(response.fpoTotSoldProduction);
     },
       err => {
         console.log(err)
@@ -147,7 +159,7 @@ export class FpoDashboardComponent implements OnInit {
       for(let i=0;i<td.length;i++){
           var ob = {};
           ob['name'] = td[i].cropName;
-          ob['series'] = td[i].totAcProd;
+          ob['value'] = td[i].totAcProd;
           rabiData1.push(ob);
       }
     }
@@ -157,7 +169,7 @@ export class FpoDashboardComponent implements OnInit {
       for(let i=0;i<td.length;i++){
           var ob = {};
           ob['name'] = td[i].cropName;
-          ob['series'] = td[i].totAcProd;
+          ob['value'] = td[i].totAcProd;
           kharifData1.push(ob);
       }
     }
@@ -184,6 +196,58 @@ export class FpoDashboardComponent implements OnInit {
       {
         title: `Total Actual Production in Kharif (in Qt.)`,
         data:zayadData1
+      }
+    ];
+  }
+
+  setSalesProduction(data){
+    console.log(data);
+    var rabiData2 = [];
+    var kharifData2 = [];
+    var zayadData2 = [];
+    if(data['fpoTotSoldRabi'].length > 0){
+      var td = data['fpoTotSoldRabi'];
+      console.log(td[0]);
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['value'] = td[i].totSold;
+          rabiData2.push(ob);
+      }
+    }
+
+    if(data['fpoTotSoldKharif'].length > 0){
+      var td = data['fpoTotSoldKharif'];
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['value'] = td[i].totSold;
+          kharifData2.push(ob);
+      }
+    }
+
+    if(data['fpoTotSoldZayad'].length > 0){
+      var td = data['fpoTotSoldZayad'];
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['value'] = td[i].totSold;
+          zayadData2.push(ob);
+      }
+    }
+    
+    this.salesProduction = [
+      {
+        title: `Total Sales Production in Rabi (in Qt.)`,
+        data: rabiData2
+      },
+      {
+        title: `Total Sales Production in Zayad (in Qt.)`,
+        data: kharifData2
+      },
+      {
+        title: `Total Sales Production in Kharif (in Qt.)`,
+        data:zayadData2
       }
     ];
   }

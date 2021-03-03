@@ -52,4 +52,10 @@ export class CommonService {
     }));
   }
 
+  getFinancialYears(){
+    return this.http.get<any>(this._url + 'fpoDashboard/getFinancialYears').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
 }

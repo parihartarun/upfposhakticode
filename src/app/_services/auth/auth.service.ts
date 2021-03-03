@@ -33,8 +33,13 @@ export class AuthService {
     }));
   }
 
-  getDistrict(): Observable<any> {
+  getFarmerDataFromUpAgriPardarshi(regNo){
+    return this.http.get<any>(this._url + 'upagri/getUpAgri/'+regNo).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
+  getDistrict(): Observable<any> {
     return this.http.get<any>(this._url + 'api/v1/District/getDistricts').pipe(map((res: any) => {
       return res;
     }));

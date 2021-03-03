@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -53,6 +51,8 @@ export class LoginComponent implements OnInit {
           this.route.navigate(['/fpo/dashboard']);
         } else if(this.userRole == 'ROLE_MIN') {
           this.route.navigate(['/department/dashboard']);
+        } else if(this.userRole == 'ROLE_FARMER') {
+          this.route.navigate(['/farmer/dashboard']);
         } else if(this.userRole == 'ROLE_BUYERSELLER'){
           this.route.navigate(['/indent_history']);
         }else{
