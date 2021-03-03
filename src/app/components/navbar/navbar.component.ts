@@ -115,6 +115,6 @@ export class NavbarComponent implements OnInit {
     sessionStorage.removeItem('accessToken');
     localStorage.removeItem('username');
     localStorage.removeItem('userrole');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
 }
