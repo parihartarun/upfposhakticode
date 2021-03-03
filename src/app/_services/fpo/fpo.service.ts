@@ -9,14 +9,20 @@ import { environment } from 'src/environments/environment';
 })
 export class FpoService {
   //------------Dashboard Data ------------------------------
-  getDashboardData(fpoId) {
-    return this.http.get<any>(this._url + `fpoDashboard/farmerDetails/`+fpoId).pipe(map((res: any) => {
+  getDashboardData(data) {
+    return this.http.post<any>(this._url + `fpoDashboard/farmerDetails/`, data).pipe(map((res: any) => {
       return res;
     }));
   }
 
-  getDepartmentDashboardData(){
-    return this.http.get<any>(this._url + `departmentDashboard/getDeptDashBoardData/`).pipe(map((res: any) => {
+  getDepartmentDashboardData(data){
+    return this.http.post<any>(this._url + `departmentDashboard/getDeptDashBoardData/`, data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  getFarmerDashboardData(farmerId){
+    return this.http.get<any>(this._url + `farmerDashboard/getFarmerDetails/`+farmerId).pipe(map((res: any) => {
       return res;
     }));
   }

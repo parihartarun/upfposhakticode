@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
+import { CommonService } from 'src/app/_services/common/common.service';
 
 // import Chart from 'chart.js';
 
@@ -17,6 +18,7 @@ export class DepartmentDashboardComponent implements OnInit {
   chartOption:any;
   actualProduction:Array<any>=[];
   markatableProduction:Array<any>=[];
+  salesProduction:Array<any>=[];
 
   public totals = {
     totalFpo: 0,
@@ -37,10 +39,6 @@ export class DepartmentDashboardComponent implements OnInit {
   xAxisLabel: string = 'Crops';
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Quantity (in Qt.)';
-  multi = [];
-  multi1 = [];
-  multi2 = [];
-  multi3 = []
   goBackUrl = '';
   colorScheme = {
     domain: ['blue', '#ca1a1a']
@@ -51,7 +49,7 @@ export class DepartmentDashboardComponent implements OnInit {
 
   productions:[];
   districts:[];
-
+  finYears:[];
   // Doughnut
   public doughnutChartLabels = [
     "NABARD",
@@ -65,21 +63,34 @@ export class DepartmentDashboardComponent implements OnInit {
   public doughnutChartType = "doughnut";
 
 
-  constructor(private api: FpoService) { 
+  constructor(private api: FpoService, private common:CommonService) { 
   }
 
   ngOnInit() {
-    this.getDashboardDetails();
+    this.getFinancialYears();
+    this.getDashboardDetails('2021-2020');
   }
 
-  getDashboardDetails() {
-    this.api.getDepartmentDashboardData().subscribe(response => {
+  getFinancialYears(){
+    this.common.getFinancialYears().subscribe(response => {
+      console.log(response);
+      this.finYears = response;
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
+  getDashboardDetails(finYear) {
+    this.api.getDepartmentDashboardData({finYear: finYear}).subscribe(response => {
       console.log(response);
       this.totals = response;
       this.actualProduction = response.fpoActualQty;
       this.setMarkatableProduction(response.deptMarketableProduction);
       this.setActualProduction(response.deptActualProduction);
       this.setAgencyChartData(response.deptFpoAgency);
+      this.setSalesProduction(response.deptSoldProduction);
     },
       err => {
         console.log(err)
@@ -163,7 +174,7 @@ export class DepartmentDashboardComponent implements OnInit {
       for(let i=0;i<td.length;i++){
           var ob = {};
           ob['name'] = td[i].cropName;
-          ob['series'] = td[i].totAcProd;
+          ob['value'] = td[i].totAcProd;
           rabiData1.push(ob);
       }
     }
@@ -173,7 +184,7 @@ export class DepartmentDashboardComponent implements OnInit {
       for(let i=0;i<td.length;i++){
           var ob = {};
           ob['name'] = td[i].cropName;
-          ob['series'] = td[i].totAcProd;
+          ob['value'] = td[i].totAcProd;
           kharifData1.push(ob);
       }
     }
@@ -200,6 +211,58 @@ export class DepartmentDashboardComponent implements OnInit {
       {
         title: `Total Actual Production in Kharif (in Qt.)`,
         data:zayadData1
+      }
+    ];
+  }
+
+  setSalesProduction(data){
+    console.log(data);
+    var rabiData2 = [];
+    var kharifData2 = [];
+    var zayadData2 = [];
+    if(data['deptTotSoldRabi'].length > 0){
+      var td = data['deptTotSoldRabi'];
+      console.log(td[0]);
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['value'] = td[i].totSold;
+          rabiData2.push(ob);
+      }
+    }
+
+    if(data['deptTotSoldKharif'].length > 0){
+      var td = data['deptTotSoldKharif'];
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['value'] = td[i].totSold;
+          kharifData2.push(ob);
+      }
+    }
+
+    if(data['deptTotSoldZayad'].length > 0){
+      var td = data['deptTotSoldZayad'];
+      for(let i=0;i<td.length;i++){
+          var ob = {};
+          ob['name'] = td[i].cropName;
+          ob['value'] = td[i].totSold;
+          zayadData2.push(ob);
+      }
+    }
+    
+    this.salesProduction = [
+      {
+        title: `Total Sales Production in Rabi (in Qt.)`,
+        data: rabiData2
+      },
+      {
+        title: `Total Sales Production in Zayad (in Qt.)`,
+        data: kharifData2
+      },
+      {
+        title: `Total Sales Production in Kharif (in Qt.)`,
+        data:zayadData2
       }
     ];
   }

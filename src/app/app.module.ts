@@ -113,6 +113,7 @@ import { FPOAllUserComponent } from './pages/fpo/fpoall-user/fpoall-user.compone
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CanDeactivateGuard } from './_helpers/can-deactivate.guard';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { FarmerDashboardComponent } from './pages/farmer/farmer-dashboard/farmer-dashboard.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -235,8 +236,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     FpoDashboardComponent,
     HomeScreenComponent,
     DepartmentAllComplaintsComponent,
-    FPOAllUserComponent
-
+    FPOAllUserComponent,
+    FarmerDashboardComponent
+   
   ],
   exports: [
     AuthHeaderComponent
