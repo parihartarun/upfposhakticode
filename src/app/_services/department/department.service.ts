@@ -96,7 +96,7 @@ export class DepartmentService {
     })
   }
   addGuideline(formData) {
-    this.http.post<any>(this._url + 'fpoguidelines/uploadFPOGuideline',formData).subscribe((res: any) => {
+    this.http.post<any>(this._url + 'fpoguidelines/uploadFPOGuideline', formData).subscribe((res: any) => {
       if (res == true || res) {
         this.toastr.success('Guideline added successfully.');
         this.getGuideline();
@@ -179,9 +179,9 @@ export class DepartmentService {
     return this.http.post<any>(this._url + 'notification/fposend', formData).pipe(map((res: any) => {
       return res;
     }))
-   
+
   }
-  getAllComplaintBuyerSeller(role:any) {
+  getAllComplaintBuyerSeller(role: any) {
     return this.http.get<any>(this._url + 'fpocomplaint/getAllComplaintBuyerSeller/' + role).pipe(map((res: any) => {
       return res;
     }));
@@ -196,7 +196,21 @@ export class DepartmentService {
       return res;
     }));
   }
- 
+  getWarehouseAll() {
+    return this.http.get<any>(this._url + 'warehouse/getall');
+  }
+  getFacilitieseAll() {
+    return this.http.get<any>(this._url + 'warehouse/facilities/getall');
+  }
+  addWarehouse(params) {
+    return this.http.post<any>(this._url + 'warehouse', { ...params });
+  }
+  updateWarehouse(id, params) {
+    return this.http.put<any>(this._url + 'warehouse/' + id, { ...params });
+  }
+  deleteWarehouse(id) {
+    return this.http.delete<any>(this._url + 'warehouse/' + id);
+  }
 }
 
 

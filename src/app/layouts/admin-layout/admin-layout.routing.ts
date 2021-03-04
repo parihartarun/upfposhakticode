@@ -53,6 +53,7 @@ import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.compone
 import { DepartmentAllComplaintsComponent } from '../../pages/department/department-all-complaints/department-all-complaints.component';
 import { FPOAllUserComponent } from '../../pages/fpo/fpoall-user/fpoall-user.component';
 import { FarmerDashboardComponent } from '../../pages/farmer/farmer-dashboard/farmer-dashboard.component';
+import { WarehouseComponent } from 'src/app/pages/department/warehouse/warehouse.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: FpoDashboardComponent },
@@ -83,6 +84,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'department/all-users', component: DepartmentAllUsersComponent },
   { path: 'department/guideline', component: DepartmentGuidelineComponent },
   { path: 'department/schemes', component: DepartmentSchemeComponent },
+  { path: 'department/warehouse', component: WarehouseComponent },
   { path: 'search', component: SearchComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'indent_history', component: IndentComponent },

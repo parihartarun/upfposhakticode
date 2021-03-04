@@ -248,6 +248,12 @@
           </a>
         </li>
         <li *ngIf="userRole == 'ROLE_MIN'" class="nav-item">
+          <a routerLinkActive="active" [routerLink]="['department/warehouse']" class="nav-link">
+            <i class="ni fa fa-book text-white"></i>
+            {{'Warehouse' | translate}}
+          </a>
+        </li>
+        <li *ngIf="userRole == 'ROLE_MIN'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['department/guideline']" class="nav-link">
             <i class="ni fa fa-book text-white"></i>
             {{'Guideline' | translate}}

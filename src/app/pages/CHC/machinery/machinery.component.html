@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>{{'Equipment' | translate}} <span class="required">*</span></label>
+                    <label>{{'Equipment Name' | translate}} <span class="required">*</span></label>
                     <!-- <input type="text" id="input-first-name" class="form-control form-control-alternative"
                       name="Equipment" [(ngModel)]="formData.equipment"> -->
                     <select class="form-control" name="Equipment" required #Equipment="ngModel"
@@ -45,7 +45,7 @@
                         {{row.equpmentname}}</option>
                     </select>
                     <div *ngIf="Equipment.invalid && (Equipment.dirty || Equipment.touched)" class="text-danger">
-                      <div>{{'Equipment Category is required'|translate}}</div>
+                      <div>{{'Equipment Name is required'|translate}}</div>
                     </div>
                   </div>
                 </div>
@@ -96,7 +96,7 @@
                     <div
                       *ngIf="equipmentManufacturer.invalid && (equipmentManufacturer.dirty || equipmentManufacturer.touched)"
                       class="text-danger">
-                      <div>{{'Equipment Purchase Year is required'|translate}}</div>
+                      <div>{{'Equipment Manufacturer (company/Brand) is required'|translate}}</div>
                     </div>
                   </div>
                 </div>
@@ -128,12 +128,12 @@
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" [(ngModel)]="formRadio" name="inlineRadio"
                               id="inlineRadio1" [value]="true">
-                            <label class="form-check-label" for="inlineRadio1">Yes</label>
+                            <label class="form-check-label" for="inlineRadio1">{{'Yes' | translate}}</label>
                           </div>
                           <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" [(ngModel)]="formRadio" name="inlineRadio"
                               id="inlineRadio2" [value]="false">
-                            <label class="form-check-label" for="inlineRadio2">No</label>
+                            <label class="form-check-label" for="inlineRadio2">{{'No' | translate}}</label>
                           </div>
                         </label>
                       </div>
@@ -147,7 +147,7 @@
                     <input type="text" id="govt" class="form-control form-control-alternative" name="govt scheme"
                       [(ngModel)]="formData.govt_scheme" required #govt_scheme="ngModel">
                     <div *ngIf="govt_scheme.invalid && (govt_scheme.dirty || govt_scheme.touched)" class="text-danger">
-                      <div>{{'Govt. Scheme under which -assistance was provided is required'|translate}}</div>
+                      <div>{{'This field in required'|translate}}</div>
                     </div>
                   </div>
                 </div>
@@ -156,9 +156,12 @@
           </form>
         </div>
         <div class="card-footer py-4 text-center">
-          <button *ngIf="!isEdit" class="btn btn-yellow" (click)="addMachinery(machineryForm)">Save</button>
-          <button *ngIf="isEdit" class="btn btn-yellow" (click)="updateMachinery(machineryForm)">Update</button>
-          <button class="btn btn-warning" (click)="machineryForm.reset();">Reset</button>
+          <button *ngIf="!isEdit" class="btn btn-yellow"
+            (click)="addMachinery(machineryForm)">{{'Save' | translate}}</button>
+          <button *ngIf="isEdit" class="btn btn-yellow"
+            (click)="updateMachinery(machineryForm)">{{'Update' | translate}}</button>
+          <button class="btn btn-warning"
+            (click)="machineryForm.reset();isEdit=false;formData={}">{{'Reset' | translate}}</button>
         </div>
       </div>
     </div>

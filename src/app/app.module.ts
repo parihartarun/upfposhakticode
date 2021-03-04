@@ -114,6 +114,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { CanDeactivateGuard } from './_helpers/can-deactivate.guard';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { FarmerDashboardComponent } from './pages/farmer/farmer-dashboard/farmer-dashboard.component';
+import { WarehouseComponent } from './pages/department/warehouse/warehouse.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -142,6 +144,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BsDatepickerModule.forRoot(),
     NgMarqueeModule,
     NgxChartsModule,
+    NgSelectModule,
     ChartsModule, NgxSliderModule,
     TagInputModule, NgxSpinnerModule,
     ToastrModule.forRoot({
@@ -237,8 +240,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeScreenComponent,
     DepartmentAllComplaintsComponent,
     FPOAllUserComponent,
-    FarmerDashboardComponent
-   
+    FarmerDashboardComponent,
+    WarehouseComponent
+
   ],
   exports: [
     AuthHeaderComponent

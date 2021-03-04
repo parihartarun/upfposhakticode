@@ -31,6 +31,7 @@ export const departmentROUTES: RouteInfo[] = [
   //{ path: '#', title: ' Circulars', icon: 'fa fa-archive text-white', class: '' },
   { path: 'department/upload-circulars', title: "Upload Circular", icon: 'fa fa-id-card text-white', class: '' },
   { path: 'department/complaints', title: "Complaints", icon: 'ni-tv-2 text-white', class: '' },
+  { path: 'department/warehouse', title: "Warehouse", icon: 'ni-tv-2 text-white', class: '' },
   //{ path: '#', title: 'User Management', icon: 'fa fa-archive text-white', class: '' },
   //{ path: 'department/all-users', title: 'All-Users', icon: 'fa fa-plus-square text-white', class: '' },  
 ];

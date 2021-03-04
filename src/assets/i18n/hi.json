@@ -190,7 +190,7 @@
   "File is not in format": "फ़ाइल प्रारूप में नहीं है",
   "UP FPO Shakti": "यूपी एफपीओ शक्ति",
   "Sales Details": "बिक्री विवरण",
-  "Sale Production":"बिक्री उत्पादन",
+  "Sale Production": "बिक्री उत्पादन",
   "FPO Details": "एफपीओ विवरण",
   "Department Details": "विभाग का विवरण",
   "Farmer Details": "किसान विवरण",
@@ -717,7 +717,6 @@
   "Pesticide": "पेस्टनाशी",
   "Equipment": "उपकरण",
   "Both": "दोनों",
-
   "Crop Sowing Details": "किसान की फसल बुवाई का विवरण",
   "Select Farmer Name": "किसान नाम का चयन करें",
   "Please select farmer": "कृपया किसान का चयन करें",
@@ -747,7 +746,22 @@
   "File1": "फ़ाइल",
   "Farmer Users": "किसान उपयोगकर्ता",
   "All Inactive Farmer Users": "सभी निष्क्रिय किसान उपयोगकर्ता",
-  "All Active Farmer Users": "सभी सक्रिय किसान उपयोगकर्ता"
-
-
+  "All Active Farmer Users": "सभी सक्रिय किसान उपयोगकर्ता",
+  "Equipment Category": "उपकरण श्रेणी",
+  "Equipment Category is required":"उपकरण श्रेणी आवश्यक है",
+  "Equipment Name":"उपकरण का नाम",
+  "Equipment Name is required":"उपकरण का नाम आवश्यक है",
+  "Equipment Capacity is required":"उपकरण क्षमता आवश्यक है",
+  "Equipment Purchase Year is required":"उपकरण खरीद वर्ष की आवश्यकता है",
+  "Equipment Manufacturer (company/Brand)":"उपकरण निर्माता (कंपनी / ब्रांड)",
+  "Equipment Manufacturer (company/Brand) is required":"उपकरण निर्माता (कंपनी / ब्रांड) की आवश्यकता है",
+  "Quantity Available":"उपलब्ध मात्रा",
+  "Rent/day":"किराया / दिन",
+  "Documents":"दस्तावेज़",
+  "This field in required":"यह फ़ील्ड आवश्यक है",
+  "Latitude":"अक्षांश",
+  "Longitude":"देशान्तर",
+  "Facilities Available is required":"उपलब्ध सुविधाओं की आवश्यकता है",
+  "Add Warehouse":"वेयरहाउस जोड़ें",
+  "Update Warehouse":"वेयरहाउस अपडेट करें"
 }

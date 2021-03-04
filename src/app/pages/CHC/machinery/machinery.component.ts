@@ -78,15 +78,15 @@ export class MachineryComponent implements OnInit {
       if (this.formRadio) {
         formData.append('govt_scheme', this.formData.govt_scheme);
       }
-      // this.chcFmbService.addchcfmbMachinery(formData).subscribe((res: any) => {
-      //   if (res == true || res) {
-      //     this.toastr.success(res.message);
-      //     this.getAllMachineryList();
-      //     machineryForm.reset();
-      //   } else {
-      //     this.toastr.error('Something went wrong.');
-      //   }
-      // });
+      this.chcFmbService.addchcfmbMachinery(formData).subscribe((res: any) => {
+        if (res == true || res) {
+          this.toastr.success(res.message);
+          this.getAllMachineryList();
+          machineryForm.reset();
+        } else {
+          this.toastr.error('Something went wrong.');
+        }
+      });
     }
   }
   validateFile(name: String) {
@@ -103,10 +103,10 @@ export class MachineryComponent implements OnInit {
     this.formData.id = row.id;
     this.formData.capacity = row.equipment_capacity;
     this.formData.rent = row.rent_per_day;
-    // this.formData.company = row.
+    this.formData.company = row.name_id;
     this.formData.purchase_year = row.equip_purchase_year;
     this.formData.quantity = row.quantity_avail;
-    // this.formData.type_id = row.
+    this.formData.type_id = row.type_id;
     this.formData.govt_scheme = row.govt_scheme_assistant;
   }
   onClickOrderBy(key: any) {

@@ -217,7 +217,7 @@
   "quintal": "Qt.",
   "UP FPO Shakti": "UP FPO Shakti",
   "Sales Details": "Sales Details",
-  "Sale Production":"Sale Production",
+  "Sale Production": "Sale Production",
   "FPO Details": "FPO Details",
   "DEPATMENT Details": "DEPATMENT Details",
   "Farmer Details": "Farmer Details",
@@ -732,6 +732,22 @@
   "name": "Name",
   "Farmer Users": "Farmer Users",
   "All Inactive Farmer Users": "All Inactive Farmer Users",
-  "All Active Farmer Users": "All Active Farmer Users"
-
+  "All Active Farmer Users": "All Active Farmer Users",
+  "Equipment Category": "Equipment Category",
+  "Equipment Category is required": "Equipment Category is required",
+  "Equipment Name": "Equipment Name",
+  "Equipment Name is required": "Equipment Name is required",
+  "Equipment Capacity is required": "Equipment Capacity is required",
+  "Equipment Purchase Year is required": "Equipment Purchase Year is required",
+  "Equipment Manufacturer (company/Brand)": "Equipment Manufacturer (company/Brand)",
+  "Equipment Manufacturer (company/Brand) is required": "Equipment Manufacturer (company/Brand) is required",
+  "Quantity Available": "Quantity Available",
+  "Rent/day": "Rent/day",
+  "Documents": "Documents",
+  "This field in required": "This field in required",
+  "Latitude": "Latitude",
+  "Longitude": "Longitude",
+  "Facilities Available is required": "Facilities Available is required",
+  "Add Warehouse": "Add Warehouse",
+  "Update Warehouse": "Update Warehouse"
 }
