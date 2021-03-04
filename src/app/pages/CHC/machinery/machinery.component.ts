@@ -99,15 +99,18 @@ export class MachineryComponent implements OnInit {
     }
   }
   editData(row) {
+    window.scroll(0, 0);
     this.isEdit = true;
     this.formData.id = row.id;
     this.formData.capacity = row.equipment_capacity;
     this.formData.rent = row.rent_per_day;
-    this.formData.company = row.name_id;
+    this.formData.company = row.company;
     this.formData.purchase_year = row.equip_purchase_year;
     this.formData.quantity = row.quantity_avail;
     this.formData.type_id = row.type_id;
+    this.formData.name_id = row.name_id;
     this.formData.govt_scheme = row.govt_scheme_assistant;
+    this.chcFmbService.getequipmentname(row.type_id)
   }
   onClickOrderBy(key: any) {
     this.orderBy = {

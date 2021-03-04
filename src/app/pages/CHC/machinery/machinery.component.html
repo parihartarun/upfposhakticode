@@ -161,7 +161,7 @@
           <button *ngIf="isEdit" class="btn btn-yellow"
             (click)="updateMachinery(machineryForm)">{{'Update' | translate}}</button>
           <button class="btn btn-warning"
-            (click)="machineryForm.reset();isEdit=false;formData={}">{{'Reset' | translate}}</button>
+            (click)="machineryForm.reset();isEdit=false;formData={};formRadio=true">{{'Reset' | translate}}</button>
         </div>
       </div>
     </div>
