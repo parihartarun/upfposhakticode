@@ -112,9 +112,9 @@ export class NavbarComponent implements OnInit {
     this.modalService.open(content)
   }
   logout() {
-    sessionStorage.removeItem('accessToken');
-    localStorage.removeItem('username');
-    localStorage.removeItem('userrole');
-    this.router.navigate(['/home']);
+    // sessionStorage.removeItem('accessToken');
+    // localStorage.removeItem('username');
+    // localStorage.removeItem('userrole');
+    this.router.navigate(['/login']);
   }
 }

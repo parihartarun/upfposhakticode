@@ -291,6 +291,18 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="form-group">
+        <label> {{'Indent type' | translate}}<span class="required">*</span> </label>
+        <select class="form-control" name="indentType" [(ngModel)]="indentType">
+          <option>Choose Indent type</option>
+          <option value="Fertilizer">Fertilizer</option>
+          <option value="Pesticides">Pesticides</option>
+          <option value="Machinery">Machinery</option>
+        </select>
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary btn-sm" (click)="openTestModal(mymodala)">Create Indent</button>
 
     <ng-template #mymodal let-modal>
 
@@ -411,6 +423,138 @@
         </div>
       </div>
 
+    </ng-template>
+    <ng-template #mymodala let-modala>
+
+      <div class="modal-header">
+        <h3 class="modal-title text-center"> Indent {{indentType}} Form</h3>
+        <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+          (click)="modala.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="indentType=='Fertilizer'">
+        <p>
+          <span class="text-sm mr-2">{{'Fertilizer Type'| translate}}:</span>
+          <span class="text-bold text-sm">Chemical Fertilizer</span>
+        </p>
+        <p>
+          <span class="text-sm mr-2">{{'Fertilizer Name'| translate}}:</span>
+          <span class="text-bold text-sm">Rhizobium</span>
+        </p>
+        <p>
+          <span class="text-sm mr-2">{{'Name of Manufacturer'| translate}}:</span>
+          <span class="text-bold text-sm">Chemical Fertilizer</span>
+        </p>
+        <p>
+          <span class="text-sm mr-2">{{'Fertilizer grade'| translate}}:</span>
+          <span class="text-bold text-sm">Ar</span>
+        </p>
+        <!-- <div class="row mb-3">
+          <div class="col-6 text-sm text-bold">{{'Fertilizer Type'| translate}}:</div>
+          <div class="col-6 text-sm">Chemical Fertilizer</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6 text-sm text-bold">{{'Fertilizer Name'| translate}}:</div>
+          <div class="col-6 text-sm">Rhizobium</div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-6 text-sm text-bold">{{'Name of Manufacturer'| translate}}:</div>
+          <div class="col-6 text-sm">Chemical Fertilizer</div>
+        </div> -->
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <input type="date" id="input-first-name" placeholder="seeDate"
+                class="form-control form-control-alternative">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>{{'Quantity' | translate}} <span class="required">*</span></label>
+              <input type="text" id="input-first-name" placeholder="Quantity"
+                class="form-control form-control-alternative">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-control-label">{{'Address' | translate}} <span class="required">*</span></label>
+              <textarea name="address" id="" cols="30" rows="4" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body" *ngIf="indentType=='Pesticides'">
+        <p>
+          <span class="text-sm mr-2">{{'Insectices Type'| translate}}:</span>
+          <span class="text-bold text-sm">Chemical Fertilizer</span>
+        </p>
+        <p>
+          <span class="text-sm mr-2">{{'Name of Manufacturer'| translate}}:</span>
+          <span class="text-bold text-sm">Chemical Fertilizer</span>
+        </p>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label>{{'Quantity' | translate}} <span class="required">*</span></label>
+              <input type="text" id="input-first-name" placeholder="Quantity"
+                class="form-control form-control-alternative">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-control-label">{{'Address' | translate}} <span class="required">*</span></label>
+              <textarea name="address" id="" cols="30" rows="4" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body" *ngIf="indentType=='Machinery'">
+        <p>
+          <span class="text-sm mr-2">{{'Machinery Type'| translate}}:</span>
+          <span class="text-bold text-sm">Chemical Fertilizer</span>
+        </p>
+        <p>
+          <span class="text-sm mr-2">{{'Machinery Name'| translate}}:</span>
+          <span class="text-bold text-sm">Chemical Fertilizer</span>
+        </p>
+        <p>
+          <span class="text-sm mr-2">{{'Name of Manufacturer'| translate}}:</span>
+          <span class="text-bold text-sm">Chemical Fertilizer</span>
+        </p>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>{{'Quantity' | translate}} <span class="required">*</span></label>
+              <input type="text" id="input-first-name" placeholder="Quantity"
+                class="form-control form-control-alternative">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>{{'No. of days' | translate}} <span class="required">*</span></label>
+              <input type="text" id="input-first-name" placeholder="Quantity"
+                class="form-control form-control-alternative">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label class="form-control-label">{{'Address' | translate}} <span class="required">*</span></label>
+              <textarea name="address" id="" cols="30" rows="4" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary mr-3">create indent</button>
+        <button type="button" class="btn btn-primary">Close</button>
+      </div>
     </ng-template>
   </div>
 

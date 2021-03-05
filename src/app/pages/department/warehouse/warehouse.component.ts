@@ -40,7 +40,7 @@ export class WarehouseComponent implements OnInit {
       latitude: [''],
       longitude: [''],
       seed_processing: ['', [Validators.required]],
-      service_name: [[], [Validators.required]],
+      facilities: [[], [Validators.required]],
       type: ['', [Validators.required]],
     });
   }
@@ -56,10 +56,21 @@ export class WarehouseComponent implements OnInit {
   }
   addWarehouse() {
     this.submitted = true;
-    console.log('error',this.warehouseForm.errors);
-    
+    console.log('facilities', this.warehouseForm.get('facilities').value.join(','));
+
+    const formData: FormData = new FormData();
+    formData.append('address', this.warehouseForm.get('address').value);
+    formData.append('block_id', this.warehouseForm.get('block_id').value);
+    formData.append('capacity', this.warehouseForm.get('capacity').value);
+    formData.append('district_id', this.warehouseForm.get('district_id').value);
+    formData.append("latitude", this.warehouseForm.get('latitude').value)
+    formData.append("longitude", this.warehouseForm.get('longitude').value)
+    formData.append("seed_processing", this.warehouseForm.get('seed_processing').value)
+    formData.append("facilities", this.warehouseForm.get('facilities').value.join(','));
+    formData.append("type", this.warehouseForm.get('type').value)
+
     if (this.warehouseForm.valid) {
-      this.departmentService.addWarehouse(this.warehouseForm.value).subscribe((res: any) => {
+      this.departmentService.addWarehouse(formData).subscribe((res: any) => {
         if (res == true || res) {
           this.toastr.success(res.message);
           this.warehouseForm.reset();
@@ -74,7 +85,17 @@ export class WarehouseComponent implements OnInit {
   updateWarehouse() {
     this.submitted = true;
     if (this.warehouseForm.valid) {
-      this.departmentService.updateWarehouse(this.editabileId, this.warehouseForm.value).subscribe((res: any) => {
+      const formData: FormData = new FormData();
+      formData.append('address', this.warehouseForm.get('address').value);
+      formData.append('block_id', this.warehouseForm.get('block_id').value);
+      formData.append('capacity', this.warehouseForm.get('capacity').value);
+      formData.append('district_id', this.warehouseForm.get('district_id').value);
+      formData.append("latitude", this.warehouseForm.get('latitude').value)
+      formData.append("longitude", this.warehouseForm.get('longitude').value)
+      formData.append("seed_processing", this.warehouseForm.get('seed_processing').value)
+      formData.append("facilities", JSON.stringify(this.warehouseForm.get('facilities').value))
+      formData.append("type", this.warehouseForm.get('type').value)
+      this.departmentService.updateWarehouse(this.editabileId, formData).subscribe((res: any) => {
         if (res == true || res) {
           this.toastr.success(res.message);
           this.warehouseForm.reset();
@@ -88,6 +109,7 @@ export class WarehouseComponent implements OnInit {
     }
   }
   resetForm() {
+    this.submitted = false;
     this.warehouseForm.reset();
     this.editabileId = null;
   }
@@ -104,7 +126,7 @@ export class WarehouseComponent implements OnInit {
       latitude: row.latitude,
       longitude: row.longitude,
       seed_processing: row.is_seed_processing,
-      service_name: row.warehouse_services,
+      facilities: row.warehouse_facilities.split(','),
       type: row.warehouse_type
     });
     this.getBlocksByDistrictId();

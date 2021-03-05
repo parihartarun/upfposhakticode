@@ -80,11 +80,11 @@
 
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label"
-                      for="input-last-name">{{'fascilities available' | translate}}</label>
+                    <label class="form-control-label" for="input-last-name">{{'fascilities available' | translate}}<span
+                        class="required">*</span></label>
 
-                    <ng-select [items]="fascilities" bindLabel="warehouseFacilityName" bindValue="id" [multiple]="true"
-                      name="service_name" formControlName="service_name"></ng-select>
+                    <ng-select [items]="fascilities" bindLabel="warehouseFacilityName" bindValue="warehouseFacilityName"
+                      [multiple]="true" name="facilities" formControlName="facilities"></ng-select>
                     <!-- <div class="custom-control custom-control-alternative custom-checkbox mb-3">
                         <input class="custom-control-input" id="washingfacilitycheck" type="checkbox" value="1">
                         <label class="custom-control-label"
@@ -107,8 +107,8 @@
                         <label class="custom-control-label"
                           for="packagingmachinescheck">{{'Packaging machines' | translate}}</label>
                       </div> -->
-                    <div *ngIf="submitted && formControls.service_name.errors" class="text-danger">
-                      <div *ngIf="formControls.service_name.errors.required">
+                    <div *ngIf="submitted && formControls.facilities.errors" class="text-danger">
+                      <div *ngIf="formControls.facilities.errors.required">
                         {{'Facilities Available is required' | translate}}
                       </div>
                     </div>
@@ -219,7 +219,7 @@
                   {{row.capacity}}
                 </td>
                 <td>
-                  {{row?.fascilities?row.fascilities:'N/A'}}
+                  {{row?.warehouse_facilities?row.warehouse_facilities:'N/A'}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">

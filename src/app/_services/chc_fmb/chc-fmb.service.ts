@@ -41,7 +41,7 @@ export class ChcFmbService {
     })
   }
   addchcfmbMachinery(params) {
-    return this.http.post<any>(this._url + 'chcfmb/machinery/', params);
+    return this.http.post<any>(this._url + 'chcfmb/machinery', params);
   }
   updatechcfmbMachinery(id, params) {
     return this.http.put<any>(this._url + 'chcfmb/machinery/' + id, params);

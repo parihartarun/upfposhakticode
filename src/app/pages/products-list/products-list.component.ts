@@ -46,7 +46,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   parval: string;
   topsearchval: string;
   items2: any;
-
+  indentType: any = '';
   // constructor(private modalService: NgbModal, private _rouetr:Router, private _productService: ProductService, private _activatedroute: ActivatedRoute, private api: AuthService) { }
 
 
@@ -74,7 +74,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
         case LabelType.Low:
           return "" + value;
         case LabelType.High:
-          return value > 200 ? value-1 + "+" : "" + value;
+          return value > 200 ? value - 1 + "+" : "" + value;
         default:
           return "" + value;
       }
@@ -205,7 +205,9 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.treeloaded = false;
   }
-
+  openTestModal(content) {
+    this.modalService.open(content)
+  }
   open(event, content, item): any {
     console.log("Selected Items =" + JSON.stringify(item));
     this.currentitem = item;

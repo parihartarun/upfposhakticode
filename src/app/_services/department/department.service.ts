@@ -203,10 +203,10 @@ export class DepartmentService {
     return this.http.get<any>(this._url + 'warehouse/facilities/getall');
   }
   addWarehouse(params) {
-    return this.http.post<any>(this._url + 'warehouse', { ...params });
+    return this.http.post<any>(this._url + 'warehouse', params);
   }
   updateWarehouse(id, params) {
-    return this.http.put<any>(this._url + 'warehouse/' + id, { ...params });
+    return this.http.put<any>(this._url + 'warehouse/' + id, params);
   }
   deleteWarehouse(id) {
     return this.http.delete<any>(this._url + 'warehouse/' + id);

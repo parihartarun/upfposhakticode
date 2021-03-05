@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 
 @Component({
@@ -16,10 +16,17 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private api: AuthService,
     private route: Router,
-
-  ) {}
+    private _activeRoute: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this._activeRoute.params.subscribe(param => {
+      console.log('params',param);
+      
+      sessionStorage.removeItem('accessToken');
+      localStorage.removeItem('username');
+      localStorage.removeItem('userrole');
+    });
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -27,7 +34,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  get formControls(){
+  get formControls() {
     return this.loginForm.controls;
   }
 
@@ -35,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-        return;
+      return;
     }
     this.api.userLogin(this.loginForm.value).subscribe(response => {
       console.log(response);
@@ -49,13 +56,13 @@ export class LoginComponent implements OnInit {
         this.userRole = localStorage.getItem('userRole');
         if (this.userRole == 'ROLE_FPC') {
           this.route.navigate(['/fpo/dashboard']);
-        } else if(this.userRole == 'ROLE_MIN') {
+        } else if (this.userRole == 'ROLE_MIN') {
           this.route.navigate(['/department/dashboard']);
-        } else if(this.userRole == 'ROLE_FARMER') {
+        } else if (this.userRole == 'ROLE_FARMER') {
           this.route.navigate(['/farmer/dashboard']);
-        } else if(this.userRole == 'ROLE_BUYERSELLER'){
+        } else if (this.userRole == 'ROLE_BUYERSELLER') {
           this.route.navigate(['/indent_history']);
-        }else{
+        } else {
           this.route.navigate(['/fpo/dashboard']);
         }
       }
@@ -67,5 +74,5 @@ export class LoginComponent implements OnInit {
   }
   handleSuccess(e) {
     console.log("ReCaptcha", e);
-  } 
+  }
 }

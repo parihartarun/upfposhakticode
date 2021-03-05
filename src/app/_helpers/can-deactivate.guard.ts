@@ -13,8 +13,6 @@ export class CanDeactivateGuard implements CanDeactivate<AdminLayoutComponent> {
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let can = component.canDeactivate();
-    console.log('isloggedin', can);
-
     if (can) {
       // alert('logged')
       return confirm('Are you want to continue');

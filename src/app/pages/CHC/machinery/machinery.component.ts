@@ -67,14 +67,17 @@ export class MachineryComponent implements OnInit {
     machineryForm.control.markAllAsTouched()
     if (machineryForm.valid) {
       const formData: FormData = new FormData();
-      formData.append('file', this.fileToUpload);
       formData.append('capacity', this.formData.capacity);
       formData.append('chc_fmb_id', this.masterId);
       formData.append('company', this.formData.company);
       formData.append('rent', this.formData.rent);
+      formData.append('name_id', this.formData.name_id);
       formData.append('purchase_year', this.datePipe.transform(new Date(this.formData.purchase_year), 'dd-MM-yyyy'));
       formData.append('quantity', this.formData.quantity);
       formData.append('type_id', this.formData.type_id);
+      if (!!this.fileToUpload) {
+        formData.append('file', this.fileToUpload);
+      }
       if (this.formRadio) {
         formData.append('govt_scheme', this.formData.govt_scheme);
       }
@@ -107,10 +110,11 @@ export class MachineryComponent implements OnInit {
     this.formData.company = row.company;
     this.formData.purchase_year = row.equip_purchase_year;
     this.formData.quantity = row.quantity_avail;
-    this.formData.type_id = row.type_id;
-    this.formData.name_id = row.name_id;
+    this.formData.type_id = row.equipment_type_id;
+    this.formData.name_id = row.equipment_name_id + '';
+    !!row.govt_scheme_assistant ? this.formRadio = true : this.formRadio = false;
     this.formData.govt_scheme = row.govt_scheme_assistant;
-    this.chcFmbService.getequipmentname(row.type_id)
+    this.chcFmbService.getequipmentname(row.equipment_type_id)
   }
   onClickOrderBy(key: any) {
     this.orderBy = {
@@ -139,9 +143,11 @@ export class MachineryComponent implements OnInit {
       formData.append('chc_fmb_id', this.masterId);
       formData.append('company', this.formData.company);
       formData.append('id', this.formData.id);
+      formData.append('rent', this.formData.rent);
       formData.append('purchase_year', this.datePipe.transform(new Date(this.formData.purchase_year), 'dd-MM-yyyy'));
       formData.append('quantity', this.formData.quantity);
       formData.append('type_id', this.formData.type_id);
+      formData.append('name_id', this.formData.name_id);
       if (this.formRadio) {
         formData.append('govt_scheme', this.formData.govt_scheme);
       }
