@@ -116,6 +116,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   filteredData = [];
   node: any;
   treeView: any = [];
+  indentFormData: any = {};
   filterParams = {
     in: '',
     val: '',
@@ -136,6 +137,9 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
 
   ngOnInit() {
+    if (sessionStorage.getItem('accessToken') != null) {
+      this.isLoggeIn = true;
+    }
 
     this._activatedroute.params.subscribe(param => {
       if (param) {
@@ -453,6 +457,72 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.indentcreated = false;
 
     this.modalService.dismissAll();
+  }
+  createIndent(indentForm, modal) {
+    // console.log({
+    //   masterId: localStorage.getItem('masterId'), createdBy: localStorage.getItem('userId'),
+    //   fertilizerType: { id: 1 }, fertilizeName: { id: 1 }, status: true,
+    //   fertilizerGrade: 'A', companyName: 'ABC', ...this.indentFormData
+    // });
+    if (indentForm.valid) {
+      if (this.indentType == 'Fertilizer') {
+        this._productService.fertilizerCreate({
+          masterId: localStorage.getItem('masterId'), createdBy: localStorage.getItem('userId'),
+          fertilizerType: { id: 1 }, fertilizeName: { id: 1 }, status: 'Active',
+          fertilizerGrade: 'A', companyName: 'ABC', ...this.indentFormData
+        }).subscribe(res => {
+          if (res == true || res) {
+            this.toastr.success(res.message);
+            indentForm.reset();
+            modal.dismiss('Cross click')
+          } else {
+            this.toastr.error('Something went wrong.');
+          }
+        })
+      } else if (this.indentType == 'Machinery') {
+        this._productService.machineryCreate({
+          masterId: localStorage.getItem('masterId'), createdBy: localStorage.getItem('userId'),
+          fertilizerType: { id: 1 }, fertilizeName: { id: 1 }, status: 'Active',
+          fertilizerGrade: 'A', companyName: 'ABC', ...this.indentFormData
+        }).subscribe(res => {
+          if (res == true || res) {
+            this.toastr.success(res.message);
+            indentForm.reset();
+            modal.dismiss('Cross click')
+          } else {
+            this.toastr.error('Something went wrong.');
+          }
+        })
+      } else if (this.indentType == 'insecticides') {
+        this._productService.insecticidesCreate({
+          masterId: localStorage.getItem('masterId'), createdBy: localStorage.getItem('userId'),
+          insecticideTypeId: { id: 1 }, status: 'Active',
+          fertilizerGrade: 'A', manufacturerName: 'ABC', ...this.indentFormData
+        }).subscribe(res => {
+          if (res == true || res) {
+            this.toastr.success(res.message);
+            indentForm.reset();
+            modal.dismiss('Cross click')
+          } else {
+            this.toastr.error('Something went wrong.');
+          }
+        })
+      } else if (this.indentType == 'Pesticides') {
+        this._productService.pesticidesCreate({
+          masterId: localStorage.getItem('masterId'), createdBy: localStorage.getItem('userId'),
+          fertilizerType: { id: 1 }, fertilizeName: { id: 1 }, status: 'Active',
+          fertilizerGrade: 'A', companyName: 'ABC', ...this.indentFormData
+        }).subscribe(res => {
+          if (res == true || res) {
+            this.toastr.success(res.message);
+            indentForm.reset();
+            modal.dismiss('Cross click')
+          } else {
+            this.toastr.error('Something went wrong.');
+          }
+        });
+      }
+    }
   }
 
 }

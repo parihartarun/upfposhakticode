@@ -15,7 +15,7 @@ export class LoginModelPopupComponent implements OnInit {
   submitted = false;
   userRole: any;
   @Output() logout = new EventEmitter<string>();
-  @Input() fpoid:string;
+  @Input() fpoid: string;
   constructor(
     private formBuilder: FormBuilder,
     private api: AuthService,
@@ -40,7 +40,7 @@ export class LoginModelPopupComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    
+
     this.api.userLogin(this.loginForm.value).subscribe(response => {
       console.log(response);
       if (response.accessToken != '') {
@@ -48,8 +48,10 @@ export class LoginModelPopupComponent implements OnInit {
         sessionStorage.setItem('tokenType', response.token);
         localStorage.setItem('username', response.user.userName);
         localStorage.setItem('userRole', response.userRole);
+        localStorage.setItem('masterId', response.masterId);
+        localStorage.setItem('userId', response.user.userId);
         this.userRole = localStorage.getItem('userRole');
-        this.logout.emit(""+this.fpoid);
+        this.logout.emit("" + this.fpoid);
         //if (this.userRole == 'ROLE_FPC') {
         //  this.route.navigate(['/fpo/dashboard']);
         //} else if (this.userRole == 'ROLE_MIN') {
@@ -68,6 +70,6 @@ export class LoginModelPopupComponent implements OnInit {
   }
   handleSuccess(e) {
     console.log("ReCaptcha", e);
-  } 
+  }
 
 }

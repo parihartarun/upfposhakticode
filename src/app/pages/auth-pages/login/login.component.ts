@@ -23,9 +23,9 @@ export class LoginComponent implements OnInit {
     this._activeRoute.params.subscribe(param => {
       console.log('params',param);
       
-      sessionStorage.removeItem('accessToken');
-      localStorage.removeItem('username');
-      localStorage.removeItem('userrole');
+      // sessionStorage.removeItem('accessToken');
+      // localStorage.removeItem('username');
+      // localStorage.removeItem('userrole');
     });
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
