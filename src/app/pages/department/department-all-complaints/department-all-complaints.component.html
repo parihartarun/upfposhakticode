@@ -226,12 +226,15 @@
               <from role="form" [formGroup]="fliterForm" style="width:100%">
                 <select class="custom-control custom-select" name="filterByType" formControlName="complaint"
                   (change)="filterComaplaint();p=1" style="border-radius: 0;z-index: unset;">
-                  <option value="New">
-                    {{'New Compliant'| translate}}</option>
-                  <option [value]="'resolved'">
-                    {{'Resolved Complaint'| translate}}</option>
                   <option [value]="'all'">
                     {{'All Complaint'| translate}}</option>
+                  <option value="New">
+                    {{'New Compliant'| translate}}</option>
+                  <option [value]="'assigned'">
+                      {{'Assigned Complaint'| translate}}</option>
+                  <option [value]="'resolved'">
+                    {{'Resolved Complaint'| translate}}</option>
+                 
                 </select>
               </from>
             </div>
@@ -274,7 +277,7 @@
                     {{complaint.description}}
                   </td>
                   <td>
-                    {{complaint.updateDate| date: 'dd/MM/yyyy'}}
+                    {{complaint.assign_date| date: 'dd/MM/yyyy'}}
                   </td>
                   <td>
                     <span *ngIf="complaint.status">{{getStatus(complaint.status)}}</span>

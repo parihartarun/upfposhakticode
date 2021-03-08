@@ -126,7 +126,7 @@ export class FarmerChcRegisterComponent implements OnInit {
     famerCHCFmb.villageRefId = this.registerForm.value.villageRefId;
     this.api.registerCHCFmb(famerCHCFmb).subscribe(response => {
       if (response.message == "SuccessFully Saved!") {
-        this.toastr.success(response.message);
+        this.toastr.success('Registration done successfully.');
         this.registerForm.reset();
         this._router.navigate(['/login'])
       }

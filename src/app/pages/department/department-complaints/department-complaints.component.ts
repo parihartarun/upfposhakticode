@@ -164,6 +164,8 @@ export class DepartmentComplaintsComponent implements OnInit {
     }
     else if (this.fliterForm.controls['complaint'].value === "resolved") {
       this.complaints = this.filterResponse.filter(f => this.getStatus(f.status) === 'RESOLVED');
+    }else if (this.fliterForm.controls['complaint'].value === "assigned") {
+      this.complaints = this.filterResponse.filter(f => this.getStatus(f.status) === 'ASSIGNED');
     }
     else {
       this.complaints = this.filterResponse.filter(f => f.status);

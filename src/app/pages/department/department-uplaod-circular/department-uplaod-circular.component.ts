@@ -43,6 +43,7 @@ export class DepartmentUplaodCircularComponent implements OnInit {
   getUploadCircular() {
 
     this.api.getAllCircluarUpload().subscribe(cu => {
+      console.log(cu);
       this.uploadCircular = cu;
     })
   }

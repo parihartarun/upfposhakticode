@@ -101,7 +101,7 @@ export class FpoRegisterComponent implements OnInit {
     this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
 
       if (response.message == "SuccessFully Saved!") {
-        this.toastr.success(response.message);
+        this.toastr.success('Registration done successfully.');
         this.fpoRegisterForm.reset();
         this._router.navigate(['/login'])
       }

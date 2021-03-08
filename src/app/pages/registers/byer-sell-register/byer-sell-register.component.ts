@@ -76,7 +76,7 @@ export class ByerSellRegisterComponent implements OnInit {
       gstNumber: [''],
       tinNumber: [''],
       panNumber: [''],
-      companyCategory: ['', Validators.required],
+      companyCategory: [''],
       commdityDealsIn: [],
       varietyDealsIn: [],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
@@ -118,7 +118,7 @@ export class ByerSellRegisterComponent implements OnInit {
     this.registerForm.value.varietyDealsIn = this.verietyIds.toString();
     this.api.registerBuyerSeller(this.registerForm.value).subscribe(response => {
       if (response.message == "SuccessFully Saved!") {
-        this.toastr.success(response.message);
+        this.toastr.success('Registration done successfully.');
         this.registerForm.reset();
         this._router.navigate(['/login'])
       }

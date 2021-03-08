@@ -25,7 +25,7 @@
                     <label class="form-control-label" for="input-last-name">{{'Financial year' | translate}}</label>
                     <select formControlName="finYear" class="custom-control custom-select mb-3"
                       (change)="selectFinancialYear($event)">
-                      <option value="{{getCurrentFinancialYear()}}">{{this.getCurrentFinancialYear()}}</option>
+                      <option value="{{year}}" *ngFor="let year of finYears">{{year}}</option>
                     </select>
                   </div>
                 </div>
@@ -97,7 +97,7 @@
           </div>
         </div>
         <div class="border border-dark m-4">
-          <div class="cust-head mx-3 p-3">
+          <div class="cust-head right mx-3 p-3">
             <div class="mr-2">
               <input type="text" [id]="'search'" [(ngModel)]="searchText" (input)="p=1" style="border-radius: 0;"
                 name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />

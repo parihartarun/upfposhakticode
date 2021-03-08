@@ -1,8 +1,6 @@
 import { Routes } from '@angular/router';
 
 import { LoginComponent } from '../../pages/auth-pages/login/login.component';
-import { HomeComponent } from '../../pages/home/home.component';
-import { HomeDummyComponent } from '../../pages/home-dummy/home-dummy.component';
 import { ProductsListComponent } from '../../pages/products-list/products-list.component';
 import { ByerSellRegisterComponent } from '../../pages/registers/byer-sell-register/byer-sell-register.component';
 import { InputSupplierRegisterComponent } from '../../pages/registers/input-supplier-register/input-supplier-register.component';
@@ -12,7 +10,7 @@ import { RegisterComponent } from '../../pages/registers/register.component';
 import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.component';
 import { FpoGuidelinesComponent } from '../../pages/fpo/fpo-guidelines/fpo-guidelines.component';
 import { SchemasComponent } from 'src/app/pages/schemas/schemas.component';
-
+import { ForgotPasswordComponent } from 'src/app/pages/auth-pages/forgot-password/forgot-password.component';
 
 export const AuthLayoutRoutes: Routes = [
 
@@ -29,7 +27,5 @@ export const AuthLayoutRoutes: Routes = [
   { path: 'input-suppler-register', component: InputSupplierRegisterComponent },
   { path: 'schema', component: SchemasComponent },
   { path: 'fpo_guidelines', component: FpoGuidelinesComponent },
-
-
-
+  { path: 'forgot-password', component: ForgotPasswordComponent },
 ];

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/_services/department/department.service';
+import { CommonService } from 'src/app/_services/common/common.service';
 
 @Component({
   selector: 'app-department-sales-report',
@@ -18,6 +19,7 @@ export class DepartmentSalesReportComponent implements OnInit {
   districts = [];
   crops = [];
   seasons = [];
+  finYears:[];
   stateID = 9;
   salesReport;
   searchText = '';
@@ -26,7 +28,7 @@ export class DepartmentSalesReportComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
-    private route: Router,
+    private common: CommonService,
     private toastr: ToastrService
   ) { }
 
@@ -42,11 +44,10 @@ export class DepartmentSalesReportComponent implements OnInit {
     this.api.getDistrictBystateId(this.stateID).subscribe(d => {
       this.districts = d;
     })
-
-
     this.api.getSeason().subscribe(s => {
       this.seasons = s;
     })
+    this.getFinancialYears();
   }
 
   filterProduction() {
@@ -57,16 +58,16 @@ export class DepartmentSalesReportComponent implements OnInit {
     return this.filterForm.controls;
   }
 
-  getCurrentFinancialYear() {
-    var fiscalyear = "";
-    var today = new Date();
-    if ((today.getMonth() + 1) <= 3) {
-      fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
-    } else {
-      fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
-    }
-    console.log("fiscalyear", fiscalyear)
-    return fiscalyear
+  getFinancialYears(){
+    this.common.getFinancialYears().subscribe(response => {
+      console.log(response);
+      this.finYears = response;
+      this.filterForm.controls['finYear'].setValue(response[0]);
+    },
+      err => {
+        console.log(err)
+      }
+    );
   }
   selectFinancialYear(year) {
     this.filterForm.controls['finYear'].setValue(year.currentTarget.value);

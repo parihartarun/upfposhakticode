@@ -75,11 +75,11 @@ export class FpoService {
   }
   //======================== apis added by kaustubh =====================================
   getAllFpo() {
-
     return this.http.get<any>(this._url + 'api/fpos').pipe(map((res: any) => {
       return res;
     }));
   }
+  
   getFpoProfileByUsername(username) {
     return this.http.get<any>(this._url + `api/fpos/getByUsername/${username}`).pipe(map((res: any) => {
       return res;
@@ -528,7 +528,7 @@ export class FpoService {
       return res;
     }))
   }
-  sendNotifiaction(data, formData) {
+  sendNotifiaction(formData) {
     return this.http.post<any>(this._url + 'notification/farmersend', formData).pipe(map((res: any) => {
       return res;
     }))

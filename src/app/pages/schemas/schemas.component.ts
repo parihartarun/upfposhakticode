@@ -12,6 +12,7 @@ export class SchemasComponent implements OnInit {
   viewSchema = { srno: "", description: '', date: '', view: '' }
   SchemasList: any;
   p:any;
+  searchText = '';
 
   constructor(
     private schemaapi: schemaService,

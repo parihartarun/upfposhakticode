@@ -143,7 +143,7 @@ export class InputSupplierRegisterComponent implements OnInit {
     this.api.registerInputSupplier(this.registerForm.value).subscribe(response => {
 
       if (response.message == "SuccessFully Saved!") {
-        this.toastr.success(response.message);
+        this.toastr.success('Registration done successfully.');
         this.registerForm.reset();
         this._router.navigate(['/login'])
       }

@@ -22,24 +22,27 @@
               <form>
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-6">
                       <div class="form-group">
-                        <input type="text" id="homesearch" name="homesearch" class="form-control" [(ngModel)]="searchkey" placeholder="Type here to search....." >
+                        <input type="text" id="homesearch" name="homesearch" class="form-control" placeholder="{{'Type here to search'|translate}}" [(ngModel)]="searchValue"
+                        (input)="selectValue()" >
                       </div>
                     </div>
-                    <div class="col-lg-4">
-                        <!-- <select formControlName="licenceType" class="form-control form-control-alternative">
+                    <div class="col-lg-3">
+                        <select formControlName="licenceType" class="form-control form-control-alternative" name="Searchin" [(ngModel)]="searchType">
                           <option name="opt" [value]="undefined" selected disabled>Select</option>
                           <option value="any">{{'Any' | translate }}</option>
                           <option value="crop">{{'Crop' | translate }}</option>
                           <option value="district">{{'District' | translate }}</option>
                           <option value="fpo_name">{{'FPO' | translate }}</option>
                           <option value="services">{{'Services/ Products' | translate }}</option>
-                        </select>   -->
-                        <button type="button" class="btn btn-yellow btn-primary btn-block" (click)="search()">
-                          {{'Search' | translate}}
-                        </button>
+                        </select>  
                     </div>
+                    <div class="col-lg-3">
+                      <button type="button" [routerLink]="['/products', searchValue, searchType]" class="btn btn-yellow btn-primary btn-block">
+                        {{'Search' | translate}}
+                      </button>
+                  </div>
                   </div>
                 
                 </div>

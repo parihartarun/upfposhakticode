@@ -74,14 +74,14 @@ export class DepartmentNotificationComponent implements OnInit {
      this._departmentService.sendNotifiaction(this.NotificationsForm.value, formData).subscribe(response => {
        console.log(response);
        if (response.id != '') {
-         this.toastr.success('complians successfully.');
+         this.toastr.success('Notification Send successfully.');
          this.submitted = false;
          // this.edit = false;
          this.NotificationsForm.reset();
          this.checkfileFormat = false;
          this.getNotificationByDept();
        } else {
-         this.toastr.error('Error! While Updating License.');
+         this.toastr.error('Error! While Sending Notification.');
        }
       // this.getComplaints();
      });

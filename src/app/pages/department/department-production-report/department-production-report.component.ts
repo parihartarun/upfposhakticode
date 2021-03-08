@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { DepartmentService } from 'src/app/_services/department/department.service';
-
+import { CommonService } from 'src/app/_services/common/common.service';
 
 @Component({
   selector: 'app-department-production-report',
@@ -20,6 +20,7 @@ export class DepartmentProductionReportComponent implements OnInit {
   districts = [];
   crops = [];
   seasons = [];
+  finYears:[];
   reportData;
   stateID = 9;
   searchText = '';
@@ -30,7 +31,7 @@ export class DepartmentProductionReportComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private api: DepartmentService,
-    private route: Router,
+    private common: CommonService,
     private authServie: AuthService,
     private toastr: ToastrService
   ) { }
@@ -49,11 +50,9 @@ export class DepartmentProductionReportComponent implements OnInit {
       distId: ['', Validators.required],
       cropId: ['', Validators.required],
       seasonId: ['', Validators.required]
-      // masterId: localStorage.getItem('masterId'),
-
     });
-    fpoId: localStorage.getItem('masterId')
     // this.getProduction();
+    this.getFinancialYears();
   }
 
   get formControls() {
@@ -66,35 +65,36 @@ export class DepartmentProductionReportComponent implements OnInit {
         this.toastr.error('data not available.');
       }
       this.reportData = resp;
-
     });
   }
 
   selectDistrict(districtId: any) {
     this.productionReportForm.controls['distId'].setValue(parseInt(districtId.currentTarget.value));
+  }
 
+  getFinancialYears(){
+    this.common.getFinancialYears().subscribe(response => {
+      console.log(response);
+      this.finYears = response;
+      this.productionReportForm.controls['finYear'].setValue(response[0]);
+
+    },
+      err => {
+        console.log(err)
+      }
+    );
   }
-  getCurrentFinancialYear() {
-    var fiscalyear = "";
-    var today = new Date();
-    if ((today.getMonth() + 1) <= 3) {
-      fiscalyear = (today.getFullYear() - 1) + "-" + today.getFullYear()
-    } else {
-      fiscalyear = today.getFullYear() + "-" + (today.getFullYear() + 1)
-    }
-    console.log("fiscalyear", fiscalyear)
-    return fiscalyear
-  }
+
   selectFinancialYear(year) {
     this.productionReportForm.controls['finYear'].setValue(year.currentTarget.value);
   }
+
   selectCrops(crop) {
     this.productionReportForm.controls['cropId'].setValue(crop.currentTarget.value);
   }
 
   seasonIDD;
   selectSeason(e) {
-    ;
     this.seasonIDD = e.target.value;
     this.api.getCrops(this.seasonIDD).subscribe(c => {
       this.crops = c;

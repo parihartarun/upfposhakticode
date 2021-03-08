@@ -71,18 +71,13 @@ export class FpoNotifiactionComponent implements OnInit {
     formData.append('message', this.NotificationsForm.value.message);
     formData.append('fpo_id', localStorage.getItem('masterId'));
     formData.append("role", localStorage.getItem('userRole'))
-    this.api.sendNotifiaction(this.NotificationsForm.value, formData).subscribe(response => {
+    console.log(formData);
+    this.api.sendNotifiaction(formData).subscribe(response => {
       console.log(response);
-      if (response.id != '') {
-        this.toastr.success('complians successfully.');
-        this.submitted = false;
-        this.getNotificationByFPO();
-
-        this.NotificationsForm.reset();
-      } else {
-        this.toastr.error('Error! While Updating License.');
-      }
-      // this.getComplaints();
+      this.toastr.success(response.message);
+      this.submitted = false;
+      this.getNotificationByFPO();
+      this.NotificationsForm.reset();
     });
   }
   selectfPo(complaint) {
@@ -90,14 +85,16 @@ export class FpoNotifiactionComponent implements OnInit {
 
   }
   upload(files: FileList) {
+    this.fileToUpload = files.item(0);
     if (!this.validateFile(files[0].name)) {
+      console.log('ss');
       this.checkfileFormat = true;
+      this.fileToUpload = null;
       this.myInputVariable.nativeElement.value = "";
       this.NotificationsForm.controls['uploadFile'].setValue('');
       return;
     }
     else {
-
       this.checkfileFormat = false;
     }
   }

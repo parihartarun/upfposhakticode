@@ -62,6 +62,7 @@ export class DepartmentAllComplaintsComponent implements OnInit {
     if (url === "/deptInput/complaints") {
       role = "ROLE_INPUTSUPPLIER";
       this.api.getAllComplaintInputSupplier(role).subscribe(response => {
+        console.log(response);
         this.complaints = response;
         this.filterResponse = response
         if (!this.filterResponse || this.filterResponse.length <= 0) {
@@ -74,6 +75,8 @@ export class DepartmentAllComplaintsComponent implements OnInit {
     else if (url === "/deptBuyer/complaints") {
       role = "ROLE_BUYERSELLER";
       this.api.getAllComplaintBuyerSeller(role).subscribe(response => {
+        console.log(response);
+
         this.complaints = response;
         this.filterResponse = response
         if (!this.filterResponse || this.filterResponse.length <= 0) {
@@ -86,6 +89,8 @@ export class DepartmentAllComplaintsComponent implements OnInit {
     else if (url === "/deptCHC/complaints") {
       role = "ROLE_CHCFMB";
       this.api.getAllComplaintChcFmb(role).subscribe(response => {
+        console.log(response);
+
         this.complaints = response;
         this.filterResponse = response
         if (!this.filterResponse || this.filterResponse.length <= 0) {
@@ -209,6 +214,8 @@ export class DepartmentAllComplaintsComponent implements OnInit {
     }
     else if (this.fliterForm.controls['complaint'].value === "resolved") {
       this.complaints = this.filterResponse.filter(f => this.getStatus(f.status) === 'RESOLVED');
+    }else if (this.fliterForm.controls['complaint'].value === "assigned") {
+      this.complaints = this.filterResponse.filter(f => this.getStatus(f.status) === 'ASSIGNED');
     }
     else {
       this.complaints = this.filterResponse.filter(f => f.status);

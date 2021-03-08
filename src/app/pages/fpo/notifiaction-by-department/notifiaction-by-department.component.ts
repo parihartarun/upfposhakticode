@@ -27,13 +27,9 @@ export class NotifiactionByDepartmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getAllNotificationByFpo(localStorage.getItem('masterId')).subscribe(us => {
+      console.log(us);
       this.notifications = us;
-    })    
-   
-
-
-
-   
+    })   
   }
   reset() {
     this.NotificationsForm.reset();

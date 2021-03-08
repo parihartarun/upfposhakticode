@@ -7,14 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
+  
+  searchValue: string = null;
+  searchType: any = 'any';
+  data = { searchValue: this.searchValue, searchType: this.searchType }
 
   constructor( public router:Router) { }
   searchkey:string;
   ngOnInit(): void {
   }
 
-  search(){
-    //this.router.navigate(['fpo/dashboard']);
-    this.router.navigate(["/products/"+this.searchkey+"/any"]);    
+  selectValue() {
+    this.data.searchValue = this.searchValue;
   }
 }
