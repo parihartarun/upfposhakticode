@@ -103,15 +103,28 @@ editLicense(license){
     licenceType: [license.licenceType, [Validators.required]],
     licenceIssuedBy: [license.licenceIssuedBy, [Validators.required]],
     liceneceNumber: [license.liceneceNumber, [Validators.required]],
-    issuedate: [''],
-    licenceValidTill: [''],
+    issuedate: [license.issuedate],
+    licenceValidTill: [license.licenceValidTill],
     fpoRefId:localStorage.getItem('masterId'),
     masterId:localStorage.getItem('masterId'),
     id:[license.id]
   });
-  
+  //this.licenseForm.get('issuedate').patchValue(this.formatDate(license.issuedate));
+  //this.licenseForm.get('licenceValidTill').patchValue(this.formatDate(license.licenceValidTill));
+
   this.edit = true;
   window.scroll(0,0);
+}
+
+private formatDate(date) {
+  console.log(date);
+  const d = new Date(date);
+  let month = '' + (d.getMonth() + 1);
+  let day = '' + d.getDate();
+  const year = d.getFullYear();
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+  return [year, day, month].join('-');
 }
 
 updateLicense(){

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
 
@@ -13,18 +12,17 @@ import { FpoService } from 'src/app/_services/fpo/fpo.service';
 export class SalesDetailsComponent implements OnInit {
 
   salesForm: FormGroup;
-  submitted = false;
   sales:Array<any>=[];
   cropVarieties:Array<any>=[];
   crops:Array<any>=[];
   seasons:Array<any>=[];
   p:number = 1;
   edit = false;
+  submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
-    private route: Router,
     private toastr:ToastrService
   ) {}
 
@@ -39,14 +37,12 @@ export class SalesDetailsComponent implements OnInit {
       id:['']
     });
     this.getFpoSalesInfo();
-    //this.getCropList();
     this.getSeasonList();
   }
 
   getSeasonList(){
     this.api.getSeasonList().subscribe(
       response => {
-      console.log(response);
       this.seasons = response;
     })
   }
@@ -54,17 +50,10 @@ export class SalesDetailsComponent implements OnInit {
   getCropsBySeasonId(seasonId){
     this.api.getCropsBySeasonId(seasonId).subscribe(
       response => {
+        console.log(response);
       this.crops = response;
     })
   }
-
-  // getCropList(){
-  //   this.api.getCropList().subscribe(
-  //     response => {
-  //     console.log(response);
-  //     this.crops = response;
-  //   })
-  // }
 
   getCropVarietiesByCropId(cropId){
     this.api.getCropVarietiesByCropId(cropId).subscribe(
@@ -87,7 +76,6 @@ export class SalesDetailsComponent implements OnInit {
 
   addFpoSalesInfo() {
     this.submitted = true;
-    // stop here if form is invalid
     if (this.salesForm.invalid) {
         return;
     }
@@ -131,44 +119,43 @@ export class SalesDetailsComponent implements OnInit {
     window.scroll(0,0);
   }
 
-updateFpoSalesInfo(){
-  this.submitted = true;
-  // stop here if form is invalid
-  if (this.salesForm.invalid) {
-      return;
-  }
-  this.api.updateFpoSalesInfo(this.salesForm.value).subscribe(response => {
-    this.toastr.success('Sales info Updated successfully.');
-    this.submitted = false;
-    this.edit = false;
-    this.salesForm.reset();
-    this.getFpoSalesInfo();
-  },
-    err => {
-      console.log(err)
+  updateFpoSalesInfo(){
+    this.submitted = true;
+    if (this.salesForm.invalid) {
+        return;
     }
-  );
-}
-
-confirmDelete(id){
-  if(confirm("Are you sure to delete this item")) {
-    this.api.deleteFpoSalesInfo(id).subscribe(response => {
+    this.api.updateFpoSalesInfo(this.salesForm.value).subscribe(response => {
+      this.toastr.success('Sales info Updated successfully.');
+      this.submitted = false;
+      this.edit = false;
+      this.salesForm.reset();
       this.getFpoSalesInfo();
-      this.toastr.success('Sales Info Deleted successfully.');
     },
       err => {
         console.log(err)
       }
     );
   }
-}
 
-resetForm(){
-  this.salesForm.reset();
-}
+  confirmDelete(id){
+    if(confirm("Are you sure to delete this item")) {
+      this.api.deleteFpoSalesInfo(id).subscribe(response => {
+        this.getFpoSalesInfo();
+        this.toastr.success('Sales Info Deleted successfully.');
+      },
+        err => {
+          console.log(err)
+        }
+      );
+    }
+  }
 
-get formControls(){
-  return this.salesForm.controls;
-}
+  resetForm(){
+    this.salesForm.reset();
+  }
+
+  get formControls(){
+    return this.salesForm.controls;
+  }
 
 }

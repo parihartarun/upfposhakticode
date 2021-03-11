@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { GetTranslationService } from 'src/app/_helpers/get-translation.service';
 import { FpoService } from '../../_services/fpo/fpo.service';
+
 @Component({
   selector: 'app-fpo-details',
   templateUrl: './fpo-details.component.html',

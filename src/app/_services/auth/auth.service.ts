@@ -56,12 +56,13 @@ export class AuthService {
       return res;
     }));
   }
-  getBank(): Observable<any> {
 
+  getBank(): Observable<any> {
     return this.http.get<any>(this._url + 'api/v1/Bank/getBanks').pipe(map((res: any) => {
       return res;
     }));
   }
+  
   getBlock(distId: number) {
 
     return this.http.get<any>(this._url + 'api/v1/block/getBlocksByDistrictId/' + distId).pipe(map((res: any) => {

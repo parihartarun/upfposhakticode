@@ -16,32 +16,33 @@ profileForm: FormGroup;
 usernamestring:string;
 districtlist:any=[];
 blocklist:any=[];
+banks:any=[];
 submitted = false;
 constructor(private formBuilder: FormBuilder,
     private api: FpoService,
-    private authservice:AuthService,
-    private route: Router,
+    private auth: AuthService,
     private toastr:ToastrService)
     { }
 
   ngOnInit() {
     this.getDitricts();
     this.getBlocks();
-    // this.profileForm = this.formBuilder.group({
-    //   userName: ['', [Validators.required]],
-    //   fpoEmail: ['', [Validators.required]],
-    //   fpoName: ['', [Validators.required]],
-    //   fmbno: ['', [Validators.required]],
-    //   agency: ['', [Validators.required]],
-    //   fpoAddress: ['', [Validators.required]],
-    //   distRefId: ['', [Validators.required]],
-    //   blockRef: ['', [Validators.required]],
-    //   pincode: ['', [Validators.required]],
-    //   fpoBankName: [''],
-    //   fpoIFSC: [''],
-    //   fpoBankAccNo: [''],
-    //   fpoId: [''],
-    // });
+    this.getBanks();
+    this.profileForm = this.formBuilder.group({
+      userName: ['', [Validators.required]],
+      fpoEmail: ['', [Validators.required]],
+      fpoName: ['', [Validators.required]],
+      fmbno: ['', [Validators.required]],
+      agency: ['', [Validators.required]],
+      fpoAddress: ['', [Validators.required]],
+      distRefId: ['', [Validators.required]],
+      blockRef: ['', [Validators.required]],
+      pincode: ['', [Validators.required]],
+      fpoBankName: [''],
+      fpoIFSC: [''],
+      fpoBankAccNo: [''],
+      fpoId: [''],
+    });
 
     this.usernamestring=localStorage.getItem('username');
     this.api.getFpoProfileByUsername(localStorage.getItem('username')).subscribe(data=>{ 
@@ -64,6 +65,12 @@ constructor(private formBuilder: FormBuilder,
     })
   }
 
+  getBanks(){
+      this.auth.getBank().subscribe(d => {
+        this.banks = d
+      })
+  }
+
   getDitricts(){
     this.api.getDistricts().subscribe(data => {
         this.districtlist  = data; 
@@ -82,6 +89,7 @@ constructor(private formBuilder: FormBuilder,
     if (this.profileForm.invalid) {
         return;
     }
+    console.log(this.profileForm.value);
     var data = this.profileForm.value;
     console.log(data);
     this.api.updateProfile(data).subscribe(response => {

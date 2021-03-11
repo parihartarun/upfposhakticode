@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="profileForm"  *ngIf="profileForm">
+          <form [formGroup]="profileForm">
             <input type="hidden" formControlName="fpoId">
             <h6 class="heading-small text-muted mb-4">{{'User information'|translate}}</h6>
             <div class="pl-lg-4">
@@ -32,7 +32,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-userName">{{'Username'|translate}}</label>
-                    <input type="text" formControlName="userName" id="input-userName" class="form-control form-control-alternative" placeholder="userName">
+                    <input type="text" formControlName="userName" id="input-userName" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
                       <div *ngIf="formControls.userName.errors.required">{{'username is required1'|translate}}</div>
                     </div>
@@ -41,7 +41,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">{{'Email'|translate}}</label>
-                    <input type="email" formControlName="fpoEmail" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com">
+                    <input type="email" formControlName="fpoEmail" id="input-email" class="form-control form-control-alternative">
                     <div *ngIf="submitted && formControls.fpoEmail.errors" class="text-danger">
                       <div *ngIf="formControls.fpoEmail.errors.required">{{'email is required'|translate}}</div>
                       <div *ngIf="formControls.fpoEmail.errors.email">{{'Invalid Email Address'|translate}}</div>
@@ -53,7 +53,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">{{'Full name'| translate}}</label>
-                    <input type="text" formControlName="fpoName" id="input-first-name" class="form-control form-control-alternative" placeholder="First name">
+                    <input type="text" formControlName="fpoName" id="input-first-name" class="form-control form-control-alternative">
                     <div *ngIf="submitted && formControls.fpoName.errors" class="text-danger">
                       <div *ngIf="formControls.fpoName.errors.required">{{'Full Name is required'|transalte}}</div>
                     </div>
@@ -62,7 +62,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'Registration No'|translate}}</label>
-                    <input type="text" id="input-last-name" formControlName="fmbno" class="form-control form-control-alternative" placeholder="Last name">
+                    <input type="text" id="input-last-name" formControlName="fmbno" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.fmbno.errors" class="text-danger">
                       <div *ngIf="formControls.fmbno.errors.required">{{'Registration No. is required'|translate}}</div>
                     </div>
@@ -97,7 +97,7 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">{{'Address'|translate}}</label>
-                    <input id="input-address" formControlName="fpoAddress" class="form-control form-control-alternative" placeholder="Home Address" type="text">
+                    <input id="input-address" formControlName="fpoAddress" class="form-control form-control-alternative" type="text">
                     <div *ngIf="submitted && formControls.fpoAddress.errors" class="text-danger">
                       <div *ngIf="formControls.fpoAddress.errors.required">{{'Address is required'|translate}}</div>
                     </div>
@@ -156,39 +156,44 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <hr class="my-4" />
-            <h6 class="heading-small text-muted mb-4">{{'Bank information' | translate}}</h6>
-            <div class="form-group row mb-3">
-              <div class="col-6">
-                <label class="input-label">{{'Bank Name'|translate}}</label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
+
+              <hr class="my-4" />
+              <h6 class="heading-small text-muted mb-4">{{'Bank information' | translate}}</h6>
+              <div class="form-group row mb-3">
+                <div class="col-6">
+                  <label class="input-label">{{'Bank Name'|translate}}</label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <select class="form-control" formControlName="fpoBankName" >
+                      <option value="">{{'Select Bank Name'|translate}}</option>
+                      <option *ngFor="let bank of banks" [value]="bank.bankId">{{bank.bankName}}</option>
+                    </select>
                   </div>
-                  <input class="form-control" type="text" formControlName="fpoBankName">
+                </div>
+                <div class="col-6">
+                  <label class="input-label">{{'IFSC'|translate}}</label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" formControlName="fpoIFSC" type="text">
+                  </div>
                 </div>
               </div>
-              <div class="col-6">
-                <label class="input-label">{{'IFSC'|translate}}</label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
+              <div class="form-group row mb-3">
+                <div class="col-6">
+                  <label class="input-label">{{'Bank Account Number1'|translate}}</label>
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" formControlName="fpoBankAccNo" type="text">
                   </div>
-                  <input class="form-control" formControlName="fpoIFSC" type="text">
                 </div>
               </div>
-            </div>
-            <div class="form-group row mb-3">
-              <div class="col-6">
-                <label class="input-label">{{'Bank Account Number1'|translate}}</label>
-                <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" formControlName="fpoBankAccNo" type="text">
-                </div>
-              </div>
+
             </div>
 
             <div class="pl-lg-4">

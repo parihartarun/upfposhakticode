@@ -11,12 +11,12 @@
       <div class="card shadow">
         <div class="card-header border-0">
           <div class="row ">
-            <div class="col-11">
+            <div class="col-10">
               <h3 class="mt-2 p-2 bg-warning">
                 {{'View Status and Details of Complaint/ Suggestion' | translate}}
               </h3>
             </div>
-            <div class="col-1 text-right close  ">
+            <div class="col-2 mt-2 text-right close ">
               <button class="btn btn-primary text-right mb-2 mr-2" (click)="close()">{{'close'|translate}}</button>
             </div>
           </div>
@@ -36,9 +36,6 @@
                 {{'Mobile' | translate}}:
               </h4>{{viewComp.mobile}}
             </div>
-
-          
-
           </div>
         </div>
         <hr class="m-0">
@@ -212,10 +209,7 @@
       <div class="card shadow">
         <div class="card-header border-0">
           <div class="row">
-            <div class="col-3">
-              <h3 class="mb-0">{{'Complaints/ Suggestions' | translate}}</h3>
-            </div>
-            <div class="col-9">
+            <div class="col-12">
               <from role="form" [formGroup]="fliterForm" style="width:100%">
                 <div class="form-group row m-2 pb-2 pt-2">
 

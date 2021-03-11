@@ -40,20 +40,22 @@ export class FarmerRegisterComponent implements OnInit {
     })
     this.createRegisterForm();
     this.getALlFpoList();
-
   }
+
   selectDistrict(districtId: any) {
-    this.registerForm.controls['distRefId'].setValue(parseInt(districtId.currentTarget.value));
-    this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
+    this.registerForm.controls['distRefId'].setValue(districtId);
+    this.api.getBlock(districtId).subscribe(block => {
       this.blocks = block
     })
   }
+
   selectBlock(blockId: any) {
-    this.api.getGramPanchayat(parseInt(blockId.currentTarget.value)).subscribe(gp => {
+    this.api.getGramPanchayat(blockId).subscribe(gp => {
       this.panchayts = gp
     })
-    this.registerForm.controls['blockRef'].setValue(blockId.currentTarget.value);
+    this.registerForm.controls['blockRef'].setValue(blockId);
   }
+
   getALlFpoList() {
     this.fpoService.getAllFpo().subscribe(res => {
       if (res) {
@@ -61,19 +63,21 @@ export class FarmerRegisterComponent implements OnInit {
       }
     });
   }
-  selectGramPanchayat(villagePanchayatId: any) {
 
+  selectGramPanchayat(villagePanchayatId: any) {
     this.registerForm.controls['villagePanchayatId'].setValue(villagePanchayatId.currentTarget.value);
     this.api.getVillage(parseInt(villagePanchayatId.currentTarget.value)).subscribe(v => {
       this.villages = v
     })
   }
+
   selectVillage(villRefId: any) {
     this.registerForm.controls['villRefId'].setValue(villRefId.currentTarget.value);
   }
   selectBanks(bankId: any) {
     this.registerForm.controls['bankRefId'].setValue(bankId.currentTarget.value);
   }
+
   createRegisterForm() {
     this.registerForm = this.fb.group({
       accountNo: ['', [Validators.pattern("[0-9 ]{11,16}")]],
@@ -87,7 +91,6 @@ export class FarmerRegisterComponent implements OnInit {
       enabled: [true],
       farmerMob: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       farmerName: ['', Validators.required],
-
       ifscCode: [''],
       parantsName: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
@@ -108,14 +111,8 @@ export class FarmerRegisterComponent implements OnInit {
     })
 
   }
-  get formControls() {
-    return this.registerForm.controls;
-  }
-  get password() {
-    return this.registerForm.get('password');
-  }
+  
   register(): Observable<any> {
-
     this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
@@ -132,29 +129,6 @@ export class FarmerRegisterComponent implements OnInit {
     delete this.registerForm.value.userName;
     delete this.registerForm.value.confirmPassword;
     this.registerForm.value.userFar = user;
-    //let famerRegister = {
-    //  accountNo: '',
-    //  bankRefId: '',
-    //  blockRef: '',
-    //  category: '',
-    //  confirmPassword: '',
-    //  deleted: true,
-    //  distRefId: '',
-    //  enabled: true,
-    //  farmerMob:'',
-    //  farmerName: '',
-    //  gender:'',
-    //  ifscCode: '',
-    //  parantsName: '',
-    //   password: '',
-    //  pincode: '',
-    //  recaptcha:'',
-    //  user: user,
-    //  userRefId: "",
-    //  villRefId: "",
-    //  villagePanchayatId: ""
-    //}
-    //famerRegister.accountNo=
 
     console.log(JSON.stringify(this.registerForm.value));
     this.api.registerUser(this.registerForm.value).subscribe(response => {
@@ -166,9 +140,7 @@ export class FarmerRegisterComponent implements OnInit {
       else {
         this.toastr.error(response.message);
       }
-
     })
-
   }
 
   getFarmerDataFromUpAgriPardarshi(){
@@ -179,7 +151,33 @@ export class FarmerRegisterComponent implements OnInit {
     }
     this.api.getFarmerDataFromUpAgriPardarshi(this.registerForm.value.upBSMId).subscribe(response => {
       console.log(response);
+      this.selectDistrict(response.districtId);
+      this.selectBlock(response.blockId);
+      let gender = 'Male';
+      if(response.gender == 'F'){
+        gender = 'Female';
+      }
+      this.registerForm.patchValue({
+        farmerName: response.farmerName,
+        parantsName: response.fatherName,
+        farmerMob:response.mobile,
+        category:response.category.toLowerCase(),
+        gender:gender,
+        distRefId:response.districtId,
+        blockRef:response.blockId,
+        bankRefId:response.bankId,
+        accountNo:response.accountNo,
+        ifscCode:response.ifsc
+      });
+
     })
+  }
+
+  get formControls() {
+    return this.registerForm.controls;
+  }
+  get password() {
+    return this.registerForm.get('password');
   }
 
   handleSuccess(e) {

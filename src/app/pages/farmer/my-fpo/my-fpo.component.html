@@ -1,0 +1,421 @@
+  <!-- Page Content -->
+  <section class="py-5">
+    <div class="container">
+      <div class="card card-profile shadow py-0 mt-3">
+        <!-- <div class="card-header p-0">
+          <h3></h3>
+        </div> -->
+        <div class="card-body">
+          <!-- <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+            [options]="options" [data]="fpo" [columns]="fpoColumn">
+          </app-data-table> -->
+          <div class="row p-3">
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">{{'FPO Name' | translate}}</th>
+                    <th scope="col">{{'Email' | translate}}</th>
+                    <th scope="col">{{'Agency (associated with)' | translate}}</th>
+                    <th scope="col">{{'Address' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {{fpo.fpoName}}
+                    </td>
+                    <td>
+                      {{fpo.fpoEmail}}
+                    </td>
+                    <td>
+                      {{fpo.agency}}
+                    </td>
+                    <td>
+                      {{fpo.fpoAddress}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+    <div class="container mt-4">
+      <div class="card shadow">
+        <div class="card-header">
+          <h3>{{'FPO Details' | translate}}</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 col-sm-12 col-xs-12 text-center" *ngFor="let row of pfoPhoto">
+              <img class="card-img" [src]="row.filePath" height="180px" width="100%"
+                style="object-fit: cover;  object-positon: center center; object-fit: fill;" />
+              <div class="col-12">
+                <div class="card-body">
+                  <p class="card-text">{{row.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="board">
+                <div class="panel panel-primary"
+                  style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">
+                  <div class="number text-center" style="margin: 10px;">
+                    <h3>
+                      <small>
+                        {{fpo.totalfarmers}}</small>
+                      <br>
+                      <small> {{'Total Farmers' | translate}}</small>
+                      <br>
+                      <small>&nbsp;</small>
+                    </h3>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="board">
+                <div class="panel panel-primary"
+                  style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">
+                  <div class="number text-center" style="margin: 10px;">
+                    <h3>
+                      <small>
+                        {{fpo.totalland}}</small>
+                      <br>
+                      <small> {{'Total Land (in Ha.)' | translate}}</small>
+                      <br>
+                      <small>&nbsp;</small>
+                    </h3>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="board">
+                <div class="panel panel-primary"
+                  style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">
+                  <div class="number text-center" style="margin: 10px;">
+                    <h3>
+                      <small>
+                        {{machinerary.length}} </small>
+                      <br>
+                      <small> {{'Farm Machinery Bank' | translate}}</small>
+                      <br>
+                      <small>&nbsp;</small>
+                    </h3>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="board">
+                <div class="panel panel-primary"
+                  style="background-color: #deebdd; background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%);">
+                  <div class="number text-center" style="margin: 10px;">
+                    <h3>
+                      <small>
+                        {{fpo.seedprocessingunitno}}</small>
+                      <br>
+                      <small>{{'Seed Processing Unit' | translate}}</small>
+                      <br>
+                      <small>&nbsp;</small>
+                    </h3>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container mt-4">
+      <div class="card shadow">
+        <div class="card-header">
+          <h3> {{'Product/Services' | translate}}</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4 col-sm-12 col-xs-12 text-center" *ngFor="let row of fpo?.fpoAdditionalServices">
+              <img class="card-img" [src]="row.filePath" height="180px" width="100%"
+                style="object-fit: cover;  object-positon: center center; object-fit: fill;" />
+              <div class="col-12">
+                <div class="card-body">
+                  <p class="card-text">{{row.descriptions}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-4">
+      <div class="card shadow">
+        <div class="card-header">
+          <h3>{{'Season-wise Production' | translate}} </h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6" *ngFor="let row of multi">
+              <div class="row px-5 mb-0">
+                <strong> {{row.graphFor}}</strong>
+              </div>
+              <div class="row mb-3" style="border-bottom: solid;">
+                <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.graphDetails"
+                  [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                  [legendTitle]="legendTitle" [legendPosition]="'below'">
+                </ngx-charts-bar-vertical-2d>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <div class="card shadow">
+  
+        <div class="card-header">
+          <h3 class="mb-0">{{'Production Details (Annual)' | translate}}</h3>
+        </div>
+        <div class="card-body">
+          <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+            [options]="options" [data]="productiondata" [columns]="productionColumn">
+          </app-data-table>
+        </div>
+      </div>
+    </div>
+  
+    <br>
+    <div class="container">
+      <div class="card shadow">
+  
+        <div class="card-header">
+          <h3 class="mb-0">{{'Other Details of FPO' | translate}}</h3>
+        </div>
+        <div class="card-body">
+          <div class="card mb-4">
+  
+            <div class="card-header">
+              <h3 class="mb-0">{{'Board Members' | translate}}</h3>
+            </div>
+            <div class="card-body" *ngIf="fpo?.boardMember">
+              <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+                [options]="options" [data]="fpo?.boardMember" [columns]="boardMemCol">
+              </app-data-table>
+            </div>
+          </div>
+  
+          <div class="card mb-4">
+            <div class="card-header">
+              <h3 class="mb-0">{{'Warehouse / Cold Storage' | translate}}</h3>
+            </div>
+            <div class="card-body">
+              <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+                [options]="options" [data]="coldStorage" [columns]="storageUnitCol">
+              </app-data-table>
+            </div>
+          </div>
+  
+          <div class="card mb-4">
+            <div class="card-header">
+              <h3 class="mb-0">{{'Licenses' | translate}}</h3>
+            </div>
+            <div class="card-body" *ngIf="fpo?.fpoLicenceDetails">
+              <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+                [options]="options" [data]="fpo?.fpoLicenceDetails" [columns]="licenseColumn">
+              </app-data-table>
+            </div>
+          </div>
+  
+          <div class="card mb-4">
+  
+            <div class="card-header">
+              <h3 class="mb-0">{{'Farm Machinery Bank' | translate}}</h3>
+            </div>
+            <div class="card-body">
+              <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+                [options]="options" [data]="machinerary" [columns]="machinaryBColumn">
+              </app-data-table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+  
+  
+  
+    <br>
+  
+    <div class="container">
+      <div class="row">
+        <!-- <div class="col-xl-4 mb-5 mb-xl-0">
+            <div class="card bg-gradient-default shadow">
+              <div class="card-header bg-transparent" style="height: 160PX;">
+                <div class="row align-items-center">
+                  <div class="col-md-5">
+                    <h6 class="text-uppercase  ls-1 mb-1">{{'Total Markatable Surplus and Sold Quanyity with FPO for Rabi season(in Qt).' | translate}}</h6>
+                    <h2 class="text-white mb-0">{{'Sales value' | translate}}</h2>
+                  </div>
+                  <div class="col-md-7">
+                    <ul class="nav nav-pills justify-content-end" style="margin-bottom: 50px;">
+                      <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[0];updateOptions()" style="margin-bottom: 10px;">
+                        <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
+                          <span class="d-none d-md-block">Markatable Surplus</span>
+                          <span class="d-md-none">M</span>
+                        </a>
+                      </li>
+                      <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[1];updateOptions()" style="margin-right: 45px;">
+                        <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
+                          <span class="d-none d-md-block">{{'Sold' | translate}}</span>
+                          <span class="d-md-none">W</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+               
+                <div class="chart">
+                  
+                  <canvas id="chart-orders" class="chart-canvas"></canvas>
+                </div>
+              </div>
+            </div>
+          </div> -->
+  
+        <!-- <div class="col-xl-4 mb-5 mb-xl-0">
+            <div class="card bg-gradient-default shadow">
+              <div class="card-header bg-transparent" style="height: 160PX;">
+                <div class="row align-items-center">
+                  <div class="col-md-5">
+                    <h6 class="text-uppercase  ls-1 mb-1">{{'Total Markatable Surplus and Sold Quanyity with FPO for Rabi season(in Qt).' | translate}}</h6>
+                    <h2 class="text-white mb-0">{{'Sales value' | translate}}</h2>
+                  </div>
+                  <div class="col-md-7">
+                    <ul class="nav nav-pills justify-content-end" style="margin-bottom: 50px;"> 
+                      <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[0];updateOptions()" style="margin-bottom: 10px;">
+                        <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
+                          <span class="d-none d-md-block">Markatable Surplus</span>
+                          <span class="d-md-none">M</span>
+                        </a>
+                      </li>
+                      <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[1];updateOptions()" style="margin-right: 45px;">
+                        <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
+                          <span class="d-none d-md-block">{{'Sold' | translate}}</span>
+                          <span class="d-md-none">W</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+               
+                <div class="chart">
+                  
+                  <canvas id="chart-orders" class="chart-canvas"></canvas>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        <!-- <div class="col-xl-4 mb-5 mb-xl-0">
+            <div class="card bg-gradient-default shadow">
+              <div class="card-header bg-transparent" style="height: 160PX;">
+                <div class="row align-items-center">
+                  <div class="col-md-5">
+                    <h6 class="text-uppercase  ls-1 mb-1">Total Marketable Surplus and Sold
+                      Quantity with FPO for Kharif season (in
+                      Qt.)
+                      </h6>
+                    <h2 class="text-white mb-0">{{'Sales value' | translate}}</h2>
+                  </div>
+                  <div class="col-md-7">
+                    <ul class="nav nav-pills justify-content-end" style="margin-bottom: 50px;">
+                      <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[0];updateOptions()" style="margin-bottom: 10px;">
+                        <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
+                          <span class="d-none d-md-block">Markatable Surplus</span>
+                          <span class="d-md-none">M</span>
+                        </a>
+                      </li>
+                      <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[1];updateOptions()" style="margin-right: 45px;">
+                        <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
+                          <span class="d-none d-md-block">{{'Sold' | translate}}</span>
+                          <span class="d-md-none">W</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">             
+                <div class="chart">              
+                  <canvas id="chart-orders" class="chart-canvas"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>        -->
+        <div class="mb-10"></div>
+      </div>
+    </div>
+  
+  
+  
+    <ng-template #mymodal let-modal>
+      <div class="modal-header">
+        <h3 class="modal-title text-center">Enquiry Form</h3>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group mb-3">
+            <label class="form-control-label" for="input-username">Your Full Name</label>
+            <div class="input-group input-group-alternative">
+              <input class="form-control" placeholder="Full Name" type="text">
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-control-label" for="input-username">Email Address</label>
+            <div class="input-group input-group-alternative">
+              <input class="form-control" placeholder="Email" type="text">
+            </div>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label class="form-control-label" for="input-username">Quantity Required</label>
+            <div class="input-group input-group-alternative">
+              <input class="form-control" placeholder="Quantity" type="text">
+            </div>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label class="form-control-label" for="input-username">Fulfilled Date</label>
+            <div class="input-group input-group-alternative">
+              <input class="form-control" placeholder="Fulfilled Date" type="date">
+            </div>
+          </div>
+  
+          <div class="text-center">
+            <button type="submit" class="btn btn-login btn-product-search btn-primary my-4">Send</button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+  </section>
+  

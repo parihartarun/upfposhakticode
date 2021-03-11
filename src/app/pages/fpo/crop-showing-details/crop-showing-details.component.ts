@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProductionService } from 'src/app/_services/production/production.service';
 import { CommonService } from 'src/app/_services/common/common.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-crop-showing-details',
@@ -42,7 +40,6 @@ export class CropShowingDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private commonService:CommonService,
     private api: ProductionService,
-    private route: Router,
     private toastr:ToastrService,
     private modalService: NgbModal
   ) {}
@@ -192,7 +189,6 @@ export class CropShowingDetailsComponent implements OnInit {
   getMarkatableQuantityMeasurements(){
     this.commonService.getMarkatableQuantityMeasurements().subscribe(response => {
       console.log(response);
-      //this.msQuantityPercentage = response;
       this.msQuantityPercentage = 20;
     },
       err => {
@@ -213,7 +209,11 @@ export class CropShowingDetailsComponent implements OnInit {
         return;
     }
 
+    this.cropSowingForm.patchValue({
+      masterId:localStorage.getItem('masterId')
+    });
     var data = this.cropSowingForm.value;
+
     this.api.addFarmerCropSowingDetails(data).subscribe(response => {
       console.log(response);
       this.toastr.success('Crop sowing details added successfully.');
@@ -246,11 +246,7 @@ export class CropShowingDetailsComponent implements OnInit {
 
   editCropSowingDetails(data, content){
     console.log(data);
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.getCropsBySeasonId(data.season_ref);
     this.getVarieties(data.crop_master_id);
     this.cropSowingUpdateForm  = this.formBuilder.group({
       farmerId: [data.farmer_id, [Validators.required]],
@@ -272,7 +268,13 @@ export class CropShowingDetailsComponent implements OnInit {
         cropRefName:data.crop_master_id,
         verietyRef:data.veriety_ref
       });
-    }, 2000);
+    }, 1000);
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+    
   }
 
   updateSowingDetails(){

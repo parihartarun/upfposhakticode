@@ -97,7 +97,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let notification of notifications | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+              <tr *ngFor="let notification of notifications | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
                 <td>
                   {{(p-1) * 10 + i + 1}}
                 </td>
@@ -131,7 +131,7 @@
         </div>
         <div class="card-footer py-4">
           <nav aria-label="..." class="text-right">
-            <pagination-controls></pagination-controls>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </nav>
         </div>
       </div>

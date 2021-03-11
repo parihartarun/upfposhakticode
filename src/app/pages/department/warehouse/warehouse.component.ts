@@ -18,6 +18,7 @@ export class WarehouseComponent implements OnInit {
   warehouseList = [];
   editabileId: any;
   fascilities = [];
+  p:number = 1;
   submitted = false;
   constructor(private formBuilder: FormBuilder,
     private toastr: ToastrService, private storageunitservice: StorageUnitService, public departmentService: DepartmentService) { }

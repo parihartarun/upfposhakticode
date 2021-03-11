@@ -249,6 +249,36 @@ export class AddFarmerComponent implements OnInit {
     }
   }
 
+  getFarmerDataFromUpAgriPardarshi(){
+    console.log(this.fpoAddFarmerForm.value);
+    if(this.fpoAddFarmerForm.value.farmerLotNo == ''){
+      alert('Please enter Farmer Registration Number');
+      return;
+    }
+    this.api.getFarmerDataFromUpAgriPardarshi(this.fpoAddFarmerForm.value.farmerLotNo).subscribe(response => {
+      console.log(response);
+      this.selectDistrict(response.districtId);
+      this.selectBlock(response.blockId);
+      let gender = 'Male';
+      if(response.gender == 'F'){
+        gender = 'Female';
+      }
+      this.fpoAddFarmerForm.patchValue({
+        farmerName: response.farmerName,
+        parantsName: response.fatherName,
+        farmerMob:response.mobile,
+        category:response.category.toLowerCase(),
+        gender:gender,
+        distRefId:response.districtId,
+        blockRef:response.blockId,
+        bankRefId:response.bankId,
+        accountNo:response.accountNo,
+        ifscCode:response.ifsc
+      });
+
+    })
+  }
+
   handleSuccess(e) {
     console.log("ReCaptcha", e);
   }

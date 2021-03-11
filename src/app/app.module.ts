@@ -116,6 +116,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { FarmerDashboardComponent } from './pages/farmer/farmer-dashboard/farmer-dashboard.component';
 import { WarehouseComponent } from './pages/department/warehouse/warehouse.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { MyFpoComponent } from './pages/farmer/my-fpo/my-fpo.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -241,7 +242,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DepartmentAllComplaintsComponent,
     FPOAllUserComponent,
     FarmerDashboardComponent,
-    WarehouseComponent
+    WarehouseComponent,
+    MyFpoComponent
 
   ],
   exports: [
