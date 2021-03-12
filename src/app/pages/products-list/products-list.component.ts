@@ -126,7 +126,6 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     cropverietyIds: [],
     districtIds: [],
     fpoIds: [],
-    quantity: [],
     cropIds: []
   };
   totalCount: any;

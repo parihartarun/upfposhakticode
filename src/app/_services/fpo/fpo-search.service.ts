@@ -18,7 +18,11 @@ export class FpoSearchService {
     this._url = environment.baseUrl;
   }
   searchData(params) {
-    this.http.post<any>(this._url + 'home/search', { ...params }).subscribe((res: any) => {
+    // this.http.post<any>(this._url + 'home/search', { ...params }).subscribe((res: any) => {
+    //   console.log('filter data', res);
+    //   this.filteredObserver.next(res);
+    // })
+    this.http.put<any>(this._url + 'home/search', { ...params }).subscribe((res: any) => {
       console.log('filter data', res);
       this.filteredObserver.next(res);
     })
