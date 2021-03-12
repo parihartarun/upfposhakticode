@@ -82,6 +82,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   };
 
   onSelectedChange(event) {
+    this.filterParams.cropverietyIds = [];
+      this.filterParams.cropIds = [];
     if (!!event.length) {
       event.filter(el => {
         if (!!el.id) {
