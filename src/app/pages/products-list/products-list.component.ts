@@ -120,9 +120,9 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     in: '',
     val: '',
     page: 1,
-    limit: 20,
-    qtymin: 0,
-    qtymax: 201,
+    limit: 5,
+    qtymin: null,
+    qtymax: null,
     cropverietyIds: [],
     districtIds: [],
     fpoIds: [],
@@ -147,7 +147,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
         this.fpoSearchService.getDistrict(this.parval, this.parsearchType);
         this.fpoSearchService.getFpo(this.parval, this.parsearchType);
         this.fpoSearchService.getCrops(this.parval, this.parsearchType);
-        // this.searchData();
+         this.searchData();
       }
     });
     this.districtObserver.subscribe(data => {
