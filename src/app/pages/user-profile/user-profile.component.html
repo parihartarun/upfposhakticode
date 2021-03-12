@@ -113,7 +113,7 @@
                     </div>
                     <select class="form-control" formControlName="distRefId">
                       <option value="">{{'SelectDistrict1'|translate}}</option>
-                      <option *ngFor="let district of districtlist" [value]="district.district_id">
+                      <option *ngFor="let district of districtlist" [value]="district.district_id" (change)="selectDistrict($event.target.value)">
                         {{district.district_name }}
                       </option>
                     </select>

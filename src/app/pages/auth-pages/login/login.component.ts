@@ -62,7 +62,9 @@ export class LoginComponent implements OnInit {
           this.route.navigate(['/farmer/dashboard']);
         } else if (this.userRole == 'ROLE_BUYERSELLER') {
           this.route.navigate(['/indent_history']);
-        } else {
+        } else if(this.userRole == 'ROLE_INPUTSUPPLIER'){
+          this.route.navigate(['/input-supplier/dashboard']);
+        }else{
           this.route.navigate(['/fpo/dashboard']);
         }
       }

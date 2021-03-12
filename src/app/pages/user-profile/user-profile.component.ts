@@ -26,7 +26,6 @@ constructor(private formBuilder: FormBuilder,
 
   ngOnInit() {
     this.getDitricts();
-    this.getBlocks();
     this.getBanks();
     this.profileForm = this.formBuilder.group({
       userName: ['', [Validators.required]],
@@ -47,6 +46,7 @@ constructor(private formBuilder: FormBuilder,
     this.usernamestring=localStorage.getItem('username');
     this.api.getFpoProfileByUsername(localStorage.getItem('username')).subscribe(data=>{ 
       console.log(data);
+      this.selectDistrict(data.distRefId);
       this.profileForm = this.formBuilder.group({
         userName: [data.userName, [Validators.required]],
         fpoEmail: [data.fpoEmail, [Validators.required]],
@@ -62,7 +62,20 @@ constructor(private formBuilder: FormBuilder,
         fpoBankAccNo: [data.fpoBankAccNo],
         fpoId: [data.fpoId],
       });
+      setTimeout(()=>{  
+        this.profileForm.get("blockRef").setValue(data.blockRef);
+      }, 1000);
     })
+  }
+
+  selectDistrict(districtId: any) {
+    console.log(districtId);
+    if(districtId != null){
+      this.profileForm.controls['distRefId'].setValue(districtId);
+      this.auth.getBlock(districtId).subscribe(block => {
+        this.blocklist = block
+      })
+    }
   }
 
   getBanks(){
@@ -75,12 +88,6 @@ constructor(private formBuilder: FormBuilder,
     this.api.getDistricts().subscribe(data => {
         this.districtlist  = data; 
     })
-  }
-
-  getBlocks() {
-    this.api.getBlocks().subscribe(data => {    
-      this.blocklist = data;
-    });
   }
 
   updateProfile(){

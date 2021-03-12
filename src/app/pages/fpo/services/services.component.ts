@@ -69,7 +69,7 @@ export class ServicesComponent implements OnInit {
   }d
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj" || ext.toLowerCase() == "jpeg") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpg" || ext.toLowerCase() == "jpeg") {
       return true;
     }
     else {

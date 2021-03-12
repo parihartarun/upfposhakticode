@@ -55,6 +55,7 @@ import { FPOAllUserComponent } from '../../pages/fpo/fpoall-user/fpoall-user.com
 import { FarmerDashboardComponent } from '../../pages/farmer/farmer-dashboard/farmer-dashboard.component';
 import { WarehouseComponent } from 'src/app/pages/department/warehouse/warehouse.component';
 import { MyFpoComponent } from 'src/app/pages/farmer/my-fpo/my-fpo.component';
+import { SupplierDashboardComponent } from 'src/app/pages/Input-Supplier/supplier-dashboard/supplier-dashboard.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: FpoDashboardComponent },
@@ -112,6 +113,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'deptBuyer/complaints', component: DepartmentAllComplaintsComponent },
   { path: 'deptCHC/complaints', component: DepartmentAllComplaintsComponent },
   { path: 'fpoUser/fpoUser', component: FPOAllUserComponent },
-  { path: 'farmer/dashboard', component:FarmerDashboardComponent}
+  { path: 'farmer/dashboard', component:FarmerDashboardComponent},
+  { path: 'input-supplier/dashboard', component:SupplierDashboardComponent}
+
 ];
 

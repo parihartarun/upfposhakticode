@@ -1,0 +1,104 @@
+<div class="header bg-gradient-danger pb-8 pt-5 ">
+</div> 
+  <div class="container-fluid mt--7 mb-7 dashboard">
+
+    <div class="card shadow mb-4" *ngIf="Machineries">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12" *ngFor="let row of Machineries">
+            <div class="row px-5 mb-2">
+              <strong> {{row.title}}</strong>
+            </div>
+            <div class="row mb-4" style="border-bottom: solid;">
+              <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'Machineries'" [yAxisLabel]="yAxisLabel"
+                [legendTitle]="legendTitle" [legendPosition]="'below'">
+              </ngx-charts-bar-vertical-2d>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow mb-4" *ngIf="seeds">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12" *ngFor="let row of seeds">
+            <div class="row px-5 mb-2">
+              <strong> {{row.title}}</strong>
+            </div>
+            <div class="row mb-4" style="border-bottom: solid;">
+              <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'Seeds'" [yAxisLabel]="yAxisLabel"
+                [legendTitle]="legendTitle" [legendPosition]="'below'">
+              </ngx-charts-bar-vertical-2d>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="form-check">
+          <label class="form-check-label" for="radio2">
+            <input type="radio" class="form-check-input" name="optradio" value="Fertilizer" (click)="showGraphs('Fertilizer')">
+            {{'Fertilizer' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" for="radio2">
+              <input type="radio" class="form-check-input" name="optradio" value="Insectices" (click)="showGraphs('Insectices')">
+              {{'Insectices/Pesticides' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+          </div>
+      </div>
+
+        <div class="col-lg-3">
+          <div class="form-group">
+            <select class="custom-control custom-select" ng-model="fin_year" (change)="getDashboardDetails($event.target.value)">
+              <option value="{{year}}" *ngFor="let year of finYears">{{year}}</option>
+            </select>
+          </div>
+        </div>
+      </div> 
+      <br>
+
+      <div class="card shadow">
+        <div class="card-body">
+          <div *ngIf="Fertilizer" class="row">
+            <div class="col-12" *ngFor="let row of fertilizers">
+              <div class="row px-5 mb-0">
+                <strong> {{row.title}}</strong>
+              </div>
+              <div class="row mb-4" style="border-bottom: solid;">
+                <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
+                  [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'Fertilizer'" [yAxisLabel]="yAxisLabel"
+                  [legendTitle]="legendTitle" [legendPosition]="'below'">
+                </ngx-charts-bar-vertical-2d>
+              </div>
+            </div>
+          </div>
+    
+          <div *ngIf="Insectices" class="row">
+            <div class="col-12" *ngFor="let row of Insectices">
+              <div class="row px-5 mb-0">
+                <strong> {{row.title}}</strong>
+              </div>
+              <div class="row mb-4" style="border-bottom: solid;">
+                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="row.data"
+                  [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'Insectices'" [yAxisLabel]="yAxisLabel"
+                  [legendTitle]="legendTitle" [legendPosition]="'below'">
+                </ngx-charts-bar-vertical>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  

@@ -35,7 +35,7 @@ export class PhotographsComponent implements OnInit {
   ngOnInit(): void {
     this.photographForm = this.formBuilder.group({
       description: ['', [Validators.required]],
-      file: ['', [Validators.required, requiredFileType('png')]],
+      file: ['', [Validators.required, requiredFileType('png,jpg,jpeg')]],
       id:[''],
       fpo_id:localStorage.getItem('masterId')
     });
@@ -68,7 +68,7 @@ export class PhotographsComponent implements OnInit {
   }
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpgj" || ext.toLowerCase() == "jpeg") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpg" || ext.toLowerCase() == "jpeg") {
       return true;
     }
     else {

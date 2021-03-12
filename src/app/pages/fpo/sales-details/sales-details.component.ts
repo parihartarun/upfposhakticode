@@ -114,7 +114,7 @@ export class SalesDetailsComponent implements OnInit {
         cropRefName:sale.crop_id,
         verietyId:sale.veriety_id
       });
-    }, 1000);
+    }, 2000);
     this.edit = true;
     window.scroll(0,0);
   }
@@ -152,6 +152,8 @@ export class SalesDetailsComponent implements OnInit {
 
   resetForm(){
     this.salesForm.reset();
+    this.submitted = false;
+    this.edit = false;
   }
 
   get formControls(){

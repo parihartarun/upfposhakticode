@@ -14,6 +14,12 @@ export class InputSupplierService {
       this._url = environment.baseUrl;
     }
 
+    getDashboardData(id) {
+      return this.http.get<any>(this._url + `inputSupplierDashboard/barChart/`+id).pipe(map((res: any) => {
+        return res;
+      }));
+    }
+
     editinputsupplier(data,id){
     return  this.http.put<any>(this._url+`api/v1/InputSupplier/editInputSupplier/`+id,data).pipe(map((res:any)=>{
       return res;

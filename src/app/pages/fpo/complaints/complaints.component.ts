@@ -189,6 +189,7 @@ export class ComplaintsComponent implements OnInit {
   close() {
     this.isViewComplaint = false;
   }
+
   viewComplaint(complaint) {
     this.isViewComplaint = true;
     this.viewComp.farmerId = complaint.farmerId
