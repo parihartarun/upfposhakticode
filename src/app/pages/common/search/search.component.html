@@ -31,11 +31,17 @@
                     <div class="col-lg-3">
                         <select formControlName="licenceType" class="form-control form-control-alternative" name="Searchin" [(ngModel)]="searchType">
                           <option name="opt" [value]="undefined" selected disabled>Select</option>
-                          <option value="any">{{'Any' | translate }}</option>
+                          <!-- <option value="any">{{'Any' | translate }}</option>
                           <option value="crop">{{'Crop' | translate }}</option>
                           <option value="district">{{'District' | translate }}</option>
                           <option value="fpo_name">{{'FPO' | translate }}</option>
-                          <option value="services">{{'Services/ Products' | translate }}</option>
+                          <option value="services">{{'Services/ Products' | translate }}</option> -->
+                          <option value="crop">{{'Crop' | translate }}</option>
+              <option value="inputsupplier">{{'inputsupplier' | translate }}</option>
+              <option value="fmb">{{'machinery' | translate }}</option>
+              <!-- <option value="district">{{'District1' | translate }}</option> -->
+              <!-- <option value="fpo_name">{{'FPO' | translate }}</option> -->
+              <!-- <option value="services">{{'Services/ Products' | translate }}</option> -->
                         </select>  
                     </div>
                     <div class="col-lg-3">
