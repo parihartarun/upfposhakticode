@@ -1,0 +1,89 @@
+<div class="header bg-gradient-danger pb-8 pt-5 ">
+</div> 
+  <div class="container-fluid mt--7 mb-7 dashboard">
+
+    <div class="card shadow mb-4" *ngIf="Machineries">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12" *ngFor="let row of Machineries">
+            <div class="row px-5 mb-2">
+              <strong> {{row.title}}</strong>
+            </div>
+            <div class="row mb-4" style="border-bottom: solid;">
+              <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'Machineries'" [yAxisLabel]="yAxisLabel"
+                [legendTitle]="legendTitle" [legendPosition]="'below'">
+              </ngx-charts-bar-vertical-2d>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+        <div class="card shadow">
+          <div class="card-body">
+
+            <div class="row">
+              <div class="col-12">
+                <div class="row mb-4" style="border-bottom: solid;">
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">{{'SR. NO' | translate}}</th>
+                          <th scope="col">{{'Equipment NAME' | translate}}</th>
+                          <th scope="col">{{"No. Of Days" | translate}}</th>
+                          <th scope="col">{{'Indent Qty' | translate}}</th>
+                          <th scope="col">{{'Created By' | translate}}</th>
+                          <th scope="col">{{'Created on' | translate}}</th>
+                          <th scope="col">{{'Contact Details' | translate}}</th>
+                          <th scope="col">{{'status' | translate}}</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let f of machineryIndent | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                          <td>
+                            {{(p-1) * 10 + i + 1}}
+                          </td>
+                          <td>
+                           {{f.equpment_name}}
+                           </td>
+                          <td>
+                            {{f.no_of_days}}
+                          </td>
+                          <td>
+                            {{f.indentQty}}
+                          </td>
+                          <td>
+                            {{f.createdBy}}
+                          </td>
+                          <td>
+                            {{f.contact_details}}
+                          </td>
+                          <td>
+                            {{f.create_date_time | date: 'dd/MM/yyyy'}}
+                          </td>
+                          <td>
+                            {{f.status}}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="card-footer py-4">
+                    <nav aria-label="..." class="text-right">
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+  </div>
+
+  

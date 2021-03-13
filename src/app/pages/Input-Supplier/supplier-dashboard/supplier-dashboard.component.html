@@ -44,7 +44,7 @@
       <div class="col-lg-9">
         <div class="form-check">
           <label class="form-check-label" for="radio2">
-            <input type="radio" class="form-check-input" name="optradio" value="Fertilizer" (click)="showGraphs('Fertilizer')">
+            <input type="radio" class="form-check-input" name="optradio" value="Fertilizer" (click)="showGraphs('Fertilizer')" checked>
             {{'Fertilizer' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
         </div>
@@ -55,14 +55,6 @@
             </label>
           </div>
       </div>
-
-        <div class="col-lg-3">
-          <div class="form-group">
-            <select class="custom-control custom-select" ng-model="fin_year" (change)="getDashboardDetails($event.target.value)">
-              <option value="{{year}}" *ngFor="let year of finYears">{{year}}</option>
-            </select>
-          </div>
-        </div>
       </div> 
       <br>
 
@@ -84,21 +76,305 @@
           </div>
     
           <div *ngIf="Insectices" class="row">
-            <div class="col-12" *ngFor="let row of Insectices">
+            <div class="col-12" *ngFor="let row of insectices">
               <div class="row px-5 mb-0">
                 <strong> {{row.title}}</strong>
               </div>
               <div class="row mb-4" style="border-bottom: solid;">
-                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="row.data"
+                <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
                   [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
                   [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'Insectices'" [yAxisLabel]="yAxisLabel"
                   [legendTitle]="legendTitle" [legendPosition]="'below'">
-                </ngx-charts-bar-vertical>
+                </ngx-charts-bar-vertical-2d>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
+      <div class="row mt-4">
+        <div class="col-lg-12">
+          <div class="form-check">
+            <label class="form-check-label" for="radio2">
+              <input type="radio" class="form-check-input" name="optradio" value="Fertilizer" (click)="showIndents('Fertilizer')" checked>
+              {{'Fertilizer Indents' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+          </div>
+          <div class="form-check">
+              <label class="form-check-label" for="radio2">
+                <input type="radio" class="form-check-input" name="optradio" value="Insectices" (click)="showIndents('Insectices')">
+                {{'Insectices/Pesticides Indents' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label" for="radio2">
+              <input type="radio" class="form-check-input" name="optradio" value="Machinery" (click)="showIndents('Machinery')">
+              {{'Machinery Indents' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label" for="radio2">
+              <input type="radio" class="form-check-input" name="optradio" value="Seeds" (click)="showIndents('Seeds')">
+              {{'Seeds Indents' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+          </div>
+          </div>
+        </div> 
+        <br>
+  
+        <div class="card shadow">
+          <div class="card-body">
+            <div *ngIf="fertilizerIndents" class="row">
+              <div class="col-12">
+                <div class="row mb-4" style="border-bottom: solid;">
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">{{'SR. NO' | translate}}</th>
+                          <th scope="col">{{'Fertilizer NAME' | translate}}</th>
+                          <th scope="col">{{"Fertilizer Grade" | translate}}</th>
+                          <th scope="col">{{'Indent Qty' | translate}}</th>
+                          <th scope="col">{{'Created By' | translate}}</th>
+                          <th scope="col">{{'Contact Details' | translate}}</th>
+                          <th scope="col">{{'Created on' | translate}}</th>
+                          <th scope="col">{{'status' | translate}}</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let f of fertilizerIndent | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                          <td>
+                            <input type="checkbox">
+                          </td>
+                          <td>
+                            {{(p-1) * 10 + i + 1}}
+                          </td>
+                          <td>
+                           {{f.fertilizer_name}}
+                           </td>
+                          <td>
+                            {{f.fertilizer_grade}}
+                          </td>
+                          <td>
+                            {{f.indentQty}}
+                          </td>
+                          <td>
+                            {{f.createdBy}}
+                          </td>
+                          <td>
+                            {{f.contact_details}}
+                          </td>
+                          <td>
+                            {{f.create_date_time | date: 'dd/MM/yyyy'}}
+                          </td>
+                          <td>
+                            {{f.status}}
+                          </td>
+                        </tr>
+                        <!-- <tr *ngIf="fertilizerIndent.length == 0">
+                          <p class="text-center">No data available</p>
+                        </tr> -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="card-footer py-4">
+                    <nav aria-label="..." class="text-right">
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <div *ngIf="insecticesIndents" class="row">
+              <div class="col-12">
+                <div class="row mb-4" style="border-bottom: solid;">
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">{{'SR. NO' | translate}}</th>
+                          <th scope="col">{{'Insecticide Type' | translate}}</th>
+                          <th scope="col">{{'Indent Qty' | translate}}</th>
+                          <th scope="col">{{'Created By' | translate}}</th>
+                          <th scope="col">{{'Contact Details' | translate}}</th>
+                          <th scope="col">{{'Created on' | translate}}</th>
+                          <th scope="col">{{'status' | translate}}</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let f of insecticideIndent | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                          <td>
+                            <input type="checkbox">
+                          </td>
+                          <td>
+                            {{(p-1) * 10 + i + 1}}
+                          </td>
+                          <td>
+                           {{f.insecticide_type}}
+                           </td>
+                          <td>
+                            {{f.indentQty}}
+                          </td>
+                          <td>
+                            {{f.createdBy}}
+                          </td>
+                          <td>
+                            {{f.contact_details}}
+                          </td>
+                          <td>
+                            {{f.create_date_time | date: 'dd/MM/yyyy'}}
+                          </td>
+                          <td>
+                            {{f.status}}
+                          </td>
+                        </tr>
+                        <!-- <tr *ngIf="fertilizerIndent.length == 0">
+                          <p class="text-center">No data available</p>
+                        </tr> -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="card-footer py-4">
+                    <nav aria-label="..." class="text-right">
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="machineryIndents" class="row">
+              <div class="col-12">
+                <div class="row mb-4" style="border-bottom: solid;">
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">{{'SR. NO' | translate}}</th>
+                          <th scope="col">{{'Equipment NAME' | translate}}</th>
+                          <th scope="col">{{"No. Of Days" | translate}}</th>
+                          <th scope="col">{{'Indent Qty' | translate}}</th>
+                          <th scope="col">{{'Created By' | translate}}</th>
+                          <th scope="col">{{'Contact Details' | translate}}</th>
+                          <th scope="col">{{'Created on' | translate}}</th>
+                          <th scope="col">{{'status' | translate}}</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let f of machineryIndent | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                          <td>
+                            <input type="checkbox">
+                          </td>
+                          <td>
+                            {{(p-1) * 10 + i + 1}}
+                          </td>
+                          <td>
+                           {{f.equpment_name}}
+                           </td>
+                          <td>
+                            {{f.no_of_days}}
+                          </td>
+                          <td>
+                            {{f.indentQty}}
+                          </td>
+                          <td>
+                            {{f.createdBy}}
+                          </td>
+                          <td>
+                            {{f.contact_details}}
+                          </td>
+                          <td>
+                            {{f.create_date_time | date: 'dd/MM/yyyy'}}
+                          </td>
+                          <td>
+                            {{f.status}}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="card-footer py-4">
+                    <nav aria-label="..." class="text-right">
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="seedsIndents" class="row">
+              <div class="col-12">
+                <div class="row mb-4" style="border-bottom: solid;">
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">{{'SR. NO' | translate}}</th>
+                          <th scope="col">{{'Crop NAME' | translate}}</th>
+                          <th scope="col">{{"Variety Name" | translate}}</th>
+                          <th scope="col">{{'Indent Qty' | translate}}</th>
+                          <th scope="col">{{'Created By' | translate}}</th>
+                          <th scope="col">{{'Contact Details' | translate}}</th>
+                          <th scope="col">{{'Created on' | translate}}</th>
+                          <th scope="col">{{'status' | translate}}</th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let f of seedIndent | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                          <td>
+                            <input type="checkbox">
+                          </td>
+                          <td>
+                            {{(p-1) * 10 + i + 1}}
+                          </td>
+                          <td>
+                           {{f.crop_name}}
+                           </td>
+                          <td>
+                            {{f.varietyName}}
+                          </td>
+                          <td>
+                            {{f.indentQty}}
+                          </td>
+                          <td>
+                            {{f.createdBy}}
+                          </td>
+                          <td>
+                            {{f.contact_details}}
+                          </td>
+                          <td>
+                            {{f.create_date_time | date: 'dd/MM/yyyy'}}
+                          </td>
+                          <td>
+                            {{f.status}}
+                          </td>
+                        </tr>
+                        <!-- <tr *ngIf="fertilizerIndent.length == 0">
+                          <p class="text-center">No data available</p>
+                        </tr> -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="card-footer py-4">
+                    <nav aria-label="..." class="text-right">
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
   </div>
 
   

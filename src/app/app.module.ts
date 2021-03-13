@@ -118,6 +118,8 @@ import { WarehouseComponent } from './pages/department/warehouse/warehouse.compo
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MyFpoComponent } from './pages/farmer/my-fpo/my-fpo.component';
 import { SupplierDashboardComponent } from './pages/Input-Supplier/supplier-dashboard/supplier-dashboard.component';
+import { ChhfmbDashboardComponent } from './pages/CHC/chhfmb-dashboard/chhfmb-dashboard.component';
+import { BuyerDashboardComponent } from './pages/buyer-treder/buyer-dashboard/buyer-dashboard.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -245,7 +247,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     FarmerDashboardComponent,
     WarehouseComponent,
     MyFpoComponent,
-    SupplierDashboardComponent
+    SupplierDashboardComponent,
+    ChhfmbDashboardComponent,
+    BuyerDashboardComponent
 
   ],
   exports: [
