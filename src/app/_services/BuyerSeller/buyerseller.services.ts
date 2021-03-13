@@ -20,6 +20,11 @@ export class BuyerSellerService {
     }));
   }
 
+  getDashboardData(id) {
+    return this.http.get<any>(this._url + `buyerSellerDashboard/getBuyerSellerDashboardData/`+id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
   getbyid(id)
   {

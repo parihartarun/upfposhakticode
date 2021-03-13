@@ -12,7 +12,12 @@ export class SupplierDashboardComponent implements OnInit {
  
   public Fertilizer = true;
   public Insectices = false;
-  
+  public fertilizerIndents = true;
+  public insecticesIndents = false;
+  public machineryIndents = false;
+  public seedsIndents = false;
+  p:number = 1;
+
   chartOption:any;
   seeds:Array<any>=[];
   Machineries:Array<any>=[];
@@ -20,13 +25,17 @@ export class SupplierDashboardComponent implements OnInit {
   insectices:Array<any>=[];
   finYears:[];
 
+  fertilizerIndent:Array<any>=[];
+  insecticideIndent:Array<any>=[];
+  machineryIndent:Array<any>=[];
+  seedIndent:Array<any>=[];
+
   // Graph
   showXAxis: boolean = true;
   showYAxis: boolean = true;
   gradient: boolean = true;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Crops';
   showYAxisLabel: boolean = true;
   yAxisLabel: string = 'Quantity (in Qt.)';
 
@@ -45,14 +54,17 @@ export class SupplierDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.chartOption = 'surplus';
-    this.getFinancialYears();
-    this.getDashboardDetails('2021-2020');
+    this.getDashboardDetails();
+    this.getIndentDetails();
   }
 
-  getFinancialYears(){
-    this.common.getFinancialYears().subscribe(response => {
+  getIndentDetails(){
+    this.supplierService.getIndentDetails(localStorage.getItem('masterId')).subscribe(response => {
       console.log(response);
-      this.finYears = response;
+      this.fertilizerIndent = response.fertilizerIndent;
+      this.insecticideIndent = response.insecticideIndent;
+      this.machineryIndent = response.machineryIndent;
+      this.seedIndent = response.seedIndent;
     },
       err => {
         console.log(err)
@@ -60,8 +72,7 @@ export class SupplierDashboardComponent implements OnInit {
     );
   }
 
-
-  getDashboardDetails(finYear) {
+  getDashboardDetails() {
     this.supplierService.getDashboardData(localStorage.getItem('masterId')).subscribe(response => {
       console.log(response);
       this.setMachinariesData(response.machineryBarChart);
@@ -105,7 +116,7 @@ export class SupplierDashboardComponent implements OnInit {
     if(sdata.length > 0){
       for(let i=0;i<sdata.length;i++){
           var ob = {};
-          ob['name'] = sdata[i].cropName+'-'+sdata[i].varietyName;
+          ob['name'] = sdata[i].cropName+' - '+sdata[i].varietyName;
           ob['series'] = [
             {
               "name": "Seeds",
@@ -125,6 +136,7 @@ export class SupplierDashboardComponent implements OnInit {
   }
 
   setFertilizerData(sdata){
+    console.log(sdata);
     var data= [];
     if(sdata.length > 0){
       for(let i=0;i<sdata.length;i++){
@@ -149,6 +161,7 @@ export class SupplierDashboardComponent implements OnInit {
   }
 
   setInsecticesData(sdata){
+    console.log(sdata);
     var data= [];
     if(sdata.length > 0){
       for(let i=0;i<sdata.length;i++){
@@ -156,7 +169,7 @@ export class SupplierDashboardComponent implements OnInit {
           ob['name'] = sdata[i].insecticideType;
           ob['series'] = [
             {
-              "name": "Insectices/Pesticides",
+              "name": "Insectices Pesticides",
               "value": sdata[i].quantity
             }
           ];
@@ -166,7 +179,7 @@ export class SupplierDashboardComponent implements OnInit {
 
     this.insectices = [
       {
-        title: `Insectices/Pesticides`,
+        title: `Insectices Pesticides`,
         data: data
       }
     ];
@@ -179,6 +192,23 @@ export class SupplierDashboardComponent implements OnInit {
       this.Fertilizer = true;
     }else if(tab == 'Insectices'){
       this.Insectices = true;
+    }
+  }
+
+  showIndents(tab){
+    this.fertilizerIndents = false;
+    this.insecticesIndents = false;
+    this.machineryIndents = false;
+    this.seedsIndents = false;
+
+    if(tab == 'Fertilizer'){
+      this.fertilizerIndents = true;
+    }else if(tab == 'Insectices'){
+      this.insecticesIndents = true;
+    }else if(tab == 'Machinery'){
+      this.machineryIndents = true;
+    }else if(tab == 'Seeds'){
+      this.seedsIndents = true;
     }
   }
 }
