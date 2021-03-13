@@ -25,6 +25,7 @@ export class InputDetailsMachineryComponent implements OnInit {
   myInputVariable: ElementRef;
   id = null;
   isEdit = false;
+  machinerynamelist: any;
 
   constructor(private inputmachineryservice: InputSupplierService,
     private fb: FormBuilder,
@@ -54,8 +55,19 @@ export class InputDetailsMachineryComponent implements OnInit {
   mtype() {
     this.inputmachineryservice.mtype().subscribe((res) => {
       this.mtypes = res;
+      console.log(res);
     })
   }
+
+
+  selectmachinaryname(e) {
+    this.machineryForm.controls['mchinery_type_id'].setValue(parseInt(e));
+    this.inputmachineryservice.machineryname(e).subscribe(mn => {
+      this.machinerynamelist = mn;
+      console.log(mn, "machineryname");
+    })
+  }
+
 
   Machinerydata() {
     this.inputid = localStorage.getItem('masterId')
@@ -63,8 +75,6 @@ export class InputDetailsMachineryComponent implements OnInit {
       this.machinerydetails = res;
     })
   }
-
-
 
   addmachinery() {
     this.submitted = true;
@@ -90,8 +100,6 @@ export class InputDetailsMachineryComponent implements OnInit {
     });
   }
 
-
-
   editmachinery(data) {
     this.machineryForm.get('machinery_name_id').patchValue(data.machinery_name_id);
     this.machineryForm.get('file').patchValue(data.file);
@@ -102,8 +110,6 @@ export class InputDetailsMachineryComponent implements OnInit {
     this.id = data.id;
     this.isEdit = true;
   }
-
-
 
   updatemachinery() {
     const formData: FormData = new FormData();

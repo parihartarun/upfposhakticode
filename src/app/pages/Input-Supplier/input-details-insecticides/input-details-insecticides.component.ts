@@ -100,6 +100,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
     this.insectForm.get('quantity').patchValue(data.quantity);
     this.insectForm.get('cib_rc_number').patchValue(data.cib_rc_number);
     this.id = data.id;
+    console.log(data);  
     this.isEdit = true;
   }
 

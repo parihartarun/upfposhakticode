@@ -25,7 +25,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
   fertilizerDetails: any;
   inputid: string;
   fertilizertypelist: any;
-  fertilizerForm:FormGroup;
+  fertilizerForm: FormGroup;
   uploadSuccess: boolean;
   fileToUpload: File = null;
   isViewComplaint = false;
@@ -47,16 +47,16 @@ export class InputDetailsFertilizerComponent implements OnInit {
   ngOnInit(): void {
     this.fertilizertype();
     this.Getallfertilizer();
-   this.inputid = localStorage.getItem('masterId')
- this.fertilizerForm = this.fb.group({
-    fertilizer_grade: [''],
-    type_id: [''],
-    file: [''],
-    manufacturer_name: [''],
-    name_id: [''],
-    input_supplier_id : localStorage.getItem('masterId'),
-   
-  });
+    this.inputid = localStorage.getItem('masterId')
+    this.fertilizerForm = this.fb.group({
+      fertilizer_grade: [''],
+      type_id: [''],
+      file: [''],
+      manufacturer_name: [''],
+      name_id: [''],
+      input_supplier_id: localStorage.getItem('masterId'),
+
+    });
 
 
   }
@@ -66,10 +66,10 @@ export class InputDetailsFertilizerComponent implements OnInit {
     this.fertitype = type;
 
     this.fertilizerForm.controls['type_id'].setValue(parseInt(type));
-      this.inputsupplierfertiservice.fsubtype(type).subscribe(v => {
-        this.subtype = v;
-      })
-    
+    this.inputsupplierfertiservice.fsubtype(type).subscribe(v => {
+      this.subtype = v;
+    })
+
   }
   selectedtype(e) {
     console.log(e);
@@ -89,16 +89,14 @@ export class InputDetailsFertilizerComponent implements OnInit {
     })
   }
 
-fertilizertype()
-{
-  this.inputsupplierfertiservice.ftype().subscribe((res)=>{
-    this.fertilizertypelist = res;
-    console.log(res)
-  })
-}
+  fertilizertype() {
+    this.inputsupplierfertiservice.ftype().subscribe((res) => {
+      this.fertilizertypelist = res;
+      console.log(res)
+    })
+  }
 
-  addfertilizer()
-  {
+  addfertilizer() {
 
     this.submitted = true;
     let model = this.fertilizerForm.value;
@@ -111,7 +109,7 @@ fertilizertype()
     formData.append("input_supplier_id ", localStorage.getItem('masterId'))
     this.inputsupplierfertiservice.addfertilizer(formData).subscribe(res => {
       if (res != '') {
-        this.toastr.success(' Added Succefully.');
+        this.toastr.success(' Added Successfully.');
         this.submitted = false;
         this.isEdit = false;
         this.fertilizerForm.reset();
@@ -122,18 +120,19 @@ fertilizertype()
     });
   }
 
-
   editfertilizer(data) {
     this.fertilizerForm.get('fertilizer_grade').patchValue(data.fertilizer_grade);
     this.fertilizerForm.get('file').patchValue(data.file);
-    this.fertilizerForm.get('manufacturer_name').patchValue(data.manufacturer_name);
     this.fertilizerForm.get('type_id').patchValue(data.type_id);
     this.fertilizerForm.get('name_id').patchValue(data.name_id);
+    // this.fertilizerForm.get('manufacturer_name').patchValue(data.manufacturer_name);
+    // this.fertilizerForm.get('type_id').patchValue(data.fertilizer_type);
+    // this.fertilizerForm.get('fertilizerType').patchValue(data.type_id);
+    this.fertilizerForm.get('name_id').patchValue(data.fertilizer_name);
     this.id = data.id;
+    console.log(data);
     this.isEdit = true;
   }
-
-
 
   updatefertilizer() {
     const formData: FormData = new FormData();
@@ -143,7 +142,6 @@ fertilizertype()
     formData.append('type_id', this.fertilizerForm.value.type_id);
     formData.append('name_id', this.fertilizerForm.value.name_id);
     formData.append("input_supplier_id ", localStorage.getItem('masterId'))
-
     formData.append('id', this.id);
     this.inputsupplierfertiservice.updatefertilizer(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {
@@ -157,7 +155,6 @@ fertilizertype()
       }
     })
   }
-
 
   upload(files: FileList) {
     this.fileToUpload = files.item(0);

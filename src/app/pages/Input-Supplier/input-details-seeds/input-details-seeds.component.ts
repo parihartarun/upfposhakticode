@@ -61,7 +61,6 @@ export class InputDetailsSeedsComponent implements OnInit {
     })
   }
 
-
   selectcrops(e) {
     this.seedForm.controls['crop_id'].setValue(parseInt(e));
     this.fposervice.getCropVarietiesByCropId(e).subscribe(v => {
@@ -69,7 +68,6 @@ export class InputDetailsSeedsComponent implements OnInit {
       console.log(v, "variety");
     })
   }
-
 
   allseeds() {
     this.inputid = localStorage.getItem('masterId')
@@ -113,17 +111,17 @@ export class InputDetailsSeedsComponent implements OnInit {
   }
 
   editseed(data) {
-    this.seedForm.get('certification_no').patchValue(data.certification_no);
     this.seedForm.get('file').patchValue(data.file);
-    this.seedForm.get('certification_no').patchValue(data.certification_no);
-    this.seedForm.get('company').patchValue(data.company);
+    this.seedForm.get('certification_no').patchValue(data.certification_number);
+    this.seedForm.get('company').patchValue(data.company_brand);
     this.seedForm.get('quantity').patchValue(data.quantity);
-   this.seedForm.get('crop_id'). patchValue(data.crop_id);
+  //  this.seedForm.get('crop_Id'). patchValue(data.crop_Id);
    this.seedForm.get('quantity'). patchValue(data.quantity);
-   this.seedForm.get('valid_from'). patchValue(data.valid_from);
-   this.seedForm.get('valid_to'). patchValue(data.valid_to);
-   this.seedForm.get('variety_id'). patchValue(data.variety_id);
+   this.seedForm.get('valid_from'). patchValue(data.certification_valid_from);
+   this.seedForm.get('valid_to'). patchValue(data.certification_valid_to);
+  //  this.seedForm.get('crop_veriety'). patchValue(data.crop_veriety);
     this.id = data.id;
+    console.log(data);
     this.isEdit = true;
   }
 
