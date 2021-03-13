@@ -90,7 +90,8 @@
     </div> -->
     <div class="row">
       <div class="col-md-3">
-        <div class="card">
+        {{showFilter}} -{{filterParams.in}}
+        <div class="card" *ngIf="(filterParams.in==='crop')">
           <article class="card-group-item my-2" *ngIf="districts?.length">
             <header class="">
               <h3 class="title">{{'District1' | translate }}</h3>
@@ -136,7 +137,7 @@
                     <div>Max - {{highValue>199?highValue+'+':highValue}} </div>
                   </div> -->
                   <div class="custom-slider">
-                    <ngx-slider [(value)]="filterParams.qtymin" [(highValue)]="filterParams.qtymax" [options]="options"
+                    <ngx-slider [(value)]="filterParams.qtymax" [(highValue)]="filterParams.qtymin" [options]="options"
                       (userChangeEnd)="quantityFilter()">
                     </ngx-slider>
                   </div>
