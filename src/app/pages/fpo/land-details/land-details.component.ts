@@ -79,7 +79,6 @@ export class LandDetailsComponent implements OnInit {
       response => {
       console.log(response);
         this.FarmerLists = response;
-       
       })
   }
   getFarmerDetailFarmerformUpPardarshi(registrationNumber) {
@@ -102,7 +101,7 @@ export class LandDetailsComponent implements OnInit {
     this.farmerService.getFarmerLandDetailList(id).subscribe(
       response => {
         console.log(response);
-
+        this.landDetails = response;
       })
   }
 
@@ -112,13 +111,15 @@ export class LandDetailsComponent implements OnInit {
     if (this.landDetailForm.invalid) {
       return;
     }
+    this.landDetailForm.value.masterId = localStorage.getItem('masterId');
+
     var data = this.landDetailForm.value;
     if (this.landDetailForm.value.farmerId) {
       this.farmerId = this.landDetailForm.value.farmerId
     }
     data['farmerProfile'] = { "farmerId": this.farmerId };
     delete data.farmerId;
-    this.landDetailForm.value.masterId = localStorage.getItem('masterId');
+    console.log(data);
     if (this.roleType == "ROLE_FPC") {
       this.fpoService.addLandDetails(data).subscribe(response => {
         console.log(response)

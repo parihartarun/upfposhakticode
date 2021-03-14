@@ -10,14 +10,13 @@ import { BuyerSellerService } from 'src/app/_services/BuyerSeller/buyerseller.se
 })
 export class BuyerDashboardComponent implements OnInit {
 
-  public markatable_surplus = true;
-  public actual_production = false;
-  public sales_production = false;
-  
+  public cancelled = true;
+  public active = false;
+  public fulfilled = false;
+
   chartOption:any;
-  actualProduction:Array<any>=[];
-  markatableProduction:Array<any>=[];
-  salesProduction:Array<any>=[];
+  cropIndents:Array<any>=[];
+  totalIndents:Array<any>=[];
   finYears:[];
 
   public totals = {
@@ -55,7 +54,7 @@ export class BuyerDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.chartOption = 'surplus';
     this.getFinancialYears();
-    this.getDashboardDetails('2021-2020');
+    this.getDashboardDetails('2020-2021');
   }
 
   getFinancialYears(){
@@ -74,10 +73,8 @@ export class BuyerDashboardComponent implements OnInit {
     this.buyerService.getDashboardData(localStorage.getItem('masterId')).subscribe(response => {
       console.log(response);
       this.totals = response;
-      this.actualProduction = response.fpoActualQty;
-      this.setMarkatableProduction(response.fpoMarketableProduction);
-      this.setActualProduction(response.fpoActualProduction);
-      this.setSalesProduction(response.fpoTotSoldProduction);
+      this.setCropIndents(response.buyerSellerCropIndent);
+      this.setIndentGraphData(response.activeIndents, response.fulfilledIndents, response.cancelIndents);
     },
       err => {
         console.log(err)
@@ -85,186 +82,68 @@ export class BuyerDashboardComponent implements OnInit {
     );
   }
 
-  setMarkatableProduction(data){
-    var rabiData= [];
-    var kharifData= [];
-    var zayadData= [];
-    if(data['fpoTotMarRabi'].length > 0){
-      var td = data['fpoTotMarRabi'];
-      console.log(td[0]);
-      for(let i=0;i<td.length;i++){
-          var ob = {};
-          ob['name'] = td[i].cropName;
-          ob['series'] = [
-            {
-              "name": "Marketable Surplus",
-              "value": td[i].totMarkProd
-            }
-          ];
-          rabiData.push(ob);
+  setIndentGraphData(active, fulfilled, cancelled){
+    var data = [];
+    var ob1 = {};
+    var ob2 = {};
+    var ob3 = {};
+    ob1['name'] = "Active Indents";
+    ob1['series'] = [
+      {
+        "name": "Indents",
+        "value": active
       }
-    }
+    ];
+    ob2['name'] = "Fullfilled Indents";
+    ob2['series'] = [
+      {
+        "name": "Indents",
+        "value": fulfilled
+      }
+    ];
+    ob3['name'] = "Cancelled Indents";
+    ob3['series'] = [
+      {
+        "name": "Indents",
+        "value": cancelled
+      }
+    ];
 
-    if(data['fpoTotMarKharif'].length > 0){
-      var td = data['fpoTotMarKharif'];
-      for(let i=0;i<td.length;i++){
-          var ob = {};
-          ob['name'] = td[i].cropName;
-          ob['series'] = [
-            {
-              "name": "Marketable Surplus",
-              "value": td[i].totMarkProd
-            }
-          ];
-          kharifData.push(ob);
-      }
-    }
+    data.push(ob1);
+    data.push(ob2);
+    data.push(ob3);
 
-    if(data['fpoTotMarZayad'].length > 0){
-      var td = data['fpoTotMarZayad'];
-      for(let i=0;i<td.length;i++){
-          var ob = {};
-          ob['name'] = td[i].cropName;
-          ob['series'] = [
-            {
-              "name": "Marketable Surplus",
-              "value": td[i].totMarkProd
-            }
-          ];
-          zayadData.push(ob);
-      }
-    }
-    this.markatableProduction = [
+    this.totalIndents = [
       {
-        title: `Total Marketable Surplus in Rabi season (in Qt.)`,
-        data: rabiData
-      },
-      {
-        title: `Total Marketable Surplus in Zayad season (in Qt.)`,
-        data: kharifData
-      },
-      {
-        title: `Total Marketable Surplus in Kharif season (in Qt.)`,
-        data:zayadData
+        title: `Total Number of Indents`,
+        data: data
       }
     ];
   }
 
-  setActualProduction(data){
+  setCropIndents(sdata){
+    console.log(sdata);
+    var data = [];
+    if(sdata.length > 0){
+      for(let i=0;i<sdata.length;i++){
+        var ob = {};
+        ob['name'] = sdata[i].cropName;
+        ob['series'] = [
+          {
+            "name": "Crops",
+            "value": sdata[i].indentQty
+          }
+        ];
+        data.push(ob);
+      }
+    }
     console.log(data);
-    var rabiData1 = [];
-    var kharifData1 = [];
-    var zayadData1 = [];
-    if(data['fpoActProdRabi'].length > 0){
-      var td = data['fpoActProdRabi'];
-      console.log(td[0]);
-      for(let i=0;i<td.length;i++){
-          var ob = {};
-          ob['name'] = td[i].cropName;
-          ob['value'] = td[i].totAcProd;
-          rabiData1.push(ob);
-      }
-    }
-
-    if(data['fpoActProdKharif'].length > 0){
-      var td = data['fpoActProdKharif'];
-      for(let i=0;i<td.length;i++){
-          var ob = {};
-          ob['name'] = td[i].cropName;
-          ob['value'] = td[i].totAcProd;
-          kharifData1.push(ob);
-      }
-    }
-
-    if(data['fpoActProdZayad'].length > 0){
-      var td = data['fpoActProdZayad'];
-      for(let i=0;i<td.length;i++){
-          var ob = {};
-          ob['name'] = td[i].cropName;
-          ob['value'] = td[i].totAcProd;
-          zayadData1.push(ob);
-      }
-    }
-    
-    this.actualProduction = [
+    this.cropIndents = [
       {
-        title: `Total Actual Production in Rabi (in Qt.)`,
-        data: rabiData1
-      },
-      {
-        title: `Total Actual Production in Zayad (in Qt.)`,
-        data: kharifData1
-      },
-      {
-        title: `Total Actual Production in Kharif (in Qt.)`,
-        data:zayadData1
+        title: `Total Number of Indents by crop`,
+        data: data
       }
     ];
-  }
-
-  setSalesProduction(data){
-    console.log(data);
-    var rabiData2 = [];
-    var kharifData2 = [];
-    var zayadData2 = [];
-    if(data['fpoTotSoldRabi'].length > 0){
-      var td = data['fpoTotSoldRabi'];
-      console.log(td[0]);
-      for(let i=0;i<td.length;i++){
-          var ob = {};
-          ob['name'] = td[i].cropName;
-          ob['value'] = td[i].totSold;
-          rabiData2.push(ob);
-      }
-    }
-
-    if(data['fpoTotSoldKharif'].length > 0){
-      var td = data['fpoTotSoldKharif'];
-      for(let i=0;i<td.length;i++){
-          var ob = {};
-          ob['name'] = td[i].cropName;
-          ob['value'] = td[i].totSold;
-          kharifData2.push(ob);
-      }
-    }
-
-    if(data['fpoTotSoldZayad'].length > 0){
-      var td = data['fpoTotSoldZayad'];
-      for(let i=0;i<td.length;i++){
-          var ob = {};
-          ob['name'] = td[i].cropName;
-          ob['value'] = td[i].totSold;
-          zayadData2.push(ob);
-      }
-    }
-    
-    this.salesProduction = [
-      {
-        title: `Total Sales Production in Rabi (in Qt.)`,
-        data: rabiData2
-      },
-      {
-        title: `Total Sales Production in Zayad (in Qt.)`,
-        data: kharifData2
-      },
-      {
-        title: `Total Sales Production in Kharif (in Qt.)`,
-        data:zayadData2
-      }
-    ];
-  }
-
-  showGraphs(tab){
-    this.markatable_surplus = false;
-    this.actual_production = false;
-    this.sales_production = false;
-    if(tab == 'markatable_surplus'){
-      this.markatable_surplus = true;
-    }else if(tab == 'actual_production'){
-      this.actual_production = true;
-    }else if(tab == 'sales_production'){
-      this.sales_production = true;
-    }
   }
 
 }

@@ -78,6 +78,7 @@ export class PhotographsComponent implements OnInit {
   addPhotograph() {
     this.submitted = true;
     // stop here if form is invalid
+    console.log(this.photographForm);
     if (this.photographForm.invalid) {
         return;
     }
