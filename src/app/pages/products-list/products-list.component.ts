@@ -417,7 +417,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
-      cropVeriety: [item.cropVeriety],
+      cropVeriety: [item.varietyid],
       cropId: [item.cropid],
       fpoDeliveryAddress: ["", Validators.required],
       userId: [this.fpoDetail.userFpo?.userId, Validators.required],

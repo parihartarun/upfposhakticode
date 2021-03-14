@@ -90,7 +90,6 @@
     </div> -->
     <div class="row">
       <div class="col-md-3">
-        {{showFilter}} -{{filterParams.in}}
         <div class="card" *ngIf="(selectedDropdown==='crop')">
           <article class="card-group-item my-2" *ngIf="districts?.length">
             <header class="">
@@ -288,8 +287,10 @@
         <div class="row">
           <div class="col-lg-6 mb-4" *ngFor="let product of filteredData">
             <div class="card card-stats box_shadow card_2" *ngIf="product.hasOwnProperty('crop')">
-              <h1>{{product.fpo}}</h1>
-              <div class="row" routerLink="/fpo-details/{{product.fpoid}}">
+              <div class="changetopoint"routerLink="/fpo-details/{{product.fpoid}}">
+                <h1>{{product.fpo}}</h1>
+              </div>
+              <div class="row" >
                 <div class="col-lg-4 col-sm-4">
                   <div class="gray_color1 d-flex justify-content-center">
                     <img src="assets/image/wheat.jpeg">
@@ -336,7 +337,9 @@
             <!---End of Crops-->
             <!--Start of Machinery-->
             <div class="card card-stats box_shadow card_2" *ngIf="product.hasOwnProperty('vendorid')">
-              <h1>{{product.vendorname}}</h1>
+              <div class="changetopoint"routerLink="/">
+                <h1>{{product.vendorname}}</h1>
+              </div>
               <div class="row" routerLink="/">
                 <div class="col-lg-4 col-sm-4">
                   <div class="gray_color1 d-flex justify-content-center">
