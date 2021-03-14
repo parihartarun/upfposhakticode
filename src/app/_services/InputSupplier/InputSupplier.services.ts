@@ -20,6 +20,12 @@ export class InputSupplierService {
       }));
     }
 
+    getIndentDetails(id) {
+      return this.http.get<any>(this._url + `inputSupplierDashboard/indent/`+id).pipe(map((res: any) => {
+        return res;
+      }));
+    }
+
     editinputsupplier(data,id){
     return  this.http.put<any>(this._url+`api/v1/InputSupplier/editInputSupplier/`+id,data).pipe(map((res:any)=>{
       return res;
@@ -102,7 +108,7 @@ fsubtype(id)
 
 
 addfertilizer(data: any) {
-  return this.http.post<any>(this._url + 'inputsupplier/fertilizer/', data).pipe(map((res: any) => {
+  return this.http.post<any>(this._url + 'inputsupplier/fertilizer', data).pipe(map((res: any) => {
     return res;
   }));
 }
@@ -144,6 +150,12 @@ addMachinery(formdata) {
 mtype()
 {
   return this.http.get<any>(this._url + 'inputsupplier/machinery/equipmenttype/getall').pipe(map((res:any)=>{
+    return res;
+  }))
+}
+
+machineryname(id){
+  return this.http.get<any>(this._url + 'inputsupplier/machinery/equipmentname/' +id).pipe(map((res:any)=>{
     return res;
   }))
 }

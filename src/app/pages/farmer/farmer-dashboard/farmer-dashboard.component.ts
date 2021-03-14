@@ -71,7 +71,7 @@ export class FarmerDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getFinancialYears();
-    this.getDashboardDetails('2021-2020');
+    this.getDashboardDetails('2020-2021');
     this.getNotifications();
   }
 

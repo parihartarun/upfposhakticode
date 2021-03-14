@@ -21,7 +21,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">{{'Marginal Farmers' | translate}}</h5>
-                    <span class="h2 font-weight-bold mb-0">{{totals.totalMarginalFarmer | number}}</span>
+                    <span class="h2 font-weight-bold mb-0">{{totals.totalMarginalFarmer | number: '1.0-0'}}</span>
                   </div>
                 </div>
               </div>
@@ -33,7 +33,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">{{'Small' | translate}}</h5>
-                    <span class="h2 font-weight-bold mb-0">{{totals.totalSmallFarmer | number}}</span>
+                    <span class="h2 font-weight-bold mb-0">{{totals.totalSmallFarmer | number: '1.0-0'}}</span>
                   </div>
                 </div>
               </div>
@@ -45,7 +45,7 @@
                 <div class="row">
                   <div class="col">
                     <h5 class="card-title text-uppercase text-muted mb-0">{{'Other' | translate}}</h5>
-                    <span class="h2 font-weight-bold mb-0">{{totals.totalOtherFarmer | number}}</span>
+                    <span class="h2 font-weight-bold mb-0">{{totals.totalOtherFarmer | number: '1.0-0'}}</span>
                   </div>
                 </div>
               </div>
@@ -101,7 +101,7 @@
         <div class="form-check">
           <label class="form-check-label" for="radio2">
             <input type="radio" class="form-check-input" name="optradio" value="sales" (click)="showGraphs('sales_production')">
-            {{'Sale Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {{'Sales Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
         </div>
       </div>

@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form [formGroup]="insectForm">
+                    <form  [formGroup]="insectForm">
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -33,32 +33,33 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Picture of Fertilizer packets' | translate}}<span class="required">*</span></label>
-                                        <input type="file" id="input-first-name" FormControlName="file" (change)="upload($event.target.files)" class="form-control form-control-alternative">
+                                        <input type="file"  formControlName="file" (change)="upload($event.target.files)" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
+                                   
                                     <div class="form-group">
-                                        <label>{{'Quantity' | translate}}<span class="required">*</span></label>
-                                        <input type="text" id="input-first-name" FormControlName="quantity" class="form-control form-control-alternative">
+                                        <label>{{'Quantity' | translate}} <span class="required">*</span></label>
+                                        <input type="text" id="input-first-name" formControlName="quantity" class="form-control form-control-alternative">
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Name of Manufacturer' | translate}}</label>
-                                        <input type="text" id="input-first-name" FormControlName="manufacturer_name" class="form-control form-control-alternative">
+                                        <label>{{'Name of Manufacturer' | translate}} <span class="required">*</span></label>
+                                        <input type="text" id="input-first-name" formControlName="manufacturer_name" class="form-control form-control-alternative">
                                     </div>
                                 </div> 
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'CIB & RC Number' | translate}}</label>
-                                        <input type="text" id="input-first-name" FormControlName="cib_rc_number" class="form-control form-control-alternative">
+                                        <input type="text" formControlName="cib_rc_number" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'CIB & RC Issue Date' | translate}}</label>
-                                        <input type="date" id="input-first-name" FormControlName="cib_rc_issuedate" class="form-control form-control-alternative">
+                                        <input type="date"  formControlName="cib_rc_issuedate" class="form-control form-control-alternative">
                                     </div>
                                 </div>
                             </div>

@@ -17,6 +17,18 @@ export class ChcFmbService {
     this._url = environment.baseUrl;
   }
 
+  getDashboardData(id) {
+    return this.http.get<any>(this._url + `chcFmbDashboard/barChart/`+id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  getIndentDetails(id) {
+    return this.http.get<any>(this._url + `chcFmbDashboard/indent/`+id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   addCHCComplaint(complaint: any, data: any) {
     return this.http.post<any>(this._url + 'fpocomplaint/chcfmb', data).pipe(map((res: any) => {
       return res;

@@ -3,7 +3,6 @@ import { Routes } from '@angular/router';
 import { FpoDashboardComponent } from '../../pages/fpo/dashboard/dashboard.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 
-
 import { BoardMembersComponent } from '../../pages/fpo/board-members/board-members.component';
 import { LicenseComponent } from '../../pages/fpo/license/license.component';
 import { MachinaryBankComponent } from '../../pages/fpo/machinary-bank/machinary-bank.component';
@@ -56,6 +55,8 @@ import { FarmerDashboardComponent } from '../../pages/farmer/farmer-dashboard/fa
 import { WarehouseComponent } from 'src/app/pages/department/warehouse/warehouse.component';
 import { MyFpoComponent } from 'src/app/pages/farmer/my-fpo/my-fpo.component';
 import { SupplierDashboardComponent } from 'src/app/pages/Input-Supplier/supplier-dashboard/supplier-dashboard.component';
+import { ChhfmbDashboardComponent } from '../../pages/CHC/chhfmb-dashboard/chhfmb-dashboard.component';
+import { BuyerDashboardComponent } from '../../pages/buyer-treder/buyer-dashboard/buyer-dashboard.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: FpoDashboardComponent },
@@ -114,7 +115,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'deptCHC/complaints', component: DepartmentAllComplaintsComponent },
   { path: 'fpoUser/fpoUser', component: FPOAllUserComponent },
   { path: 'farmer/dashboard', component:FarmerDashboardComponent},
-  { path: 'input-supplier/dashboard', component:SupplierDashboardComponent}
-
+  { path: 'input-supplier/dashboard', component:SupplierDashboardComponent},
+  { path: 'chcfmb/dashboard', component: ChhfmbDashboardComponent},
+  { path: 'buyer/dashboard', component: BuyerDashboardComponent}
 ];
 

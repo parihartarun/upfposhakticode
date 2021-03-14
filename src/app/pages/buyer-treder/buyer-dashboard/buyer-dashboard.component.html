@@ -1,0 +1,99 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8 ">
+    <div class="container-fluid"> 
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row mb-2">
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-3 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{"Total FPO's" | translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{totals.fpos | number}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-3 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{'Active Indents' | translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{totals.activeIndents | number}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-3 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{'Fulfilled Indents' | translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{totals.fulfilledIndents | number}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-6">
+            <div class="card card-stats mb-3 mb-xl-0">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{'Cancelled Indents' | translate}}</h5>
+                    <span class="h2 font-weight-bold mb-0">{{totals.cancelIndents | number}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <br>
+
+  <div class="container-fluid mt--7 mb-7 dashboard">
+
+    <div class="card shadow mb-4" *ngIf="totalIndents">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12" *ngFor="let row of totalIndents">
+            <div class="row px-5 mb-2">
+              <strong> {{row.title}}</strong>
+            </div>
+            <div class="row mb-4" style="border-bottom: solid;">
+              <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'Indents'" [yAxisLabel]="'No. of Indents'"
+                [legendTitle]="legendTitle" [legendPosition]="'below'">
+              </ngx-charts-bar-vertical-2d>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow mb-4" *ngIf="cropIndents">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12" *ngFor="let row of cropIndents">
+            <div class="row px-5 mb-2">
+              <strong> {{row.title}}</strong>
+            </div>
+            <div class="row mb-4" style="border-bottom: solid;">
+              <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'Crops'" [yAxisLabel]="'No. of Indents'"
+                [legendTitle]="legendTitle" [legendPosition]="'below'">
+              </ngx-charts-bar-vertical-2d>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

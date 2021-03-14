@@ -35,7 +35,7 @@ export class DepartmentGuidelineComponent implements OnInit {
     this.guidelineForm = this.formBuilder.group({
       file: [''],
       h_file: [''],
-      description: ['', [Validators.required]],
+      description: [''],
       hindi_desc: [''],
       url: [''],
       guideline_type: ['', [Validators.required]],
@@ -107,6 +107,7 @@ export class DepartmentGuidelineComponent implements OnInit {
       formData.append('description', this.guidelineForm.value.description);
       formData.append('guideline_type', this.guidelineForm.value.guideline_type);
       formData.append('url', this.guidelineForm.value.url);
+      console.log(formData);
       this.departmentService.addGuideline(formData);
       this.guidelineForm.reset();
     }

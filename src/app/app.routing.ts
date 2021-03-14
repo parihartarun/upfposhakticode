@@ -34,7 +34,7 @@ const routes: Routes = [
       }
     ],
     canActivate: [AuthGuardService],
-    canDeactivate: [CanDeactivateGuard]
+    //canDeactivate: [CanDeactivateGuard]
   }, {
     path: '',
     component: AuthLayoutComponent,

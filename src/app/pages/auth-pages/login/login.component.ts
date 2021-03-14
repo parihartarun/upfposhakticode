@@ -20,13 +20,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._activeRoute.params.subscribe(param => {
-      console.log('params',param);
-      
-      sessionStorage.removeItem('accessToken');
-      localStorage.removeItem('username');
-      localStorage.removeItem('userrole');
-    });
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -61,11 +54,11 @@ export class LoginComponent implements OnInit {
         } else if (this.userRole == 'ROLE_FARMER') {
           this.route.navigate(['/farmer/dashboard']);
         } else if (this.userRole == 'ROLE_BUYERSELLER') {
-          this.route.navigate(['/indent_history']);
+          this.route.navigate(['/buyer/dashboard']);
         } else if(this.userRole == 'ROLE_INPUTSUPPLIER'){
           this.route.navigate(['/input-supplier/dashboard']);
-        }else{
-          this.route.navigate(['/fpo/dashboard']);
+        }else if(this.userRole == 'ROLE_CHCFMB'){
+          this.route.navigate(['/chcfmb/dashboard']);
         }
       }
     },
