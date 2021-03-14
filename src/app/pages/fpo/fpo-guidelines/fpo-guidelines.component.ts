@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './fpo-guidelines.component.html',
   styleUrls: ['./fpo-guidelines.component.css']
 })
-export class FpoGuidelinesComponent implements OnInit {
+export class FpoGuidelinesComponent implements OnInit,OnChanges {
 
   fpoGuideLines: any = [];
   p: number = 1;
@@ -22,12 +22,14 @@ export class FpoGuidelinesComponent implements OnInit {
   username = '';
   searchText = '';
   orderBy: { order: string, key: string } = { order: '', key: '' };
+  fpohindi: any;
+  Englishlang :boolean = true;
 
   constructor(private formBuilder: FormBuilder, private api: FpoService, public translate: TranslateService) {
     this.baseUrl = environment.baseUrl;
-    if(localStorage.getItem('language')){
+    if (localStorage.getItem('language')) {
       translate.setDefaultLang(localStorage.getItem('language'));
-    }else{
+    } else {
       translate.setDefaultLang('hi');
       localStorage.setItem('language', 'hi');
     }
@@ -40,14 +42,29 @@ export class FpoGuidelinesComponent implements OnInit {
       this.username = localStorage.getItem('username');
     }
     this.fpoGuideLineFrom = this.formBuilder.group({
-      isPostRegistration: ['isPerRegistration']     
-     
+      isPostRegistration: ['isPerRegistration']
+
     });
     this.api.getFPOGuideLinePreRegistration().subscribe(fg => {
-      this.fpoGuideLines=fg
+      // if (localStorage.getItem('language') == 'hi') {
+        this.fpoGuideLines = fg
+        console.log(localStorage.getItem('language'));
+         if (localStorage.getItem('language') == 'hi') {
+           this.Englishlang = false;
+         }
+      //   this.fpohindi = fg[0].hindiDescription
+      // }
+      // else{
+      //   this.fpoGuideLines = fg[0].description
+      // }
+      // // this.fpoGuideLines=fg
     })
+}
 
-  }
+ngOnChanges(){
+  console.log(localStorage.getItem('language'));
+}
+
   useLanguage(language: string) {
     localStorage.setItem('language', language);
     this.translate.use(language);
@@ -70,8 +87,8 @@ export class FpoGuidelinesComponent implements OnInit {
         this.fpoGuideLines = fg
       })
     }
-    
-   
+
+
   }
   onClickOrderBy(key: any) {
     this.orderBy = {
