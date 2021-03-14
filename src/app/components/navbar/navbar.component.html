@@ -17,7 +17,7 @@
             </div>
           </div>
         </a>
-        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+        <div class="dropdown-menu-right" ngbDropdownMenu>
           <div class=" dropdown-header noti-title">
             <h6 class="text-overflow m-0">Welcome!</h6>
           </div>
@@ -39,6 +39,11 @@
           </a>
 
           <a *ngIf="userRole == 'ROLE_INPUTSUPPLIER'" routerLinkActive="active" [routerLink]="['/user-profile']"
+            class="dropdown-item">
+            <i class="ni ni-single-02"></i>
+            <span>My profile</span>
+          </a>
+          <a *ngIf="userRole == 'ROLE_CHCFMB'" href="#"
             class="dropdown-item">
             <i class="ni ni-single-02"></i>
             <span>My profile</span>

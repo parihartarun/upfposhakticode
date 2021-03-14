@@ -35,7 +35,7 @@ export class PhotographsComponent implements OnInit {
   ngOnInit(): void {
     this.photographForm = this.formBuilder.group({
       description: ['', [Validators.required]],
-      file: ['', [Validators.required, requiredFileType('png,jpg,jpeg')]],
+      file: ['', [Validators.required]],
       id:[''],
       fpo_id:localStorage.getItem('masterId')
     });
