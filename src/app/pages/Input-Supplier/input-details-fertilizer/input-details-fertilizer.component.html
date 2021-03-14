@@ -33,8 +33,8 @@
                                     <div class="form-group" *ngIf="fertitype == '1'">
                                         <label>{{'Chemical Fertilizer' | translate}} <span class="required">*</span></label>
                                         <select class="form-control" formControlName="name_id" (change)="selectedtype($event.target.value)">
-                                               <option value="">{{'Select Type' | translate}}</option>
-                                            <option *ngFor="let fertisub of subtype" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
+                                            <option value="">{{'Select Type' | translate}}</option>
+                                            <option *ngFor="let fertisub of subtypes" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
                                             </option>
                                         </select>
                                     </div>
@@ -43,7 +43,7 @@
                                         <label>{{'Bio Fertilizer' | translate}}<span class="required">*</span></label>
                                         <select class="form-control" formControlName="name_id" (change)="selectedtype($event.target.value)">
                                             <option value="">{{'Select Type' | translate}}</option>
-                                            <option *ngFor="let fertisub of subtype" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
+                                            <option *ngFor="let fertisub of subtypes" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
                                             </option>
                                         </select>
                                     </div>
@@ -52,7 +52,7 @@
                                         <label>{{'Organic' | translate}}<span class="required">*</span></label>
                                         <select class="form-control" formControlName="name_id" (change)="selected($event.traget.value)">
                                             <option value="">{{'Select Type' | translate}}</option>
-                                            <option *ngFor="let fertisub of subtype" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
+                                            <option *ngFor="let fertisub of subtypes" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
                                             </option>
                                         </select>
                                     </div>
