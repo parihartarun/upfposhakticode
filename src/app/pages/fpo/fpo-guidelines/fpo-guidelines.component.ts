@@ -33,6 +33,11 @@ export class FpoGuidelinesComponent implements OnInit,OnChanges {
       translate.setDefaultLang('hi');
       localStorage.setItem('language', 'hi');
     }
+
+    console.log(localStorage.getItem('language'));
+    if (localStorage.getItem('language') == 'hi') {
+      this.Englishlang = false;
+    }
   }
 
 
@@ -46,18 +51,7 @@ export class FpoGuidelinesComponent implements OnInit,OnChanges {
 
     });
     this.api.getFPOGuideLinePreRegistration().subscribe(fg => {
-      // if (localStorage.getItem('language') == 'hi') {
         this.fpoGuideLines = fg
-        console.log(localStorage.getItem('language'));
-         if (localStorage.getItem('language') == 'hi') {
-           this.Englishlang = false;
-         }
-      //   this.fpohindi = fg[0].hindiDescription
-      // }
-      // else{
-      //   this.fpoGuideLines = fg[0].description
-      // }
-      // // this.fpoGuideLines=fg
     })
 }
 
