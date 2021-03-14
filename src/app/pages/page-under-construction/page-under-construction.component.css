@@ -1,0 +1,17 @@
+.page-header{
+    font-size: 50px;
+}
+
+.page-under-const-body{
+    font: 20px Helvetica, sans-serif; color: #333;
+    background-color: #fff;
+    text-align: center; 
+    padding: 150px;
+}
+
+.page-under-const-article{
+    display: block; 
+    text-align: left;
+     width: 650px; 
+     margin: 0 auto;
+}

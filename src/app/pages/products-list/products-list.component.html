@@ -51,10 +51,11 @@
           <div class="dropdown d-inline searchDropDown">
             <select class="btn d-inline btn-default search-btn dropdown-toggle" id="searchin" name="Searchin"
               [(ngModel)]="filterParams.in" style="width: 100%;border-right: solid;border-radius: 0;">
-              <!-- <option value="any">{{'Any' | translate }}</option> -->
               <option value="crop">{{'Crop' | translate }}</option>
-              <option value="inputsupplier">{{'inputsupplier' | translate }}</option>
+              <option value="insecticides">{{'Insecticides' | translate }}</option>
+              <option value="seeds">{{'Seeds' | translate }}</option>
               <option value="fmb">{{'machinery' | translate }}</option>
+              <option value="fertilizers">{{'Fertilizers' | translate }}</option>
               <!-- <option value="district">{{'District1' | translate }}</option> -->
               <!-- <option value="fpo_name">{{'FPO' | translate }}</option> -->
               <!-- <option value="services">{{'Services/ Products' | translate }}</option> -->
@@ -65,7 +66,7 @@
 
           <button class="btn d-inline btn-block btn-product-search active search-btn" role="button"
             (click)="fetchnewData();" aria-pressed="true" style="border-radius: 0;"
-            [disabled]="dummysearchval.length==0">{{'Search' |
+            [disabled]="dummysearchval.length==filterParams.val.length">{{'Search' |
             translate }}</button>
         </div>
       </div>
@@ -141,7 +142,7 @@
                     </ngx-slider-->
                     <ngx-slider [(value)]="filterParams.qtymin"  [options]="options" (userChangeEnd)="quantityFilter()">
                     </ngx-slider>
-                    {{filterParams.qtymin}}
+                   
                   </div>
                   <!-- <div class="form-group row mb-3 d-none">
                     <div class="col-6">
@@ -250,14 +251,14 @@
           </article-->
           <article class="card-group-item my-2" *ngIf="machinetypes?.length">
             <header class="">
-              <h3 class="title">{{'Machinery' | translate }}</h3>
+              <h3 class="title">{{'Machinary' | translate }}</h3>
             </header>
             <div class="filter-content">
               <div class="filterDistrict">
                 <form>
                   <label class="form-check" *ngFor="let machinetype of machinetypes">
                     <input class="form-check-input" type="checkbox" [value]="machinetype.name" [name]="machinetype.name"
-                      [(ngModel)]="machinetype.is_active" (change)="selectMachineType(machineType)">
+                      [(ngModel)]="machinetype.is_active" (change)="selectMachineType(machinetype)">
                     <span class="form-check-label">
                       {{machinetype.name}}
                     </span>
@@ -266,6 +267,27 @@
               </div> <!-- card-body.// -->
             </div>
           </article> 
+
+          <article class="card-group-item my-2" *ngIf="brands?.length">
+            <header class="">
+              <h3 class="title">{{'Company / Brand' | translate }}</h3>
+            </header>
+            <div class="filter-content">
+              <div class="filterDistrict">
+                <form>
+                  <label class="form-check" *ngFor="let brand of brands">
+                    <input class="form-check-input" type="checkbox" [value]="brand.name" [name]="brand.name"
+                      [(ngModel)]="brand.is_active" (change)="selectBrand(brand)">
+                    <span class="form-check-label">
+                      {{brand.name}}
+                    </span>
+                  </label> <!-- form-check.// -->
+                </form>
+              </div> <!-- card-body.// -->
+            </div>
+          </article> 
+
+          
         </div>
         <!--End of Machinery-->
       </div>
@@ -337,10 +359,10 @@
             <!---End of Crops-->
             <!--Start of Machinery-->
             <div class="card card-stats box_shadow card_2" *ngIf="product.hasOwnProperty('vendorid')">
-              <div class="changetopoint"routerLink="/">
+              <div class="changetopoint" routerLink="/maintenance">
                 <h1>{{product.vendorname}}</h1>
               </div>
-              <div class="row" routerLink="/">
+              <div class="row" >
                 <div class="col-lg-4 col-sm-4">
                   <div class="gray_color1 d-flex justify-content-center">
                     <img [src]="product.imagepath">

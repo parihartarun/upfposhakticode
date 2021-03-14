@@ -11,12 +11,13 @@ import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.compone
 import { FpoGuidelinesComponent } from '../../pages/fpo/fpo-guidelines/fpo-guidelines.component';
 import { SchemasComponent } from 'src/app/pages/schemas/schemas.component';
 import { ForgotPasswordComponent } from 'src/app/pages/auth-pages/forgot-password/forgot-password.component';
+import {PageUnderConstructionComponent} from 'src/app/pages/page-under-construction/page-under-construction.component';
 
 export const AuthLayoutRoutes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'fpo-details/:id', component: FpoDetailsComponent },
-
+  { path: 'maintenance',component: PageUnderConstructionComponent},
   { path: 'register', component: RegisterComponent },
   //{ path: 'home', component: HomeDummyComponent },
   { path: 'products/:val/:searchType', component: ProductsListComponent },
