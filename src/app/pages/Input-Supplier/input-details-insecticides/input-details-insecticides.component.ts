@@ -93,12 +93,12 @@ export class InputDetailsInsecticidesComponent implements OnInit {
 
 
   editinsect(data) {
-    this.insectForm.get('insecticide_type_id').patchValue(data.insecticide_type_id);
+    this.insectForm.get('insecticide_type_id').patchValue(data.type_id);
     this.insectForm.get('file').patchValue(data.file);
     this.insectForm.get('manufacturer_name').patchValue(data.manufacturer_name);
     this.insectForm.get('cib_rc_issuedate').patchValue(data.cib_rc_issuedate);
     this.insectForm.get('quantity').patchValue(data.quantity);
-    this.insectForm.get('cib_rc_number').patchValue(data.cib_rc_number);
+    this.insectForm.get('cib_rc_number').patchValue(data.cib_rc_no);
     this.id = data.id;
     console.log(data);  
     this.isEdit = true;

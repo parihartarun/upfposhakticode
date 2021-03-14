@@ -125,11 +125,9 @@ export class InputDetailsFertilizerComponent implements OnInit {
     this.fertilizerForm.get('file').patchValue(data.file);
     this.fertilizerForm.get('type_id').patchValue(data.type_id);
     this.fertilizerForm.get('name_id').patchValue(data.name_id);
-    // this.fertilizerForm.get('manufacturer_name').patchValue(data.manufacturer_name);
-    // this.fertilizerForm.get('type_id').patchValue(data.fertilizer_type);
-    // this.fertilizerForm.get('fertilizerType').patchValue(data.type_id);
-    this.fertilizerForm.get('name_id').patchValue(data.fertilizer_name);
-    this.id = data.id;
+    this.fertilizerForm.get('manufacturer_name').patchValue(data.manufacturer_name);
+
+     this.id = data.id;
     console.log(data);
     this.isEdit = true;
   }

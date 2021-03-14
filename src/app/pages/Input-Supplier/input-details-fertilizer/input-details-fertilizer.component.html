@@ -33,16 +33,7 @@
                                     <div class="form-group" *ngIf="fertitype == '1'">
                                         <label>{{'Chemical Fertilizer' | translate}} <span class="required">*</span></label>
                                         <select class="form-control" formControlName="name_id" (change)="selectedtype($event.target.value)">
-                                            <!-- <option>{{'Urea' | translate}}</option>
-                                            <option>{{'DAP' | translate}}</option>
-                                            <option>{{'NPK' | translate}}</option>
-                                            <option>{{'MOP' | translate}}</option>
-                                            <option>{{'Fortified' | translate}}</option>
-                                            <option>{{'zinc' | translate}}</option>
-                                            <option>{{'Micro Nutrient Mixture' | translate}}</option>
-                                            <option>{{'Sulphur' | translate}}</option>
-                                            <option value="other">{{'Other' | translate}}</option> -->
-                                            <option value="">{{'Select Type' | translate}}</option>
+                                               <option value="">{{'Select Type' | translate}}</option>
                                             <option *ngFor="let fertisub of subtype" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
                                             </option>
                                         </select>
@@ -51,12 +42,6 @@
                                     <div class="form-group" *ngIf="fertitype == '2'">
                                         <label>{{'Bio Fertilizer' | translate}}<span class="required">*</span></label>
                                         <select class="form-control" formControlName="name_id" (change)="selectedtype($event.target.value)">
-                                            <!-- <option>{{'Rhizobium' | translate}}</option>
-                                            <option>{{'Culture' | translate}}</option>
-                                            <option>{{'PSB' | translate}}</option>
-                                            <option>{{'BGA' | translate}}</option>
-                                            <option>{{'Azotobacter' | translate}}</option>
-                                            <option value="other">{{'Other' | translate}}</option> -->
                                             <option value="">{{'Select Type' | translate}}</option>
                                             <option *ngFor="let fertisub of subtype" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
                                             </option>
@@ -66,12 +51,6 @@
                                     <div class="form-group" *ngIf="fertitype == '3'">
                                         <label>{{'Organic' | translate}}<span class="required">*</span></label>
                                         <select class="form-control" formControlName="name_id" (change)="selected($event.traget.value)">
-                                            <!-- <option>{{'Vermi Compost' | translate}}</option>
-                                            <option>{{'Nadep Compost' | translate}}</option>
-                                            <option>{{'City Compost' | translate}}</option>
-                                            <option>{{'Jiva Mrit' | translate}}</option>
-                                            <option>{{'Ghan Jiva Mrit' | translate}}</option>
-                                            <option value="other">{{'Other' | translate}}</option> -->
                                             <option value="">{{'Select Type' | translate}}</option>
                                             <option *ngFor="let fertisub of subtype" [value]="fertisub.fertilizerTypeId">{{fertisub.fertilizerName}}
                                             </option>
