@@ -14,6 +14,9 @@ export class FpoSearchService {
   cropsObserver: Subject<any> = new Subject();
   filteredObserver: BehaviorSubject<any> = new BehaviorSubject([]);
 
+  brandsObserver: BehaviorSubject<any> = new BehaviorSubject([]);
+  machineryTypesObserver: BehaviorSubject<any> = new BehaviorSubject([]);
+
   constructor(private http: HttpClient) {
     this._url = environment.baseUrl;
   }
@@ -28,18 +31,31 @@ export class FpoSearchService {
     })
   }
   getDistrict(keyword, type) {
-    this.http.get<any>(this._url + `api/search/filters/districts?in=${type}&val=${keyword}`).subscribe((res: any) => {
+    this.http.get<any>(this._url + `api/search/v2/filters/districts?in=${type}&val=${keyword}`).subscribe((res: any) => {
       this.districtObserver.next(res);
     })
   }
   getFpo(keyword, type) {
-    this.http.get<any>(this._url + `api/search/filters/fpos?in=${type}&val=${keyword}`).subscribe((res: any) => {
+    this.http.get<any>(this._url + `api/search/v2/filters/fpos?in=${type}&val=${keyword}`).subscribe((res: any) => {
       this.fpoObserver.next(res);
     })
   }
   getCrops(keyword, type) {
-    this.http.get<any>(this._url + `api/search/filters/crops?in=${type}&val=${keyword}`).subscribe((res: any) => {
+    this.http.get<any>(this._url + `api/search/v2/filters/crops?in=${type}&val=${keyword}`).subscribe((res: any) => {
       this.cropsObserver.next(res);
     })
   }
+
+  getMachineryTypes(keyword,type){
+    this.http.get<any>(this._url + `api/search/v2/filters/machinerytypes?in=${type}&val=${keyword}`).subscribe((res: any) => {
+      this.machineryTypesObserver.next(res);
+    })
+  }  
+
+  getBrands(keyword,type){
+    this.http.get<any>(this._url + `api/search/v2/filters/brands?in=${type}&val=${keyword}`).subscribe((res: any) => {
+      this.brandsObserver.next(res);
+    })
+  }
+
 }
