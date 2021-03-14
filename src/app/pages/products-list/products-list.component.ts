@@ -20,6 +20,7 @@ import { LabelType, Options } from '@angular-slider/ngx-slider';
 export class ProductsListComponent implements AfterViewInit, OnInit {
   isLoggeIn = false;
   currentfpoid: number;
+  showFilter: any;
   submitted = false;
   title = 'appBootstrap';
   loading: boolean = false;
@@ -32,6 +33,9 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   selectedquantitis: Array<number> = [];
   p: number = 1;
   districts: any = [];
+  masterIdentity:any;
+  brands: any=[];
+  machinetypes:any =[];
   isDistrict: false;
   searchCriteria: Array<any> = [];
   fpoDetail: any
@@ -47,6 +51,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   topsearchval: string;
   items2: any;
   indentType: any = '';
+  selectedDropdown:string = '';
   // constructor(private modalService: NgbModal, private _rouetr:Router, private _productService: ProductService, private _activatedroute: ActivatedRoute, private api: AuthService) { }
 
 
@@ -64,11 +69,33 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   currentitem: any;
   indentid: string = "";
   fpolist: any;
+  filterParams = {
+    in: '',
+    val: '',
+    fpoIds: [],
+    cropIds: [],
+    cropverietyIds:[],
+    districtIds:[],
+    inputSuppliersCategories:[],
+    inputSupplierIds:[],
+	  fertilizerTypeIds:[],
+	  brands:[],
+	  machineryTypes:[],
+    qtymin: null,
+    qtymax: null,
+    maxRentPerHour:null,
+    minRentPerHour:null,
+    limit: 5,
+    page: 1
+  };
+
+
+
+
   options: Options = {
     floor: 0,
-    ceil: 201,
+    ceil:  201,
     hideLimitLabels: true,
-
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
@@ -82,6 +109,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   };
 
   onSelectedChange(event) {
+    this.filterParams.cropverietyIds = [];
+      this.filterParams.cropIds = [];
     if (!!event.length) {
       event.filter(el => {
         if (!!el.id) {
@@ -113,22 +142,15 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   fpoObserver = this.fpoSearchService.fpoObserver.asObservable();
   cropsObserver = this.fpoSearchService.cropsObserver.asObservable();
   filteredObserver = this.fpoSearchService.filteredObserver.asObservable();
+
+  brandsObserver = this.fpoSearchService.brandsObserver.asObservable();
+  machineryTypesObserver = this.fpoSearchService.machineryTypesObserver.asObservable();
+
+
   filteredData = [];
   node: any;
   treeView: any = [];
-  filterParams = {
-    in: '',
-    val: '',
-    page: 1,
-    limit: 5,
-    qtymin: null,
-    qtymax: null,
-    cropverietyIds: [],
-    districtIds: [],
-    fpoIds: [],
-    quantity: [],
-    cropIds: []
-  };
+
   totalCount: any;
   constructor(private modalService: NgbModal,
     public fpoSearchService: FpoSearchService, private _rouetr: Router, private _productService: ProductService, private _activatedroute: ActivatedRoute,
@@ -136,27 +158,44 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
 
   ngOnInit() {
-
+   // this.selectedDropdown = this.filterParams.in;
+    //this.showFilter = this.filterParams.in;
     this._activatedroute.params.subscribe(param => {
       if (param) {
         this.parval = param.val;
         this.parsearchType = param.searchType;
         this.filterParams.val = param.val;
         this.filterParams.in = param.searchType;
+        this.selectedDropdown = param.searchType;
         this.dummysearchval = param.val;
         this.fpoSearchService.getDistrict(this.parval, this.parsearchType);
         this.fpoSearchService.getFpo(this.parval, this.parsearchType);
         this.fpoSearchService.getCrops(this.parval, this.parsearchType);
+        this.fpoSearchService.getMachineryTypes(this.parval, this.parsearchType);
+        this.fpoSearchService.getBrands(this.parval,this.parsearchType);
          this.searchData();
       }
     });
     this.districtObserver.subscribe(data => {
       this.districts = data;
     });
+
+    this.brandsObserver.subscribe(data =>{
+      this.brands = data;
+      this.brands = this.brands.map((str,index)=>({ id: index+1,name:str}));
+      console.log('brands ==>',this.brands);
+    });
+
+    this.machineryTypesObserver.subscribe(data=>{
+       this.machinetypes = data;
+       console.log("machineTypes==>",this.machinetypes);
+    })
+
     this.fpoObserver.subscribe(data => {
       this.fpolist = data;
 
     });
+    this.fpoObserver.subscribe()
     this.filteredObserver.subscribe(data => {
       if (data) {
         this.filteredData = data.page;
@@ -197,14 +236,20 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   }
   searchData() {
     this.fpoSearchService.searchData(this.filterParams);
+    console.log(this.filterParams);
   }
   fetchnewData() {
+    this.selectedDropdown = this.filterParams.in;
     this.searchData();
     this._rouetr.navigate(['/products', this.filterParams.val, this.filterParams.in]);
   }
   ngAfterViewInit(): void {
+    
     this.treeloaded = false;
   }
+  // ngDoCheck() {
+  //   this.showFilter = this.filterParams.in;
+  // }
   openTestModal(content) {
     this.modalService.open(content)
   }
@@ -323,6 +368,26 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.searchData();
   }
 
+  selectMachineType(machineType: any) {
+    if (machineType.is_active) {
+      console.log(machineType);
+      //this.filterParams.machineryTypes
+      this.filterParams.machineryTypes.push(machineType.id);
+    } else {
+      this.filterParams.machineryTypes.splice(this.filterParams.machineryTypes.indexOf(machineType.id), 1);
+    }
+    this.searchData();
+  }
+
+  selectBrand(brand: any){
+    if (brand.is_active) {
+      this.filterParams.brands.push(brand.name);
+    } else {
+      this.filterParams.brands.splice(this.filterParams.brands.indexOf(brand.name), 1);
+    }
+    this.searchData();
+  }
+
   selectFpo(fpo: any) {
     if (fpo.is_active) {
       this.filterParams.fpoIds.push(fpo.id);
@@ -350,13 +415,15 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     return new Date();
   }
   quantityFilter() {
+   // this.filterParams.qtymin = this.
     this.searchData();
   }
   createIndentForm(item) {
-
+    console.log("this.fpoDetail.userFp",this.fpoDetail.userFpo?.userId);
+    this.masterIdentity = localStorage.getItem('masterId');
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
-      cropVeriety: [item.cropVeriety],
+      cropVeriety: [item.varietyid],
       cropId: [item.cropid],
       fpoDeliveryAddress: ["", Validators.required],
       userId: [this.fpoDetail.userFpo?.userId, Validators.required],
@@ -364,7 +431,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       fpoEmail: [this.fpoDetail.fpoEmail],  //^[0+-]?([1-9]*\\.)?\\d+$
       fulfillmentDate: ["", [Validators.required]],//^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$
       quantity: [, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
-
+      createdBy:[this.masterIdentity],
+      masterId: [this.masterIdentity]
 
     })
   }
@@ -377,6 +445,9 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     //   element.selected = false;
     // })
     this.districts.forEach(element => {
+      element.is_active = false;
+    })
+    this.machinetypes.foreach(element => {
       element.is_active = false;
     })
     this.fpolist.forEach(element => {

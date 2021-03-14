@@ -32,7 +32,7 @@ export class IndentComponent implements OnInit {
     
     this.indentForm = this.fb.group({
       status: [undefined,Validators.required],
-      quantity:[undefined,[Validators.required,Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$')]],
+      soldQuantity:[undefined,[Validators.required,Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$')]],
       reason: [""],     
     })
 
