@@ -147,7 +147,6 @@
               <div class="panel-body">
                 <div class="row">
                   <div class="col-xs-12 newsBox">
-                    <marquee direction="up" height="100%">
                       <ul class="demo1 marquee ">
                         <div class="marquee-content">
                           <li *ngFor="let c of circluar let i=index" class="news-item {{getClass(i+1)}}">
@@ -156,8 +155,13 @@
                                 <tr>
                                   <td><img src="assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
                                   <td class="news-td">
-                                    <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf"
+                                    <!-- <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf"
                                       class="text-left text-danger" target="_blank">
+                                      {{c.description }}
+  
+                                    </a> -->
+                                      <a href="#"
+                                      class="text-left text-danger">
                                       {{c.description }}
   
                                     </a>
@@ -170,9 +174,8 @@
                           </li>
                         </div>
                       </ul>
-                  </marquee>
                     <div class="text-right Viewall">
-                      <small style="color:black"><a href="/#">{{'View all' | translate}}</a>&nbsp;</small>
+                      <small style="color:black"><a href="#">{{'View all' | translate}}</a>&nbsp;</small>
                     </div>
                   </div>
 

@@ -243,11 +243,11 @@ export class FpoDashboardComponent implements OnInit {
       },
       {
         title: `Total Sales Production in Zayad (in Qt.)`,
-        data: kharifData2
+        data:zayadData2
       },
       {
         title: `Total Sales Production in Kharif (in Qt.)`,
-        data:zayadData2
+        data:kharifData2
       }
     ];
   }

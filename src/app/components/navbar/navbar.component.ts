@@ -103,8 +103,5 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('username');
     localStorage.removeItem('userrole');
     this.router.navigate(['/login']);
-    setTimeout(()=>{     
-      location.reload();
-    }, 1000);
   }
 }
