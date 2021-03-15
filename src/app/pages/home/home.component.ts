@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   private items = [];
   private isNearBottom = true;
 
-  searchValue: string = ' ';
+  searchValue: string = '';
   searchType: any = 'crop';
   data = { searchValue: this.searchValue, searchType: this.searchType }
   isOpen = false;
