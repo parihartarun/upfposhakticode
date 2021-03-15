@@ -66,7 +66,7 @@
 
           <button class="btn d-inline btn-block btn-product-search active search-btn" role="button"
             (click)="fetchnewData();" aria-pressed="true" style="border-radius: 0;"
-            [disabled]="dummysearchval.length==filterParams.val.length">{{'Search' |
+            [disabled]="filterParams.val.length===0">{{'Search' |
             translate }}</button>
         </div>
       </div>

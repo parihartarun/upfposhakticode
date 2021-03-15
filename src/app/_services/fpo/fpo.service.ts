@@ -490,12 +490,12 @@ export class FpoService {
     }));
   }
   getFPOGuideLinePreRegistration() {
-    return this.http.get<any>(this._url + 'fpoguidelines/PREREGISTRATION').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'fpoguidelines/PREREGISTRATION/'+ localStorage.getItem('language')).pipe(map((res: any) => {
       return res;
     }));
   }
   getFPOGuideLinePostRegistration() {
-    return this.http.get<any>(this._url + 'fpoguidelines/POSTREGISTRATION').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'fpoguidelines/POSTREGISTRATION/'+localStorage.getItem('language')).pipe(map((res: any) => {
       return res;
     }));
   }

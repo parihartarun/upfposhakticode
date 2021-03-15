@@ -100,8 +100,11 @@ export class NavbarComponent implements OnInit {
   }
   logout() {
     sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('tokenType');
     localStorage.removeItem('username');
     localStorage.removeItem('userrole');
+    localStorage.removeItem('masterId');
+    localStorage.removeItem('userId');
     this.router.navigate(['/login']);
   }
 }

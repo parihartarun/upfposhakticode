@@ -290,6 +290,7 @@ export class LandDetailsComponent implements OnInit {
     this.getFarmerDetailFarmerformUpPardarshi(registrationNumber.upBSMId);
   }
   fetchDetail(farmer) {
+    console.log(farmer);
     //let registrationNumber = this.landDetailForm.controls['registrationNumber'];
     //this.getFarmerDetailFarmerformUpPardarshi(registrationNumber);
   }
