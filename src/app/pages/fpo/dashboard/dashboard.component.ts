@@ -53,7 +53,7 @@ export class FpoDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.chartOption = 'surplus';
     this.getFinancialYears();
-    this.getDashboardDetails('2021-2020');
+    this.getDashboardDetails('2020-2021');
   }
 
   getFinancialYears(){
@@ -243,11 +243,11 @@ export class FpoDashboardComponent implements OnInit {
       },
       {
         title: `Total Sales Production in Zayad (in Qt.)`,
-        data: kharifData2
+        data:zayadData2
       },
       {
         title: `Total Sales Production in Kharif (in Qt.)`,
-        data:zayadData2
+        data:kharifData2
       }
     ];
   }

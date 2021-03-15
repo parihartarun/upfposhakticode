@@ -1,5 +1,4 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { departmentROUTES, FPOROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -17,7 +16,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavbarComponent implements OnInit {
   public focus;
-  public listTitles: any[];
   public location: Location;
   changePasswordForm: FormGroup;
   isLoggeIn = false;
@@ -53,11 +51,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     console.log(localStorage.getItem('language'));
     this.userRole = localStorage.getItem('userRole');
-    if (this.userRole == 'ROLE_FPC') {
-      this.listTitles = FPOROUTES.filter(listTitle => listTitle);
-    } else {
-      this.listTitles = departmentROUTES.filter(listTitle => listTitle);
-    }
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
       this.username = localStorage.getItem('username');
@@ -100,21 +93,15 @@ export class NavbarComponent implements OnInit {
     if (titlee.charAt(0) === '#') {
       titlee = titlee.slice(1);
     }
-
-    for (var item = 0; item < this.listTitles.length; item++) {
-      if (this.listTitles[item].path === titlee) {
-        return this.listTitles[item].title;
-      }
-    }
     return 'Dashboard';
   }
   changePassword(content) {
     this.modalService.open(content)
   }
   logout() {
-    // sessionStorage.removeItem('accessToken');
-    // localStorage.removeItem('username');
-    // localStorage.removeItem('userrole');
+    sessionStorage.removeItem('accessToken');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userrole');
     this.router.navigate(['/login']);
   }
 }

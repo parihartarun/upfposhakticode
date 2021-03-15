@@ -61,7 +61,6 @@ export class InputDetailsSeedsComponent implements OnInit {
     })
   }
 
-
   selectcrops(e) {
     this.seedForm.controls['crop_id'].setValue(parseInt(e));
     this.fposervice.getCropVarietiesByCropId(e).subscribe(v => {
@@ -69,7 +68,6 @@ export class InputDetailsSeedsComponent implements OnInit {
       console.log(v, "variety");
     })
   }
-
 
   allseeds() {
     this.inputid = localStorage.getItem('masterId')
@@ -81,11 +79,6 @@ export class InputDetailsSeedsComponent implements OnInit {
 
   addseeds() {
     this.submitted = true;
-   
-    var splittedDateto = this.seedForm.value.valid_to.split('-')
-    var splittedDatefrom = this.seedForm.value.valid_from.split('-')
-
-
     let model = this.seedForm.value;
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
@@ -95,8 +88,6 @@ export class InputDetailsSeedsComponent implements OnInit {
     formData.append('quantity', this.seedForm.value.quantity);
     formData.append('valid_from', this.seedForm.value.valid_from);
     formData.append('valid_to', this.seedForm.value.valid_to);
-    // formData.append('valid_from', splittedDatefrom[2]+'-' + splittedDatefrom[1] + '-' + splittedDatefrom[0]);
-    // formData.append('valid_to', splittedDateto[2]+'-' + splittedDateto[1] + '-' + splittedDateto[0] );
     formData.append('variety_id', this.seedForm.value.variety_id);
     formData.append("input_supplier_id ", localStorage.getItem('masterId'))
     this.inputsupplierseedservice.addseed(formData).subscribe(response => {
@@ -113,17 +104,17 @@ export class InputDetailsSeedsComponent implements OnInit {
   }
 
   editseed(data) {
-    this.seedForm.get('certification_no').patchValue(data.certification_no);
     this.seedForm.get('file').patchValue(data.file);
-    this.seedForm.get('certification_no').patchValue(data.certification_no);
-    this.seedForm.get('company').patchValue(data.company);
+    this.seedForm.get('certification_no').patchValue(data.certification_number);
+    this.seedForm.get('company').patchValue(data.company_brand);
     this.seedForm.get('quantity').patchValue(data.quantity);
-   this.seedForm.get('crop_id'). patchValue(data.crop_id);
+   this.seedForm.get('crop_id'). patchValue(data.crop_Id);
    this.seedForm.get('quantity'). patchValue(data.quantity);
-   this.seedForm.get('valid_from'). patchValue(data.valid_from);
-   this.seedForm.get('valid_to'). patchValue(data.valid_to);
-   this.seedForm.get('variety_id'). patchValue(data.variety_id);
+   this.seedForm.get('valid_from'). patchValue(data.certification_valid_from);
+   this.seedForm.get('valid_to'). patchValue(data.certification_valid_to);
+   this.seedForm.get('variety_id'). patchValue(data.veriety_id);
     this.id = data.id;
+    console.log(data);
     this.isEdit = true;
   }
 

@@ -58,85 +58,42 @@
   <br>
 
   <div class="container-fluid mt--7 mb-7 dashboard">
-    <div class="row">
-      <div class="col-lg-9">
-        <div class="form-check">
-          <label class="form-check-label" for="radio1"  >
-            <input type="radio" class="form-check-input" name="optradio" value="surplus" (click)="showGraphs('markatable_surplus')" checked>
-            {{'Marketable Surplus' | translate}} &nbsp;&nbsp;&nbsp;&nbsp;
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label" for="radio2">
-            <input type="radio" class="form-check-input" name="optradio" value="production" (click)="showGraphs('actual_production')" >
-            {{'Actual Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label" for="radio2">
-            <input type="radio" class="form-check-input" name="optradio" value="sales" (click)="showGraphs('sales_production')">
-            {{'Sale Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </label>
+
+    <div class="card shadow mb-4" *ngIf="totalIndents">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12" *ngFor="let row of totalIndents">
+            <div class="row px-5 mb-2">
+              <strong> {{row.title}}</strong>
+            </div>
+            <div class="row mb-4" style="border-bottom: solid;">
+              <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'Indents'" [yAxisLabel]="'No. of Indents'"
+                [legendTitle]="legendTitle" [legendPosition]="'below'">
+              </ngx-charts-bar-vertical-2d>
+            </div>
+          </div>
         </div>
       </div>
-        <div class="col-lg-3">
-          <div class="form-group">
-            <select class="custom-control custom-select" ng-model="fin_year" (change)="getDashboardDetails($event.target.value)">
-              <option value="{{year}}" *ngFor="let year of finYears">{{year}}</option>
-            </select>
-          </div>
-        </div>
-      </div> <br>
+    </div>
 
-      <div class="card shadow">
-        <div class="card-body">
-          <div *ngIf="markatable_surplus" class="row">
-            <div class="col-12" *ngFor="let row of markatableProduction">
-              <div class="row px-5 mb-0">
-                <strong> {{row.title}}</strong>
-              </div>
-              <div class="row mb-4" style="border-bottom: solid;">
-                <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
-                  [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                  [legendTitle]="legendTitle" [legendPosition]="'below'">
-                </ngx-charts-bar-vertical-2d>
-              </div>
+    <div class="card shadow mb-4" *ngIf="cropIndents">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12" *ngFor="let row of cropIndents">
+            <div class="row px-5 mb-2">
+              <strong> {{row.title}}</strong>
+            </div>
+            <div class="row mb-4" style="border-bottom: solid;">
+              <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'Crops'" [yAxisLabel]="'No. of Indents'"
+                [legendTitle]="legendTitle" [legendPosition]="'below'">
+              </ngx-charts-bar-vertical-2d>
             </div>
           </div>
-    
-          <div *ngIf="actual_production" class="row">
-            <div class="col-12" *ngFor="let row of actualProduction">
-              <div class="row px-5 mb-0">
-                <strong> {{row.title}}</strong>
-              </div>
-              <div class="row mb-4" style="border-bottom: solid;">
-                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="row.data"
-                  [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                  [legendTitle]="legendTitle" [legendPosition]="'below'">
-                </ngx-charts-bar-vertical>
-              </div>
-            </div>
-          </div>
-
-          <div *ngIf="sales_production" class="row">
-            <div class="col-12" *ngFor="let row of salesProduction">
-              <div class="row px-5 mb-0">
-                <strong> {{row.title}}</strong>
-              </div>
-              <div class="row mb-4" style="border-bottom: solid;">
-                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="row.data"
-                  [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                  [legendTitle]="legendTitle" [legendPosition]="'below'">
-                </ngx-charts-bar-vertical>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
+    </div>
   </div>
-
-  

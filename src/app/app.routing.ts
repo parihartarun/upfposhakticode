@@ -10,7 +10,6 @@ import { AuthGuardService } from './_helpers/auth-guard.service';
 import { HomeComponent } from './pages/home/home.component';
 import { HomeScreenComponent } from './pages/common/home-screen/home-screen.component';
 import { CanDeactivateGuard } from './_helpers/can-deactivate.guard';
-
 const routes: Routes = [
   {
     path: '', component: HomeComponent,
@@ -35,7 +34,7 @@ const routes: Routes = [
       }
     ],
     canActivate: [AuthGuardService],
-    canDeactivate: [CanDeactivateGuard]
+    //canDeactivate: [CanDeactivateGuard]
   }, {
     path: '',
     component: AuthLayoutComponent,
@@ -45,7 +44,8 @@ const routes: Routes = [
         loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
       }
     ]
-  }, {
+  }, 
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'

@@ -55,9 +55,8 @@
 
               <div class="cust-head mx-3 p-3">
                 <div class="mr-2">
-                  <input type="text" [id]="'search'" [(ngModel)]="searchText" (input)="p=1"
-                    style="border-radius: 0;" name="search" placeholder="Search" autocomplete="off"
-                    class="form-control input-md" />
+                  <input type="text" [id]="'search'" [(ngModel)]="searchText" (input)="p=1" style="border-radius: 0;"
+                    name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
                 </div>
                 <div class="cust-head">
                   <div></div>
@@ -106,22 +105,23 @@
                       <td>
                         {{(p-1) * 10 + i + 1}}
                       </td>
-
-                      <td>
-                        {{indent.desc}}
+                      <td *ngIf="Englishlang">
+                        {{indent.description}} 
+                      </td>
+                      <td *ngIf="!Englishlang">
+                         {{indent.hindiDescription}}
                       </td>
                       <td>
                         {{indent.uploadDate | date: 'dd/MM/yyyy'}}
                       </td>
                       <td>
 
-                        <a href="{{baseUrl}}{{indent.filePath}}" download><img src="../assets/image/img/pdficon.png"
-                            style=" height:20px; width:30px"></a>
+                        <!-- <a href="{{baseUrl}}{{indent.filePath}}" download><img src="../assets/image/img/pdficon.png"
+                            style=" height:20px; width:30px"></a> -->
+                        <a href="{{indent.filePath}}" download target_blank=""><img
+                            src="../assets/image/img/pdficon.png" style=" height:20px; width:30px"></a>
                       </td>
-
-
                     </tr>
-
                   </tbody>
                 </table>
                 <div class="row mx-0 mt-2" style="align-items: center;">

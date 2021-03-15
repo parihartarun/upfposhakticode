@@ -147,30 +147,35 @@
               <div class="panel-body">
                 <div class="row">
                   <div class="col-xs-12 newsBox">
-                    <ul class="demo1 marquee ">
-                      <div class="marquee-content">
-                        <li *ngFor="let c of circluar let i=index" class="news-item {{getClass(i+1)}}">
-                          <table cellpadding="4">
-                            <tbody>
-                              <tr>
-                                <td><img src="assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
-                                <td class="news-td">
-                                  <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf"
-                                    class="text-left text-danger" target="_blank">
-                                    {{c.description }}
-
-                                  </a>
-                                </td>
-
-                                <!-- <td class="news-td"></td> -->
-                              </tr>
-                            </tbody>
-                          </table>
-                        </li>
-                      </div>
-                    </ul>
+                      <ul class="demo1 marquee ">
+                        <div class="marquee-content">
+                          <li *ngFor="let c of circluar let i=index" class="news-item {{getClass(i+1)}}">
+                            <table cellpadding="4">
+                              <tbody>
+                                <tr>
+                                  <td><img src="assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
+                                  <td class="news-td">
+                                    <!-- <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf"
+                                      class="text-left text-danger" target="_blank">
+                                      {{c.description }}
+  
+                                    </a> -->
+                                      <a href="#"
+                                      class="text-left text-danger">
+                                      {{c.description }}
+  
+                                    </a>
+                                  </td>
+  
+                                  <!-- <td class="news-td"></td> -->
+                                </tr>
+                              </tbody>
+                            </table>
+                          </li>
+                        </div>
+                      </ul>
                     <div class="text-right Viewall">
-                      <small style="color:black"><a href="/#">{{'View all' | translate}}</a>&nbsp;</small>
+                      <small style="color:black"><a href="#">{{'View all' | translate}}</a>&nbsp;</small>
                     </div>
                   </div>
 
@@ -228,15 +233,16 @@
                 <div class="dropdown searchDropDown ">
                   <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" [(ngModel)]="searchType"
                     style="width:100%;border-radius: 0;">
-                    <!-- <option value="any">{{'Any' | translate }}</option>
+                    <!--option value="any">{{'Any' | translate }}</option>
                     <option value="crop">{{'Crop' | translate }}</option>
                     <option value="district">{{'District1' | translate }}</option>
                     <option value="fpo_name">{{'FPO' | translate }}</option>
                     <option value="services">{{'Services/ Products' | translate }}</option> -->
-
                     <option value="crop">{{'Crop' | translate }}</option>
-                    <option value="inputsupplier">{{'inputsupplier' | translate }}</option>
+                    <option value="insecticides">{{'Insecticides' | translate }}</option>
+                    <option value="seeds">{{'Seeds' | translate }}</option>
                     <option value="fmb">{{'machinery' | translate }}</option>
+                    <option value="fertilizers">{{'Fertilizers' | translate }}</option>
                     <!-- <option value="district">{{'District1' | translate }}</option> -->
                     <!-- <option value="fpo_name">{{'FPO' | translate }}</option> -->
                     <!-- <option value="services">{{'Services/ Products' | translate }}</option> -->
@@ -313,7 +319,8 @@
               <img class="set_span_titel_image" src="assets/image/img/bg_box2.png" alt="" style="">
             </div>
             <div class="tile_nember" *ngIf="fpo">
-              {{fpo |  number:'1.0-2'}}
+              <!-- {{fpo |  number:'1.0-2'}} -->
+              576
             </div>
 
           </div>
@@ -332,7 +339,8 @@
               </div>
             </div>
             <div class="tile_nember" *ngIf="farmerDetails">
-              {{farmerDetails.totalfarmers |  number:'1.0-2'}}
+              <!-- {{farmerDetails.totalfarmers |  number:'1.0-2'}} -->
+              216,876
             </div>
 
           </div>
@@ -356,21 +364,24 @@
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Marginal'|translate}}</td>
                     <td class="table_tile_number" *ngIf="farmerDetails">
-                      {{farmerDetails.marginalfarmers |  number:'1.0-2'}}
+                      <!-- {{farmerDetails.marginalfarmers |  number:'1.0-2'}} -->
+                      173,500
                       <!-- </a> -->
                     </td>
                   </tr>
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Small' |translate}}</td>
                     <td class="table_tile_number" *ngIf="farmerDetails">
-                      {{farmerDetails.smalltotal |  number:'1.0-2'}}
+                      <!-- {{farmerDetails.smalltotal |  number:'1.0-2'}} -->
+                      28,194
                       <!-- </a> -->
                     </td>
                   </tr>
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Others'| translate}}</td>
                     <td class="table_tile_number" *ngIf="farmerDetails">
-                      {{farmerDetails.bigfarmers |  number:'1.0-2'}}
+                      <!-- {{farmerDetails.bigfarmers |  number:'1.0-2'}} -->
+                      15,182
                       <!-- </a> -->
                     </td>
                   </tr>
@@ -395,7 +406,8 @@
               </div>
             </div>
             <div class="tile_nember" *ngIf="farmerDetails">
-              {{farmerDetails.totalland |  number:'1.0-2'}}
+              <!-- {{farmerDetails.totalland |  number:'1.0-2'}} -->
+              164,825
             </div>
           </div>
           <!-- Land tile end -->
@@ -418,17 +430,26 @@
                 <tbody>
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Rabi' | translate }}</td>
-                    <td class="table_tile_number">{{productionDetails.rabiprod |  number:'1.0-2'}}</td>
+                    <td class="table_tile_number">
+                      <!-- {{productionDetails.rabiprod |  number:'1.0-2'}} -->
+                      27,260
+                    </td>
                   </tr>
 
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Zayd' | translate}}</td>
-                    <td class="table_tile_number">{{productionDetails.zayadprod |  number:'1.0-2'}}</td>
+                    <td class="table_tile_number">
+                      <!-- {{productionDetails.zayadprod |  number:'1.0-2'}} -->
+                      2,545
+                    </td>
                   </tr>
 
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Kharif' | translate}}</td>
-                    <td class="table_tile_number">{{productionDetails.kharifprod |  number:'1.0-2' }}</td>
+                    <td class="table_tile_number">
+                      <!-- {{productionDetails.kharifprod |  number:'1.0-2' }} -->
+                      21,870
+                    </td>
                   </tr>
 
 
@@ -473,7 +494,7 @@
             </div>
             <div class="tile_nember">
               <!--<img src="img/storage.png" alt="" class="set_box_image">-->
-              4
+              7
             </div>
 
           </div>

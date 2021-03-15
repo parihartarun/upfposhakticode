@@ -33,6 +33,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   selectedquantitis: Array<number> = [];
   p: number = 1;
   districts: any = [];
+  masterIdentity:any;
   brands: any=[];
   machinetypes:any =[];
   isDistrict: false;
@@ -181,11 +182,13 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
     this.brandsObserver.subscribe(data =>{
       this.brands = data;
+      this.brands = this.brands.map((str,index)=>({ id: index+1,name:str}));
       console.log('brands ==>',this.brands);
     });
 
     this.machineryTypesObserver.subscribe(data=>{
        this.machinetypes = data;
+       console.log("machineTypes==>",this.machinetypes);
     })
 
     this.fpoObserver.subscribe(data => {
@@ -367,18 +370,20 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
   selectMachineType(machineType: any) {
     if (machineType.is_active) {
-      this.filterParams.districtIds.push(machineType.id);
+      console.log(machineType);
+      //this.filterParams.machineryTypes
+      this.filterParams.machineryTypes.push(machineType.id);
     } else {
-      this.filterParams.districtIds.splice(this.filterParams.districtIds.indexOf(machineType.id), 1);
+      this.filterParams.machineryTypes.splice(this.filterParams.machineryTypes.indexOf(machineType.id), 1);
     }
     this.searchData();
   }
 
   selectBrand(brand: any){
     if (brand.is_active) {
-      this.filterParams.brands.push(brand.value);
+      this.filterParams.brands.push(brand.name);
     } else {
-      this.filterParams.brands.splice(this.filterParams.brands.indexOf(brand.value), 1);
+      this.filterParams.brands.splice(this.filterParams.brands.indexOf(brand.name), 1);
     }
     this.searchData();
   }
@@ -414,7 +419,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.searchData();
   }
   createIndentForm(item) {
-
+    console.log("this.fpoDetail.userFp",this.fpoDetail.userFpo?.userId);
+    this.masterIdentity = localStorage.getItem('masterId');
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
       cropVeriety: [item.varietyid],
@@ -425,7 +431,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       fpoEmail: [this.fpoDetail.fpoEmail],  //^[0+-]?([1-9]*\\.)?\\d+$
       fulfillmentDate: ["", [Validators.required]],//^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$
       quantity: [, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
-
+      createdBy:[this.masterIdentity],
+      masterId: [this.masterIdentity]
 
     })
   }

@@ -44,16 +44,13 @@ export class AuthHeaderComponent implements OnInit {
     this.isHomePage = this.route.url;
     console.log('homepage', this.isHomePage);
 
-    this._activatedroute.paramMap.subscribe(params => {
-      if (sessionStorage.getItem('accessToken') != null) {
-        this.isLoggeIn = true;
-        this.username = localStorage.getItem('username');
-      } else{
-        this.isLoggeIn = false;
+    if (sessionStorage.getItem('accessToken') != null) {
+      this.isLoggeIn = true;
+      this.username = localStorage.getItem('username');
+    } else{
+      this.isLoggeIn = false;
 
-      }
-    });
-
+    }
 
   }
 
@@ -62,7 +59,7 @@ export class AuthHeaderComponent implements OnInit {
     localStorage.removeItem('username');
     localStorage.removeItem('userrole');
     this.route.navigate(['/login']);
-    // location.reload();
+    location.reload();
   }
   toggleNavbar() {
     this.isOpen = !this.isOpen;

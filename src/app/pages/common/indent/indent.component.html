@@ -57,7 +57,7 @@
                   {{indent?.cropMaster?.cropName}}
                 </td>
                 <td>
-                  {{indent?.cropVeriety}}
+                  {{indent?.cropVeriety.verietyName}}
                 </td>
                 <td>
                   {{indent?.quantity}}
@@ -114,7 +114,7 @@
         <label class="form-control-label" for="input-username">{{'Quantity to be fulfilled'|translate}}<span
             class="required">*</span></label>
         <div class="input-group input-group-alternative">
-          <input class="form-control" placeholder="{{'Quantity'|translate}}" type="text" formControlName="quantity">
+          <input class="form-control" placeholder="{{'Quantity'|translate}}" type="text" formControlName="soldQuantity">
         </div>
         <!-- <div *ngIf="!submitted && formControls.quantity.touched && formControls.quantity.errors" class="text-danger mt-1 text-xsm">
           

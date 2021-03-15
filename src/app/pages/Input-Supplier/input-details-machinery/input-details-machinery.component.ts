@@ -25,6 +25,7 @@ export class InputDetailsMachineryComponent implements OnInit {
   myInputVariable: ElementRef;
   id = null;
   isEdit = false;
+  machinerynamelist: any;
 
   constructor(private inputmachineryservice: InputSupplierService,
     private fb: FormBuilder,
@@ -54,17 +55,27 @@ export class InputDetailsMachineryComponent implements OnInit {
   mtype() {
     this.inputmachineryservice.mtype().subscribe((res) => {
       this.mtypes = res;
+      console.log(res);
     })
   }
+
+
+  selectmachinaryname(e) {
+    this.machineryForm.controls['mchinery_type_id'].setValue(parseInt(e));
+    this.inputmachineryservice.machineryname(e).subscribe(mn => {
+      this.machinerynamelist = mn;
+      console.log(mn, "machineryname");
+    })
+  }
+
 
   Machinerydata() {
     this.inputid = localStorage.getItem('masterId')
     this.inputmachineryservice.getallMachinery(this.inputid).subscribe((res) => {
       this.machinerydetails = res;
+      console.log(res, "mdata");
     })
   }
-
-
 
   addmachinery() {
     this.submitted = true;
@@ -76,7 +87,7 @@ export class InputDetailsMachineryComponent implements OnInit {
     formData.append('mchinery_type_id', this.machineryForm.value.mchinery_type_id);
     formData.append('quantity', this.machineryForm.value.quantity);
     formData.append('specification', this.machineryForm.value.specification);
-    // formData.append("input_supplier_id ", localStorage.getItem('masterId'))
+    formData.append("input_supplier_id ", localStorage.getItem('masterId'))
     this.inputmachineryservice.addMachinery(formData).subscribe(res => {
       if (res != '') {
         this.toastr.success(' Added Succefully.');
@@ -90,20 +101,17 @@ export class InputDetailsMachineryComponent implements OnInit {
     });
   }
 
-
-
   editmachinery(data) {
-    this.machineryForm.get('machinery_name_id').patchValue(data.machinery_name_id);
+    this.machineryForm.get('machinery_name_id').patchValue(data.name_id);
     this.machineryForm.get('file').patchValue(data.file);
     this.machineryForm.get('manufacturer_name').patchValue(data.manufacturer_name);
-    this.machineryForm.get('mchinery_type_id').patchValue(data.mchinery_type_id);
+    this.machineryForm.get('mchinery_type_id').patchValue(data.type_id);
     this.machineryForm.get('quantity').patchValue(data.quantity);
     this.machineryForm.get('specification').patchValue(data.specification);
     this.id = data.id;
+    console.log(data,"meditdata");
     this.isEdit = true;
   }
-
-
 
   updatemachinery() {
     const formData: FormData = new FormData();
