@@ -27,13 +27,6 @@ export class FpoGuidelinesComponent implements OnInit,OnChanges {
 
   constructor(private formBuilder: FormBuilder, private api: FpoService, public translate: TranslateService) {
     this.baseUrl = environment.baseUrl;
-    if (localStorage.getItem('language')) {
-      translate.setDefaultLang(localStorage.getItem('language'));
-    } else {
-      translate.setDefaultLang('hi');
-      localStorage.setItem('language', 'hi');
-    }
-
     console.log(localStorage.getItem('language'));
     if (localStorage.getItem('language') == 'hi') {
       this.Englishlang = false;
@@ -51,6 +44,7 @@ export class FpoGuidelinesComponent implements OnInit,OnChanges {
 
     });
     this.api.getFPOGuideLinePreRegistration().subscribe(fg => {
+      console.log(fg);
         this.fpoGuideLines = fg
     })
 }

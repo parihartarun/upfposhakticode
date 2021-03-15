@@ -29,6 +29,7 @@ export class DepartmentGuidelineComponent implements OnInit {
   isboth: boolean = false;
   docRadio = '';
   fileRadio = '';
+  selectedLang = 'en';
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, public departmentService: DepartmentService) { }
 
   ngOnInit(): void {
@@ -107,11 +108,17 @@ export class DepartmentGuidelineComponent implements OnInit {
       formData.append('description', this.guidelineForm.value.description);
       formData.append('guideline_type', this.guidelineForm.value.guideline_type);
       formData.append('url', this.guidelineForm.value.url);
+      formData.append('lang', this.selectedLang);
       console.log(formData);
       this.departmentService.addGuideline(formData);
       this.guidelineForm.reset();
     }
   }
+
+  onLanguageChange(lang){
+    this.selectedLang = lang;
+  }
+
   editGuideline(data) {
     this.guidelineForm.get('guideline_type').patchValue(data.fpoGuidelineType);
     this.guidelineForm.get('file').patchValue(data.file);
