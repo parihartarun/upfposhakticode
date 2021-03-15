@@ -348,7 +348,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     });
 
 
-    this.serachProduct = [];
+   this.serachProduct = [];
     this.loading = true;
     this._productService.getSearchProductWithFilters(this.parval, this.parsearchType, httpParams).subscribe(s => {
       this.serachProduct = s;
@@ -420,7 +420,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   }
   createIndentForm(item) {
     console.log("this.fpoDetail.userFp",this.fpoDetail.userFpo?.userId);
-    this.masterIdentity = localStorage.getItem('masterId');
+    
     this.indentForm = this.fb.group({
       fpoId: [this.fpoDetail.fpoId],
       cropVeriety: [item.varietyid],
@@ -431,8 +431,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       fpoEmail: [this.fpoDetail.fpoEmail],  //^[0+-]?([1-9]*\\.)?\\d+$
       fulfillmentDate: ["", [Validators.required]],//^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$
       quantity: [, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
-      createdBy:[this.masterIdentity],
-      masterId: [this.masterIdentity]
+      createdBy:[0],
+      masterId: [0]
 
     })
   }
@@ -499,6 +499,11 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.indentForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd/MM/yyyy'); //whatever format you need. 
     this.indentForm.value.fulfillmentDate = this.datePipe.transform(date, 'yyyy-MM-dd');
     this.indentForm.value.userId = localStorage.getItem('masterId');
+    this.indentForm.value.createdBy = localStorage.getItem('masterId');
+    this.indentForm.value.masterId = localStorage.getItem('masterId');
+   
+    
+
 
     console.log("Master Id Found While submitting the Indent = " + localStorage.getItem('masterId'));
     this._productService.saveIndent(this.indentForm.value).subscribe(response => {
