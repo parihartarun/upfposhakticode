@@ -48,6 +48,9 @@ export class LoginModelPopupComponent implements OnInit {
         sessionStorage.setItem('tokenType', response.token);
         localStorage.setItem('username', response.user.userName);
         localStorage.setItem('userRole', response.userRole);
+        localStorage.setItem('masterId', response.masterId);
+        localStorage.setItem('userId', response.user.userId);
+
         this.userRole = localStorage.getItem('userRole');
         this.logout.emit(""+this.fpoid);
         //if (this.userRole == 'ROLE_FPC') {
