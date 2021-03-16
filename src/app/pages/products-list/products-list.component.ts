@@ -414,10 +414,10 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   getToday(): Date {
     return new Date();
   }
-  quantityFilter() {
-   // this.filterParams.qtymin = this.
-    this.searchData();
-  }
+
+  // quantityFilter() {
+  //   this.searchData();
+  // }
   createIndentForm(item) {
     console.log("this.fpoDetail.userFp",this.fpoDetail.userFpo?.userId);
     
