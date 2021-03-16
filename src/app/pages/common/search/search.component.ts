@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
   
-  searchValue: string =' ';
+  searchValue: string ='';
   searchType: any = 'crop';
   data = { searchValue: this.searchValue, searchType: this.searchType }
 

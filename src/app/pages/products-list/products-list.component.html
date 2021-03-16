@@ -125,25 +125,35 @@
               </div> <!-- card-body.// -->
             </div>
           </article> <!-- card-group-item.// -->
-          <article class="card-group-item my-2">
+          <!--Uncomment this old code-->
+          <!--article class="card-group-item my-2">
             <header class="">
               <h3 class="title">{{'Quantity' | translate }}</h3>
             </header>
             <div class="filter-content">
               <div class="">
-                <form>
+                <form-->
+            <!--End of uncomment this old code-->      
                   <!-- <div class="d-flex justify-content-between">
                     <div>Min - {{value}}</div>
                     <div>Max - {{highValue>199?highValue+'+':highValue}} </div>
                   </div> -->
-                  <div class="custom-slider">
+                  <!--Uncomment this old code-->
+                  <!--div class="custom-slider"-->
+                     <!--Dont Uncomment below-->
                     <!---ngx-slider [(value)]="filterParams.qtymax" [(highValue)]="filterParams.qtymin" [options]="options"
                       (userChangeEnd)="quantityFilter()">
                     </ngx-slider-->
-                    <ngx-slider [(value)]="filterParams.qtymin"  [options]="options" (userChangeEnd)="quantityFilter()">
-                    </ngx-slider>
-                   
-                  </div>
+                    <!--End of Dont Uncomment below-->
+
+                    <!--ngx-slider [(value)]="filterParams.qtymin"  [options]="options" (userChangeEnd)="quantityFilter()">
+                    </ngx-slider-->
+                  <!--/div-->
+                  <!--End of uncomment this old code-->
+                  <!-- Changes Having Async data-->
+
+                  <!--End Of changes having Async data-->
+
                   <!-- <div class="form-group row mb-3 d-none">
                     <div class="col-6">
                       <label class="input-label">{{'Min'|translate}} </label>
@@ -174,11 +184,14 @@
                       {{q.minname | translate}}
                     </span>
                   </label> -->
-                </form>
+
+             <!--Uncomment this old code-->     
+                <!--/form>
 
               </div>
             </div>
-          </article>
+          </article-->
+           <!--End of uncomment this old code-->
           <article class="card-group-item my-2">
             <header class="">
               <h3 class="title">{{'cropandverieties' | translate }} </h3>
@@ -329,7 +342,7 @@
                             </span> <strong> {{product.crop}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Veriety:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Variety:
                             </span><strong> {{product.variety}}</strong>
                           </li>
                           <li>
