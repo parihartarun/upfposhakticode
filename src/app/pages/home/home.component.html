@@ -319,8 +319,7 @@
               <img class="set_span_titel_image" src="assets/image/img/bg_box2.png" alt="" style="">
             </div>
             <div class="tile_nember" *ngIf="fpo">
-              <!-- {{fpo |  number:'1.0-2'}} -->
-              576
+              {{fpo |  number:'1.0-2'}}
             </div>
 
           </div>
@@ -339,8 +338,7 @@
               </div>
             </div>
             <div class="tile_nember" *ngIf="farmerDetails">
-              <!-- {{farmerDetails.totalfarmers |  number:'1.0-2'}} -->
-              216,876
+              {{farmerDetails.totalfarmers |  number:'1.0-2'}}
             </div>
 
           </div>
@@ -364,24 +362,21 @@
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Marginal'|translate}}</td>
                     <td class="table_tile_number" *ngIf="farmerDetails">
-                      <!-- {{farmerDetails.marginalfarmers |  number:'1.0-2'}} -->
-                      173,500
+                      {{farmerDetails.marginalfarmers |  number:'1.0-2'}}
                       <!-- </a> -->
                     </td>
                   </tr>
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Small' |translate}}</td>
                     <td class="table_tile_number" *ngIf="farmerDetails">
-                      <!-- {{farmerDetails.smalltotal |  number:'1.0-2'}} -->
-                      28,194
+                      {{farmerDetails.smalltotal |  number:'1.0-2'}}
                       <!-- </a> -->
                     </td>
                   </tr>
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Others'| translate}}</td>
                     <td class="table_tile_number" *ngIf="farmerDetails">
-                      <!-- {{farmerDetails.bigfarmers |  number:'1.0-2'}} -->
-                      15,182
+                      {{farmerDetails.bigfarmers |  number:'1.0-2'}}
                       <!-- </a> -->
                     </td>
                   </tr>
@@ -406,8 +401,7 @@
               </div>
             </div>
             <div class="tile_nember" *ngIf="farmerDetails">
-              <!-- {{farmerDetails.totalland |  number:'1.0-2'}} -->
-              164,825
+              {{farmerDetails.totalland |  number:'1.0-2'}}
             </div>
           </div>
           <!-- Land tile end -->
@@ -431,24 +425,21 @@
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Rabi' | translate }}</td>
                     <td class="table_tile_number">
-                      <!-- {{productionDetails.rabiprod |  number:'1.0-2'}} -->
-                      27,260
+                      {{productionDetails.rabiprod |  number:'1.0-2'}}
                     </td>
                   </tr>
 
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Zayd' | translate}}</td>
                     <td class="table_tile_number">
-                      <!-- {{productionDetails.zayadprod |  number:'1.0-2'}} -->
-                      2,545
+                      {{productionDetails.zayadprod |  number:'1.0-2'}}
                     </td>
                   </tr>
 
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Kharif' | translate}}</td>
                     <td class="table_tile_number">
-                      <!-- {{productionDetails.kharifprod |  number:'1.0-2' }} -->
-                      21,870
+                      {{productionDetails.kharifprod |  number:'1.0-2' }}
                     </td>
                   </tr>
 

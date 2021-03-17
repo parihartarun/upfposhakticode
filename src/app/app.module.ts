@@ -54,7 +54,6 @@ import { FarmerRegisterComponent } from './pages/registers/farmer-register/farme
 import { FpoRegisterComponent } from './pages/registers/fpo-register/fpo-register.component';
 import { ByerSellRegisterComponent } from './pages/registers/byer-sell-register/byer-sell-register.component';
 import { InputSupplierRegisterComponent } from './pages/registers/input-supplier-register/input-supplier-register.component';
-import { EquipmentCentreRegisterComponent } from './pages/registers/equipment-centre-register/equipment-centre-register.component';
 import { FarmerChcRegisterComponent } from './pages/registers/farmer-chc-register/farmer-chc-register.component';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
@@ -121,6 +120,8 @@ import { SupplierDashboardComponent } from './pages/Input-Supplier/supplier-dash
 import { PageUnderConstructionComponent } from './pages/page-under-construction/page-under-construction.component';
 import { ChhfmbDashboardComponent } from './pages/CHC/chhfmb-dashboard/chhfmb-dashboard.component';
 import { BuyerDashboardComponent } from './pages/buyer-treder/buyer-dashboard/buyer-dashboard.component';
+import { SupplierProfileComponent } from './pages/Input-Supplier/supplier-profile/supplier-profile.component';
+import { ChcfmbProfileComponent } from './pages/CHC/chcfmb-profile/chcfmb-profile.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -198,7 +199,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     FpoRegisterComponent,
     ByerSellRegisterComponent,
     InputSupplierRegisterComponent,
-    EquipmentCentreRegisterComponent,
     FarmerChcRegisterComponent,
     UserProfileComponent,
     SearchComponent,
@@ -251,7 +251,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     SupplierDashboardComponent,
     PageUnderConstructionComponent,
     ChhfmbDashboardComponent,
-    BuyerDashboardComponent
+    BuyerDashboardComponent,
+    SupplierProfileComponent,
+    ChcfmbProfileComponent
 
   ],
   exports: [

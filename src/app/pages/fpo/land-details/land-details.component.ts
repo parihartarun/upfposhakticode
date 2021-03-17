@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { formatDate } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { FarmerService } from 'src/app/_services/farmer/farmer.service';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
-
-
 
 @Component({
   selector: 'app-land-details',
@@ -23,13 +20,14 @@ export class LandDetailsComponent implements OnInit {
     {ownerName:"Owned"},
     {ownerName:"Leased"},
     {ownerName:"Rented"}
-    ];
+  ];
   FarmerLists:Array<any>=[];
   submitted = false;
   edit = false;
   master_id = localStorage.getItem('masterId');
   farmerId:any
-  land_area=0
+  land_area=0;
+
  constructor(
     private formBuilder: FormBuilder,
     private fpoService: FpoService,
@@ -53,7 +51,6 @@ export class LandDetailsComponent implements OnInit {
         registrationNumber: [''],
       });
       this.getLandDetailList(this.master_id);
-
     }
     else {
       this.landDetailForm = this.formBuilder.group({
@@ -78,14 +75,6 @@ export class LandDetailsComponent implements OnInit {
     this.fpoService.getFarmerDetailList(localStorage.getItem('masterId')).subscribe(
       response => {
       console.log(response);
-        this.FarmerLists = response;
-      })
-  }
-  getFarmerDetailFarmerformUpPardarshi(registrationNumber) {
-   
-    this.fpoService.getfarmerDetailfromUpardarshi(registrationNumber).subscribe(
-      response => {
-        console.log(response);
         this.FarmerLists = response;
       })
   }
@@ -284,14 +273,28 @@ export class LandDetailsComponent implements OnInit {
       return false
     }
   }
+
   selectFarmer(farmer) {
-  
-    let registrationNumber = this.FarmerLists.find(f => f.farmerId == Number(farmer.currentTarget.value))  
-    this.getFarmerDetailFarmerformUpPardarshi(registrationNumber.upBSMId);
+    let registrationNumber = this.FarmerLists.find(f => f.farmerId == Number(farmer.currentTarget.value));
+    console.log(registrationNumber); 
+    this.getFarmerDetailFarmerformUpPardarshi(2055153400000);
   }
-  fetchDetail(farmer) {
-    console.log(farmer);
-    //let registrationNumber = this.landDetailForm.controls['registrationNumber'];
-    //this.getFarmerDetailFarmerformUpPardarshi(registrationNumber);
+
+  getFarmerDetailFarmerformUpPardarshi(registrationNumber) {
+    this.fpoService.getfarmerDetailfromUpardarshi(registrationNumber).subscribe(
+      response => {
+        if(response.land_area != null){
+          this.landDetailForm.patchValue({
+            land_area:response.land_area
+          });
+        }
+      })
+  }
+
+
+  fetchDetail() {
+    let registrationNumber = this.landDetailForm.controls['registrationNumber'].value;
+    console.log(registrationNumber);
+    this.getFarmerDetailFarmerformUpPardarshi(registrationNumber);
   }
 }

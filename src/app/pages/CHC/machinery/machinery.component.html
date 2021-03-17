@@ -22,7 +22,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Equipment Category' | translate}} <span class="required">*</span></label>
-                    <select class="form-control" (change)="getEquipment()" name="type" required #type="ngModel"
+                    <select class="form-control" (change)="getEquipment($event.target.value)" name="type" required #type="ngModel"
                       [(ngModel)]="formData.type_id">
                       <option value="" disabled>{{'Select Type' | translate}}</option>
                       <option *ngFor="let row of equipmentTypes | async" [value]="row.id">

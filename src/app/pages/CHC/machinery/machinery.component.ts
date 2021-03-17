@@ -47,9 +47,11 @@ export class MachineryComponent implements OnInit {
     this.fieldArray.splice(index, 1);
   }
 
-  getEquipment() {
-    this.chcFmbService.getequipmentname(this.formData.type_id)
+  getEquipment(typeId) {
+    console.log(typeId);
+    this.chcFmbService.getequipmentname(typeId)
   }
+
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
     if (!this.validateFile(files[0].name)) {

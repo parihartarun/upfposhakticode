@@ -32,6 +32,11 @@ export class InputSupplierService {
     }));
   }
 
+  getSupplierProfileData(masterId){
+    return  this.http.get<any>(this._url+`/api/InputSupplier/profile/inputsupplier/${masterId}`).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
 
   getbyid(id)
   {
