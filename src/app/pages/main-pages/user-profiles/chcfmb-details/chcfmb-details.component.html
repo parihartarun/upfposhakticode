@@ -1,0 +1,109 @@
+<section class="py-5 pt-5">
+    <div class="container mb-5">
+        <div class="card card-profile shadow py-0">
+            <div class="card-body">
+                <div class="row p-3">
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">{{'Equipment Centre Name' | translate}}</th>
+                                    <th scope="col">{{'Email' | translate}}</th>
+                                    <th scope="col">{{'Mobile' | translate}}</th>
+                                    <th scope="col">{{'District' | translate}}</th>
+                                    <th scope="col">{{'Block' | translate}}</th>
+                                    <th scope="col">{{'Village' | translate}}</th>
+                                    <th scope="col">{{'Pincode' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr>
+                                    <td>
+                                        {{user_data.chc_fmb_name}}
+                                    </td>
+                                    <td>
+                                        {{user_data.email}}
+                                    </td>
+                                    <td>
+                                        {{user_data.mobile_number}}
+                                    </td>
+                                    <td>
+                                        {{user_data.district_name}}
+                                    </td>
+                                    <td>
+                                        {{user_data.block_name}}
+                                    </td>
+                                    <td>
+                                        {{user_data.village_name}}
+                                    </td>
+                                    <td>
+                                        {{user_data.pincode}}
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="card mb-4">
+                    <div class="card-header p-0">
+                        <h3 class="mb-0 p-3">{{'Machinaries' | translate}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">{{'S.no' | translate}}</th>
+                                        <th scope="col"> {{'Equipment Category' | translate}}</th>
+                                        <th scope="col"> {{'Equipment Name' | translate}}</th>
+                                        <th scope="col"> {{'Equipment Available' | translate}}</th>
+                                        <th scope="col">{{'Equipment Capacity' | translate}}</th>
+                                        <th scope="col">{{'Equipment Purchase Year' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        *ngFor="let p of machinaries | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: currentPage };let i=index">
+                                        <td>
+                                            {{i+1}}
+                                        </td>
+                                        <td>
+                                            {{p.type}}
+                                        </td>
+                                        <td>
+                                            {{p.equpment_name}}
+                                        </td>
+                                        <td>
+                                            {{p.quantity_avail}}
+                                        </td>
+                                        <td>
+                                            {{p.equipment_capacity}}
+                                        </td>
+                                        <td>
+                                            {{p.equip_purchase_year}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row mx-0 mt-2" style="align-items: center;">
+                            <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
+                              <!-- <div>Showing 1 of 4 entries</div> -->
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-12 custom-pagination-align">
+                              <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

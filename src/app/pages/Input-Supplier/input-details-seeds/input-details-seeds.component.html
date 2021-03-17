@@ -126,8 +126,8 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody *ngFor="let sdata of getallSeeds; index as i">
-              <tr>
+            <tbody>
+              <tr *ngFor="let sdata of getallSeeds; index as i">
                 <td>
                   {{i+1}}
                 </td>

@@ -1,0 +1,257 @@
+<section class="py-5 pt-5">
+    <div class="container mb-5">
+        <div class="card card-profile shadow py-0">
+            <div class="card-body">
+                <div class="row p-3">
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">{{'Supplier Name' | translate}}</th>
+                                    <th scope="col">{{'Email' | translate}}</th>
+                                    <th scope="col">{{'Mobile' | translate}}</th>
+                                    <th scope="col">{{'District' | translate}}</th>
+                                    <th scope="col">{{'Block' | translate}}</th>
+                                    <th scope="col">{{'Village' | translate}}</th>
+                                    <th scope="col">{{'Pincode' | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngIf="user_data">
+                                    <td>
+                                        {{user_data.input_supplier_name}}
+                                    </td>
+                                    <td>
+                                        {{user_data.email}}
+                                    </td>
+                                    <td>
+                                        {{user_data.mobile_number}}
+                                    </td>
+                                    <td>
+                                        {{user_data.district_name}}
+                                    </td>
+                                    <td>
+                                        {{user_data.block_name}}
+                                    </td>
+                                    <td>
+                                        {{user_data.village_name}}
+                                    </td>
+                                    <td>
+                                        {{user_data.pincode}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="card mb-4">
+                    <div class="card-header p-0">
+                        <h3 class="mb-0 p-3">{{'Seeds' | translate}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">{{'S.no' | translate}}</th>
+                                        <th scope="col"> {{'Crop' | translate}}</th>
+                                        <th scope="col">{{'Variety' | translate}}</th>
+                                        <th scope="col">{{'Quantity' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngIf="seeds">
+                                    <tr *ngFor="let seed of seeds; index as i">
+                                        <td>
+                                          {{i+1}}
+                                        </td>
+                                        <td>
+                                          {{seed.crop_name}}
+                                        </td>
+                                        <td>
+                                          {{seed.crop_veriety}}
+                                        </td>
+                                        <td>
+                                          {{seed.quantity}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody *ngIf="!seeds">
+                                    <td colspan="4">Records not available</td>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row mx-0 mt-2" style="align-items: center;">
+                            <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
+                              <!-- <div>Showing 1 of 4 entries</div> -->
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-12 custom-pagination-align">
+                              <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mb-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="card mb-4">
+                    <div class="card-header p-0">
+                        <h3 class="mb-0 p-3">{{'Fertilizer' | translate}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">{{'S.no' | translate}}</th>
+                                        <th scope="col"> {{'Fertilizer Type' | translate}}</th>
+                                        <th scope="col">{{'Fetilizer Grade' | translate}}</th>
+                                        <th scope="col">{{'Name of Manufacturer' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        *ngFor="let p of fertilizers; index as i">
+                                        <td>
+                                            {{i+1}}
+                                        </td>
+                                        <td>{{p.fertilizer_type}}
+                                          </td>
+                                        <td>
+                                            {{p.fertilizer_grade}}
+                                        </td>
+                                        <td>
+                                            {{p.manufacturer_name}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row mx-0 mt-2" style="align-items: center;">
+                            <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
+                              <!-- <div>Showing 1 of 4 entries</div> -->
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-12 custom-pagination-align">
+                              <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mb-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="card mb-4">
+                    <div class="card-header p-0">
+                        <h3 class="mb-0 p-3">{{'Machinaries' | translate}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">{{'S.no' | translate}}</th>
+                                        <th scope="col"> {{'Equipment Category' | translate}}</th>
+                                        <th scope="col"> {{'Equipment Name' | translate}}</th>
+                                        <th scope="col"> {{'Equipment Available' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        *ngFor="let p of machinaries; index as i">
+                                        <td>
+                                            {{i+1}}
+                                        </td>
+                                        <td>
+                                            {{p.type}}
+                                        </td>
+                                        <td>
+                                            {{p.equpment_name}}
+                                        </td>
+                                        <td>
+                                            {{p.quantity}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row mx-0 mt-2" style="align-items: center;">
+                            <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
+                              <!-- <div>Showing 1 of 4 entries</div> -->
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-12 custom-pagination-align">
+                              <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mb-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="card mb-4">
+                    <div class="card-header p-0">
+                        <h3 class="mb-0 p-3">{{'Insectices/Pesticies' | translate}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">{{'S.no' | translate}}</th>
+                                        <th scope="col"> {{'Insecticdes Type' | translate}}</th>
+                                        <th scope="col">{{'Name of Manufacturer' | translate}}</th>
+                                        <th scope="col">{{'Quantity' | translate}} </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let p of insectices; index as i">
+                                        <td>
+                                            {{i+1}}
+                                        </td>
+                                        <td> 
+                                            {{idata.insecticide_type}}
+                                        </td>
+                                        <td>
+                                           {{idata.manufacturer_name}}
+                                        </td>
+                                        <td>
+                                            {{idata.quantity}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row mx-0 mt-2" style="align-items: center;">
+                            <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
+                              <!-- <div>Showing 1 of 4 entries</div> -->
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-12 custom-pagination-align">
+                              <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -11,20 +11,13 @@ import { InputSupplierService } from 'src/app/_services/InputSupplier/InputSuppl
   styleUrls: ['./supplier-profile.component.css']
 })
 export class SupplierProfileComponent implements OnInit {
+
   profileForm: FormGroup;
   submitted = false;
-  bsValue = new Date();
-  bsRangeValue: Date[];
-  maxDate = new Date();
   districts = [];
   blocks = [];
   villages = [];
-  seeds = []
   inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
-  categoryDeals = [];
-  isBulkSupplyingCompany: boolean = false;
-  isCategoryDealIn = false;
-  tempFertilizer = [{ name: 'Normal' }, { name: 'Organic' }, { name: 'Both' }]
 
   constructor(private fb: FormBuilder,
     private api: AuthService,
@@ -56,7 +49,6 @@ export class SupplierProfileComponent implements OnInit {
       mobile_number: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       userName: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-_]{6,20}")]],
-      isCategoryDealIn: [this.isCategoryDealIn],
     })
   }
 
@@ -73,13 +65,12 @@ export class SupplierProfileComponent implements OnInit {
         mobile_number: [response.mobile_number, [Validators.required, Validators.pattern("[0-9 ]{10}")]],
         email: [response.email, [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
         license_number: [response.license_number, Validators.required],
-        blockRefId: ['', Validators.required],
-        districtRefId: ['', Validators.required],
-        villageRefId:[''],
+        blockRefId: [response.block_id, Validators.required],
+        districtRefId: [response.district_id, Validators.required],
+        villageRefId:[response.village_id],
         gstNumber: [response.gst_number, [Validators.required, Validators.pattern("[0-9a-zA-Z]{0,100}")]],
         pincode: [response.pincode, [Validators.required, Validators.pattern("[0-9 ]{6}")]],
-        userName: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-_]{6,20}")]],
-        isCategoryDealIn: [this.isCategoryDealIn],
+        userName: [response.user_name, [Validators.required, Validators.pattern("^[a-zA-Z0-9-_]{6,20}")]],
       })
       setTimeout(()=>{     
         this.profileForm.patchValue({
@@ -126,7 +117,6 @@ export class SupplierProfileComponent implements OnInit {
     delete this.profileForm.value.userName;
     delete this.profileForm.value.confirmPassword;
     this.profileForm.value.userInputSeller = user;
-    this.profileForm.value.categoryDealIn = this.categoryDeals.toString();
 
     this.api.registerInputSupplier(this.profileForm.value).subscribe(response => {
       if (response.message == "SuccessFully Saved!") {
@@ -138,14 +128,6 @@ export class SupplierProfileComponent implements OnInit {
         this.toastr.error(response.message);
       }
     })
-  }
-
-  selectCategoryDeals(event: any, categoryDealIn: any) {
-    if (event.target.checked) {
-      this.categoryDeals.push(event.target.value);
-    } else {
-      this.categoryDeals = this.categoryDeals.filter(filter => filter != event.target.value);
-    }
   }
 
 }

@@ -23,6 +23,12 @@ export class ChcFmbService {
     }));
   }
 
+  getUserDetails(id) {
+    return this.http.get<any>(this._url + `profile/ChcFmbDetail/`+id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   getIndentDetails(id) {
     return this.http.get<any>(this._url + `chcFmbDashboard/indent/`+id).pipe(map((res: any) => {
       return res;
@@ -67,5 +73,10 @@ export class ChcFmbService {
   }
   deleteMachinery(id) {
     return this.http.delete<any>(this._url + 'chcfmb/machinery/' + id);
+  }
+  getMachinaries(masterId) {
+    this.http.get<any>(this._url + 'chcfmb/machinery/getall/' + masterId).subscribe((res: any) => {
+      return res;
+    })
   }
 }

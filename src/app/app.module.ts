@@ -122,6 +122,8 @@ import { ChhfmbDashboardComponent } from './pages/CHC/chhfmb-dashboard/chhfmb-da
 import { BuyerDashboardComponent } from './pages/buyer-treder/buyer-dashboard/buyer-dashboard.component';
 import { SupplierProfileComponent } from './pages/Input-Supplier/supplier-profile/supplier-profile.component';
 import { ChcfmbProfileComponent } from './pages/CHC/chcfmb-profile/chcfmb-profile.component';
+import { SupplierDetailsComponent } from './pages/main-pages/user-profiles/supplier-details/supplier-details.component';
+import { ChcfmbDetailsComponent } from './pages/main-pages/user-profiles/chcfmb-details/chcfmb-details.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -253,7 +255,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChhfmbDashboardComponent,
     BuyerDashboardComponent,
     SupplierProfileComponent,
-    ChcfmbProfileComponent
+    ChcfmbProfileComponent,
+    SupplierDetailsComponent,
+    ChcfmbDetailsComponent
 
   ],
   exports: [
