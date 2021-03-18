@@ -45,19 +45,30 @@ export class ChcFmbService {
       return res;
     }));
   }
-  getequipmenttypes() {
-    this.http.get<any>(this._url + 'chcfmb/machinery/equipmenttype/getall').subscribe((res: any) => {
-      if (res) {
-        this.equipmentTypes.next(res);
-      }
-    })
-  }
+  // getequipmenttypes() {
+  //   this.http.get<any>(this._url + 'chcfmb/machinery/equipmenttype/getall').subscribe((res: any) => {
+  //     if (res) {
+  //       this.equipmentTypes.next(res);
+  //     }
+  //   })
+  // }
+
+  getequipmenttypes(){
+    return this.http.get<any>(this._url + 'chcfmb/machinery/equipmenttype/getall').pipe(map((res:any)=>{
+    return res;
+    }))
+    }
+  
 
   getequipmentname(masterId) {
-    this.http.get<any>(this._url + 'chcfmb/machinery/equipmentname/' + masterId).subscribe((res: any) => {
+    this.http.get<any>(this._url + '/chcfmb/machinery/equipmentname/' + masterId).subscribe((res: any) => {
       this.equipmentName.next(res);
     })
   }
+
+
+
+
   addchcfmbMachinery(params) {
     return this.http.post<any>(this._url + 'chcfmb/machinery', params);
   }

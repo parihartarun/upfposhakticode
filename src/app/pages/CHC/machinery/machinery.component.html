@@ -25,7 +25,7 @@
                     <select class="form-control" (change)="getEquipment($event.target.value)" name="type" required #type="ngModel"
                       [(ngModel)]="formData.type_id">
                       <option value="" disabled>{{'Select Type' | translate}}</option>
-                      <option *ngFor="let row of equipmentTypes | async" [value]="row.id">
+                      <option *ngFor="let row of equipmentTypes" [value]="row.machineTypeId">
                         {{row.equipType}}</option>
                     </select>
                     <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-danger">
