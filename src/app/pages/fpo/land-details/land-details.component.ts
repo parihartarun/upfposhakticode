@@ -26,7 +26,7 @@ export class LandDetailsComponent implements OnInit {
   edit = false;
   master_id = localStorage.getItem('masterId');
   farmerId:any
-  land_area=0;
+  land_area='';
 
  constructor(
     private formBuilder: FormBuilder,

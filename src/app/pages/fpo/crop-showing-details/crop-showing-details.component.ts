@@ -117,6 +117,7 @@ export class CropShowingDetailsComponent implements OnInit {
   getCropsBySeasonId(seasonId){
     this.commonService.getCropsBySeasonId(seasonId).subscribe(
       response => {
+        console.log('crops:', response);
       this.crops = response;
     })
   }
@@ -268,7 +269,7 @@ export class CropShowingDetailsComponent implements OnInit {
         cropRefName:data.crop_master_id,
         verietyRef:data.veriety_ref
       });
-    }, 1000);
+    }, 5000);
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -301,7 +302,7 @@ export class CropShowingDetailsComponent implements OnInit {
   getVarieties(cropId){
     this.commonService.getCropVarietiesByCropId(cropId).subscribe(
       response => {
-        console.log(response);
+        console.log('varieties:',response);
       this.varieties = response;
     })
   }

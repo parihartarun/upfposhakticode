@@ -26,7 +26,7 @@ export class ProductionReportComponent implements OnInit {
   ngOnInit(): void {
     this.filterForm = this.formBuilder.group({
       finYear: ['2020-2021'],
-      seasonId: [2],
+      seasonId: [0],
       fpoId:[localStorage.getItem('masterId')]
     });
     this.getFarmerWiseProductionReport();

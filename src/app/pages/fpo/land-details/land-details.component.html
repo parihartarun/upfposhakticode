@@ -28,7 +28,7 @@
                 <input type="hidden" formControlName="registrationNumber">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-username">{{'Farmer Name' | translate}}</label>
+                    <label class="form-control-label" for="input-username">{{'Farmer Name' | translate}}<span class="required">*</span></label>
 
                     <select formControlName="farmerId" class="form-control form-control-alternative" (change)="selectFarmer($event)">
                       <option value="">{{'Select farmer'|translate}}</option>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">{{'Area of Farm (in hectare)' | translate}}</label>
+                    <label class="form-control-label" for="input-email">{{'Area of Farm (in hectare)' | translate}}<span class="required">*</span></label>
                     <input formControlName="land_area" type="text" id="area-farm" class="form-control form-control-alternative" pattern="^\d{0,3}(\.\d{1,2})?$">
                     <div *ngIf="submitted && formControls.land_area.errors" class="text-danger">
                       <div *ngIf="formControls.land_area.errors.required">{{'Area of Farm (in hectare) is required' | translate}}</div>

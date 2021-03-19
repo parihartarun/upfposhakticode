@@ -39,7 +39,6 @@
                     <!-- <span *ngIf="edit">{{ }}</span> -->
                     <div *ngIf="submitted && formControls.file.errors" class="text-danger">
                       <div *ngIf="formControls.file.errors.required">{{'File is required'|translate}}</div>
-                     
                     </div>
                     <div *ngIf="checkfileFormat" class="text-danger">{{'only png,jpeg,jpg format is allow'| translate}}</div>
                   </div>

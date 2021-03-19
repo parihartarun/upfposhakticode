@@ -36,7 +36,7 @@
                     <label class="form-control-label" for="input-username">{{'Season'|translate}}<span class="required">*</span></label>
                     <select formControlName="seasonId" class="form-control form-control-alternative">
                       <option value="">{{'Select Season'|translate}}</option>
-                      <option value="2" selected>{{'All'|translate}}</option>
+                      <option value="0" selected>{{'All'|translate}}</option>
                       <option value="{{season.seasonId}}" *ngFor="let season of seasons">{{season.season}}</option>
                     </select>
                   </div>
@@ -93,7 +93,7 @@
             <tbody>
               <tr *ngFor="let p of production | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
                 <td>
-                  {{ i + 1}}
+                  {{(p-1) * 10 + i + 1}}
                 </td>
                 <td>
                  {{p.farmer_name}}
