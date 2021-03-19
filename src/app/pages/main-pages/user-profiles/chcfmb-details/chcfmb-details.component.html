@@ -70,7 +70,7 @@
                                 </thead>
                                 <tbody>
                                     <tr
-                                        *ngFor="let p of machinaries | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: currentPage };let i=index">
+                                        *ngFor="let p of machinaries | paginate: { itemsPerPage: 10, currentPage: currentPage };let i=index">
                                         <td>
                                             {{i+1}}
                                         </td>
