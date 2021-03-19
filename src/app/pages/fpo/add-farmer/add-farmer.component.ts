@@ -42,7 +42,7 @@ export class AddFarmerComponent implements OnInit {
   }
   
   getFarmerDetailList(){
-    this.fpo.getFarmerDetailList(localStorage.getItem('masterId')).subscribe(
+    this.fpo.getAllFarmerDetails(localStorage.getItem('masterId')).subscribe(
       response => {
       console.log(response);
       this.FarmerLists = response;

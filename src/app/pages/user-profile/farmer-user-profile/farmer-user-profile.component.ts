@@ -116,8 +116,8 @@ export class FarmerUserProfileComponent implements OnInit {
   }
   createRegisterForm(data) {
     this.profileForm = this.formBuilder.group({
-      accountNo: [data.accountNo, Validators.required],
-      bankRefId: [data.bankRefId, Validators.required],
+      accountNo: [data.accountNo],
+      bankRefId: [data.bankRefId],
       blockRef: [data.blockRef, Validators.required],
       category: [data.category, Validators.required],
       distRefId: [data.distRefId, Validators.required],
@@ -128,7 +128,7 @@ export class FarmerUserProfileComponent implements OnInit {
       farmerId: [data.farmerId],
       farmerMob: [data.farmerMob, [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       farmerName: [data.farmerName, Validators.required],
-      ifscCode: [data.ifscCode, Validators.required],
+      ifscCode: [data.ifscCode],
       fpoRefId: [data.fpoRefId, Validators.required],
       parantsName: [data.parantsName, Validators.required],
       pincode: [data.pincode, [Validators.required, Validators.pattern("[0-9 ]{6}")]],

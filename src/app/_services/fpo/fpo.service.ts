@@ -234,7 +234,7 @@ export class FpoService {
   }
 
   getFarmerWiseProductionReport(data) {
-    return this.http.post<any>(this._url + 'farmerWiseProductionReport/getFarmerProductionReport', data).pipe(map((res: any) => {
+    return this.http.post<any>(this._url + 'farmerWiseProductionReport/getFarmerProductionReport/', data).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -381,6 +381,12 @@ export class FpoService {
 
   getFarmerDetailList(masterId) {
     return this.http.get<any>(this._url + 'api/Farmer/getFarmerDetails/' + masterId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  getAllFarmerDetails(masterId) {
+    return this.http.get<any>(this._url + 'api/Farmer/getFarmerListByFpo/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }

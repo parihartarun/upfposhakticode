@@ -753,5 +753,16 @@
   "Facilities Available is required": "Facilities available is required",
   "Add Warehouse": "Add Warehouse",
   "Update Warehouse": "Update Warehouse",
-  "Fetilizer Grade":"Fetilizer Grade"
+  "Fetilizer Grade":"Fetilizer Grade",
+  "Total Marketable Surplus in Rabi season (in Qt.)":"Total Marketable Surplus in Rabi Season (in Qt.)",
+  "Total Marketable Surplus in Zayad season (in Qt.)":"Total Marketable Surplus in Zayad Season (in Qt.)",
+  "Total Marketable Surplus in Kharif season (in Qt.)":"Total Marketable Surplus in Kharif Season (in Qt.)",
+
+  "Total Actual Production in Rabi season (in Qt.)":"Total Actual Production in Rabi Season (in Qt.)",
+  "Total Actual Production in Zayad season (in Qt.)":"Total Actual Production in Zayad Season (in Qt.)",
+  "Total Actual Production in Kharif season (in Qt.)":"Total Actual Production in Kharif Season (in Qt.)",
+
+  "Total Sales Production in Rabi season (in Qt.)":"Total Sales Production in Rabi Season (in Qt.)",
+  "Total Sales Production in Zayad season (in Qt.)":"Total Sales Production in Zayad Season (in Qt.)",
+  "Total Sales Production in Kharif season (in Qt.)":"Total Sales Production in Kharif Season (in Qt.)"
 }

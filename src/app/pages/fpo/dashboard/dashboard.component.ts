@@ -19,6 +19,18 @@ export class FpoDashboardComponent implements OnInit {
   salesProduction:Array<any>=[];
   finYears:[];
 
+  markatableProductionRabi:Array<any>=[];
+  markatableProductionKharif:Array<any>=[];
+  markatableProductionZayad:Array<any>=[];
+
+  actualProductionRabi:Array<any>=[];
+  actualProductionKharif:Array<any>=[];
+  actualProductionZayad:Array<any>=[];
+
+  salesProductionRabi:Array<any>=[];
+  salesProductionKharif:Array<any>=[];
+  salesProductionZayad:Array<any>=[];
+  
   public totals = {
     totalFpoFarmer: 0,
     totalMarginalFarmer: 0,
@@ -132,20 +144,10 @@ export class FpoDashboardComponent implements OnInit {
           zayadData.push(ob);
       }
     }
-    this.markatableProduction = [
-      {
-        title: `Total Marketable Surplus in Rabi season (in Qt.)`,
-        data: rabiData
-      },
-      {
-        title: `Total Marketable Surplus in Zayad season (in Qt.)`,
-        data: kharifData
-      },
-      {
-        title: `Total Marketable Surplus in Kharif season (in Qt.)`,
-        data:zayadData
-      }
-    ];
+    this.markatableProductionRabi = rabiData;
+    this.markatableProductionKharif = kharifData;
+    this.markatableProductionZayad = zayadData;
+
   }
 
   setActualProduction(data){
@@ -184,20 +186,9 @@ export class FpoDashboardComponent implements OnInit {
       }
     }
     
-    this.actualProduction = [
-      {
-        title: `Total Actual Production in Rabi (in Qt.)`,
-        data: rabiData1
-      },
-      {
-        title: `Total Actual Production in Zayad (in Qt.)`,
-        data: kharifData1
-      },
-      {
-        title: `Total Actual Production in Kharif (in Qt.)`,
-        data:zayadData1
-      }
-    ];
+    this.actualProductionRabi = rabiData1;
+    this.actualProductionKharif = kharifData1;
+    this.actualProductionZayad = zayadData1;
   }
 
   setSalesProduction(data){
@@ -235,21 +226,10 @@ export class FpoDashboardComponent implements OnInit {
           zayadData2.push(ob);
       }
     }
-    
-    this.salesProduction = [
-      {
-        title: `Total Sales Production in Rabi (in Qt.)`,
-        data: rabiData2
-      },
-      {
-        title: `Total Sales Production in Zayad (in Qt.)`,
-        data:zayadData2
-      },
-      {
-        title: `Total Sales Production in Kharif (in Qt.)`,
-        data:kharifData2
-      }
-    ];
+
+    this.salesProductionRabi = rabiData2;
+    this.salesProductionKharif = kharifData2;
+    this.salesProductionZayad = zayadData2;
   }
 
   showGraphs(tab){

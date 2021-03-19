@@ -149,6 +149,7 @@ export class CropProductionComponent implements OnInit {
   resetForm(){
     this.productionForm.reset();
     this.submitted=false;
+    this.edit = false;
   }
 
   editCropProduction(production){

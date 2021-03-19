@@ -135,6 +135,7 @@ export class StorageUnitComponent implements OnInit {
   editCollectionCenter(equipment){
     this.getBlocksByDistrictId(equipment.distId);
     console.log(equipment);
+    this.getDistricts();
     this.storageUnitForm = this.formBuilder.group({
       storageType: [equipment.storageType, [Validators.required]],
       fascilities: ['', [Validators.required]],

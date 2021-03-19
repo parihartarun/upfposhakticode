@@ -769,5 +769,16 @@
   "Facilities Available is required":"उपलब्ध सुविधाओं की आवश्यकता है",
   "Add Warehouse":"वेयरहाउस जोड़ें",
   "Update Warehouse":"वेयरहाउस अपडेट करें",
-  "Fetilizer Grade":"उर्वरक ग्रेड"
+  "Fetilizer Grade":"उर्वरक ग्रेड",
+  "Total Marketable Surplus in Rabi season (in Qt.)":"रबी सीजन में कुल बिक्री योग्य अधिशेष (क्विन्टल में)",
+  "Total Marketable Surplus in Zayad season (in Qt.)":"ज़ैद सीजन में कुल बाज़ार योग्य अधिशेष (क्विन्टल में)",
+  "Total Marketable Surplus in Kharif season (in Qt.)":"खरीफ सीजन में कुल बिक्री योग्य अधिशेष (क्विन्टल में)",
+
+  "Total Actual Production in Rabi season (in Qt.)":"रबी सीजन में कुल वास्तविक उत्पादन (क्विन्टल में)",
+  "Total Actual Production in Zayad season (in Qt.)":"ज़ैद सीजन में कुल वास्तविक उत्पादन (क्विन्टल में)",
+  "Total Actual Production in Kharif season (in Qt.)":"खरीफ सीजन में कुल वास्तविक उत्पादन (क्विन्टल में)",
+
+  "Total Sales Production in Rabi season (in Qt.)":"रबी सीजन में कुल बिक्री उत्पादन (क्विन्टल में)",
+  "Total Sales Production in Zayad season (in Qt.)":"ज़ैद सीजन में कुल बिक्री उत्पादन (क्विन्टल में)",
+  "Total Sales Production in Kharif season (in Qt.)":"खरीफ सीजन में कुल बिक्री उत्पादन (क्विन्टल में)"
 }
