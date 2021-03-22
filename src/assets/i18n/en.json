@@ -590,7 +590,7 @@
   "Irrigation Equipment": "Irrigation Equipment",
   "Farm Machinery": "Farm Machinery",
   "Machinery Details": "Machinery Details",
-  "Insectices/Pesticides": "Insectices/Pesticides",
+  "Insecticide/Pesticide": "Insecticide/Pesticide",
   "CIB & RC Number": "CIB & RC Number",
   "CIB & RC Issue Date": "CIB & RC Issue Date",
   "Insecticdes/Pesticides Details": "Insecticdes/Pesticides Details",
@@ -764,5 +764,10 @@
 
   "Total Sales Production in Rabi season (in Qt.)":"Total Sales Production in Rabi Season (in Qt.)",
   "Total Sales Production in Zayad season (in Qt.)":"Total Sales Production in Zayad Season (in Qt.)",
-  "Total Sales Production in Kharif season (in Qt.)":"Total Sales Production in Kharif Season (in Qt.)"
+  "Total Sales Production in Kharif season (in Qt.)":"Total Sales Production in Kharif Season (in Qt.)",
+  "Cultivated Land":"Cultivated Land",
+  "Uncultivated Land":"Uncultivated Land",
+  "Expected Production":"Expected Production",
+  "Machinery":"Machinery",
+  "Insectices/Pesticies":"Insectices/Pesticies"
 }

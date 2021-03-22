@@ -617,7 +617,7 @@
   "Irrigation Equipment": "सिंचाई के उपकरण",
   "Farm Machinery": "कृषि मशीनरी",
   "Machinery Details": "मशीनरी विवरण",
-  "Insectices/Pesticides": "कीटनाशक / कीटनाशक",
+  "Insecticide/Pesticide": "कीटनाशक",
   "CIB & RC Number": "सीआईबी और आर सी संख्या",
   "CIB & RC Issue Date": "सीआईबी और आर सी जारी करने की तिथि",
   "Insecticdes/Pesticides Details": "कीटनाशक / कीटनाशक विवरण",
@@ -780,5 +780,10 @@
 
   "Total Sales Production in Rabi season (in Qt.)":"रबी सीजन में कुल बिक्री उत्पादन (क्विन्टल में)",
   "Total Sales Production in Zayad season (in Qt.)":"ज़ैद सीजन में कुल बिक्री उत्पादन (क्विन्टल में)",
-  "Total Sales Production in Kharif season (in Qt.)":"खरीफ सीजन में कुल बिक्री उत्पादन (क्विन्टल में)"
+  "Total Sales Production in Kharif season (in Qt.)":"खरीफ सीजन में कुल बिक्री उत्पादन (क्विन्टल में)",
+  "Cultivated Land":"खेती की भूमि",
+  "Uncultivated Land":"अप्राप्त भूमि",
+  "Expected Production":"अपेक्षित उत्पादन",
+  "Machinery":"मशीनरी",
+  "Insectices/Pesticies":"कीटनाशक"
 }

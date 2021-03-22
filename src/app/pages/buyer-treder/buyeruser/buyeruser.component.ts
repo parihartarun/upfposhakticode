@@ -25,13 +25,13 @@ export class BuyeruserComponent implements OnInit {
 
 
     selectState(stateId) {
-      this.buyerprofileForm.controls['stateRefId'].setValue(stateId.currentTarget.value);
-      this.api.getDistrictByState(parseInt(stateId.currentTarget.value)).subscribe(d => {
+      this.buyerprofileForm.controls['stateRefId'].setValue(stateId);
+      this.api.getDistrictByState(parseInt(stateId)).subscribe(d => {
         this.districts = d
       })
     }
     selectDistrict(districtRefId: any) {   
-      this.buyerprofileForm.controls['districtRefId'].setValue(districtRefId.currentTarget.value);
+      this.buyerprofileForm.controls['districtRefId'].setValue(districtRefId);
     }
 
   ngOnInit(): void {
@@ -58,7 +58,6 @@ export class BuyeruserComponent implements OnInit {
       commdityDealsIn:['', Validators.required],
       companyCategory:['',Validators.required],
       webSite:['',Validators.required]
-
     });
 
     this.userId = localStorage.getItem('masterId');
@@ -68,9 +67,8 @@ export class BuyeruserComponent implements OnInit {
 
     this.buyerservice.getbyid(this.userId).subscribe(res => {
       console.log(res)
-      if (res) {
+      this.selectState(res.stateRefId);
         this.buyerprofileForm.setValue({
-
           contactPerson: res.contactPerson,
           userName: res.userBuyerSeller.userName,
           designationContactPerson: res.designationContactPerson,
@@ -89,21 +87,17 @@ export class BuyeruserComponent implements OnInit {
           companyCategory:res.companyCategory,
           webSite:res.webSite
         });
-      }
+        setTimeout(()=>{     
+          this.buyerprofileForm.patchValue({
+            districtRefId: res.districtRefId
+          });
+        }, 1000);
     })
   }
 
   updateProfile() {
-
     this.buyerservice.editbuyer(this.userId, this.buyerprofileForm.value).subscribe(res => {
-
-      // if (res != '') {
-      this.toastr.success('Edit Profile  Successfully.');
-
-      // } else {
-      //   this.toastr.error('Error! While Add complaint.');
-      // }
-
+      this.toastr.success('Profile Updated Successfully.');
       console.log(res);
     })
   }

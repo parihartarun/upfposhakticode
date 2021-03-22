@@ -33,6 +33,25 @@ export class FarmerUserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.roleType = localStorage.getItem('userRole');
+    this.profileForm = this.formBuilder.group({
+      accountNo: [""],
+      bankRefId: [""],
+      blockRef: ["", Validators.required],
+      category: ["", Validators.required],
+      distRefId: ["", Validators.required],
+      gender: ["", Validators.required],
+      farmerId: [""],
+      farmerMob: ["", [Validators.required, Validators.pattern("[0-9 ]{10}")]],
+      farmerName: ["", Validators.required],
+      ifscCode: [""],
+      fpoRefId: ["", Validators.required],
+      parantsName: ["", Validators.required],
+      pincode: ["", [Validators.required, Validators.pattern("[0-9 ]{6}")]],
+      userName: ["", [Validators.required, Validators.pattern("[0-9a-zA-Z]{6,20}")]],
+      userRefId: [""],
+      villRefId: ["", Validators.required],
+      villagePanchayatId: ["", Validators.required],
+    })
     this.getDitricts();
     this.authservice.getBank().subscribe(d => {
       this.banks = d
@@ -122,9 +141,6 @@ export class FarmerUserProfileComponent implements OnInit {
       category: [data.category, Validators.required],
       distRefId: [data.distRefId, Validators.required],
       gender: [data.gender, Validators.required],
-      createdBy: 'ROLE_FARMER',
-      deleted: [true],
-      enabled: [true],
       farmerId: [data.farmerId],
       farmerMob: [data.farmerMob, [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       farmerName: [data.farmerName, Validators.required],
@@ -136,12 +152,7 @@ export class FarmerUserProfileComponent implements OnInit {
       userRefId: [data.userRefId],
       villRefId: [data.villRefId, Validators.required],
       villagePanchayatId: [data.villagePanchayatId, Validators.required],
-
-
     })
-
-
-
   }
 
 }

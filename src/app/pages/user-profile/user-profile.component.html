@@ -61,17 +61,6 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">{{'Registration No'|translate}}</label>
-                    <input type="text" id="input-last-name" formControlName="fmbno" class="form-control form-control-alternative" >
-                    <div *ngIf="submitted && formControls.fmbno.errors" class="text-danger">
-                      <div *ngIf="formControls.fmbno.errors.required">{{'Registration No. is required'|translate}}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="form-group">
                     <label class="input-label">{{'Agency' | translate}} <span class="required">*</span></label>
                     <select formControlName="agency" class="form-control form-control-alternative">
                       <option value="">

@@ -69,7 +69,7 @@
                     <!-- <input type="date" id="input-first-name" class="form-control form-control-alternative"
                       data-date-format="DD-MM-YYYY" name="Purchase Year" [(ngModel)]="formData.purchase_year" required
                       #purchaseYear="ngModel"> -->
-                    <input type="text" placeholder="{{'Date'|translate}}" class="form-control" bsDatepicker
+                    <input type="text" class="form-control" bsDatepicker
                       [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }" name="Purchase Year"
                       [(ngModel)]="formData.purchase_year" required #purchaseYear="ngModel">
                     <div *ngIf="purchaseYear.invalid && (purchaseYear.dirty || purchaseYear.touched)"

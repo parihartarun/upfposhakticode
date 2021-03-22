@@ -27,14 +27,14 @@ export class ChcfmbDetailsComponent implements OnInit {
   }
 
   getUserDetails(){
-    this.api.getUserDetails(this.user_id).subscribe(response => {
-      console.log(response);
-      this.user_data = response;
-    })
+    // this.api.getUserDetails(this.user_id).subscribe(response => {
+    //   console.log(response);
+    //   this.user_data = response;
+    // })
   }
 
   getMachinaries(){
-    this.machinaries = this.api.getMachinaries(this.user_id);
+    // this.machinaries = this.api.getMachinaries(this.user_id);
   }
 
 }

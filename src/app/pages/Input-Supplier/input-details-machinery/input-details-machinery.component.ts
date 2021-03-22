@@ -26,6 +26,7 @@ export class InputDetailsMachineryComponent implements OnInit {
   id = null;
   isEdit = false;
   machinerynamelist: any;
+  p:number = 1;  
 
   constructor(private inputmachineryservice: InputSupplierService,
     private fb: FormBuilder,

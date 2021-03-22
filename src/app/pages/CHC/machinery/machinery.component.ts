@@ -37,6 +37,7 @@ export class MachineryComponent implements OnInit {
   }
   getAllMachineryList() {
     this.chcFmbService.getAllMachinery(this.masterId);
+    console.log(this.machineryList);
   }
   public fieldArray: Array<any> = [];
   private newAttribute: any = {};
