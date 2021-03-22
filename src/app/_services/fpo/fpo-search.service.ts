@@ -61,13 +61,13 @@ export class FpoSearchService {
   }
 
   getInputSuppliers(keyword,type){
-    this.http.get<any>(this._url +`/api/search/v2/filters/inputSuppliers?in=${type}&val=${keyword}`).subscribe((res:any)=>{
+    this.http.get<any>(this._url +`api/search/v2/filters/inputSuppliers?in=${type}&val=${keyword}`).subscribe((res:any)=>{
       this.inputSupplierObserver.next(res);
     })
   }
 
   getFertilizerTypes(keyword,type){
-    this.http.get<any>(this._url +`/api/search/v2/filters/fertilizertypes?in=${type}&val=${keyword}`).subscribe((res:any)=>{
+    this.http.get<any>(this._url +`api/search/v2/filters/fertilizertypes?in=${type}&val=${keyword}`).subscribe((res:any)=>{
       this.fertilizerTypesObserver.next(res);
     })
   }
