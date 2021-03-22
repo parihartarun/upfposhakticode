@@ -11,6 +11,7 @@ import { FpoService } from '../../_services/fpo/fpo.service';
 import { ProductService } from '../../_services/product/product.service';
 import { FpoSearchService } from 'src/app/_services/fpo/fpo-search.service';
 import { LabelType, Options } from '@angular-slider/ngx-slider';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-products-list',
@@ -36,6 +37,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   masterIdentity:any;
   brands: any=[];
   machinetypes:any =[];
+  inputSuppliers:any = [];
+  fertilizerTypes:any =[]
   isDistrict: false;
   searchCriteria: Array<any> = [];
   fpoDetail: any
@@ -85,7 +88,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     qtymax: null,
     maxRentPerHour:null,
     minRentPerHour:null,
-    limit: 5,
+    limit: 6,
     page: 1
   };
 
@@ -108,6 +111,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     }
   };
 
+
+
   onSelectedChange(event) {
     this.filterParams.cropverietyIds = [];
       this.filterParams.cropIds = [];
@@ -128,6 +133,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     // }
   }
 
+
+
   // open(content) {
   //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
   //     this.closeResult = `Closed with: ${result}`;
@@ -145,7 +152,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
   brandsObserver = this.fpoSearchService.brandsObserver.asObservable();
   machineryTypesObserver = this.fpoSearchService.machineryTypesObserver.asObservable();
-
+  inputSupplierObserver = this.fpoSearchService.inputSupplierObserver.asObservable();
+  fertilizerTypesObserver = this.fpoSearchService.fertilizerTypesObserver.asObservable();
 
   filteredData = [];
   node: any;
@@ -173,6 +181,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
         this.fpoSearchService.getCrops(this.parval, this.parsearchType);
         this.fpoSearchService.getMachineryTypes(this.parval, this.parsearchType);
         this.fpoSearchService.getBrands(this.parval,this.parsearchType);
+        this.fpoSearchService.getInputSuppliers(this.parval,this.parsearchType);
+        this.fpoSearchService.getFertilizerTypes(this.parval,this.parsearchType);
          this.searchData();
       }
     });
@@ -182,13 +192,25 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
     this.brandsObserver.subscribe(data =>{
       this.brands = data;
-      this.brands = this.brands.map((str,index)=>({ id: index+1,name:str}));
+      if(this.brands !== null){
+        this.brands = this.brands.map((str,index)=>({ id: index+1,name:str}));        
+      }
       console.log('brands ==>',this.brands);
     });
 
     this.machineryTypesObserver.subscribe(data=>{
        this.machinetypes = data;
        console.log("machineTypes==>",this.machinetypes);
+    })
+
+    this.inputSupplierObserver.subscribe(data=>{
+       this.inputSuppliers = data;
+       console.log("Input Suppliers==>",this.inputSuppliers);
+    });
+
+    this.fertilizerTypesObserver.subscribe(data=>{
+      this.fertilizerTypes = data;
+      console.log("FErtilizer Types==>",this.fertilizerTypes);
     })
 
     this.fpoObserver.subscribe(data => {
@@ -239,6 +261,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     console.log(this.filterParams);
   }
   fetchnewData() {
+    this.clearAllFilters();
     this.selectedDropdown = this.filterParams.in;
     this.searchData();
     this._rouetr.navigate(['/products', this.filterParams.val, this.filterParams.in]);
@@ -368,6 +391,24 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.searchData();
   }
 
+  selectInputSupplier(inputSupplier:any){
+    if(inputSupplier.is_active){
+      this.filterParams.inputSupplierIds.push(inputSupplier.id)
+    }else{
+      this.filterParams.inputSupplierIds.splice(this.filterParams.inputSupplierIds.indexOf(inputSupplier.id), 1);
+    }
+    this.searchData();
+  }
+
+  selectFertilizerType(fertilizerType:any){
+        if(fertilizerType.is_active){
+            this.filterParams.fertilizerTypeIds.push(fertilizerType.id);
+        }else{
+            this.filterParams.fertilizerTypeIds.splice(this.filterParams.fertilizerTypeIds.indexOf(fertilizerType.id), 1);
+        }
+        this.searchData();
+  }
+
   selectMachineType(machineType: any) {
     if (machineType.is_active) {
       console.log(machineType);
@@ -379,6 +420,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.searchData();
   }
 
+  //selectInputSupplliers()  
   selectBrand(brand: any){
     if (brand.is_active) {
       this.filterParams.brands.push(brand.name);
@@ -438,6 +480,75 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   }
   get formControls() {
     return this.indentForm.controls;
+  }
+
+  // uncheckAllItems(items) {
+  //   items.forEach(element => {
+  //   element.checked = false;
+  //   element.collapsed = true
+  //   if (element.internalChildren) {
+  //     this.uncheckAllItems(element.internalChildren);
+  //   }
+  // });}
+
+  clearAllFilters(){
+    // Clean all the filters 
+    this.filterParams.districtIds =[];
+    this.filterParams.machineryTypes=[];
+    this.filterParams.fertilizerTypeIds=[];
+    this.filterParams.inputSupplierIds =[];
+    this.filterParams.brands=[];
+    this.filterParams.cropverietyIds=[];
+    //this.treeView =[];
+    
+   // this.uncheckAllItems(this.treeView)
+
+    if(this.districts !== null){
+      this.districts.forEach(element => {
+        element.is_active = false;
+      });
+    }
+    if(this.machinetypes !== null){
+      this.machinetypes.forEach(element => {
+        element.is_active = false;
+      });
+    }
+    if(this.fertilizerTypes !== null){
+      this.fertilizerTypes.forEach(element =>{
+        element.is_active = false;
+      })
+    }
+    if(this.inputSuppliers !== null){
+      this.inputSuppliers.forEach(element =>{
+        element.is_active = false;
+      });
+    }
+
+   if(this.brands !== null){
+        this.brands.forEach(element =>{
+          element.is_active = false;
+        })
+    }
+  
+    if(this.fpolist !== null){
+      this.fpolist.forEach(element =>{
+        element.is_active = false;
+      })
+    }
+
+    // Cleans the ngx tree filter upto depth 1
+    if(this.treeView !== null){
+          this.treeView.forEach(element =>{
+            if (element.internalChecked === true){
+                element.internalChildren.forEach(elem =>{
+                  elem.internalChecked = false;
+                });
+                element.internalChecked = false;
+                element.internalCollapsed =true;
+            }
+          });
+    }
+
   }
 
   clearFilters() {

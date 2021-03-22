@@ -52,10 +52,10 @@
             <select class="btn d-inline btn-default search-btn dropdown-toggle" id="searchin" name="Searchin"
               [(ngModel)]="filterParams.in" style="width: 100%;border-right: solid;border-radius: 0;">
               <option value="crop">{{'Crop' | translate }}</option>
-              <option value="insecticides">{{'Insecticides' | translate }}</option>
-              <option value="seeds">{{'Seeds' | translate }}</option>
+              <option value="insecticide">{{'Insecticides' | translate }}</option>
+              <option value="seed">{{'Seeds' | translate }}</option>
               <option value="fmb">{{'machinery' | translate }}</option>
-              <option value="fertilizers">{{'Fertilizers' | translate }}</option>
+              <option value="fertilizer">{{'Fertilizers' | translate }}</option>
               <!-- <option value="district">{{'District1' | translate }}</option> -->
               <!-- <option value="fpo_name">{{'FPO' | translate }}</option> -->
               <!-- <option value="services">{{'Services/ Products' | translate }}</option> -->
@@ -202,7 +202,7 @@
           secondaryColour: '#926E01', 
           tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
             <ngx-treeview *ngIf="treeView" [items]="treeView" [config]="config"
-              (selectedChange)="onSelectedChange($event)">
+              (selectedChange)="onSelectedChange($event)" >
             </ngx-treeview>
           </article>
           <article class="card-group-item my-2" *ngIf="fpolist?.length">
@@ -258,6 +258,7 @@
                       <span class="form-check-label">
                         {{brand.name}}
                       </span>
+                    </label>
                   </form>
               </div>
             </div>
@@ -303,6 +304,162 @@
           
         </div>
         <!--End of Machinery-->
+        <!--For Seed-->
+        <div class="card" *ngIf="(selectedDropdown==='seed')">
+          <article class="card-group-item my-2" *ngIf="districts?.length">
+            <header class="">
+              <h3 class="title">{{'District1' | translate }}</h3>
+            </header>
+            <div class="filter-content">
+              <div class="filterDistrict">
+                <form>
+                  <label class="form-check" *ngFor="let district of districts">
+                    <input class="form-check-input" type="checkbox" [value]="district.name" [name]="district.name"
+                      [(ngModel)]="district.is_active" (change)="selectDistrct(district)">
+                    <span class="form-check-label">
+                      {{district.name}}
+                    </span>
+                  </label> <!-- form-check.// -->
+                </form>
+              </div> <!-- card-body.// -->
+            </div>
+          </article>
+          <article class="card-group-item my-2">
+            <header class="">
+              <h3 class="title">{{'cropandverieties' | translate }} </h3>
+            </header>
+                <ngx-loading [show]="!treeView" [config]="{backdropBackgroundColour: '#ffffff', 
+              backdropBorderRadius: '1px',
+              primaryColour: '#926E01', 
+              secondaryColour: '#926E01', 
+              tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+            <ngx-treeview *ngIf="treeView" [items]="treeView" [config]="config"
+              (selectedChange)="onSelectedChange($event)">
+            </ngx-treeview>
+          </article>
+
+          <article class="card-group-item my-2" *ngIf="inputSuppliers?.length">
+            <header class="">
+              <h3 class="title">{{'Input Suppliers' | translate }}</h3>
+            </header>
+            <div class="filter-content">
+              <div class="filterDistrict">
+                <form>
+                  <label class="form-check" *ngFor="let inputSupplier of inputSuppliers">
+                    <input class="form-check-input" type="checkbox" [value]="inputSupplier.name" [name]="inputSupplier.name"
+                      [(ngModel)]="inputSupplier.is_active" (change)="selectInputSupplier(inputSupplier)">
+                    <span class="form-check-label">
+                      {{inputSupplier.name}}
+                    </span>
+                  </label> <!-- form-check.// -->
+                </form>
+              </div> <!-- card-body.// -->
+            </div>
+          </article>
+
+
+
+        </div>
+        <!--End of Seed-->
+        <!--For Insecticide-->
+        <div class="card" *ngIf="(selectedDropdown==='insecticide')">
+                <article class="card-group-item my-2" *ngIf="districts?.length">
+                  <header class="">
+                    <h3 class="title">{{'District1' | translate }}</h3>
+                  </header>
+                  <div class="filter-content">
+                    <div class="filterDistrict">
+                      <form>
+                        <label class="form-check" *ngFor="let district of districts">
+                          <input class="form-check-input" type="checkbox" [value]="district.name" [name]="district.name"
+                            [(ngModel)]="district.is_active" (change)="selectDistrct(district)">
+                          <span class="form-check-label">
+                            {{district.name}}
+                          </span>
+                        </label> <!-- form-check.// -->
+                      </form>
+                    </div> <!-- card-body.// -->
+                  </div>
+                </article>
+                <article class="card-group-item my-2" *ngIf="inputSuppliers?.length">
+                  <header class="">
+                    <h3 class="title">{{'Input Suppliers' | translate }}</h3>
+                  </header>
+                  <div class="filter-content">
+                    <div class="filterDistrict">
+                      <form>
+                        <label class="form-check" *ngFor="let inputSupplier of inputSuppliers">
+                          <input class="form-check-input" type="checkbox" [value]="inputSupplier.name" [name]="inputSupplier.name"
+                            [(ngModel)]="inputSupplier.is_active" (change)="selectInputSupplier(inputSupplier)">
+                          <span class="form-check-label">
+                            {{inputSupplier.name}}
+                          </span>
+                        </label> <!-- form-check.// -->
+                      </form>
+                    </div> <!-- card-body.// -->
+                  </div>
+                </article>
+
+        </div>
+        <!--End of Insecticide-->
+        <!--Start of Fertilizer-->
+        <div class="card" *ngIf="(selectedDropdown==='fertilizer')">
+              <article class="card-group-item my-2" *ngIf="districts?.length">
+                <header class="">
+                  <h3 class="title">{{'District1' | translate }}</h3>
+                </header>
+                <div class="filter-content">
+                  <div class="filterDistrict">
+                    <form>
+                      <label class="form-check" *ngFor="let district of districts">
+                        <input class="form-check-input" type="checkbox" [value]="district.name" [name]="district.name"
+                          [(ngModel)]="district.is_active" (change)="selectDistrct(district)">
+                        <span class="form-check-label">
+                          {{district.name}}
+                        </span>
+                      </label> <!-- form-check.// -->
+                    </form>
+                  </div> <!-- card-body.// -->
+                </div>
+              </article>
+              <article class="card-group-item my-2" *ngIf="inputSuppliers?.length">
+                <header class="">
+                  <h3 class="title">{{'Input Suppliers' | translate }}</h3>
+                </header>
+                <div class="filter-content">
+                  <div class="filterDistrict">
+                    <form>
+                      <label class="form-check" *ngFor="let inputSupplier of inputSuppliers">
+                        <input class="form-check-input" type="checkbox" [value]="inputSupplier.name" [name]="inputSupplier.name"
+                          [(ngModel)]="inputSupplier.is_active" (change)="selectInputSupplier(inputSupplier)">
+                        <span class="form-check-label">
+                          {{inputSupplier.name}}
+                        </span>
+                      </label> <!-- form-check.// -->
+                    </form>
+                  </div> <!-- card-body.// -->
+                </div>
+              </article>
+              <article class="card-group-item my-2" *ngIf="fertilizerTypes?.length">
+                <header class="">
+                  <h3 class="title">{{'Fertilizer Types' | translate }}</h3>
+                </header>
+                <div class="filter-content">
+                  <div class="filterDistrict">
+                    <form>
+                      <label class="form-check" *ngFor="let fertilizerType of fertilizerTypes">
+                        <input class="form-check-input" type="checkbox" [value]="fertilizerType.name" [name]="fertilizerType.name"
+                          [(ngModel)]="fertilizerType.is_active" (change)="selectFertilizerType(fertilizerType)">
+                        <span class="form-check-label">
+                          {{fertilizerType.name}}
+                        </span>
+                      </label> <!-- form-check.// -->
+                    </form>
+                  </div> <!-- card-body.// -->
+                </div>
+              </article>
+        </div>
+        <!--End of Fertilizer-->
       </div>
       <div class="col-md-9">
         <div class="row">
@@ -321,7 +478,7 @@
 
         <div class="row">
           <div class="col-lg-6 mb-4" *ngFor="let product of filteredData">
-            <div class="card card-stats box_shadow card_2" *ngIf="product.hasOwnProperty('crop')">
+            <div class="card card-stats box_shadow card_2" *ngIf="selectedDropdown==='crop'">
               <div class="changetopoint"routerLink="/fpo-details/{{product.fpoid}}">
                 <h1>{{product.fpo}}</h1>
               </div>
@@ -371,10 +528,17 @@
             </div>
             <!---End of Crops-->
             <!--Start of Machinery-->
-            <div class="card card-stats box_shadow card_2" *ngIf="product.hasOwnProperty('vendorid')">
-              <div class="changetopoint" routerLink="/maintenance">
-                <h1>{{product.vendorname}}</h1>
+            <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='chcfmb'">
+              <div *ngIf="product.role==='ROLE_CHCFMB';else otherRole">
+                  <div class="changetopoint" routerLink="/chcfmb-details/{{product.vendorid}}">
+                    <h1>{{product.vendorname}}</h1>
+                  </div>
               </div>
+              <ng-template #otherRole>
+                <div class="changetopoint" routerLink="/supplier-details/{{product.vendorid}}">
+                  <h1>{{product.vendorname}}</h1>
+                </div>
+              </ng-template>
               <div class="row" >
                 <div class="col-lg-4 col-sm-4">
                   <div class="gray_color1 d-flex justify-content-center">
@@ -423,6 +587,159 @@
               </div>
             </div>
             <!---End of Machinery-->
+            <!--Start of Seeds-->
+            <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='seeds'">
+              <div class="changetopoint"routerLink="/supplier-details/{{product.inputsupplierid}}">
+                <h1>{{product.inputsupplier}}</h1>
+              </div>
+              <div class="row" >
+                <div class="col-lg-4 col-sm-4">
+                  <div class="gray_color1 d-flex justify-content-center">
+                    <img [src]="product.imagepath">
+                  </div>
+                </div>
+                <div class="col-lg-8 col-sm-8">
+                  <div class="row">
+                    <div class="col-md-12">
+
+                      <div class="mcq">
+                        <ul>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Crop:
+                            </span> <strong> {{product.crop}}</strong>
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Variety:
+                            </span><strong> {{product.cropveriety}}</strong>
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Place:
+                            </span><strong> {{product.district}}</strong>
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Quantity:
+                            </span><strong> {{product.quantity?product.quantity:'-'}}
+                              {{'quintal' | translate }}</strong>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-12 d-flex justify-content-between">
+                  <button class="mx-0 btn btn-sm btn-success" disabled
+                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
+                  <button class="mx-0 btn btn-sm btn-primary" (click)="open($event,mymodal,product)" type="button"
+                    style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
+                </div>
+              </div>
+            </div>
+            <!--End of Seeds-->
+            <!--Start of Insecticide-->
+            <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='insecticide'">
+               
+                    <div class="changetopoint"routerLink="/supplier-details/{{product.inputsupplierid}}">
+                      <h1>{{product.inputsupplier}}</h1>
+                    </div>
+                
+    
+              <div class="row" >
+                <div class="col-lg-4 col-sm-4">
+                  <div class="gray_color1 d-flex justify-content-center">
+                    <img [src]="product.imagepath">
+                  </div>
+                </div>
+                <div class="col-lg-8 col-sm-8">
+                  <div class="row">
+                    <div class="col-md-12">
+
+                      <div class="mcq">
+                        <ul>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Name:
+                            </span> <strong> {{product.itemname}}</strong>
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Grade:
+                            </span><strong> {{product.itemtype}}</strong>
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Place:
+                            </span><strong> {{product.district}}</strong>
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Quantity:
+                            </span><strong> {{product.quantity?product.quantity:'-'}}
+                              {{'quintal' | translate }}</strong>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-12 d-flex justify-content-between">
+                  <button class="mx-0 btn btn-sm btn-success" disabled
+                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
+                  <button class="mx-0 btn btn-sm btn-primary" (click)="open($event,mymodal,product)" type="button"
+                    style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
+                </div>
+              </div>
+            </div>
+            <!--End of Insecticide-->
+            <!--Start of Fertilizer-->
+            <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='fertilizer'">
+              <div class="changetopoint" routerLink="supplier-details/{{product.inputsupplierid}}">
+                <h1>{{product.inputsupplier}}</h1>
+              </div>
+              <div class="row" >
+                <div class="col-lg-4 col-sm-4">
+                  <div class="gray_color1 d-flex justify-content-center">
+                    <img [src]="product.imagepath">
+                  </div>
+                </div>
+                <div class="col-lg-8 col-sm-8">
+                  <div class="row">
+                    <div class="col-md-12">
+
+                      <div class="mcq">
+                        <ul>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Name:
+                            </span> <strong> {{product.itemname}}</strong>
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Type:
+                            </span><strong> {{product.itemtype}}</strong>
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Place:
+                            </span><strong> {{product.district}}</strong>
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Quantity:
+                            </span><strong> {{product.quantity?product.quantity:'-'}}
+                              {{'quintal' | translate }}</strong>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-12 d-flex justify-content-between">
+                  <button class="mx-0 btn btn-sm btn-success" disabled
+                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
+                  <button class="mx-0 btn btn-sm btn-primary" (click)="open($event,mymodal,product)" type="button"
+                    style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
+                </div>
+              </div>
+            </div>
+            <!--End of Fertilizer-->
           </div>
         </div>
         <div class="card-footer py-4">

@@ -16,6 +16,8 @@ export class FpoSearchService {
 
   brandsObserver: BehaviorSubject<any> = new BehaviorSubject([]);
   machineryTypesObserver: BehaviorSubject<any> = new BehaviorSubject([]);
+  inputSupplierObserver:BehaviorSubject<any> = new BehaviorSubject([]);
+  fertilizerTypesObserver:BehaviorSubject<any> = new BehaviorSubject([]);
 
   constructor(private http: HttpClient) {
     this._url = environment.baseUrl;
@@ -55,6 +57,18 @@ export class FpoSearchService {
   getBrands(keyword,type){
     this.http.get<any>(this._url + `api/search/v2/filters/brands?in=${type}&val=${keyword}`).subscribe((res: any) => {
       this.brandsObserver.next(res);
+    })
+  }
+
+  getInputSuppliers(keyword,type){
+    this.http.get<any>(this._url +`/api/search/v2/filters/inputSuppliers?in=${type}&val=${keyword}`).subscribe((res:any)=>{
+      this.inputSupplierObserver.next(res);
+    })
+  }
+
+  getFertilizerTypes(keyword,type){
+    this.http.get<any>(this._url +`/api/search/v2/filters/fertilizertypes?in=${type}&val=${keyword}`).subscribe((res:any)=>{
+      this.fertilizerTypesObserver.next(res);
     })
   }
 
