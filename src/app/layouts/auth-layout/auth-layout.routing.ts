@@ -14,6 +14,7 @@ import { ForgotPasswordComponent } from 'src/app/pages/auth-pages/forgot-passwor
 import {PageUnderConstructionComponent} from 'src/app/pages/page-under-construction/page-under-construction.component';
 import { SupplierDetailsComponent } from '../../pages/main-pages/user-profiles/supplier-details/supplier-details.component';
 import { ChcfmbDetailsComponent } from '../../pages/main-pages/user-profiles/chcfmb-details/chcfmb-details.component';
+import {ViewAllNotificationsComponent} from '../../pages/view-all-notifications/view-all-notifications.component';
 
 export const AuthLayoutRoutes: Routes = [
 
@@ -33,4 +34,5 @@ export const AuthLayoutRoutes: Routes = [
   { path: 'schema', component: SchemasComponent },
   { path: 'fpo_guidelines', component: FpoGuidelinesComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  {path:'view',component:ViewAllNotificationsComponent}
 ];

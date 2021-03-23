@@ -124,6 +124,8 @@ import { SupplierProfileComponent } from './pages/Input-Supplier/supplier-profil
 import { ChcfmbProfileComponent } from './pages/CHC/chcfmb-profile/chcfmb-profile.component';
 import { SupplierDetailsComponent } from './pages/main-pages/user-profiles/supplier-details/supplier-details.component';
 import { ChcfmbDetailsComponent } from './pages/main-pages/user-profiles/chcfmb-details/chcfmb-details.component';
+import { ViewAllNotificationsComponent } from './pages/view-all-notifications/view-all-notifications.component';
+import { ListFilterPipe } from './pages/view-all-notifications/list-filter.pipe';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -257,7 +259,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     SupplierProfileComponent,
     ChcfmbProfileComponent,
     SupplierDetailsComponent,
-    ChcfmbDetailsComponent
+    ChcfmbDetailsComponent,
+    ViewAllNotificationsComponent,
+    ListFilterPipe
 
   ],
   exports: [
