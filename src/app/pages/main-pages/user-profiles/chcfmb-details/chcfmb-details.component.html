@@ -17,7 +17,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- <tr>
+                                <tr *ngIf='user_obj_length > 0'>
                                     <td>
                                         {{user_data.chc_fmb_name}}
                                     </td>
@@ -39,7 +39,7 @@
                                     <td>
                                         {{user_data.pincode}}
                                     </td>
-                                </tr> -->
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -69,8 +69,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <td class="nofounddata" *ngIf= "machinery_object_length == 0">{{'No Data Found' | translate}}</td>
                                     <tr
-                                        *ngFor="let p of machinaries | paginate: { itemsPerPage: 10, currentPage: currentPage };let i=index">
+                                        *ngFor="let p of machinery_data | paginate: { itemsPerPage: 10, currentPage: currentPage };let i=index">
                                         <td>
                                             {{i+1}}
                                         </td>
@@ -91,7 +92,7 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table>
+                             </table>
                         </div>
                         <div class="row mx-0 mt-2" style="align-items: center;">
                             <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
