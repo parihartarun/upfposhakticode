@@ -24,7 +24,7 @@
                 <table class="table table-bordered table-striped">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col">{{'S.no' | translate}}</th>
+                      <th scope="col">{{'Sr.no' | translate}}</th>
                       <th scope="col" sortable="description"> {{'Description'  | translate}}</th>
                       <th scope="col" sortable="createDate"> {{'Date' | translate}}</th>
                       <th scope="col">{{'View Details' | translate}}</th>
@@ -41,7 +41,7 @@
                       <td>
                         {{p.createDate | date:"dd/MM/yyyy"}}
                       </td>
-                      <td class="text-center">
+                      <td >
                         <a [href]="p.filePath" target="_blank" download>Download</a> 
                         
                       </td>
@@ -49,19 +49,20 @@
                   </tbody>
                 </table>
               </div>
-              <div class="row mx-0 mt-2" style="align-items: center;">
+              <div class="row mx-0 mt-5" style="align-items: center;">
                 <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
                   <!-- <div>Showing 1 of 4 entries</div> -->
+                  <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                    <option [ngValue]="2">2 items per page</option>
+                    <option [ngValue]="4">4 items per page</option>
+                    <option [ngValue]="6">6 items per page</option>
+                  </select>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-12 custom-pagination-align">
                     <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5" [boundaryLinks]="true"
                     [pageSize]="pageSize" class="d-flex justify-content-center"></ngb-pagination>
 
-                    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-                        <option [ngValue]="2">2 items per page</option>
-                        <option [ngValue]="4">4 items per page</option>
-                        <option [ngValue]="6">6 items per page</option>
-                      </select>
+                    
                 </div>
               </div>
             </div>

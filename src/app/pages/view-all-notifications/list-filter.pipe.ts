@@ -13,10 +13,20 @@ export class ListFilterPipe implements PipeTransform {
           return list;  
         }
 
-        return list.filter(it=>{   
-            const sno = it.id.toString().includes(filterText) 
-            const description = it.description.toLowerCase().includes(filterText.toLowerCase())
-            const createDate = it.createDate.toLowerCase().includes(filterText.toLowerCase())
+        return list.filter(it=>{
+            let sno,description,createDate;    
+            sno = it.id.toString().includes(filterText) 
+            description = it.description.toLowerCase().includes(filterText.toLowerCase())
+            createDate = it.createDate.toLowerCase().includes(filterText.toLowerCase())
+            if( createDate == null){
+              createDate = false
+            }
+            if(description == null){
+              description = false
+            }
+            if(sno == null){
+              sno = false
+            }
             //console.log( "SNO",sno );console.log( "Desc==>", description); 
             //console.log( "Create==>", createDate);
             return (sno + description +createDate);      
