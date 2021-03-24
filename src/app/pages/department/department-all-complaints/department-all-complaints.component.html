@@ -261,14 +261,8 @@
                     {{ (p-1) * 10 + i + 1}}
                   </td>
 
-                  <td *ngIf="complaint.role=='ROLE_INPUTSUPPLIER'">
-                    {{ complaint.inputSupplierName}}
-                  </td>
-                  <td *ngIf="complaint.role=='ROLE_BUYERSELLER'">
-                    {{ complaint.buyerSellerName}}
-                  </td>
-                  <td *ngIf="complaint.role=='ROLE_CHCFMB'">
-                    {{ complaint.chcFmbName}}
+                  <td>
+                    {{ complaint.createBy}}
                   </td>
                   <td>
                     {{complaint.title}}
@@ -277,7 +271,7 @@
                     {{complaint.description}}
                   </td>
                   <td>
-                    {{complaint.assign_date| date: 'dd/MM/yyyy'}}
+                    {{complaint.updateDate| date: 'dd/MM/yyyy'}}
                   </td>
                   <td>
                     <span *ngIf="complaint.status">{{getStatus(complaint.status)}}</span>

@@ -20,11 +20,10 @@ export class DepartmentSchemeComponent implements OnInit {
   isEdit = false;
   id = null;
   orderBy: { order: string, key: string } = { order: '', key: '' };
-  currentPage = 1;
   searchText = '';
   docRadio = '';
   fileRadio = '';
-
+  currentPage:number = 1;
   constructor(private formBuilder: FormBuilder, public departmentService: DepartmentService, private toastr: ToastrService) { }
 
 
@@ -38,9 +37,8 @@ export class DepartmentSchemeComponent implements OnInit {
       guideline_type: [''],
       title : [''],
       parent_department : [''],
-
-
     });
+
     this.departmentService.getScheme();
   }
   upload(files: FileList) {
@@ -110,15 +108,15 @@ export class DepartmentSchemeComponent implements OnInit {
     }
   }
   editSchemes(data) {
-    this.schemeForm.get('departmentName').patchValue(data.parentDepartment);
+    console.log(data);
+    this.schemeForm.get('parent_department').patchValue(data.parentDepartment);
     this.schemeForm.get('description').patchValue(data.description);
-    this.schemeForm.get('schemes_type').patchValue(data.schemeType);
+    this.schemeForm.get('title').patchValue(data.schemeType);
     this.schemeForm.get('url').patchValue(data.url);
-
-    // this.schemeForm.get('document').patchValue(data.fileName);
     this.id = data.id;
     this.isEdit = true;
   }
+
   updateSchemes() {
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);

@@ -236,9 +236,9 @@
             </thead>
             <tbody>
               <tr
-                *ngFor="let p of (schemeList | async)  | tableSearch:searchText  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: currentPage }">
+                *ngFor="let p of (schemeList | async)  | tableSearch:searchText  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: currentPage }; index as i">
                 <td>
-                  {{p.id}}
+                  {{(currentPage-1) * 10 + i + 1}}
                 </td>
                 <td>
                   {{p.description}}

@@ -278,7 +278,6 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col"></th>
                 <th scope="col">{{'Sr. No' | translate}}</th>
                 <th scope="col">{{"Farmer's Name" | translate}}</th>
                 <th scope="col">{{"Father's/ Husband's Name" | translate}}</th>
@@ -290,9 +289,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let farmer of FarmerLists | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
-                <td>
-                  <input type="checkbox">
-                </td>
                 <td>
                   {{(p-1) * 10 + i + 1}}
                 </td>

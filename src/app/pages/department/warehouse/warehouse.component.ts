@@ -77,6 +77,7 @@ export class WarehouseComponent implements OnInit {
           this.warehouseForm.reset();
           this.getWarehouseAll();
           // this.isEdit = false;
+          this.submitted = false;
         } else {
           this.toastr.error('Error! While Updated Schemes.');
         }

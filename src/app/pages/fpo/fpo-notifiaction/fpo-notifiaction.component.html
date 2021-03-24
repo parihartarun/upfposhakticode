@@ -52,7 +52,7 @@
                     </label>
 
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)" />
-                    <div *ngIf="submitted && formControls.message.errors" class="text-danger mt-2">
+                    <div *ngIf="submitted && formControls.uploadFile.errors" class="text-danger mt-2">
                       <div *ngIf="formControls.uploadFile.errors.required">{{'File is required'| translate}}</div>
                     </div>
                     <div *ngIf="checkfileFormat" class="text-danger">{{'File format should be png,jpeg,jpg and pdf' | translate}} </div>

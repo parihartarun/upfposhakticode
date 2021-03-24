@@ -27,6 +27,9 @@ export class DepartmentGuidelineComponent implements OnInit {
   ishindi: boolean = false;;
   isenglish: boolean = false;;
   isboth: boolean = false;
+  docError:boolean = false;
+  fileError:boolean=false;
+  urlError:boolean=false;
   docRadio = '';
   fileRadio = '';
   selectedLang = 'en';
@@ -40,7 +43,6 @@ export class DepartmentGuidelineComponent implements OnInit {
       hindi_desc: [''],
       url: [''],
       guideline_type: ['', [Validators.required]],
-
     });
     this.departmentService.getGuideline();
   }
@@ -98,9 +100,30 @@ export class DepartmentGuidelineComponent implements OnInit {
     }
   }
 
+  seletDocType(){
+    this.docError = false;
+  }
+
   addGuideline() {
     this.guidelineForm.markAllAsTouched();
-    if (this.guidelineForm.valid) {
+    console.log(this.docRadio);
+    let invalidForm = false;
+    if(this.docRadio == ''){
+      this.docError = true;
+      invalidForm = true;
+    }else if(this.docRadio == 'url'){
+      if(this.guidelineForm.value.url == ''){
+        this.urlError = true;
+        invalidForm = true;
+      }
+    }else if(this.docRadio == 'file'){
+      if(this.fileRadio == ''){
+        this.fileError = true;
+        invalidForm = true;
+      }
+    }
+
+    if (this.guidelineForm.valid && invalidForm == false) {
       const formData: FormData = new FormData();
       formData.append('file', this.fileToUpload);
       formData.append('h_file', this.fileToHindiUpload);

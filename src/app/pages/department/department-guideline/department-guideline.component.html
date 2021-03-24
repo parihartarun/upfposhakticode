@@ -44,16 +44,19 @@
                       {{'Documents' | translate}}
                       <span class="required">*</span> :
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
+                        <input class="form-check-input" type="radio" (change)="seletDocType()" [ngModelOptions]="{standalone: true}"
                           [(ngModel)]="docRadio" name="inlineRadio" id="inlineRadio1" value="url">
                         <label class="form-check-label" for="inlineRadio1">URL</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
+                        <input class="form-check-input" type="radio" (change)="seletDocType()" [ngModelOptions]="{standalone: true}"
                           [(ngModel)]="docRadio" name="inlineRadio" id="inlineRadio2" value="file">
                         <label class="form-check-label" for="inlineRadio2">File Upload</label>
                       </div>
                     </label>
+                    <div *ngIf="docError" class="text-danger">
+                    <div>{{'Document is required' | translate}}</div>
+                  </div>
                   </div>
                 </div>
 
@@ -79,6 +82,9 @@
                         <label class="form-check-label" for="inlineRadio2">Both</label>
                       </div>
                     </label>
+                    <div *ngIf="fileError" class="text-danger">
+                      <div>{{'Document Type is required' | translate}}</div>
+                    </div>
                   </div>
                 </div>
 
@@ -90,10 +96,9 @@
                     </label>
                     <input #myInput type="text" class="form-control form-control-alternative" formControlName="url"
                       placeholder="www.google.com/" />
-                    <!-- <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
-                      class="text-danger">
+                    <div *ngIf="urlError" class="text-danger">
                       <div>{{'URL is required' | translate}}</div>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6" *ngIf="fileRadio==='both' || fileRadio==='hindi_upload'">
@@ -225,7 +230,7 @@
                 <tr
                   *ngFor="let p of (guideLineList | async) | tableSearch:searchText  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: currentPage };let i=index">
                   <td>
-                    {{i+1}}
+                    {{(currentPage-1) * 10 + i + 1}}
                   </td>
                   <td>
                     {{p.description}}
