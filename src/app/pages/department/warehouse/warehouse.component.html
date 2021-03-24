@@ -207,7 +207,7 @@
               <tr *ngFor="let row of warehouseList | paginate: { itemsPerPage: 10, currentPage: p };index as i">
 
                 <td>
-                  {{i+1}}
+                  {{(p-1) * 10 + i + 1}}
                 </td>
                 <td>
                   {{row?.warehouse_type?row.warehouse_type:'N/A'}}

@@ -57,6 +57,8 @@ import { MyFpoComponent } from 'src/app/pages/farmer/my-fpo/my-fpo.component';
 import { SupplierDashboardComponent } from 'src/app/pages/Input-Supplier/supplier-dashboard/supplier-dashboard.component';
 import { ChhfmbDashboardComponent } from '../../pages/CHC/chhfmb-dashboard/chhfmb-dashboard.component';
 import { BuyerDashboardComponent } from '../../pages/buyer-treder/buyer-dashboard/buyer-dashboard.component';
+import { SupplierProfileComponent } from '../../pages/Input-Supplier/supplier-profile/supplier-profile.component';
+import { ChcfmbProfileComponent } from '../../pages/CHC/chcfmb-profile/chcfmb-profile.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: FpoDashboardComponent },
@@ -117,6 +119,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'farmer/dashboard', component:FarmerDashboardComponent},
   { path: 'input-supplier/dashboard', component:SupplierDashboardComponent},
   { path: 'chcfmb/dashboard', component: ChhfmbDashboardComponent},
-  { path: 'buyer/dashboard', component: BuyerDashboardComponent}
+  { path: 'buyer/dashboard', component: BuyerDashboardComponent},
+  { path: 'supplier/my-profile', component:SupplierProfileComponent},
+  { path: 'chcfmb/my-profile', component:ChcfmbProfileComponent}
 ];
 

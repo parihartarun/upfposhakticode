@@ -35,6 +35,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
   myInputVariable: ElementRef;
   id = null;
   isEdit = false;
+  p:number = 1;  
 
 
   constructor(private fb: FormBuilder,
@@ -59,12 +60,21 @@ export class InputDetailsFertilizerComponent implements OnInit {
     });
   }
 
-  selectvalue(type) {
+  selectFertilizerType(type, name_id = null) {
     console.log(type);
     this.fertitype = type;
     this.fertilizerForm.controls['type_id'].setValue(parseInt(type));
     this.inputsupplierfertiservice.fsubtype(type).subscribe(v => {
+      console.log(v);
       this.subtypes = v;
+      if(name_id != null){
+        console.log(name_id);
+        this.fertilizerForm.patchValue({
+          name_id: name_id
+        });
+      }else if(name_id == 0){
+        this.subtype = 'other';
+      }
     })
   }
 
@@ -113,10 +123,11 @@ export class InputDetailsFertilizerComponent implements OnInit {
 
   editfertilizer(data) {
     console.log(data);
+    this.selectFertilizerType(data.type_id, data.name_id);
     this.fertilizerForm.get('fertilizer_grade').patchValue(data.fertilizer_grade);
     this.fertilizerForm.get('file').patchValue(data.file);
     this.fertilizerForm.get('type_id').patchValue(data.type_id);
-    this.fertilizerForm.get('name_id').patchValue(data.name_id);
+    //this.fertilizerForm.get('name_id').patchValue(data.name_id);
     this.fertilizerForm.get('manufacturer_name').patchValue(data.manufacturer_name);
     this.id = data.id;
     this.isEdit = true;

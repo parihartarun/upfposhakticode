@@ -23,6 +23,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
   inputid: string;
   id = null;
   isEdit = false;
+  p:number = 1;
 
   constructor(private inputinsectservice: InputSupplierService,
     private fb: FormBuilder,

@@ -69,6 +69,7 @@ export class HomeComponent implements OnInit {
     })
     var $this = this;
     $this.departmentService.getAllCircluarUpload().subscribe(c => {
+      console.log(c);
       $this.circluar = c
     })
     setInterval(function () {

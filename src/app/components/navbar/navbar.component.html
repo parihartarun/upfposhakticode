@@ -38,12 +38,13 @@
             <span>My profile</span>
           </a>
 
-          <a *ngIf="userRole == 'ROLE_INPUTSUPPLIER'" routerLinkActive="active" [routerLink]="['/user-profile']"
+          <a *ngIf="userRole == 'ROLE_INPUTSUPPLIER'" routerLinkActive="active" [routerLink]="['supplier/my-profile']"
             class="dropdown-item">
             <i class="ni ni-single-02"></i>
             <span>My profile</span>
           </a>
-          <a *ngIf="userRole == 'ROLE_CHCFMB'" href="#"
+
+          <a *ngIf="userRole == 'ROLE_CHCFMB'" routerLinkActive="active" [routerLink]="['chcfmb/my-profile']"
             class="dropdown-item">
             <i class="ni ni-single-02"></i>
             <span>My profile</span>

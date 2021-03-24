@@ -276,7 +276,6 @@
   "FPO Email": "ईमेल आईडी",
   "fpo email is required": "एफपीओ ईमेल आईडी  आवश्यकता है",
   "Username": "उपयोगकर्ता का नाम ",
-  "username is required1": "उपयोगकर्ता का नाम आवश्यकता है",
   "user name should be 6 to 20 character": "उपयोगकर्ता नाम 6 से 20 वर्ण का होना आवश्यकता है",
   "FPO Office Address": "एफपीओ कार्यालय का पता",
   "fpo office address is required": "एफपीओ कार्यालय का पता आवश्यकता है",
@@ -618,7 +617,7 @@
   "Irrigation Equipment": "सिंचाई के उपकरण",
   "Farm Machinery": "कृषि मशीनरी",
   "Machinery Details": "मशीनरी विवरण",
-  "Insectices/Pesticides": "कीटनाशक / कीटनाशक",
+  "Insecticide/Pesticide": "कीटनाशक",
   "CIB & RC Number": "सीआईबी और आर सी संख्या",
   "CIB & RC Issue Date": "सीआईबी और आर सी जारी करने की तिथि",
   "Insecticdes/Pesticides Details": "कीटनाशक / कीटनाशक विवरण",
@@ -769,5 +768,22 @@
   "Longitude":"देशान्तर",
   "Facilities Available is required":"उपलब्ध सुविधाओं की आवश्यकता है",
   "Add Warehouse":"वेयरहाउस जोड़ें",
-  "Update Warehouse":"वेयरहाउस अपडेट करें"
+  "Update Warehouse":"वेयरहाउस अपडेट करें",
+  "Fetilizer Grade":"उर्वरक ग्रेड",
+  "Total Marketable Surplus in Rabi season (in Qt.)":"रबी सीजन में कुल बिक्री योग्य अधिशेष (क्विन्टल में)",
+  "Total Marketable Surplus in Zayad season (in Qt.)":"ज़ैद सीजन में कुल बाज़ार योग्य अधिशेष (क्विन्टल में)",
+  "Total Marketable Surplus in Kharif season (in Qt.)":"खरीफ सीजन में कुल बिक्री योग्य अधिशेष (क्विन्टल में)",
+
+  "Total Actual Production in Rabi season (in Qt.)":"रबी सीजन में कुल वास्तविक उत्पादन (क्विन्टल में)",
+  "Total Actual Production in Zayad season (in Qt.)":"ज़ैद सीजन में कुल वास्तविक उत्पादन (क्विन्टल में)",
+  "Total Actual Production in Kharif season (in Qt.)":"खरीफ सीजन में कुल वास्तविक उत्पादन (क्विन्टल में)",
+
+  "Total Sales Production in Rabi season (in Qt.)":"रबी सीजन में कुल बिक्री उत्पादन (क्विन्टल में)",
+  "Total Sales Production in Zayad season (in Qt.)":"ज़ैद सीजन में कुल बिक्री उत्पादन (क्विन्टल में)",
+  "Total Sales Production in Kharif season (in Qt.)":"खरीफ सीजन में कुल बिक्री उत्पादन (क्विन्टल में)",
+  "Cultivated Land":"खेती की भूमि",
+  "Uncultivated Land":"अप्राप्त भूमि",
+  "Expected Production":"अपेक्षित उत्पादन",
+  "Machinery":"मशीनरी",
+  "Insectices/Pesticies":"कीटनाशक"
 }

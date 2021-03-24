@@ -21,19 +21,23 @@ export class MachineryComponent implements OnInit {
   isEdit = false;
   orderBy: { order: string, key: string } = { order: '', key: '' };
 
-  equipmentTypes = this.chcFmbService.equipmentTypes.asObservable();
+  //equipmentTypes = this.chcFmbService.equipmentTypes.asObservable();
   equipmentName = this.chcFmbService.equipmentName.asObservable();
   machineryList = this.chcFmbService.machineryList.asObservable();
+  equipmentTypes: any;
   constructor(public chcFmbService: ChcFmbService, private toastr: ToastrService, private datePipe: DatePipe) { }
 
 
   ngOnInit(): void {
     this.masterId = localStorage.getItem('masterId');
+    console.log("MasterId",this.masterId);
     this.getAllMachineryList();
-    this.chcFmbService.getequipmenttypes();
+   // this.chcFmbService.getequipmenttypes();
+    this.gettypes();
   }
   getAllMachineryList() {
     this.chcFmbService.getAllMachinery(this.masterId);
+    console.log(this.machineryList);
   }
   public fieldArray: Array<any> = [];
   private newAttribute: any = {};
@@ -43,13 +47,23 @@ export class MachineryComponent implements OnInit {
     this.newAttribute = {};
   }
 
+  gettypes(){
+  this.chcFmbService.getequipmenttypes().subscribe((res) => {
+    this.equipmentTypes = res;
+    console.log(res)
+  })
+  }
+
+
   deleteFieldValue(index) {
     this.fieldArray.splice(index, 1);
   }
 
-  getEquipment() {
-    this.chcFmbService.getequipmentname(this.formData.type_id)
+  getEquipment(typeId) {
+    console.log(typeId);
+    this.chcFmbService.getequipmentname(typeId)
   }
+
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
     if (!this.validateFile(files[0].name)) {

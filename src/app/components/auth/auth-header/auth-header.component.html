@@ -46,7 +46,7 @@
             {{'Language' | translate}}
             <img class="arrowImage" src="assets/image/img/arrodwon.png" alt="logo">
           </a>
-          <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+          <div ngbDropdownMenu class="dropdown-menu-md">
             <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
             <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
           </div>
@@ -84,23 +84,6 @@
           {{'Sign Up' | translate}} <span class="sr-only">(current)</span>
         </a>
       </li>
-      <!--<li class="nav-item dropdown">
-  <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
-    <a class="languageText" ngbDropdownToggle>
-      <img class="nav-image sign-up" src="assets/image/img/usermenu.png" />
-      {{'Sign Up' | translate}}
-      <img class="arrowImage" src="assets/image/img/arrodwon.png" alt="logo">
-    </a>
-    <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
-      <a class="dropdown-item" routerLink="/register/1" routerLinkActive="active"><b>{{'FPO' | translate}}</b></a>
-      <a class="dropdown-item" routerLink="/register/2" routerLinkActive="active">{{'Farmer' | translate}}</a>
-      <a class="dropdown-item" routerLink="/register/3" routerLinkActive="active">{{'Buyer/ Seller' | translate}}</a>
-      <a class="dropdown-item" routerLink="/register/4" routerLinkActive="active">{{'Input Supplier' | translate}}</a>
-      <a class="dropdown-item" routerLink="/register/5" routerLinkActive="active">{{'CHC/FMB' | translate}}</a>-->
-      <!--<a class="dropdown-item" routerLink="/register/6" routerLinkActive="active">{{'Equipment Centre' | translate}}</a>-->
-      <!--</div>
-    </div>
-  </li>-->
     </ul>
     <ul class="navbar-nav ml-auto" *ngIf="isLoggeIn">
       <div class="triangle-topright"></div>
@@ -111,7 +94,7 @@
             {{'Language' | translate}}
             <img class="arrowImage" src="assets/image/img/arrodwon.png" alt="logo">
           </a>
-          <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+          <div ngbDropdownMenu class="dropdown-menu-md">
             <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
             <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
           </div>

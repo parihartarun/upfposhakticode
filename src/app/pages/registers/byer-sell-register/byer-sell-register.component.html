@@ -23,7 +23,7 @@
         <input class="form-control" type="text" formControlName="userName">
       </div>
       <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
-        <div *ngIf="formControls.userName.errors.required">{{'username is required1'|translate}}</div>
+        <div *ngIf="formControls.userName.errors.required">{{'username is required'|translate}}</div>
         <div *ngIf="formControls.userName.errors.pattern">{{'user name should be 6 to 20 character'|translate}}</div>
       </div>
 
@@ -341,7 +341,7 @@
 
       <div class="tnc">
         <input class="form-control" type="checkbox" formControlName="tnc">
-        <span><span class="required pl-1">* </span>{{'I agree to the terms and conditions.'|translate}} <a href="#">{{'Click here'|translate}}</a> {{'to view in details' |translate }}</span>
+        <span><span class="required pl-1">* </span>{{'I agree to the terms and conditions.'|translate}} <a href="#" target="_blank" [routerLink]="['/content/terms-condition']">{{'Click here'|translate}}</a> {{'to view in details' |translate }}</span>
       </div>
       <div *ngIf="submitted && formControls.tnc.errors" class="text-danger tncError">
         <div *ngIf="formControls.tnc.errors.required"> {{'tnc is required'|translate}}</div>

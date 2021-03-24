@@ -104,6 +104,7 @@ export class InputDetailsSeedsComponent implements OnInit {
   }
 
   editseed(data) {
+    this.selectcrops(data.crop_Id);
     this.seedForm.get('file').patchValue(data.file);
     this.seedForm.get('certification_no').patchValue(data.certification_number);
     this.seedForm.get('company').patchValue(data.company_brand);
@@ -113,6 +114,9 @@ export class InputDetailsSeedsComponent implements OnInit {
    this.seedForm.get('valid_from'). patchValue(data.certification_valid_from);
    this.seedForm.get('valid_to'). patchValue(data.certification_valid_to);
    this.seedForm.get('variety_id'). patchValue(data.veriety_id);
+   setTimeout(() => {
+    this.seedForm.get('variety_id'). patchValue(data.veriety_id);
+   }, 1000);
     this.id = data.id;
     console.log(data);
     this.isEdit = true;

@@ -32,6 +32,11 @@ export class InputSupplierService {
     }));
   }
 
+  getSupplierProfileData(masterId){
+    return  this.http.get<any>(this._url+`api/InputSupplier/profile/inputsupplier/${masterId}`).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
 
   getbyid(id)
   {
@@ -232,9 +237,13 @@ deleteinsecticide(data) {
       return res;
     }));
   }
+
   addInputComplaint(complaint: any, data: any) {
     return this.http.post<any>(this._url + 'fpocomplaint/inputsupplier', data).pipe(map((res: any) => {
       return res;
     }));
   }
+
+  //-------------------------------Profile details---------------------------/
+
 }

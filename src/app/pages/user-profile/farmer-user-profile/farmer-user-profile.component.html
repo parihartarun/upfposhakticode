@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="profileForm" *ngIf="profileForm">
+          <form [formGroup]="profileForm">
             <input type="hidden" formControlName="farmerId">
             <h6 class="heading-small text-muted mb-4">{{'User information'|translate}}</h6>
             <div class="form-group row mb-3">
@@ -51,7 +51,7 @@
                   <input class="form-control" type="text" formControlName="userName">
                 </div>
                 <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
-                  <div *ngIf="formControls.userName.errors.required">{{'username is required1'|translate}}</div>
+                  <div *ngIf="formControls.userName.errors.required">{{'username is required'|translate}}</div>
                   <div *ngIf="formControls.userName.errors.pattern">{{'user name should be 6 to 20
                     character'|translate}}</div>
                 </div>
@@ -196,7 +196,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <select class="form-control" formControlName="villRefId" (change)="selectVillage($event)">
+                  <select class="form-control" formControlName="villRefId">
                     <option value="">{{'Select Village'|translate}} </option>
                     <option *ngFor="let village of villages" [value]="village.villageId">{{village.villageName}}
                     </option>
@@ -253,13 +253,10 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <select class="form-control" formControlName="bankRefId" (change)="selectBanks($event)">
+                  <select class="form-control" formControlName="bankRefId">
                     <option value="">{{'Select Bank Name'|translate}}</option>
                     <option *ngFor="let bank of banks" [value]="bank.bankId">{{bank.bankName}}</option>
                   </select>
-                </div>
-                <div *ngIf="submitted && formControls.bankRefId.errors" class="text-danger">
-                  <div *ngIf="formControls.bankRefId.errors.required">{{'bank name is required' |translate}}</div>
                 </div>
               </div>
               <div class="col-6">
@@ -269,10 +266,6 @@
                     <span class="input-group-text"></span>
                   </div>
                   <input class="form-control" type="text" formControlName="accountNo" appOnlynumber>
-                </div>
-                <div *ngIf="submitted && formControls.accountNo.errors" class="text-danger">
-                  <div *ngIf="formControls.accountNo.errors.required">{{'bank account Number is required'|translate}}
-                  </div>
                 </div>
               </div>
             </div>
@@ -286,9 +279,6 @@
                     <span class="input-group-text"></span>
                   </div>
                   <input class="form-control" type="text" formControlName="ifscCode">
-                </div>
-                <div *ngIf="submitted && formControls.ifscCode.errors" class="text-danger">
-                  <div *ngIf="formControls.ifscCode.errors.required"> {{'ifsc code is required1'|translate}}</div>
                 </div>
               </div>
 

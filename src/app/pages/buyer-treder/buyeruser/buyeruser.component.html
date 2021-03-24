@@ -71,7 +71,7 @@
                     <label class="form-control-label" for="input-first-name">{{'Mobile' | translate}} <span
                         class="required">*</span></label>
                     <input type="text" formControlName="mobileNumber" id="input-last-name"
-                      class="form-control form-control-alternative" placeholder="mobileNumber">
+                      class="form-control form-control-alternative" placeholder="mobileNumber" appOnlynumber>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -93,7 +93,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"></span>
                     </div>
-                    <select class="form-control" formControlName="stateRefId" (change)="selectState($event)">
+                    <select class="form-control" formControlName="stateRefId" (change)="selectState($event.target.value)">
                       <option value="">{{'Select State'|translate}}</option>
                       <option *ngFor="let state of states" [value]="state.stateId">{{state.stateName}}</option>
                     </select>
@@ -110,7 +110,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"></span>
                     </div>
-                    <select class="form-control" formControlName="districtRefId" (change)="selectDistrict($event)">
+                    <select class="form-control" formControlName="districtRefId" (change)="selectDistrict($event.target.value)">
                       <option value="">{{'SelectDistrict1'|translate}}</option>
                       <option *ngFor="let district of districts" [value]="district.district_id">
                         {{district.district_name}}</option>

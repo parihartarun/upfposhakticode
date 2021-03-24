@@ -22,10 +22,10 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Equipment Category' | translate}} <span class="required">*</span></label>
-                    <select class="form-control" (change)="getEquipment()" name="type" required #type="ngModel"
+                    <select class="form-control" (change)="getEquipment($event.target.value)" name="type" required #type="ngModel"
                       [(ngModel)]="formData.type_id">
                       <option value="" disabled>{{'Select Type' | translate}}</option>
-                      <option *ngFor="let row of equipmentTypes | async" [value]="row.id">
+                      <option *ngFor="let row of equipmentTypes" [value]="row.machineTypeId">
                         {{row.equipType}}</option>
                     </select>
                     <div *ngIf="type.invalid && (type.dirty || type.touched)" class="text-danger">
@@ -69,7 +69,7 @@
                     <!-- <input type="date" id="input-first-name" class="form-control form-control-alternative"
                       data-date-format="DD-MM-YYYY" name="Purchase Year" [(ngModel)]="formData.purchase_year" required
                       #purchaseYear="ngModel"> -->
-                    <input type="text" placeholder="{{'Date'|translate}}" class="form-control" bsDatepicker
+                    <input type="text" class="form-control" bsDatepicker
                       [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }" name="Purchase Year"
                       [(ngModel)]="formData.purchase_year" required #purchaseYear="ngModel">
                     <div *ngIf="purchaseYear.invalid && (purchaseYear.dirty || purchaseYear.touched)"

@@ -39,7 +39,7 @@
                 {{'Language' | translate}}
                 <img class="arrowImage" src="assets/image/img/arrodwon.png" alt="logo">
               </a>
-              <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+              <div ngbDropdownMenu class="dropdown-menu-md">
                 <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
                 <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
               </div>
@@ -70,29 +70,6 @@
               {{'Sign Up' | translate}} <span class="sr-only">(current)</span>
             </a>
           </li>
-
-          <!--<li class="nav-item dropdown">
-              <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
-                <a class="languageText" ngbDropdownToggle>
-
-                  <img class="nav-image sign-up" src="assets/image/img/usermenu.png" />
-                  {{'Sign Up' | translate}}
-                  <img class="arrowImage" src="assets/image/img/arrodwon.png" alt="logo">
-                </a>
-                <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
-                  <a class="dropdown-item" routerLink="/register/1" routerLinkActive="active"><b>{{'FPO' | translate}}</b></a>
-                  <a class="dropdown-item" routerLink="/register/2" routerLinkActive="active">{{'Farmer' | translate}}</a>
-                  <a class="dropdown-item" routerLink="/register/3" routerLinkActive="active">{{'Buyer/ Seller' | translate}}</a>
-                  <a class="dropdown-item" routerLink="/register/4" routerLinkActive="active">{{'Input Supplier' | translate}}</a>
-                  <a class="dropdown-item" routerLink="/register/5" routerLinkActive="active">{{'CHC/FMB' | translate}}</a>-->
-          <!--<a class="dropdown-item" routerLink="/register/6" routerLinkActive="active">{{'Equipment Centre' | translate}}</a>-->
-          <!--</div>
-
-
-              </div>
-
-
-            </li>-->
         </ul>
         <ul class="navbar-nav ml-auto login" *ngIf="isLoggeIn">
           <div class="triangle-topright"></div>
@@ -103,7 +80,7 @@
                 {{'Language' | translate}}
                 <img class="arrowImage" src="assets/image/img/arrodwon.png" alt="logo">
               </a>
-              <div ngbDropdownMenu class="dropdown-menu-md dropdown-menu-arrow">
+              <div ngbDropdownMenu class="dropdown-menu-md">
                 <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
                 <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
               </div>
@@ -155,16 +132,15 @@
                                 <tr>
                                   <td><img src="assets/icons/icons8-new-96 (1).png" width="20" class="img-circle"></td>
                                   <td class="news-td">
-                                    <!-- <a href="/viewFile?path=C%3a%5cupfpo%5cuploads%5ccirculars%5cROLE_MIN%5cminadmin%5c2020%5cOCTOBER%5c2020-10-12%5cTest+Document_1.pdf"
+                                    <a href="{{c.filePath}}" target="_blank"
                                       class="text-left text-danger" target="_blank">
                                       {{c.description }}
-  
-                                    </a> -->
-                                      <a href="#"
+                                    </a>
+                                      <!-- <a href="#"
                                       class="text-left text-danger">
                                       {{c.description }}
   
-                                    </a>
+                                    </a> -->
                                   </td>
   
                                   <!-- <td class="news-td"></td> -->
@@ -175,7 +151,7 @@
                         </div>
                       </ul>
                     <div class="text-right Viewall">
-                      <small style="color:black"><a href="#">{{'View all' | translate}}</a>&nbsp;</small>
+                      <small style="color:black"><a [routerLink]="['/view']" routerLinkActive="active">{{'View all' | translate}}</a>&nbsp;</small>
                     </div>
                   </div>
 
@@ -239,10 +215,10 @@
                     <option value="fpo_name">{{'FPO' | translate }}</option>
                     <option value="services">{{'Services/ Products' | translate }}</option> -->
                     <option value="crop">{{'Crop' | translate }}</option>
-                    <option value="insecticides">{{'Insecticides' | translate }}</option>
-                    <option value="seeds">{{'Seeds' | translate }}</option>
+                    <option value="insecticide">{{'Insecticides' | translate }}</option>
+                    <option value="seed">{{'Seeds' | translate }}</option>
                     <option value="fmb">{{'machinery' | translate }}</option>
-                    <option value="fertilizers">{{'Fertilizers' | translate }}</option>
+                    <option value="fertilizer">{{'Fertilizers' | translate }}</option>
                     <!-- <option value="district">{{'District1' | translate }}</option> -->
                     <!-- <option value="fpo_name">{{'FPO' | translate }}</option> -->
                     <!-- <option value="services">{{'Services/ Products' | translate }}</option> -->
@@ -319,8 +295,7 @@
               <img class="set_span_titel_image" src="assets/image/img/bg_box2.png" alt="" style="">
             </div>
             <div class="tile_nember" *ngIf="fpo">
-              <!-- {{fpo |  number:'1.0-2'}} -->
-              576
+              {{fpo |  number:'1.0-2'}}
             </div>
 
           </div>
@@ -339,8 +314,7 @@
               </div>
             </div>
             <div class="tile_nember" *ngIf="farmerDetails">
-              <!-- {{farmerDetails.totalfarmers |  number:'1.0-2'}} -->
-              216,876
+              {{farmerDetails.totalfarmers |  number:'1.0-2'}}
             </div>
 
           </div>
@@ -364,24 +338,21 @@
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Marginal'|translate}}</td>
                     <td class="table_tile_number" *ngIf="farmerDetails">
-                      <!-- {{farmerDetails.marginalfarmers |  number:'1.0-2'}} -->
-                      173,500
+                      {{farmerDetails.marginalfarmers |  number:'1.0-2'}}
                       <!-- </a> -->
                     </td>
                   </tr>
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Small' |translate}}</td>
                     <td class="table_tile_number" *ngIf="farmerDetails">
-                      <!-- {{farmerDetails.smalltotal |  number:'1.0-2'}} -->
-                      28,194
+                      {{farmerDetails.smalltotal |  number:'1.0-2'}}
                       <!-- </a> -->
                     </td>
                   </tr>
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Others'| translate}}</td>
                     <td class="table_tile_number" *ngIf="farmerDetails">
-                      <!-- {{farmerDetails.bigfarmers |  number:'1.0-2'}} -->
-                      15,182
+                      {{farmerDetails.bigfarmers |  number:'1.0-2'}}
                       <!-- </a> -->
                     </td>
                   </tr>
@@ -406,8 +377,7 @@
               </div>
             </div>
             <div class="tile_nember" *ngIf="farmerDetails">
-              <!-- {{farmerDetails.totalland |  number:'1.0-2'}} -->
-              164,825
+              {{farmerDetails.totalland |  number:'1.0-2'}}
             </div>
           </div>
           <!-- Land tile end -->
@@ -431,24 +401,21 @@
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Rabi' | translate }}</td>
                     <td class="table_tile_number">
-                      <!-- {{productionDetails.rabiprod |  number:'1.0-2'}} -->
-                      27,260
+                      {{productionDetails.rabiprod |  number:'1.0-2'}}
                     </td>
                   </tr>
 
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Zayd' | translate}}</td>
                     <td class="table_tile_number">
-                      <!-- {{productionDetails.zayadprod |  number:'1.0-2'}} -->
-                      2,545
+                      {{productionDetails.zayadprod |  number:'1.0-2'}}
                     </td>
                   </tr>
 
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Kharif' | translate}}</td>
                     <td class="table_tile_number">
-                      <!-- {{productionDetails.kharifprod |  number:'1.0-2' }} -->
-                      21,870
+                      {{productionDetails.kharifprod |  number:'1.0-2' }}
                     </td>
                   </tr>
 

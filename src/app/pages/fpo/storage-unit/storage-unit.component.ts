@@ -135,6 +135,7 @@ export class StorageUnitComponent implements OnInit {
   editCollectionCenter(equipment){
     this.getBlocksByDistrictId(equipment.distId);
     console.log(equipment);
+    this.getDistricts();
     this.storageUnitForm = this.formBuilder.group({
       storageType: [equipment.storageType, [Validators.required]],
       fascilities: ['', [Validators.required]],
@@ -142,7 +143,7 @@ export class StorageUnitComponent implements OnInit {
       isseedprocessingunit: [equipment.isseedprocessingunit, [Validators.required]],
       distId: [equipment.distId , [Validators.required]],
       blockId: [equipment.blockId, [Validators.required]],
-      stateId:[equipment.stateId,],
+      stateId:[equipment.stateId],
       address: [equipment.address, [Validators.required]],
       washingfacility:[false, [Validators.required]],  
       sortingmachines:[false, [Validators.required]], 
@@ -150,7 +151,7 @@ export class StorageUnitComponent implements OnInit {
       packagingmachines:[false, [Validators.required]],
       fpoRefId:localStorage.getItem('masterId'),
       masterId:localStorage.getItem('masterId'),
-      id:[equipment.id],
+      id:[equipment.collectionId],
     });
     setTimeout(()=>{
       this.storageUnitForm.patchValue({
