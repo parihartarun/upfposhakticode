@@ -36,7 +36,7 @@
                            (change)="handleFileInput($event.target.files)"
                            class="form-control form-control-alternative"
                            placeholder="First name" value="Lucky">
-                    <!-- <span *ngIf="edit">{{ }}</span> -->
+                    <span *ngIf="edit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>
                     <div *ngIf="submitted && formControls.file.errors" class="text-danger">
                       <div *ngIf="formControls.file.errors.required">{{'File is required'|translate}}</div>
                     </div>

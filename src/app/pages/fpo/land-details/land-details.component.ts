@@ -276,8 +276,10 @@ export class LandDetailsComponent implements OnInit {
 
   selectFarmer(farmer) {
     let registrationNumber = this.FarmerLists.find(f => f.farmerId == Number(farmer.currentTarget.value));
-    console.log(registrationNumber); 
-    this.getFarmerDetailFarmerformUpPardarshi(2055153400000);
+    console.log(); 
+    if(registrationNumber.upBSMId != null){
+      this.getFarmerDetailFarmerformUpPardarshi(registrationNumber.upBSMId);
+    }
   }
 
   getFarmerDetailFarmerformUpPardarshi(registrationNumber) {

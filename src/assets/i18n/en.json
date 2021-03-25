@@ -499,7 +499,7 @@
   "New Compliant": "Pending Compliants",
   "All Complaint": "All Complaints",
   "Machinery / Equipment": "Machinery / Equipment",
-  "Insectices / Pestices": "Insectices / Pestices",
+  "Insecticides/Pesticides": "Insecticides/Pesticides",
   "AGENCY (ASSOCIATED WITH)": "AGENCY (ASSOCIATED WITH)",
   "Product/Services": "Product/Services",
   "Production Details (Annual)": "Production Details (Annual)",
@@ -770,5 +770,8 @@
   "Uncultivated Land":"Uncultivated Land",
   "Expected Production":"Expected Production",
   "Machinery":"Machinery",
-  "Insectices/Pesticies":"Insectices/Pesticies"
+  "Fertilizer Indents":"Fertilizer Indents",
+  "Insecticide/Pesticide Indents":"Insecticide/Pesticide Indents",
+  "Machinery Indents":"Machinery Indents",
+  "Seeds Indents":"Seeds Indents"
 }
