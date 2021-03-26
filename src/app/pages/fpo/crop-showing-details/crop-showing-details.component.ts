@@ -264,12 +264,13 @@ export class CropShowingDetailsComponent implements OnInit {
       crop_id:[data.crop_id],
       masterId:localStorage.getItem('masterId'),
     });
-    setTimeout(()=>{     
+    setTimeout(()=>{    
+      console.log('s'); 
       this.cropSowingUpdateForm.patchValue({
         cropRefName:data.crop_master_id,
         verietyRef:data.veriety_ref
       });
-    }, 5000);
+    }, 10000);
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {

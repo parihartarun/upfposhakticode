@@ -528,7 +528,7 @@
             </div>
             <!---End of Crops-->
             <!--Start of Machinery-->
-            <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='chcfmb'">
+            <div class="card card-stats box_shadow card_2" *ngIf="selectedDropdown==='fmb'">
               <div *ngIf="product.role==='ROLE_CHCFMB';else otherRole">
                   <div class="changetopoint" routerLink="/chcfmb-details/{{product.vendorid}}">
                     <h1>{{product.vendorname}}</h1>

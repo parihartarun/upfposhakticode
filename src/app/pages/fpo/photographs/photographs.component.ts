@@ -24,7 +24,8 @@ export class PhotographsComponent implements OnInit {
   p:number = 1;
   edit = false;
   fileToUpload: File = null;
-
+  fileToEdit='';
+  filePathToEdit='';
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
@@ -105,25 +106,18 @@ export class PhotographsComponent implements OnInit {
   }
 
   editPhotograph(service){
-    // debugger;
-    console.log('service===>',service)
+    console.log(service);
+    var pathParts = service.filePath.split("/");
+    console.log(pathParts);
+    this.fileToEdit = pathParts[pathParts.length - 1];
+    this.filePathToEdit = service.filePath;
     this.photographForm = this.formBuilder.group({
-      // service_name: [service.service_name, [Validators.required]],
-      // description: [service.description, [Validators.required]],
       description: [service.description, [Validators.required]],
       file: [service.file],
       id:[service.id]
     });
-
-    // this.photographForm = this.formBuilder.group({
-    //   id: [service.id],
-    //   file: [service.file, Validators.required],
-    //   description: [service.description, Validators.required]
-    // });
-
     this.photographForm.controls['file'].patchValue(service.file);
     this.photographForm.get('description').patchValue(service.description);  
-
     this.edit = true;
     window.scroll(0,0);  
   }

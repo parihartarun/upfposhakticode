@@ -113,6 +113,23 @@ export class DepartmentSchemeComponent implements OnInit {
     this.schemeForm.get('description').patchValue(data.description);
     this.schemeForm.get('title').patchValue(data.schemeType);
     this.schemeForm.get('url').patchValue(data.url);
+    if (data.url) {
+      this.schemeForm.get('url').patchValue(data.url);
+      this.docRadio = 'url';
+    } else {
+      this.docRadio = 'file';
+      if (data.description && data.hindiDescription) {
+        this.schemeForm.get('hindi_desc').patchValue(data.hindiDescription);
+        this.fileRadio = 'both';
+        this.schemeForm.get('description').patchValue(data.description);
+      } else if (data.description) {
+        this.schemeForm.get('description').patchValue(data.description);
+        this.fileRadio = 'english_upload';
+      } else if (data.hindiDescription) {
+        this.schemeForm.get('description').patchValue(data.description);
+        this.fileRadio = 'hindi_upload';
+      }
+    }
     this.id = data.id;
     this.isEdit = true;
   }
