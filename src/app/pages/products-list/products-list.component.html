@@ -577,14 +577,28 @@
                   </div>
                 </div>
               </div>
-              <div class="row mt-2">
-                <div class="col-12 d-flex justify-content-between">
-                  <button class="mx-0 btn btn-sm btn-success" disabled
-                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
-                  <button class="mx-0 btn btn-sm btn-primary" (click)="open($event,mymodal,product)" type="button"
-                    style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
+              
+                <div *ngIf="product.role==='ROLE_CHCFMB';else otherRole1">
+                  <div class="row mt-2">
+                    <div class="col-12 d-flex justify-content-between">
+                      <button class="mx-0 btn btn-sm btn-success" disabled
+                        (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
+                      <button class="mx-0 btn btn-sm btn-primary" (click)="openFour($event,mymodalMachCHC,product)" type="button"
+                        style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
+                    </div>
+                  </div>
                 </div>
-              </div>
+                <ng-template #otherRole1>
+                  <div class="row mt-2">
+                      <div class="col-12 d-flex justify-content-between">
+                        <button class="mx-0 btn btn-sm btn-success" disabled
+                          (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
+                        <button class="mx-0 btn btn-sm btn-primary" (click)="openFour($event,mymodalMach,product)" type="button"
+                          style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
+                      </div>
+                  </div>
+                </ng-template>
+              
             </div>
             <!---End of Machinery-->
             <!--Start of Seeds-->
@@ -631,7 +645,7 @@
                 <div class="col-12 d-flex justify-content-between">
                   <button class="mx-0 btn btn-sm btn-success" disabled
                     (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
-                  <button class="mx-0 btn btn-sm btn-primary" (click)="open($event,mymodal,product)" type="button"
+                  <button class="mx-0 btn btn-sm btn-primary" (click)="openThree($event,mymodalSeed,product)" type="button"
                     style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
               </div>
@@ -684,7 +698,7 @@
                 <div class="col-12 d-flex justify-content-between">
                   <button class="mx-0 btn btn-sm btn-success" disabled
                     (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
-                  <button class="mx-0 btn btn-sm btn-primary" (click)="open($event,mymodal,product)" type="button"
+                  <button class="mx-0 btn btn-sm btn-primary" (click)="openOne($event,mymodalInput,product)" type="button"
                     style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
               </div>
@@ -734,7 +748,7 @@
                 <div class="col-12 d-flex justify-content-between">
                   <button class="mx-0 btn btn-sm btn-success" disabled
                     (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
-                  <button class="mx-0 btn btn-sm btn-primary" (click)="open($event,mymodal,product)" type="button"
+                  <button class="mx-0 btn btn-sm btn-primary" (click)="openTwo($event,mymodalFert,product)" type="button"
                     style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
               </div>
@@ -761,6 +775,7 @@
         </div>
       </div>
     </div>
+    <!--Indent Form samples-->
     <!--div class="row">
       <div class="form-group">
         <label> {{'Indent type' | translate}}<span class="required">*</span> </label>
@@ -774,6 +789,8 @@
     </div>
     <button type="button" class="btn btn-primary btn-sm" (click)="openTestModal(mymodala)">Create Indent</button-->
 
+    <!--Indent Form samples ends here-->
+    
     <ng-template #mymodal let-modal>
 
       <div *ngIf="isLoggeIn">
@@ -1026,6 +1043,609 @@
         <button type="button" class="btn btn-primary">Close</button>
       </div>
     </ng-template>
+    <!--Input Suppliers Insecticide Modal Input-->
+    <ng-template #mymodalInput let-modal2>
+
+      <div *ngIf="isLoggeIn">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+            (click)="modal2.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body mt-1 pt-1" *ngIf="!indentForm || indentloading">
+          <div class="loader-container">
+            <ngx-loading [show]="!indentForm || indentloading" [config]="{backdropBackgroundColour: '#ffffff', 
+          backdropBorderRadius: '1px',
+          primaryColour: '#926E01', 
+          secondaryColour: '#926E01', 
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+          </div>
+
+        </div>
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && indentcreated">
+          <div class="d-flex w-100 align-items-center justify-content-center"> <img class="suc-img"
+              src="assets/image/img/successsubmit.png"></div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-2 text-sm">
+            <!--Change Indent insecticide message-->
+            <strong>{{ 'indentsucessmessage' | translate }}</strong> </div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-5 text-sm"><button
+              (click)="closeModal()" class="btn btn-sm mt-5 btn-product-search">{{'ok' | translate }}</button></div>
+        </div>
+
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
+          <form role="form mt-1 p-1" [formGroup]="indentForm">
+            <div class="row">
+              <div class="col-3 text-sm text-bold">{{' Name'| translate}}:</div>
+              <div class="col-9 text-sm">{{inpSupDetail.inputSupplier.input_supplier_name}}</div>
+            </div>
+            <div class="row">
+              <div class="col-3 text-sm text-bold">{{'Supplier Email1'|translate}}:</div>
+              <div class="col-9 text-sm ">{{inpSupDetail.inputSupplier.email}}</div>
+            </div>
+            <div class="form-group mb-3">
+
+
+              <!-- <label class="form-control-label" for="input-username">{{'FPO Name'| translate}}<span class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="Full Name" disabled type="text" formControlName="fpoName">
+              </div> -->
+
+
+            </div>
+            <div class="form-group mb-3">
+
+              <!-- <label class="form-control-label" for="input-username">{{'FPO Email1'|translate}}<span class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="Email" disabled type="text"  formControlName="fpoEmail">
+              </div> -->
+
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Fulfillment Date' | translate }}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input type="text" placeholder="{{'Date'|translate}}" class="form-control" [minDate]="getToday()"
+                  bsDatepicker [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }"
+                  formControlName="requestedDateTime">
+              </div>
+              <div *ngIf="submitted && formControls.requestedDateTime.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.requestedDateTime.errors.required">{{'date is required'| translate}}</div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text"
+                  formControlName="indentQty">
+              </div>
+              <div *ngIf="!submitted && formControls.indentQty.touched && formControls.indentQty.errors"
+                class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+              </div>
+              <div *ngIf="submitted && formControls.indentQty.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantity is required'|translate}}</div>
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-delivery">{{'fpodeliveryaddr'|translate}}<span
+                  class="required">*</span> </label>
+              <div class="input-group input-group-alternative">
+                <textarea class="form-control" id="input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"
+                  formControlName="deliveryaddress"></textarea>
+              </div>
+              <div *ngIf="submitted && formControls.deliveryAddress.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.deliveryAddress.errors.required">{{'deleiveryrequired'| translate}}</div>
+              </div>
+            </div>
+
+
+
+            <div class="text-center">
+              <button type="submit" [disabled]="!indentForm.valid"
+                class="btn btn-login btn-product-search btn-primary my-4" (click)="saveInp()">{{'Send'|translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="!isLoggeIn">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">{{'Welcome to FPO Shakti!' | translate}}</h3>
+          <button type="button" class="close" aria-label="Close" (click)="modal2.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-login-model-popup (logout)="logoutIns()"></app-login-model-popup>
+        </div>
+      </div>
+
+    </ng-template>
+    <!--End of Input Suppliers Insecticide Modal Input-->
+    <!--Start of Fertilizer Indent Form-->
+    <ng-template #mymodalFert let-modal3>
+
+      <div *ngIf="isLoggeIn">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+            (click)="modal3.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body mt-1 pt-1" *ngIf="!indentForm || indentloading">
+          <div class="loader-container">
+            <ngx-loading [show]="!indentForm || indentloading" [config]="{backdropBackgroundColour: '#ffffff', 
+          backdropBorderRadius: '1px',
+          primaryColour: '#926E01', 
+          secondaryColour: '#926E01', 
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+          </div>
+
+        </div>
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && indentcreated">
+          <div class="d-flex w-100 align-items-center justify-content-center"> <img class="suc-img"
+              src="assets/image/img/successsubmit.png"></div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-2 text-sm">
+            <!--Change Indent insecticide message-->
+            <strong>{{ 'indentsucessmessage' | translate }}</strong> </div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-5 text-sm"><button
+              (click)="closeModal()" class="btn btn-sm mt-5 btn-product-search">{{'ok' | translate }}</button></div>
+        </div>
+
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
+          <form role="form mt-1 p-1" [formGroup]="indentForm">
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{' Name'| translate}}:</div>
+              <div class="col-8 text-sm">{{inpSupDetail.inputSupplier.input_supplier_name}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Supplier Email'|translate}}:</div>
+              <div class="col-8 text-sm ">{{inpSupDetail.inputSupplier.email}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Fertilizer Name'|translate}}:</div>
+              <div class="col-8 text-sm ">{{indentForm.value.fertilizeName.name}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Fertilizer Type'|translate}}:</div>
+              <div class="col-8 text-sm ">{{indentForm.value.fertilizerType.type}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Fertilizer Grade'|translate}}:</div>
+              <div class="col-8 text-sm" >{{indentForm.value.fertilizerGrade}}</div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Fulfillment Date' | translate }}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input type="text" placeholder="{{'Date'|translate}}" class="form-control" [minDate]="getToday()"
+                  bsDatepicker [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }"
+                  formControlName="requestedDateTime">
+              </div>
+              <div *ngIf="submitted && formControls.fulfillmentDate.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.fulfillmentDate.errors.required">{{'date is required'| translate}}</div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text"
+                  formControlName="indentQty">
+              </div>
+              <div *ngIf="!submitted && formControls.indentQty.touched && formControls.indentQty.errors"
+                class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+              </div>
+              <div *ngIf="submitted && formControls.indentQty.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantity is required'|translate}}</div>
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-delivery">{{'fpodeliveryaddr'|translate}}<span
+                  class="required">*</span> </label>
+              <div class="input-group input-group-alternative">
+                <textarea class="form-control" id="input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"
+                  formControlName="deliveryaddress"></textarea>
+              </div>
+              <div *ngIf="submitted && formControls.deliveryaddress.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.deliveryaddress.errors.required">{{'deleiveryrequired'| translate}}</div>
+              </div>
+            </div>
+
+
+
+            <div class="text-center">
+              <button type="submit" [disabled]="!indentForm.valid"
+                class="btn btn-login btn-product-search btn-primary my-4" (click)="saveInpFert()">{{'Send'|translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="!isLoggeIn">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">{{'Welcome to FPO Shakti!' | translate}}</h3>
+          <button type="button" class="close" aria-label="Close" (click)="modal3.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-login-model-popup (logout)="logoutFert()"></app-login-model-popup>
+        </div>
+      </div>
+
+    </ng-template>
+    <!--End of Fertilizer Modal Input-->
+     <!--Start of Seed Indent Form-->
+     <ng-template #mymodalSeed let-modal4>
+
+      <div *ngIf="isLoggeIn">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+            (click)="modal4.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body mt-1 pt-1" *ngIf="!indentForm || indentloading">
+          <div class="loader-container">
+            <ngx-loading [show]="!indentForm || indentloading" [config]="{backdropBackgroundColour: '#ffffff', 
+          backdropBorderRadius: '1px',
+          primaryColour: '#926E01', 
+          secondaryColour: '#926E01', 
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+          </div>
+
+        </div>
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && indentcreated">
+          <div class="d-flex w-100 align-items-center justify-content-center"> <img class="suc-img"
+              src="assets/image/img/successsubmit.png"></div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-2 text-sm">
+            <!--Change Indent insecticide message-->
+            <strong>{{ 'indentsucessmessage' | translate }}</strong> </div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-5 text-sm"><button
+              (click)="closeModal()" class="btn btn-sm mt-5 btn-product-search">{{'ok' | translate }}</button></div>
+        </div>
+
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
+          <form role="form mt-1 p-1" [formGroup]="indentForm">
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{' Name'| translate}}:</div>
+              <div class="col-8 text-sm">{{inpSupDetail.inputSupplier.input_supplier_name}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Supplier Email'|translate}}:</div>
+              <div class="col-8 text-sm ">{{inpSupDetail.inputSupplier.email}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Crop Name'|translate}}:</div>
+              <div class="col-8 text-sm ">{{indentForm.value.cropId.cropName}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Crop Variety'|translate}}:</div>
+              <div class="col-8 text-sm ">{{indentForm.value.verietyId.verietyName}}</div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Fulfillment Date' | translate }}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input type="text" placeholder="{{'Date'|translate}}" class="form-control" [minDate]="getToday()"
+                  bsDatepicker [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }"
+                  formControlName="requestedDateTime">
+              </div>
+              <div *ngIf="submitted && formControls.requestedDateTime.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.requestedDateTime.errors.required">{{'date is required'| translate}}</div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text"
+                  formControlName="indentQty">
+              </div>
+              <div *ngIf="!submitted && formControls.indentQty.touched && formControls.indentQty.errors"
+                class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+              </div>
+              <div *ngIf="submitted && formControls.indentQty.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantity is required'|translate}}</div>
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-delivery">{{'fpodeliveryaddr'|translate}}<span
+                  class="required">*</span> </label>
+              <div class="input-group input-group-alternative">
+                <textarea class="form-control" id="input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"
+                  formControlName="deliveryaddress"></textarea>
+              </div>
+              <div *ngIf="submitted && formControls.deliveryaddress.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.deliveryaddress.errors.required">{{'deleiveryrequired'| translate}}</div>
+              </div>
+            </div>
+
+
+
+            <div class="text-center">
+              <button type="submit" [disabled]="!indentForm.valid"
+                class="btn btn-login btn-product-search btn-primary my-4" (click)="saveInpSeed()">{{'Send'|translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="!isLoggeIn">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">{{'Welcome to FPO Shakti!' | translate}}</h3>
+          <button type="button" class="close" aria-label="Close" (click)="modal4.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-login-model-popup (logout)="logoutSeed()"></app-login-model-popup>
+        </div>
+      </div>
+
+    </ng-template>
+     <!--End of Seed Indent Form-->
+     <!--Start of Machinary Input Sup Indent Form-->
+     <ng-template #mymodalMach let-modal5>
+
+      <div *ngIf="isLoggeIn">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+            (click)="modal5.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body mt-1 pt-1" *ngIf="!indentForm || indentloading">
+          <div class="loader-container">
+            <ngx-loading [show]="!indentForm || indentloading" [config]="{backdropBackgroundColour: '#ffffff', 
+          backdropBorderRadius: '1px',
+          primaryColour: '#926E01', 
+          secondaryColour: '#926E01', 
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+          </div>
+
+        </div>
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && indentcreated">
+          <div class="d-flex w-100 align-items-center justify-content-center"> <img class="suc-img"
+              src="assets/image/img/successsubmit.png"></div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-2 text-sm">
+            <!--Change Indent insecticide message-->
+            <strong>{{ indentid }}</strong> </div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-5 text-sm"><button
+              (click)="closeModal()" class="btn btn-sm mt-5 btn-product-search">{{'ok' | translate }}</button></div>
+        </div>
+
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
+          <form role="form mt-1 p-1" [formGroup]="indentForm">
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{' Name'| translate}}:</div>
+              <div class="col-8 text-sm">{{inpSupDetail.inputSupplier.input_supplier_name}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Supplier Email'|translate}}:</div>
+              <div class="col-8 text-sm ">{{inpSupDetail.inputSupplier.email}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Machinary Name'|translate}}:</div>
+              <div class="col-8 text-sm ">{{indentForm.value.machineryNameId.name}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Machinary Type'|translate}}:</div>
+              <div class="col-8 text-sm ">{{indentForm.value.machineryTypId.machineryType}}</div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Fulfillment Date' | translate }}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input type="text" placeholder="{{'Date'|translate}}" class="form-control" [minDate]="getToday()"
+                  bsDatepicker [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }"
+                  formControlName="requestedDateTime">
+              </div>
+              <div *ngIf="submitted && formControls.requestedDateTime.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.requestedDateTime.errors.required">{{'date is required'| translate}}</div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text"
+                  formControlName="indentQty">
+              </div>
+              <div *ngIf="!submitted && formControls.indentQty.touched && formControls.indentQty.errors"
+                class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+              </div>
+              <div *ngIf="submitted && formControls.indentQty.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantity is required'|translate}}</div>
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'No of Days'|translate}}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="{{'No of Days' | translate }}" type="text"
+                  formControlName="noOfDays">
+              </div>
+              <div *ngIf="!submitted && formControls.indentQty.touched && formControls.indentQty.errors"
+                class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.noOfDays.errors.required">{{'noofdaysisrequired'|translate}}</div>
+              </div>
+              <div *ngIf="submitted && formControls.indentQty.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.noOfDays.errors.required">{{'no of days is required'|translate}}</div>
+                <div *ngIf="formControls.noOfDays.errors.required">{{'no of days is required'|translate}}</div>
+              </div>
+            </div> 
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-delivery">{{'fpodeliveryaddr'|translate}}<span
+                  class="required">*</span> </label>
+              <div class="input-group input-group-alternative">
+                <textarea class="form-control" id="input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"
+                  formControlName="deliveryaddress"></textarea>
+              </div>
+              <div *ngIf="submitted && formControls.deliveryaddress.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.deliveryaddress.errors.required">{{'deleiveryrequired'| translate}}</div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" [disabled]="!indentForm.valid"
+                class="btn btn-login btn-product-search btn-primary my-4" (click)="saveMachinaryInpSuppliers()">{{'Send'|translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="!isLoggeIn">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">{{'Welcome to FPO Shakti!' | translate}}</h3>
+          <button type="button" class="close" aria-label="Close" (click)="modal5.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-login-model-popup (logout)="logoutMachinaryInputSup()"></app-login-model-popup>
+        </div>
+      </div>
+
+    </ng-template>
+     <!--End of Machinary Input Sup Indent Form-->
+     <!-- Start of Machinary CHC Indent Form-->
+     <ng-template #mymodalMachCHC let-modal6>
+
+      <div *ngIf="isLoggeIn">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+            (click)="modal6.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body mt-1 pt-1" *ngIf="!indentForm || indentloading">
+          <div class="loader-container">
+            <ngx-loading [show]="!indentForm || indentloading" [config]="{backdropBackgroundColour: '#ffffff', 
+          backdropBorderRadius: '1px',
+          primaryColour: '#926E01', 
+          secondaryColour: '#926E01', 
+          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+          </div>
+
+        </div>
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && indentcreated">
+          <div class="d-flex w-100 align-items-center justify-content-center"> <img class="suc-img"
+              src="assets/image/img/successsubmit.png"></div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-2 text-sm">
+            <!--Change Indent insecticide message-->
+            <strong>{{ indentid }}</strong> </div>
+          <div class="d-flex w-100 align-items-center justify-content-center mt-5 text-sm"><button
+              (click)="closeModal()" class="btn btn-sm mt-5 btn-product-search">{{'ok' | translate }}</button></div>
+        </div>
+
+        <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
+          <form role="form mt-1 p-1" [formGroup]="indentForm">
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{' Name'| translate}}:</div>
+              <div class="col-8 text-sm">{{chcSupDetail.chcFmb.user_name}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Supplier Email'|translate}}:</div>
+              <div class="col-8 text-sm ">{{chcSupDetail.chcFmb.email}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Machinary Name'|translate}}:</div>
+              <div class="col-8 text-sm ">{{indentForm.value.machineryNameId.name}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4 text-sm text-bold">{{'Machinary Type'|translate}}:</div>
+              <div class="col-8 text-sm ">{{indentForm.value.machineryTypId.machineryType}}</div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Fulfillment Date' | translate }}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input type="text" placeholder="{{'Date'|translate}}" class="form-control" [minDate]="getToday()"
+                  bsDatepicker [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }"
+                  formControlName="requestedDateTime">
+              </div>
+              <div *ngIf="submitted && formControls.requestedDateTime.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.requestedDateTime.errors.required">{{'date is required'| translate}}</div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'Quantity Required'|translate}}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text"
+                  formControlName="indentQty">
+              </div>
+              <div *ngIf="!submitted && formControls.indentQty.touched && formControls.indentQty.errors"
+                class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+              </div>
+              <div *ngIf="submitted && formControls.indentQty.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantity is required'|translate}}</div>
+                <div *ngIf="formControls.indentQty.errors.required">{{'quantityinnumberisrequired'|translate}}</div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-username">{{'No of Days'|translate}}<span
+                  class="required">*</span></label>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="{{'No of Days' | translate }}" type="text"
+                  formControlName="noOfDays">
+              </div>
+              <div *ngIf="!submitted && formControls.indentQty.touched && formControls.indentQty.errors"
+                class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.noOfDays.errors.required">{{'noofdaysisrequired'|translate}}</div>
+              </div>
+              <div *ngIf="submitted && formControls.indentQty.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.noOfDays.errors.required">{{'no of days is required'|translate}}</div>
+                <div *ngIf="formControls.noOfDays.errors.required">{{'no of days is required'|translate}}</div>
+              </div>
+            </div> 
+            <div class="form-group mb-3">
+              <label class="form-control-label" for="input-delivery">{{'fpodeliveryaddr'|translate}}<span
+                  class="required">*</span> </label>
+              <div class="input-group input-group-alternative">
+                <textarea class="form-control" id="input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"
+                  formControlName="deliveryaddress"></textarea>
+              </div>
+              <div *ngIf="submitted && formControls.deliveryaddress.errors" class="text-danger mt-1 text-xsm">
+                <div *ngIf="formControls.deliveryaddress.errors.required">{{'deleiveryrequired'| translate}}</div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" [disabled]="!indentForm.valid"
+                class="btn btn-login btn-product-search btn-primary my-4" (click)="saveMachinaryCHCSuppliers()">{{'Send'|translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div *ngIf="!isLoggeIn">
+        <div class="modal-header">
+          <h3 class="modal-title text-center">{{'Welcome to FPO Shakti!' | translate}}</h3>
+          <button type="button" class="close" aria-label="Close" (click)="modal6.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-login-model-popup (logout)="logoutMachinaryCHC()"></app-login-model-popup>
+        </div>
+      </div>
+
+    </ng-template>
+     <!--End of Machinary CHC Indent Form-->
   </div>
 
 </section>

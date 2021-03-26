@@ -50,7 +50,7 @@ export class LoginModelPopupComponent implements OnInit {
         localStorage.setItem('userRole', response.userRole);
         localStorage.setItem('masterId', response.masterId);
         localStorage.setItem('userId', response.user.userId);
-
+        localStorage.setItem('roleRefId',response.user.roleRefId);
         this.userRole = localStorage.getItem('userRole');
         this.logout.emit(""+this.fpoid);
         //if (this.userRole == 'ROLE_FPC') {
