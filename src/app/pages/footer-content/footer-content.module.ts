@@ -37,7 +37,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AccessibilityComponent, PrivacyPolicyComponent, HyperlinkingPolicyComponent,
-    CopyrightPolicyComponent, TermsConditionComponent, DisclaimerComponent, HelpComponent],
+    CopyrightPolicyComponent, DisclaimerComponent, HelpComponent],
   imports: [
     CommonModule, NgbModule, RouterModule.forChild(routes), TranslateModule
   ]
