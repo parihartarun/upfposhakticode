@@ -93,6 +93,14 @@ export class AuthService {
       return res;
     }));
   }
+
+  updateInputSupplier(data){
+      return this.http.put<any>(this._url + `api/v1/InputSupplier/editInputSupplier/${data.inputSupplierId}`, data).pipe(map((res: any) => {
+        return res;
+      }));
+    
+  }
+
   registerBuyerSeller(data) {
 
     return this.http.post<any>(this._url + 'register/buyerSeller', data).pipe(map((res: any) => {
