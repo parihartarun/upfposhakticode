@@ -110,7 +110,7 @@ export class UserProfileDashboardComponent implements OnInit {
   updateProfile()
   {
    
-    this.inputservice.editinputsupplier(this.InputsupplierprofileForm.value,this.userId).subscribe(res=>{
+    this.inputservice.editinputsupplier(this.InputsupplierprofileForm.value).subscribe(res=>{
       this.toastr.success('Edit Profile  Successfully.');
    
       console.log(res);
