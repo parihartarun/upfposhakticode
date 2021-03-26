@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MustMatch } from 'src/app/_helpers/constomMatchValidor';
 import { AuthService } from 'src/app/_services/auth/auth.service';
+import { ChcFmbService } from "src/app/_services/chc_fmb/chc-fmb.service";
 
 @Component({
   selector: 'app-chcfmb-profile',
@@ -12,133 +13,114 @@ import { AuthService } from 'src/app/_services/auth/auth.service';
 })
 export class ChcfmbProfileComponent implements OnInit {
 
-  registerForm: FormGroup;
+  chcprofileForm: FormGroup;
   submitted = false;
-  bsValue = new Date();
-  bsRangeValue: Date[];
-  maxDate = new Date();
   districts = [];
   blocks = [];
   villages = [];
+  userId: any;
+  profileData: any;
 
   constructor(
     private fb: FormBuilder, 
     private api: AuthService, 
     private _router: Router, 
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private chcService: ChcFmbService) {
   }
 
   ngOnInit() {
     this.api.getDistrict().subscribe(d => {
-      this.districts = d
+      this.districts = d;
+      
     })
-    this.createRegisterForm();
+    this.userId=localStorage.getItem('masterId');
+    this.chcprofileForm = this.fb.group({
+      chcFmbName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
+      distRefId: ['', Validators.required],
+      blockRefId: ['', Validators.required],
+      villageRefId: ['', Validators.required],
+      contactPerson: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-_]{6,20}")]],
+      mobileNumber: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
+      pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
+      firmRegistraionNumber: ['', Validators.required],
+      allotmentNo: [''],
+      shopEstablishmentNumber: [''],
+      userName: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-_]{6,20}")]],
+      chcFmbId: []
 
+    });
+    this.getUserData();
+    
   }
+
+  getUserData(){
+    this.chcService.getUserDetails(this.userId).subscribe(data=>{ 
+      this.profileData = data.chcFmb;
+     this.api.getBlock(parseInt(this.profileData.district_id)).subscribe(block => {
+        this.blocks = block;
+      })
+      this.api.getVillageByBlock(parseInt(this.profileData.block_id)).subscribe(v => {
+        this.villages = v;
+      })
+      this.chcprofileForm.patchValue({
+        chcFmbName:this.profileData.chc_fmb_name,
+        email: this.profileData.email,
+        distRefId: this.profileData.district_id,
+        blockRefId: this.profileData.block_id,
+        villageRefId:this.profileData.village_id,
+        contactPerson: this.profileData.user_name, //need to change for contact person
+        mobileNumber: this.profileData.mobile_number,
+        pincode: this.profileData.pincode,
+        firmRegistraionNumber: this.profileData.firm_registraion_number ,
+        allotmentNo: this.profileData.allotment_no,
+        shopEstablishmentNumber: this.profileData.shop_establishment_number,
+        userName: this.profileData.user_name,
+        chcFmbId: this.profileData.chc_fmb_id
+      })
+    })
+  }
+
   selectDistrict(districtId: any) {
-    this.registerForm.controls['distRefId'].setValue(districtId.currentTarget.value);
+    this.chcprofileForm.controls['distRefId'].setValue(districtId.currentTarget.value);
     this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(blocks => {
       this.blocks = blocks;
     })
   }
   selectBlock(blockId: any) {
-    this.registerForm.controls['blockRefId'].setValue(blockId.currentTarget.value);
+    this.chcprofileForm.controls['blockRefId'].setValue(blockId.currentTarget.value);
     this.api.getVillageByBlock(parseInt(blockId.currentTarget.value)).subscribe(v => {
       this.villages = v;
     })
 
   }
   selectVillage(villRefId: any) {
-    this.registerForm.controls['villageRefId'].setValue(villRefId.currentTarget.value);
+    this.chcprofileForm.controls['villageRefId'].setValue(villRefId.currentTarget.value);
   }
-  createRegisterForm() {
-    this.registerForm = this.fb.group({
-      allotmentNo: [''],
-      blockRefId: ['', Validators.required],     
-      chcFmbName: ['', Validators.required],
-      contactPerson: ['', Validators.required],      
-      distRefId: ['', Validators.required],
-      deleted: [true],
-      email: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
-      firmRegistraionNumber: [''],
-      mobileNumber: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
-      pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
-      shopEstablishmentNumber: [''],
-      villageRefId: ['', Validators.required],
-      userName: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-_]{6,20}")]],
-      recaptcha: ['', Validators.required],
-      password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
-      user: [],
-      tnc: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validator: MustMatch('password', 'confirmPassword')
-    })
-
-
-
-  }
+  
   get formControls() {
-    return this.registerForm.controls;
+    return this.chcprofileForm.controls;
   }
-  get password() {
-    return this.registerForm.get('password');
-  }
-  register() {
+
+  updateProfile() {
     this.submitted = true;
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
+    if (this.chcprofileForm.invalid) {
       return;
     }
-    let user = {
-      userName: this.registerForm.value.userName,
-      password: this.registerForm.value.password,
-      roleRefId:5
-    }
-    this.registerForm.value.user = user;
-    let famerCHCFmb = {
-      allotmentNo: '',
-      blockRefId: '',
-      chcFmbName: '',
-      contactPerson: '',
-      deleted: true,
-      distRefId: '',
-      email: '',
-      firmRegistraionNumber: '',
-      mobileNumber: '',
-      pincode: '',
-      recaptcha: '',
-      shopEstablishmentNumber: "",
-      user: user,     
-      villageRefId: '',
-    }
-    famerCHCFmb.allotmentNo = this.registerForm.value.allotmentNo;
-    famerCHCFmb.blockRefId = this.registerForm.value.blockRefId;
-    famerCHCFmb.chcFmbName = this.registerForm.value.chcFmbName;
-    famerCHCFmb.contactPerson = this.registerForm.value.contactPerson;
-    famerCHCFmb.deleted = this.registerForm.value.deleted;
-    famerCHCFmb.firmRegistraionNumber = this.registerForm.value.firmRegistraionNumber,
-    famerCHCFmb.shopEstablishmentNumber = this.registerForm.value.shopEstablishmentNumber,    
-    famerCHCFmb.distRefId = this.registerForm.value.distRefId;
-    famerCHCFmb.email = this.registerForm.value.email;
-    famerCHCFmb.mobileNumber = this.registerForm.value.mobileNumber;
-    famerCHCFmb.pincode = this.registerForm.value.pincode;
-    famerCHCFmb.recaptcha = this.registerForm.value.recaptcha;
-    famerCHCFmb.user = user;
-    famerCHCFmb.villageRefId = this.registerForm.value.villageRefId;
-    this.api.registerCHCFmb(famerCHCFmb).subscribe(response => {
-      if (response.message == "SuccessFully Saved!") {
-        this.toastr.success('Registration done successfully.');
-        this.registerForm.reset();
-        this._router.navigate(['/login'])
+    let famerCHCFmb = this.chcprofileForm.value;
+    this.chcService.updateChcProfile(famerCHCFmb).subscribe(response => {
+      if(response.chcFmbId != ''){
+        this.submitted = false;
+        this.toastr.success('Profile Updated successfully.');
+      }else{
+          this.toastr.error('Error! While Updating Profile.');
       }
-      else {
-        this.toastr.error(response.message);
+    },
+      err => {
+        console.log(err)
       }
-    })
-  }
-  handleSuccess(e) {
-    console.log("ReCaptcha", e);
+    );
   }
 
 }

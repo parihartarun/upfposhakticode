@@ -66,7 +66,11 @@ export class ChcFmbService {
     })
   }
 
-
+  updateChcProfile(data) {
+    return this.http.put<any>(this._url + `/api/v1/CHCFMB/editChcFmb/${data.chcFmbId}`, data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
 
   addchcfmbMachinery(params) {
