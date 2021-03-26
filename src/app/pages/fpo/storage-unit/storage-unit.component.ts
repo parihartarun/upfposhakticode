@@ -56,6 +56,7 @@ export class StorageUnitComponent implements OnInit {
   }
 
   reset(){
+    this.edit = false;
     this.storageUnitForm.reset();
     this.storageUnitForm.markAsPristine();
     this.storageUnitForm.markAsUntouched();

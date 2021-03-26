@@ -173,6 +173,7 @@ export class BoardMembersComponent implements OnInit {
 
   reset(){
     this.submitted = false;
+    this.edit = false;    
     this.memberForm.reset();
   }
 

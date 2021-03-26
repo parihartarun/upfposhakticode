@@ -98,6 +98,8 @@ export class DepartmentUplaodCircularComponent implements OnInit {
     });
   }
   reset() {
+    this.submitted = false;
+    this.isEdit = false;
     this.uploadCircularForm.reset();
   }
   editCicular(circular) {

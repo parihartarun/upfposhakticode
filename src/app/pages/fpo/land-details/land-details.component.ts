@@ -259,6 +259,8 @@ export class LandDetailsComponent implements OnInit {
   
 
   resetForm(){
+    this.submitted = false;
+    this.edit = false;
     this.landDetailForm.reset();
   }
 

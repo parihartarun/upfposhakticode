@@ -158,6 +158,8 @@ export class ServicesComponent implements OnInit {
   }
 
   resetForm() {
+    this.submitted = false;
+    this.edit = false;
     this.serviceForm.reset();
   }
 

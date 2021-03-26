@@ -116,7 +116,7 @@ export class SupplierProfileComponent implements OnInit {
     }
     
     let user = this.profileForm.value;
-    this.api.updateInputSupplier(user).subscribe(response => {
+    this.supplierService.editinputsupplier(user).subscribe(response => {
       if (response.inputSupplierId != '') {
         this.submitted = false;
         this.toastr.success('Profile Updated successfully.');

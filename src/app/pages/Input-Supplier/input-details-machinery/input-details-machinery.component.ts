@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { ElementRef } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/_services/auth/auth.service';
@@ -39,19 +39,16 @@ export class InputDetailsMachineryComponent implements OnInit {
     this.inputid = localStorage.getItem('masterId')
     this.mtype();
     this.Machinerydata();
-
-
     this.machineryForm = this.fb.group({
       manufacturer_name: [''],
-      quantity: [''],
-      file: [''],
-      machinery_name_id: [''],
-      mchinery_type_id: [''],
+      quantity: ['', [Validators.required]],
+      file: ['', [Validators.required]],
+      machinery_name_id: ['', [Validators.required]],
+      mchinery_type_id: ['', [Validators.required]],
       input_supplier_id: localStorage.getItem('masterId'),
       specification: ['']
     });
   }
-
 
   mtype() {
     this.inputmachineryservice.mtype().subscribe((res) => {
@@ -60,15 +57,12 @@ export class InputDetailsMachineryComponent implements OnInit {
     })
   }
 
-
-  selectmachinaryname(e) {
-    this.machineryForm.controls['mchinery_type_id'].setValue(parseInt(e));
-    this.inputmachineryservice.machineryname(e).subscribe(mn => {
+  selectmachinaryname(type_id) {
+    this.inputmachineryservice.machineryname(type_id).subscribe(mn => {
+      console.log(mn);
       this.machinerynamelist = mn;
-      console.log(mn, "machineryname");
     })
   }
-
 
   Machinerydata() {
     this.inputid = localStorage.getItem('masterId')
@@ -80,6 +74,9 @@ export class InputDetailsMachineryComponent implements OnInit {
 
   addmachinery() {
     this.submitted = true;
+    if (this.machineryForm.invalid) {
+      return;
+    }      
     let model = this.machineryForm.value;
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
@@ -103,18 +100,27 @@ export class InputDetailsMachineryComponent implements OnInit {
   }
 
   editmachinery(data) {
-    this.machineryForm.get('machinery_name_id').patchValue(data.name_id);
+    this.selectmachinaryname(data.type_id);
     this.machineryForm.get('file').patchValue(data.file);
     this.machineryForm.get('manufacturer_name').patchValue(data.manufacturer_name);
     this.machineryForm.get('mchinery_type_id').patchValue(data.type_id);
     this.machineryForm.get('quantity').patchValue(data.quantity);
-    this.machineryForm.get('specification').patchValue(data.specification);
+    this.machineryForm.get('specification').patchValue(data.technical_specs);
+    setTimeout(() => {
+      this.machineryForm.patchValue({
+       'machinery_name_id':data.name_id
+      });
+    }, 1000);
     this.id = data.id;
     console.log(data,"meditdata");
     this.isEdit = true;
   }
 
   updatemachinery() {
+    this.submitted = true;
+    if (this.machineryForm.invalid) {
+      return;
+    }  
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
     formData.append('machinery_name_id', this.machineryForm.value.machinery_name_id);
@@ -163,16 +169,27 @@ export class InputDetailsMachineryComponent implements OnInit {
       return false;
     }
   }
-  deletemachinery(mach) {
-    this.inputmachineryservice.deleteMachinery(mach.id).subscribe(response => {
-      if (response != '') {
-        this.toastr.success('Delete successfully');
+
+  confirmDelete(id) {
+    if (confirm("Are you sure to delete this item.")) {
+      this.inputmachineryservice.deleteMachinery(id).subscribe(response => {
+        this.toastr.success('Record Deleted Successfully.');
         this.Machinerydata();
-      } else {
-        this.toastr.error('Error!.');
-      }
-    });
+      },
+        err => {
+          console.log(err)
+        }
+      );
+    }
   }
 
+  get formControls() {
+    return this.machineryForm.controls;
+  }
 
+  resetForm(){
+    this.machineryForm.reset();
+    this.submitted = false;
+    this.isEdit = false;
+  }
 }
