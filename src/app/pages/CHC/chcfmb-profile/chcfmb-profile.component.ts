@@ -59,8 +59,10 @@ export class ChcfmbProfileComponent implements OnInit {
     this.chcService.getUserDetails(this.userId).subscribe(data=>{ 
       console.log(data.chcFmb);
       this.profileData = data.chcFmb;
+      
      this.api.getBlock(parseInt(this.profileData.district_id)).subscribe(block => {
         this.blocks = block;
+        
       })
       this.api.getVillageByBlock(parseInt(this.profileData.block_id)).subscribe(v => {
         this.villages = v;
@@ -71,7 +73,7 @@ export class ChcfmbProfileComponent implements OnInit {
         distRefId: this.profileData.district_id,
         blockRefId: this.profileData.block_id,
         villageRefId:this.profileData.village_id,
-        contactPerson: this.profileData.user_name, //need to change for contact person
+        contactPerson: this.profileData.contactPerson, 
         mobileNumber: this.profileData.mobile_number,
         pincode: this.profileData.pincode,
         firmRegistraionNumber: this.profileData.firm_registraion_number ,
@@ -111,7 +113,7 @@ export class ChcfmbProfileComponent implements OnInit {
     }
     let famerCHCFmb = this.chcprofileForm.value;
     this.chcService.updateChcProfile(famerCHCFmb).subscribe(response => {
-      if(response.chcFmbId != ''){
+      if(response.chcFmbId != ''){        
         this.submitted = false;
         this.toastr.success('Profile Updated successfully.');
       }else{
