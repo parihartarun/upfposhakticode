@@ -25,3 +25,26 @@ input[type=number] {
   width: 50%;
   margin: 0px auto;
 }
+
+.modal-dialog{
+  vertical-align: middle;
+  overflow-y: initial !important
+  
+}
+.modal-header{
+  background-color: #cfb000;
+  padding: 6px 8px 0px 18px;
+}
+.term-text{
+ color: #e9ecef;
+}
+
+.modal-body{
+  height: 50vh;
+  overflow-y: auto;
+  padding: 0px;
+  color:#525f7f;
+}
+.modal-footer{
+  padding: 10px 26px 7px 9px;
+}
