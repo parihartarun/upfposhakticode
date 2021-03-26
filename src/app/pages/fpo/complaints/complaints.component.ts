@@ -184,6 +184,8 @@ export class ComplaintsComponent implements OnInit {
   }
  
   reset() {
+    this.submitted = false;
+    this.edit = false;
     this.complaintForm.reset();
   }
   close() {

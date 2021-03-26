@@ -23,22 +23,24 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Crop Name' | translate}}<span class="required">*</span></label>
-                    <!-- <input type="text" id="input-first-name"class="form-control" required> -->
-                    <!-- [compareWith]="compareByOptionId" -->
-                    <select class="form-control" formControlName="crop_id" (change)="selectcrops($event.target.value)">
+                    <select class="form-control" formControlName="crop_id" (change)="selectCrops($event.target.value)">
                       <option value="">{{'Select Crop' | translate}}</option>
                       <option *ngFor="let cc of croplist" [value]="cc.cropId">{{cc.cropName}}</option>
                     </select>
+                    <div *ngIf="submitted && formControls.crop_id.errors" class="text-danger">
+                      <div *ngIf="formControls.crop_id.errors.required">{{'Crop Name is required'| translate}}</div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>{{'Variety' | translate}}<span class="required">*</span></label>
-                    <!-- <input type="text" id="input-first-name"class="form-control" required> -->
+                    <label>{{'Crop variety' | translate}}<span class="required">*</span></label>
                     <select class="form-control" formControlName="variety_id">
-                      <!-- <option value="">{{'Select Complaint/Suggestions' | translate}}</option> -->
                       <option *ngFor="let vv of varietylist" [value]="vv.verietyId">{{vv.verietyName}}</option>
                     </select>
+                    <div *ngIf="submitted && formControls.variety_id.errors" class="text-danger">
+                      <div *ngIf="formControls.variety_id.errors.required">{{'Variety Name is required'| translate}}</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -48,16 +50,20 @@
                     <label>{{'Picture of Seeds' | translate}}<span class="required">*</span></label>
                     <input type="file" id="input-first-name" formControlName="file"
                       (change)="upload($event.target.files)" class="form-control form-control-alternative">
+                      <div *ngIf="submitted && formControls.file.errors" class="text-danger">
+                        <div *ngIf="formControls.file.errors.required">{{'File is required'| translate}}</div>
+                      </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Quantity' | translate}}<span class="required">*</span></label>
                     <input type="text" id="input-first-name" class="form-control" formControlName="quantity" required>
+                    <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
+                      <div *ngIf="formControls.quantity.errors.required">{{'Seed Quantity is required'| translate}}</div>
+                    </div>
                   </div>
                 </div>
-
-
               </div>
               <div class="row">
                 <div class="col-lg-6">
@@ -95,7 +101,7 @@
             translate}}</button>
           <button *ngIf="isEdit" class="btn btn-yellow text-right" (click)="updatseed()">
             {{'Update' | translate}}</button>
-          <button class="btn btn-warning">{{'Reset' | translate}}</button>
+          <button class="btn btn-warning" (click)="resetForm()">{{'Reset' | translate}}</button>
         </div>
       </div>
     </div>
@@ -127,9 +133,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let sdata of getallSeeds; index as i">
+              <tr *ngFor="let sdata of seeds | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
                 <td>
-                  {{i+1}}
+                  {{(p-1) * 10 + i + 1}}
                 </td>
                 <td>
                   {{sdata.crop_name}}
@@ -143,8 +149,7 @@
                 <td>
                   <div style="font-size: 20px;text-indent: 10px;">
                     <i class="fas fa-edit" (click)="editseed(sdata)"></i>
-                    <i class="fas fa-trash-alt" (click)="deleteseeds(sdata)"></i>
-
+                    <i class="fas fa-trash-alt" (click)="confirmDelete(sdata.id)"></i>
                   </div>
                 </td>
               </tr>
@@ -152,28 +157,8 @@
           </table>
         </div>
         <div class="card-footer py-4">
-          <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                  <i class="fas fa-angle-left"></i>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active">
-                <a class="page-link" href="javascript:void(0)">1</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">
-                  <i class="fas fa-angle-right"></i>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
+          <nav aria-label="..." class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </nav>
         </div>
       </div>

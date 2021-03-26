@@ -170,6 +170,8 @@ export class BuyerTraderComplaintsComponent implements OnInit {
     return idFist && idSecond && idFist.id == idSecond.id;
   }
   reset() {
+    this.submitted = false;
+    this.edit = false;
     this.complaintForm.reset();
   }
   close() {

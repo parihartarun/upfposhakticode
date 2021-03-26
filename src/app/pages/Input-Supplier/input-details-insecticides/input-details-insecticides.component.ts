@@ -1,9 +1,6 @@
-import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from 'src/app/_services/auth/auth.service';
 import { InputSupplierService } from 'src/app/_services/InputSupplier/InputSupplier.services';
 
 @Component({
@@ -27,10 +24,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
 
   constructor(private inputinsectservice: InputSupplierService,
     private fb: FormBuilder,
-    private route: Router,
-    private toastr: ToastrService,
-    private authService: AuthService,
-    private datePipe: DatePipe) { }
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.types();
@@ -39,12 +33,11 @@ export class InputDetailsInsecticidesComponent implements OnInit {
     this.insectForm = this.fb.group({
       cib_rc_issuedate: [''],
       cib_rc_number: [''],
-      insecticide_type_id: [''],
-      file: [''],
-      manufacturer_name: [''],
-      quantity: [''],
+      insecticide_type_id: ['', [Validators.required]],
+      file: ['', [Validators.required]],
+      manufacturer_name: ['', [Validators.required]],
+      quantity: ['', [Validators.required]],
       input_supplier_id: localStorage.getItem('masterId')
-
     })
    
   }
@@ -59,7 +52,6 @@ export class InputDetailsInsecticidesComponent implements OnInit {
 
 
   getallinsecticidesdata() {
-  
     this.inputinsectservice.getallinsecticide(localStorage.getItem('masterId')).subscribe((res) => {
       this.insecticidedetails = res;
       console.log(this.insecticidedetails, "")
@@ -69,6 +61,9 @@ export class InputDetailsInsecticidesComponent implements OnInit {
 
   addinsecticides() {
     this.submitted = true;
+    if (this.insectForm.invalid) {
+      return;
+    }     
     let model = this.insectForm.value;
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
@@ -79,15 +74,10 @@ export class InputDetailsInsecticidesComponent implements OnInit {
     formData.append('manufacturer_name', this.insectForm.value.manufacturer_name);
     formData.append("input_supplier_id ", localStorage.getItem('masterId'))
     this.inputinsectservice.addinsecticide(formData).subscribe(res => {
-      if (res != '') {
-        this.toastr.success(' Added Succefully.');
-        this.submitted = false;
-        // this.edit = false;
-        this.insectForm.reset();
-        this.getallinsecticidesdata();
-      } else {
-        this.toastr.error('Error!.');
-      }
+      this.toastr.success('Added Successfully.');
+      this.submitted = false;
+      this.insectForm.reset();
+      this.getallinsecticidesdata();
     });
   }
 
@@ -119,14 +109,11 @@ export class InputDetailsInsecticidesComponent implements OnInit {
 
     formData.append('id', this.id);
     this.inputinsectservice.updateinsecticide(this.id, formData).subscribe((res: any) => {
-      if (res == true || res) {
-        this.toastr.success(' updated successfully.');
-        this.inputinsectservice.getallMachinery(this.id);
-        this.insectForm.reset();
-        this.isEdit = false;
-      } else {
-        this.toastr.error('Something went wrong.');
-      }
+      this.toastr.success(' updated successfully.');
+      this.inputinsectservice.getallMachinery(this.id);
+      this.insectForm.reset();
+      this.isEdit = false;
+      this.getallinsecticidesdata();
     })
   }
 
@@ -155,16 +142,27 @@ export class InputDetailsInsecticidesComponent implements OnInit {
     }
   }
 
-  deleteinsect(insect) {
-    this.inputinsectservice.deleteinsecticide(insect.id).subscribe(response => {
-      if (response != '') {
-        this.toastr.success('Delete successfully');
+  confirmDelete(id) {
+    if (confirm("Are you sure to delete this item.")) {
+      this.inputinsectservice.deleteinsecticide(id).subscribe(response => {
+        this.toastr.success('Record Deleted Successfully.');
         this.getallinsecticidesdata();
-      } else {
-        this.toastr.error('Error!.');
-      }
-    });
+      },
+        err => {
+          console.log(err)
+        }
+      );
+    }
   }
 
 
+  get formControls() {
+    return this.insectForm.controls;
+  }
+
+  resetForm(){
+    this.insectForm.reset();
+    this.submitted = false;
+    this.isEdit = false;
+  }
 }

@@ -176,6 +176,7 @@ export class PhotographsComponent implements OnInit {
 
   resetForm(){
     this.photographForm.reset();
+    this.edit = false;
     this.submitted = false;
   }
 

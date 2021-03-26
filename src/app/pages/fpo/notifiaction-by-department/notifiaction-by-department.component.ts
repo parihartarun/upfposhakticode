@@ -32,6 +32,7 @@ export class NotifiactionByDepartmentComponent implements OnInit {
     })   
   }
   reset() {
+    this.submitted = false;
     this.NotificationsForm.reset();
   }
 
