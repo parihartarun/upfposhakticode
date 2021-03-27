@@ -29,6 +29,13 @@ export class ChcFmbService {
     }));
   }
 
+  // Same as getUserDetails used to call CHC in search. 
+  getCHCSupplierProfileData(masterId){
+    return  this.http.get<any>(this._url+`api/v1/CHCFMB/profile/ChcFmbDetail/${masterId}`).pipe(map((res:any)=>{
+      return res;
+    }));
+  }
+
   getIndentDetails(id) {
     return this.http.get<any>(this._url + `chcFmbDashboard/indent/`+id).pipe(map((res: any) => {
       return res;

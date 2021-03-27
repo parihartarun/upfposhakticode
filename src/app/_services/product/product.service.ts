@@ -35,6 +35,42 @@ export class ProductService {
       
     }));
   }
+
+  saveIndentInputSuppliers(data):Observable<any>{
+    return this.http.post(this._url + 'inputSupplierIndent/insecticides/create', data,{responseType: 'text'}).pipe(map((res: any) => {
+      console.log("indent received"+res);
+      return res;     
+    }));
+  }
+
+  saveIndentInputSuppliersFertilizer(data):Observable<any>{    
+    return this.http.post(this._url + '/inputSupplierIndent/fertilizer/create', data,{responseType: 'text'}).pipe(map((res: any) => {
+      console.log("indent received"+res);
+      return res;     
+    }));
+  }
+
+  saveIndentInputSuppliersSeeds(data):Observable<any>{
+      return  this.http.post(this._url + '/inputSupplierIndent/seedIndent/create', data,{responseType: 'text'}).pipe(map((res: any) => {
+        console.log("indent received"+res);
+        return res;     
+      }));
+  }
+
+  saveIndentInputSuppliersMachinery(data):Observable<any>{
+    return  this.http.post(this._url + '/inputSupplierIndent/machinery/create', data,{responseType: 'text'}).pipe(map((res: any) => {
+      console.log("indent received"+res);
+      return res;     
+    }));
+  }
+
+  saveCHCInputSupplierMachinery(data):Observable<any>{
+    return  this.http.post(this._url + '/chcFmbIndent/machineryIndent/create', data,{responseType: 'text'}).pipe(map((res: any) => {
+      console.log("indent received"+res);
+      return res;     
+    }));
+  }
+
   updateEnquiry(data,id): Observable<any> {
     let headers = {}
   
