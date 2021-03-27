@@ -790,15 +790,11 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
           deliveryaddress:["",Validators.required],
           enqid: [0],
           indentQty:[, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
-          machineryNameId:this.fb.group({
-            id:[item.machinenameid],
-            name:[item.machinename]
-          }),
-          machineryTypId:this.fb.group({
-            machineryTypId : [item.machinetypeid],
-            machineryType:[item.machinetype]
-          }),
-          masterId:[item.inputsupplierid],
+          machineryNameId:[item.machinenameid],
+          machineryName: [item.machinename],
+          machineryTypId : [item.machinetypeid],
+          machineryType:[item.machinetype],
+          masterId:[item.vendorid],
           noOfDays: [,[Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
           requestedDateTime:["",Validators.required],
           roleRefId:localStorage.getItem('roleRefId'),
@@ -814,15 +810,11 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       deliveryaddress:["",Validators.required],
       enqid: [0],
       indentQty:[, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
-      machineryNameId:this.fb.group({
-        id:[item.machinenameid],
-        name:[item.machinename]
-      }),
-      machineryTypId:this.fb.group({
-        machineryTypId : [item.machinetypeid],
-        machineryType:[item.machinetype]
-      }),
-      masterId:[item.inputsupplierid],
+      machineryNameId:[item.machinenameid],
+      machineryName: [item.machinename],
+      machineryTypId : [item.machinetypeid],
+      machineryType:[item.machinetype],
+      masterId:[item.vendorid],
       noOfDays: [,[Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
       requestedDateTime:["",Validators.required],
       roleRefId:localStorage.getItem('roleRefId'),
@@ -1018,7 +1010,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
      this._productService.saveIndentInputSuppliers(this.indentForm.value).subscribe(response => {
 
             if (response) {
-               this.indentid = response;
+               this.indentid = JSON.parse(response).message;
                this.indentForm.reset();
                this.submitted = false;
                this.indentcreated = true;
@@ -1049,7 +1041,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this._productService.saveIndentInputSuppliersFertilizer(this.indentForm.value).subscribe(response => {
 
       if (response) {
-         this.indentid = response.message;
+         this.indentid = JSON.parse(response).message;
          this.indentForm.reset();
          this.submitted = false;
          this.indentcreated = true;
@@ -1072,7 +1064,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this._productService.saveIndentInputSuppliersSeeds(this.indentForm.value).subscribe(response => {
 
       if (response) {
-         this.indentid = response;
+         this.indentid = JSON.parse(response).message;
          this.indentForm.reset();
          this.submitted = false;
          this.indentcreated = true;
@@ -1096,7 +1088,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this._productService.saveIndentInputSuppliersMachinery(this.indentForm.value).subscribe(response => {
 
       if (response) {
-         this.indentid = response.message;
+         this.indentid =JSON.parse(response).message;
          this.indentForm.reset();
          this.submitted = false;
          this.indentcreated = true;
@@ -1118,7 +1110,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     console.log(this.indentForm.value);
     this._productService.saveCHCInputSupplierMachinery(this.indentForm.value).subscribe(response => {
           if (response) {
-            this.indentid = response.message;
+            this.indentid = JSON.parse(response).message;
             this.indentForm.reset();
             this.submitted = false;
             this.indentcreated = true;
