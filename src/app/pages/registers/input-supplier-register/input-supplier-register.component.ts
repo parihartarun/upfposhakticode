@@ -64,7 +64,7 @@ export class InputSupplierRegisterComponent implements OnInit {
      
       this.registerForm.get('villageRefId').patchValue('');
       this.registerForm.get('blockRefId').clearValidators();
-      this.registerForm.get('districtRefId').clearValidators();
+      this.registerForm.get('distRefId').clearValidators();
       this.registerForm.get('villageRefId').clearValidators();
       this.registerForm.get('blockRefId').updateValueAndValidity();
       
@@ -72,7 +72,7 @@ export class InputSupplierRegisterComponent implements OnInit {
     } else {
       this.isBulkSupplyingCompany = true;
       this.registerForm.get('blockRefId').setValidators([Validators.required])
-      this.registerForm.get('districtRefId').setValidators([Validators.required])
+      this.registerForm.get('distRefId').setValidators([Validators.required])
       this.registerForm.get('villageRefId').setValidators([Validators.required]);
       this.registerForm.updateValueAndValidity();
     }
@@ -86,7 +86,7 @@ export class InputSupplierRegisterComponent implements OnInit {
       inputSupplierType: ['', Validators.required],
       contactPerson: ['', Validators.required],
       license_number: ['', Validators.required],
-      districtRefId: ['', Validators.required],
+      distRefId: ['', Validators.required],
       deleted: [true],
       email: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
       gstNumber: ['', [Validators.required,Validators.pattern("[0-9a-zA-Z]{0,100}")]],

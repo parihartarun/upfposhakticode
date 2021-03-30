@@ -103,15 +103,15 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <select class="form-control" formControlName="districtRefId" (change)="selectDistrict($event)">
+        <select class="form-control" formControlName="distRefId" (change)="selectDistrict($event)">
           <option value="">{{'SelectDistrict1'|translate}}</option>
           <option *ngFor="let district of districts" [value]="district.district_id">
             {{district.district_name}}
           </option>
         </select>
       </div>
-      <div *ngIf="submitted && formControls.districtRefId.errors" class="text-danger">
-        <div *ngIf="formControls.districtRefId.errors.required">{{'district is required'|translate}}</div>
+      <div *ngIf="submitted && formControls.distRefId.errors" class="text-danger">
+        <div *ngIf="formControls.distRefId.errors.required">{{'district is required'|translate}}</div>
       </div>
     </div>
     <div class="col-6" *ngIf="isBulkSupplyingCompany">
