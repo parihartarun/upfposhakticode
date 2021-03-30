@@ -29,12 +29,9 @@ export class FarmerNotifictionByFpoComponent implements OnInit {
       this.notifications = us;
     })
 
-
-
-
-
   }
   reset() {
+    this.submitted = false;
     this.NotificationsForm.reset();
   }
 

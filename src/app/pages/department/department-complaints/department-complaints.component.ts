@@ -115,6 +115,7 @@ export class DepartmentComplaintsComponent implements OnInit {
     return idFist && idSecond && idFist.id == idSecond.id;
   }
   reset() {
+    this.submitted = false;
     this.complaintForm.reset();
   }
   close() {

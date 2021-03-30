@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/_services/auth/auth.service';
@@ -48,14 +48,14 @@ export class InputDetailsFertilizerComponent implements OnInit {
 
   ngOnInit(): void {
     this.fertilizertype();
-    this.Getallfertilizer();
+    this.getallfertilizer();
     this.inputid = localStorage.getItem('masterId')
     this.fertilizerForm = this.fb.group({
-      fertilizer_grade: [''],
-      type_id: [''],
+      fertilizer_grade: ['', [Validators.required]],
+      type_id: ['', [Validators.required]],
       file: [''],
-      manufacturer_name: [''],
-      name_id: [''],
+      manufacturer_name: ['', [Validators.required]],
+      name_id: ['', [Validators.required]],
       input_supplier_id: localStorage.getItem('masterId'),
     });
   }
@@ -65,7 +65,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
     this.fertitype = type;
     this.fertilizerForm.controls['type_id'].setValue(parseInt(type));
     this.inputsupplierfertiservice.fsubtype(type).subscribe(v => {
-      console.log(v);
+      console.log(v, name_id);
       this.subtypes = v;
       if(name_id != null){
         console.log(name_id);
@@ -87,7 +87,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
     console.log(e);
   }
 
-  Getallfertilizer() {
+  getallfertilizer() {
     this.inputid = localStorage.getItem('masterId')
     this.inputsupplierfertiservice.getallfertilizer(this.inputid).subscribe((res) => {
       console.log(res);
@@ -104,6 +104,9 @@ export class InputDetailsFertilizerComponent implements OnInit {
 
   addfertilizer() {
     this.submitted = true;
+    if (this.fertilizerForm.invalid) {
+      return;
+    }    
     let model = this.fertilizerForm.value;
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
@@ -117,7 +120,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
       this.submitted = false;
       this.isEdit = false;
       this.fertilizerForm.reset();
-      this.Getallfertilizer();
+      this.getallfertilizer();
     });
   }
 
@@ -134,6 +137,10 @@ export class InputDetailsFertilizerComponent implements OnInit {
   }
 
   updatefertilizer() {
+    this.submitted = true;
+    if (this.fertilizerForm.invalid) {
+      return;
+    }  
     const formData: FormData = new FormData();
     formData.append('file', this.fileToUpload);
     formData.append('fertilizer_grade', this.fertilizerForm.value.fertilizer_grade);
@@ -145,7 +152,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
     this.inputsupplierfertiservice.updatefertilizer(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {
         this.toastr.success('Fertilizer updated successfully.');
-        this.Getallfertilizer();
+        this.getallfertilizer();
         this.fertilizerForm.reset();
         this.isEdit = false;
       } else {
@@ -176,14 +183,26 @@ export class InputDetailsFertilizerComponent implements OnInit {
     }
   }
 
-  deletefertilizer(mach) {
-    this.inputsupplierfertiservice.deletefertilizer(mach.id).subscribe(response => {
-      if (response != '') {
-        this.toastr.success('Delete successfully');
-        this.Getallfertilizer();
-      } else {
-        this.toastr.error('Error!.');
-      }
-    });
+  confirmDelete(id) {
+    if (confirm("Are you sure to delete this item.")) {
+      this.inputsupplierfertiservice.deletefertilizer(id).subscribe(response => {
+        this.toastr.success('Record Deleted Successfully.');
+        this.getallfertilizer();
+      },
+        err => {
+          console.log(err)
+        }
+      );
+    }
+  }
+
+  get formControls() {
+    return this.fertilizerForm.controls;
+  }
+
+  resetForm(){
+    this.fertilizerForm.reset();
+    this.submitted = false;
+    this.isEdit = false;
   }
 }

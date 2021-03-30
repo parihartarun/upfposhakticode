@@ -30,20 +30,24 @@
                                                 {{mach.equipType}}
                                             </option>
                                         </select>
+                                        <div *ngIf="submitted && formControls.mchinery_type_id.errors" class="text-danger">
+                                            <div *ngIf="formControls.mchinery_type_id.errors.required">{{'This field is required'| translate}}</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Name of the Machinery' | translate}} <span
                                                 class="required">*</span></label>
-                                        <!-- <input type="text" id="input-first-name" formControlName="machinery_name_id"
-                                            class="form-control form-control-alternative"> -->
                                         <select class="form-control" formControlName="machinery_name_id">
                                             <option value="">{{'Select Type' | translate}}</option>
                                             <option *ngFor="let mach of machinerynamelist" [value]="mach.id">
                                                 {{mach.equpmentname}}
                                             </option>
                                         </select>
+                                        <div *ngIf="submitted && formControls.machinery_name_id.errors" class="text-danger">
+                                            <div *ngIf="formControls.machinery_name_id.errors.required">{{'This field is required'| translate}}</div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -54,13 +58,19 @@
                                         <input type="file" id="input-first-name" formControlName="file"
                                             (change)="upload($event.target.files)"
                                             class="form-control form-control-alternative">
+                                        <div *ngIf="submitted && formControls.file.errors" class="text-danger">
+                                            <div *ngIf="formControls.file.errors.required">{{'This field is required'| translate}}</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>{{'Quantity' | translate}}<span class="required">*</span></label>
                                         <input type="text" id="input-first-name" formControlName="quantity"
-                                            class="form-control form-control-alternative">
+                                            class="form-control form-control-alternative" appOnlynumber>
+                                        <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
+                                            <div *ngIf="formControls.quantity.errors.required">{{'This field is required'| translate}}</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -86,7 +96,7 @@
                                 (click)="addmachinery()">{{'Save' | translate}}</button>
                             <button *ngIf="isEdit" class="btn btn-yellow text-right" (click)="updatemachinery()">
                                 {{'Update' | translate}}</button>
-                            <button class="btn btn-warning">{{'Reset' | translate}}</button>
+                            <button class="btn btn-warning" (click)="resetForm()">{{'Reset' | translate}}</button>
                         </div>
                     </form>
                 </div>
@@ -137,7 +147,7 @@
                                 <td>
                                     <div style="font-size: 20px;text-indent: 10px;">
                                         <i class="fas fa-edit" (click)="editmachinery(mdata)"></i>
-                                        <i class="fas fa-trash-alt" (click)="deletemachinery(mdata)"></i>
+                                        <i class="fas fa-trash-alt" (click)="confirmDelete(mdata.id)"></i>
                                     </div>
                                 </td>
                             </tr>
@@ -148,7 +158,7 @@
                 <div class="card-footer py-4">
                     <nav aria-label="..." class="text-right">
                         <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                      </nav>
+                    </nav>
                 </div>
             </div>
         </div>

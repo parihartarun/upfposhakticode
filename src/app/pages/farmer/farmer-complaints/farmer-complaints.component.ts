@@ -267,6 +267,8 @@ export class FarmerComplaintsComponent implements OnInit {
   /* Return true or false if it is the selected */
   
   reset() {
+    this.submitted = false;
+    this.edit = false;
     this.complaintForm.reset();
   }
   close() {

@@ -8,7 +8,9 @@ import { TreeviewItem } from 'ngx-treeview';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../_services/auth/auth.service';
 import { FpoService } from '../../_services/fpo/fpo.service';
+import {InputSupplierService} from '../../_services/InputSupplier/InputSupplier.services';
 import { ProductService } from '../../_services/product/product.service';
+import {ChcFmbService} from '../../_services/chc_fmb/chc-fmb.service';
 import { FpoSearchService } from 'src/app/_services/fpo/fpo-search.service';
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { element } from 'protractor';
@@ -41,7 +43,10 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   fertilizerTypes:any =[]
   isDistrict: false;
   searchCriteria: Array<any> = [];
-  fpoDetail: any
+  fpoDetail: any;
+  role:any;
+  inpSupDetail:any;
+  chcSupDetail:any;
   quantities = [
     { value: 1, minname: "zerotonintynine" },
     { value: 2, minname: "hundredtohundrednintynine" },
@@ -161,8 +166,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
   totalCount: any;
   constructor(private modalService: NgbModal,
-    public fpoSearchService: FpoSearchService, private _rouetr: Router, private _productService: ProductService, private _activatedroute: ActivatedRoute,
-    private api: AuthService, private _fpoService: FpoService, private fb: FormBuilder, private datePipe: DatePipe, private toastr: ToastrService) { }
+    public fpoSearchService: FpoSearchService, private _rouetr: Router, private _productService: ProductService,private _chcfmbService: ChcFmbService ,private _activatedroute: ActivatedRoute,
+    private api: AuthService, private _fpoService: FpoService, private _inpSupService:InputSupplierService,private fb: FormBuilder, private datePipe: DatePipe, private toastr: ToastrService) { }
 
 
   ngOnInit() {
@@ -288,7 +293,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
       this._fpoService.getfpoDetialById(item.fpoid).subscribe(f => {
         this.fpoDetail = f;
-
+        console.log(this.fpoDetail);
         this.createIndentForm(this.currentitem);
 
 
@@ -326,6 +331,179 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       return `with: ${reason}`;
     }
   }
+
+  // open function for Insecticide Indent Form
+  openOne(event, content, item): any {
+    console.log("Selected Items =" + JSON.stringify(item));
+    this.currentitem = item;
+    this.indentloading = false;
+    this.currentfpoid = item.inputsupplierid;
+    this.indentForm = undefined
+
+    if (sessionStorage.getItem('accessToken') != null) {
+      this.isLoggeIn = true;
+
+      this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
+        this.inpSupDetail = f;
+        console.log("InpSup Detail",this.inpSupDetail);
+        this.createIndentFormInputSup(this.currentitem);
+
+      })
+      this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
+
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.submitted = false;
+      });
+
+
+    }
+    else {
+      this.isLoggeIn = false;
+      this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.submitted = false;
+      });
+
+    }
+
+  }
+
+  //open function for Fertilizer indent form
+
+  openTwo(event, content, item){
+    this.currentitem = item;
+    this.indentloading = false;
+    this.currentitem = item;
+    this.indentloading = false;
+    this.currentfpoid = item.inputsupplierid;
+    this.indentForm = undefined
+
+    if (sessionStorage.getItem('accessToken') != null) {
+      this.isLoggeIn = true;
+
+      this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
+        this.inpSupDetail = f;
+        console.log("InpSup Detail",this.inpSupDetail);
+        console.log("Current Item",this.currentitem);
+        this.createIndentFormFertilizer(this.currentitem);
+
+      })
+      this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
+
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.submitted = false;
+      });
+
+
+    }
+    else {
+      this.isLoggeIn = false;
+      this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.submitted = false;
+      });
+
+    }
+  }
+ 
+  // Open Function for Seed Indent Form
+  openThree(event, content, item){
+    this.currentitem = item;
+    this.indentloading = false;
+    this.currentitem = item;
+    this.indentloading = false;
+    this.currentfpoid = item.inputsupplierid;
+    this.indentForm = undefined
+
+    if (sessionStorage.getItem('accessToken') != null) {
+      this.isLoggeIn = true;
+
+      this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
+        this.inpSupDetail = f;
+        console.log("InpSup Detail",this.inpSupDetail);
+        console.log("Current Item",this.currentitem);
+      this. createIndentFormSeed(this.currentitem);
+
+      })
+      this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
+
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.submitted = false;
+      });
+
+
+    }
+    else {
+      this.isLoggeIn = false;
+      this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.submitted = false;
+      });
+
+    }
+  }
+   // Open Function for Machinery indent Form
+   openFour(event, content, item){
+
+    this.currentitem = item;
+    this.indentloading = false;
+    this.currentfpoid = item.vendorid;
+    this.role = item.role;
+    this.indentForm = undefined
+
+    if (sessionStorage.getItem('accessToken') != null) {
+      this.isLoggeIn = true;
+      if(this.role ==='ROLE_INPUTSUPPLIER'){
+        this._inpSupService.getSupplierProfileData(item.vendorid).subscribe(f => {
+          this.inpSupDetail = f;
+          console.log("InpSup Detail",this.inpSupDetail);
+          console.log("Current Item",this.currentitem);
+          this.createIndentformMachinary(this.currentitem);
+  
+        })
+      }
+      if(this.role ==='ROLE_CHCFMB'){
+        this._chcfmbService.getCHCSupplierProfileData(item.vendorid).subscribe(f => {
+          this.chcSupDetail = f;
+          console.log("CHCSup Detail",this.chcSupDetail);
+          console.log("Current Item",this.currentitem);
+         this.createIndentformMachinaryCHC(this.currentitem);
+        })
+      } 
+      this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
+
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.submitted = false;
+      });
+
+
+    }
+    else {
+      this.isLoggeIn = false;
+      this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        this.submitted = false;
+      });
+
+    }
+
+   }
   getItems(parentChildObj) {
     let itemsArray = [];
     parentChildObj.forEach(set => {
@@ -442,6 +620,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   selectQuantity(q: any) {
     this.searchData();
   }
+  // logout for crop
   logout() {
     console.log("Fpo Id caught = " + this.currentfpoid)
     this.isLoggeIn = true;
@@ -453,6 +632,56 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
     })
   }
+
+  // logout for fertilizer
+   logoutFert(){
+        console.log("Fpo Id caught = " + this.currentfpoid)
+        this.isLoggeIn = true;
+        this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
+          this.inpSupDetail = f; 
+          this.createIndentFormFertilizer(this.currentitem);
+        })
+    }
+
+  // logout for Insecticide  
+   logoutIns(){
+    console.log("Fpo Id caught = " + this.currentfpoid)
+    this.isLoggeIn = true;
+    this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
+      this.inpSupDetail = f;
+      this.createIndentFormInputSup(this.currentitem);
+    })
+   }
+
+   // logout for Seeds
+   logoutSeed(){
+    console.log("Fpo Id caught = " + this.currentfpoid)
+    this.isLoggeIn = true;
+    this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
+      this.inpSupDetail = f;
+      this.createIndentFormSeed(this.currentitem);
+    })
+   }
+
+   logoutMachinaryInputSup(){
+    console.log("Fpo Id caught = " + this.currentfpoid)
+    this.isLoggeIn = true;
+    this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
+      this.inpSupDetail = f;
+      this.createIndentformMachinary(this.currentitem);
+    })
+   }
+
+   logoutMachinaryCHC(){
+    console.log("Fpo Id caught = " + this.currentfpoid)
+    this.isLoggeIn = true;
+
+    this._chcfmbService.getCHCSupplierProfileData(this.currentfpoid).subscribe(f => {
+      this.chcSupDetail = f;
+     this.createIndentformMachinaryCHC(this.currentitem);
+    })
+   }
+
   getToday(): Date {
     return new Date();
   }
@@ -482,6 +711,119 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     return this.indentForm.controls;
   }
 
+  // Indent Form for Input Suppliers
+  createIndentFormInputSup(item){
+    
+    this.indentForm = this.fb.group({
+        createdBy:localStorage.getItem('masterId'),//Users masterId
+        deliveryaddress:["",Validators.required],
+        indentQty:[, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
+        insecticideTypeId: this.fb.group({
+          id:[item.itemtypeid],
+          insecticideType:[item.itemtype] 
+        }), 
+        manufacturerName:[""],
+        masterId:[item.inputsupplierid],
+        requestedDateTime:["",Validators.required],
+        roleRefId:localStorage.getItem('roleRefId'), // User roleRefId
+        status:["active"],
+        userId:localStorage.getItem('userId')   
+    })
+
+
+  }
+
+  // Indent Form for Fertilizers
+  createIndentFormFertilizer(item){
+
+      this.indentForm = this.fb.group({
+          companyName:[""],
+          createdBy:localStorage.getItem('masterId'),
+          deliveryaddress:["",Validators.required],
+          fertilizeName:this.fb.group({
+            id:[item.itemnameid],
+            name:[item.itemname]
+          }),
+          fertilizerGrade:[item.grade],
+          fertilizerType:this.fb.group({
+            id:[item.itemtypeid],
+            type:[item.itemtype]
+          }),
+          indentQty:[, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
+          masterId:[item.inputsupplierid],
+          reason:[""],
+          requestedDateTime:["",Validators.required],
+          roleRefId:localStorage.getItem('roleRefId'),
+          status:["active"],
+          userId:localStorage.getItem('userId') 
+
+      })
+
+  }
+
+  // Create Indent Form Seed
+  createIndentFormSeed(item){
+      this.indentForm = this.fb.group({
+        createdBy:localStorage.getItem('masterId'),
+        cropId:this.fb.group({
+          cropId:[item.cropid],
+          cropName:[item.crop]
+        }),
+        verietyId:this.fb.group({
+          verietyId:[item.cropverietyid],
+          verietyName:[item.cropveriety]
+        }),
+        deliveryaddress:["",Validators.required],
+        indentQty:[, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
+        masterId:[item.inputsupplierid],
+        requestedDateTime:["",Validators.required],
+        roleRefId:localStorage.getItem('roleRefId'),
+        status:["active"],
+        userId:localStorage.getItem('userId')
+      })
+  }
+
+  // Create Indent Form for Machinary Input Supplier
+   createIndentformMachinary(item){
+        this.indentForm = this.fb.group({
+          createdBy:localStorage.getItem('masterId'),
+          deliveryaddress:["",Validators.required],
+          enqid: [0],
+          indentQty:[, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
+          machineryNameId:[item.machinenameid],
+          machineryName: [item.machinename],
+          machineryTypId : [item.machinetypeid],
+          machineryType:[item.machinetype],
+          masterId:[item.vendorid],
+          noOfDays: [,[Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
+          requestedDateTime:["",Validators.required],
+          roleRefId:localStorage.getItem('roleRefId'),
+          status:["active"],
+          userId:localStorage.getItem('userId')
+        })
+   }
+
+   // Create Indent Form for Machinary CHC Supplier
+   createIndentformMachinaryCHC(item){
+    this.indentForm = this.fb.group({
+      createdBy:localStorage.getItem('masterId'),
+      deliveryaddress:["",Validators.required],
+      enqid: [0],
+      indentQty:[, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
+      machineryNameId:[item.machinenameid],
+      machineryName: [item.machinename],
+      machineryTypId : [item.machinetypeid],
+      machineryType:[item.machinetype],
+      masterId:[item.vendorid],
+      noOfDays: [,[Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
+      requestedDateTime:["",Validators.required],
+      roleRefId:localStorage.getItem('roleRefId'),
+      status:["active"],
+      userId:localStorage.getItem('userId')
+    })
+   }
+
+
   // uncheckAllItems(items) {
   //   items.forEach(element => {
   //   element.checked = false;
@@ -493,6 +835,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
   clearAllFilters(){
     // Clean all the filters 
+    this.filterParams.fpoIds =[];
     this.filterParams.districtIds =[];
     this.filterParams.machineryTypes=[];
     this.filterParams.fertilizerTypeIds=[];
@@ -636,6 +979,147 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
     })
   }
+
+  // save modal form for Input Suppliers Insecticide
+
+  saveInp() {
+
+   
+    this.submitted = true;
+    // stop here if form is invalid
+
+    if (this.indentForm.invalid) {
+      return;
+    }
+    this.indentcreated = true;
+    let date = new Date(this.indentForm.value.requestedDateTime);
+    // //let newdate = this.newUYDate(date);
+
+       this.indentloading = true;
+  
+       
+        this.indentForm.value.requestedDateTime = this.datePipe.transform(date, 'yyyy-MM-dd');
+    // this.indentForm.value.userId = localStorage.getItem('masterId');
+    // this.indentForm.value.createdBy = localStorage.getItem('masterId');
+    // this.indentForm.value.masterId = localStorage.getItem('masterId');
+   
+    console.log(this.indentForm.value);
+    
+
+
+    // console.log("Master Id Found While submitting the Indent = " + localStorage.getItem('masterId'));
+     this._productService.saveIndentInputSuppliers(this.indentForm.value).subscribe(response => {
+
+            if (response) {
+               this.indentid = JSON.parse(response).message;
+               this.indentForm.reset();
+               this.submitted = false;
+               this.indentcreated = true;
+               this.indentloading = false;
+             }
+        //   if (response.message == "Enquiry created Successfully!") {
+        //     //this.toastr.success(response.message);
+
+        //   }
+        //   else {
+        //     //this.toastr.error(response.message);
+        //   }
+
+        });
+  }
+
+  saveInpFert(){
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.indentForm.invalid) {
+      return;
+    }
+    this.indentcreated = true;
+    let date = new Date(this.indentForm.value.requestedDateTime);
+       this.indentloading = true;
+    this.indentForm.value.requestedDateTime = this.datePipe.transform(date, 'yyyy-MM-dd');
+    console.log(this.indentForm.value);
+    this._productService.saveIndentInputSuppliersFertilizer(this.indentForm.value).subscribe(response => {
+
+      if (response) {
+         this.indentid = JSON.parse(response).message;
+         this.indentForm.reset();
+         this.submitted = false;
+         this.indentcreated = true;
+         this.indentloading = false;
+       }
+    });
+
+  }
+
+  saveInpSeed(){
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.indentForm.invalid) {
+      return;
+    }
+    let date = new Date(this.indentForm.value.requestedDateTime);
+    this.indentloading = true;
+    this.indentForm.value.requestedDateTime = this.datePipe.transform(date, 'yyyy-MM-dd');
+    console.log(this.indentForm.value);
+    this._productService.saveIndentInputSuppliersSeeds(this.indentForm.value).subscribe(response => {
+
+      if (response) {
+         this.indentid = JSON.parse(response).message;
+         this.indentForm.reset();
+         this.submitted = false;
+         this.indentcreated = true;
+         this.indentloading = false;
+       }
+    });
+
+  }
+
+  saveMachinaryInpSuppliers(){
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.indentForm.invalid) {
+      return;
+    }
+    let date = new Date(this.indentForm.value.requestedDateTime);
+    this.indentloading = true;
+    this.indentForm.value.requestedDateTime = this.datePipe.transform(date, 'yyyy-MM-dd');
+    console.log(this.indentForm.value);
+
+    this._productService.saveIndentInputSuppliersMachinery(this.indentForm.value).subscribe(response => {
+
+      if (response) {
+         this.indentid =JSON.parse(response).message;
+         this.indentForm.reset();
+         this.submitted = false;
+         this.indentcreated = true;
+         this.indentloading = false;
+       }
+    });
+    
+  }
+
+  saveMachinaryCHCSuppliers(){
+    this.submitted = true;
+    // stop here if form is invalid
+    if (this.indentForm.invalid) {
+      return;
+    }
+    let date = new Date(this.indentForm.value.requestedDateTime);
+    this.indentloading = true;
+    this.indentForm.value.requestedDateTime = this.datePipe.transform(date, 'yyyy-MM-dd');
+    console.log(this.indentForm.value);
+    this._productService.saveCHCInputSupplierMachinery(this.indentForm.value).subscribe(response => {
+          if (response) {
+            this.indentid = JSON.parse(response).message;
+            this.indentForm.reset();
+            this.submitted = false;
+            this.indentcreated = true;
+            this.indentloading = false;
+          }
+    });
+  }
+
   closeModal() {
     this.indentcreated = false;
 

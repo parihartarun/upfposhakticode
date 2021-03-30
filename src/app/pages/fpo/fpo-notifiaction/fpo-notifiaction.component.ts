@@ -45,6 +45,7 @@ export class FpoNotifiactionComponent implements OnInit {
     });
   }
   reset() {
+    this.submitted = false;
     this.NotificationsForm.reset();
   }
   getNotificationByFPO() {
@@ -59,6 +60,7 @@ export class FpoNotifiactionComponent implements OnInit {
   get formControls() {
     return this.NotificationsForm.controls;
   }
+
   sendNotifications() {
     this.submitted = true;
 

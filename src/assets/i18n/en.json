@@ -395,6 +395,7 @@
   "Export PDF": "Export PDF",
   "clearfilter": "Clear",
   "Export Excel": "Export Excel",
+  "No Data Found": "No Data Found",
   "Production Data": "Farmer-wise Production Report",
   "Crop Production": "Crop Production",
   "Sales Report": "Sales Report",
@@ -498,7 +499,7 @@
   "New Compliant": "Pending Compliants",
   "All Complaint": "All Complaints",
   "Machinery / Equipment": "Machinery / Equipment",
-  "Insectices / Pestices": "Insectices / Pestices",
+  "Insecticides/Pesticides": "Insecticides/Pesticides",
   "AGENCY (ASSOCIATED WITH)": "AGENCY (ASSOCIATED WITH)",
   "Product/Services": "Product/Services",
   "Production Details (Annual)": "Production Details (Annual)",
@@ -769,5 +770,9 @@
   "Uncultivated Land":"Uncultivated Land",
   "Expected Production":"Expected Production",
   "Machinery":"Machinery",
-  "Insectices/Pesticies":"Insectices/Pesticies"
+  "Fertilizer Indents":"Fertilizer Indents",
+  "Insecticide/Pesticide Indents":"Insecticide/Pesticide Indents",
+  "Machinery Indents":"Machinery Indents",
+  "Seeds Indents":"Seeds Indents",
+  "Machinery Manufacturer":"Machinery Manufacturer"
 }

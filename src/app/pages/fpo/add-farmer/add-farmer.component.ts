@@ -54,6 +54,7 @@ export class AddFarmerComponent implements OnInit {
     if(districtId != null){
       this.fpoAddFarmerForm.controls['distRefId'].setValue(districtId);
       this.api.getBlock(parseInt(districtId)).subscribe(block => {
+        console.log(block);
         this.blocks = block
       })
     }
@@ -62,6 +63,8 @@ export class AddFarmerComponent implements OnInit {
     if(blockId != null){
       this.fpoAddFarmerForm.controls['blockRef'].setValue(blockId);
       this.api.getGramPanchayat(parseInt(blockId)).subscribe(panchayt => {
+        console.log(panchayt);
+
         this.panchayats = panchayt
       })
     }
@@ -70,6 +73,7 @@ export class AddFarmerComponent implements OnInit {
     if(panchayatId != null){
       this.fpoAddFarmerForm.controls['villagePanchayatId'].setValue(panchayatId);
       this.api.getVillage(parseInt(panchayatId)).subscribe(village => {
+        console.log(village);
         this.villages = village
       })
     }  
@@ -285,5 +289,7 @@ export class AddFarmerComponent implements OnInit {
 
   resetForm(){
     this.fpoAddFarmerForm.reset();
+    this.submitted = false;
+    this.edit = false;
   }
 }

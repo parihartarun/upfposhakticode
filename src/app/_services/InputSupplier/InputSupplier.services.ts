@@ -26,8 +26,8 @@ export class InputSupplierService {
       }));
     }
 
-    editinputsupplier(data,id){
-    return  this.http.put<any>(this._url+`api/v1/InputSupplier/editInputSupplier/`+id,data).pipe(map((res:any)=>{
+    editinputsupplier(data){
+    return  this.http.put<any>(this._url+`api/v1/InputSupplier/editInputSupplier/`+data.id,data).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -50,7 +50,7 @@ export class InputSupplierService {
   // ----------------------------Seeds-------------------------------------------------
 
 
-  getallseeds(masterId){
+  getAllSeeds(masterId){
     return  this.http.get<any>(this._url+`inputsupplier/seed/getall/`+masterId).pipe(map((res:any)=>{
           return res;
         }));

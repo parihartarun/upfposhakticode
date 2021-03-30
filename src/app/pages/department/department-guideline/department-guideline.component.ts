@@ -161,12 +161,8 @@ export class DepartmentGuidelineComponent implements OnInit {
       } else if (data.hindiDescription) {
         this.guidelineForm.get('description').patchValue(data.description);
         this.fileRadio = 'hindi_upload';
-
       }
-
     }
-
-
     // this.guidelineForm.get('document').patchValue(data.fileName);
     this.id = data.id;
     this.isEdit = true;

@@ -378,7 +378,7 @@
     <div class="col-12">
       <div class="tnc">
         <input class="form-control" type="checkbox" formControlName="tnc">
-        <span><span class="required pl-1">* </span>{{'I agree to the terms and conditions.'|translate}} <a href="#" target="_blank" [routerLink]="['/content/terms-condition']">{{'Click here'|translate}}</a> {{'to view in details' |translate }}</span>
+        <span><span class="required pl-1">* </span>{{'I agree to the terms and conditions.'|translate}} <a href="#" data-toggle="modal" data-target="#myModal" >{{'Click here'|translate}}</a> {{'to view in details' |translate }}</span>
 
       </div>
       <div *ngIf="submitted && formControls.tnc.errors" class="text-danger tncError">
@@ -390,3 +390,22 @@
     <button type="submit" class="btn btn-login btn-yellow btn-primary my-4">{{"Register"| translate}}</button>
   </div>
 </form>
+
+<!--MODAL-->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="term-text">Terms and Condition</h3>
+        <button type="button" class="close term-text" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <app-terms-condition></app-terms-condition>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-yellow btn-sm term-text " data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    
+  </div>
+</div>

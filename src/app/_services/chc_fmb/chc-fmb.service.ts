@@ -24,7 +24,14 @@ export class ChcFmbService {
   }
 
   getUserDetails(id) {
-    return this.http.get<any>(this._url + `profile/ChcFmbDetail/`+id).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + `api/v1/CHCFMB/profile/ChcFmbDetail/`+id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  // Same as getUserDetails used to call CHC in search. 
+  getCHCSupplierProfileData(masterId){
+    return  this.http.get<any>(this._url+`api/v1/CHCFMB/profile/ChcFmbDetail/${masterId}`).pipe(map((res:any)=>{
       return res;
     }));
   }
@@ -66,7 +73,11 @@ export class ChcFmbService {
     })
   }
 
-
+  updateChcProfile(data) {
+    return this.http.put<any>(this._url + `/api/v1/CHCFMB/editChcFmb/${data.chcFmbId}`, data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 
 
   addchcfmbMachinery(params) {
@@ -75,6 +86,7 @@ export class ChcFmbService {
   updatechcfmbMachinery(id, params) {
     return this.http.put<any>(this._url + 'chcfmb/machinery/' + id, params);
   }
+
   getAllMachinery(masterId) {
     this.http.get<any>(this._url + 'chcfmb/machinery/getall/' + masterId).subscribe((res: any) => {
       if (res) {
@@ -82,12 +94,13 @@ export class ChcFmbService {
       }
     })
   }
+  
   deleteMachinery(id) {
     return this.http.delete<any>(this._url + 'chcfmb/machinery/' + id);
   }
   getMachinaries(masterId) {
-    this.http.get<any>(this._url + 'chcfmb/machinery/getall/' + masterId).subscribe((res: any) => {
+    return this.http.get<any>(this._url + `chcfmb/machinery/getall/`+masterId).pipe(map((res: any) => {
       return res;
-    })
+    }));
   }
 }

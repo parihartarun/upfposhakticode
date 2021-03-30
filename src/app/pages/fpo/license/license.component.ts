@@ -172,6 +172,7 @@ confirmDelete(licenseId){
 resetForm(){
   this.licenseForm.reset();
   this.submitted = false;
+  this.edit = false;
 }
 
 get formControls(){

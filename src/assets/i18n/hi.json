@@ -14,6 +14,7 @@
   "Equipment Centre": "उपकरण केंद्र (CHC/ FMB)",
   "FPO guidelines": "एफपीओ दिशानिर्देश",
   "Back": "वापस",
+  "No Data Found": "कोई डेटा नहीं मिला",
   "viewdetails": "विवरण देखें",
   "cropandverieties": "विविध फ़सलें",
   "bannerSearchText": "एफपीओ खोजें नाम/ जनपद / फसल /सेवाएँ / उत्पाद द्वारा",
@@ -524,7 +525,7 @@
   "New Compliant": "लंबित शिकायत",
   "All Complaint": "सब शिकायत",
   "Machinery / Equipment": "मशीनरी / उपकरण",
-  "Insectices / Pestices": "कीटनाशक",
+  "Insecticides/Pesticides": "कीटनाशक",
   "Agency (associated with)": "एजेंसी (से संबद्ध)",
   "Product/Services": "सेवाएँ / उत्पाद",
   "Production Details (Annual)": "उत्पादन विवरण (वार्षिक)",
@@ -785,5 +786,9 @@
   "Uncultivated Land":"अप्राप्त भूमि",
   "Expected Production":"अपेक्षित उत्पादन",
   "Machinery":"मशीनरी",
-  "Insectices/Pesticies":"कीटनाशक"
+  "Fertilizer Indents":"उर्वरक इंडेंट",
+  "Insecticide/Pesticide Indents":"कीटनाशक इंडेंट",
+  "Machinery Indents":"मशीनरी इंडेंट",
+  "Seeds Indents":"बीज इंडेंट",
+  "Machinery Manufacturer":"मशीनरी निर्माता"
 }

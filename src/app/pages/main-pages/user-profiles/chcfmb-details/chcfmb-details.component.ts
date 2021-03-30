@@ -13,6 +13,9 @@ export class ChcfmbDetailsComponent implements OnInit {
   user_data:any;
   machinaries:any;
   currentPage = 1;
+  machinery_data: any;
+  user_obj_length: number;
+  machinery_object_length: number;
 
   constructor(private api:ChcFmbService, 
     private _activatedroute: ActivatedRoute) { }
@@ -20,21 +23,23 @@ export class ChcfmbDetailsComponent implements OnInit {
   ngOnInit(): void {
     this._activatedroute.params.subscribe(param => {
       this.user_id = param.id;
-      console.log(this.user_id);
       this.getUserDetails();
       this.getMachinaries();
     });
   }
 
   getUserDetails(){
-    // this.api.getUserDetails(this.user_id).subscribe(response => {
-    //   console.log(response);
-    //   this.user_data = response;
-    // })
+    this.api.getUserDetails(this.user_id).subscribe(response => {
+     this.user_data = response.chcFmb;
+     this.user_obj_length = Object.keys(this.user_data).length;
+    })
   }
 
-  getMachinaries(){
-    // this.machinaries = this.api.getMachinaries(this.user_id);
+  getMachinaries() {
+    this.api.getMachinaries(this.user_id).subscribe(response => {
+      this.machinery_data = response;
+      this.machinery_object_length = Object.keys(this.machinery_data).length;
+     })
   }
 
 }

@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   userRole: any;
+  userId: any;
   constructor(
     private formBuilder: FormBuilder,
     private api: AuthService,
@@ -46,6 +47,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userRole', response.userRole);
         localStorage.setItem('masterId', response.masterId);
         localStorage.setItem('userId', response.user.userId);
+        localStorage.setItem('roleRefId',response.user.roleRefId);
         this.userRole = localStorage.getItem('userRole');
         if (this.userRole == 'ROLE_FPC') {
           this.route.navigate(['/fpo/dashboard']);
