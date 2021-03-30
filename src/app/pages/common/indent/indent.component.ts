@@ -69,7 +69,7 @@ export class IndentComponent implements OnInit {
 
   deleteIndent(indentId){
     this._buyerService.deleteIndent(indentId).subscribe(data=>{
-      this.toastr.success('Indent Deleted Successfully.');
+      this.toastr.success('Successfully cancelled');
       this.getIdent();  
     })
   }
