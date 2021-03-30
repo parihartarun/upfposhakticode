@@ -835,6 +835,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
   clearAllFilters(){
     // Clean all the filters 
+    this.filterParams.fpoIds =[];
     this.filterParams.districtIds =[];
     this.filterParams.machineryTypes=[];
     this.filterParams.fertilizerTypeIds=[];
