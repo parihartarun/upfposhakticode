@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/_services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
 import { ProductService } from 'src/app/_services/product/product.service';
+import { BuyerSellerService } from "src/app/_services/BuyerSeller/buyerseller.services";
 
 @Component({
   selector: 'app-indent',
@@ -15,12 +17,12 @@ export class IndentComponent implements OnInit {
   loading:boolean=false;
   p: number = 1;
   userid:number;
-  userrole:string;
   userRole: string;
   masterId: string;
   indentForm: FormGroup;
   currentItem: any;
-  constructor(private fb: FormBuilder,private _productService: ProductService,private modalService: NgbModal,private auth:AuthService,private fpoService:FpoService) { }
+  constructor(private fb: FormBuilder,private _productService: ProductService,private modalService: NgbModal,private auth:AuthService,private fpoService:FpoService,
+    private _buyerService: BuyerSellerService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getIdent()
@@ -47,19 +49,15 @@ export class IndentComponent implements OnInit {
     //localStorage.setItem('masterId', response.masterId);
     this.userRole = localStorage.getItem('userRole');
     this.masterId = localStorage.getItem('masterId');
-    console.log("User role on Indent List Page  = "+this.userRole);
-    console.log("Master Id on Indent List Page  = "+this.masterId);
     
         if (this.userRole == 'ROLE_FPC') {  
       this.fpoService.getIndentByFpoId(this.masterId).subscribe(data=>{
-        console.log("Data Has been received"+JSON.stringify(data));
         this.indents = data;
         this.loading = false;
       })
 
     }  else {
       this.fpoService.getIndentByUserId(this.masterId).subscribe(data=>{
-        console.log("Data Has been received"+JSON.stringify(data));
         this.indents = data;
         this.loading = false;
       })
@@ -69,13 +67,17 @@ export class IndentComponent implements OnInit {
 
   }
 
+  deleteIndent(indentId){
+    this._buyerService.deleteIndent(indentId).subscribe(data=>{
+      this.toastr.success('Indent Deleted Successfully.');
+      this.getIdent();  
+    })
+  }
   
   save()
   {
-    console.log("data serializes - "+JSON.stringify(this.indentForm.value));
 
 this._productService.updateEnquiry(this.indentForm.value,this.currentItem.id).subscribe(data=>{
-  console.log("Updated Successfully");
 
   this.modalService.dismissAll();
   this.getIdent();
@@ -83,3 +85,4 @@ this._productService.updateEnquiry(this.indentForm.value,this.currentItem.id).su
 })
   }
 }
+

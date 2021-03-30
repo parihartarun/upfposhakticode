@@ -43,4 +43,10 @@ export class BuyerSellerService {
     }));
   }
 
+  deleteIndent(id){
+    return this.http.put<any>(this._url + `enquiry/cancelEnquiry/${id}`, id).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
 }

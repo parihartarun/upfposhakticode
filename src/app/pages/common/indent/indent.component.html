@@ -44,7 +44,7 @@
                 <th scope="col">{{'Fulfillment Date'|translate}}</th>
                 <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
                 <th scope="col">{{'status'|translate}}</th>
-                <th scope="col" *ngIf="userRole == 'ROLE_FPC'"></th>
+                <th scope="col" *ngIf="userRole == 'ROLE_BUYERSELLER'">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -72,10 +72,12 @@
                  <td>
                   {{indent?.status}}
                 </td>         
-                <td class="text-right" *ngIf="userRole == 'ROLE_FPC'">
-                  <button class="btn btn-sm btn-primary" *ngIf="userRole == 'ROLE_FPC'" (click)="opendialog($event,detailform,indent)">
-                    {{'Actions'|translate}}
-                  </button> 
+                <td class="text-right" *ngIf="userRole == 'ROLE_BUYERSELLER' && (indent.status == 'Active')">
+                  <div placement="bottom-right">
+                    <a class="btn btn-sm btn-primary" href="javascript:void(0)" (click)="deleteIndent(indent.id)">
+                      Cancel
+                    </a>
+                  </div>
                 </td>
               </tr>
              
