@@ -673,10 +673,10 @@
                         <ul>
                           <li>
                             <span><i class="fas fa-caret-right" aria-hidden="true"></i> Name:
-                            </span> <strong> {{product.itemname}}</strong>
+                            </span> <strong> {{product.manufacturer}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Grade:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Type:
                             </span><strong> {{product.itemtype}}</strong>
                           </li>
                           <li>
@@ -706,7 +706,7 @@
             <!--End of Insecticide-->
             <!--Start of Fertilizer-->
             <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='fertilizer'">
-              <div class="changetopoint" routerLink="supplier-details/{{product.inputsupplierid}}">
+              <div class="changetopoint" routerLink="/supplier-details/{{product.inputsupplierid}}">
                 <h1>{{product.inputsupplier}}</h1>
               </div>
               <div class="row" >
@@ -724,6 +724,10 @@
                           <li>
                             <span><i class="fas fa-caret-right" aria-hidden="true"></i> Name:
                             </span> <strong> {{product.itemname}}</strong>
+                          </li>
+                          <li>
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Grade:
+                            </span><strong> {{product.grade}}</strong>
                           </li>
                           <li>
                             <span><i class="fas fa-caret-right" aria-hidden="true"></i> Type:
