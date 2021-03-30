@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { DepartmentService } from '../../_services/department/department.service';
-import { FpoService } from '../../_services/fpo/fpo.service';
-import { HomeService } from '../../_services/home/home.service';
+import { DepartmentService } from '../../../_services/department/department.service';
+import { FpoService } from '../../../_services/fpo/fpo.service';
+import { HomeService } from '../../../_services/home/home.service';
 import * as $ from 'jquery';
 
 @Component({

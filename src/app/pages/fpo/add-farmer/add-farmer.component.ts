@@ -178,7 +178,7 @@ export class AddFarmerComponent implements OnInit {
     this.selectPanchayat(farmerDetails.villagePanchayatId);
     this.fpoAddFarmerForm = this.fb.group({
         farmerId:[farmerDetails.farmerId],
-        farmerLotNo:[farmerDetails.farmerLotNo, Validators.required],
+        farmerLotNo:[farmerDetails.farmerLotNo],
         accountNo : [farmerDetails.accountNo],
         bankRefId: [farmerDetails.bankRefId],
         blockRef:[farmerDetails.blockRef, Validators.required],

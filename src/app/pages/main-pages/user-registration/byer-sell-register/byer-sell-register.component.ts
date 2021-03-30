@@ -5,15 +5,9 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from '../../../../environments/environment';
-import { MustMatch } from '../../../_helpers/constomMatchValidor';
-import { AuthService } from '../../../_services/auth/auth.service';
-
-
-
-
-
-
+import { environment } from '../../../../../environments/environment';
+import { MustMatch } from '../../../../_helpers/constomMatchValidor';
+import { AuthService } from '../../../../_services/auth/auth.service';
 
 @Component({
   selector: 'app-byer-sell-register',

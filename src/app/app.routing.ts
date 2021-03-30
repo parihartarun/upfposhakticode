@@ -7,9 +7,10 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 import { AuthGuardService } from './_helpers/auth-guard.service';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/main-pages/home/home.component';
 import { HomeScreenComponent } from './pages/common/home-screen/home-screen.component';
 import { CanDeactivateGuard } from './_helpers/can-deactivate.guard';
+
 const routes: Routes = [
   {
     path: '', component: HomeComponent,
@@ -23,7 +24,6 @@ const routes: Routes = [
     component: HomeScreenComponent,
     loadChildren: () => import('./pages/footer-content/footer-content.module').then(m => m.FooterContentModule)
   },
-  // { path: 'fpo_guidelines', component: FpoGuidelinesComponent },
   {
     path: '',
     component: AdminLayoutComponent,

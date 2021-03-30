@@ -298,18 +298,7 @@
             {{'My FPO' | translate}}
           </a>
         </li>
-        <li *ngIf="userRole == 'ROLE_CHCFMB'" class="nav-item">
-          <a disabled routerLinkActive="active" class="nav-link disabled">
-            <i class="ni ni-tv-2 text-white"></i>
-            {{'Machinary Catalogue' | translate}}
-          </a>
-        </li>
-        <li *ngIf="userRole == 'ROLE_INPUTSUPPLIER'" class="nav-item">
-          <a routerLinkActive="active" class="nav-link disabled">
-            <i class="ni ni-tv-2 text-white"></i>
-            {{'Input supplier catalogue' | translate}}
-          </a>
-        </li>
+       
         <li *ngIf="userRole == 'ROLE_CHCFMB'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['/CHC-machinery']" class="nav-link">
             <i class="ni fa fa-archive text-white"></i>

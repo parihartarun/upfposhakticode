@@ -23,11 +23,8 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-farmerLotNo">{{'Farmer Registration Number (UP Agri Pardarshi)'| translate}}<span class="required">*</span></label>
+                    <label class="form-control-label" for="input-farmerLotNo">{{'Farmer Registration Number (UP Agri Pardarshi)'| translate}}</label>
                     <input type="text" formControlName="farmerLotNo" id="input-farmerLotNo"  class="form-control" >
-                    <div *ngIf="submitted && formControls.farmerLotNo.errors" class="text-danger">
-                      <div *ngIf="formControls.farmerLotNo.errors.required">{{'Farmer Registration Number is required'| translate}}</div>
-                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6">

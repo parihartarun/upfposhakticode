@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { schemaService } from '../../_services/schemas/schemas.service'
+import { schemaService } from '../../../_services/schemas/schemas.service'
 
 
 

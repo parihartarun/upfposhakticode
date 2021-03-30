@@ -48,7 +48,7 @@ import { NotifiactionByDepartmentComponent } from '../../pages/fpo/notifiaction-
 import { BuyeruserComponent } from 'src/app/pages/buyer-treder/buyeruser/buyeruser.component';
 import { UserProfileDashboardComponent } from 'src/app/pages/user-profile-dashboard/user-profile-dashboard.component';
 import { FarmerNotifictionByFpoComponent } from '../../pages/farmer/farmer-notifiction-by-fpo/farmer-notifiction-by-fpo.component';
-import { FpoDetailsComponent } from '../../pages/fpo-details/fpo-details.component';
+import { FpoDetailsComponent } from '../../pages/main-pages/user-profiles/fpo-details/fpo-details.component';
 import { DepartmentAllComplaintsComponent } from '../../pages/department/department-all-complaints/department-all-complaints.component';
 import { FPOAllUserComponent } from '../../pages/fpo/fpoall-user/fpoall-user.component';
 import { FarmerDashboardComponent } from '../../pages/farmer/farmer-dashboard/farmer-dashboard.component';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthService } from '../../_services/auth/auth.service';
+import { AuthService } from '../../../_services/auth/auth.service';
 
 @Component({
   selector: 'app-register',

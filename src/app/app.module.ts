@@ -23,13 +23,13 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
-import { HomeDummyComponent } from './pages/home-dummy/home-dummy.component';
-import { LoginComponent } from './pages/auth-pages/login/login.component';
-import { ForgotPasswordComponent } from './pages/auth-pages/forgot-password/forgot-password.component';
+import { HomeDummyComponent } from './pages/main-pages/home-dummy/home-dummy.component';
+import { LoginComponent } from './pages/main-pages/auth-pages/login/login.component';
+import { ForgotPasswordComponent } from './pages/main-pages/auth-pages/forgot-password/forgot-password.component';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
-import { FpoDetailsComponent } from './pages/fpo-details/fpo-details.component';
+import { FpoDetailsComponent } from './pages/main-pages/user-profiles/fpo-details/fpo-details.component';
 import { AuthHeaderComponent } from './components/auth/auth-header/auth-header.component';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/main-pages/home/home.component';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
@@ -49,12 +49,12 @@ import { CropShowingDetailsComponent } from './pages/fpo/crop-showing-details/cr
 import { ComplaintsComponent } from './pages/fpo/complaints/complaints.component';
 import { ServicesComponent } from './pages/fpo/services/services.component';
 
-import { RegisterComponent } from './pages/registers/register.component';
-import { FarmerRegisterComponent } from './pages/registers/farmer-register/farmer-register.component';
-import { FpoRegisterComponent } from './pages/registers/fpo-register/fpo-register.component';
-import { ByerSellRegisterComponent } from './pages/registers/byer-sell-register/byer-sell-register.component';
-import { InputSupplierRegisterComponent } from './pages/registers/input-supplier-register/input-supplier-register.component';
-import { FarmerChcRegisterComponent } from './pages/registers/farmer-chc-register/farmer-chc-register.component';
+import { RegisterComponent } from './pages/main-pages/user-registration/register.component';
+import { FarmerRegisterComponent } from './pages/main-pages/user-registration/farmer-register/farmer-register.component';
+import { FpoRegisterComponent } from './pages/main-pages/user-registration/fpo-register/fpo-register.component';
+import { ByerSellRegisterComponent } from './pages/main-pages/user-registration/byer-sell-register/byer-sell-register.component';
+import { InputSupplierRegisterComponent } from './pages/main-pages/user-registration/input-supplier-register/input-supplier-register.component';
+import { FarmerChcRegisterComponent } from './pages/main-pages/user-registration/farmer-chc-register/farmer-chc-register.component';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SearchComponent } from './pages/common/search/search.component';
@@ -64,7 +64,7 @@ import { TreeviewModule } from 'ngx-treeview';
 import { LoginModelPopupComponent } from './pages/common/login-model-popup/login-model-popup.component';
 import { OnlynumberDirective } from './directive/onlynumber.directive';
 import { NgMarqueeModule } from 'ng-marquee';
-import { FpoGuidelinesComponent } from './pages/fpo/fpo-guidelines/fpo-guidelines.component';
+import { FpoGuidelinesComponent } from './pages/main-pages/fpo-guidelines/fpo-guidelines.component';
 import { FarmerUserProfileComponent } from './pages/user-profile/farmer-user-profile/farmer-user-profile.component';
 import { DepartmentProductionReportComponent } from './pages/department/department-production-report/department-production-report.component';
 import { DepartmentSalesReportComponent } from './pages/department/department-sales-report/department-sales-report.component';
@@ -75,11 +75,11 @@ import { DepartmentSchemeComponent } from './pages/department/department-scheme/
 import { FarmerComplaintsComponent } from './pages/farmer/farmer-complaints/farmer-complaints.component';
 import { DepartmentComplaintsComponent } from './pages/department/department-complaints/department-complaints.component';
 import { BuyerTraderComplaintsComponent } from './pages/buyer-treder/buyer-trader-complaints/buyer-trader-complaints.component';
-import { InputSupperComplaintsComponent } from './pages/auth-pages/inputSupper/input-supper-complaints/input-supper-complaints.component';
-import { ChcComplaintsComponent } from './pages/auth-pages/chc/chc-complaints/chc-complaints.component';
+import { InputSupperComplaintsComponent } from './pages/main-pages/auth-pages/inputSupper/input-supper-complaints/input-supper-complaints.component';
+import { ChcComplaintsComponent } from './pages/main-pages/auth-pages/chc/chc-complaints/chc-complaints.component';
 // import { DepartmentProductionReportComponent } from './pages/department/department-production-report/department-production-report.component';
 // import { DepartmentSalesReportComponent } from './pages/department/department-sales-report/department-sales-report.component';
-import { SchemasComponent } from './pages/schemas/schemas.component';
+import { SchemasComponent } from './pages/main-pages/schemas/schemas.component';
 import { InputDetailsSeedsComponent } from './pages/Input-Supplier/input-details-seeds/input-details-seeds.component';
 import { InputDetailsFertilizerComponent } from './pages/Input-Supplier/input-details-fertilizer/input-details-fertilizer.component';
 import { InputDetailsMachineryComponent } from './pages/Input-Supplier/input-details-machinery/input-details-machinery.component';
@@ -117,7 +117,7 @@ import { WarehouseComponent } from './pages/department/warehouse/warehouse.compo
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MyFpoComponent } from './pages/farmer/my-fpo/my-fpo.component';
 import { SupplierDashboardComponent } from './pages/Input-Supplier/supplier-dashboard/supplier-dashboard.component';
-import { PageUnderConstructionComponent } from './pages/page-under-construction/page-under-construction.component';
+import { PageUnderConstructionComponent } from './pages/main-pages/page-under-construction/page-under-construction.component';
 import { ChhfmbDashboardComponent } from './pages/CHC/chhfmb-dashboard/chhfmb-dashboard.component';
 import { BuyerDashboardComponent } from './pages/buyer-treder/buyer-dashboard/buyer-dashboard.component';
 import { SupplierProfileComponent } from './pages/Input-Supplier/supplier-profile/supplier-profile.component';
@@ -126,8 +126,7 @@ import { SupplierDetailsComponent } from './pages/main-pages/user-profiles/suppl
 import { ChcfmbDetailsComponent } from './pages/main-pages/user-profiles/chcfmb-details/chcfmb-details.component';
 import { ViewAllNotificationsComponent } from './pages/view-all-notifications/view-all-notifications.component';
 import { ListFilterPipe } from './pages/view-all-notifications/list-filter.pipe';
-import { TermsConditionComponent } from "src/app/pages/footer-content/terms-condition/terms-condition.component";
-
+import { TermsConditionComponent } from './pages/footer-content/terms-condition/terms-condition.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -200,7 +199,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ServicesComponent,
     RegisterComponent,
     FarmerRegisterComponent,
-
+    TermsConditionComponent,
     FpoRegisterComponent,
     ByerSellRegisterComponent,
     InputSupplierRegisterComponent,
@@ -263,7 +262,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChcfmbDetailsComponent,
     ViewAllNotificationsComponent,
     ListFilterPipe, 
-    TermsConditionComponent
 
   ],
   exports: [

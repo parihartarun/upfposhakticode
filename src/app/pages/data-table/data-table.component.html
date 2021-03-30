@@ -81,7 +81,7 @@
                   <input class="ngx-form-checkbox" type="checkbox" id="checkbox-{{row._autoId}}"
                     [checked]="selectedCheckboxes.has(row._autoId)" (change)="onCheckboxSelect(row)" />
                 </td>
-                <td>{{i+1}}</td>
+                <td>{{(currentPage-1) * 10 + i + 1}}</td>
                 <!-- dynamacally generated column -->
                 <td *ngFor="let column of columns;let j=index;" [style.min-width]="column.width+'px'"
                   [style.max-width]="column.width+'px'" [class.wrap]="column.noWrap && column.noWrap.body"
