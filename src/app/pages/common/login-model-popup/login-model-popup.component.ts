@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CollapseModule } from 'ng-uikit-pro-standard';
 import { AuthService } from 'src/app/_services/auth/auth.service';
-
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-login-model-popup',
@@ -14,12 +15,14 @@ export class LoginModelPopupComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   userRole: any;
+  modalReference: any;
   @Output() logout = new EventEmitter<string>();
   @Input() fpoid:string;
   constructor(
     private formBuilder: FormBuilder,
     private api: AuthService,
     private route: Router,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -34,6 +37,13 @@ export class LoginModelPopupComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+  closeMe(){
+ 
+      this.route.navigate(['/forgot-password']);
+      this.modalService.dismissAll();
+    
+  }
+
   userLogin() {
     this.submitted = true;
     // stop here if form is invalid
@@ -41,6 +51,7 @@ export class LoginModelPopupComponent implements OnInit {
       return;
     }
     
+
     this.api.userLogin(this.loginForm.value).subscribe(response => {
       console.log(response);
       if (response.accessToken != '') {
