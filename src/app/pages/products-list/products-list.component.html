@@ -46,7 +46,7 @@
 <section class="pb-3 containerMain">
   <div class="container">
     <div class="row mb-3 d-flex justify-content-center p-2">
-      <div class="col-9">
+      <div class="col-8">
         <div class="d-flex mx-5  align-items-end justify-content-center" style="border: solid;">
           <div class="dropdown d-inline searchDropDown">
             <select class="btn d-inline btn-default search-btn dropdown-toggle" id="searchin" name="Searchin"
@@ -480,7 +480,7 @@
           <div class="col-lg-6 mb-4" *ngFor="let product of filteredData">
             <div class="card card-stats box_shadow card_2" *ngIf="selectedDropdown==='crop'">
               <div class="changetopoint"routerLink="/fpo-details/{{product.fpoid}}">
-                <h1>{{product.fpo}}</h1>
+                <h2>{{product.fpo}}</h2>
               </div>
               <div class="row" >
                 <div class="col-lg-4 col-sm-4">
@@ -495,19 +495,19 @@
                       <div class="mcq">
                         <ul>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Crop:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Crop'|translate}}:
                             </span> <strong> {{product.crop}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Variety:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Variety'|translate}}:
                             </span><strong> {{product.variety}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Place:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i>{{'Place'|translate}}:
                             </span><strong> {{product.district}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Quantity:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Quantity1'|translate}}:
                             </span><strong> {{product.currentMarketable?product.currentMarketable:'-'}}
                               {{'quintal' | translate }}</strong>
                           </li>
@@ -518,10 +518,10 @@
                 </div>
               </div>
               <div class="row mt-2">
-                <div class="col-12 d-flex justify-content-between">
-                  <button class="mx-0 btn btn-sm btn-success" disabled
-                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
-                  <button class="mx-0 btn btn-sm btn-primary" (click)="open($event,mymodal,product)" type="button"
+                <div class="col-12 d-flex justify-content-end">
+                  <!--button class="mx-0 btn btn-sm btn-success" disabled
+                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
+                  <button class="mx-0 btn btn-indent btn-primary" (click)="open($event,mymodal,product)" type="button"
                     style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
               </div>
@@ -531,12 +531,12 @@
             <div class="card card-stats box_shadow card_2" *ngIf="selectedDropdown==='fmb'">
               <div *ngIf="product.role==='ROLE_CHCFMB';else otherRole">
                   <div class="changetopoint" routerLink="/chcfmb-details/{{product.vendorid}}">
-                    <h1>{{product.vendorname}}</h1>
+                    <h2>{{product.vendorname}}</h2>
                   </div>
               </div>
               <ng-template #otherRole>
                 <div class="changetopoint" routerLink="/supplier-details/{{product.vendorid}}">
-                  <h1>{{product.vendorname}}</h1>
+                  <h2>{{product.vendorname}}</h2>
                 </div>
               </ng-template>
               <div class="row" >
@@ -552,23 +552,23 @@
                       <div class="mcq">
                         <ul>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Machine:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Machine'|translate}}:
                             </span> <strong> {{product.machinename}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Company:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Company'|translate}}:
                             </span><strong> {{product.company}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Place:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Place'|translate}}:
                             </span><strong> {{product.district}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Quantity:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Quantity1'|translate}}:
                             </span><strong> {{product.quantity?product.quantity:'-'}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Rent:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i>{{'Rent'|translate}}:
                             </span><strong> {{product.rent?product.rent:'N.A'}}</strong>
                           </li>
                         </ul>
@@ -580,10 +580,10 @@
               
                 <div *ngIf="product.role==='ROLE_CHCFMB';else otherRole1">
                   <div class="row mt-2">
-                    <div class="col-12 d-flex justify-content-between">
-                      <button class="mx-0 btn btn-sm btn-success" disabled
-                        (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
-                      <button class="mx-0 btn btn-sm btn-primary" (click)="openFour($event,mymodalMachCHC,product)" type="button"
+                    <div class="col-12 d-flex justify-content-end">
+                      <!--button class="mx-0 btn btn-sm btn-success" disabled
+                        (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
+                      <button class="mx-0 btn btn-indent btn-primary" (click)="openFour($event,mymodalMachCHC,product)" type="button"
                         style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                     </div>
                   </div>
@@ -604,7 +604,7 @@
             <!--Start of Seeds-->
             <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='seeds'">
               <div class="changetopoint"routerLink="/supplier-details/{{product.inputsupplierid}}">
-                <h1>{{product.inputsupplier}}</h1>
+                <h2>{{product.inputsupplier}}</h2>
               </div>
               <div class="row" >
                 <div class="col-lg-4 col-sm-4">
@@ -619,19 +619,19 @@
                       <div class="mcq">
                         <ul>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Crop:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Crop'|translate}}:
                             </span> <strong> {{product.crop}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Variety:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Variety'|translate}}:
                             </span><strong> {{product.cropveriety}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Place:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Place'|translate}}:
                             </span><strong> {{product.district}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Quantity:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Quantity1'|translate}}:
                             </span><strong> {{product.quantity?product.quantity:'-'}}
                               {{'quintal' | translate }}</strong>
                           </li>
@@ -642,10 +642,10 @@
                 </div>
               </div>
               <div class="row mt-2">
-                <div class="col-12 d-flex justify-content-between">
-                  <button class="mx-0 btn btn-sm btn-success" disabled
-                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
-                  <button class="mx-0 btn btn-sm btn-primary" (click)="openThree($event,mymodalSeed,product)" type="button"
+                <div class="col-12 d-flex justify-content-end">
+                  <!--button class="mx-0 btn btn-sm btn-success" disabled
+                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
+                  <button class="mx-0 btn btn-indent btn-primary" (click)="openThree($event,mymodalSeed,product)" type="button"
                     style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
               </div>
@@ -655,7 +655,7 @@
             <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='insecticide'">
                
                     <div class="changetopoint"routerLink="/supplier-details/{{product.inputsupplierid}}">
-                      <h1>{{product.inputsupplier}}</h1>
+                      <h2>{{product.inputsupplier}}</h2>
                     </div>
                 
     
@@ -672,19 +672,19 @@
                       <div class="mcq">
                         <ul>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Name:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Name'|translate}}:
                             </span> <strong> {{product.manufacturer}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Type:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Type'|translate}}:
                             </span><strong> {{product.itemtype}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Place:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Place'|translate}}:
                             </span><strong> {{product.district}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Quantity:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Quantity1'|translate}}:
                             </span><strong> {{product.quantity?product.quantity:'-'}}
                               {{'quintal' | translate }}</strong>
                           </li>
@@ -695,10 +695,10 @@
                 </div>
               </div>
               <div class="row mt-2">
-                <div class="col-12 d-flex justify-content-between">
-                  <button class="mx-0 btn btn-sm btn-success" disabled
-                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
-                  <button class="mx-0 btn btn-sm btn-primary" (click)="openOne($event,mymodalInput,product)" type="button"
+                <div class="col-12 d-flex justify-content-end">
+                  <!--button class="mx-0 btn btn-sm btn-success" disabled
+                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
+                  <button class="mx-0 btn btn-indent btn-primary" (click)="openOne($event,mymodalInput,product)" type="button"
                     style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
               </div>
@@ -707,7 +707,7 @@
             <!--Start of Fertilizer-->
             <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='fertilizer'">
               <div class="changetopoint" routerLink="/supplier-details/{{product.inputsupplierid}}">
-                <h1>{{product.inputsupplier}}</h1>
+                <h2>{{product.inputsupplier}}</h2>
               </div>
               <div class="row" >
                 <div class="col-lg-4 col-sm-4">
@@ -722,23 +722,23 @@
                       <div class="mcq">
                         <ul>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Name:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Name'|translate}}:
                             </span> <strong> {{product.itemname}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Grade:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Grade'|translate}}:
                             </span><strong> {{product.grade}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Type:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Type'|translate}}:
                             </span><strong> {{product.itemtype}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Place:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Place'|translate}}:
                             </span><strong> {{product.district}}</strong>
                           </li>
                           <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> Quantity:
+                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Quantity1'|translate}}:
                             </span><strong> {{product.quantity?product.quantity:'-'}}
                               {{'quintal' | translate }}</strong>
                           </li>
@@ -749,10 +749,10 @@
                 </div>
               </div>
               <div class="row mt-2">
-                <div class="col-12 d-flex justify-content-between">
-                  <button class="mx-0 btn btn-sm btn-success" disabled
-                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
-                  <button class="mx-0 btn btn-sm btn-primary" (click)="openTwo($event,mymodalFert,product)" type="button"
+                <div class="col-12 d-flex justify-content-end">
+                  <!--button class="mx-0 btn btn-sm btn-success" disabled
+                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
+                  <button class="mx-0 btn btn-indent btn-primary" (click)="openTwo($event,mymodalFert,product)" type="button"
                     style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
               </div>
