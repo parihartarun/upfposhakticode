@@ -19,39 +19,39 @@
         </a>
         <div class="dropdown-menu-right" ngbDropdownMenu>
           <div class=" dropdown-header noti-title">
-            <h6 class="text-overflow m-0">Welcome!</h6>
+            <h6 class="text-overflow m-0">{{'Welcome' | translate}}!</h6>
           </div>
           <a *ngIf="userRole == 'ROLE_FPC'" routerLinkActive="active" [routerLink]="['/fpo/user-profile']"
             class="dropdown-item">
             <i class="ni ni-single-02"></i>
-            <span>My profile</span>
+            <span>{{'My profile' | translate}}</span>
           </a>
 
           <a *ngIf="userRole == 'ROLE_FARMER'" routerLinkActive="active" [routerLink]="['/fpo/farmer-user-profile']"
             class="dropdown-item">
             <i class="ni ni-single-02"></i>
-            <span>My profile</span>
+            <span>{{'My profile' | translate}}</span>
           </a>
           <a *ngIf="userRole == 'ROLE_BUYERSELLER'" routerLinkActive="active"
             [routerLink]="['/indent_history/buyer-user-profile']" class="dropdown-item">
             <i class="ni ni-single-02"></i>
-            <span>My profile</span>
+            <span>{{'My profile' | translate}}</span>
           </a>
 
           <a *ngIf="userRole == 'ROLE_INPUTSUPPLIER'" routerLinkActive="active" [routerLink]="['supplier/my-profile']"
             class="dropdown-item">
             <i class="ni ni-single-02"></i>
-            <span>My profile</span>
+            <span>{{'My profile' | translate}}</span>
           </a>
 
           <a *ngIf="userRole == 'ROLE_CHCFMB'" routerLinkActive="active" [routerLink]="['chcfmb/my-profile']"
             class="dropdown-item">
             <i class="ni ni-single-02"></i>
-            <span>My profile</span>
+            <span>{{'My profile' | translate}}</span>
           </a>
           <a class="dropdown-item" (click)="changePassword(changepassowrd)">
             <i class="fa fa-key"></i>
-            <span>Change password</span>
+            <span>{{'Change Password' | translate }}</span>
           </a>
           <div class="dropdown-divider"></div>
 
@@ -63,7 +63,7 @@
           <div class="dropdown-divider"></div>
           <a href="javascript:void(0)" (click)="logout()" class="dropdown-item">
             <i class="ni ni-user-run"></i>
-            <span>Logout</span>
+            <span>{{'Logout' | translate}}</span>
           </a>
         </div>
       </li>

@@ -51,7 +51,7 @@ export class ComplaintsComponent implements OnInit {
         title: [''],
         desc: ['', [Validators.required]],
         filePath: [''],
-        uploadFile: ['', [Validators.required]],
+        uploadFile: [''],
         issueType: ['', [Validators.required]],
         masterId: localStorage.getItem('masterId'),
     });

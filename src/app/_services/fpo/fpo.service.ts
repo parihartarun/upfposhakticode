@@ -273,7 +273,7 @@ export class FpoService {
   /************************** FPO's Services/Production **********************************/
 
   getServices() {
-    return this.http.get<any>(this._url + 'fposervices/getall').pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'fposervices/getall/'+ localStorage.getItem('masterId')).pipe(map((res: any) => {
       return res;
     }));
   }

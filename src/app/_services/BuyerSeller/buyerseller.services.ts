@@ -33,7 +33,7 @@ export class BuyerSellerService {
     }));
   }
   getBuyerComplaints(masterId) {
-    return this.http.get<any>(this._url + 'fpocomplaint/buyerseller' + masterId).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + 'fpocomplaint/buyerseller/' + masterId).pipe(map((res: any) => {
       return res;
     }));
   }

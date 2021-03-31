@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-12" *ngFor="let row of Machineries">
             <div class="row px-5 mb-2">
-              <strong> {{row.title}}</strong>
+              <strong> {{'Total Machinaries' | translate}}</strong>
             </div>
             <div class="row mb-4" style="border-bottom: solid;">
               <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
@@ -26,7 +26,7 @@
         <div class="row">
           <div class="col-12" *ngFor="let row of seeds">
             <div class="row px-5 mb-2">
-              <strong> {{row.title}}</strong>
+              <strong> {{'Total Seeds' | translate}}</strong>
             </div>
             <div class="row mb-4" style="border-bottom: solid;">
               <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
@@ -63,7 +63,7 @@
           <div *ngIf="Fertilizer" class="row">
             <div class="col-12" *ngFor="let row of fertilizers">
               <div class="row px-5 mb-0">
-                <strong> {{row.title}}</strong>
+                <strong> {{'Fertilizer' | translate}}</strong>
               </div>
               <div class="row mb-4" style="border-bottom: solid;">
                 <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
@@ -78,7 +78,7 @@
           <div *ngIf="Insectices" class="row">
             <div class="col-12" *ngFor="let row of insectices">
               <div class="row px-5 mb-0">
-                <strong> {{row.title}}</strong>
+                <strong> {{'Insecticides/Pesticides' | translate}}</strong>
               </div>
               <div class="row mb-4" style="border-bottom: solid;">
                 <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
@@ -134,8 +134,8 @@
                         <tr>
                           <th scope="col"></th>
                           <th scope="col">{{'SR. NO' | translate}}</th>
-                          <th scope="col">{{'Fertilizer NAME' | translate}}</th>
-                          <th scope="col">{{"Fertilizer Grade" | translate}}</th>
+                          <th scope="col">{{'Fertilizer' | translate}}</th>
+                          <th scope="col">{{"Fertilizer grade" | translate}}</th>
                           <th scope="col">{{'Indent Qty' | translate}}</th>
                           <th scope="col">{{'Created By' | translate}}</th>
                           <th scope="col">{{'Contact Details' | translate}}</th>
@@ -253,7 +253,7 @@
                         <tr>
                           <th scope="col"></th>
                           <th scope="col">{{'SR. NO' | translate}}</th>
-                          <th scope="col">{{'Equipment NAME' | translate}}</th>
+                          <th scope="col">{{'Equipment Name' | translate}}</th>
                           <th scope="col">{{"No. Of Days" | translate}}</th>
                           <th scope="col">{{'Indent Qty' | translate}}</th>
                           <th scope="col">{{'Created By' | translate}}</th>
@@ -314,8 +314,8 @@
                         <tr>
                           <th scope="col"></th>
                           <th scope="col">{{'SR. NO' | translate}}</th>
-                          <th scope="col">{{'Crop NAME' | translate}}</th>
-                          <th scope="col">{{"Variety Name" | translate}}</th>
+                          <th scope="col">{{'Crop Name' | translate}}</th>
+                          <th scope="col">{{"Variety" | translate}}</th>
                           <th scope="col">{{'Indent Qty' | translate}}</th>
                           <th scope="col">{{'Created By' | translate}}</th>
                           <th scope="col">{{'Contact Details' | translate}}</th>
