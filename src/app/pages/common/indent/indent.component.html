@@ -31,10 +31,10 @@
           tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
         </div>
         <div class="table-responsive">
-          <table class="table align-items-center table-flush">
+          <!-- Buyer/Seller -->
+          <table class="table align-items-center table-flush" *ngIf="userRole == 'ROLE_FPC'" >
             <thead class="thead-light">
               <tr>
-                
                 <!--<th scope="col">Your Full Name</th>
                 <th scope="col">Email Address</th>-->
                 <th scope="col">{{'indentnumber'|translate}}</th>
@@ -44,7 +44,7 @@
                 <th scope="col">{{'Fulfillment Date'|translate}}</th>
                 <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
                 <th scope="col">{{'status'|translate}}</th>
-                <th scope="col" *ngIf="userRole == 'ROLE_BUYERSELLER'">Action</th>
+                <th scope="col" *ngIf="userRole == 'ROLE_BUYERSELLER'">{{'Actions' | translate}}</th>
               </tr>
             </thead>
             <tbody>
@@ -83,7 +83,360 @@
              
             </tbody>
           </table>
-        </div>
+      
+          <!-- CHCFMB -->
+          <div class="card shadow" *ngIf="userRole == 'ROLE_CHCFMB'">
+            <div class="card-body">
+              <div class="table-responsive">
+              <table class="table align-items-center table-flush" >
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">{{'SR. NO' | translate}}</th>
+                    <th scope="col">{{'Equipment NAME' | translate}}</th>
+                    <th scope="col">{{"No. Of Days" | translate}}</th>
+                    <th scope="col">{{'Indent Qty' | translate}}</th>
+                    <th scope="col">{{'Created By' | translate}}</th>
+                    <th scope="col">{{'Created on' | translate}}</th>
+                    <th scope="col">{{'Contact Details' | translate}}</th>
+                    <th scope="col">{{'status' | translate}}</th>
+                    <th scope="col">{{'Actions' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let f of machineryIndent | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                    <td>
+                      {{(p-1) * 10 + i + 1}}
+                    </td>
+                    <td>
+                    {{f.equpment_name}}
+                    </td>
+                    <td>
+                      {{f.no_of_days}}
+                    </td>
+                    <td>
+                      {{f.indentQty}}
+                    </td>
+                    <td>
+                      {{f.createdBy}}
+                    </td>
+                    <td>
+                      {{f.contact_details}}
+                    </td>
+                    <td>
+                      {{f.create_date_time | date: 'dd/MM/yyyy'}}
+                    </td>
+                    <td>
+                      {{f.status}}
+                    </td>
+                    <td class="text-right" *ngIf="f.status == 'Active'">
+                      <div ngbDropdown placement="bottom-right">
+                        <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                          {{'Actions' | translate}}
+                        </a>
+                        <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                          <a class="dropdown-item" href="javascript:void(0)" value="fulfilled" (click)="selectIndentChc(f.enqId,'fulfilled')">{{'Accept'|translate}}</a>
+                          <a class="dropdown-item" href="javascript:void(0)" value="rejected" (click)="selectIndentChc(f.enqId,'rejected')" >{{'Reject' |translate}}</a>
+                        
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>  
+          </div>  
+
+          <!-- INPUT SUPPLIER -->
+            <div class="col-lg-12" *ngIf="userRole == 'ROLE_INPUTSUPPLIER'">
+              <div class="form-check">
+                <label class="form-check-label" for="radio2">
+                  <input type="radio" class="form-check-input" name="optradio" value="Fertilizer" (click)="showIndents('Fertilizer')" checked>
+                  {{'Fertilizer Indents' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+              </div>
+              <div class="form-check">
+                  <label class="form-check-label" for="radio2">
+                    <input type="radio" class="form-check-input" name="optradio" value="Insectices" (click)="showIndents('Insectices')">
+                    {{'Insecticide/Pesticide Indents' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="radio2">
+                  <input type="radio" class="form-check-input" name="optradio" value="Machinery" (click)="showIndents('Machinery')">
+                  {{'Machinery Indents' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label" for="radio2">
+                  <input type="radio" class="form-check-input" name="optradio" value="Seeds" (click)="showIndents('Seeds')">
+                  {{'Seeds Indents' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </label>
+              </div>
+            </div>
+            <div class="card shadow" *ngIf="userRole == 'ROLE_INPUTSUPPLIER'">
+              <div class="card-body">
+                <div *ngIf="fertilizerIndents" class="row">
+                  <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                          <thead class="thead-light">
+                            <tr>
+                              <th scope="col"></th>
+                              <th scope="col">{{'SR. NO' | translate}}</th>
+                              <th scope="col">{{'Fertilizer NAME' | translate}}</th>
+                              <th scope="col">{{"Fertilizer Grade" | translate}}</th>
+                              <th scope="col">{{'Indent Qty' | translate}}</th>
+                              <th scope="col">{{'Created By' | translate}}</th>
+                              <th scope="col">{{'Contact Details' | translate}}</th>
+                              <th scope="col">{{'Created on' | translate}}</th>
+                              <th scope="col">{{'status' | translate}}</th>
+                              <th scope="col">{{'Actions' | translate}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let f of fertilizerIndent | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                              <td>
+                                <input type="checkbox">
+                              </td>
+                              <td>
+                                {{(p-1) * 10 + i + 1}}
+                              </td>
+                              <td>
+                               {{f.fertilizer_name}}
+                               </td>
+                              <td>
+                                {{f.fertilizer_grade}}
+                              </td>
+                              <td>
+                                {{f.indentQty}}
+                              </td>
+                              <td>
+                                {{f.createdBy}}
+                              </td>
+                              <td>
+                                {{f.contact_details}}
+                              </td>
+                              <td>
+                                {{f.create_date_time | date: 'dd/MM/yyyy'}}
+                              </td>
+                              <td>
+                                {{f.status}}
+                              </td>
+                              <td class="text-right" *ngIf="f.status == 'active'">
+                                <div ngbDropdown placement="bottom-right">
+                                  <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                                   {{'Actions' | translate}}
+                                  </a>
+                                  <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                    <a class="dropdown-item" href="javascript:void(0)" value="fulfilled" (click) ="selectIndentFertiliser(f.enqId,'fulfilled')" >{{'Accept'|translate}}</a>
+                                    <a class="dropdown-item" href="javascript:void(0)" value="rejected" (click)="selectIndentFertiliser(f.enqId,'rejected')" >{{'Reject' |translate}}</a>
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- <tr *ngIf="fertilizerIndent.length == 0">
+                              <p class="text-center">No data available</p>
+                            </tr> -->
+                          </tbody>
+                        </table>
+                  </div> 
+                </div>
+          
+                <div *ngIf="insecticesIndents" class="row">
+                      <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                          <thead class="thead-light">
+                            <tr>
+                              <th scope="col"></th>
+                              <th scope="col">{{'SR. NO' | translate}}</th>
+                              <th scope="col">{{'Insecticide Type' | translate}}</th>
+                              <th scope="col">{{'Indent Qty' | translate}}</th>
+                              <th scope="col">{{'Created By' | translate}}</th>
+                              <th scope="col">{{'Contact Details' | translate}}</th>
+                              <th scope="col">{{'Created on' | translate}}</th>
+                              <th scope="col">{{'status' | translate}}</th>
+                              <th scope="col">{{'Actions' | translate}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let f of insecticideIndent | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                              <td>
+                                <input type="checkbox">
+                              </td>
+                              <td>
+                                {{(p-1) * 10 + i + 1}}
+                              </td>
+                              <td>
+                               {{f.insecticide_type}}
+                               </td>
+                              <td>
+                                {{f.indentQty}}
+                              </td>
+                              <td>
+                                {{f.createdBy}}
+                              </td>
+                              <td>
+                                {{f.contact_details}}
+                              </td>
+                              <td>
+                                {{f.create_date_time | date: 'dd/MM/yyyy'}}
+                              </td>
+                              <td>
+                                {{f.status}}
+                              </td>
+                              <td class="text-right" *ngIf="f.status == 'active'">
+                                <div ngbDropdown placement="bottom-right">
+                                  <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                                   {{'Actions' | translate}}
+                                  </a>
+                                  <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                    <a class="dropdown-item" href="javascript:void(0)" value="fulfilled" (click) ="selectIndentInsecticide(f.enqId,'fulfilled')">{{'Accept'|translate}}</a>
+                                    <a class="dropdown-item" href="javascript:void(0)" value="rejected" (click)="selectIndentInsecticide(f.enqId,'rejected')">{{'Reject' |translate}}</a>
+                                  
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- <tr *ngIf="fertilizerIndent.length == 0">
+                              <p class="text-center">No data available</p>
+                            </tr> -->
+                          </tbody>
+                        </table>
+                      </div>
+                </div>
+    
+                <div *ngIf="machineryIndents" class="row">
+                  <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                          <thead class="thead-light">
+                            <tr>
+                              <th scope="col"></th>
+                              <th scope="col">{{'SR. NO' | translate}}</th>
+                              <th scope="col">{{'Equipment NAME' | translate}}</th>
+                              <th scope="col">{{"No. Of Days" | translate}}</th>
+                              <th scope="col">{{'Indent Qty' | translate}}</th>
+                              <th scope="col">{{'Created By' | translate}}</th>
+                              <th scope="col">{{'Contact Details' | translate}}</th>
+                              <th scope="col">{{'Created on' | translate}}</th>
+                              <th scope="col">{{'status' | translate}}</th>
+                              <th scope="col">{{'Actions' | translate}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let f of machineryIndent | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                              <td>
+                                <input type="checkbox">
+                              </td>
+                              <td>
+                                {{(p-1) * 10 + i + 1}}
+                              </td>
+                              <td>
+                               {{f.equpment_name}}
+                               </td>
+                              <td>
+                                {{f.no_of_days}}
+                              </td>
+                              <td>
+                                {{f.indentQty}}
+                              </td>
+                              <td>
+                                {{f.createdBy}}
+                              </td>
+                              <td>
+                                {{f.contact_details}}
+                              </td>
+                              <td>
+                                {{f.create_date_time | date: 'dd/MM/yyyy'}}
+                              </td>
+                              <td>
+                                {{f.status}}
+                              </td>
+                              <td class="text-right" *ngIf="f.status == 'active'">
+                                <div ngbDropdown placement="bottom-right">
+                                  <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                                    {{'Actions' | translate}}
+                                  </a>
+                                  <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                    <a class="dropdown-item" href="javascript:void(0)" value="fulfilled" (click) ="selectIndentMachinery(f.enqId,'fulfilled')" >{{'Accept'|translate}}</a>
+                                    <a class="dropdown-item" href="javascript:void(0)" value="rejected" (click)="selectIndentMachinery(f.enqId,'rejected')" >{{'Reject' |translate}}</a>
+                                  
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </div>
+                </div>
+    
+                <div *ngIf="seedsIndents" class="row">
+                  <div class="table-responsive">
+                   <table class="table align-items-center table-flush">
+                          <thead class="thead-light">
+                            <tr>
+                              <th scope="col"></th>
+                              <th scope="col">{{'SR. NO' | translate}}</th>
+                              <th scope="col">{{'Crop NAME' | translate}}</th>
+                              <th scope="col">{{"Variety Name" | translate}}</th>
+                              <th scope="col">{{'Indent Qty' | translate}}</th>
+                              <th scope="col">{{'Created By' | translate}}</th>
+                              <th scope="col">{{'Contact Details' | translate}}</th>
+                              <th scope="col">{{'Created on' | translate}}</th>
+                              <th scope="col">{{'status' | translate}}</th>
+                              <th scope="col">{{'Actions' | translate}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let f of seedIndent | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                              <td>
+                                <input type="checkbox">
+                              </td>
+                              <td>
+                                {{(p-1) * 10 + i + 1}}
+                              </td>
+                              <td>
+                               {{f.crop_name}}
+                               </td>
+                              <td>
+                                {{f.varietyName}}
+                              </td>
+                              <td>
+                                {{f.indentQty}}
+                              </td>
+                              <td>
+                                {{f.createdBy}}
+                              </td>
+                              <td>
+                                {{f.contact_details}}
+                              </td>
+                              <td>
+                                {{f.create_date_time | date: 'dd/MM/yyyy'}}
+                              </td>
+                              <td>
+                                {{f.status}}
+                              </td>
+                              <td class="text-right" *ngIf="f.status == 'active'">
+                                <div ngbDropdown placement="bottom-right">
+                                  <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                                    {{'Actions' | translate}}
+                                  </a>
+                                  <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                                    <a class="dropdown-item" href="javascript:void(0)" value="fulfilled" (click) ="selectIndentSeeds(f.enqId,'fulfilled')" >{{'Accept'|translate}}</a>
+                                    <a class="dropdown-item" href="javascript:void(0)" value="rejected" (click)="selectIndentSeeds(f.enqId,'rejected')" >{{'Reject' |translate}}</a>
+                                  
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- <tr *ngIf="fertilizerIndent.length == 0">
+                              <p class="text-center">No data available</p>
+                            </tr> -->
+                          </tbody>
+                        </table>
+                  </div>
+              </div>
+            </div>
+          </div> 
         <div class="card-footer py-4">
           <nav aria-label="..." class="text-right">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>

@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,6 +21,7 @@ export class InputSupplierService {
       }));
     }
 
+    // Indent details
     getIndentDetails(id) {
       return this.http.get<any>(this._url + `inputSupplierDashboard/indent/`+id).pipe(map((res: any) => {
         return res;
@@ -49,6 +51,17 @@ export class InputSupplierService {
 
   // ----------------------------Seeds-------------------------------------------------
 
+  selectIndentSeed(data) {
+    return this.http.put<any>(this._url + `inputSupplierIndent/seedIndent/updateStatus/${data.enqId}`, data).pipe(map((res: any) => {
+        return res;
+        }));
+  }
+
+  actionIndentChc(data) {
+    return this.http.put<any>(this._url + `chcFmbIndent/machineryIndent/updateStatus/${data.enqId}`, data).pipe(map((res: any) => {
+        return res;
+        }));
+  }
 
   getAllSeeds(masterId){
     return  this.http.get<any>(this._url+`inputsupplier/seed/getall/`+masterId).pipe(map((res:any)=>{
@@ -132,7 +145,21 @@ deletefertilizer(data) {
   }));
 }
 
+selectIndentFertilizer(data) {
+  console.log('<<<id>>', data );
+  return this.http.put<any>(this._url + `inputSupplierIndent/fertilizer/updateStatus/${data.enqId}`, data).pipe(map((res: any) => {
+      return res;
+      }));
+}
+
+
 // ---------------- Machinery -----------------------------------
+
+selectIndentMachinery(data) {
+  return this.http.put<any>(this._url + `inputSupplierIndent/machinery/updateStatus/${data.enqId}`, data).pipe(map((res: any) => {
+      return res;
+      }));
+}
 
 getallMachinery(masterId){
   return  this.http.get<any>(this._url+'inputsupplier/machinery/getall/'+masterId).pipe(map((res:any)=>{
@@ -182,6 +209,12 @@ deleteMachinery(id) {
 
 
 // ---------------- insecticide -----------------------------------
+
+selectIndentInsecticides(data) {
+  return this.http.put<any>(this._url + `inputSupplierIndent/insecticides/updateStatus/${data.enqId}`, data).pipe(map((res: any) => {
+      return res;
+      }));
+}
 
 getallinsecticide(masterId){
   return  this.http.get<any>(this._url+`inputsupplier/insecticide/getall/${masterId}`).pipe(map((res:any)=>{

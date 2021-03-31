@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
 import { ProductService } from 'src/app/_services/product/product.service';
 import { BuyerSellerService } from "src/app/_services/BuyerSeller/buyerseller.services";
+import { ChcFmbService } from 'src/app/_services/chc_fmb/chc-fmb.service';
+import { InputSupplierService } from 'src/app/_services/InputSupplier/InputSupplier.services';
 
 @Component({
   selector: 'app-indent',
@@ -21,11 +23,26 @@ export class IndentComponent implements OnInit {
   masterId: string;
   indentForm: FormGroup;
   currentItem: any;
+
+  public fertilizerIndents = true;
+  public insecticesIndents = false;
+  public machineryIndents = false;
+  public seedsIndents = false;
+
+  machineryIndent:Array<any>=[];
+  fertilizerIndent:Array<any>=[];
+  insecticideIndent:Array<any>=[];
+  machineryIndentSupplier:Array<any>=[];
+  seedIndent:Array<any>=[];
+  
   constructor(private fb: FormBuilder,private _productService: ProductService,private modalService: NgbModal,private auth:AuthService,private fpoService:FpoService,
-    private _buyerService: BuyerSellerService,private toastr: ToastrService) { }
+    private _buyerService: BuyerSellerService,private toastr: ToastrService, private api:ChcFmbService,
+    private supplierService:InputSupplierService) { }
 
   ngOnInit(): void {
     this.getIdent()
+    this.getIndentDetailsForChc();
+    this.getIndentDetailsForSupplier();
    
   }
   opendialog($event,content,item)
@@ -39,7 +56,7 @@ export class IndentComponent implements OnInit {
     })
 
     this.modalService.open(content);
-}
+  }
 
   getIdent() {
     
@@ -73,16 +90,148 @@ export class IndentComponent implements OnInit {
       this.getIdent();  
     })
   }
+
+  getIndentDetailsForChc(){
+    this.api.getIndentDetails(localStorage.getItem('masterId')).subscribe(response => {
+      console.log('getIndentDetailsForChc',response);
+      this.machineryIndent = response.machineryIndent;
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
+  getIndentDetailsForSupplier(){
+    this.supplierService.getIndentDetails(localStorage.getItem('masterId')).subscribe(response => {
+      console.log('getIndentDetailsForSupplier',response);
+      this.fertilizerIndent = response.fertilizerIndent;
+      this.insecticideIndent = response.insecticideIndent;
+      this.machineryIndentSupplier = response.machineryIndent;
+      this.seedIndent = response.seedIndent;
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
+  showIndents(tab){
+    this.fertilizerIndents = false;
+    this.insecticesIndents = false;
+    this.machineryIndents = false;
+    this.seedsIndents = false;
+
+    if(tab == 'Fertilizer'){
+      this.fertilizerIndents = true;
+    }else if(tab == 'Insectices'){
+      this.insecticesIndents = true;
+    }else if(tab == 'Machinery'){
+      this.machineryIndents = true;
+    }else if(tab == 'Seeds'){
+      this.seedsIndents = true;
+    }
+  }
   
   save()
   {
-
-this._productService.updateEnquiry(this.indentForm.value,this.currentItem.id).subscribe(data=>{
-
-  this.modalService.dismissAll();
-  this.getIdent();
- // this.ngOnInit();
-})
+    this._productService.updateEnquiry(this.indentForm.value,this.currentItem.id).subscribe(data=>{
+    this.modalService.dismissAll();
+     this.getIdent();
+  // this.ngOnInit();
+    })
   }
+
+  selectIndentFertiliser(id,status){
+    let data = {
+      "enqId": id,
+      "status": status
+    };
+    console.log('>>datadata', data);
+    this.supplierService.selectIndentFertilizer(data).subscribe(response => {
+      console.log('getIndentDetailsForSupplier>>>>>',response);
+      this.toastr.success('Indent Successfully Updated');
+      this.getIndentDetailsForSupplier();
+
+    },
+      err => {
+        console.log(err)
+      }
+    );
+
+  }
+
+  selectIndentMachinery(id,status){
+    let data = {
+      "enqId": id,
+      "status": status
+    };
+    console.log('>>data', data);
+    this.supplierService.selectIndentMachinery(data).subscribe(response => {
+      console.log('getIndentDetailsForSupplier>>>>>',response);
+      this.toastr.success('Indent Successfully Updated');
+      this.getIndentDetailsForSupplier();
+
+    },
+      err => {
+        console.log(err)
+      }
+    );
+
+  }
+
+  selectIndentInsecticide(id,status){
+    let data = {
+      "enqId": id,
+      "status": status
+    };
+    console.log('>>data', data);
+    this.supplierService.selectIndentInsecticides(data).subscribe(response => {
+      console.log('getIndentDetailsForSupplier>>>>>',response);
+      this.toastr.success('Indent Successfully Updated');
+      this.getIndentDetailsForSupplier();
+    },
+      err => {
+        console.log(err)
+      }
+    );
+
+  }
+
+  selectIndentSeeds(id,status){
+    let data = {
+      "enqId": id,
+      "status": status
+    };
+    console.log('>>data', data);
+    this.supplierService.selectIndentSeed(data).subscribe(response => {
+      console.log('getIndentDetailsForSupplier>>>>>',response);
+      this.toastr.success('Indent Successfully Updated');
+      this.getIndentDetailsForSupplier();
+    },
+      err => {
+        console.log(err)
+      }
+    );
+
+  }
+
+  selectIndentChc(id, status){
+    let data = {
+      "enqId": id,
+      "status": status
+    };
+    console.log('>>data', data);
+    this.supplierService.actionIndentChc(data).subscribe(response => {
+      console.log('getIndentDetailsForSupplier>>>>>',response);
+      this.toastr.success('Indent Successfully Updated');
+     this.getIndentDetailsForChc();
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
 }
 
