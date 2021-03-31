@@ -84,7 +84,7 @@ export class ChhfmbDashboardComponent implements OnInit {
           ob['name'] = mdata[i].machinerytName;
           ob['series'] = [
             {
-              "name": "Machinaries",
+              "name": "Machinery",
               "value": mdata[i].machineryQty
             }
           ];

@@ -262,7 +262,7 @@
         <input class="form-control" type="text" formControlName="fpoIFSC">
       </div>
       <div *ngIf="submitted && formControls.fpoIFSC.errors" class="text-danger">
-        <div *ngIf="formControls.fpoIFSC.errors.maxlength"> {{'ifsc code should be 11 digit'|translate}}</div>
+        <div *ngIf="formControls.fpoIFSC.errors.pattern"> {{'IFSC Code should be 11 digit'|translate}}</div>
       </div>
     </div>
     <div class="col-6">

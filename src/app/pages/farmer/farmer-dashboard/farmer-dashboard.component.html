@@ -157,8 +157,8 @@
               </td>
               <td class="text-right">
                 <div ngbDropdown placement="bottom-right">
-                  <a class="btn btn-sm btn-primary" (click)="viewNotifications(notification)">View</a>
-
+                  <!-- <a class="btn btn-sm btn-primary" (click)="viewNotifications(notification)">View</a> -->
+                  <a class="btn btn-sm btn-primary" routerLink="/farmer/farmerNotificationByFpo">View</a>
                 </div>
               </td>
             </tr>
@@ -167,7 +167,7 @@
       </div>
       <div class="card-footer py-4">
         <nav aria-label="..." class="text-right">
-          <pagination-controls></pagination-controls>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </nav>
       </div>
 

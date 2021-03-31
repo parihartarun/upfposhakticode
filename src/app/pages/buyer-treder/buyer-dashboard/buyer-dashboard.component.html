@@ -8,7 +8,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">{{"Total FPO's" | translate}}</h5>
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{"Total FPOs" | translate}}</h5>
                     <span class="h2 font-weight-bold mb-0">{{totals.fpos | number}}</span>
                   </div>
                 </div>
@@ -64,7 +64,7 @@
         <div class="row">
           <div class="col-12" *ngFor="let row of totalIndents">
             <div class="row px-5 mb-2">
-              <strong> {{row.title}}</strong>
+              <strong> {{'Total Number of Indents' | translate}}</strong>
             </div>
             <div class="row mb-4" style="border-bottom: solid;">
               <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
@@ -83,7 +83,7 @@
         <div class="row">
           <div class="col-12" *ngFor="let row of cropIndents">
             <div class="row px-5 mb-2">
-              <strong> {{row.title}}</strong>
+              <strong> {{"Total Number of Indents by crop"| translate}}</strong>
             </div>
             <div class="row mb-4" style="border-bottom: solid;">
               <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"

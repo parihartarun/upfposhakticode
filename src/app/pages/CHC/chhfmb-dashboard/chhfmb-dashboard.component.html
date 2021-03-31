@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-12" *ngFor="let row of Machineries">
             <div class="row px-5 mb-2">
-              <strong> {{row.title}}</strong>
+              <strong> {{'Total Machinaries' | translate}}</strong>
             </div>
             <div class="row mb-4" style="border-bottom: solid;">
               <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
@@ -33,13 +33,13 @@
                       <thead class="thead-light">
                         <tr>
                           <th scope="col">{{'SR. NO' | translate}}</th>
-                          <th scope="col">{{'Equipment NAME' | translate}}</th>
+                          <th scope="col">{{'Equipment Name' | translate}}</th>
                           <th scope="col">{{"No. Of Days" | translate}}</th>
                           <th scope="col">{{'Indent Qty' | translate}}</th>
                           <th scope="col">{{'Created By' | translate}}</th>
                           <th scope="col">{{'Created on' | translate}}</th>
                           <th scope="col">{{'Contact Details' | translate}}</th>
-                          <th scope="col">{{'status' | translate}}</th>
+                          <th scope="col">{{'Status' | translate}}</th>
                           <th scope="col"></th>
                         </tr>
                       </thead>

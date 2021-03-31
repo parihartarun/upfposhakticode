@@ -343,7 +343,7 @@
                             </div>
                             <select formControlname="cropRefName"  class="form-control"  (change)="getVarieties($event.target.value)">
                               <option [value]="">{{'Select Crop' | translate}}</option>
-                              <option *ngFor="let crop of crops" [value]="crop.cropId" >{{crop.cropName}}</option>
+                              <option *ngFor="let crop of crop_list" [value]="crop.cropId" >{{crop.cropName}}</option>
                             </select>
                           </div>
                         </div>

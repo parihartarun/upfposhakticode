@@ -23,6 +23,7 @@ export class CropShowingDetailsComponent implements OnInit {
   equipments:Array<any>=[];
   farmers:Array<any>=[];
   crops:Array<any>=[];
+  crop_list:Array<any>=[];
   cropVarieties:Array<any>=[];
   varieties:Array<any>=[];
   seasons:Array<any>=[];
@@ -60,7 +61,6 @@ export class CropShowingDetailsComponent implements OnInit {
     
     this.getCropSowingDetails();
     this.getMarkatableQuantityMeasurements();
-    this.getCropList();
     this.getSeasonList();
 
     if(this.farmerLogin == true){
@@ -118,14 +118,6 @@ export class CropShowingDetailsComponent implements OnInit {
     this.commonService.getCropsBySeasonId(seasonId).subscribe(
       response => {
         console.log('crops:', response);
-      this.crops = response;
-    })
-  }
-
-  getCropList(){
-    this.commonService.getCropList().subscribe(
-      response => {
-      console.log(response);
       this.crops = response;
     })
   }
@@ -247,7 +239,15 @@ export class CropShowingDetailsComponent implements OnInit {
 
   editCropSowingDetails(data, content){
     console.log(data);
-    this.getCropsBySeasonId(data.season_ref);
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+    this.commonService.getCropsBySeasonId(data.season_ref).subscribe(
+      response => {
+      this.crop_list = response;
+    })
     this.getVarieties(data.crop_master_id);
     this.cropSowingUpdateForm  = this.formBuilder.group({
       farmerId: [data.farmer_id, [Validators.required]],
@@ -265,18 +265,11 @@ export class CropShowingDetailsComponent implements OnInit {
       masterId:localStorage.getItem('masterId'),
     });
     setTimeout(()=>{    
-      console.log('s'); 
       this.cropSowingUpdateForm.patchValue({
         cropRefName:data.crop_master_id,
         verietyRef:data.veriety_ref
       });
-    }, 10000);
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-    
+    }, 3000);
   }
 
   updateSowingDetails(){

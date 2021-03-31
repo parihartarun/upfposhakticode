@@ -231,7 +231,7 @@
           </a>
         </li>
         <li *ngIf="userRole == 'ROLE_BUYERSELLER' && userRole != 'ROLE_MIN' && userRole != 'ROLE_FARMER' && userRole != 'ROLE_FPC'&& userRole != 'ROLE_CHCFMB' && userRole != 'ROLE_INPUTSUPPLIER'" class="nav-item">
-          <a routerLinkActive="active" [routerLink]="['byer/complaints']" class="nav-link">
+          <a routerLinkActive="active" [routerLink]="['buyer/complaints']" class="nav-link">
             <i class="ni fa fa-archive text-white"></i>
             {{'Complaints/Suggestions' | translate}}
           </a>

@@ -58,7 +58,7 @@ export class FarmerComplaintsComponent implements OnInit {
         title: [''],
         desc: ['', [Validators.required]],
         filePath: [''],
-        uploadFile: ['', [Validators.required]],
+        uploadFile: [''],
         issueType: ['', [Validators.required]],
         masterId: localStorage.getItem('masterId'),
        
@@ -132,15 +132,11 @@ export class FarmerComplaintsComponent implements OnInit {
       formData.append("farmer_id", localStorage.getItem('masterId'))
       formData.append("fpo_id ", this.fpoId)
       this.farmerService.addComplaint(this.complaintForm.value, formData).subscribe(response => {
-        if (response != '') {
-          this.toastr.success('Complaint Added Succefully.');
-          this.submitted = false;
-          this.edit = false;
-          this.complaintForm.reset();
-          this.getComplaints();
-        } else {
-          this.toastr.error('Error! While Add complaint.');
-        }
+        this.toastr.success('Complaint Added Succefully.');
+        this.submitted = false;
+        this.edit = false;
+        this.complaintForm.reset();
+        this.getComplaints();
       });
     }
     if (this.roleType == "ROLE_INPUTSUPPLIER") {

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FarmerService } from 'src/app/_services/farmer/farmer.service';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
+import { ProductionService } from 'src/app/_services/production/production.service';
 
 @Component({
   selector: 'app-land-details',
@@ -31,6 +32,7 @@ export class LandDetailsComponent implements OnInit {
  constructor(
     private formBuilder: FormBuilder,
     private fpoService: FpoService,
+    private productionService:ProductionService,
     private route: Router,
    private toastr: ToastrService,
    private farmerService: FarmerService
@@ -281,6 +283,8 @@ export class LandDetailsComponent implements OnInit {
     console.log(); 
     if(registrationNumber.upBSMId != null){
       this.getFarmerDetailFarmerformUpPardarshi(registrationNumber.upBSMId);
+    }else{
+      //this.getFarmerDetails(farmer.currentTarget.value);
     }
   }
 
@@ -295,6 +299,20 @@ export class LandDetailsComponent implements OnInit {
       })
   }
 
+  getFarmerDetails(farmerId){
+    console.log(farmerId);
+    this.productionService.getFarmerDetailsForCropSowing(farmerId).subscribe(response => {
+      console.log(response);
+      if(response != null){
+        this.landDetailForm.controls.land_area.patchValue(response.land_area);
+        this.landDetailForm.controls.guardianName.patchValue(response.parantsName);
+      }
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
 
   fetchDetail() {
     let registrationNumber = this.landDetailForm.controls['registrationNumber'].value;
