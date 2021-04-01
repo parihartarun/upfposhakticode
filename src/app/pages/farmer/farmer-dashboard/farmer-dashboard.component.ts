@@ -15,9 +15,13 @@ export class FarmerDashboardComponent implements OnInit {
   public actual_production = false;
   
   chartOption:any;
-  actualProduction:Array<any>=[];
-  expectedProduction:Array<any>=[];
-  salesProduction:Array<any>=[];
+  markatableProductionRabi:Array<any>=[];
+  markatableProductionKharif:Array<any>=[];
+  markatableProductionZayad:Array<any>=[];
+
+  actualProductionRabi:Array<any>=[];
+  actualProductionKharif:Array<any>=[];
+  actualProductionZayad:Array<any>=[];
 
   public totals = {
     crops: 0,
@@ -104,7 +108,6 @@ export class FarmerDashboardComponent implements OnInit {
     this.api.getFarmerDashboardData(localStorage.getItem('masterId')).subscribe(response => {
       console.log(response);
       this.totals = response;
-      this.actualProduction = response.fpoActualQty;
       this.setExpectedProduction(response.expectedYeildRabi, response.expectedYeildZayad, response.expectedYeildKhrif);
       this.setActualProduction(response.actualYeildRabi, response.actualYeildZayad, response.actualYeildKharif);
     },
@@ -163,20 +166,9 @@ export class FarmerDashboardComponent implements OnInit {
           zayadData.push(ob);
       }
     }
-    this.expectedProduction = [
-      {
-        title: `Total Expected Production in Rabi season (in Qt.)`,
-        data: rabiData
-      },
-      {
-        title: `Total Expected Production in Zayad season (in Qt.)`,
-        data: kharifData
-      },
-      {
-        title: `Total Expected Production in Kharif season (in Qt.)`,
-        data:zayadData
-      }
-    ];
+    this.markatableProductionRabi = rabiData;
+    this.markatableProductionKharif = kharifData;
+    this.markatableProductionZayad = zayadData;
   }
 
   setActualProduction(rabiDataArr1, zayadDataArr1, kharifDataArr1){
@@ -216,20 +208,9 @@ export class FarmerDashboardComponent implements OnInit {
       }
     }
     
-    this.actualProduction = [
-      {
-        title: `Total Actual Production in Rabi (in Qt.)`,
-        data: rabiData1
-      },
-      {
-        title: `Total Actual Production in Zayad (in Qt.)`,
-        data: kharifData1
-      },
-      {
-        title: `Total Actual Production in Kharif (in Qt.)`,
-        data:zayadData1
-      }
-    ];
+    this.actualProductionRabi = rabiData1;
+    this.actualProductionKharif = kharifData1;
+    this.actualProductionZayad = zayadData1;
   }
 
   showGraphs(tab){

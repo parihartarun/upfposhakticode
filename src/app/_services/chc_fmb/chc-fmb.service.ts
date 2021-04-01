@@ -67,14 +67,14 @@ export class ChcFmbService {
     }
   
 
-  getequipmentname(masterId) {
-    this.http.get<any>(this._url + '/chcfmb/machinery/equipmentname/' + masterId).subscribe((res: any) => {
+  getequipmentname(typeId) {
+    this.http.get<any>(this._url + 'chcfmb/machinery/equipmentname/' + typeId).subscribe((res: any) => {
       this.equipmentName.next(res);
     })
   }
 
   updateChcProfile(data) {
-    return this.http.put<any>(this._url + `/api/v1/CHCFMB/editChcFmb/${data.chcFmbId}`, data).pipe(map((res: any) => {
+    return this.http.put<any>(this._url + `api/v1/CHCFMB/editChcFmb/${data.chcFmbId}`, data).pipe(map((res: any) => {
       return res;
     }));
   }

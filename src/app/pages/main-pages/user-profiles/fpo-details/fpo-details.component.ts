@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { GetTranslationService } from 'src/app/_helpers/get-translation.service';
 import { FpoService } from '../../../../_services/fpo/fpo.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-fpo-details',
@@ -68,7 +69,7 @@ export class FpoDetailsComponent implements OnInit {
   graphdetailsrabi: any;
   constructor(private modalService: NgbModal,
     public getTranslationService: GetTranslationService,
-    private api: FpoService, private _activatedroute: ActivatedRoute) { }
+    private api: FpoService, private _activatedroute: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     ///////////////////////Apis/////////////////////////
@@ -292,5 +293,8 @@ console.log(this.fpoId,"Id");
 
   }
 
+  goBack(){
+    this.location.back();
+  }
 
 }

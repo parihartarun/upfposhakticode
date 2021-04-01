@@ -294,6 +294,19 @@
                 <td>{{farmer.category}}</td>
                 <td>{{farmer.gender}}</td>
                 <td>{{farmer.farmerMob}}</td>
+                <td class="text-center">
+                  <div ngbDropdown placement="bottom-center">
+                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      {{'Actions' | translate}}
+                    </a>
+                    <div ngbDropdownMenu class=" dropdown-menu-center dropdown-menu-arrow">
+                      <a class="dropdown-item" (click)="editFarmer(farmer)">{{'Edit' |
+                        translate}}</a>
+                      <a class="dropdown-item" (click)="confirmDelete(farmer.farmerId)">{{'Delete' |
+                        translate}}</a>
+                    </div>
+                  </div>
+                </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary"  ngbDropdownToggle>

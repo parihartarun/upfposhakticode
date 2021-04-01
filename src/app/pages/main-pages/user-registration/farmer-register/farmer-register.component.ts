@@ -39,13 +39,16 @@ export class FarmerRegisterComponent implements OnInit {
       this.banks = d
     })
     this.createRegisterForm();
-    this.getALlFpoList();
   }
 
   selectDistrict(districtId: any) {
     this.registerForm.controls['distRefId'].setValue(districtId);
     this.api.getBlock(districtId).subscribe(block => {
-      this.blocks = block
+      this.blocks = block;
+    })
+    this.fpoService.getFpoByDistrict(districtId).subscribe(fpos => {
+      console.log(fpos);
+      this.fpoList = fpos;
     })
   }
 
@@ -54,14 +57,6 @@ export class FarmerRegisterComponent implements OnInit {
       this.panchayts = gp
     })
     this.registerForm.controls['blockRef'].setValue(blockId);
-  }
-
-  getALlFpoList() {
-    this.fpoService.getAllFpo().subscribe(res => {
-      if (res) {
-        this.fpoList = res;
-      }
-    });
   }
 
   selectGramPanchayat(villagePanchayatId: any) {
