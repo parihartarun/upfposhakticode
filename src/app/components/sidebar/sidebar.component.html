@@ -176,12 +176,12 @@
             {{'License' | translate}}
           </a>
         </li>
-        <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
+        <!-- <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['fpo/machinary-bank']" class="nav-link">
             <i class="ni fa fa-university text-white"></i>
             {{'Machinary Bank' | translate}}
           </a>
-        </li>
+        </li> -->
         <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['fpo/storage-unit']" class="nav-link">
             <i class="ni fa fa-archive text-white"></i>
