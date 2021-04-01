@@ -11,7 +11,7 @@ export class FpoSearchService {
   _url: string;
   districtObserver: BehaviorSubject<any> = new BehaviorSubject([]);
   fpoObserver: BehaviorSubject<any> = new BehaviorSubject([]);
-  cropsObserver: Subject<any> = new Subject();
+  cropsObserver: BehaviorSubject<any> = new BehaviorSubject([]);
   filteredObserver: BehaviorSubject<any> = new BehaviorSubject([]);
 
   brandsObserver: BehaviorSubject<any> = new BehaviorSubject([]);

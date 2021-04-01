@@ -222,7 +222,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       this.fpolist = data;
 
     });
-    this.fpoObserver.subscribe()
+//    this.fpoObserver.subscribe()
     this.filteredObserver.subscribe(data => {
       if (data) {
         this.filteredData = data.page;
@@ -236,29 +236,32 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       }
     });
     this.cropsObserver.subscribe(data => {
-      if (!!data.length) {
+      console.log('Crops Observer==>',data);
+      if(data !== null && data.length !== 0){
+          console.log("Here");
+          this.treeView =[];
         data.forEach(el => {
-          if (el) {
-            this.node = {};
-            this.node.text = el.name;
-            this.node.value = el.id;
-            this.node.collapsed = true;
-            // this.node.checked = false;
-            var childnode = []
-            el.cropVeriety.forEach(child => {
-              childnode.push({
-                text: child.verietyName,
-                value: { p_id: el.id, id: child.verietyId },
-                checked: false
-              })
+              if (el) {
+                this.node = {};
+                this.node.text = el.name;
+                this.node.value = el.id;
+                this.node.collapsed = true;
+                // this.node.checked = false;
+                var childnode = []
+                el.cropVeriety.forEach(child => {
+                  childnode.push({
+                    text: child.verietyName,
+                    value: { p_id: el.id, id: child.verietyId },
+                    checked: false
+                  })
+                });
+                this.node.children = childnode;
+                this.treeView.push(new TreeviewItem(this.node))
+              }
             });
-            this.node.children = childnode;
-            this.treeView.push(new TreeviewItem(this.node))
-          }
-        })
-      } else {
-        this.treeView = [];
-      }
+       }else {
+          this.treeView = [];
+         } 
     });
   }
   searchData() {
@@ -430,7 +433,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
         this.inpSupDetail = f;
         console.log("InpSup Detail",this.inpSupDetail);
         console.log("Current Item",this.currentitem);
-      this. createIndentFormSeed(this.currentitem);
+      this.createIndentFormSeed(this.currentitem);
 
       })
       this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
@@ -842,7 +845,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.filterParams.inputSupplierIds =[];
     this.filterParams.brands=[];
     this.filterParams.cropverietyIds=[];
-    //this.treeView =[];
+ 
     
    // this.uncheckAllItems(this.treeView)
 
