@@ -32,7 +32,7 @@
         </div>
         <div class="table-responsive">
           <!-- Buyer/Seller -->
-          <table class="table align-items-center table-flush" *ngIf="userRole == 'ROLE_FPC'" >
+          <table class="table align-items-center table-flush" *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_BUYERSELLER'" >
             <thead class="thead-light">
               <tr>
                 <!--<th scope="col">Your Full Name</th>
