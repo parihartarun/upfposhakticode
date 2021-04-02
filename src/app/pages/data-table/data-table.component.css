@@ -608,11 +608,19 @@ table.dataTable{
     color:white
 }
 
-.wrap{ 
+/* .wrap{ 
     text-overflow:ellipsis;
     overflow:hidden;
     white-space:nowrap;
+} */
+
+.wrap{ 
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space: normal !important;
+    vertical-align: middle !important;
 }
+
 .no-row-margin{
     margin-left: 0px !important;
     margin-right: 0px !important;

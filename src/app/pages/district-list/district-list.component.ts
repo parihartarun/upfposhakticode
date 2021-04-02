@@ -48,8 +48,8 @@ export class DistrictListComponent implements OnInit {
       {key:'fpoName',title:'FPO Name'},
       {key:'fpoEmail',title:'FPO Email'},
       {key:'fpoLandline',title:'Mobile'},
-      {key:'crops',title:'Crops' },
-      {key:'additionalServices',title:'Additional Services'}
+      {key:'crops',title:'Crops',width:'auto',noWrap: { head: true, body: true } },
+      {key:'additionalServices',title:'Additional Services',width:'auto',noWrap: { head: true, body: true }}
     ];
 
     //Input Supplier Details 
@@ -58,10 +58,10 @@ export class DistrictListComponent implements OnInit {
       {key:'input_supplier_name',title:'Input Supplier'},
       {key:'email',title:'Email'},
       {key:'mobile_number',title:'Mobile'},
-      {key:'cropSeeds',title:'Seeds'},
-      {key:'fertilizers',title:'Fertilizers'},
-      {key:'insecticides',title:'Insecticides'},
-      {key:'machineries',title:'Machinaries'}
+      {key:'cropSeeds',title:'Seeds',width:'auto',noWrap: { head: true, body: true }},
+      {key:'fertilizers',title:'Fertilizers',width:'auto',noWrap: { head: true, body: true }},
+      {key:'insecticides',title:'Insecticides',width:'auto',noWrap: { head: true, body: true }},
+      {key:'machineries',title:'Machinaries',width:'auto',noWrap: { head: true, body: true }}
     ];
 
     // CHC FMB Details  
