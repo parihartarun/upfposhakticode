@@ -177,7 +177,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       if (param) {
         this.parval = param.val;
         this.parsearchType = param.searchType;
-        this.filterParams.val = param.val;
+        this.filterParams.val = param.val.trim();
         this.filterParams.in = param.searchType;
         this.selectedDropdown = param.searchType;
         this.dummysearchval = param.val;
@@ -273,11 +273,11 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.selectedDropdown = this.filterParams.in;
     console.log("Selected Drop",this.selectedDropdown)
     if(this.selectedDropdown === 'districts'){
-      this._rouetr.navigate(['/dist',this.filterParams.val,this.filterParams.in]);
+      this._rouetr.navigate(['/dist',this.filterParams.val.trim(),this.filterParams.in]);
       return;
     }
     this.searchData();
-    this._rouetr.navigate(['/products', this.filterParams.val, this.filterParams.in]);
+    this._rouetr.navigate(['/products', this.filterParams.val.trim(), this.filterParams.in]);
   }
   ngAfterViewInit(): void {
     

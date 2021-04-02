@@ -95,7 +95,7 @@ export class HomeComponent implements OnInit {
     this.route.navigate(['/products', this.data['searchValue'], this.data['searchType']]);
   }
   selectValue() {
-    this.data.searchValue = this.searchValue;
+    this.data.searchValue = this.searchValue.trim();
   }
   mobileHeader() {
   }
