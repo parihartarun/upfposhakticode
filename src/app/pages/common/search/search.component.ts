@@ -19,6 +19,10 @@ export class SearchComponent implements OnInit {
  
   selectValue() {
     this.data['searchValue'] = this.searchValue;
+    if(this.searchType === 'districts'){
+      this.router.navigate(['/dist', this.searchValue, this.searchType]);  
+      return;
+    }
     this.data['searchType'] = this.searchType;  
     this.router.navigate(['/products', this.searchValue, this.searchType]);
   }

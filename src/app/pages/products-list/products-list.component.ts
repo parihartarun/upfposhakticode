@@ -271,6 +271,11 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   fetchnewData() {
     this.clearAllFilters();
     this.selectedDropdown = this.filterParams.in;
+    console.log("Selected Drop",this.selectedDropdown)
+    if(this.selectedDropdown === 'districts'){
+      this._rouetr.navigate(['/dist',this.filterParams.val,this.filterParams.in]);
+      return;
+    }
     this.searchData();
     this._rouetr.navigate(['/products', this.filterParams.val, this.filterParams.in]);
   }

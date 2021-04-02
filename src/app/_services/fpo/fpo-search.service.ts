@@ -18,6 +18,7 @@ export class FpoSearchService {
   machineryTypesObserver: BehaviorSubject<any> = new BehaviorSubject([]);
   inputSupplierObserver:BehaviorSubject<any> = new BehaviorSubject([]);
   fertilizerTypesObserver:BehaviorSubject<any> = new BehaviorSubject([]);
+  districtListObserver:BehaviorSubject<any> = new BehaviorSubject([]);
 
   constructor(private http: HttpClient) {
     this._url = environment.baseUrl;
@@ -37,6 +38,13 @@ export class FpoSearchService {
       this.districtObserver.next(res);
     })
   }
+
+  getDistrictInfo(keyword,type){
+    this.http.get<any>(this._url + `api/search/v2/filters/listOnDistricts?in=${type}&val=${keyword}`).subscribe((res: any) => {
+      this.districtListObserver.next(res);
+    })
+  } 
+
   getFpo(keyword, type) {
     this.http.get<any>(this._url + `api/search/v2/filters/fpos?in=${type}&val=${keyword}`).subscribe((res: any) => {
       this.fpoObserver.next(res);

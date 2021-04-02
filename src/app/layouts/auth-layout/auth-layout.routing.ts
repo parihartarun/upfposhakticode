@@ -15,6 +15,7 @@ import {PageUnderConstructionComponent} from 'src/app/pages/main-pages/page-unde
 import { SupplierDetailsComponent } from '../../pages/main-pages/user-profiles/supplier-details/supplier-details.component';
 import { ChcfmbDetailsComponent } from '../../pages/main-pages/user-profiles/chcfmb-details/chcfmb-details.component';
 import {ViewAllNotificationsComponent} from '../../pages/view-all-notifications/view-all-notifications.component';
+import {DistrictListComponent} from '../../pages/district-list/district-list.component';
 
 export const AuthLayoutRoutes: Routes = [
 
@@ -26,7 +27,7 @@ export const AuthLayoutRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   //{ path: 'home', component: HomeDummyComponent },
   { path: 'products/:val/:searchType', component: ProductsListComponent },
-  //{ path: 'products', component: ProductsListComponent },
+  {path:'dist/:val/:searchType', component:DistrictListComponent},
   { path: 'farmer-register', component: FarmerRegisterComponent },
   { path: 'fpo-register', component: FpoRegisterComponent },
   { path: 'bye-seller-register', component: ByerSellRegisterComponent },

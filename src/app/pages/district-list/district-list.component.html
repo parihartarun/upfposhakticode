@@ -1,0 +1,42 @@
+<div class="row header-back">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-center">
+            <div class="radio form-check-inline">
+                <label class="form-check-label"><input type="radio" class="form-check-input" [(ngModel)]="model.prop" name="prop" value="A">FPO Details</label>
+            </div>
+            <div class="radio form-check-inline">
+                <label class="form-check-label"><input type="radio" class="form-check-input" [(ngModel)]="model.prop" name="prop" value="B">Input Suppliers</label>
+            </div>
+            <div class="radio form-check-inline">
+                <label class="form-check-label"><input type="radio" class="form-check-input" [(ngModel)]="model.prop" name="prop" value="C">CHC FMB</label>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row" *ngIf="model.prop === 'A'">
+    <div class="col-md-12">
+        <app-data-table tableClass="table table-striped table-bordered table-hover"  [data]="data.fpoDetails" [options]="options"
+        [columns]="columns">
+          </app-data-table>
+    </div>
+</div>
+
+<div class="row" *ngIf="model.prop === 'B'">
+    <div class="col-md-12">
+        <app-data-table tableClass="table table-striped table-bordered table-hover"  [data]="data.inputSupplierDetails" [options]="options"
+        [columns]="columns2">
+          </app-data-table>
+    </div>
+</div>
+
+<div class="row" *ngIf="model.prop === 'C'">
+    <div class="col-md-12">
+        <app-data-table tableClass="table table-striped table-bordered table-hover"  [data]="data.chcFmbDetails" [options]="options"
+        [columns]="columns3">
+          </app-data-table>
+    </div>
+</div>
+
