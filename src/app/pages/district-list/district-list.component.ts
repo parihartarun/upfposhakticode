@@ -67,7 +67,7 @@ export class DistrictListComponent implements OnInit {
     // CHC FMB Details  
     this.columns3 =[
       {key:'district_name',title:"District1"},
-      {key:'chc_fmb_name',title:"CHC FMB Name"},
+      {key:'chc_fmb_name',title:"CHC/FMB"},
       {key:'email',title:"Email"},
       {key:'mobile_number',title:"Mobile"},
       {key:'machineries',title:"Machinary"},

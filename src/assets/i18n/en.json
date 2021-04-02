@@ -28,6 +28,7 @@
   "Company":"Company",
   "Rent":"Rent",
   "Search": "Search",
+  "Additional Services":"Additional Services",
   "Services/ Products": "Services/ Products",
   "Shri. Yogi Adityanath": "Shri. Yogi Adityanath",
   "Honble Chief Minister": "Hon'ble Chief Minister",
@@ -796,6 +797,7 @@
   "Fetch from UP AgriPardashi":"Fetch from UP AgriPardashi",
   "IFSC Code should be 11 digit":"IFSC Code should be 11 digit",
   "Total Machinaries":"Total Machinaries",
+  "Machinaries":"Machinaries",
   "Total Number of Indents":"Total Number of Indents",
   "Total Number of Indents by crop":"Total Number of Indents by crop",
   "Go Back":"Go Back"
