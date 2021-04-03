@@ -591,10 +591,10 @@
                 </div>
                 <ng-template #otherRole1>
                   <div class="row mt-2">
-                      <div class="col-12 d-flex justify-content-between">
-                        <button class="mx-0 btn btn-sm btn-success" disabled
-                          (click)="open(mymodal)">{{'viewdetails' | translate}}</button>
-                        <button class="mx-0 btn btn-sm btn-primary" (click)="openFour($event,mymodalMach,product)" type="button"
+                      <div class="col-12 d-flex justify-content-end">
+                        <!--button class="mx-0 btn btn-sm btn-success" disabled
+                          (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
+                        <button class="mx-0 btn btn-indent btn-primary" (click)="openFour($event,mymodalMach,product)" type="button"
                           style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                       </div>
                   </div>
@@ -798,9 +798,9 @@
     
     <ng-template #mymodal let-modal>
 
-      <div *ngIf="isLoggeIn">
+      <div *ngIf="isLoggeIn && isAllowed">
         <div class="modal-header">
-          <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
+          <h3 class="modal-title text-center" id="modal-basic-crop">{{'Indent Form'|  translate}}</h3>
           <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
             (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">×</span>
@@ -903,6 +903,21 @@
           </form>
         </div>
       </div>
+
+        <div *ngIf="isLoggeIn && !isAllowed">
+          <div class="modal-header">
+            <h3 class="modal-title text-center" id="modal-basic-crop">{{'Restricted'|  translate}}</h3>
+            <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+              (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body mt-1 pt-1">
+              <p>{{'You are not authorized to create an Indent' |translate}}</p>
+              <button class="btn btn-primary" (click)="modal.close('Close click')">{{'close'|translate}}</button>
+          </div>
+        </div>
+   
       <div *ngIf="!isLoggeIn">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Welcome to FPO Shakti!' | translate}}</h3>
@@ -1051,7 +1066,7 @@
     <!--Input Suppliers Insecticide Modal Input-->
     <ng-template #mymodalInput let-modal2>
 
-      <div *ngIf="isLoggeIn">
+      <div *ngIf="isLoggeIn && isAllowed">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
           <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
@@ -1157,6 +1172,21 @@
           </form>
         </div>
       </div>
+
+      <div *ngIf="isLoggeIn && !isAllowed">
+        <div class="modal-header">
+          <h3 class="modal-title text-center" id="modal-basic-crop">{{'Restricted'|  translate}}</h3>
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+            (click)="modal2.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body mt-1 pt-1">
+            <p>{{'You are not authorized to create an Indent' |translate}}</p>
+            <button class="btn btn-primary" (click)="modal2.close('Close click')">{{'close'|translate}}</button>
+        </div>
+      </div>
+
       <div *ngIf="!isLoggeIn">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Welcome to FPO Shakti!' | translate}}</h3>
@@ -1174,7 +1204,7 @@
     <!--Start of Fertilizer Indent Form-->
     <ng-template #mymodalFert let-modal3>
 
-      <div *ngIf="isLoggeIn">
+      <div *ngIf="isLoggeIn && isAllowed">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
           <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
@@ -1274,6 +1304,21 @@
           </form>
         </div>
       </div>
+
+      <div *ngIf="isLoggeIn && !isAllowed">
+        <div class="modal-header">
+          <h3 class="modal-title text-center" id="modal-basic-crop">{{'Restricted'|  translate}}</h3>
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+            (click)="modal3.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body mt-1 pt-1">
+            <p>{{'You are not authorized to create an Indent' |translate}}</p>
+            <button class="btn btn-primary" (click)="modal3.close('Close click')">{{'close'|translate}}</button>
+        </div>
+      </div>
+
       <div *ngIf="!isLoggeIn">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Welcome to FPO Shakti!' | translate}}</h3>
@@ -1291,7 +1336,7 @@
      <!--Start of Seed Indent Form-->
      <ng-template #mymodalSeed let-modal4>
 
-      <div *ngIf="isLoggeIn">
+      <div *ngIf="isLoggeIn && isAllowed">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
           <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
@@ -1387,6 +1432,20 @@
           </form>
         </div>
       </div>
+      <div *ngIf="isLoggeIn && !isAllowed">
+        <div class="modal-header">
+          <h3 class="modal-title text-center" id="modal-basic-crop">{{'Restricted'|  translate}}</h3>
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+            (click)="modal4.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body mt-1 pt-1">
+            <p>{{'You are not authorized to create an Indent' |translate}}</p>
+            <button class="btn btn-primary" (click)="modal4.close('Close click')">{{'close'|translate}}</button>
+        </div>
+      </div>
+
       <div *ngIf="!isLoggeIn">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Welcome to FPO Shakti!' | translate}}</h3>
@@ -1404,7 +1463,7 @@
      <!--Start of Machinary Input Sup Indent Form-->
      <ng-template #mymodalMach let-modal5>
 
-      <div *ngIf="isLoggeIn">
+      <div *ngIf="isLoggeIn  && isAllowed">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
           <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
@@ -1512,6 +1571,19 @@
           </form>
         </div>
       </div>
+      <div *ngIf="isLoggeIn && !isAllowed">
+        <div class="modal-header">
+          <h3 class="modal-title text-center" id="modal-basic-crop">{{'Restricted'|  translate}}</h3>
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+            (click)="modal5.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body mt-1 pt-1">
+            <p>{{'You are not authorized to create an Indent' |translate}}</p>
+            <button class="btn btn-primary" (click)="modal5.close('Close click')">{{'close'|translate}}</button>
+        </div>
+      </div>
       <div *ngIf="!isLoggeIn">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Welcome to FPO Shakti!' | translate}}</h3>
@@ -1529,7 +1601,7 @@
      <!-- Start of Machinary CHC Indent Form-->
      <ng-template #mymodalMachCHC let-modal6>
 
-      <div *ngIf="isLoggeIn">
+      <div *ngIf="isLoggeIn && isAllowed">
         <div class="modal-header">
           <h3 class="modal-title text-center">{{'Indent Form'|  translate}}</h3>
           <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
@@ -1635,6 +1707,19 @@
                 class="btn btn-login btn-product-search btn-primary my-4" (click)="saveMachinaryCHCSuppliers()">{{'Send'|translate}}</button>
             </div>
           </form>
+        </div>
+      </div>
+      <div *ngIf="isLoggeIn && !isAllowed">
+        <div class="modal-header">
+          <h3 class="modal-title text-center" id="modal-basic-crop">{{'Restricted'|  translate}}</h3>
+          <button type="button" class="close" aria-label="Close" [disabled]="indentloading"
+            (click)="modal6.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body mt-1 pt-1">
+            <p>{{'You are not authorized to create an Indent' |translate}}</p>
+            <button class="btn btn-primary" (click)="modal6.close('Close click')">{{'close'|translate}}</button>
         </div>
       </div>
       <div *ngIf="!isLoggeIn">
