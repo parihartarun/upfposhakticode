@@ -15,6 +15,12 @@ export class FpoService {
     }));
   }
 
+  getFpoByDistrict(distId){
+    return this.http.get<any>(this._url + `api/fpos/getFpoByDistrict/`+distId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   getDepartmentDashboardData(data){
     return this.http.post<any>(this._url + `departmentDashboard/getDeptDashBoardData/`, data).pipe(map((res: any) => {
       return res;

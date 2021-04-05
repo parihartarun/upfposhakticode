@@ -22,12 +22,14 @@ import { element } from 'protractor';
 })
 export class ProductsListComponent implements AfterViewInit, OnInit {
   isLoggeIn = false;
+  isAllowed = false; // check for usertype
   currentfpoid: number;
   showFilter: any;
   submitted = false;
   title = 'appBootstrap';
   loading: boolean = false;
   closeResult: string;
+  userRole:any;
   serachProduct: [];
   dummysearchval: string = ''
   routerParameter = '';
@@ -177,7 +179,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       if (param) {
         this.parval = param.val;
         this.parsearchType = param.searchType;
-        this.filterParams.val = param.val;
+        this.filterParams.val = param.val.trim();
         this.filterParams.in = param.searchType;
         this.selectedDropdown = param.searchType;
         this.dummysearchval = param.val;
@@ -271,8 +273,13 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   fetchnewData() {
     this.clearAllFilters();
     this.selectedDropdown = this.filterParams.in;
+    console.log("Selected Drop",this.selectedDropdown)
+    if(this.selectedDropdown === 'districts'){
+      this._rouetr.navigate(['/dist',this.filterParams.val.trim(),this.filterParams.in]);
+      return;
+    }
     this.searchData();
-    this._rouetr.navigate(['/products', this.filterParams.val, this.filterParams.in]);
+    this._rouetr.navigate(['/products', this.filterParams.val.trim(), this.filterParams.in]);
   }
   ngAfterViewInit(): void {
     
@@ -293,22 +300,26 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
-
-      this._fpoService.getfpoDetialById(item.fpoid).subscribe(f => {
-        this.fpoDetail = f;
-        console.log(this.fpoDetail);
-        this.createIndentForm(this.currentitem);
-
-
-      })
-      this.modalService.open(content, { ariaLabelledBy: item.fpoid }).result.then((result) => {
-
-        this.closeResult = `Closed with: ${result}`;
-      }, (reason) => {
-        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        this.submitted = false;
-      });
-
+      this.isAllowed = true;
+      this.userRole = localStorage.getItem('userRole');
+      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole == 'ROLE_CHCFMB'){
+          this.isAllowed = false;
+      }else{
+        this._fpoService.getfpoDetialById(item.fpoid).subscribe(f => {
+          this.fpoDetail = f;
+          console.log(this.fpoDetail);
+          this.createIndentForm(this.currentitem);
+  
+        })
+      }  
+        this.modalService.open(content, { ariaLabelledBy: item.fpoid }).result.then((result) => {
+  
+          this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          this.submitted = false;
+        });
+      
 
     }
     else {
@@ -345,13 +356,18 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
+      this.isAllowed = true;
+      this.userRole = localStorage.getItem('userRole');
+      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole == 'ROLE_CHCFMB'){
+          this.isAllowed = false;
+      }else{
+          this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
+            this.inpSupDetail = f;
+            console.log("InpSup Detail",this.inpSupDetail);
+            this.createIndentFormInputSup(this.currentitem);
 
-      this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
-        this.inpSupDetail = f;
-        console.log("InpSup Detail",this.inpSupDetail);
-        this.createIndentFormInputSup(this.currentitem);
-
-      })
+          })
+      }
       this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
 
         this.closeResult = `Closed with: ${result}`;
@@ -387,14 +403,18 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
-
-      this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
-        this.inpSupDetail = f;
-        console.log("InpSup Detail",this.inpSupDetail);
-        console.log("Current Item",this.currentitem);
-        this.createIndentFormFertilizer(this.currentitem);
-
-      })
+      this.isAllowed = true;
+      this.userRole = localStorage.getItem('userRole');
+      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole == 'ROLE_CHCFMB'){
+          this.isAllowed = false;
+      }else{
+        this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
+          this.inpSupDetail = f;
+          console.log("InpSup Detail",this.inpSupDetail);
+          console.log("Current Item",this.currentitem);
+          this.createIndentFormFertilizer(this.currentitem);
+           })
+      }
       this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
 
         this.closeResult = `Closed with: ${result}`;
@@ -428,14 +448,19 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
+      this.isAllowed = true;
+      this.userRole = localStorage.getItem('userRole');
+      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole == 'ROLE_CHCFMB'){
+          this.isAllowed = false;
+      }else{
+        this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
+          this.inpSupDetail = f;
+          console.log("InpSup Detail",this.inpSupDetail);
+          console.log("Current Item",this.currentitem);
+        this.createIndentFormSeed(this.currentitem);
 
-      this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
-        this.inpSupDetail = f;
-        console.log("InpSup Detail",this.inpSupDetail);
-        console.log("Current Item",this.currentitem);
-      this.createIndentFormSeed(this.currentitem);
-
-      })
+        })
+      }
       this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
 
         this.closeResult = `Closed with: ${result}`;
@@ -468,23 +493,29 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
-      if(this.role ==='ROLE_INPUTSUPPLIER'){
-        this._inpSupService.getSupplierProfileData(item.vendorid).subscribe(f => {
-          this.inpSupDetail = f;
-          console.log("InpSup Detail",this.inpSupDetail);
-          console.log("Current Item",this.currentitem);
-          this.createIndentformMachinary(this.currentitem);
-  
-        })
-      }
-      if(this.role ==='ROLE_CHCFMB'){
-        this._chcfmbService.getCHCSupplierProfileData(item.vendorid).subscribe(f => {
-          this.chcSupDetail = f;
-          console.log("CHCSup Detail",this.chcSupDetail);
-          console.log("Current Item",this.currentitem);
-         this.createIndentformMachinaryCHC(this.currentitem);
-        })
-      } 
+      this.isAllowed = true;
+      this.userRole = localStorage.getItem('userRole');
+      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole == 'ROLE_CHCFMB'){
+          this.isAllowed = false;
+      }else{
+            if(this.role ==='ROLE_INPUTSUPPLIER'){
+              this._inpSupService.getSupplierProfileData(item.vendorid).subscribe(f => {
+                this.inpSupDetail = f;
+                console.log("InpSup Detail",this.inpSupDetail);
+                console.log("Current Item",this.currentitem);
+                this.createIndentformMachinary(this.currentitem);
+        
+              })
+            }
+            if(this.role ==='ROLE_CHCFMB'){
+              this._chcfmbService.getCHCSupplierProfileData(item.vendorid).subscribe(f => {
+                this.chcSupDetail = f;
+                console.log("CHCSup Detail",this.chcSupDetail);
+                console.log("Current Item",this.currentitem);
+              this.createIndentformMachinaryCHC(this.currentitem);
+              })
+            } 
+       }
       this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
 
         this.closeResult = `Closed with: ${result}`;

@@ -42,7 +42,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">{{"Father's/ Husband's Name" | translate}}</label>
-                    <input formControlName="guardianName" type="text" id="father-Husband-name" class="form-control form-control-alternative">
+                    <input readonly formControlName="guardianName" type="text" id="father-Husband-name" class="form-control form-control-alternative">
                     <div *ngIf="submitted && formControls.guardianName.errors" class="text-danger">
                       <div *ngIf="formControls.guardianName.errors.required">{{"Father's/ Husband's Name is required" | translate}}</div>
                     </div>

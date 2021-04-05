@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
     })
     var $this = this;
     $this.departmentService.getAllCircluarUpload().subscribe(c => {
-      console.log(c);
+     // console.log(c);
       $this.circluar = c
     })
     setInterval(function () {
@@ -85,8 +85,17 @@ export class HomeComponent implements OnInit {
     location.reload();
 
   }
+  startSearch(){
+    //this.data['searchValue'] = this.searchValue;
+    this.data['searchType'] = this.searchType;  
+    if(this.data['searchType'] === 'districts'){
+      this.route.navigate(['/dist', this.data['searchValue'], this.data['searchType']]);  
+      return;
+    }
+    this.route.navigate(['/products', this.data['searchValue'], this.data['searchType']]);
+  }
   selectValue() {
-    this.data.searchValue = this.searchValue;
+    this.data.searchValue = this.searchValue.trim();
   }
   mobileHeader() {
   }

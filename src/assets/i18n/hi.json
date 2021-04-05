@@ -27,6 +27,7 @@
   "Place":"स्थान",
   "FPO": "एफ.पी. ओ",
   "Search": "खोजें",
+  "Additional Services":"अतिरिक्त सेवाएं",
   "Services/ Products": "सेवाएँ / उत्पाद",
   "Shri. Yogi Adityanath": "श्री योगी आदित्यनाथ",
   "Honble Chief Minister": "माननीय मुख्यमंत्री",
@@ -83,7 +84,7 @@
   "FPO Name:": "एफपीओ का नाम:",
   "State:": "राज्य:",
   "District:": "जिला:",
-  "CHC/FMB": "CHC/FMB",
+  "CHC/FMB": "सीएचसी / एफएमबी",
   "View FPOs on Map": "एफपीओ को मानचित्र पर देखें",
   "Connect with buyers and exporters": "उपज के खरीदारों और निर्यातकों के साथ जुड़े",
   "Get information about FPO registration": "एफपीओ पंजीकरण के बारे में जानकारी प्राप्त करें",
@@ -96,6 +97,7 @@
   "Terms and Conditions": "संदर्भ और शर्ते",
   "Disclaimer": "डिस्क्लेमर",
   "Help": "सहायता",
+  "You are not authorized to create an Indent":"आप इंडेंट बनाने के लिए अधिकृत नहीं हैं",
   "footerText1": "इस वेब साइट का कंटेंट राज्य कृषि निदेशालय उत्तर प्रदेश कृषि भवन, लखनऊ द्वारा प्रकाशित एवं संचालित किया जाता है।",
   "footerText2": "इस वेबसाइट के बारे में किसी भी प्रश्न के लिए, कृपया वेब सूचना प्रबंधक से संपर्क करें।",
   "footerText3": "अंतिम नवीनीकृत दिनांक : 23-07-2020",
@@ -513,6 +515,7 @@
   "status is required": "स्थिति आवश्यक है",
   "Update Status": "अपडेट स्थिति",
   "close": "बंद",
+  "Restricted":"वर्जित",
   "View": "देखें",
   "Department Comments": "विभाग की टिप्पणी",
   "department comments is required": "विभाग की टिप्पणी आवश्यक है",
@@ -813,6 +816,8 @@
   "Contact Details":"सम्पर्क करने का विवरण",
   "Status":"स्थिति",
   "Total Machinaries":"कुल मशीन",
+  "Machinaries":"मशीनरी",
   "Total Number of Indents":"कुल संकेतक की संख्या",
-  "Total Number of Indents by crop":"फसल के हिसाब से कुल संकेतक"
+  "Total Number of Indents by crop":"फसल के हिसाब से कुल संकेतक",
+  "Go Back":"वापस जाओ"
 }

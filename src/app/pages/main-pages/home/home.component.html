@@ -219,7 +219,7 @@
                     <option value="seed">{{'Seeds' | translate }}</option>
                     <option value="fmb">{{'machinery' | translate }}</option>
                     <option value="fertilizer">{{'Fertilizers' | translate }}</option>
-                    <!-- <option value="district">{{'District1' | translate }}</option> -->
+                    <option value="districts">{{'District1' | translate }}</option>
                     <!-- <option value="fpo_name">{{'FPO' | translate }}</option> -->
                     <!-- <option value="services">{{'Services/ Products' | translate }}</option> -->
 
@@ -227,7 +227,8 @@
                 </div>
               </div>
               <div class="col-md-2 mb-4" style="padding: 0px;">
-                <a [routerLink]="['/products',searchValue,searchType]" routerLinkActive="active">
+                <a  [routerLink]="" (click)="startSearch()" style="cursor:pointer;"> 
+                <!--a [routerLink]="['/products',searchValue,searchType]" routerLinkActive="active"-->
                   <input type="button" value="🔍 {{'Search' | translate}}" class="form-control-feedback btn-warning"
                     placeholder="{{'searchPlaceHolder'| translate}}" style="width: 100%; pointer-events: all;">
                 </a>

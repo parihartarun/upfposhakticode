@@ -283,9 +283,8 @@ export class LandDetailsComponent implements OnInit {
     console.log(); 
     if(registrationNumber.upBSMId != null){
       this.getFarmerDetailFarmerformUpPardarshi(registrationNumber.upBSMId);
-    }else{
-      //this.getFarmerDetails(farmer.currentTarget.value);
     }
+    this.getFarmerDetails(farmer.currentTarget.value);
   }
 
   getFarmerDetailFarmerformUpPardarshi(registrationNumber) {
@@ -304,7 +303,7 @@ export class LandDetailsComponent implements OnInit {
     this.productionService.getFarmerDetailsForCropSowing(farmerId).subscribe(response => {
       console.log(response);
       if(response != null){
-        this.landDetailForm.controls.land_area.patchValue(response.land_area);
+        //this.landDetailForm.controls.land_area.patchValue(response.land_area);
         this.landDetailForm.controls.guardianName.patchValue(response.parantsName);
       }
     },

@@ -127,6 +127,7 @@ import { ChcfmbDetailsComponent } from './pages/main-pages/user-profiles/chcfmb-
 import { ViewAllNotificationsComponent } from './pages/view-all-notifications/view-all-notifications.component';
 import { ListFilterPipe } from './pages/view-all-notifications/list-filter.pipe';
 import { TermsConditionComponent } from './pages/footer-content/terms-condition/terms-condition.component';
+import { DistrictListComponent } from './pages/district-list/district-list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -261,7 +262,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SupplierDetailsComponent,
     ChcfmbDetailsComponent,
     ViewAllNotificationsComponent,
-    ListFilterPipe, 
+    ListFilterPipe,
+    DistrictListComponent, 
 
   ],
   exports: [

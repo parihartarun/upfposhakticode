@@ -59,15 +59,13 @@ export class IndentComponent implements OnInit {
   }
 
   getIdent() {
-    
     this.loading = true;
-    this.indents = [ ],
     // localStorage.setItem('userRole', response.userRole);
     //localStorage.setItem('masterId', response.masterId);
     this.userRole = localStorage.getItem('userRole');
     this.masterId = localStorage.getItem('masterId');
     
-        if (this.userRole == 'ROLE_FPC') {  
+    if (this.userRole == 'ROLE_FPC') {  
       this.fpoService.getIndentByFpoId(this.masterId).subscribe(data=>{
         this.indents = data;
         this.loading = false;
@@ -75,6 +73,7 @@ export class IndentComponent implements OnInit {
 
     }  else {
       this.fpoService.getIndentByUserId(this.masterId).subscribe(data=>{
+        console.log(data);
         this.indents = data;
         this.loading = false;
       })
