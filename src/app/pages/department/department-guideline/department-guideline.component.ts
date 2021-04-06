@@ -73,7 +73,6 @@ export class DepartmentGuidelineComponent implements OnInit {
       return;
     }
     else {
-
       this.checkfileFormat = false;
     }
   }
@@ -86,7 +85,6 @@ export class DepartmentGuidelineComponent implements OnInit {
       return;
     }
     else {
-
       this.checkfileFormat = false;
     }
   }
@@ -106,7 +104,7 @@ export class DepartmentGuidelineComponent implements OnInit {
 
   addGuideline() {
     this.guidelineForm.markAllAsTouched();
-    console.log(this.docRadio);
+    console.log(this.guidelineForm.value);
     let invalidForm = false;
     if(this.docRadio == ''){
       this.docError = true;
@@ -122,6 +120,7 @@ export class DepartmentGuidelineComponent implements OnInit {
         invalidForm = true;
       }
     }
+    console.log(this.fileToUpload, this.fileToHindiUpload);
 
     if (this.guidelineForm.valid && invalidForm == false) {
       const formData: FormData = new FormData();

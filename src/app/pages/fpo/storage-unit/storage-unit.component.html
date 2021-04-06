@@ -59,7 +59,7 @@
                       <label class="custom-control-label" for="packagingmachinescheck">{{'Packaging machines' | translate}}</label>
                     </div>
                     <div *ngIf="submitted && formControls.fascilities.errors" class="text-danger">
-                      <div *ngIf="formControls.fascilities.errors.required">{{'facilities is required' | translate}}</div>
+                      <div *ngIf="formControls.fascilities.errors.required">{{'Facilities are required' | translate}}</div>
                     </div>  
                   </div>
                 </div>
@@ -134,7 +134,7 @@
                 <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateStrotageUnit()">
                   {{'Save' | translate}}
                 </button>
-                <button class="btn btn-warning text-right" (click)="reset()">{{'Reset' | translate}}</button>
+                <button type="button" class="btn btn-warning text-right" (click)="resetForm()">{{'Reset' | translate}}</button>
               </div>
             </div>
           </form>

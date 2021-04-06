@@ -95,7 +95,7 @@ export class WarehouseComponent implements OnInit {
       formData.append("latitude", this.warehouseForm.get('latitude').value)
       formData.append("longitude", this.warehouseForm.get('longitude').value)
       formData.append("seed_processing", this.warehouseForm.get('seed_processing').value)
-      formData.append("facilities", JSON.stringify(this.warehouseForm.get('facilities').value))
+      formData.append("facilities", this.warehouseForm.get('facilities').value.join(','))
       formData.append("type", this.warehouseForm.get('type').value)
       this.departmentService.updateWarehouse(this.editabileId, formData).subscribe((res: any) => {
         if (res == true || res) {

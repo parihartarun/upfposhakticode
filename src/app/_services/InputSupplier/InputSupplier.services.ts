@@ -29,7 +29,7 @@ export class InputSupplierService {
     }
 
     editinputsupplier(data){
-    return  this.http.put<any>(this._url+`api/v1/InputSupplier/editInputSupplier/`+data.id,data).pipe(map((res:any)=>{
+    return  this.http.put<any>(this._url+`api/v1/InputSupplier/editInputSupplier/`+data.inputSupplierId,data).pipe(map((res:any)=>{
       return res;
     }));
   }

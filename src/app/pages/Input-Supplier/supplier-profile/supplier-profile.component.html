@@ -96,7 +96,10 @@
                                 <label class="input-label">{{'Input Supplier Type'|translate}} <span
                                         class="required">*</span></label>
                                 <div class="input-group input-group-alternative" >
-                                    <input class="form-control" type="text" formControlName="inputSupplierType" readonly>
+                                    <select readonly disabled class="form-control" formControlName="inputSupplierType" (change)="selectInputSupplierType($event)">
+                                        <option value="">{{'Select Input Supplier Type'|translate}}</option>
+                                        <option *ngFor="let ist of inputSupplierTypes" [value]="ist.id">{{ist.name}}</option>
+                                    </select>
                                 </div>
                                 <div *ngIf="submitted && formControls.inputSupplierType.errors" class="text-danger">
                                     <div *ngIf="formControls.inputSupplierType.errors.required">

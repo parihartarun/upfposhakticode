@@ -55,12 +55,10 @@ export class StorageUnitComponent implements OnInit {
     this.getDistricts();
   }
 
-  reset(){
+  resetForm(){
+    this.submitted = false;
     this.edit = false;
     this.storageUnitForm.reset();
-    this.storageUnitForm.markAsPristine();
-    this.storageUnitForm.markAsUntouched();
-    this.submitted = false;
   }
 
   prepareString(str:string,appendValue:string){
@@ -83,8 +81,6 @@ export class StorageUnitComponent implements OnInit {
     }else{
       districtId = this.storageUnitForm.get("distId").value;
     }
-    console.log(districtId);
-
     this.storageunitservice.getDsitrictById(districtId).subscribe(res=>{
       this.storageUnitForm.patchValue({
         stateId: res.state_id, 
@@ -139,17 +135,17 @@ export class StorageUnitComponent implements OnInit {
     this.getDistricts();
     this.storageUnitForm = this.formBuilder.group({
       storageType: [equipment.storageType, [Validators.required]],
-      fascilities: ['', [Validators.required]],
+      fascilities: [''],
       storageCapacity: [equipment.storageCapacity, [Validators.required]],
       isseedprocessingunit: [equipment.isseedprocessingunit, [Validators.required]],
-      distId: [equipment.distId , [Validators.required]],
-      blockId: [equipment.blockId, [Validators.required]],
+      distId: [equipment.distId],
+      blockId: [equipment.blockId],
       stateId:[equipment.stateId],
-      address: [equipment.address, [Validators.required]],
-      washingfacility:[false, [Validators.required]],  
-      sortingmachines:[false, [Validators.required]], 
-      gradingmachines:[false, [Validators.required]], 
-      packagingmachines:[false, [Validators.required]],
+      address: [equipment.address],
+      washingfacility:[false],  
+      sortingmachines:[false], 
+      gradingmachines:[false], 
+      packagingmachines:[false],
       fpoRefId:localStorage.getItem('masterId'),
       masterId:localStorage.getItem('masterId'),
       id:[equipment.collectionId],
@@ -186,7 +182,7 @@ export class StorageUnitComponent implements OnInit {
       console.log(response);
       this.toastr.success('Storage unit updated successfully.');
       this.edit = false;
-      this.reset();
+      this.resetForm();
       this.getStorageUnits();
     },
       err => {
@@ -253,7 +249,7 @@ export class StorageUnitComponent implements OnInit {
     this.storageunitservice.addStrotageUnit(finalData).subscribe(response => {
       console.log(response);
       this.toastr.success('Storage unit added successfully.');
-      this.reset();
+      this.resetForm();
       this.getStorageUnits();
     },
       err => {
