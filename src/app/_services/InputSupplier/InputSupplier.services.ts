@@ -34,6 +34,13 @@ export class InputSupplierService {
     }));
   }
 
+  getFpoFertilizer(data: any){
+    return this.http.post<any>(this._url + 'inputsupplier/fertilizer', data).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  
+
   getSupplierProfileData(masterId){
     return  this.http.get<any>(this._url+`api/InputSupplier/profile/inputsupplier/${masterId}`).pipe(map((res:any)=>{
       return res;
@@ -77,6 +84,12 @@ export class InputSupplierService {
 
   addseed(formdata) {
     return this.http.post<any>(this._url + 'inputsupplier/seed/', formdata).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  addFpoSeed(formdata){
+    return this.http.post<any>(this._url + 'inputsupplier/seed', formdata).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -179,6 +192,12 @@ addMachinery(formdata) {
   }));
 }
 
+addFPOMachinery(formdata){
+  return this.http.post<any>(this._url + 'inputsupplier/machinery', formdata).pipe(map((res: any) => {
+    return res;
+  }));
+}
+
 mtype()
 {
   return this.http.get<any>(this._url + 'inputsupplier/machinery/equipmenttype/getall').pipe(map((res:any)=>{
@@ -224,6 +243,12 @@ getallinsecticide(masterId){
 
 uploadFileinsecticide(file: any) {
   return this.http.post<any>(this._url + 'inputsupplier/insecticide/download/', file).pipe(map((res: any) => {
+    return res;
+  }));
+}
+
+addFpoInsecticide(FormData){
+  return this.http.post<any>(this._url + 'inputsupplier/insecticide', FormData).pipe(map((res: any) => {
     return res;
   }));
 }

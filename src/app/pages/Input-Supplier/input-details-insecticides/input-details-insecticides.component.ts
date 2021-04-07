@@ -21,6 +21,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
   id = null;
   isEdit = false;
   p:number = 1;
+  userRole: string;
 
   constructor(private inputinsectservice: InputSupplierService,
     private fb: FormBuilder,
@@ -29,7 +30,8 @@ export class InputDetailsInsecticidesComponent implements OnInit {
   ngOnInit(): void {
     this.types();
     this.getallinsecticidesdata();
-
+    this.inputid = localStorage.getItem('masterId');
+    this.userRole = localStorage.getItem('userRole');
     this.insectForm = this.fb.group({
       cib_rc_issuedate: [''],
       cib_rc_number: [''],
@@ -60,6 +62,30 @@ export class InputDetailsInsecticidesComponent implements OnInit {
 
 
   addinsecticides() {
+    console.log('>>>role', this.userRole);
+    
+   if(this.userRole == 'ROLE_FPC'){
+    this.submitted = true;
+    if (this.insectForm.invalid) {
+      return;
+    }     
+    let model = this.insectForm.value;
+    const formData: FormData = new FormData();
+    formData.append('file', this.fileToUpload);
+    formData.append('cib_rc_issuedate', this.insectForm.value.cib_rc_issuedate);
+    formData.append('cib_rc_number', this.insectForm.value.cib_rc_number);
+    formData.append('insecticide_type_id', this.insectForm.value.insecticide_type_id);
+    formData.append('quantity', this.insectForm.value.quantity);
+    formData.append('manufacturer_name', this.insectForm.value.manufacturer_name);
+    formData.append('role', localStorage.getItem('roleRefId'));
+    formData.append("vendor_id", localStorage.getItem('masterId'));
+    this.inputinsectservice.addFpoInsecticide(formData).subscribe(res => {
+      this.toastr.success('Added Successfully.');
+      this.submitted = false;
+      this.insectForm.reset();
+      this.getallinsecticidesdata();
+    });
+   }else{
     this.submitted = true;
     if (this.insectForm.invalid) {
       return;
@@ -79,6 +105,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
       this.insectForm.reset();
       this.getallinsecticidesdata();
     });
+   }
   }
 
 

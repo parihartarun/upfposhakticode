@@ -194,12 +194,78 @@
             {{'Upload Photographs' | translate}}
           </a>
         </li>
-        <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
-          <a routerLinkActive="active" [routerLink]="['fpo/services']" class="nav-link">
+
+        <li  *ngIf="userRole == 'ROLE_FPC'" class="nav-item" >
+          <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="list-group-item list-group-item-action flex-column align-items-start nav-link">
+              <a class="d-flex w-100 justify-content-start align-items-center ">
+                  <span class="fa fa-dashboard fa-fw mr-3">
+                     <i class="ni fa fa-archive text-white"></i>
+                  </span> 
+                  <span class="menu-collapsed ">
+                    {{'Service/Products' | translate}}
+                  </span>
+                  <span class="submenu-icon ml-auto"></span>
+                </a>
+          </a>
+          <!-- Submenu content -->
+          <div id='submenu1' class="collapse sidebar-submenu">
+            <li [routerLink]="['input-machinery']">
+              <a href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
+                  <i class="fa fa-university text-white"></i>
+                  {{'Machinery Bank' | translate}}
+              </a>
+            </li>
+            <li [routerLink]="['input-fertilizer']">
+              <a href="javascript:void(0);" class="list-group-item list-group-item-action nav-link ">
+                <i class="fa fa-university text-white"></i>
+                  {{'Fertilizers' | translate}}
+              </a>
+            </li>
+            <li [routerLink]="['input-insect']">
+              <a href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
+                <i class="fa fa-university text-white"></i>
+                  {{'Insecticides' | translate}}
+            </a>
+            </li> 
+            <li [routerLink]="['input-seed']">
+              <a href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
+                <i class="fa fa-university text-white"></i>
+                  {{'Seeds' | translate}}
+            </a>
+            </li> 
+            <li [routerLink]="['fpo/services']">
+              <a href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
+                <i class="fa fa-university text-white"></i>
+                  {{'Others' | translate}}
+            </a>
+            </li>  
+              
+          </div>
+              
+      </li>
+        <!-- <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
+          <a routerLinkActive="active" class="nav-link">
             <i class="ni fa fa-archive text-white"></i>
             {{'Service/Products' | translate}}
           </a>
-        </li>
+          <ul>
+            <li [routerLink]="['input-machinery']">
+                <a href="javascript:void(0);">Machinery Bank</a>
+            </li>
+            <li [routerLink]="['input-fertilizer']">
+              <a href="javascript:void(0);">Fertilizers Bank</a>
+            </li>
+            <li [routerLink]="['input-insect']">
+              <a href="javascript:void(0);">Insecticides Bank</a>
+            </li>
+            <li [routerLink]="['input-seed']">
+              <a href="javascript:void(0);">Seeds Bank</a>
+            </li>
+            <li [routerLink]="['fpo/services']">
+              <a href="javascript:void(0);">Others</a>
+            </li>
+         </ul>
+        </li> -->
         <li *ngIf="userRole != 'ROLE_BUYERSELLER' && userRole != 'ROLE_MIN' && userRole != 'ROLE_FARMER' && userRole == 'ROLE_FPC' && userRole != 'ROLE_CHCFMB' && userRole != 'ROLE_INPUTSUPPLIER'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['fpo/complaints']" class="nav-link">
             <i class="ni fa fa-archive text-white"></i>

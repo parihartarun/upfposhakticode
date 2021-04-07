@@ -16,23 +16,12 @@ export class ServicesComponent implements OnInit {
   myInputVariable: ElementRef;
   checkfileFormat = false;
   serviceForm: FormGroup;
-  fertilizerForm: FormGroup;
-  machineryForm: FormGroup;
-  insectForm: FormGroup;
-  seedForm: FormGroup;
   submitted = false;
   services: Array<any> = [];
   p: number = 1;
   edit = false;
   fileToUpload: File = null;
   baseUrl: string;
-
-  public fertilizer = true;
-  public insectices = false;
-  public machinery = false;
-  public seeds = false;
-  public others= false;
-
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,47 +39,6 @@ export class ServicesComponent implements OnInit {
       file: ['', [Validators.required]],
       id: ['']
     });
-
-    this.fertilizerForm = this.formBuilder.group({
-      fertilizer_grade: ['', [Validators.required]],
-      type_id: ['', [Validators.required]],
-      file: [''],
-      manufacturer_name: ['', [Validators.required]],
-      name_id: ['', [Validators.required]],
-      input_supplier_id: localStorage.getItem('masterId'),
-    });
-
-    this.machineryForm = this.formBuilder.group({
-      manufacturer_name: [''],
-      quantity: ['', [Validators.required]],
-      file: ['', [Validators.required]],
-      machinery_name_id: ['', [Validators.required]],
-      mchinery_type_id: ['', [Validators.required]],
-      input_supplier_id: localStorage.getItem('masterId'),
-      specification: ['']
-    });
-
-    this.seedForm = this.formBuilder.group({
-      crop_id: ['', Validators.required],
-      file: ['', [Validators.required]],
-      quantity: ['', Validators.required],
-      variety_id: ['', Validators.required],
-      certification_no: [''],
-      company: [''],
-      valid_from: [''],
-      valid_to: [''],
-    });
-
-    this.insectForm = this.formBuilder.group({
-      cib_rc_issuedate: [''],
-      cib_rc_number: [''],
-      insecticide_type_id: ['', [Validators.required]],
-      file: ['', [Validators.required]],
-      manufacturer_name: ['', [Validators.required]],
-      quantity: ['', [Validators.required]],
-      input_supplier_id: localStorage.getItem('masterId')
-    });
-
 
     this.getServices();
   }
@@ -215,29 +163,6 @@ export class ServicesComponent implements OnInit {
     this.serviceForm.reset();
   }
 
-  showForm(tab){
-    this.fertilizer = false;
-    this.insectices = false;
-    this.machinery = false;
-    this.seeds = false;
-    this.others =false;
-
-    if(tab == 'Fertilizer'){
-      this.fertilizer = true;
-    }
-    else if(tab == 'Insectices'){
-      this.insectices = true;
-    }
-    else if(tab == 'Machinery'){
-      this.machinery = true;
-    }
-   else if(tab == 'Seeds'){
-      this.seeds = true;
-    }
-    else if(tab == 'others'){
-      this.others = true;
-    }
-  }
 
   get formControls() {
     return this.serviceForm.controls;
