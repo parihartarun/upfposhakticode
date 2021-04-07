@@ -122,7 +122,8 @@
             font-weight: 700;
             content: "\f105";
             margin-left: auto;
-            color: $text-muted;
+            margin-top: -20px !important;
+            color: #fff;
             transition: $transition-base;
         } // Expanded
         &[aria-expanded="true"] {
