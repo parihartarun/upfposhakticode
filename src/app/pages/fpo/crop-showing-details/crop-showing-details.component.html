@@ -291,8 +291,8 @@
               <div class="form-group">
                 <div class="form-group mb-3">
                   <label class="input-label">{{'Farmer Name' | translate}}<span class="required">*</span></label>
-                  <div disabled class="input-group input-group-alternative">
-                    <select readonly formControlName="farmerId" class="form-control" (change)="getFarmerDetails($event.target.value)">
+                  <div class="input-group input-group-alternative">
+                    <select disabled readonly formControlName="farmerId" class="form-control" (change)="getFarmerDetails($event.target.value)">
                       <option value="" selected>{{'Select Farmer Name' | translate}}</option>
                       <option value="{{farmer.farmerId}}" *ngFor="let farmer of farmers">{{farmer.farmerName}}</option>
                     </select>
@@ -312,7 +312,7 @@
               <div class="form-group">
                 <label class="form-control-label" for="input-email">{{'Season'|translate}} <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <select readonly formControlName="seasonRefName" class="form-control">
+                  <select disabled readonly formControlName="seasonRefName" class="form-control">
                     <option value="">{{'Select Season'|translate}}</option>                    
                     <option value="{{season.seasonId}}" *ngFor="let season of seasons">{{season.season}}</option>
                   </select>
@@ -336,32 +336,26 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <div class="form-group mb-3">
-                          <label class="form-control-label">{{'Crop' | translate}}<span class="required">*</span></label>
-                          <div class="input-group input-group-alternative">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"></span>
+                            <label class="form-control-label" for="input-email">{{'Crop'|translate}} <span class="required">*</span></label>
+                            <div class="input-group input-group-alternative">
+                              <select formControlName="cropRefName" class="form-control" >
+                                <option value="" selected>{{'Select Crop'|translate}}</option>                    
+                                <option value="{{crop.cropId}}" *ngFor="let crop of crop_list">{{crop.cropName}}</option>
+                              </select>
                             </div>
-                            <select formControlname="cropRefName"  class="form-control"  (change)="getVarieties($event.target.value)">
-                              <option [value]="">{{'Select Crop' | translate}}</option>
-                              <option *ngFor="let crop of crop_list" [value]="crop.cropId" >{{crop.cropName}}</option>
-                            </select>
-                          </div>
                         </div>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <div class="form-group mb-3">
-                          <label class="form-control-label">{{'Crop variety' | translate}}<span class="required">*</span></label>
-                          <div class="input-group input-group-alternative">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"></span>
+                          <label class="form-control-label" for="input-email">{{'Crop variety'|translate}} <span class="required">*</span></label>
+                            <div class="input-group input-group-alternative">
+                              <select formControlName="verietyRef" class="form-control" >
+                                <option value="" selected>{{'Select variety'|translate}}</option>                    
+                                <option value="{{variety.verietyId}}" *ngFor="let variety of varieties">{{variety.verietyName}}</option>
+                              </select>
                             </div>
-                            <select formControlname="verietyRef" class="form-control">
-                              <option [value]="">{{'Select variety' | translate}}</option>
-                              <option *ngFor="let variety of varieties" [value]="variety.verietyId">{{variety.verietyName}}</option>
-                            </select>
-                          </div>
                         </div>
                       </div>
                     </div>

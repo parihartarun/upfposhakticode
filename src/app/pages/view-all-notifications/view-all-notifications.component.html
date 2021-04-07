@@ -33,7 +33,7 @@
                   <tbody>
                     <tr *ngFor="let p of tabData | listFilter: searchTerm  | slice: (page-1) * pageSize : page * pageSize; index as i">
                       <td>
-                        {{p.id}}
+                        {{(page-1) * pageSize + i + 1}}
                       </td>
                       <td>
                         {{p.description}}

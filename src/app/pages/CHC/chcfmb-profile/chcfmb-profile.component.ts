@@ -41,7 +41,7 @@ export class ChcfmbProfileComponent implements OnInit {
       distRefId: ['', Validators.required],
       blockRefId: ['', Validators.required],
       villageRefId: ['', Validators.required],
-      contactPerson: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-_]{6,20}")]],
+      contactPerson: ['', [Validators.required]],
       mobileNumber: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       firmRegistraionNumber: ['', Validators.required],
@@ -108,6 +108,7 @@ export class ChcfmbProfileComponent implements OnInit {
 
   updateProfile() {
     this.submitted = true;
+    console.log(this.chcprofileForm);
     if (this.chcprofileForm.invalid) {
       return;
     }

@@ -18,6 +18,7 @@ export class SupplierProfileComponent implements OnInit {
   blocks = [];
   villages = [];
   inputSupplierData: any;
+  inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
 
   constructor(private fb: FormBuilder,
     private api: AuthService,
@@ -64,7 +65,7 @@ export class SupplierProfileComponent implements OnInit {
       // this.selectDistrict(this.inputSupplierData.district_id);
       // this.selectBlock(this.inputSupplierData.block_id);
       // this.selectVillage(this.inputSupplierData.villageRefId)
-     
+     console.log(response.inputSupplier);
       this.profileForm.patchValue({
         inputSupplierId: this.inputSupplierData.input_supplier_id,
         inputSupplierName: this.inputSupplierData.input_supplier_name,
@@ -116,6 +117,7 @@ export class SupplierProfileComponent implements OnInit {
     }
     
     let user = this.profileForm.value;
+    console.log(user);
     this.supplierService.editinputsupplier(user).subscribe(response => {
       if (response.inputSupplierId != '') {
         this.submitted = false;
