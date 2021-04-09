@@ -59,7 +59,8 @@ import { ChhfmbDashboardComponent } from '../../pages/CHC/chhfmb-dashboard/chhfm
 import { BuyerDashboardComponent } from '../../pages/buyer-treder/buyer-dashboard/buyer-dashboard.component';
 import { SupplierProfileComponent } from '../../pages/Input-Supplier/supplier-profile/supplier-profile.component';
 import { ChcfmbProfileComponent } from '../../pages/CHC/chcfmb-profile/chcfmb-profile.component';
-
+import {IndentRaisedComponent} from '../../pages/fpo/indent-raised/indent-raised.component';
+import {IndentForFulfillmentComponent} from '../../pages/fpo/indent-for-fulfillment/indent-for-fulfillment.component'
 export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/dashboard', component: FpoDashboardComponent },
   { path: 'fpo/user-profile', component: UserProfileComponent },
@@ -78,6 +79,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'fpo/crop-showing-details', component: CropShowingDetailsComponent },
   { path: 'fpo/services', component: ServicesComponent },
   { path: 'fpo/complaints', component: ComplaintsComponent },
+  { path:'fpo/indent-raised',component:IndentRaisedComponent},
+  {path:'fpo/indent-fullfillment',component:IndentForFulfillmentComponent},
   { path: 'department/dashboard', component: DepartmentDashboardComponent },
   { path: 'department/reports', component: DepartmentReportComponent },
   { path: 'department/production-report', component: DepartmentProductionReportComponent },

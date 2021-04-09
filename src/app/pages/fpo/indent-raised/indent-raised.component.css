@@ -1,0 +1,13 @@
+.l-height-3{
+    line-height: 3;
+}
+
+.onHover:hover{
+    /* border: 10px solid #ffd600; */
+   box-shadow:12px 12px 21px 1px #ffd600;
+   cursor: pointer;
+}
+
+.zIndex{
+    z-index: -1;
+}

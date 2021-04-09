@@ -79,6 +79,8 @@ export class FpoService {
   constructor(private http: HttpClient) {
     this._url = environment.baseUrl;
   }
+  
+
   //======================== apis added by kaustubh =====================================
   getAllFpo() {
     return this.http.get<any>(this._url + 'api/fpos').pipe(map((res: any) => {
@@ -126,6 +128,22 @@ export class FpoService {
       return res;
     }));
   }
+   //------api for getting data for indent fullfillment----------------------
+
+   getFulfillIndent(params){
+    return this.http.post<any>(this._url + 'inputSupplierIndent/getFulfillIndent', { ...params }).pipe(map((res: any) => {
+      console.log("Response FPOService==>",res)
+      return res;
+    }));
+  }
+
+  getRaisedIndent(params){
+    return this.http.post<any>(this._url + 'inputSupplierIndent/getRaisedIndent', { ...params }).pipe(map((res: any) => {
+      console.log("Respone for FPORaised ==>",res)
+      return res;
+    }));
+  }
+
   //=====================================================================================
   getBoardMembers(masterId) {
     return this.http.get<any>(this._url + 'api/fpos/boardmember/' + masterId).pipe(map((res: any) => {

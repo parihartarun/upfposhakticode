@@ -278,5 +278,33 @@ deleteinsecticide(data) {
   }
 
   //-------------------------------Profile details---------------------------/
+  
+  // -------------------------------Update Indent for Indnet Fullfillment----------------------------/
+
+  updateSeedIndent(data) {
+    return this.http.put<any>(this._url + `inputSupplierIndent/seedIndent/updateStatus/${data.enqId}`, data).pipe(map((res: any) => {
+        return res;
+        }));
+  }
+
+  updateInsecticideIndent(data){
+      return this.http.put<any>(this._url + `inputSupplierIndent/insecticides/updateStatus/${data.enqId}`, data).pipe(map((res: any) => {
+        return res;
+        })); 
+  }
+
+  updateFertilizerIndent(data){
+    return this.http.put<any>(this._url + `inputSupplierIndent/fertilizer/updateStatus/${data.enqId}`, data).pipe(map((res: any) => {
+      return res;
+      })); 
+  }
+
+  updateMachinaryIndent(data){
+    return this.http.put<any>(this._url + `inputSupplierIndent/machinery/updateStatus/${data.enqId}`, data).pipe(map((res: any) => {
+      return res;
+      })); 
+  }
+
+
 
 }

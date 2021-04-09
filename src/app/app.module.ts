@@ -128,6 +128,8 @@ import { ViewAllNotificationsComponent } from './pages/view-all-notifications/vi
 import { ListFilterPipe } from './pages/view-all-notifications/list-filter.pipe';
 import { TermsConditionComponent } from './pages/footer-content/terms-condition/terms-condition.component';
 import { DistrictListComponent } from './pages/district-list/district-list.component';
+import { IndentRaisedComponent } from './pages/fpo/indent-raised/indent-raised.component';
+import { IndentForFulfillmentComponent } from './pages/fpo/indent-for-fulfillment/indent-for-fulfillment.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -263,7 +265,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ChcfmbDetailsComponent,
     ViewAllNotificationsComponent,
     ListFilterPipe,
-    DistrictListComponent, 
+    DistrictListComponent,
+    IndentRaisedComponent,
+    IndentForFulfillmentComponent, 
 
   ],
   exports: [

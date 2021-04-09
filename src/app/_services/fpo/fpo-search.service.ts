@@ -79,5 +79,5 @@ export class FpoSearchService {
       this.fertilizerTypesObserver.next(res);
     })
   }
-
+  
 }

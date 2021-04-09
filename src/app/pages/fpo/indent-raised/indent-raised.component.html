@@ -1,0 +1,382 @@
+<div class="zIndex">
+<div class="header pt-md-8">
+    <div class="container-fluid">
+         
+    </div>
+</div>
+
+        
+    <div class="container-fluid"> 
+        <div class="d-flex">
+            <ng-template #customLoadingTemplate>
+              
+          </ng-template>
+  
+            <ngx-loading [show]="loading" [config]="{backdropBackgroundColour: '#ffffff', 
+            backdropBorderRadius: '1px',
+            primaryColour: '#926E01', 
+            secondaryColour: '#926E01', 
+            tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading>
+          </div>
+                <!-- Card stats -->
+                <div class="row mb-2">
+                        
+                    <div class="offset-xl-1 col-xl-2 col-lg-6 "  *ngIf="userRole == 'ROLE_FPC'">
+                        <div class="card card-stats mb-3 mb-xl-0 onHover" (click)="showHiddenTable('A')" title="{{'Click to see Crops table' | translate}}">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">{{'Crops' | translate}}</h5>
+                                        <span class="h2 font-weight-bold mb-0">{{totCrops| number}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-6"  >
+                        <div class="card card-stats mb-3 mb-xl-0 onHover"  (click)="showHiddenTable('B')" title="{{'Click to see Fertilizers table' | translate}}">
+                            <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">{{'Fertilizers' | translate}}</h5>
+                                <span class="h2 font-weight-bold mb-0">{{fertTot | number: '1.0-0'}}</span>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-6"  *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_INPUTSUPPLIER'">
+                        <div class="card card-stats mb-3 mb-xl-0 onHover"  (click)="showHiddenTable('C')" title="{{'Click to see Seeds table' | translate}}">
+                            <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">{{'Seeds' | translate}}</h5>
+                                <span class="h2 font-weight-bold mb-0">{{seedTot | number: '1.0-0'}}</span>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-6"  *ngIf="userRole == 'ROLE_FPC' ||  userRole == 'ROLE_INPUTSUPPLIER' ">
+                        <div class="card card-stats mb-3 mb-xl-0 onHover"  (click)="showHiddenTable('D')" title="{{'Click to see Insecticides table' | translate}}">
+                            <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                <h5 class="card-title text-uppercase text-muted mb-0">{{'Insecticides' | translate}}</h5>
+                                <span class="h2 font-weight-bold mb-0">{{insTot | number: '1.0-0'}}</span>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-6"  *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_INPUTSUPPLIER' || userRole == 'ROLE_CHCFMB'">
+                        <div class="card card-stats mb-4 mb-xl-0 onHover"  (click)="showHiddenTable('E')" title="{{'Click to see Machinary table' | translate}}">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5 class="card-title text-uppercase text-muted mb-0">{{'Machinary' | translate}}</h5>
+                                        <span class="h2 font-weight-bold mb-0">{{machTot | number}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+              
+            
+    </div> 
+    <div class="container-fluid">
+       
+            <div class="form-group row mb-2 mt-5">
+               
+                
+                    <label for="sel1" class="offset-xs-3 col-xs-2 offset-md-3 col-md-2 l-height-3 text-right">{{'Status' | translate}}:</label>
+                    <select class="form-control col-xs-5 col-md-5" id="sel1" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
+                        <option value="">All</option>
+                        <option value="active">Active</option>
+                        <option value="reject">Rejected</option>
+                        <option value="fulfilled">Fullfilled</option>
+                    </select>
+              
+            </div>
+        
+    </div>   
+ <div class="container-fluid"> 
+    <div *ngIf="showTable.val === 'A'">
+        <h2>{{ 'Indent Raised Crops' |translate}}</h2>
+        <table class="table align-items-center table-flush" >
+            <thead class="thead-light">
+              <tr>
+                <!--<th scope="col">Your Full Name</th>
+                <th scope="col">Email Address</th>-->
+                <th scope="col">{{'SR. NO'|translate}}</th>
+                <th scope="col">{{'indentnumber'|translate}}</th>
+                <th scope="col">{{'Crop Name'|translate}}</th>
+                <th scope="col">{{'Cropveriety'|translate}}</th>
+                <th scope="col">{{'Quantity Required'|translate}}</th>
+                <th scope="col">{{'Fulfillment Date'|translate}}</th>
+                <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
+                <th scope="col">{{'status'|translate}}</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let indent of indents | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
+              
+            <td>
+                {{i+1}}
+            </td>
+             <td>
+                 {{indent.enquieryNumber}}
+             </td>
+             <td>
+                 {{indent.cropMaster.cropName}}
+             </td>
+             <td>
+                 {{indent.cropVeriety.verietyName}}
+             </td>
+             <td>
+                 {{indent.quantity}}
+             </td>
+             
+             <td>
+                 {{indent.fulfillmentDate}}
+             </td>
+             <td>
+                 {{indent.deliveryAddress}}
+             </td>
+              <td>
+                 {{indent.status}}
+             </td>        
+              </tr>
+             
+            </tbody>
+          </table>
+    </div>
+    <div *ngIf="showTable.val === 'B'">
+        <h2>{{ 'Indent Raised Fertilizers' |translate}}</h2>
+        <table class="table align-items-center table-flush" >
+            <thead class="thead-light">
+              <tr>
+                <!--<th scope="col">Your Full Name</th>
+                <th scope="col">Email Address</th>-->
+                <th scope="col">{{'SR. NO'|translate}}</th>
+                <th scope="col">{{'Fertilizer NAME'|translate}}</th>
+                <th scope="col">{{'Fertilizer Grade'|translate}}</th>
+                <th scope="col">{{'Created By'|translate}}</th>
+                <th scope="col">{{'Contact Details'|translate}}</th>
+                <th scope="col">{{'Created on'|translate}}</th>
+                <th scope="col">{{'Enquiry Id'|translate}}</th>
+                <th scope="col">{{'status'|translate}}</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let indent of indents3 | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
+             
+                <td>
+                    {{i+1}}
+                </td>
+                <td>
+                   {{indent.fertilizer_name}}
+                </td>
+                <td>
+                    {{indent.fertilizer_grade}}
+                </td>
+                <td>
+                    {{indent.createdBy}}
+                </td>
+                
+                <td>
+                   {{indent.contact_details}}
+                </td>
+                <td>
+                    {{indent.create_date_time}}
+                </td>
+                <td>
+                    {{indent.enqId}}
+                </td>
+                 <td>
+                    {{indent.status}}
+                </td>         
+              </tr>
+             
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="showTable.val === 'C'">
+        <h2>{{ 'Indent Raised Seeds' |translate}}</h2>
+        <table class="table align-items-center table-flush" >
+            <thead class="thead-light">
+              <tr>
+                <!--<th scope="col">Your Full Name</th>
+                <th scope="col">Email Address</th>-->
+                <th scope="col">{{'SR. NO'|translate}}</th>
+                <th scope="col">{{'Crop NAME' | translate}}</th>
+                <th scope="col">{{"Variety Name" | translate}}</th>
+                <th scope="col">{{'Indent Qty' | translate}}</th>
+                <th scope="col">{{'Created By'|translate}}</th>
+                <th scope="col">{{'Contact Details'|translate}}</th>
+                <th scope="col">{{'Enquiry Id'|translate}}</th>
+                <th scope="col">{{'status'|translate}}</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let indent of indents2 | paginate: { itemsPerPage: 10, currentPage: p } let i=index"> 
+                <td>
+                    {{i+1}}
+                </td>
+                <td>
+                    {{indent.crop_name}}
+                </td>
+                <td>
+                    {{indent.varietyName}}
+                </td>
+                <td>
+                    {{indent.indentQty}}
+                </td>
+                <td>
+                    {{indent.createdBy}}
+                </td>
+                
+                <td>
+                   {{indent.contact_details}}
+                </td>
+                <td>
+                    {{indent.enqId}}
+                </td>
+                 <td>
+                    {{indent.status}}
+                </td>         
+              </tr>
+             
+            </tbody>
+        </table>    
+    </div>
+    <div *ngIf="showTable.val === 'D'">
+        <h2>{{'Indent Raised Insecticides' |translate}}</h2>
+        <table class="table align-items-center table-flush" >
+            <thead class="thead-light">
+              <tr>
+                <!--<th scope="col">Your Full Name</th>
+                <th scope="col">Email Address</th>-->
+                <th scope="col">{{'SR. NO'|translate}}</th>
+                <th scope="col">{{'Insecticide Type' | translate}}</th>
+                <th scope="col">{{"Insecticide Name" | translate}}</th>
+                <th scope="col">{{'Indent Qty' | translate}}</th>
+                <th scope="col">{{'Created By'|translate}}</th>
+                <th scope="col">{{'Contact Details'|translate}}</th>
+                <th scope="col">{{'Created on'|translate}}</th>
+                <th scope="col">{{'Enquiry Id'|translate}}</th>
+                <th scope="col">{{'status'|translate}}</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let indent of indents4 | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
+                <td>
+                        {{i+1}}
+                </td>
+                <td>
+                    {{indent.insecticide_type}}
+                 
+                </td>
+                <td>
+                   
+                    Sonapur
+                </td>
+                <td>
+                    {{indent.indentQty}}
+                
+                </td>
+                <td>
+                    {{indent.createdBy}}
+         
+                </td>
+                
+                <td>
+                    {{indent.contact_details}}
+           
+                </td>
+                <td>
+                    {{indent.create_date_time}}
+               
+                </td>
+                <td>
+                    {{indent.enqId}}
+                </td>
+                 <td>
+                    {{indent.status}}
+                
+                </td>         
+              </tr>
+             
+            </tbody>
+        </table>  
+    </div>
+    <div *ngIf="showTable.val === 'E'">
+        <h2>{{'Indent Raised Machinary' |translate}}</h2>
+        <table class="table align-items-center table-flush" >
+            <thead class="thead-light">
+              <tr>
+                <!--<th scope="col">Your Full Name</th>
+                <th scope="col">Email Address</th>-->
+                <th scope="col">{{'SR. NO'|translate}}</th>
+                <th scope="col">{{'Equipment NAME' | translate}}</th>
+                <th scope="col">{{"No. Of Days" | translate}}</th>
+                <th scope="col">{{'Indent Qty' | translate}}</th>
+                <th scope="col">{{'Created By'|translate}}</th>
+                <th scope="col">{{'Contact Details'|translate}}</th>
+                <th scope="col">{{'Created on'|translate}}</th>
+                <th scope="col">{{'Enquiry Id'|translate}}</th>
+                <th scope="col">{{'status'|translate}}</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let indent of indents5 | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
+                <td>
+                  {{i+1}}
+                </td>
+                <td>
+                   {{indent.equpment_name}}
+                </td>
+                <td>
+                   {{indent.no_of_days}}
+                </td>
+                <td>
+                   {{indent.indentQty}}
+                </td>
+                <td>
+                    {{indent.createdBy}}
+                </td>
+                
+                <td>
+                   {{indent.contact_details}}
+                </td>
+                <td>
+                    {{indent.create_date_time}}
+                </td>
+                <td>
+                    {{indent.enqId}}
+                </td>
+                 <td>
+                   {{indent.status}}
+                </td>         
+              </tr>
+             
+            </tbody>
+        </table> 
+    </div>
+    <div class="card-footer py-4">
+        <nav aria-label="..." class="text-right">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </nav>
+    </div>
+</div>  
+</div>
+
+  
+  
