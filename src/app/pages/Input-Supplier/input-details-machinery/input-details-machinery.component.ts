@@ -27,6 +27,7 @@ export class InputDetailsMachineryComponent implements OnInit {
   isEdit = false;
   machinerynamelist: any;
   p:number = 1;  
+  userRole: string;
 
   constructor(private inputmachineryservice: InputSupplierService,
     private fb: FormBuilder,
@@ -39,6 +40,8 @@ export class InputDetailsMachineryComponent implements OnInit {
     this.inputid = localStorage.getItem('masterId')
     this.mtype();
     this.Machinerydata();
+    this.inputid = localStorage.getItem('masterId');
+    this.userRole = localStorage.getItem('userRole');
     this.machineryForm = this.fb.group({
       manufacturer_name: [''],
       quantity: ['', [Validators.required]],
@@ -73,7 +76,9 @@ export class InputDetailsMachineryComponent implements OnInit {
   }
 
   addmachinery() {
-    this.submitted = true;
+    console.log('>>>role', this.userRole);
+    if(this.userRole == 'ROLE_FPC'){
+      this.submitted = true;
     if (this.machineryForm.invalid) {
       return;
     }      
@@ -97,6 +102,35 @@ export class InputDetailsMachineryComponent implements OnInit {
         this.toastr.error('Error!.');
       }
     });
+
+    }else{
+      this.submitted = true;
+      if (this.machineryForm.invalid) {
+        return;
+      }      
+      let model = this.machineryForm.value;
+      const formData: FormData = new FormData();
+      formData.append('file', this.fileToUpload);
+      formData.append('machinery_name_id', this.machineryForm.value.machinery_name_id);
+      formData.append('manufacturer_name', this.machineryForm.value.manufacturer_name);
+      formData.append('mchinery_type_id', this.machineryForm.value.mchinery_type_id);
+      formData.append('quantity', this.machineryForm.value.quantity);
+      formData.append('specification', this.machineryForm.value.specification);
+      formData.append("input_supplier_id ", localStorage.getItem('masterId'));
+      formData.append("role ", localStorage.getItem('userRole'))
+      this.inputmachineryservice.addFPOMachinery(formData).subscribe(res => {
+        if (res != '') {
+          this.toastr.success(' Added Succefully.');
+          this.submitted = false;
+          this.isEdit = false;
+          this.machineryForm.reset();
+          this.Machinerydata();
+        } else {
+          this.toastr.error('Error!.');
+        }
+      });
+    }
+    
   }
 
   editmachinery(data) {

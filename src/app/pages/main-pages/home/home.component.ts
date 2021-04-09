@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit {
       this.farmerDetails = h
     })
     this.api.getProductionDetails().subscribe(p => {
+      console.log(p);
       this.productionDetails = p
     })
     this._fpo.getAllFpo().subscribe(fpo => {

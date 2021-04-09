@@ -23,7 +23,6 @@ export class ServicesComponent implements OnInit {
   fileToUpload: File = null;
   baseUrl: string;
 
-
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
@@ -40,6 +39,7 @@ export class ServicesComponent implements OnInit {
       file: ['', [Validators.required]],
       id: ['']
     });
+
     this.getServices();
   }
 
@@ -162,6 +162,7 @@ export class ServicesComponent implements OnInit {
     this.edit = false;
     this.serviceForm.reset();
   }
+
 
   get formControls() {
     return this.serviceForm.controls;

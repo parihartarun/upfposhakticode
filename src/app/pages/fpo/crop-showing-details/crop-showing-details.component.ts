@@ -246,6 +246,7 @@ export class CropShowingDetailsComponent implements OnInit {
     });
     this.commonService.getCropsBySeasonId(data.season_ref).subscribe(
       response => {
+        console.log(response);
       this.crop_list = response;
     })
     this.getVarieties(data.crop_master_id);
@@ -265,11 +266,12 @@ export class CropShowingDetailsComponent implements OnInit {
       masterId:localStorage.getItem('masterId'),
     });
     setTimeout(()=>{    
+      console.log('s');
       this.cropSowingUpdateForm.patchValue({
         cropRefName:data.crop_master_id,
         verietyRef:data.veriety_ref
       });
-    }, 3000);
+    }, 1000);
   }
 
   updateSowingDetails(){

@@ -1,58 +1,74 @@
 <div class="header bg-gradient-danger pb-7 pt-5 pt-md-8">
-    <div class="container-fluid">
-    
-    </div>
+  <div class="container-fluid">
+  
   </div>
-  <!-- Page content -->
-  <div class="container-fluid mt--7 mp-7">
-    <!-- Table -->
-    <div class="row">
-      <div class="col">
-        <div class="card shadow">
-          <div class="card-header border-0">
-            <div class="row">
-              <div class="col-9">
-                <h3 class="mb-0">{{'Add Services/ Products' | translate}}</h3>
-              </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7 mp-7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <!-- Header -->
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="mb-0">{{'Services/Products Category' | translate}}</h3>
             </div>
           </div>
-          <div class="card-body">
-            <form [formGroup]="serviceForm">
-              <div class="pl-lg-4">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <input type="hidden" formControlName="id">
+        </div>
+          <div class="row">
+            <div class="col">
+              <div class="card-body">
+                <form [formGroup]="serviceForm">
+                  <div class="pl-lg-4">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <input type="hidden" formControlName="id">
 
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-username">{{'Services/ Products Name' | translate}}<span class="required">*</span></label>
-                      <input formControlName="servicename"  type="text" id="input-username" class="form-control form-control-alternative" >
-                      <div *ngIf="submitted && formControls.servicename.errors" class="text-danger">
-                        <div *ngIf="formControls.servicename.errors.required">{{'Services/ Products Name is required' | translate}}</div>
-                      </div> 
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-username">{{'Services/ Products description' | translate}}<span class="required">*</span></label>
-                      <textarea formControlName="descriptions"  class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
-                      <div *ngIf="submitted && formControls.descriptions.errors" class="text-danger">
-                        <div *ngIf="formControls.descriptions.errors.required">{{'Services/ Products description is required' | translate}}</div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-username">{{'Services/ Products Name' | translate}}<span class="required">*</span></label>
+                          <input formControlName="servicename"  type="text" id="input-username" class="form-control form-control-alternative" >
+                          <div *ngIf="submitted && formControls.servicename.errors" class="text-danger">
+                            <div *ngIf="formControls.servicename.errors.required">{{'Services/ Products Name is required' | translate}}</div>
+                          </div> 
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-first-name">
-                        {{'Upload Photo' | translate}} <span class="required">*</span>
-                      </label>
-                      <input #myInput formControlName="file" (change)="handleFileInput($event.target.files)" type="file" id="input-first-name" class="form-control form-control-alternative">
-                      <div #myInput *ngIf="submitted && formControls.file.errors" class="text-danger">
-                        <div *ngIf="formControls.file.errors.required">{{'File is required' | translate}}</div>
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-username">{{'Services/ Products description' | translate}}<span class="required">*</span></label>
+                          <textarea formControlName="descriptions"  class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
+                          <div *ngIf="submitted && formControls.descriptions.errors" class="text-danger">
+                            <div *ngIf="formControls.descriptions.errors.required">{{'Services/ Products description is required' | translate}}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-first-name">
+                            {{'Upload Photo' | translate}} <span class="required">*</span>
+                          </label>
+                          <input #myInput formControlName="file" (change)="handleFileInput($event.target.files)" type="file" id="input-first-name" class="form-control form-control-alternative">
+                          <div #myInput *ngIf="submitted && formControls.file.errors" class="text-danger">
+                            <div *ngIf="formControls.file.errors.required">{{'File is required' | translate}}</div>
 
+                          </div>
+                          <div *ngIf="checkfileFormat" class="text-danger">{{'only png,jpeg,jpg format is allow'| translate}}</div>
+                        </div>
                       </div>
-                      <div *ngIf="checkfileFormat" class="text-danger">{{'only png,jpeg,jpg format is allow'| translate}}</div>
+                    </div>  
+                    
+                    <div class="card-footer py-4 text-center">
+                      <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addService()">
+                        {{'Save' | translate}}
+                      </button>
+                      <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateService()">
+                        {{'Save' | translate}}
+                      </button>
+                      <button class="btn btn-warning text-right">{{'Reset' | translate}}</button>
                     </div>
                   </div>
+                  </form>
                 </div>  
                 
                 <div class="card-footer py-4 text-center">
@@ -62,82 +78,78 @@
                   <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateService()">
                     {{'Save' | translate}}
                   </button>
-                  <button class="btn btn-warning text-right">{{'Reset' | translate}}</button>
+                  <button class="btn btn-warning text-right" (click)="resetForm()">{{'Reset' | translate}}</button>
                 </div>
               </div>
-            </form>
           </div>
-        </div>
-      </div>
-    </div>
-    
-    <br/>
-    <!-- Table -->
-    <div class="row">
-      <div class="col">
-        <div class="card shadow">
-          <div class="card-header border-0">
-            <div class="row">
-              <div class="col-9">
-                <h3 class="mb-0">{{"Services/ Products" | translate}}</h3>
+          </div>
+          <!-- table -->
+          <div class="row">
+            <div class="col">
+              <div class="card shadow">
+                <div class="card-header border-0">
+                  <div class="row">
+                    <div class="col-9">
+                      <h3 class="mb-0">{{"Services/ Products" | translate}}</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">{{'SR. NO' | translate}}</th>
+                        <th scope="col">{{'Services/ Products Name' | translate}}</th>
+                        <th scope="col">{{'Services/ Products description' | translate}}</th>
+                        <th scope="col">{{"File" | translate}}</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let service of services | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                        <td>
+                          <input type="checkbox">
+                        </td>
+                        <td>
+                          {{(p-1) * 10 + i + 1}}
+                        </td>
+                        <td>
+                        {{service.servicename}}
+                        </td>
+                        <td>
+                          {{service.descriptions}}
+                        </td>
+                        <td>
+                          <a download href="{{service.filepath}}" target="_blank">
+                            <i style=" height:20px; width:30px"  class="fas fa-file"></i>
+                          </a>             
+                        </td>
+                        <td class="text-right">
+                          <div ngbDropdown placement="bottom-right">
+                            <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
+                              {{'Actions'|translate}}
+                            </a>
+                            <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                              <a class="dropdown-item" href="javascript:void(0)" (click)="editService(service)">{{'Edit'|translate}}</a>
+                              <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(service.id)">{{'Delete'|translate}}</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer py-4">
+                  <nav aria-label="..." class="text-right">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </nav>
+                </div>
               </div>
-              <!-- <div class="col-3 text-right">
-                <button class="btn btn-primary text-right">Add Member</button>
-              </div> -->
             </div>
           </div>
-          <div class="table-responsive">
-            <table class="table align-items-center table-flush">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">{{'SR. NO' | translate}}</th>
-                  <th scope="col">{{'Services/ Products Name' | translate}}</th>
-                  <th scope="col">{{'Services/ Products description' | translate}}</th>
-                  <th scope="col">{{"File" | translate}}</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let service of services | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
-                  <td>
-                    <input type="checkbox">
-                  </td>
-                  <td>
-                    {{(p-1) * 10 + i + 1}}
-                  </td>
-                  <td>
-                   {{service.servicename}}
-                   </td>
-                  <td>
-                    {{service.descriptions}}
-                  </td>
-                  <td>
-                    <a download href="{{service.filepath}}" target="_blank">
-                      <i style=" height:20px; width:30px"  class="fas fa-file"></i>
-                    </a>             
-                  </td>
-                  <td class="text-right">
-                    <div ngbDropdown placement="bottom-right">
-                      <a class="btn btn-sm btn-primary"  ngbDropdownToggle>
-                        {{'Actions'|translate}}
-                      </a>
-                      <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="editService(service)">{{'Edit'|translate}}</a>
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(service.id)">{{'Delete'|translate}}</a>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="card-footer py-4">
-            <nav aria-label="..." class="text-right">
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </nav>
-          </div>
-        </div>
+        
       </div>
     </div>
   </div>
+  <br/>

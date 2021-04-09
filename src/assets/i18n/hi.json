@@ -532,6 +532,7 @@
   "Seeds": "बीज",
   "Fertilizer": "उर्वरक",
   "Agri Equipment": "कृषि उपकरण",
+  "Services/Products Category":"सेवाएँ / उत्पाद श्रेणी",
   "Agri Equipment Bank": "किसान कृषि उपकरण बैंक",
   "Export": "निर्यात",
   "Organic Farming": "जैविक कृषि",
@@ -824,5 +825,6 @@
   "Machinaries":"मशीनरी",
   "Total Number of Indents":"कुल संकेतक की संख्या",
   "Total Number of Indents by crop":"फसल के हिसाब से कुल संकेतक",
-  "Go Back":"वापस जाओ"
+  "Go Back":"वापस जाओ",
+  "My FPO":"मेरे एफपीओ"
 }

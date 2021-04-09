@@ -53,7 +53,7 @@
                   {{'Update Photograph'|translate}}
                 </button>
                 <!-- <button type="submit" class="btn btn-yellow btn-primary my-4">Add Photograph</button> -->
-                <button class="btn btn-warning text-right">{{'Reset'|translate}}</button>
+                <button type="button" class="btn btn-warning text-right" (click)="resetForm()">{{'Reset'|translate}}</button>
               </div>            
             </div>
           </form>
@@ -92,7 +92,7 @@
                  {{photograph.description}}
                  </td>
                 <td>
-                  <a download href="{{photograph.filepath}}" target="_blank">
+                  <a download href="{{photograph.filePath}}" target="_blank">
                     <i style=" height:20px; width:30px"  class="fas fa-file"></i>
                   </a>
                 </td>
@@ -104,8 +104,7 @@
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
                       <a class="dropdown-item" href="javascript:void(0)" (click)="editPhotograph(photograph)">
                         {{'Edit'|translate}}</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(photograph.id)">{{'Delete'|translate
-                        }}
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="confirmDelete(photograph.id)">{{'Delete'|translate}}
                       </a>
                     </div>
                   </div>

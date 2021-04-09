@@ -23,6 +23,8 @@ export class InputDetailsSeedsComponent implements OnInit {
   id = null;
   isEdit = false;
   p:number=1;
+  userRole: string;
+  inputid: any;
 
   constructor(private fb: FormBuilder,
     private api: InputSupplierService,
@@ -32,6 +34,8 @@ export class InputDetailsSeedsComponent implements OnInit {
   ngOnInit(): void {
     this.getCropList();
     this.getAllSeeds();
+    this.inputid = localStorage.getItem('masterId');
+    this.userRole = localStorage.getItem('userRole');
     this.seedForm = this.fb.group({
       crop_id: ['', Validators.required],
       file: ['', [Validators.required]],
@@ -57,6 +61,8 @@ export class InputDetailsSeedsComponent implements OnInit {
   }
 
   getAllSeeds() {
+    console.log('>>>masterid', localStorage.getItem('masterId'));
+    
     this.api.getAllSeeds(localStorage.getItem('masterId')).subscribe((res) => {
       this.seeds = res;
       console.log(res, "seeddata");
@@ -64,7 +70,32 @@ export class InputDetailsSeedsComponent implements OnInit {
   }
 
   addseeds() {
-    this.submitted = true;
+    console.log('>>>role', this.userRole);
+    if(this.userRole == 'ROLE_FPC'){
+      this.submitted = true;
+    if (this.seedForm.invalid) {
+      return;
+    }
+    const formData: FormData = new FormData();
+    formData.append('file', this.fileToUpload);
+    formData.append('certification_no', this.seedForm.value.certification_no);
+    formData.append('company', this.seedForm.value.company);
+    formData.append('crop_id', this.seedForm.value.crop_id);
+    formData.append('quantity', this.seedForm.value.quantity);
+    formData.append('valid_from', this.seedForm.value.valid_from);
+    formData.append('valid_to', this.seedForm.value.valid_to);
+    formData.append('variety_id', this.seedForm.value.variety_id);
+    formData.append('role', localStorage.getItem('masterId'));
+    formData.append("vendor_id", localStorage.getItem('masterId'));
+    this.api.addFpoSeed(formData).subscribe(response => {
+        this.toastr.success('Seeds Added Succefully.');
+        this.submitted = false;
+        this.isEdit = false;
+        this.seedForm.reset();
+        this.getAllSeeds();
+    });
+    }else{
+      this.submitted = true;
     if (this.seedForm.invalid) {
       return;
     }
@@ -85,6 +116,7 @@ export class InputDetailsSeedsComponent implements OnInit {
         this.seedForm.reset();
         this.getAllSeeds();
     });
+    }
   }
 
   editseed(data) {

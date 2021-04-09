@@ -185,7 +185,8 @@ export class BoardMembersComponent implements OnInit {
     }
 
     this.memberForm.patchValue({
-      masterId:localStorage.getItem('masterId')
+      masterId:localStorage.getItem('masterId'),
+      updatedBy:localStorage.getItem('userRole'),
     });
     console.log(this.memberForm.value);
     this.api.addBoardMember(this.memberForm.value).subscribe(response => {

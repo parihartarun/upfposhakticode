@@ -30,6 +30,9 @@ export class DepartmentGuidelineComponent implements OnInit {
   docError:boolean = false;
   fileError:boolean=false;
   urlError:boolean=false;
+  englishFileUpload = false;
+  hindiFileUpload = false;
+  fileUploadError = false;
   docRadio = '';
   fileRadio = '';
   selectedLang = 'en';
@@ -66,6 +69,8 @@ export class DepartmentGuidelineComponent implements OnInit {
   }
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
+    this.englishFileUpload = true;
+    this.fileUploadError = false;
     if (!this.validateFile(files[0].name)) {
       this.checkfileFormat = true;
       this.fileToUpload = null;
@@ -73,11 +78,12 @@ export class DepartmentGuidelineComponent implements OnInit {
       return;
     }
     else {
-
       this.checkfileFormat = false;
     }
   }
   uploadHindi(files: FileList) {
+    this.hindiFileUpload = true;
+    this.fileUploadError = false;
     this.fileToHindiUpload = files.item(0);
     if (!this.validateFile(files[0].name)) {
       this.checkfileFormat = true;
@@ -86,7 +92,6 @@ export class DepartmentGuidelineComponent implements OnInit {
       return;
     }
     else {
-
       this.checkfileFormat = false;
     }
   }
@@ -106,7 +111,7 @@ export class DepartmentGuidelineComponent implements OnInit {
 
   addGuideline() {
     this.guidelineForm.markAllAsTouched();
-    console.log(this.docRadio);
+    console.log(this.guidelineForm.value);
     let invalidForm = false;
     if(this.docRadio == ''){
       this.docError = true;
@@ -120,8 +125,13 @@ export class DepartmentGuidelineComponent implements OnInit {
       if(this.fileRadio == ''){
         this.fileError = true;
         invalidForm = true;
-      }
+      }else if((this.selectedLang == 'en' && this.englishFileUpload != true) || (this.selectedLang == 'hi' && this.hindiFileUpload != true)){
+        invalidForm = true;
+        this.fileUploadError = true;
+      } 
     }
+
+    console.log(this.fileToUpload, this.fileToHindiUpload);
 
     if (this.guidelineForm.valid && invalidForm == false) {
       const formData: FormData = new FormData();

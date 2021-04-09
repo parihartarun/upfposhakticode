@@ -36,6 +36,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
   id = null;
   isEdit = false;
   p:number = 1;  
+  userRole: string;
 
 
   constructor(private fb: FormBuilder,
@@ -49,7 +50,8 @@ export class InputDetailsFertilizerComponent implements OnInit {
   ngOnInit(): void {
     this.fertilizertype();
     this.getallfertilizer();
-    this.inputid = localStorage.getItem('masterId')
+    this.inputid = localStorage.getItem('masterId');
+    this.userRole = localStorage.getItem('userRole');
     this.fertilizerForm = this.fb.group({
       fertilizer_grade: ['', [Validators.required]],
       type_id: ['', [Validators.required]],
@@ -87,12 +89,14 @@ export class InputDetailsFertilizerComponent implements OnInit {
     console.log(e);
   }
 
+
   getallfertilizer() {
-    this.inputid = localStorage.getItem('masterId')
-    this.inputsupplierfertiservice.getallfertilizer(this.inputid).subscribe((res) => {
-      console.log(res);
-      this.fertilizerDetails = res;
-    })
+      this.inputid = localStorage.getItem('masterId');
+      console.log('>>>get ID',  this.inputid);
+      this.inputsupplierfertiservice.getallfertilizer(this.inputid).subscribe((res) => {
+        console.log('get all',res);
+        this.fertilizerDetails = res;
+      })
   }
 
   fertilizertype() {
@@ -103,7 +107,10 @@ export class InputDetailsFertilizerComponent implements OnInit {
   }
 
   addfertilizer() {
-    this.submitted = true;
+    if(this.userRole == 'ROLE_FPC') {
+      console.log('>>>FPC');
+      
+      this.submitted = true;
     if (this.fertilizerForm.invalid) {
       return;
     }    
@@ -114,14 +121,42 @@ export class InputDetailsFertilizerComponent implements OnInit {
     formData.append('manufacturer_name', this.fertilizerForm.value.manufacturer_name);
     formData.append('type_id', this.fertilizerForm.value.type_id);
     formData.append('name_id', this.fertilizerForm.value.name_id);
-    formData.append("input_supplier_id ", localStorage.getItem('masterId'))
-    this.inputsupplierfertiservice.addfertilizer(formData).subscribe(res => {
+    formData.append('role', localStorage.getItem('roleRefId'));
+    formData.append("vendor_id", localStorage.getItem('masterId'));
+    this.inputsupplierfertiservice.getFpoFertilizer(formData).subscribe(res => {
+      console.log('>>>>>>res here', res);
+      
       this.toastr.success('Added Successfully.');
       this.submitted = false;
       this.isEdit = false;
       this.fertilizerForm.reset();
-      this.getallfertilizer();
+     this.getallfertilizer();
     });
+    }
+    else{
+      console.log('>>>Others');
+      
+      this.submitted = true;
+      if (this.fertilizerForm.invalid) {
+        return;
+      }    
+      let model = this.fertilizerForm.value;
+      const formData: FormData = new FormData();
+      formData.append('file', this.fileToUpload);
+      formData.append('fertilizer_grade', this.fertilizerForm.value.fertilizer_grade);
+      formData.append('manufacturer_name', this.fertilizerForm.value.manufacturer_name);
+      formData.append('type_id', this.fertilizerForm.value.type_id);
+      formData.append('name_id', this.fertilizerForm.value.name_id);
+      formData.append("input_supplier_id ", localStorage.getItem('masterId'))
+      this.inputsupplierfertiservice.addfertilizer(formData).subscribe(res => {
+        this.toastr.success('Added Successfully.');
+        this.submitted = false;
+        this.isEdit = false;
+        this.fertilizerForm.reset();
+        this.getallfertilizer();
+      });
+    }
+    
   }
 
   editfertilizer(data) {
