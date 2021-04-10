@@ -476,7 +476,7 @@
           tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading> -->
 
         </div>
-
+        
         <div class="row">
           <div class="col-lg-6 mb-4" *ngFor="let product of filteredData">
             <div class="card card-stats box_shadow card_2" *ngIf="selectedDropdown==='crop'">
@@ -536,9 +536,16 @@
                   </div>
               </div>
               <ng-template #otherRole>
-                <div class="changetopoint" routerLink="/supplier-details/{{product.vendorid}}">
-                  <h2>{{product.vendorname}}</h2>
+                <div *ngIf="product.role==='ROLE_INPUTSUPPLIER';else otherRole5">
+                    <div class="changetopoint" routerLink="/supplier-details/{{product.vendorid}}">
+                      <h2>{{product.vendorname}}</h2>
+                    </div>
                 </div>
+                <ng-template #otherRole5>
+                    <div class="changetopoint" routerLink="/fpo-details/{{product.vendorid}}">
+                      <h2>{{product.vendorname}}</h2>
+                    </div>
+                </ng-template>
               </ng-template>
               <div class="row" >
                 <div class="col-lg-4 col-sm-4">
@@ -579,17 +586,16 @@
                 </div>
               </div>
               
-                <div *ngIf="product.role==='ROLE_CHCFMB';else otherRole1">
+                <!--div *ngIf="product.role==='ROLE_CHCFMB';else otherRole1">
                   <div class="row mt-2">
                     <div class="col-12 d-flex justify-content-end">
-                      <!--button class="mx-0 btn btn-sm btn-success" disabled
-                        (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
+                      
                       <button class="mx-0 btn btn-indent btn-primary" (click)="openFour($event,mymodalMachCHC,product)" type="button"
                         style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                     </div>
                   </div>
-                </div>
-                <ng-template #otherRole1>
+                </div-->
+                <!--ng-template #otherRole1-->
                   <div class="row mt-2">
                       <div class="col-12 d-flex justify-content-end">
                         <!--button class="mx-0 btn btn-sm btn-success" disabled
@@ -598,15 +604,22 @@
                           style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                       </div>
                   </div>
-                </ng-template>
+                <!--/ng-template-->
               
             </div>
             <!---End of Machinery-->
             <!--Start of Seeds-->
             <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='seeds'">
-              <div class="changetopoint"routerLink="/supplier-details/{{product.inputsupplierid}}">
-                <h2>{{product.inputsupplier}}</h2>
-              </div>
+              <div *ngIf="product.role==='ROLE_INPUTSUPPLIER';else otherRole2">
+                  <div class="changetopoint"routerLink="/supplier-details/{{product.vendorid}}">
+                    <h2>{{product.vendorname}}</h2>
+                  </div>
+              </div> 
+              <ng-template #otherRole2>
+                <div class="changetopoint" routerLink="/fpo-details/{{product.vendorid}}">
+                  <h2>{{product.vendorname}}</h2>
+                </div>
+              </ng-template>  
               <div class="row" >
                 <div class="col-lg-4 col-sm-4">
                   <div class="gray_color1 d-flex justify-content-center">
@@ -654,12 +667,16 @@
             <!--End of Seeds-->
             <!--Start of Insecticide-->
             <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='insecticide'">
-               
-                    <div class="changetopoint"routerLink="/supplier-details/{{product.inputsupplierid}}">
-                      <h2>{{product.inputsupplier}}</h2>
+              <div *ngIf="product.role==='ROLE_INPUTSUPPLIER';else otherRole3">
+                    <div class="changetopoint"routerLink="/supplier-details/{{product.vendorid}}">
+                      <h2>{{product.vendorname}}</h2>
                     </div>
-                
-    
+               </div> 
+              <ng-template #otherRole3>
+                <div class="changetopoint" routerLink="/fpo-details/{{product.vendorid}}">
+                  <h2>{{product.vendorname}}</h2>
+                </div>
+              </ng-template>
               <div class="row" >
                 <div class="col-lg-4 col-sm-4">
                   <div class="gray_color1 d-flex justify-content-center">
@@ -684,11 +701,7 @@
                             <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Place'|translate}}:
                             </span><strong> {{product.district}}</strong>
                           </li>
-                          <li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Quantity1'|translate}}:
-                            </span><strong> {{product.quantity?product.quantity:'-'}}
-                              {{'quintal' | translate }}</strong>
-                          </li>
+                          
                         </ul>
                       </div>
                     </div>
@@ -707,9 +720,16 @@
             <!--End of Insecticide-->
             <!--Start of Fertilizer-->
             <div class="card card-stats box_shadow card_2" *ngIf="product.recordtype==='fertilizer'">
-              <div class="changetopoint" routerLink="/supplier-details/{{product.inputsupplierid}}">
-                <h2>{{product.inputsupplier}}</h2>
+              <div *ngIf="product.role==='ROLE_INPUTSUPPLIER';else otherRole4">
+                  <div class="changetopoint" routerLink="/supplier-details/{{product.vendorid}}">
+                    <h2>{{product.vendorname}}</h2>
+                  </div>
               </div>
+              <ng-template #otherRole4>
+                <div class="changetopoint" routerLink="/fpo-details/{{product.vendorid}}">
+                  <h2>{{product.vendorname}}</h2>
+                </div>
+              </ng-template>
               <div class="row" >
                 <div class="col-lg-4 col-sm-4">
                   <div class="gray_color1 d-flex justify-content-center">
@@ -913,7 +933,7 @@
             </button>
           </div>
           <div class="modal-body mt-1 pt-1">
-              <p>{{'You are not authorized to create an Indent' |translate}}</p>
+              <p>{{restrictMsg |translate}}</p>
               <button class="btn btn-primary" (click)="modal.close('Close click')">{{'close'|translate}}</button>
           </div>
         </div>
@@ -1098,11 +1118,11 @@
           <form role="form mt-1 p-1" [formGroup]="indentForm">
             <div class="row">
               <div class="col-3 text-sm text-bold">{{' Name'| translate}}:</div>
-              <div class="col-9 text-sm">{{inpSupDetail.inputSupplier.input_supplier_name}}</div>
+              <div class="col-9 text-sm">{{currentitem.vendorname}}</div>
             </div>
             <div class="row">
               <div class="col-3 text-sm text-bold">{{'Supplier Email1'|translate}}:</div>
-              <div class="col-9 text-sm ">{{inpSupDetail.inputSupplier.email}}</div>
+              <div class="col-9 text-sm ">{{currentitem.vendorEmail}}</div>
             </div>
             <div class="form-group mb-3">
 
@@ -1182,7 +1202,7 @@
           </button>
         </div>
         <div class="modal-body mt-1 pt-1">
-            <p>{{'You are not authorized to create an Indent' |translate}}</p>
+            <p>{{restrictMsg |translate}}</p>
             <button class="btn btn-primary" (click)="modal2.close('Close click')">{{'close'|translate}}</button>
         </div>
       </div>
@@ -1314,7 +1334,7 @@
           </button>
         </div>
         <div class="modal-body mt-1 pt-1">
-            <p>{{'You are not authorized to create an Indent' |translate}}</p>
+            <p>{{ restrictMsg |translate}}</p>
             <button class="btn btn-primary" (click)="modal3.close('Close click')">{{'close'|translate}}</button>
         </div>
       </div>
@@ -1368,11 +1388,11 @@
           <form role="form mt-1 p-1" [formGroup]="indentForm">
             <div class="row">
               <div class="col-4 text-sm text-bold">{{' Name'| translate}}:</div>
-              <div class="col-8 text-sm">{{inpSupDetail.inputSupplier.input_supplier_name}}</div>
+              <div class="col-8 text-sm">{{currentitem.vendorname}}</div>
             </div>
             <div class="row">
               <div class="col-4 text-sm text-bold">{{'Supplier Email'|translate}}:</div>
-              <div class="col-8 text-sm ">{{inpSupDetail.inputSupplier.email}}</div>
+              <div class="col-8 text-sm ">{{currentitem.email}}</div>
             </div>
             <div class="row">
               <div class="col-4 text-sm text-bold">{{'Crop Name'|translate}}:</div>
@@ -1441,7 +1461,7 @@
           </button>
         </div>
         <div class="modal-body mt-1 pt-1">
-            <p>{{'You are not authorized to create an Indent' |translate}}</p>
+            <p>{{restrictMsg |translate}}</p>
             <button class="btn btn-primary" (click)="modal4.close('Close click')">{{'close'|translate}}</button>
         </div>
       </div>
@@ -1495,11 +1515,11 @@
           <form role="form mt-1 p-1" [formGroup]="indentForm">
             <div class="row">
               <div class="col-4 text-sm text-bold">{{' Name'| translate}}:</div>
-              <div class="col-8 text-sm">{{inpSupDetail.inputSupplier.input_supplier_name}}</div>
+              <div class="col-8 text-sm">{{currentitem.vendorname}}</div>
             </div>
             <div class="row">
               <div class="col-4 text-sm text-bold">{{'Supplier Email'|translate}}:</div>
-              <div class="col-8 text-sm ">{{inpSupDetail.inputSupplier.email}}</div>
+              <div class="col-8 text-sm ">{{currentitem.email}}</div>
             </div>
             <div class="row">
               <div class="col-4 text-sm text-bold">{{'Machinary Name'|translate}}:</div>

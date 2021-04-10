@@ -24,7 +24,9 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   isLoggeIn = false;
   isAllowed = false; // check for usertype
   currentfpoid: number;
+  restrictMsg:string;
   showFilter: any;
+  currentUserId:any;
   submitted = false;
   title = 'appBootstrap';
   loading: boolean = false;
@@ -302,8 +304,13 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       this.isLoggeIn = true;
       this.isAllowed = true;
       this.userRole = localStorage.getItem('userRole');
-      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole == 'ROLE_CHCFMB'){
+      this.currentUserId = localStorage.getItem('masterId');
+      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole === 'ROLE_CHCFMB'){
           this.isAllowed = false;
+          this.restrictMsg = "You are not authorized to create an Indent";
+      }else if( this.currentUserId == item.fpoid){ 
+        this.isAllowed = false;
+        this.restrictMsg = "Not authorized to create indent on your own item";  
       }else{
         this._fpoService.getfpoDetialById(item.fpoid).subscribe(f => {
           this.fpoDetail = f;
@@ -351,24 +358,29 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     console.log("Selected Items =" + JSON.stringify(item));
     this.currentitem = item;
     this.indentloading = false;
-    this.currentfpoid = item.inputsupplierid;
+    this.currentfpoid = item.vendorid;
     this.indentForm = undefined
 
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
       this.isAllowed = true;
       this.userRole = localStorage.getItem('userRole');
-      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole == 'ROLE_CHCFMB'){
+      this.currentUserId = localStorage.getItem('masterId');
+      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole === 'ROLE_CHCFMB'){
           this.isAllowed = false;
+          this.restrictMsg = "You are not authorized to create an Indent";
+      }else if(this.currentUserId == item.vendorid){ 
+        this.isAllowed = false;
+        this.restrictMsg = "Not authorized to create indent on your own item";  
       }else{
-          this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
-            this.inpSupDetail = f;
-            console.log("InpSup Detail",this.inpSupDetail);
+         // this._inpSupService.getSupplierProfileData(item.vendorid).subscribe(f => {
+          //  this.inpSupDetail = f;
+          //  console.log("InpSup Detail",this.inpSupDetail);
             this.createIndentFormInputSup(this.currentitem);
 
-          })
+         // })
       }
-      this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
+      this.modalService.open(content, { ariaLabelledBy: item.vendorid }).result.then((result) => {
 
         this.closeResult = `Closed with: ${result}`;
       }, (reason) => {
@@ -377,8 +389,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       });
 
 
-    }
-    else {
+    }else {
       this.isLoggeIn = false;
       this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
         this.closeResult = `Closed with: ${result}`;
@@ -396,24 +407,27 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   openTwo(event, content, item){
     this.currentitem = item;
     this.indentloading = false;
-    this.currentitem = item;
-    this.indentloading = false;
-    this.currentfpoid = item.inputsupplierid;
+    this.currentfpoid = item.vendorid;
     this.indentForm = undefined
 
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
       this.isAllowed = true;
       this.userRole = localStorage.getItem('userRole');
-      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole == 'ROLE_CHCFMB'){
+      this.currentUserId = localStorage.getItem('masterId');
+      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole === 'ROLE_CHCFMB'){
           this.isAllowed = false;
+          this.restrictMsg = "You are not authorized to create an Indent";
+      }else if(this.userRole === 'ROLE_FPC' && this.currentUserId == item.vendorid){ 
+           this.isAllowed = false;
+          this.restrictMsg = "Not authorized to create indent on your own item"  
       }else{
-        this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
-          this.inpSupDetail = f;
-          console.log("InpSup Detail",this.inpSupDetail);
-          console.log("Current Item",this.currentitem);
+     //   this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
+     //     this.inpSupDetail = f;
+     //     console.log("InpSup Detail",this.inpSupDetail);
+     //     console.log("Current Item",this.currentitem);
           this.createIndentFormFertilizer(this.currentitem);
-           })
+      //     })
       }
       this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
 
@@ -443,23 +457,28 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.indentloading = false;
     this.currentitem = item;
     this.indentloading = false;
-    this.currentfpoid = item.inputsupplierid;
+    this.currentfpoid = item.vendorid;
     this.indentForm = undefined
-
+    
     if (sessionStorage.getItem('accessToken') != null) {
       this.isLoggeIn = true;
       this.isAllowed = true;
       this.userRole = localStorage.getItem('userRole');
-      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole == 'ROLE_CHCFMB'){
+      this.currentUserId = localStorage.getItem('masterId');
+      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole === 'ROLE_CHCFMB'){
           this.isAllowed = false;
+          this.restrictMsg = "You are not authorized to create an Indent";
+      }else if( this.currentUserId == item.vendorid){ 
+        this.isAllowed = false;
+       this.restrictMsg = "Not authorized to create indent on your own item"  
       }else{
-        this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
-          this.inpSupDetail = f;
-          console.log("InpSup Detail",this.inpSupDetail);
+       // this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
+        //  this.inpSupDetail = f;
+          
           console.log("Current Item",this.currentitem);
         this.createIndentFormSeed(this.currentitem);
 
-        })
+       // })
       }
       this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
 
@@ -483,6 +502,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     }
   }
    // Open Function for Machinery indent Form
+   // Restriciton for FPO needs clarity here
    openFour(event, content, item){
 
     this.currentitem = item;
@@ -495,26 +515,28 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       this.isLoggeIn = true;
       this.isAllowed = true;
       this.userRole = localStorage.getItem('userRole');
-      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole == 'ROLE_CHCFMB'){
+      this.currentUserId = localStorage.getItem('masterId');
+      if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole === 'ROLE_CHCFMB'){
           this.isAllowed = false;
+          this.restrictMsg = "You are not authorized to create an Indent";
       }else{
-            if(this.role ==='ROLE_INPUTSUPPLIER'){
-              this._inpSupService.getSupplierProfileData(item.vendorid).subscribe(f => {
-                this.inpSupDetail = f;
-                console.log("InpSup Detail",this.inpSupDetail);
-                console.log("Current Item",this.currentitem);
+          //  if(this.role ==='ROLE_INPUTSUPPLIER'){
+          //    this._inpSupService.getSupplierProfileData(item.vendorid).subscribe(f => {
+          //      this.inpSupDetail = f;
+          //      console.log("InpSup Detail",this.inpSupDetail);
+          //      console.log("Current Item",this.currentitem);
                 this.createIndentformMachinary(this.currentitem);
         
-              })
-            }
-            if(this.role ==='ROLE_CHCFMB'){
-              this._chcfmbService.getCHCSupplierProfileData(item.vendorid).subscribe(f => {
-                this.chcSupDetail = f;
-                console.log("CHCSup Detail",this.chcSupDetail);
-                console.log("Current Item",this.currentitem);
-              this.createIndentformMachinaryCHC(this.currentitem);
-              })
-            } 
+          //     })
+          //  }
+            // if(this.role ==='ROLE_CHCFMB'){
+            //   this._chcfmbService.getCHCSupplierProfileData(item.vendorid).subscribe(f => {
+            //     this.chcSupDetail = f;
+            //     console.log("CHCSup Detail",this.chcSupDetail);
+            //     console.log("Current Item",this.currentitem);
+            //   this.createIndentformMachinaryCHC(this.currentitem);
+            //   })
+            // } 
        }
       this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
 
@@ -658,52 +680,108 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   logout() {
     console.log("Fpo Id caught = " + this.currentfpoid)
     this.isLoggeIn = true;
-    //this.modalService.dismissAll();
+    this.isAllowed = true;
+    this.currentUserId = localStorage.getItem('masterId');
+    this.userRole = localStorage.getItem('userRole');
+    if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole === 'ROLE_CHCFMB'){
+      this.isAllowed = false;
+      this.restrictMsg = "You are not authorized to create an Indent";
+      }else if(this.userRole === 'ROLE_FPC' && this.currentUserId == this.currentitem.fpoid){ 
+       this.isAllowed = false;
+        this.restrictMsg = "Not authorized to create indent on your own item";  
+      }else{
+        this._fpoService.getfpoDetialById(this.currentfpoid).subscribe(f => {
+          this.fpoDetail = f;
+          this.createIndentForm(this.currentitem);
+    
+        })
+      }
+   //this.modalService.dismissAll();
     //this.isLoggeIn = true;
-    this._fpoService.getfpoDetialById(this.currentfpoid).subscribe(f => {
-      this.fpoDetail = f;
-      this.createIndentForm(this.currentitem);
-
-    })
+    
   }
 
   // logout for fertilizer
    logoutFert(){
         console.log("Fpo Id caught = " + this.currentfpoid)
         this.isLoggeIn = true;
-        this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
-          this.inpSupDetail = f; 
-          this.createIndentFormFertilizer(this.currentitem);
-        })
+        this.isAllowed = true;
+        this.userRole = localStorage.getItem('userRole');
+        this.currentUserId = localStorage.getItem('masterId');
+        if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole === 'ROLE_CHCFMB'){
+            this.isAllowed = false;
+            this.restrictMsg = "You are not authorized to create an Indent";
+        }else if(this.currentUserId == this.currentitem.vendorid){ 
+          this.isAllowed = false;
+          this.restrictMsg = "Not authorized to create indent on your own item";  
+        }else{
+           // this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
+             // this.inpSupDetail = f; 
+              this.createIndentFormFertilizer(this.currentitem);
+          //  })
+        }
     }
 
   // logout for Insecticide  
    logoutIns(){
     console.log("Fpo Id caught = " + this.currentfpoid)
     this.isLoggeIn = true;
-    this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
-      this.inpSupDetail = f;
+    this.isAllowed = true;
+    this.userRole = localStorage.getItem('userRole');
+    this.currentUserId = localStorage.getItem('masterId');
+    if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole === 'ROLE_CHCFMB'){
+        this.isAllowed = false;
+        this.restrictMsg = "You are not authorized to create an Indent";
+    }else if(this.currentUserId == this.currentitem.vendorid){ 
+      this.isAllowed = false;
+      this.restrictMsg = "Not authorized to create indent on your own item";  
+    }else{
+    //  this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
+      //  this.inpSupDetail = f;
       this.createIndentFormInputSup(this.currentitem);
-    })
+     //})
+    }
    }
 
    // logout for Seeds
    logoutSeed(){
     console.log("Fpo Id caught = " + this.currentfpoid)
     this.isLoggeIn = true;
-    this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
-      this.inpSupDetail = f;
-      this.createIndentFormSeed(this.currentitem);
-    })
+    this.isAllowed = true;
+    this.userRole = localStorage.getItem('userRole');
+    this.currentUserId = localStorage.getItem('masterId');
+    if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole === 'ROLE_CHCFMB'){
+        this.isAllowed = false;
+        this.restrictMsg = "You are not authorized to create an Indent";
+      }else if( this.currentUserId == this.currentitem.vendorid){ 
+        this.isAllowed = false;
+      this.restrictMsg = "Not authorized to create indent on your own item"  
+      }else{
+      //   this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
+          //  this.inpSupDetail = f;
+            this.createIndentFormSeed(this.currentitem);
+        // })
+      }
    }
 
    logoutMachinaryInputSup(){
     console.log("Fpo Id caught = " + this.currentfpoid)
     this.isLoggeIn = true;
-    this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
-      this.inpSupDetail = f;
-      this.createIndentformMachinary(this.currentitem);
-    })
+    this.isAllowed = true;
+    this.userRole = localStorage.getItem('userRole');
+    this.currentUserId = localStorage.getItem('masterId');
+    if(this.userRole === 'ROLE_INPUTSUPPLIER' || this.userRole === 'ROLE_CHCFMB'){
+        this.isAllowed = false;
+        this.restrictMsg = "You are not authorized to create an Indent";
+      }else if( this.currentUserId == this.currentitem.vendorid){ 
+        this.isAllowed = false;
+      this.restrictMsg = "Not authorized to create indent on your own item"  
+      }else{
+          //this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
+           // this.inpSupDetail = f;
+            this.createIndentformMachinary(this.currentitem);
+         // })  
+      }
    }
 
    logoutMachinaryCHC(){
@@ -736,6 +814,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       fpoEmail: [this.fpoDetail.fpoEmail],  //^[0+-]?([1-9]*\\.)?\\d+$
       fulfillmentDate: ["", [Validators.required]],//^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$
       quantity: [, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
+      createdbyUserId:localStorage.getItem('userId'),
+      createdbyRoleId:localStorage.getItem('roleRefId'),
       createdBy:[0],
       masterId: [0]
 
@@ -745,7 +825,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     return this.indentForm.controls;
   }
 
-  // Indent Form for Input Suppliers
+  // Indent Form for Insecticide Suppliers
   createIndentFormInputSup(item){
     
     this.indentForm = this.fb.group({
@@ -757,11 +837,13 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
           insecticideType:[item.itemtype] 
         }), 
         manufacturerName:[""],
-        masterId:[item.inputsupplierid],
+        masterId:[item.vendorid],
         requestedDateTime:["",Validators.required],
         roleRefId:localStorage.getItem('roleRefId'), // User roleRefId
         status:["active"],
-        userId:localStorage.getItem('userId')   
+        userId:localStorage.getItem('userId'),
+        masterUserId:[item.userid],
+        masterRoleId:[item.roleid]   
     })
 
 
@@ -784,13 +866,14 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
             type:[item.itemtype]
           }),
           indentQty:[, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
-          masterId:[item.inputsupplierid],
+          masterId:[item.vendorid],
           reason:[""],
           requestedDateTime:["",Validators.required],
           roleRefId:localStorage.getItem('roleRefId'),
           status:["active"],
-          userId:localStorage.getItem('userId') 
-
+          userId:localStorage.getItem('userId'), 
+          masterUserId:[item.userid],
+          masterRoleId:[item.roleid]
       })
 
   }
@@ -809,11 +892,13 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
         }),
         deliveryaddress:["",Validators.required],
         indentQty:[, [Validators.required, Validators.pattern(`^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$`)]],
-        masterId:[item.inputsupplierid],
+        masterId:[item.vendorid],
         requestedDateTime:["",Validators.required],
         roleRefId:localStorage.getItem('roleRefId'),
         status:["active"],
-        userId:localStorage.getItem('userId')
+        userId:localStorage.getItem('userId'),
+        masterUserId:[item.userid],
+        masterRoleId:[item.roleid]
       })
   }
 
@@ -833,7 +918,9 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
           requestedDateTime:["",Validators.required],
           roleRefId:localStorage.getItem('roleRefId'),
           status:["active"],
-          userId:localStorage.getItem('userId')
+          userId:localStorage.getItem('userId'),
+          masterUserId:[item.userid],
+          masterRoleId:[item.roleid]
         })
    }
 
@@ -853,7 +940,9 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       requestedDateTime:["",Validators.required],
       roleRefId:localStorage.getItem('roleRefId'),
       status:["active"],
-      userId:localStorage.getItem('userId')
+      userId:localStorage.getItem('userId'),
+      masterUserId:[item.userid],
+      masterRoleId:[item.roleid]
     })
    }
 
