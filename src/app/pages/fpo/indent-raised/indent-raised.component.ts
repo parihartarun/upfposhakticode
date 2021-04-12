@@ -22,7 +22,7 @@ export class IndentRaisedComponent implements OnInit {
   seedTot:any;
   insTot:any;
   machTot:any;
-  
+  p:number;
   filterParams={
     masterId:'',
     roleId:''
