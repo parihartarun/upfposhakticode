@@ -352,19 +352,19 @@
             {{'Schemes' | translate}}
           </a>
         </li>
-        <li *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_FARMER' || userRole == 'ROLE_BUYERSELLER' || userRole == 'ROLE_INPUTSUPPLIER' || userRole == 'ROLE_CHCFMB'" class="nav-item">
+        <!--<li *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_FARMER' || userRole == 'ROLE_BUYERSELLER' || userRole == 'ROLE_INPUTSUPPLIER' || userRole == 'ROLE_CHCFMB'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['indent_history']" class="nav-link">
             <i class="ni ni-tv-2 text-white"></i>
             {{'Indent History' | translate}}
           </a>
-        </li>
+        </li>-->
         <li *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_FARMER' || userRole == 'ROLE_BUYERSELLER' || userRole == 'ROLE_INPUTSUPPLIER' || userRole == 'ROLE_CHCFMB'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['fpo/indent-raised']" class="nav-link">
             <i class="ni ni-tv-2 text-white"></i>
             {{'Indent Raised' | translate}}
           </a>
         </li>
-        <li *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_FARMER' || userRole == 'ROLE_BUYERSELLER' || userRole == 'ROLE_INPUTSUPPLIER' || userRole == 'ROLE_CHCFMB'" class="nav-item">
+        <li *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_FARMER' || userRole == 'ROLE_INPUTSUPPLIER' || userRole == 'ROLE_CHCFMB'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['fpo/indent-fullfillment']" class="nav-link">
             <i class="ni ni-tv-2 text-white"></i>
             {{'Indent For Fulfillment' | translate}}

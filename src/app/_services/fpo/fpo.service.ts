@@ -41,9 +41,10 @@ export class FpoService {
       return res;
     }));
   }
-  getIndentByUserId(fpoid) {
+  getIndentByUserId(fpoid, roleId) {
     let params: HttpParams = new HttpParams();
     params = params.append("id", fpoid);
+    params = params.append("roleId", roleId);
     return this.http.get<any>(this._url + `enquiry/findByUser`, { params: params }).pipe(map((res: any) => {
 
       return res;

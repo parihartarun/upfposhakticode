@@ -21,7 +21,7 @@
                 <!-- Card stats -->
                 <div class="row mb-2">
                         
-                    <div class="offset-xl-1 col-xl-2 col-lg-6 "  *ngIf="userRole == 'ROLE_FPC'">
+                    <div class="offset-xl-1 col-xl-2 col-lg-6 "  *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_BUYERSELLER'">
                         <div class="card card-stats mb-3 mb-xl-0 onHover" (click)="showHiddenTable('A')" title="{{'Click to see Crops table' | translate}}">
                             <div class="card-body">
                                 <div class="row">
@@ -118,11 +118,11 @@
                 <th scope="col">{{'Fulfillment Date'|translate}}</th>
                 <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
                 <th scope="col">{{'status'|translate}}</th>
-               
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let indent of indents | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
+              <tr *ngFor="let indent of indents | paginate: { itemsPerPage: 10, currentPage: p } let i=index; ">
               
             <td>
                 {{i+1}}
@@ -148,7 +148,14 @@
              </td>
               <td>
                  {{indent.status}}
-             </td>        
+             </td>     
+             <td class="text-right" *ngIf="indent.status == 'Active'">
+                <div placement="bottom-right">
+                  <a class="btn btn-sm btn-primary" href="javascript:void(0)" (click)="cancelIndent(indent.id)">
+                    Cancel
+                  </a>
+                </div>
+              </td>   
               </tr>
              
             </tbody>

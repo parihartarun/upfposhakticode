@@ -72,15 +72,12 @@ export class IndentComponent implements OnInit {
       })
 
     }  else {
-      this.fpoService.getIndentByUserId(this.masterId).subscribe(data=>{
+      this.fpoService.getIndentByUserId(this.masterId, localStorage.getItem('userRoleId')).subscribe(data=>{
         console.log(data);
         this.indents = data;
         this.loading = false;
       })
-
     }
-
-
   }
 
   deleteIndent(indentId){

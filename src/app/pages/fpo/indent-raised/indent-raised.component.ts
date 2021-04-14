@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FpoService} from  '../../../_services/fpo/fpo.service';
+import { BuyerSellerService } from "src/app/_services/BuyerSeller/buyerseller.services";
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-indent-raised',
   templateUrl: './indent-raised.component.html',
@@ -30,7 +33,9 @@ export class IndentRaisedComponent implements OnInit {
 
 
 
-  constructor( public fpoService:FpoService) {
+  constructor( public fpoService:FpoService,
+    private _buyerService: BuyerSellerService,
+    private toastr: ToastrService) {
      
    if(this.userRole == 'ROLE_FPC'){
     this.showTable.val = 'A';
@@ -48,9 +53,10 @@ export class IndentRaisedComponent implements OnInit {
     this.filterParams.roleId = localStorage.getItem('roleRefId');
     this.userRole =localStorage.getItem('userRole');
     console.log("FilterParams",this.filterParams);  
-    if (this.filterParams.roleId == 'ROLE_FPC') { 
-        this.fpoService.getIndentByUserId(this.filterParams.masterId).subscribe(dummy =>{
-            this.data = dummy;
+    if (this.userRole == 'ROLE_FPC' || this.userRole == 'ROLE_BUYERSELLER') { 
+        this.fpoService.getIndentByUserId(this.filterParams.masterId, this.filterParams.roleId).subscribe(dummy =>{
+          console.log(dummy);  
+          this.data = dummy;
             this.indents =this.data;
             this.totCrops =this.data.length;
             this.loading =false;
@@ -72,9 +78,6 @@ export class IndentRaisedComponent implements OnInit {
          this.machTot =this.data2.machineryIndent.length;
          this.loading =false;
     });
-
- 
-
   }
 
   showHiddenTable(elem){
@@ -104,5 +107,18 @@ export class IndentRaisedComponent implements OnInit {
       }
       this.indents5 =this.data2.machineryIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
     }
+  }
+
+  cancelIndent(indentId){
+    this._buyerService.deleteIndent(indentId).subscribe(data=>{
+      this.toastr.success('Successfully cancelled');
+      this.fpoService.getIndentByUserId(this.filterParams.masterId, this.filterParams.roleId).subscribe(dummy =>{
+        console.log(dummy);  
+        this.data = dummy;
+          this.indents =this.data;
+          this.totCrops =this.data.length;
+          this.loading =false;
+      });
+    })
   }
 }

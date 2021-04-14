@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/_services/product/product.service';
+import { LEFT_ARROW } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-indent-for-fulfillment',
@@ -32,6 +33,7 @@ export class IndentForFulfillmentComponent implements OnInit {
   indentForm: FormGroup;
   currentItem: any;
   p:number;
+  isQuantity = true;
 
   filterParams = {
     masterId: '',
@@ -119,12 +121,12 @@ export class IndentForFulfillmentComponent implements OnInit {
   }
 
   opendialog($event,content,item)
-  {    
+  {    console.log(item);
     this.currentItem = item;
 
     this.indentForm = this.fb.group({
       status: [undefined,Validators.required],
-      soldQuantity:[undefined,[Validators.required,Validators.pattern('^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$')]],
+      soldQuantity:[item.quantity,[Validators.required,Validators.pattern('^\\s*(?=.*[0-9])\\d*(?:\\.\\d{1,2})?\\s*$')]],
       reason: [""],     
     })
 
@@ -134,7 +136,14 @@ export class IndentForFulfillmentComponent implements OnInit {
 save()
 {
   console.log("data serializes - "+JSON.stringify(this.indentForm.value));
-
+  if(this.indentForm.value.status == 'rejected'){
+    this.indentForm.patchValue({
+      soldQuantity:0
+    })
+  }
+  if(this.indentForm.invalid){
+    return;
+  }
 this._productService.updateEnquiry(this.indentForm.value,this.currentItem.id).subscribe(data=>{
 console.log("Updated Successfully");
 
@@ -262,5 +271,12 @@ this.fpoService.getIndentByFpoId(this.filterParams.masterId).subscribe(dummy => 
     );
   }
 
+  changeIndentStatus(status){
+    if(status == 'partially fulfilled'){
+      this.isQuantity = true;
+    }else if(status == 'rejected' || status == 'fulfilled'){
+      this.isQuantity = false;
+    }
+  }
 
 }
