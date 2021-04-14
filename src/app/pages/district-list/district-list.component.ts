@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FpoSearchService } from '../../_services/fpo/fpo-search.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+
+
 @Component({
   selector: 'app-district-list',
   templateUrl: './district-list.component.html',
@@ -18,12 +20,17 @@ export class DistrictListComponent implements OnInit {
     in:'',
     val:''
   }
+  searchText1='';
+  searchText2='';
+  searchText3='';
+  p: number = 1;
+  q:number =1;
+  r:number =1;
+  orderBy:{order:string,key:string} ={order:'',key:''};
   
   districtListObserver = this.fpoSearch.districtListObserver.asObservable();
 
-  constructor(private fpoSearch:FpoSearchService,private _activatedroute:ActivatedRoute) {
-     this.model.prop = 'A';
-   }
+  constructor(private fpoSearch:FpoSearchService,private _activatedroute:ActivatedRoute,private route: Router) {}
 
    
 
@@ -35,6 +42,7 @@ export class DistrictListComponent implements OnInit {
         this.fpoSearch.getDistrictInfo(this.distParams.val,this.distParams.in)
     });
 
+   
     
 
     this.districtListObserver.subscribe(dat =>{
@@ -43,37 +51,28 @@ export class DistrictListComponent implements OnInit {
     });
 
     // FPO Details
-    this.columns =[
-      {key:'districtName',title:"District1"},
-      {key:'fpoName',title:'FPO Name'},
-      {key:'fpoEmail',title:'FPO Email'},
-      {key:'fpoLandline',title:'Mobile'},
-      {key:'crops',title:'Crops',width:'auto',noWrap: { head: true, body: true } },
-      {key:'additionalServices',title:'Additional Services',width:'auto',noWrap: { head: true, body: true }}
-    ];
-
-    //Input Supplier Details 
-    this.columns2 =[
-      {key:'districtName',title:"District1"},
-      {key:'input_supplier_name',title:'Input Supplier'},
-      {key:'email',title:'Email'},
-      {key:'mobile_number',title:'Mobile'},
-      {key:'cropSeeds',title:'Seeds',width:'auto',noWrap: { head: true, body: true }},
-      {key:'fertilizers',title:'Fertilizers',width:'auto',noWrap: { head: true, body: true }},
-      {key:'insecticides',title:'Insecticides',width:'auto',noWrap: { head: true, body: true }},
-      {key:'machineries',title:'Machinaries',width:'auto',noWrap: { head: true, body: true }}
-    ];
-
-    // CHC FMB Details  
-    this.columns3 =[
-      {key:'district_name',title:"District1"},
-      {key:'chc_fmb_name',title:"CHC/FMB"},
-      {key:'email',title:"Email"},
-      {key:'mobile_number',title:"Mobile"},
-      {key:'machineries',title:"Machinary"},
-    ];
+    // this.columns =[
+    //   {key:'districtName',title:"District1"},
+    //   {key:'fpoName',title:'FPO Name'},
+    //   {key:'fpoEmail',title:'FPO Email'},
+    //   {key:'fpoLandline',title:'Mobile'},
+    //   {key:'crops',title:'Crops',width:'auto',noWrap: { head: true, body: true } },
+    //   {key:'additionalServices',title:'Additional Services',width:'auto',noWrap: { head: true, body: true }}
+    // ];
+ 
   }
 
+  
+  onClickOrderBy( key:any ){
+    this.orderBy={
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    }
+  }
 
+  routePage(page,id){
+    this.route.navigate(['/'+page+'/' ,id]);
+  }
 
 }

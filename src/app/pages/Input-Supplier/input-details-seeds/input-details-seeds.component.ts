@@ -63,7 +63,7 @@ export class InputDetailsSeedsComponent implements OnInit {
   getAllSeeds() {
     console.log('>>>masterid', localStorage.getItem('masterId'));
     
-    this.api.getAllSeeds(localStorage.getItem('masterId')).subscribe((res) => {
+    this.api.getAllSeeds().subscribe((res) => {
       this.seeds = res;
       console.log(res, "seeddata");
     })
@@ -85,10 +85,10 @@ export class InputDetailsSeedsComponent implements OnInit {
     formData.append('valid_from', this.seedForm.value.valid_from);
     formData.append('valid_to', this.seedForm.value.valid_to);
     formData.append('variety_id', this.seedForm.value.variety_id);
-    formData.append('role', localStorage.getItem('masterId'));
+    formData.append('role', localStorage.getItem('roleRefId'));
     formData.append("vendor_id", localStorage.getItem('masterId'));
     this.api.addFpoSeed(formData).subscribe(response => {
-        this.toastr.success('Seeds Added Succefully.');
+        this.toastr.success('Seeds Added Successfully.');
         this.submitted = false;
         this.isEdit = false;
         this.seedForm.reset();
@@ -108,7 +108,7 @@ export class InputDetailsSeedsComponent implements OnInit {
     formData.append('valid_from', this.seedForm.value.valid_from);
     formData.append('valid_to', this.seedForm.value.valid_to);
     formData.append('variety_id', this.seedForm.value.variety_id);
-    formData.append("input_supplier_id ", localStorage.getItem('masterId'))
+    formData.append("vendor_id ", localStorage.getItem('masterId'))
     this.api.addseed(formData).subscribe(response => {
         this.toastr.success('Seeds Added Succefully.');
         this.submitted = false;
@@ -153,7 +153,7 @@ export class InputDetailsSeedsComponent implements OnInit {
     formData.append('valid_from', this.seedForm.value.valid_from);
     formData.append('valid_to', this.seedForm.value.valid_to);
     formData.append('variety_id', this.seedForm.value.variety_id);
-    formData.append("input_supplier_id ", localStorage.getItem('masterId'))
+    formData.append("vendor_id ", localStorage.getItem('masterId'))
     formData.append('id', this.id);
     this.api.updateseed(this.id, formData).subscribe((res: any) => {
         this.submitted = false;

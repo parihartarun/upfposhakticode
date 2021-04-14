@@ -47,7 +47,7 @@ export class InputDetailsMachineryComponent implements OnInit {
       quantity: ['', [Validators.required]],
       file: ['', [Validators.required]],
       machinery_name_id: ['', [Validators.required]],
-      mchinery_type_id: ['', [Validators.required]],
+      machinery_type_id: ['', [Validators.required]],
       input_supplier_id: localStorage.getItem('masterId'),
       specification: ['']
     });
@@ -68,8 +68,7 @@ export class InputDetailsMachineryComponent implements OnInit {
   }
 
   Machinerydata() {
-    this.inputid = localStorage.getItem('masterId')
-    this.inputmachineryservice.getallMachinery(this.inputid).subscribe((res) => {
+    this.inputmachineryservice.getallMachinery().subscribe((res) => {
       this.machinerydetails = res;
       console.log(res, "mdata");
     })
@@ -87,13 +86,15 @@ export class InputDetailsMachineryComponent implements OnInit {
     formData.append('file', this.fileToUpload);
     formData.append('machinery_name_id', this.machineryForm.value.machinery_name_id);
     formData.append('manufacturer_name', this.machineryForm.value.manufacturer_name);
-    formData.append('mchinery_type_id', this.machineryForm.value.mchinery_type_id);
+    formData.append('machinery_type_id', this.machineryForm.value.machinery_type_id);
     formData.append('quantity', this.machineryForm.value.quantity);
     formData.append('specification', this.machineryForm.value.specification);
-    formData.append("input_supplier_id ", localStorage.getItem('masterId'))
+    formData.append("vendor_id ", localStorage.getItem('masterId'));
+    formData.append("role ", localStorage.getItem('roleRefId'));
+
     this.inputmachineryservice.addMachinery(formData).subscribe(res => {
       if (res != '') {
-        this.toastr.success(' Added Succefully.');
+        this.toastr.success(' Added Successfully.');
         this.submitted = false;
         this.isEdit = false;
         this.machineryForm.reset();
@@ -113,7 +114,7 @@ export class InputDetailsMachineryComponent implements OnInit {
       formData.append('file', this.fileToUpload);
       formData.append('machinery_name_id', this.machineryForm.value.machinery_name_id);
       formData.append('manufacturer_name', this.machineryForm.value.manufacturer_name);
-      formData.append('mchinery_type_id', this.machineryForm.value.mchinery_type_id);
+      formData.append('machinery_type_id', this.machineryForm.value.machinery_type_id);
       formData.append('quantity', this.machineryForm.value.quantity);
       formData.append('specification', this.machineryForm.value.specification);
       formData.append("input_supplier_id ", localStorage.getItem('masterId'));
@@ -137,7 +138,7 @@ export class InputDetailsMachineryComponent implements OnInit {
     this.selectmachinaryname(data.type_id);
     this.machineryForm.get('file').patchValue(data.file);
     this.machineryForm.get('manufacturer_name').patchValue(data.manufacturer_name);
-    this.machineryForm.get('mchinery_type_id').patchValue(data.type_id);
+    this.machineryForm.get('machinery_type_id').patchValue(data.type_id);
     this.machineryForm.get('quantity').patchValue(data.quantity);
     this.machineryForm.get('specification').patchValue(data.technical_specs);
     setTimeout(() => {
@@ -159,19 +160,17 @@ export class InputDetailsMachineryComponent implements OnInit {
     formData.append('file', this.fileToUpload);
     formData.append('machinery_name_id', this.machineryForm.value.machinery_name_id);
     formData.append('manufacturer_name', this.machineryForm.value.manufacturer_name);
-    formData.append('mchinery_type_id', this.machineryForm.value.mchinery_type_id);
+    formData.append('machinery_type_id', this.machineryForm.value.machinery_type_id);
     formData.append('quantity', this.machineryForm.value.quantity);
     formData.append('specification', this.machineryForm.value.specification);
     formData.append("input_supplier_id ", localStorage.getItem('masterId'))
-
     formData.append('id', this.id);
+
     this.inputmachineryservice.updateMachinery(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {
         this.toastr.success('Machinery updated successfully.');
         this.Machinerydata();
-        // this.inputmachineryservice.getallMachinery(this.id);
-        this.machineryForm.reset();
-        this.isEdit = false;
+        this.resetForm();
       } else {
         this.toastr.error('Something went wrong.');
       }

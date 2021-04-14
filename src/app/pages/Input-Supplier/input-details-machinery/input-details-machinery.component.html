@@ -23,15 +23,15 @@
                                     <div class="form-group">
                                         <label>{{'Machinery Category' | translate}} <span
                                                 class="required">*</span></label>
-                                        <select class="form-control" formControlName="mchinery_type_id"
+                                        <select class="form-control" formControlName="machinery_type_id"
                                             (change)="selectmachinaryname($event.target.value)">
                                             <option value="">{{'Select Type' | translate}}</option>
                                             <option *ngFor="let mach of mtypes" [value]="mach.machineTypeId">
                                                 {{mach.equipType}}
                                             </option>
                                         </select>
-                                        <div *ngIf="submitted && formControls.mchinery_type_id.errors" class="text-danger">
-                                            <div *ngIf="formControls.mchinery_type_id.errors.required">{{'This field is required'| translate}}</div>
+                                        <div *ngIf="submitted && formControls.machinery_type_id.errors" class="text-danger">
+                                            <div *ngIf="formControls.machinery_type_id.errors.required">{{'This field is required'| translate}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -144,10 +144,17 @@
                                 <td>
                                     {{mdata.quantity}}
                                 </td>
-                                <td>
-                                    <div style="font-size: 20px;text-indent: 10px;">
-                                        <i class="fas fa-edit" (click)="editmachinery(mdata)"></i>
-                                        <i class="fas fa-trash-alt" (click)="confirmDelete(mdata.id)"></i>
+                                <td class="text-center">
+                                    <div ngbDropdown placement="bottom-center">
+                                        <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                                        {{'Actions' | translate}}
+                                        </a>
+                                        <div ngbDropdownMenu class=" dropdown-menu-center dropdown-menu-arrow">
+                                        <a class="dropdown-item" (click)="editmachinery(mdata)">{{'Edit' |
+                                            translate}}</a>
+                                        <a class="dropdown-item" (click)="confirmDelete(mdata.id)">{{'Delete' |
+                                            translate}}</a>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

@@ -3,10 +3,40 @@
     padding: 1.5rem;
 }
 
-/* .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+.wordWrapper {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: normal !important;
     text-align: center !important;
     vertical-align: middle !important;
-  } */
+  } 
+
+ .table th{
+    background: #926e00;
+    color: #fff;
+ }
+ th.sort:before {
+    border-bottom-color: #fff !important;
+} 
+ th.sort:after {
+    border-top-color: #fff;
+}
+.table td{
+    font-size: 0.9425rem;
+}
+
+.btn-custom{
+    background-image:linear-gradient(#fbd70f, #735d17);
+    border: 1px solid #735d17;
+}
+
+.custom-table-title{
+    color: #926e00;
+    font-size: 2.25rem;
+}
+
+@media only screen and (max-width:768px){
+    .put-first{
+        order: -1;
+    }
+}

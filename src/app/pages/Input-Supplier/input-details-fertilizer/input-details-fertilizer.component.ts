@@ -93,7 +93,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
   getallfertilizer() {
       this.inputid = localStorage.getItem('masterId');
       console.log('>>>get ID',  this.inputid);
-      this.inputsupplierfertiservice.getallfertilizer(this.inputid).subscribe((res) => {
+      this.inputsupplierfertiservice.getallfertilizer().subscribe((res) => {
         console.log('get all',res);
         this.fertilizerDetails = res;
       })
@@ -147,7 +147,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
       formData.append('manufacturer_name', this.fertilizerForm.value.manufacturer_name);
       formData.append('type_id', this.fertilizerForm.value.type_id);
       formData.append('name_id', this.fertilizerForm.value.name_id);
-      formData.append("input_supplier_id ", localStorage.getItem('masterId'))
+      formData.append("vendor_id ", localStorage.getItem('masterId'))
       this.inputsupplierfertiservice.addfertilizer(formData).subscribe(res => {
         this.toastr.success('Added Successfully.');
         this.submitted = false;
@@ -182,14 +182,13 @@ export class InputDetailsFertilizerComponent implements OnInit {
     formData.append('manufacturer_name', this.fertilizerForm.value.manufacturer_name);
     formData.append('type_id', this.fertilizerForm.value.type_id);
     formData.append('name_id', this.fertilizerForm.value.name_id);
-    formData.append("input_supplier_id ", localStorage.getItem('masterId'))
+    formData.append("vendor_id ", localStorage.getItem('masterId'))
     formData.append('id', this.id);
     this.inputsupplierfertiservice.updatefertilizer(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {
         this.toastr.success('Fertilizer updated successfully.');
         this.getallfertilizer();
-        this.fertilizerForm.reset();
-        this.isEdit = false;
+        this.resetForm();
       } else {
         this.toastr.error('Something went wrong.');
       }

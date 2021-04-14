@@ -146,10 +146,17 @@
                 <td>
                   {{sdata.quantity}}
                 </td>
-                <td>
-                  <div style="font-size: 20px;text-indent: 10px;">
-                    <i class="fas fa-edit" (click)="editseed(sdata)"></i>
-                    <i class="fas fa-trash-alt" (click)="confirmDelete(sdata.id)"></i>
+                <td class="text-center">
+                  <div ngbDropdown placement="bottom-center">
+                      <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                      {{'Actions' | translate}}
+                      </a>
+                      <div ngbDropdownMenu class=" dropdown-menu-center dropdown-menu-arrow">
+                      <a class="dropdown-item" (click)="editseed(sdata)">{{'Edit' |
+                          translate}}</a>
+                      <a class="dropdown-item" (click)="confirmDelete(sdata.id)">{{'Delete' |
+                          translate}}</a>
+                      </div>
                   </div>
                 </td>
               </tr>

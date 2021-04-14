@@ -70,8 +70,12 @@ export class InputSupplierService {
         }));
   }
 
-  getAllSeeds(masterId){
-    return  this.http.get<any>(this._url+`inputsupplier/seed/getall/`+masterId).pipe(map((res:any)=>{
+  getAllSeeds(){
+    let data = {
+      "masterId":localStorage.getItem('masterId'),
+      "roleId":localStorage.getItem('roleRefId')
+    };
+    return  this.http.post<any>(this._url+`inputsupplier/seed/getall`, data).pipe(map((res:any)=>{
           return res;
         }));
   }
@@ -111,8 +115,12 @@ export class InputSupplierService {
 // ------------------------ Fertilizer -----------------------------------
 
 
-getallfertilizer(masterId){
-  return  this.http.get<any>(this._url+'inputsupplier/fertilizer/getall/' +masterId).pipe(map((res:any)=>{
+getallfertilizer(){
+  let data = {
+    "masterId":localStorage.getItem('masterId'),
+    "roleId":localStorage.getItem('roleRefId')
+  };
+  return  this.http.post<any>(this._url+'/inputsupplier/fertilizer/getall', data).pipe(map((res:any)=>{
         return res;
       }));
 }
@@ -174,8 +182,12 @@ selectIndentMachinery(data) {
       }));
 }
 
-getallMachinery(masterId){
-  return  this.http.get<any>(this._url+'inputsupplier/machinery/getall/'+masterId).pipe(map((res:any)=>{
+getallMachinery(){
+  let data = {
+    "masterId":localStorage.getItem('masterId'),
+    "roleId":localStorage.getItem('roleRefId')
+  };
+  return  this.http.post<any>(this._url+'inputsupplier/machinery/getall', data).pipe(map((res:any)=>{
         return res;
       }));
 }
@@ -235,8 +247,12 @@ selectIndentInsecticides(data) {
       }));
 }
 
-getallinsecticide(masterId){
-  return  this.http.get<any>(this._url+`inputsupplier/insecticide/getall/${masterId}`).pipe(map((res:any)=>{
+getallinsecticide(){
+  let data = {
+    "masterId":localStorage.getItem('masterId'),
+    "roleId":localStorage.getItem('roleRefId')
+  };
+  return  this.http.post<any>(this._url+`/inputsupplier/insecticide/getall`, data).pipe(map((res:any)=>{
         return res;
       }));
 }

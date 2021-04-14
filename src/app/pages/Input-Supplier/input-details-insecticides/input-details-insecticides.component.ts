@@ -54,7 +54,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
 
 
   getallinsecticidesdata() {
-    this.inputinsectservice.getallinsecticide(localStorage.getItem('masterId')).subscribe((res) => {
+    this.inputinsectservice.getallinsecticide().subscribe((res) => {
       this.insecticidedetails = res;
       console.log(this.insecticidedetails, "")
     })
@@ -98,7 +98,9 @@ export class InputDetailsInsecticidesComponent implements OnInit {
     formData.append('insecticide_type_id', this.insectForm.value.insecticide_type_id);
     formData.append('quantity', this.insectForm.value.quantity);
     formData.append('manufacturer_name', this.insectForm.value.manufacturer_name);
-    formData.append("input_supplier_id ", localStorage.getItem('masterId'))
+    formData.append("vendor_id ", localStorage.getItem('masterId'));
+    formData.append("role ", localStorage.getItem('roleRefId'))
+
     this.inputinsectservice.addinsecticide(formData).subscribe(res => {
       this.toastr.success('Added Successfully.');
       this.submitted = false;
@@ -132,12 +134,11 @@ export class InputDetailsInsecticidesComponent implements OnInit {
     formData.append('insecticide_type_id', this.insectForm.value.insecticide_type_id);
     formData.append('quantity', this.insectForm.value.quantity);
     formData.append('manufacturer_name', this.insectForm.value.manufacturer_name);
-    formData.append("input_supplier_id ", localStorage.getItem('masterId'))
+    formData.append("vendor_id ", localStorage.getItem('masterId'))
 
     formData.append('id', this.id);
     this.inputinsectservice.updateinsecticide(this.id, formData).subscribe((res: any) => {
       this.toastr.success(' updated successfully.');
-      this.inputinsectservice.getallMachinery(this.id);
       this.insectForm.reset();
       this.isEdit = false;
       this.getallinsecticidesdata();
