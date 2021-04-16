@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { InputSupplierService } from '../../../../_services/InputSupplier/InputSupplier.services';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-supplier-details',
@@ -18,7 +19,7 @@ export class SupplierDetailsComponent implements OnInit {
   currentPage = 1;
 
   constructor(private api:InputSupplierService, 
-    private _activatedroute: ActivatedRoute) { }
+    private _activatedroute: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this._activatedroute.params.subscribe(param => {
@@ -39,4 +40,9 @@ export class SupplierDetailsComponent implements OnInit {
       this.machinaries = response.machinerys;
     })
   }
+
+  goBack(){
+    this.location.back();
+  }
+
 }

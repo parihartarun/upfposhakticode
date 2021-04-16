@@ -16,6 +16,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { ErrorInterceptor } from './_helpers/error.interceptor'
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { AuthGuardService } from './_helpers/auth-guard.service';
+import { SharedService } from './_services/shared/shared.service';
 
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -275,7 +276,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    AuthGuardService, CanDeactivateGuard],
+    AuthGuardService, CanDeactivateGuard, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,174 +1,32 @@
-h1 {
-    color      : #333;
-    font-family: arial, sans-serif;
-    margin     : 1em auto;
-    width      : 80%;
+.schemes-tabs{
+    list-style-type:none
 }
-
-.tabordion {
-    color      : #333;
-    display    : block;
-    font-family: arial, sans-serif;
-    margin     : auto;
-    position   : relative;
+.schemes-tabs li{
+   cursor: pointer;
+   padding: 12px;
+    background: #cfaf14;
 }
-
-.tabordion input[name="sections"] {
-    left    : -9999px;
-    position: absolute;
-    top     : -9999px;
+.schemes-tabs li.active{
+    background: #926e01;
+    color: #fff;
 }
-
-.tabordion section {
+.schemes-des{
     display: block;
 }
-
-table {
-    border-collapse: collapse;
+.schemes-mb{
+    display: none;
 }
-
-.tabordion section label {
-    background   : #ccc;
-    cursor       : pointer;
-    display      : block;
-    font-size    : 16px;
-    font-weight  : bold;
-    padding      : 16px;
-    position     : relative;
-    width        : 220px;
-    z-index      : 100;
-    margin-bottom: 0px;
+.card-header{
+    margin-left: 70px;
 }
-
-/* tbody tr th  {
-    border: 1px solid #000;
-}
-
-thead td th {
-    border: 1px solid #fff;
-} */
-
-
-table {
-    border: 2px solid #fff ;
-  }
-
-
-  .schematable tr  {
-    border-bottom-style: solid;
-    border-bottom-color:  #000 ;
-    border-bottom-width: 2px ;
-  }
-
-  .schematable td{
-    border-right-style: solid;
-    border-right-color:  #fff ;
-    border-right-width: 2px ;
-  }
-
-.tabordion section article { border-bottom-style: solid;
-    display  : none;
-    left     : 230px;
-    min-width: 75%;
-    position : absolute;
-    top      : 0;
-    border   : 1px solid #8e7615;
-
-}
-
-.mb-4 {
-    background-color: #f0ad4e;
-    padding         : 10px;
-    margin          : 10px;
-    color           : #fff;
-    font-size       : 20px;
-}
-
-.mb-4:hover {
-    background-color: #eea236;
-}
-
-
-label {
-    font-size: 12px;
-}
-
-.navbar-brand {
-    font-size: 12px;
-    padding  : 10px;
-}
-
-.tabordion section article:after {
-    background-color   : #ccc;
-    bottom             : 0;
-    content            : "";
-    display            : block;
-    left               : -229px;
-    position           : absolute;
-    top                : 0;
-    width              : 220px;
-    z-index            : 1;
-    /* border          : 1px solid #8e7615; */
-}
-
-.tabordion input[name="sections"]:checked+label {
-    background: #756714;
-    color     : #bbb;
-}
-
-.tabordion input[name="sections"]:checked~article {
-    display: block;
-}
-
-
-@media (max-width: 533px) {
-
-    h1 {
-        width: 100%;
+@media only screen and (max-width:600px){
+    .schemes-des{
+        display: none;
     }
-
-    .tabordion {
-        width: 100%;
+    .schemes-mb{
+        display: block;
     }
-
-    .tabordion section label {
-        font-size: 1em;
-        width    : 160px;
-    }
-
-    .tabordion section article {
-        left     : 200px;
-        min-width: 270px;
-    }
-
-    .tabordion section article:after {
-        background-color: #ccc;
-        bottom          : 0;
-        content         : "";
-        display         : block;
-        left            : -199px;
-        position        : absolute;
-        top             : 0;
-        width           : 200px;
-
-    }
-
-}
-
-
-@media (max-width: 768px) {
-    h1 {
-        width: 96%;
-    }
-
-    .tabordion {
-        width: 96%;
-    }
-}
-
-
-@media (min-width: 1366px) {
-    h1 {
-        width: 70%;
+    .card-header{
+        margin-left: 20px;
     }
 }

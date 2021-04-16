@@ -3,51 +3,14 @@
   <ol class="breadcrumb  mb-0">
     <li><a class="mx-1 text-upfpo px-1" routerLink="">{{'Home' | translate}}</a> /</li>
     <li><a class="mx-1 text-upfpo px-1" role="button"> {{'Search' | translate}} </a></li>
-
   </ol>
 </div>
-<!-- <header class="masthead">
-  <div class="container h-100">
-    <div class="row h-100 pt-5 align-items-center">
-      <div class="col-12 mt-5 text-center">
-        <form class="mt-5 pb-5">
-
-          <div class="d-flex mx-5 mt-5 align-items-end justify-content-center">
-            <input type="text" class="form-control d-inline search-text" name="topsearch" [(ngModel)]="dummysearchval"
-              id="exampleFormControlInput1" placeholder="{{'searchplaceholder' |translate}}">
-            <div class="dropdown d-inline searchDropDown">
-              <select class="btn d-inline btn-default search-btn dropdown-toggle" id="searchin" name="Searchin"
-                [(ngModel)]="parsearchType" style="width:100%">
-                <option value="any">{{'Any' | translate }}</option>
-                <option value="crop">{{'Crop' | translate }}</option>
-                <option value="district">{{'District1' | translate }}</option>
-                <option value="fpo_name">{{'FPO' | translate }}</option>
-                <option value="services">{{'Services/ Products' | translate }}</option>
-              </select>
-            </div>
-            <button class="btn d-inline btn-block btn-product-search active search-btn" role="button"
-              aria-pressed="true" (click)="newSearchWithFilters()" [disabled]="dummysearchval.length==0">{{'Search' |
-              translate }}</button>
-          </div>
-          <div class="row">
-            <div class="col-8">
-              <div class="form-group">
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</header> -->
-
-
 <!-- Page Content -->
 <section class="pb-3 containerMain">
   <div class="container">
     <div class="row mb-3 d-flex justify-content-center p-2">
-      <div class="col-8">
-        <div class="d-flex mx-5  align-items-end justify-content-center" style="border: solid;">
+      <div class="col-md-8 col-lg-8 col-sm-12">
+        <div class="d-flex mx-3  align-items-end justify-content-center" style="border: solid;">
           <div class="dropdown d-inline searchDropDown">
             <select class="btn d-inline btn-default search-btn dropdown-toggle" id="searchin" name="Searchin"
               [(ngModel)]="filterParams.in" style="width: 100%;border-right: solid;border-radius: 0;">
@@ -57,9 +20,6 @@
               <option value="fmb">{{'machinery' | translate }}</option>
               <option value="fertilizer">{{'Fertilizers' | translate }}</option>
               <option value="districts">{{'District1'|translate}}</option>
-              <!-- <option value="district">{{'District1' | translate }}</option> -->
-              <!-- <option value="fpo_name">{{'FPO' | translate }}</option> -->
-              <!-- <option value="services">{{'Services/ Products' | translate }}</option> -->
             </select>
           </div>
           <input type="text" class="form-control d-inline search-text" name="topsearch" [(ngModel)]="filterParams.val"
@@ -67,29 +27,13 @@
 
           <button class="btn d-inline btn-block btn-product-search active search-btn" role="button"
             (click)="fetchnewData();" aria-pressed="true" style="border-radius: 0;"
-            [disabled]="filterParams.val.length===0">{{'Search' |
-            translate }}</button>
+            [disabled]="filterParams.val.length===0">
+            <span class="searchText">{{'Search' | translate }}</span>
+            <span class="searchIcon"><i class="fa fa-search" aria-hidden="true"></i></span>
+          </button>
         </div>
       </div>
     </div>
-
-    <!-- <div class="d-flex p-2 ">
-      <button class="btn btn-sm btn-primary btn-product-search" (click)="sampleNavigate()">{{'Back' | translate
-        }}</button>
-    </div>
-    <div class="d-flex">
-      <span class="d-inline-block my-2 mx-1">{{'filters' | translate }}</span>
-      <span *ngIf="selectedfilters.length==0" class="d-inline-block my-2 mx-1">{{'nofiltersselected' | translate
-        }}</span>
-      <div *ngIf="selectedfilters.length!=0" class="d-inline-block overflow-pills-container">
-        <div *ngFor="let chipitem of selectedfilters" class="d-inline-block mx-1 my-2 upfpo-pills">{{chipitem.name}}
-          ({{chipitem.type}})</div>
-      </div>
-      <div class="d-inline-block" *ngIf="selectedfilters.length > 0">
-        <button class="btn btn-sm my-1 mx-2 btn-product-search btn-danger" (click)="clearFilters()"><span
-            class="text-xsm">{{'clearfilter' | translate}}</span></button>
-      </div>
-    </div> -->
     <div class="row">
       <div class="col-md-3">
         <div class="card" *ngIf="(selectedDropdown==='crop')">
@@ -106,93 +50,12 @@
                     <span class="form-check-label">
                       {{district.name}}
                     </span>
-                  </label> <!-- form-check.// -->
-                  <!--<label class="form-check">
-                  <input class="form-check-input" type="checkbox" value="">
-                  <span class="form-check-label">
-                    {{'PRAYAGRAJ' | translate }}
-                  </span>
-                </label>-->
-                  <!-- form-check.//-->
-                  <!--<label class="form-check">
-                  <input class="form-check-input" type="checkbox" value="">
-                  <span class="form-check-label">
-                    {{'DODA' | translate }}
-                  </span>
-                </label>-->
-                  <!-- form-check.// -->
+                  </label> 
                 </form>
 
               </div> <!-- card-body.// -->
             </div>
-          </article> <!-- card-group-item.// -->
-          <!--Uncomment this old code-->
-          <!--article class="card-group-item my-2">
-            <header class="">
-              <h3 class="title">{{'Quantity' | translate }}</h3>
-            </header>
-            <div class="filter-content">
-              <div class="">
-                <form-->
-            <!--End of uncomment this old code-->      
-                  <!-- <div class="d-flex justify-content-between">
-                    <div>Min - {{value}}</div>
-                    <div>Max - {{highValue>199?highValue+'+':highValue}} </div>
-                  </div> -->
-                  <!--Uncomment this old code-->
-                  <!--div class="custom-slider"-->
-                     <!--Dont Uncomment below-->
-                    <!---ngx-slider [(value)]="filterParams.qtymax" [(highValue)]="filterParams.qtymin" [options]="options"
-                      (userChangeEnd)="quantityFilter()">
-                    </ngx-slider-->
-                    <!--End of Dont Uncomment below-->
-
-                    <!--ngx-slider [(value)]="filterParams.qtymin"  [options]="options" (userChangeEnd)="quantityFilter()">
-                    </ngx-slider-->
-                  <!--/div-->
-                  <!--End of uncomment this old code-->
-                  <!-- Changes Having Async data-->
-
-                  <!--End Of changes having Async data-->
-
-                  <!-- <div class="form-group row mb-3 d-none">
-                    <div class="col-6">
-                      <label class="input-label">{{'Min'|translate}} </label>
-                      <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"></span>
-                        </div>
-                        <input class="form-control" type="text" name="minQt" [(ngModel)]="value">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <label class="input-label">{{'Max'|translate}} {{highValue>199?highValue+'+':highValue}}</label>
-                      <div class="input-group input-group-alternative">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"></span>
-                        </div>
-                        <input class="form-control" type="text" name="maxQt" [(ngModel)]="highValue"
-                          [value]="highValue>199?highValue+'+':highValue">
-                      </div>
-
-                    </div>
-
-                  </div> -->
-                  <!-- <label class="form-check" *ngFor="let q of quantities">
-                    <input class="form-check-input" type="radio" [value]="q.value" name="Qt"
-                      [(ngModel)]="filterParams.quantity[0]" (change)="selectQuantity(q)">
-                    <span class="form-check-label">
-                      {{q.minname | translate}}
-                    </span>
-                  </label> -->
-
-             <!--Uncomment this old code-->     
-                <!--/form>
-
-              </div>
-            </div>
-          </article-->
-           <!--End of uncomment this old code-->
+          </article> 
           <article class="card-group-item my-2">
             <header class="">
               <h3 class="title">{{'cropandverieties' | translate }} </h3>
@@ -245,25 +108,7 @@
                 </form>
               </div> <!-- card-body.// -->
             </div>
-          </article> <!-- card-group-item.// -->
-          <!--article class="card-group-item my-2">
-            <header class="">
-              <h3 class="title">{{'Company/Brand' | translate }}</h3>
-            </header>
-            <div class="filter-content">
-              <div class="filterDistrict">
-                  <form>
-                    <label class="form-check" *ngFor="let brand of brands">
-                      <input class="form-check-input" type="checkbox" [value]="brand.value" [name]="brand.name"
-                        [(ngModel)]="brand.is_active" (change)="selectBrands(brand)">
-                      <span class="form-check-label">
-                        {{brand.name}}
-                      </span>
-                    </label>
-                  </form>
-              </div>
-            </div>
-          </article-->
+          </article> 
           <article class="card-group-item my-2" *ngIf="machinetypes?.length">
             <header class="">
               <h3 class="title">{{'Machinary' | translate }}</h3>
@@ -468,13 +313,6 @@
           <ng-template #customLoadingTemplate>
 
           </ng-template>
-
-          <!-- <ngx-loading [show]="loading" [config]="{backdropBackgroundColour: '#ffffff', 
-          backdropBorderRadius: '1px',
-          primaryColour: '#926E01', 
-          secondaryColour: '#926E01', 
-          tertiaryColour: '#926E01'}" [template]="customLoadingTemplate"></ngx-loading> -->
-
         </div>
         
         <div class="row">
@@ -520,8 +358,6 @@
               </div>
               <div class="row mt-2">
                 <div class="col-12 d-flex justify-content-end">
-                  <!--button class="mx-0 btn btn-sm btn-success" disabled
-                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
                   <button class="mx-0 btn btn-indent btn-primary" (click)="open($event,mymodal,product)" type="button"
                     style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
@@ -571,10 +407,6 @@
                             <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Place'|translate}}:
                             </span><strong> {{product.district}}</strong>
                           </li>
-                          <!--li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Quantity1'|translate}}:
-                            </span><strong> {{product.quantity?product.quantity:'-'}}</strong>
-                          </li-->
                           <li>
                             <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Rent'|translate}}:
                             </span><strong> {{product.rent?product.rent:'N.A'}}</strong>
@@ -586,20 +418,8 @@
                 </div>
               </div>
               
-                <!--div *ngIf="product.role==='ROLE_CHCFMB';else otherRole1">
-                  <div class="row mt-2">
-                    <div class="col-12 d-flex justify-content-end">
-                      
-                      <button class="mx-0 btn btn-indent btn-primary" (click)="openFour($event,mymodalMachCHC,product)" type="button"
-                        style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
-                    </div>
-                  </div>
-                </div-->
-                <!--ng-template #otherRole1-->
                   <div class="row mt-2">
                       <div class="col-12 d-flex justify-content-end">
-                        <!--button class="mx-0 btn btn-sm btn-success" disabled
-                          (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
                         <button class="mx-0 btn btn-indent btn-primary" (click)="openFour($event,mymodalMach,product)" type="button"
                           style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                       </div>
@@ -657,8 +477,6 @@
               </div>
               <div class="row mt-2">
                 <div class="col-12 d-flex justify-content-end">
-                  <!--button class="mx-0 btn btn-sm btn-success" disabled
-                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
                   <button class="mx-0 btn btn-indent btn-primary" (click)="openThree($event,mymodalSeed,product)" type="button"
                     style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
@@ -710,8 +528,6 @@
               </div>
               <div class="row mt-2">
                 <div class="col-12 d-flex justify-content-end">
-                  <!--button class="mx-0 btn btn-sm btn-success" disabled
-                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
                   <button class="mx-0 btn btn-indent btn-primary" (click)="openOne($event,mymodalInput,product)" type="button"
                     style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
@@ -758,11 +574,6 @@
                             <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Place'|translate}}:
                             </span><strong> {{product.district}}</strong>
                           </li>
-                          <!--li>
-                            <span><i class="fas fa-caret-right" aria-hidden="true"></i> {{'Quantity1'|translate}}:
-                            </span><strong> {{product.quantity?product.quantity:'-'}}
-                              {{'quintal' | translate }}</strong>
-                          </li-->
                         </ul>
                       </div>
                     </div>
@@ -771,8 +582,6 @@
               </div>
               <div class="row mt-2">
                 <div class="col-12 d-flex justify-content-end">
-                  <!--button class="mx-0 btn btn-sm btn-success" disabled
-                    (click)="open(mymodal)">{{'viewdetails' | translate}}</button-->
                   <button class="mx-0 btn btn-indent btn-primary" (click)="openTwo($event,mymodalFert,product)" type="button"
                     style="border-radius: 5px; color: #fff;">{{'createindent' | translate }}</button>
                 </div>
@@ -800,21 +609,6 @@
         </div>
       </div>
     </div>
-    <!--Indent Form samples-->
-    <!--div class="row">
-      <div class="form-group">
-        <label> {{'Indent type' | translate}}<span class="required">*</span> </label>
-        <select class="form-control" name="indentType" [(ngModel)]="indentType">
-          <option>Choose Indent type</option>
-          <option value="Fertilizer">Fertilizer</option>
-          <option value="Pesticides">Pesticides</option>
-          <option value="Machinery">Machinery</option>
-        </select>
-      </div>
-    </div>
-    <button type="button" class="btn btn-primary btn-sm" (click)="openTestModal(mymodala)">Create Indent</button-->
-
-    <!--Indent Form samples ends here-->
     
     <ng-template #mymodal let-modal>
 
@@ -856,22 +650,8 @@
               <div class="col-9 text-sm ">{{fpoDetail.fpoEmail}}</div>
             </div>
             <div class="form-group mb-3">
-
-
-              <!-- <label class="form-control-label" for="input-username">{{'FPO Name'| translate}}<span class="required">*</span></label>
-              <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="Full Name" disabled type="text" formControlName="fpoName">
-              </div> -->
-
-
             </div>
             <div class="form-group mb-3">
-
-              <!-- <label class="form-control-label" for="input-username">{{'FPO Email1'|translate}}<span class="required">*</span></label>
-              <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="Email" disabled type="text"  formControlName="fpoEmail">
-              </div> -->
-
             </div>
             <div class="form-group mb-3">
               <label class="form-control-label" for="input-username">{{'Fulfillment Date' | translate }}<span
@@ -913,9 +693,6 @@
                 <div *ngIf="formControls.fpoDeliveryAddress.errors.required">{{'deleiveryrequired'| translate}}</div>
               </div>
             </div>
-
-
-
             <div class="text-center">
               <button type="submit" [disabled]="!indentForm.valid"
                 class="btn btn-login btn-product-search btn-primary my-4" (click)="save()">{{'Send'|translate}}</button>
@@ -977,18 +754,6 @@
           <span class="text-sm mr-2">{{'Fertilizer grade'| translate}}:</span>
           <span class="text-bold text-sm">Ar</span>
         </p>
-        <!-- <div class="row mb-3">
-          <div class="col-6 text-sm text-bold">{{'Fertilizer Type'| translate}}:</div>
-          <div class="col-6 text-sm">Chemical Fertilizer</div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-6 text-sm text-bold">{{'Fertilizer Name'| translate}}:</div>
-          <div class="col-6 text-sm">Rhizobium</div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-6 text-sm text-bold">{{'Name of Manufacturer'| translate}}:</div>
-          <div class="col-6 text-sm">Chemical Fertilizer</div>
-        </div> -->
         <div class="row">
           <div class="col-lg-6">
             <div class="form-group">
@@ -1125,21 +890,8 @@
               <div class="col-9 text-sm ">{{currentitem.vendorEmail}}</div>
             </div>
             <div class="form-group mb-3">
-
-
-              <!-- <label class="form-control-label" for="input-username">{{'FPO Name'| translate}}<span class="required">*</span></label>
-              <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="Full Name" disabled type="text" formControlName="fpoName">
-              </div> -->
-
-
             </div>
             <div class="form-group mb-3">
-
-              <!-- <label class="form-control-label" for="input-username">{{'FPO Email1'|translate}}<span class="required">*</span></label>
-              <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="Email" disabled type="text"  formControlName="fpoEmail">
-              </div> -->
 
             </div>
             <div class="form-group mb-3">

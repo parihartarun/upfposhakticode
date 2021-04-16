@@ -1,548 +1,85 @@
-<section class="p-5 header" style="background-color: #e7e7e7;
-border-radius: 150px 0 0 0;">
-    <div class="container py-4 ml-5" style="margin: auto; margin-top: -50px;max-width: 1475px;">
-        <!-- <nav class="navbar-light bg-light m-0">
-            <a class="navbar-brand" href="#">{{'Home' | translate}}</a>/
-            <a class="navbar-brand" href="#">{{'Schemes' | translate}}</a>
-        </nav>
-        <br> -->
-
-        <div class="tabordion">
-            <section id="section1">
-                <input type="radio" name="sections" id="option1" checked>
-                <label for="option1" (click)="tabtype('Seeds')">{{'Seeds' | translate}}</label>
-                <article>
-                    <h4 class="mb-4">{{'Seeds' | translate}}
-                    </h4>
-                    <div class="row">
-                        <div class="col-md-8"></div>
-                        <div class="col-md-4">
-                            <span><b>Search</b></span>:
-                            <input [(ngModel)]="searchText" type="text">
+<section class="fms-wrapper" style="background-color: #e7e7e7;border-radius: 150px 0 0 0;">
+    <div class="innerContent">
+      <div class="container py-4">
+        <div class="row">
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-header">
+                <h3>{{type | translate}}</h3>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 schemes">
+                        <ul class="schemes-tabs schemes-des">
+                            <li [ngClass]="{'active': type === 'Seeds'}" class="active" (click)="tabtype('Seeds')">{{'Seeds' | translate}}</li>
+                            <li [ngClass]="{'active': type === 'Fertilizer'}" (click)="tabtype('Fertilizer')">{{'Fertilizer' | translate}}</li>
+                            <li [ngClass]="{'active': type === 'Agri Equipment'}" (click)="tabtype('Agri Equipment')">{{'Agri Equipment' | translate}}</li>
+                            <li [ngClass]="{'active': type === 'Agri Equipment Bank'}" (click)="tabtype('Agri Equipment Bank')">{{'Agri Equipment Bank' | translate}}</li>
+                            <li [ngClass]="{'active': type === 'Export'}" (click)="tabtype('Export')">{{'Export' | translate}}</li>
+                            <li [ngClass]="{'active': type === 'Organic Farming'}" (click)="tabtype('Organic Farming')">{{'Organic Farming' | translate}}</li>
+                            <li [ngClass]="{'active': type === 'Special Crop'}" (click)="tabtype('Special Crop')">{{'Special Crop' | translate}}</li>
+                            <li [ngClass]="{'active': type === 'Finance'}" (click)="tabtype('Finance')">{{'Finance' | translate}}</li>
+                        </ul>
+                        <div class="form-group schemes-mb">
+                            <select class="form-control" (change)="tabtype($event.target.value)">
+                                <option value="Seeds">{{'Seeds' | translate}}</option>
+                                <option value="Fertilizer">{{'Fertilizer' | translate}}</option>
+                                <option value="Agri Equipment">{{'Agri Equipment' | translate}}</option>
+                                <option value="Agri Equipment Bank">{{'Agri Equipment Bank' | translate}}</option>
+                                <option value="Export">{{'Export' | translate}}</option>
+                                <option value="Organic Farming">{{'Organic Farming' | translate}}</option>
+                                <option value="Special Crop">{{'Special Crop' | translate}}</option>
+                                <option value="Finance">{{'Finance' | translate}}</option>
+                            </select>
                         </div>
                     </div>
-
-                    <br>
-                    <div class="row">
-                        <div class="col">
-                            <!-- <div class="card shadow"> -->
-                            <div class="table-responsive">
-                                <table class="table align-items-center table-flush schematable">
-                                    <thead>
-                                        <tr class="border_bottom">
-                                            <th>{{'SR. NO' | translate}}</th>
-                                            <th>{{'Description' | translate}}</th>
-                                            <th>{{'Date' | translate}}</th>
-                                            <th>{{'URL' | translate}}</th>
-                                            <th>{{'View' | translate}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="thead-light" *ngFor="let schema of SchemasList | tableSearch:searchText | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                            <td>
-                                                {{i+1}}
-                                            </td>
-                                            <td>
-                                                {{schema.description}}
-                                            </td>
-                                            <td>
-                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                            </td>
-                                            <td>
-                                                 <a href="{{schema.url}}"><img
-                                                    src="../assets/image/img/url.png"
+                    <div class="col-md-9">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush schematable">
+                                <thead>
+                                    <tr class="border_bottom">
+                                        <th>{{'SR. NO' | translate}}</th>
+                                        <th>{{'Description' | translate}}</th>
+                                        <th>{{'Date' | translate}}</th>
+                                        <th>{{'URL' | translate}}</th>
+                                        <th>{{'View' | translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="thead-light" *ngFor="let schema of SchemasList | tableSearch:searchText | paginate: { itemsPerPage: 10, currentPage: p };index as i">
+                                        <td>
+                                            {{i+1}}
+                                        </td>
+                                        <td>
+                                            {{schema.description}}
+                                        </td>
+                                        <td>
+                                            {{schema.createDate | date: 'dd/MM/yyyy'}}
+                                        </td>
+                                        <td>
+                                             <a href="{{schema.url}}"><img
+                                                src="../assets/image/img/url.png"
+                                                style=" height:20px; width:20px"></a>
+                                           
+                                        </td>
+                                        <td>
+                                            <a href="{{baseUrl}}{{schema.filePath}}"><img
+                                                    src="../assets/image/img/pdficon.png"
                                                     style=" height:20px; width:20px"></a>
-                                               
-                                            </td>
-                                            <!-- <td><i class="fa fa-file"></i></td> -->
-                                            <td>
-                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
-                                                        src="../assets/image/img/pdficon.png"
-                                                        style=" height:20px; width:20px"></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- <div class="card-footer py-4"> -->
-                            <!-- <nav aria-label="..." class="text-right"> -->
-                            <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
-                            <!-- </nav> -->
-                            <!-- </div> -->
-                            <!-- </div> -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+                        <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
                     </div>
-                </article>
-            </section>
-            <section id="section2">
-                <input type="radio" name="sections" id="option2">
-                <label for="option2" (click)="tabtype('Fertilizer')">{{'Fertilizer' | translate}}</label>
-                <article>
-                    <h4 class="mb-4">{{'Fertilizer' | translate}}
-                    </h4>
-                    <div class="row">
-                        <div class="col-md-8"></div>
-                        <div class="col-md-4">
-                            <span><b>Search</b></span>:
-                            <input [(ngModel)]="searchText" type="text">
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col">
-                            <!-- <div class="card shadow"> -->
-                            <div class="table-responsive">
-                               <table class="table align-items-center table-flush schematable">
-                                    <thead class="thead-light">
-                                           <tr class="border_bottom">
-                                            <th>{{'SR. NO' | translate}}</th>
-                                            <th>{{'Description' | translate}}</th>
-                                            <th>{{'Date' | translate}}</th>
-                                            <th>{{'URL' | translate}}</th>
-                                            <th>{{'View' | translate}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr
-                                            *ngFor="let schema of SchemasList | tableSearch:searchText | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                            <td>
-                                                {{i+1}}
-                                            </td>
-                                            <td>
-                                                {{schema.description}}
-                                            </td>
-                                            <td>
-                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                            </td>
-                                            <td>
-                                                 <a href="{{schema.url}}"><img
-                                                    src="../assets/image/img/url.png"
-                                                    style=" height:20px; width:20px"></a>
-                                            </td>
-                                            <!-- <td><i class="fa fa-file"></i></td> -->
-                                            <td>
-                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
-                                                        src="../assets/image/img/pdficon.png"
-                                                        style=" height:20px; width:20px"></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- <div class="card-footer py-4"> -->
-                            <!-- <nav aria-label="..." class="text-right"> -->
-                            <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
-                            <!-- </nav> -->
-                            <!-- </div> -->
-                            <!-- </div> -->
-                        </div>
-                    </div>
-                </article>
-            </section>
-            <section id="section3">
-                <input type="radio" name="sections" id="option3">
-                <label for="option3" (click)="tabtype('Agri Equipment')">{{'Agri Equipment' | translate}}</label>
-                <article>
-                    <h4 class="mb-4">{{'Agri Equipment' |
-                        translate}}</h4>
-                    <div class="row">
-                        <div class="col-md-8"></div>
-                        <div class="col-md-4">
-                            <span><b>Search</b></span>:
-                            <input [(ngModel)]="searchText" type="text">
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col">
-                            <!-- <div class="card shadow"> -->
-                            <div class="table-responsive">
-                               <table class="table align-items-center table-flush schematable">
-                                    <thead class="thead-light">
-                                           <tr class="border_bottom">
-                                            <th>{{'SR. NO' | translate}}</th>
-                                            <th>{{'Description' | translate}}</th>
-                                            <th>{{'Date' | translate}}</th>
-                                            <th>{{'URL' | translate}}</th>
-                                            <th>{{'View' | translate}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr
-                                            *ngFor="let schema of SchemasList | tableSearch:searchText | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                            <td>
-                                                {{i+1}}
-                                            </td>
-                                            <td>
-                                                {{schema.description}}
-                                            </td>
-                                            <td>
-                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                            </td>
-                                            <td>
-                                                 <a href="{{schema.url}}"><img
-                                                    src="../assets/image/img/url.png"
-                                                    style=" height:20px; width:20px"></a>
-                                            </td>
-                                            <td>
-                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
-                                                        src="../assets/image/img/pdficon.png"
-                                                        style=" height:20px; width:20px"></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- <div class="card-footer py-4"> -->
-                            <!-- <nav aria-label="..." class="text-right"> -->
-                                <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
-                       
-                                <!-- </nav> -->
-                            <!-- </div> -->
-                            <!-- </div> -->
-                        </div>
-                    </div>
-                </article>
-            </section>
-            <section id="section4">
-                <input type="radio" name="sections" id="option4">
-                <label for="option4" (click)="tabtype('Agri Equipment Bank')">{{'Agri Equipment Bank' |
-                    translate}}</label>
-                <article>
-                    <h4 class="mb-4">{{'Agri Equipment Bank'
-                        | translate}}</h4>
-                    <div class="row">
-                        <div class="col-md-8"></div>
-                        <div class="col-md-4">
-                            <span><b>Search</b></span>:
-                            <input [(ngModel)]="searchText" type="text">
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col">
-                            <!-- <div class="card shadow"> -->
-                            <div class="table-responsive">
-                               <table class="table align-items-center table-flush schematable">
-                                    <thead class="thead-light">
-                                           <tr class="border_bottom">
-                                            <th>{{'SR. NO' | translate}}</th>
-                                            <th>{{'Description' | translate}}</th>
-                                            <th>{{'Date' | translate}}</th>
-                                            <th>{{'URL' | translate}}</th>
-                                            <th>{{'View' | translate}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr
-                                            *ngFor="let schema of SchemasList | tableSearch:searchText | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                            <td>
-                                                {{i+1}}
-                                            </td>
-                                            <td>
-                                                {{schema.description}}
-                                            </td>
-                                            <td>
-                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                            </td>
-                                            <td>
-                                                 <a href="{{schema.url}}"><img
-                                                    src="../assets/image/img/url.png"
-                                                    style=" height:20px; width:20px"></a>
-                                            </td>
-                                            <td>
-                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
-                                                        src="../assets/image/img/pdficon.png"
-                                                        style=" height:20px; width:20px"></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- <div class="card-footer py-4"> -->
-                            <!-- <nav aria-label="..." class="text-right"> -->
-                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
-                        
-                                <!-- </nav> -->
-                            <!-- </div> -->
-                            <!-- </div> -->
-                        </div>
-                    </div>
-                </article>
-            </section>
-
-            <section id="section5">
-                <input type="radio" name="sections" id="option5">
-                <label for="option5" (click)="tabtype('Export')">{{'Export' | translate}}</label>
-                <article>
-                    <h4 class="mb-4">{{'Export' | translate}}
-                    </h4>
-                    <div class="row">
-                        <div class="col-md-8"></div>
-                        <div class="col-md-4">
-                            <span><b>Search</b></span>:
-                            <input [(ngModel)]="searchText" type="text">
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col">
-                            <!-- <div class="card shadow"> -->
-                            <div class="table-responsive">
-                               <table class="table align-items-center table-flush schematable">
-                                    <thead class="thead-light">
-                                           <tr class="border_bottom">
-                                            <th>{{'SR. NO' | translate}}</th>
-                                            <th>{{'Description' | translate}}</th>
-                                            <th>{{'Date' | translate}}</th>
-                                            <th>{{'URL' | translate}}</th>
-                                            <th>{{'View' | translate}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr
-                                            *ngFor="let schema of SchemasList | tableSearch:searchText | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                            <td>
-                                                {{i+1}}
-                                            </td>
-                                            <td>
-                                                {{schema.description}}
-                                            </td>
-                                            <td>
-                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                            </td>
-                                            <td>
-                                                 <a href="{{schema.url}}"><img
-                                                    src="../assets/image/img/url.png"
-                                                    style=" height:20px; width:20px"></a>
-                                            </td>
-                                            <td>
-                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
-                                                        src="../assets/image/img/pdficon.png"
-                                                        style=" height:20px; width:20px"></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- <div class="card-footer py-4"> -->
-                            <!-- <nav aria-label="..." class="text-right"> -->
-                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
-                          
-                                <!-- </nav> -->
-                            <!-- </div> -->
-                            <!-- </div> -->
-                        </div>
-                    </div>
-                </article>
-            </section>
-
-            <section id="section6">
-                <input type="radio" name="sections" id="option6">
-                <label for="option6" (click)="tabtype('Organic Farming')">{{'Organic Farming' | translate}}</label>
-                <article>
-                    <h4 class="mb-4">{{'Organic Farming' | translate}}</h4>
-                   <div class="row">
-                        <div class="col-md-8"></div>
-                        <div class="col-md-4">
-                            <span><b>Search</b></span>:
-                            <input [(ngModel)]="searchText" type="text">
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col">
-                            <!-- <div class="card shadow"> -->
-                            <div class="table-responsive">
-                               <table class="table align-items-center table-flush schematable">
-                                    <thead class="thead-light">
-                                           <tr class="border_bottom">
-                                            <th>{{'SR. NO' | translate}}</th>
-                                            <th>{{'Description' | translate}}</th>
-                                            <th>{{'Date' | translate}}</th>
-                                            <th>{{'URL' | translate}}</th>
-                                            <th>{{'View' | translate}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr
-                                            *ngFor="let schema of SchemasList | tableSearch:searchText | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                            <td>
-                                                {{i+1}}
-                                            </td>
-                                            <td>
-                                                {{schema.description}}
-                                            </td>
-                                            <td>
-                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                            </td>
-                                            <td>
-                                                 <a href="{{schema.url}}"><img
-                                                    src="../assets/image/img/url.png"
-                                                    style=" height:20px; width:20px"></a>
-                                            </td>
-                                            <td>
-                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
-                                                        src="../assets/image/img/pdficon.png"
-                                                        style=" height:20px; width:20px"></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- <div class="card-footer py-4"> -->
-                            <!-- <nav aria-label="..." class="text-right"> -->
-                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
-                       
-                                <!-- </nav> -->
-                            <!-- </div> -->
-                            <!-- </div> -->
-                        </div>
-                    </div>
-                </article>
-            </section>
-
-            <section id="section7">
-                <input type="radio" name="sections" id="option7">
-                <label for="option7" (click)="tabtype('Special Crop')">{{'Special Crop' | translate}}</label>
-                <article>
-                    <h4 class="mb-4">{{'Special Crop' |
-                        translate}}</h4>
-                   <div class="row">
-                        <div class="col-md-8"></div>
-                        <div class="col-md-4">
-                            <span><b>Search</b></span>:
-                            <input [(ngModel)]="searchText" type="text">
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col">
-                            <!-- <div class="card shadow"> -->
-                            <div class="table-responsive">
-                               <table class="table align-items-center table-flush schematable">
-                                    <thead class="thead-light">
-                                           <tr class="border_bottom">
-                                            <th>{{'SR. NO' | translate}}</th>
-                                            <th>{{'Description' | translate}}</th>
-                                            <th>{{'Date' | translate}}</th>
-                                            <th>{{'URL' | translate}}</th>
-                                            <th>{{'View' | translate}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr
-                                            *ngFor="let schema of SchemasList | tableSearch:searchText | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                            <td>
-                                                {{i+1}}
-                                            </td>
-                                            <td>
-                                                {{schema.description}}
-                                            </td>
-                                            <td>
-                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                            </td>
-                                            <td>
-                                                 <a href="{{schema.url}}"><img
-                                                    src="../assets/image/img/url.png"
-                                                    style=" height:20px; width:20px"></a>
-                                            </td>
-                                            <td>
-                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
-                                                        src="../assets/image/img/pdficon.png"
-                                                        style=" height:20px; width:20px"></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- <div class="card-footer py-4"> -->
-                            <nav aria-label="..." class="text-right">
-                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                            </nav>
-                            <!-- </div> -->
-                            <!-- </div> -->
-                        </div>
-                    </div>
-                </article>
-            </section>
-
-            <section id="section8">
-                <input type="radio" name="sections" id="option8">
-                <label for="option8" (click)="tabtype('Finance')">{{'Finance' | translate}}</label>
-                <article>
-                    <h4 class="mb-4">{{'Finance' | translate}}</h4>
-                    <div class="row">
-                        <div class="col-md-8"></div>
-                        <div class="col-md-4">
-                            <span><b>Search</b></span>:
-                            <input [(ngModel)]="searchText" type="text">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col">
-                            <!-- <div class="card shadow"> -->
-                            <div class="table-responsive">
-                               <table class="table align-items-center table-flush schematable">
-                                    <thead class="thead-light">
-                                          <tr class="border_bottom">
-                                            <th>{{'SR. NO' | translate}}</th>
-                                            <th>{{'Description' | translate}}</th>
-                                            <th>{{'Date' | translate}}</th>
-                                            <th>{{'URL' | translate}}</th>
-                                            <th>{{'View' | translate}}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr style=" border-bottom-style: solid; border-bottom-color:#fff"
-                                            *ngFor="let schema of SchemasList | tableSearch:searchText | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                                            <td>
-                                                {{i+1}}
-                                            </td>
-                                            <td>
-                                                {{schema.description}}
-                                            </td>
-                                            <td>
-                                                {{schema.createDate | date: 'dd/MM/yyyy'}}
-                                            </td>
-                                            <td>
-                                                 <a href="{{schema.url}}"><img
-                                                    src="../assets/image/img/url.png"
-                                                    style=" height:20px; width:20px"></a>
-                                            </td>
-                                            <td>
-                                                <a href="{{baseUrl}}{{schema.filePath}}"><img
-                                                        src="../assets/image/img/pdficon.png"
-                                                        style=" height:20px; width:20px"></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- <div class="card-footer py-4"> -->
-                            <!-- <nav aria-label="..." class="text-right"> -->
-                                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
-                                <pagination-controls class="text-right" (pageChange)="p = $event"></pagination-controls>
-                          
-                                <!-- </nav> -->
-                            <!-- </div> -->
-                            <!-- </div> -->
-                        </div>
-                    </div>
-                </article>
-            </section>
-
-
+                </div>
+                   
+              </div>
+              
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </section>

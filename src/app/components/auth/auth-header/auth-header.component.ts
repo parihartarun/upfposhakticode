@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from '../../../_services/shared/shared.service';
 
 @Component({
   selector: 'app-auth-header',
@@ -8,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./auth-header.component.css']
 })
 export class AuthHeaderComponent implements OnInit {
-
+  isUserLoggedIn: boolean;
   @HostListener('window:scroll', ['$event'])
 
   onWindowScroll(e) {
@@ -26,14 +27,19 @@ export class AuthHeaderComponent implements OnInit {
   isDropdownOpen = false;
   navText: any
   isHomePage = ''
-  constructor(public translate: TranslateService, private route: Router, private _activatedroute: ActivatedRoute) {
+  constructor(public sharedService:SharedService, public translate: TranslateService, private route: Router, private _activatedroute: ActivatedRoute) {
     console.log(localStorage.getItem('language'));
+    this.sharedService.isUserLoggedIn.subscribe( value => {
+      console.log(value);
+        this.isLoggeIn = value;
+    });
     if (localStorage.getItem('language')) {
       translate.setDefaultLang(localStorage.getItem('language'));
     } else {
       translate.setDefaultLang('hi');
       localStorage.setItem('language', 'hi');
     }
+
   }
   useLanguage(language: string) {
     this.translate.use(language);
@@ -55,6 +61,7 @@ export class AuthHeaderComponent implements OnInit {
   }
 
   logout() {
+    this.sharedService.isUserLoggedIn.next(false);
     sessionStorage.removeItem('accessToken');
     sessionStorage.removeItem('tokenType');
     localStorage.removeItem('username');
@@ -62,7 +69,6 @@ export class AuthHeaderComponent implements OnInit {
     localStorage.removeItem('masterId');
     localStorage.removeItem('userId');
     this.route.navigate(['/login']);
-    location.reload();
   }
   toggleNavbar() {
     this.isOpen = !this.isOpen;

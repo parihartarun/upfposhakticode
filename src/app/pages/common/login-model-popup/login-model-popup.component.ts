@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CollapseModule } from 'ng-uikit-pro-standard';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { SharedService } from '../../../_services/shared/shared.service';
 
 @Component({
   selector: 'app-login-model-popup',
@@ -22,7 +23,8 @@ export class LoginModelPopupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private api: AuthService,
     private route: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    public sharedService:SharedService,
   ) { }
 
   ngOnInit() {
@@ -38,10 +40,8 @@ export class LoginModelPopupComponent implements OnInit {
   }
 
   closeMe(){
- 
       this.route.navigate(['/forgot-password']);
       this.modalService.dismissAll();
-    
   }
 
   userLogin() {
@@ -55,6 +55,7 @@ export class LoginModelPopupComponent implements OnInit {
     this.api.userLogin(this.loginForm.value).subscribe(response => {
       console.log(response);
       if (response.accessToken != '') {
+        this.sharedService.isUserLoggedIn.next(true);
         sessionStorage.setItem('accessToken', response.token);
         sessionStorage.setItem('tokenType', response.token);
         localStorage.setItem('username', response.user.userName);

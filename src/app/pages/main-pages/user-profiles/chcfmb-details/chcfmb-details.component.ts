@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChcFmbService } from '../../../../_services/chc_fmb/chc-fmb.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-chcfmb-details',
@@ -18,7 +19,7 @@ export class ChcfmbDetailsComponent implements OnInit {
   machinery_object_length: number;
 
   constructor(private api:ChcFmbService, 
-    private _activatedroute: ActivatedRoute) { }
+    private _activatedroute: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this._activatedroute.params.subscribe(param => {
@@ -40,6 +41,10 @@ export class ChcfmbDetailsComponent implements OnInit {
       this.machinery_data = response;
       this.machinery_object_length = Object.keys(this.machinery_data).length;
      })
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }

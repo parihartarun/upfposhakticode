@@ -1,240 +1,240 @@
 <div class="container-fluid">
-<div class="row header-back">
-    <!--div class="col-md-12">
-        <div class="d-flex justify-content-center">
-           <h2 class="custom-table-title"> {{'FPO Details'|translate}} </h2>
-        </div>
-    </div-->
-</div>
-<div class="row header-back">
-    <div class="col-md-3">
-        <div class="mr-2">
-            <input type="text" [id]="'search'" [(ngModel)]="searchText1" (input)="p=1" style="border-radius: 0;"
-              name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
-          </div>
-    </div>
-    <div class="col-md-6 put-first">
-        <div class="d-flex justify-content-center">
-            <h2 class="custom-table-title">  {{'FPO Details'|translate}} </h2>
-        </div>
-    </div>
-    
-</div>
-<div class="row header-back" >
-    <div class="col-md-12 ">
-        <div class="table-responsive">
-          <table class="table align-items-center table-flush " >
-            <thead class="thead-light">
-              <tr>    
-                <th scope="col">{{'SR. NO'|translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('districtName')">{{'District1' | translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('fpoName')">{{"FPO Name" | translate}}</th>
-                <th scope="col"  class="sort" (click)="onClickOrderBy('fpoEmail')">{{'FPO Email' | translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('fpoLandline')">{{'Mobile'|translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('crops')">{{'Crops'|translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('additionalServices')">{{'Additional Services'|translate}}</th>
-                <th scope="col">{{'viewdetails'|translate}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let district of data.fpoDetails | tableSearch:searchText1  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
-                <td>
-                  {{i+1}}
-                </td>
-                <td>
-                   {{district.districtName}}
-                </td>
-                <td>
-                   {{district.fpoName}}
-                </td>
-                <td>
-                   {{district.fpoEmail}}
-                </td>
-                <td>
-                    {{district.fpoLandline}}
-                </td>                
-                <td class="wordWrapper">
-                   {{district.crops}}
-                </td>
-                <td class="wordWrapper">
-                    {{district.additionalServices}}
-                </td>
-                <td>
-                    <button class="btn btn-primary btn-custom" (click)="routePage('fpo-details',district.fpoId)">{{'View'|translate}}</button>
-                </td>
-              </tr> 
-            </tbody>
-        </table> 
-        </div> 
-        <div class="card-footer py-4">
-            <nav aria-label="..." class="text-right">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-            </nav>
-        </div>     
-    
-    </div>
-</div>
-
-<div class="row header-back">
-    <!--div class="col-md-12">
-        <div class="d-flex justify-content-center">
-            <h2 class="custom-table-title"> {{'Input Supplier'|translate}} </h2>
-        </div>
-    </div-->
-</div>
-
-<div class="row header-back">
-        <div class="col-md-3">
-            <div class="mr-2">
-                <input type="text" [id]="'search'" [(ngModel)]="searchText2" (input)="q=1" style="border-radius: 0;"
-                  name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
-              </div>
-        </div>
-        <div class="col-md-6 put-first">
-            <div class="d-flex justify-content-center">
-                <h2 class="custom-table-title">  {{'Input Supplier'|translate}} </h2>
+    <div class="card card-profile shadow py-0 mt-4">
+        <div class="card-header p-4">
+            <div class="row">
+                <div class="col-md-9">
+                    <h4 class="custom-table-title"> {{'FPO Details'|translate}} </h4>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" [id]="'search'" [(ngModel)]="searchText1" (input)="p=1" style="border-radius: 0;"
+                        name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
+                </div>
             </div>
         </div>
-</div>    
-<div class="row header-back">
-    <div class="col-md-12">
-        <div class="table-responsive">
-          <table class="table align-items-center table-flush" >
-            <thead class="thead-light">
-              <tr>    
-                <th scope="col">{{'SR. NO'|translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('districtName')">{{'District1' | translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('input_supplier_name')">{{"Input Supplier" | translate}}</th>
-                <th scope="col"  class="sort" (click)="onClickOrderBy('email')">{{'Email' | translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('fpoLandline')">{{'Mobile'|translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('crops')">{{'Seeds'|translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('additionalServices')">{{'Fertilizers'|translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('additionalServices')">{{'Insecticides'|translate}}</th>
-                <th scope="col" class="sort" (click)="onClickOrderBy('additionalServices')">{{'Machinaries'|translate}}</th>
-                <th scope="col">{{'viewdetails'|translate}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let district of data.inputSupplierDetails | tableSearch:searchText2  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: q } let i=index">
-                <td>
-                  {{i+1}}
-                </td>
-                <td>
-                   {{district.districtName}}
-                </td>
-                <td>
-                   {{district.input_supplier_name}}
-                </td>
-                <td>
-                   {{district.email}}
-                </td>
-                <td>
-                    {{district.mobile_number}}
-                </td>                
-                <td class="wordWrapper">
-                   {{district.cropSeeds}}
-                </td>
-                <td class="wordWrapper">
-                    {{district.fertilizers}}
-                </td>
-                <td class="wordWrapper">
-                    {{district.insecticides}}
-                </td>
-                <td class="wordWrapper">
-                    {{district.machineries}}
-                </td>
-                <td>
-                    <button class="btn btn-primary btn-custom" (click)="routePage('supplier-details',district.input_supplier_id)">{{'View'|translate}}</button>
-                </td>
-              </tr> 
-            </tbody>
-         </table> 
-        </div>  
-            <div class="card-footer py-4">
-                <nav aria-label="..." class="text-right">
-                <pagination-controls (pageChange)="q = $event"></pagination-controls>
-                </nav>
-            </div>   
-         
-    </div>
-</div>
-
-        <div class="row header-back">
-            <!--div class="col-md-12">
-                <div class="d-flex justify-content-center">
-                    <h2 class="custom-table-title">  {{'CHC/FMB'|translate}} </h2>
-                </div>
-            </div-->
-        </div>
-
-        <div class="row header-back" >
-                
-                        <!--app-data-table tableClass="table table-striped table-bordered table-hover"  [data]="data.chcFmbDetails" [options]="options"
-                        [columns]="columns3">
-                        </app-data-table-->
-                        
-                    <div class="col-md-3">
-                        <div class="mr-2">
-                            <input type="text" [id]="'search'" [(ngModel)]="searchText3" (input)="r=1" style="border-radius: 0;"
-                                name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
-                        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush ">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" class="text-right">{{'SR. NO'|translate}}</th>
+                                    <th scope="col" class="sort text-left" (click)="onClickOrderBy('districtName')">
+                                        {{'District1' | translate}}</th>
+                                    <th scope="col" class="sort text-center" (click)="onClickOrderBy('fpoName')">
+                                        {{"FPO Name" | translate}}</th>
+                                    <th scope="col" class="sort text-center" (click)="onClickOrderBy('fpoEmail')">
+                                        {{'FPO Email' | translate}}</th>
+                                    <th scope="col" class="sort text-center" (click)="onClickOrderBy('fpoLandline')">
+                                        {{'Mobile'|translate}}</th>
+                                    <th scope="col" class="sort text-center" (click)="onClickOrderBy('crops')">
+                                        {{'Crops'|translate}}</th>
+                                    <th scope="col" class="sort text-center"
+                                        (click)="onClickOrderBy('additionalServices')">
+                                        {{'Additional Services'|translate}}</th>
+                                    <th scope="col" class="text-left">{{'viewdetails'|translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let district of data.fpoDetails | tableSearch:searchText1  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
+                                    <td>
+                                        {{i+1}}
+                                    </td>
+                                    <td>
+                                        {{district.districtName}}
+                                    </td>
+                                    <td>
+                                        {{district.fpoName}}
+                                    </td>
+                                    <td>
+                                        {{district.fpoEmail}}
+                                    </td>
+                                    <td>
+                                        {{district.fpoLandline}}
+                                    </td>
+                                    <td class="wordWrapper">
+                                        {{district.crops}}
+                                    </td>
+                                    <td class="wordWrapper">
+                                        {{district.additionalServices}}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary btn-custom"
+                                            (click)="routePage('fpo-details',district.fpoId)">{{'View'|translate}}</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-md-6 put-first">
-                        <div class="d-flex justify-content-center">
-                            <h2 class="custom-table-title">  {{'CHC/FMB'|translate}} </h2>
-                        </div>
-                    </div>
-        </div>
-    <div class="row header-back">
-        <div class="col-md-12">
-            <div class="table-responsive">
-                    <table class="table align-items-center table-flush" >
-                    <thead class="thead-light">
-                    <tr>    
-                        <th scope="col">{{'SR. NO'|translate}}</th>
-                        <th scope="col" class="sort" (click)="onClickOrderBy('districtName')" >{{'District1' | translate}}</th>
-                        <th scope="col" class="sort" (click)="onClickOrderBy('chc_fmb_name')">{{"CHC/FMB" | translate}}</th>
-                        <th scope="col"  class="sort" (click)="onClickOrderBy('email')">{{'Email' | translate}}</th>
-                        <th scope="col" class="sort" (click)="onClickOrderBy('fpoLandline')">{{'Mobile'|translate}}</th>
-                        <th scope="col" class="sort" (click)="onClickOrderBy('crops')">{{'Machinery'|translate}}</th>
-                        <th scope="col">{{'viewdetails'|translate}}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let district of data.chcFmbDetails | tableSearch:searchText3  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: r } let i=index">
-                        <td>
-                        {{i+1}}
-                        </td>
-                        <td>
-                        {{district.district_name}}
-                        </td>
-                        <td>
-                        {{district.chc_fmb_name}}
-                        </td>
-                        <td>
-                            {{district.email}}
-                        </td>
-                        <td>
-                        {{district.mobile_number}}
-                        </td>
-                        <td class="wordWrapper">
-                            {{district.machineries}}
-                        </td>                
-                        <td>
-
-                            <button class="btn btn-primary btn-custom" (click)="routePage('chcfmb-details',district.chc_fmb_id)">{{'View'|translate}}</button>
-                        </td>
-                    </tr> 
-                    </tbody>
-                 </table> 
-                </div>  
                     <div class="card-footer py-4">
                         <nav aria-label="..." class="text-right">
-                        <pagination-controls (pageChange)="r = $event"></pagination-controls>
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
                         </nav>
-                    </div>  
-                
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <div class="card card-profile shadow py-0 mt-4">
+        <div class="card-header p-4">
+            <div class="row">
+                <div class="col-md-9">
+                    <h4 class="custom-table-title"> {{'Input Supplier'|translate}} </h4>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" [id]="'search'" [(ngModel)]="searchText2" (input)="q=1" style="border-radius: 0;"
+                        name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" class="text-right">{{'SR. NO'|translate}}</th>
+                                    <th scope="col" class="sort text-left" (click)="onClickOrderBy('districtName')">
+                                        {{'District1' | translate}}
+                                    </th>
+                                    <th scope="col" class="sort text-center"
+                                        (click)="onClickOrderBy('input_supplier_name')">
+                                        {{"Input Supplier" | translate}}</th>
+                                    <th scope="col" class="sort text-center" (click)="onClickOrderBy('email')">
+                                        {{'Email' | translate}}</th>
+                                    <th scope="col" class="sort text-center" (click)="onClickOrderBy('fpoLandline')">
+                                        {{'Mobile'|translate}}</th>
+                                    <th scope="col" class="sort text-center" (click)="onClickOrderBy('crops')">
+                                        {{'Seeds'|translate}}</th>
+                                    <th scope="col" class="sort text-center"
+                                        (click)="onClickOrderBy('additionalServices')">
+                                        {{'Fertilizers'|translate}}</th>
+                                    <th scope="col" class="sort text-center"
+                                        (click)="onClickOrderBy('additionalServices')">
+                                        {{'Insecticides'|translate}}</th>
+                                    <th scope="col" class="sort text-center"
+                                        (click)="onClickOrderBy('additionalServices')">
+                                        {{'Machinaries'|translate}}</th>
+                                    <th scope="col" class="text-left">{{'viewdetails'|translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let district of data.inputSupplierDetails | tableSearch:searchText2  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: q } let i=index">
+                                    <td>
+                                        {{i+1}}
+                                    </td>
+                                    <td>
+                                        {{district.districtName}}
+                                    </td>
+                                    <td>
+                                        {{district.input_supplier_name}}
+                                    </td>
+                                    <td>
+                                        {{district.email}}
+                                    </td>
+                                    <td>
+                                        {{district.mobile_number}}
+                                    </td>
+                                    <td class="wordWrapper">
+                                        {{district.cropSeeds}}
+                                    </td>
+                                    <td class="wordWrapper">
+                                        {{district.fertilizers}}
+                                    </td>
+                                    <td class="wordWrapper">
+                                        {{district.insecticides}}
+                                    </td>
+                                    <td class="wordWrapper">
+                                        {{district.machineries}}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary btn-custom"
+                                            (click)="routePage('supplier-details',district.input_supplier_id)">{{'View'|translate}}</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer py-4">
+                        <nav aria-label="..." class="text-right">
+                            <pagination-controls (pageChange)="q = $event"></pagination-controls>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="card card-profile shadow py-0 mt-4 mb-4">
+        <div class="card-header p-4">
+            <div class="row">
+                <div class="col-md-9">
+                    <h4 class="custom-table-title"> {{'CHC/FMB'|translate}} </h4>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" [id]="'search'" [(ngModel)]="searchText3" (input)="r=1" style="border-radius: 0;"
+                        name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" class="text-right">{{'SR. NO'|translate}}</th>
+                                    <th scope="col" class="sort text-left" (click)="onClickOrderBy('districtName')">
+                                        {{'District1' | translate}}</th>
+                                    <th scope="col" class="sort text-center" (click)="onClickOrderBy('chc_fmb_name')">
+                                        {{"CHC/FMB" | translate}}</th>
+                                    <th scope="col" class="sort text-center" (click)="onClickOrderBy('email')">
+                                        {{'Email' | translate}}</th>
+                                    <th scope="col" class="sort text-center" (click)="onClickOrderBy('fpoLandline')">
+                                        {{'Mobile'|translate}}</th>
+                                    <th scope="col" class="sort text-center" (click)="onClickOrderBy('crops')">
+                                        {{'Machinery'|translate}}</th>
+                                    <th scope="col" class="text-left">{{'viewdetails'|translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let district of data.chcFmbDetails | tableSearch:searchText3  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: r } let i=index">
+                                    <td>
+                                        {{i+1}}
+                                    </td>
+                                    <td>
+                                        {{district.district_name}}
+                                    </td>
+                                    <td>
+                                        {{district.chc_fmb_name}}
+                                    </td>
+                                    <td>
+                                        {{district.email}}
+                                    </td>
+                                    <td>
+                                        {{district.mobile_number}}
+                                    </td>
+                                    <td class="wordWrapper">
+                                        {{district.machineries}}
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary btn-custom"
+                                            (click)="routePage('chcfmb-details',district.chc_fmb_id)">{{'View'|translate}}</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer py-4">
+                        <nav aria-label="..." class="text-right">
+                            <pagination-controls (pageChange)="r = $event"></pagination-controls>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>

@@ -13,6 +13,7 @@ export class SchemasComponent implements OnInit {
   SchemasList: any;
   p:any;
   searchText = '';
+  type = '';
 
   constructor(
     private schemaapi: schemaService,
@@ -20,8 +21,10 @@ export class SchemasComponent implements OnInit {
 
   ngOnInit(): void {
     this.tabtype('Seeds');
+    this.type = 'Seeds';
   }
   tabtype(type) {
+    this.type = type;
     this.schemaapi.getDashboardData(type).subscribe(response => {
       console.log(response);
       this.SchemasList = response;

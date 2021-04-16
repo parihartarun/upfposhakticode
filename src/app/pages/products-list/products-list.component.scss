@@ -6,7 +6,12 @@
     background-repeat: no-repeat;
     background-image: url('/assets/image/img/slider/1.jpg');
 }
-
+.searchIcon{
+  display: none;
+}
+.searchText{
+  display: block;
+}
 .text-xsm
 {
   font-size: 9px;
@@ -217,4 +222,13 @@ header > h3{
 
 .changetopoint{
   cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchIcon{
+    display: block;
+  }
+  .searchText{
+    display: none;
+  }
 }

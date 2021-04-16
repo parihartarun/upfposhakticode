@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/_helpers/constomMatchValidor';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { SharedService } from '../../_services/shared/shared.service';
 
 @Component({
   selector: 'app-navbar',
@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
   userRole: any;
   isOpen = false;
   userstring = ""
-  constructor(private fb: FormBuilder, location: Location, private toastr: ToastrService,
+  constructor(public sharedService:SharedService, private fb: FormBuilder, location: Location, private toastr: ToastrService,
     private authService: AuthService, private element: ElementRef, private router: Router,
     private modalService: NgbModal, public translate: TranslateService) {
     this.location = location;
@@ -99,6 +99,7 @@ export class NavbarComponent implements OnInit {
     this.modalService.open(content)
   }
   logout() {
+    this.sharedService.isUserLoggedIn.next(false);
     sessionStorage.removeItem('accessToken');
     sessionStorage.removeItem('tokenType');
     localStorage.removeItem('username');

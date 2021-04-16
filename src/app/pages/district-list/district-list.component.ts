@@ -32,8 +32,6 @@ export class DistrictListComponent implements OnInit {
 
   constructor(private fpoSearch:FpoSearchService,private _activatedroute:ActivatedRoute,private route: Router) {}
 
-   
-
   ngOnInit(): void {
     this._activatedroute.params.subscribe((param)=>{
         console.log('PARAMS ==>',param);
@@ -42,27 +40,12 @@ export class DistrictListComponent implements OnInit {
         this.fpoSearch.getDistrictInfo(this.distParams.val,this.distParams.in)
     });
 
-   
-    
-
     this.districtListObserver.subscribe(dat =>{
       this.data = dat;
       console.log("THE DATA",this.data);
     });
-
-    // FPO Details
-    // this.columns =[
-    //   {key:'districtName',title:"District1"},
-    //   {key:'fpoName',title:'FPO Name'},
-    //   {key:'fpoEmail',title:'FPO Email'},
-    //   {key:'fpoLandline',title:'Mobile'},
-    //   {key:'crops',title:'Crops',width:'auto',noWrap: { head: true, body: true } },
-    //   {key:'additionalServices',title:'Additional Services',width:'auto',noWrap: { head: true, body: true }}
-    // ];
- 
   }
 
-  
   onClickOrderBy( key:any ){
     this.orderBy={
       ...this.orderBy,
