@@ -1,8 +1,7 @@
 <form role="form" [formGroup]="fpoRegisterForm">
 
-  <div class="form-group row mb-3">
-
-    <div class="col-6">
+  <div class="form-group row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Agency' | translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -22,7 +21,7 @@
         <div *ngIf="formControls.agency.errors.required">{{'agency is required' |translate}}</div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'District1'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -37,9 +36,8 @@
         <div *ngIf="formControls.distRefId.errors.required">{{'district is required'|translate}}</div>
       </div>
     </div>
-  </div>
-  <div class="form-group row mb-3">
-    <div class="col-6">
+
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Block1'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -56,7 +54,7 @@
         <div *ngIf="formControls.blockRef.errors.required">{{'block is required'| translate}}</div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'FPO Name'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -70,15 +68,13 @@
       </div>
     </div>
 
-  </div>
-  <div class="form-group row mb-3">
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'FPO Registration Date'| translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
         </div>
-        <input [max]="getToday()" type="text" class="form-control" bsDatepicker
+        <input [maxDate]="today" type="text" class="form-control" bsDatepicker
                [bsConfig]="{ isAnimated: true, containerClass: 'theme-red' }" formControlName="dateOfRegistration">
       </div>
       <div *ngIf="submitted && formControls.dateOfRegistration.errors" class="text-danger">
@@ -88,7 +84,7 @@
       </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
 
       <label class="input-label">{{'FPO Registration No'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -106,9 +102,8 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="form-group row mb-3">
-    <div class="col-6">
+  
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Pincode'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -123,7 +118,7 @@
     </div>
 
 
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
 
       <label class="input-label">{{'FPO Contact No' |translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -138,9 +133,8 @@
       </div>
 
     </div>
-  </div>
-  <div class="form-group row mb-3">
-    <div class="col-6">
+ 
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
 
       <label class="input-label">{{'FPO Email'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -154,7 +148,7 @@
         <div *ngIf="formControls.fpoEmail.errors.pattern">{{'Invalid Email Address'|translate}}</div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'FPO Office Address'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -166,10 +160,8 @@
         <div *ngIf="formControls.fpoAddress.errors.required">{{'fpo office address is required'|translate}}</div>
       </div>
     </div>
-  </div>
-  <div class="form-group row mb-3">
-
-    <div class="col-6">
+  
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
 
       <label class="input-label">{{'Username'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -188,7 +180,7 @@
       </div>-->
 
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
 
       <label class="input-label">{{'Create Password'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -207,9 +199,8 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="form-group row mb-3">
-    <div class="col-6">
+ 
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Confirm Password'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -225,8 +216,8 @@
   </div>
   <hr />
   <h3>{{'Bank Details'|translate}}</h3>
-  <div class="form-group row mb-3">
-    <div class="col-6">
+  <div class="form-group row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Bank Name'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -239,7 +230,7 @@
       </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Bank Account Number1'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -249,11 +240,7 @@
       </div>
     </div>
 
-
-  </div>
-  <div class="form-group row mb-3">
-
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'IFSC'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -265,15 +252,12 @@
         <div *ngIf="formControls.fpoIFSC.errors.pattern"> {{'IFSC Code should be 11 digit'|translate}}</div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <ngx-recaptcha2 #captchaElem [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
                       (success)="handleSuccess($event)" [useGlobalDomain]="false" formControlName="recaptcha">
       </ngx-recaptcha2>
     </div>
-
-  </div>
-  <div class="form-group row mb-3">
-
+    
     <div class="col-12">
 
       <div class="tnc">

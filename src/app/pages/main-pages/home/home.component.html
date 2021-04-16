@@ -116,7 +116,7 @@
       <div class="row my-3">
 
         <div class="col-md-2 col-sm-12 p-0">
-          <div class="" style="margin-left: 13%;">
+          <div class="notifications" >
             <h4 class="set_notifications">
               {{'Notifications' | translate }}
             </h4>
@@ -194,41 +194,29 @@
             </div>
             <div class="row serachBarWpper ">
               <div class="col-md-8" style="padding: 0px;">
-                <div class="form-group has-feedback">
-                  <div class="form-group">
+                <div class="has-feedback">
                     <div id="filterDate2">
                       <input type="text" id="homesearch" class="form-control" style="border-radius: 0;"
                         placeholder="{{'Type here to search'|translate}}" [(ngModel)]="searchValue"
                         (input)="selectValue()">
                     </div>
-                  </div>
                 </div>
-
               </div>
               <div class="col-md-2" style="padding: 0px;">
                 <div class="dropdown searchDropDown ">
                   <select class="btn btn-default dropdown-toggle" id="searchin" name="Searchin" [(ngModel)]="searchType"
                     style="width:100%;border-radius: 0;">
-                    <!--option value="any">{{'Any' | translate }}</option>
-                    <option value="crop">{{'Crop' | translate }}</option>
-                    <option value="district">{{'District1' | translate }}</option>
-                    <option value="fpo_name">{{'FPO' | translate }}</option>
-                    <option value="services">{{'Services/ Products' | translate }}</option> -->
                     <option value="crop">{{'Crop' | translate }}</option>
                     <option value="insecticide">{{'Insecticides' | translate }}</option>
                     <option value="seed">{{'Seeds' | translate }}</option>
                     <option value="fmb">{{'machinery' | translate }}</option>
                     <option value="fertilizer">{{'Fertilizers' | translate }}</option>
                     <option value="districts">{{'District1' | translate }}</option>
-                    <!-- <option value="fpo_name">{{'FPO' | translate }}</option> -->
-                    <!-- <option value="services">{{'Services/ Products' | translate }}</option> -->
-
                   </select>
                 </div>
               </div>
               <div class="col-md-2 mb-4" style="padding: 0px;">
                 <a  [routerLink]="" (click)="startSearch()" style="cursor:pointer;"> 
-                <!--a [routerLink]="['/products',searchValue,searchType]" routerLinkActive="active"-->
                   <input type="button" value="🔍 {{'Search' | translate}}" class="form-control-feedback btn-warning"
                     placeholder="{{'searchPlaceHolder'| translate}}" style="width: 100%; pointer-events: all;">
                 </a>
@@ -236,12 +224,11 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-md-push-7 col-sm-6 set_comdbox no_padding">
+        <div class="col-md-3 col-md-push-7 col-sm-6 set_comdbox">
           <div class="row" style="margin-left: auto; margin-right: auto;">
             <div class="col-md-12">
               <div class="text-block">
                 <img src="assets/image/img/yogi.png" alt="Avatar">
-                <!--<img src="img/circle.png" alt="" style="position: absolute;height: 120px;">-->
                 <h4 class="set_name">
                   {{'Shri. Yogi Adityanath' | translate }}
                 </h4>
@@ -251,7 +238,6 @@
               </div>
               <div class="text-block">
                 <img src="assets/image/img/sury.png" alt="Avatar">
-                <!-- <img src="img/circle.png" alt="" style="position: absolute;height: 120px;">-->
                 <h4 class="set_name">
                   {{'Shri Surya Pratap Shahi' | translate }}
                 </h4>
@@ -261,7 +247,6 @@
               </div>
               <div class="text-block">
                 <img src="assets/image/img/lakhan.png" alt="Avatar">
-                <!-- <img src="img/circle.png" alt="" style="position: absolute;height: 120px;">-->
                 <h4 class="set_name">
                   {{'Shri Lakhan Singh Rajput' | translate }}
                 </h4>
@@ -457,7 +442,6 @@
               </div>
             </div>
             <div class="tile_nember">
-              <!--<img src="img/storage.png" alt="" class="set_box_image">-->
               7
             </div>
 

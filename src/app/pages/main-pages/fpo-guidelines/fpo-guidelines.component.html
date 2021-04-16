@@ -1,65 +1,24 @@
 <section class="fms-wrapper">
-
   <div class="innerContent">
     <div class="container py-4">
-      <!-- <div class="title">
-        <ol class="breadcrumb mb-0">
-          <li><a routerLink="/home">{{'Home' | translate}}</a></li>
-          <li><a> / {{'FPO guidelines' | translate}}</a></li>
-
-        </ol>
-      </div> -->
-      <!-- Page content -->
-
       <div class="row">
         <div class="col">
           <div class="card shadow">
             <div class="card-header">
               <div class="row">
                 <div class="col-12">
-                  <!-- <form role="form" [formGroup]="fpoGuideLineFrom" style="width:100%">
-                    <div class="form-group row m-2 pb-2 pt-2">
-
-                      <div class="col-lg-3">
-                        <div class="custom-control custom-radio mb-3 " style="display: inline;margin-right: 20px;">
-                          <input formControlName="isPostRegistration" value="isPerRegistration"
-                            class="custom-control-input" id="customRadio6" type="radio" checked=""
-                            (change)="isProPostRegistration()">
-                          <label class="custom-control-label" for="customRadio6">{{'Pre-FPO Registration' |
-                            translate}}</label>
-                        </div>
-                      </div>
-                      <div class="col-lg-3">
-                        <div class="custom-control custom-radio mb-3" style="display: inline;margin-right: 20px;">
-                          <input formControlName="isPostRegistration" value="isPostRegistration"
-                            class="custom-control-input" id="customRadio7" type="radio" checked=""
-                            (change)="isProPostRegistration()">
-
-                          <label class="custom-control-label" for="customRadio7">{{'Post-FPO Registration' |
-                            translate}}</label>
-                        </div>
-                      </div>
-
-
-                    </div>
-
-                  </form>
-
-                  <hr /> -->
                   <h3 *ngIf="isPost" class="mb-0 ml-2">{{'Post-FPO Registration'|translate}}</h3>
                   <h3 *ngIf="!isPost" class="mb-0 ml-2">{{'Pre-FPO Registration'|translate}}</h3>
                 </div>
               </div>
             </div>
             <div class="border border-dark m-4">
-
-              <div class="cust-head mx-3 p-3">
-                <div class="mr-2">
+              <div class="row p-3">
+                <div class="col-4 col-lg-4 col-sm-12">
                   <input type="text" [id]="'search'" [(ngModel)]="searchText" (input)="p=1" style="border-radius: 0;"
-                    name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
+                  name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />                
                 </div>
-                <div class="cust-head">
-                  <div></div>
+                <div class="col-8 col-lg-8 col-sm-12">
                   <form role="form" [formGroup]="fpoGuideLineFrom" style="width:100%">
                     <div class="form-group row m-0">
                       <div class="custom-control custom-radio " style="display: inline;margin-right: 20px;">
@@ -78,13 +37,8 @@
                         <label class="custom-control-label" for="customRadio7">{{'Post-FPO Registration' |
                           translate}}</label>
                       </div>
-
-
                     </div>
-
-                  </form>
-                </div>
-                <div>
+                  </form>                
                 </div>
               </div>
               <div class="table-responsive">
@@ -106,18 +60,15 @@
                         {{(p-1) * 10 + i + 1}}
                       </td>
                       <td *ngIf="Englishlang">
-                        {{indent.description}} 
+                        {{indent.description}}
                       </td>
                       <td *ngIf="!Englishlang">
-                         {{indent.hindiDescription}}
+                        {{indent.hindiDescription}}
                       </td>
                       <td>
                         {{indent.uploadDate | date: 'dd/MM/yyyy'}}
                       </td>
                       <td>
-
-                        <!-- <a href="{{baseUrl}}{{indent.filePath}}" download><img src="../assets/image/img/pdficon.png"
-                            style=" height:20px; width:30px"></a> -->
                         <a href="{{indent.filePath}}" download target_blank=""><img
                             src="../assets/image/img/pdficon.png" style=" height:20px; width:30px"></a>
                       </td>
@@ -126,7 +77,6 @@
                 </table>
                 <div class="row mx-0 mt-2" style="align-items: center;">
                   <div class="col-sm-6 col-xs-12 col-12 custom-data-entries-align">
-                    <!-- <div>Showing 1 of 4 entries</div> -->
                   </div>
                   <div class="col-xs-12 col-sm-6 col-12 custom-pagination-align">
                     <pagination-controls (pageChange)="p = $event"></pagination-controls>
@@ -134,17 +84,9 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="card-footer py-4">
-              <nav aria-label="..." class="text-right">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
-              </nav>
-            </div> -->
           </div>
         </div>
       </div>
-
-
-
     </div>
   </div>
 </section>

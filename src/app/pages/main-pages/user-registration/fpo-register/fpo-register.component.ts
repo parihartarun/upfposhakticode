@@ -22,6 +22,8 @@ export class FpoRegisterComponent implements OnInit {
   panchayts = [{ panchayat_id: 1, panchayat_name: "mumbai1" }];
   agencies = [{ villageId: 1, villageName: "mumbai1" }];
   banks = [];
+  today=new Date();
+
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -127,10 +129,6 @@ export class FpoRegisterComponent implements OnInit {
     mm = (parseInt(mm) - 1).toString(); // January is 0
 
     return new Date(dd - mm - yyyy);
-  }
-
-  getToday(): string {
-    return new Date().toISOString().split('T')[0]
   }
 
 }

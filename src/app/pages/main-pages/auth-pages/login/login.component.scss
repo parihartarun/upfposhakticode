@@ -4,7 +4,7 @@
 .recaptcha2 {
   width: 100%;
   position: relative;
-  left: 50%;
+  left: 47%;
   transform: translateX(-43%);
 }
 .title a {
@@ -16,4 +16,10 @@
   background: #ccc;
   border-radius: 150px 0 0 0;
   box-shadow: 2px 2px 0px #fff;
+}
+
+@media only screen and (max-width: 600px) {
+  .recaptcha2 {
+    left: 33%;
+  }
 }

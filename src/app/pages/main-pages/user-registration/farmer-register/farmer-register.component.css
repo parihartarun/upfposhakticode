@@ -18,11 +18,9 @@ input[type=number] {
   align-items: center;
   display: flex;
   text-align: center;
-  width: 50%;
   margin: 0px auto;
 }
 .tncError {
-  width: 50%;
   margin: 0px auto;
 }
 

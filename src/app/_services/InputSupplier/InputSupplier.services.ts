@@ -120,7 +120,7 @@ getallfertilizer(){
     "masterId":localStorage.getItem('masterId'),
     "roleId":localStorage.getItem('roleRefId')
   };
-  return  this.http.post<any>(this._url+'/inputsupplier/fertilizer/getall', data).pipe(map((res:any)=>{
+  return  this.http.post<any>(this._url+'inputsupplier/fertilizer/getall', data).pipe(map((res:any)=>{
         return res;
       }));
 }
@@ -252,7 +252,7 @@ getallinsecticide(){
     "masterId":localStorage.getItem('masterId'),
     "roleId":localStorage.getItem('roleRefId')
   };
-  return  this.http.post<any>(this._url+`/inputsupplier/insecticide/getall`, data).pipe(map((res:any)=>{
+  return  this.http.post<any>(this._url+`inputsupplier/insecticide/getall`, data).pipe(map((res:any)=>{
         return res;
       }));
 }

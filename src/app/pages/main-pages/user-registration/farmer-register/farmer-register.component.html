@@ -1,7 +1,7 @@
 <form role="form" [formGroup]="registerForm" (ngSubmit)="register()">
 
-  <div class="form-group row mb-3">
-    <div class="col-6">
+  <div class="form-group row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Farmer Registration Number (UP Agri Pardarshi)1'|translate}} </label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -11,8 +11,7 @@
       </div>
 
     </div>
-    <div class="col-4">
-
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <div class="text-center mt-2">
         <button type="button" (click)="getFarmerDataFromUpAgriPardarshi()" class="btn btn-login btn-yellow btn-primary my-4">
           {{'Fetch from UP AgriPardashi'|translate }}
@@ -20,9 +19,8 @@
       </div>
     </div>
 
-  </div>
-  <div class="form-group row mb-3">
-    <div class="col-6">
+  
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Farmer Name1'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -34,7 +32,7 @@
         <div *ngIf="formControls.farmerName.errors.required">{{'farmer name is required'|translate}}</div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
 
       <label class="input-label">{{'Username'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -50,9 +48,8 @@
 
     </div>
 
-  </div>
-  <div class="form-group row mb-3">
-    <div class="col-6">
+  
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{"Farmer's Father/ Husband Name"|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -66,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
 
       <label class="input-label">{{'Mobile' | translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -80,12 +77,8 @@
         <div *ngIf="formControls.farmerMob.errors.pattern"> {{'Mobile number should be 10 digit1'|translate}}</div>
       </div>
     </div>
-  </div>
-
-
-  <div class="form-group row mb-3">
-
-    <div class="col-6">
+  
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Category1'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -104,7 +97,7 @@
         <div *ngIf="formControls.category.errors.required">{{'category is required'|translate}}</div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Gender'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -120,9 +113,8 @@
         <div *ngIf="formControls.gender.errors.required">{{'Gender is required1'|translate}}</div>
       </div>
     </div>
-  </div>
-  <div class="form-group row mb-3">
-    <div class="col-6">
+  
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'District1'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -140,7 +132,7 @@
       </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Block1'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -156,10 +148,9 @@
       </div>
     </div>
 
-  </div>
-  <div class="form-group row mb-3">
+  
 
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Gram Panchayat1'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -177,7 +168,7 @@
       </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Village'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -193,10 +184,7 @@
       </div>
     </div>
 
-  </div>
-
-  <div class="form-group row mb-3">
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Pincode'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -209,7 +197,7 @@
         <div *ngIf="formControls.pincode.errors.pattern"> {{'maximun 6 digit is required' | translate}}</div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'FPO'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -227,9 +215,8 @@
       </div>
     </div>
 
-  </div>
-  <div class="form-group row mb-3">
-    <div class="col-6">
+  
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
 
       <label class="input-label">{{'Create Password'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
@@ -248,7 +235,7 @@
         </div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Confirm Password'|translate}}<span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -267,9 +254,9 @@
 
   <hr />
   <h3>{{'Bank Details'|translate}}</h3>
-  <div class="form-group row mb-3">
+  <div class="form-group row">
 
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Bank Name'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -284,7 +271,7 @@
         <div *ngIf="formControls.bankRefId.errors.required">{{'bank name is required' |translate}}</div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'Bank Account Number1'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -296,11 +283,8 @@
         <div *ngIf="formControls.accountNo.errors.pattern"> {{'bank account Number should be minmun 11 digit and maximun 16'|translate}}</div>
       </div>
     </div>
-  </div>
-
-  <div class="form-group row mb-3">
-
-    <div class="col-6">
+  
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <label class="input-label">{{'IFSC'|translate}}</label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
@@ -312,13 +296,12 @@
         <div *ngIf="formControls.ifscCode.errors.required"> {{'ifsc code is required1'|translate}}</div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
       <ngx-recaptcha2 #captchaElem [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
                       (success)="handleSuccess($event)" [useGlobalDomain]="false" formControlName="recaptcha">
       </ngx-recaptcha2>
     </div>
-  </div>
-  <div class="form-group row mb-3">
+  
 
     <div class="col-12">
 
