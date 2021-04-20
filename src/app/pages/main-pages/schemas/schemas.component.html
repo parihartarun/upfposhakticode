@@ -5,7 +5,14 @@
           <div class="col">
             <div class="card shadow">
               <div class="card-header">
-                <h3>{{type | translate}}</h3>
+                  <div class="row">
+                      <div class="col-md-6">
+                        <h3>{{type | translate}}</h3>
+                      </div>
+                      <div class="col-md-6">
+                          <input type="text" class="form-control" [(ngModel)]="searchText">
+                     </div>
+                  </div>
               </div>
               <div class="card-body">
                 <div class="row">
@@ -21,7 +28,7 @@
                             <li [ngClass]="{'active': type === 'Finance'}" (click)="tabtype('Finance')">{{'Finance' | translate}}</li>
                         </ul>
                         <div class="form-group schemes-mb">
-                            <select class="form-control" (change)="tabtype($event.target.value)">
+                            <select class="form-control" (change)="tabtype($event.target.value)" [(ngModel)]="schemeType">
                                 <option value="Seeds">{{'Seeds' | translate}}</option>
                                 <option value="Fertilizer">{{'Fertilizer' | translate}}</option>
                                 <option value="Agri Equipment">{{'Agri Equipment' | translate}}</option>

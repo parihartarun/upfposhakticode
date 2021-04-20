@@ -5,6 +5,7 @@ import { DepartmentService } from '../../../_services/department/department.serv
 import { FpoService } from '../../../_services/fpo/fpo.service';
 import { HomeService } from '../../../_services/home/home.service';
 import * as $ from 'jquery';
+import { SharedService } from '../../../_services/shared/shared.service';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
   productionDetails: any;
   fpo: any;
   circluar: any;
-  constructor(private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService, private api: HomeService,
+  constructor(public sharedService:SharedService, private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService, private api: HomeService,
     private _fpo: FpoService, private departmentService: DepartmentService) {
       if(localStorage.getItem('language')){
         translate.setDefaultLang(localStorage.getItem('language'));
@@ -79,12 +80,14 @@ export class HomeComponent implements OnInit {
    
   }
   logout() {
+    this.sharedService.isUserLoggedIn.next(false);
     sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('tokenType');
     localStorage.removeItem('username');
     localStorage.removeItem('userrole');
+    localStorage.removeItem('masterId');
+    localStorage.removeItem('userId');
     this.route.navigate(['/login']);
-    location.reload();
-
   }
   startSearch(){
     //this.data['searchValue'] = this.searchValue;

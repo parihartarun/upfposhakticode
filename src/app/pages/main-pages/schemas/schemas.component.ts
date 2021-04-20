@@ -14,7 +14,7 @@ export class SchemasComponent implements OnInit {
   p:any;
   searchText = '';
   type = '';
-
+  schemeType = '';
   constructor(
     private schemaapi: schemaService,
   ) { }
@@ -25,6 +25,7 @@ export class SchemasComponent implements OnInit {
   }
   tabtype(type) {
     this.type = type;
+    this.schemeType = type
     this.schemaapi.getDashboardData(type).subscribe(response => {
       console.log(response);
       this.SchemasList = response;

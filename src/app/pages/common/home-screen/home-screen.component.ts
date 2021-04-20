@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { SharedService } from '../../../_services/shared/shared.service';
 
 @Component({
   selector: 'app-home-screen',
@@ -12,7 +13,7 @@ export class HomeScreenComponent implements OnInit {
   isOpen = false;
   isHome = '';
   isLoggeIn
-  constructor(private route: Router, public translate: TranslateService) {
+  constructor(public sharedService:SharedService, private route: Router, public translate: TranslateService) {
     if (localStorage.getItem('language')) {
       translate.setDefaultLang(localStorage.getItem('language'));
     } else {
@@ -31,12 +32,14 @@ export class HomeScreenComponent implements OnInit {
     this.toggleNavbar();
   }
   logout() {
+    this.sharedService.isUserLoggedIn.next(false);
     sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('tokenType');
     localStorage.removeItem('username');
     localStorage.removeItem('userrole');
+    localStorage.removeItem('masterId');
+    localStorage.removeItem('userId');
     this.route.navigate(['/login']);
-    location.reload();
-
   }
   toggleNavbar() {
     this.isOpen = !this.isOpen;

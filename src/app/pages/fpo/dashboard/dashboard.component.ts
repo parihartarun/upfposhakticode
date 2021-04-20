@@ -79,7 +79,6 @@ export class FpoDashboardComponent implements OnInit {
     );
   }
 
-
   getDashboardDetails(finYear) {
     this.api.getDashboardData({fpoId:localStorage.getItem('masterId'), finYear: finYear}).subscribe(response => {
       console.log("FPO", response);

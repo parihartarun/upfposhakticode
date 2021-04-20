@@ -22,7 +22,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Insecticdes Type' | translate}}<span class="required">*</span></label>
+                                        <label>{{'Insecticide Type' | translate}}<span class="required">*</span></label>
                                          <select class="form-control" formControlName="insecticide_type_id">
                                             <option value="">{{'Select Type' | translate}}</option>
                                             <option *ngFor="let insect of insecttypelist" [value]="insect.id">{{insect.insecticideType}}</option>
@@ -35,7 +35,7 @@
                                
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Picture of Fertilizer packets' | translate}}<span class="required">*</span></label>
+                                        <label>{{'Picture of Insecticide/Pesticide' | translate}}<span class="required">*</span></label>
                                         <input type="file"  formControlName="file" (change)="upload($event.target.files)" class="form-control form-control-alternative">
                                         <div *ngIf="submitted && formControls.file.errors" class="text-danger">
                                             <div *ngIf="formControls.file.errors.required">{{'This field is required'| translate}}</div>

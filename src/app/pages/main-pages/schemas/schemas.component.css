@@ -17,7 +17,7 @@
     display: none;
 }
 .card-header{
-    margin-left: 70px;
+    margin-left: 40px;
 }
 @media only screen and (max-width:600px){
     .schemes-des{
@@ -27,6 +27,6 @@
         display: block;
     }
     .card-header{
-        margin-left: 20px;
+        margin-left: 0px;
     }
 }

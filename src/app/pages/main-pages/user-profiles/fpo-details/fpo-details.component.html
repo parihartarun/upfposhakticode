@@ -166,17 +166,151 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-6" *ngFor="let row of multi">
-            <div class="row px-5 mb-0">
-              <strong> {{row.graphFor}}</strong>
-            </div>
-            <div class="row mb-3" style="border-bottom: solid;">
-              <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.graphDetails"
-                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                [legendTitle]="legendTitle" [legendPosition]="'below'">
-              </ngx-charts-bar-vertical-2d>
-            </div>
+          <div class="container-fluid mb-7 dashboard">
+            <div class="row">
+              <div class="col-lg-9">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio1"  >
+                    <input type="radio" class="form-check-input" name="optradio" value="surplus" (click)="showGraphs('markatable_surplus')" checked>
+                    {{'Marketable Surplus' | translate}} &nbsp;&nbsp;&nbsp;&nbsp;
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label" for="radio2">
+                    <input type="radio" class="form-check-input" name="optradio" value="production" (click)="showGraphs('actual_production')" >
+                    {{'Actual Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label" for="radio2">
+                    <input type="radio" class="form-check-input" name="optradio" value="sales" (click)="showGraphs('sales_production')">
+                    {{'Sale Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </label>
+                </div>
+              </div>
+              </div> <br>
+        
+              <div class="card shadow">
+                <div class="card-body">
+                  <div *ngIf="markatable_surplus" class="row">
+                    <div class="col-12">
+                      <div class="row px-5 mb-2">
+                        <strong> {{'Total Marketable Surplus in Rabi season (in Qt.)' | translate}}</strong>
+                      </div>
+                      <div class="row mb-4" style="border-bottom: solid;">
+                        <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="markatableProductionRabi"
+                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                          [legendTitle]="legendTitle" [legendPosition]="'below'">
+                        </ngx-charts-bar-vertical-2d>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="row px-5 mb-2">
+                        <strong> {{'Total Marketable Surplus in Zayad season (in Qt.)' | translate}}</strong>
+                      </div>
+                      <div class="row mb-4" style="border-bottom: solid;">
+                        <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="markatableProductionZayad"
+                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                          [legendTitle]="legendTitle" [legendPosition]="'below'">
+                        </ngx-charts-bar-vertical-2d>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="row px-5 mb-2">
+                        <strong> {{'Total Marketable Surplus in Kharif season (in Qt.)' | translate}}</strong>
+                      </div>
+                      <div class="row mb-4" style="border-bottom: solid;">
+                        <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="markatableProductionKharif"
+                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                          [legendTitle]="legendTitle" [legendPosition]="'below'">
+                        </ngx-charts-bar-vertical-2d>
+                      </div>
+                    </div>
+                  </div>
+            
+                  <div *ngIf="actual_production" class="row">
+                    <div class="col-12">
+                      <div class="row px-5 mb-2">
+                        <strong> {{'Total Actual Production in Rabi season (in Qt.)' | translate}}</strong>
+                      </div>
+                      <div class="row mb-4" style="border-bottom: solid;">
+                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="actualProductionRabi"
+                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                          [legendTitle]="legendTitle" [legendPosition]="'below'">
+                        </ngx-charts-bar-vertical>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="row px-5 mb-2">
+                        <strong> {{'Total Actual Production in Zayad season (in Qt.)' | translate}}</strong>
+                      </div>
+                      <div class="row mb-4" style="border-bottom: solid;">
+                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="actualProductionZayad"
+                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                          [legendTitle]="legendTitle" [legendPosition]="'below'">
+                        </ngx-charts-bar-vertical>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="row px-5 mb-2">
+                        <strong> {{'Total Actual Production in Kharif season (in Qt.)'| translate}}</strong>
+                      </div>
+                      <div class="row mb-4" style="border-bottom: solid;">
+                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="actualProductionKharif"
+                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                          [legendTitle]="legendTitle" [legendPosition]="'below'">
+                        </ngx-charts-bar-vertical>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div *ngIf="sales_production" class="row">
+                    <div class="col-12">
+                      <div class="row px-5 mb-2">
+                        <strong> {{'Total Sales Production in Rabi season (in Qt.)' | translate}}</strong>
+                      </div>
+                      <div class="row mb-4" style="border-bottom: solid;">
+                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionRabi"
+                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                          [legendTitle]="legendTitle" [legendPosition]="'below'">
+                        </ngx-charts-bar-vertical>
+                      </div>
+                    </div>
+                    <div class="col-12" >
+                      <div class="row px-5 mb-2">
+                        <strong> {{'Total Sales Production in Zayad season (in Qt.)' | translate}}</strong>
+                      </div>
+                      <div class="row mb-4" style="border-bottom: solid;">
+                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionZayad"
+                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                          [legendTitle]="legendTitle" [legendPosition]="'below'">
+                        </ngx-charts-bar-vertical>
+                      </div>
+                    </div>
+                    <div class="col-12" >
+                      <div class="row px-5 mb-2">
+                        <strong> {{'Total Sales Production in Kharif season (in Qt.)' | translate}}</strong>
+                      </div>
+                      <div class="row mb-4" style="border-bottom: solid;">
+                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionKharif"
+                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                          [legendTitle]="legendTitle" [legendPosition]="'below'">
+                        </ngx-charts-bar-vertical>
+                      </div>
+                    </div>
+                  </div>
+        
+                </div>
+              </div>
           </div>
         </div>
       </div>
@@ -190,7 +324,7 @@
         <h3 class="mb-0">{{'Production Details (Annual)' | translate}}</h3>
       </div>
       <div class="card-body">
-        <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
+        <app-data-table tableClass="table table-striped table-bordered table-hover formatted-table" [tableId]="'basic'"
           [options]="options" [data]="productiondata" [columns]="productionColumn">
         </app-data-table>
       </div>

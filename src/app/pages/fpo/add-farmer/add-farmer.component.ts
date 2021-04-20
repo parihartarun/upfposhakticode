@@ -142,7 +142,8 @@ export class AddFarmerComponent implements OnInit {
       createdBy:localStorage.getItem('userrole')
     });
     let user = {
-      userName: this.generate_radom_string(),
+      //userName: this.generate_radom_string(),
+      userName: this.fpoAddFarmerForm.value.userName,
       password: 12345678,
       roleRefId:6
     }

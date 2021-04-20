@@ -56,6 +56,17 @@
                 </div>
               </div>
               <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-farmerName">{{"Username" | translate}}<span class="required">*</span></label>
+                    <input type="text" formControlName="userName" id="input-farmerName" class="form-control">
+                    <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
+                      <div *ngIf="formControls.userName.errors.required">{{' username is required'| translate}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'Category'| translate}}<span class="required">*</span></label><br/>
