@@ -76,6 +76,11 @@
                     <div *ngIf="submitted && formControls.marketableQuantity.errors" class="text-danger">
                       <div *ngIf="formControls.marketableQuantity.errors.required">{{'Marketable Surplus is required'|translate}}</div>
                     </div>  
+                    <div class="row" *ngIf="checkMQ()">
+                      <div class="col-lg-12 text-center">
+                        <span class="required">{{'markatable surplus should be less than or equal to 20% more than actual yeild.' | translate}}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

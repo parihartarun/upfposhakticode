@@ -54,7 +54,7 @@
                       <option value="{{variety.verietyId}}" *ngFor="let variety of cropVarieties">{{variety.verietyName}}</option>
                     </select>
                     <div *ngIf="submitted && formControls.verietyId.errors" class="text-danger">
-                      <div *ngIf="formControls.verietyId.errors.required">{{'Crop Variety is required}'|translate}}</div>
+                      <div *ngIf="formControls.verietyId.errors.required">{{'Crop Variety is required'|translate}}</div>
                     </div>
                   </div>
                 </div>

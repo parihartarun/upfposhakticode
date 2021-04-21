@@ -15,7 +15,7 @@ export class ProductionReportComponent implements OnInit {
   submitted = false;
   production:Array<any>=[];
   seasons:Array<any>=[];
-  p:number = 1;
+  currentPage:number = 1;
 
   constructor(
     private formBuilder: FormBuilder,

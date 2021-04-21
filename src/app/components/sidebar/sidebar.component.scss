@@ -22,4 +22,18 @@
 .sidebar-submenu{
   padding-left: 17%;
 }
-
+.logoTitle{
+  font-size: 18px;
+  color: #fff;
+}
+.avatar img {
+  margin-left: 18px;
+}
+@media screen and (max-width: 480px) {
+.logoTitle{
+  font-size: 12px;
+}
+.navbar-brand-img{
+  width:35px;
+}
+}

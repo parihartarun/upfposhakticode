@@ -3,7 +3,11 @@
   height: 110px;
   position: relative;
 }
-
+.title h2{
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 2px;
+}
 .mainTitle {
   width: 80%;
   margin: 0px auto;
@@ -700,8 +704,15 @@ app-auth-header {
     margin-top: 0%;
     text-align: center;
   }
-  .logo-image {
-      width:30%
+  .title{
+    margin-left: 65px;
   }
-
+  .logo {
+    position: absolute;
+    max-width: 150px;
+  }
+  .title h2{
+    color: #fff;
+    font-size: 17px;
+  }
 }

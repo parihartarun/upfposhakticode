@@ -207,7 +207,7 @@
                 <tr
                   *ngFor="let p of (machineryList | async) | tableSearch:searchText  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: currentPage };let i=index">
                   <td>
-                    {{i+1}}
+                    {{(currentPage-1) * 10 + i + 1}}
                   </td>
                   <td>
                     {{p.type}}

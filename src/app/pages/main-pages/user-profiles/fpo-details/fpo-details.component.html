@@ -68,7 +68,7 @@
                 <div class="number text-center" style="margin: 10px;">
                   <h3>
                     <small>
-                      {{fpo.totalfarmers}}
+                      {{totals.totalFpoFarmer}}
                     </small>
                     <br>
                     <small> {{'Total Farmers' | translate}}</small>
@@ -87,7 +87,7 @@
                 <div class="number text-center" style="margin: 10px;">
                   <h3>
                     <small>
-                      {{fpo.totalland}}</small>
+                      {{totals.landArea}}</small>
                     <br>
                     <small> {{'Total Land (in Ha.)' | translate}}</small>
                     <br>
@@ -193,7 +193,7 @@
               <div class="card shadow">
                 <div class="card-body">
                   <div *ngIf="markatable_surplus" class="row">
-                    <div class="col-12">
+                    <div class="col-md-6 col-sm-12">
                       <div class="row px-5 mb-2">
                         <strong> {{'Total Marketable Surplus in Rabi season (in Qt.)' | translate}}</strong>
                       </div>
@@ -205,7 +205,7 @@
                         </ngx-charts-bar-vertical-2d>
                       </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-6 col-sm-12">
                       <div class="row px-5 mb-2">
                         <strong> {{'Total Marketable Surplus in Zayad season (in Qt.)' | translate}}</strong>
                       </div>
@@ -217,7 +217,7 @@
                         </ngx-charts-bar-vertical-2d>
                       </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-6 col-sm-12">
                       <div class="row px-5 mb-2">
                         <strong> {{'Total Marketable Surplus in Kharif season (in Qt.)' | translate}}</strong>
                       </div>
@@ -232,7 +232,7 @@
                   </div>
             
                   <div *ngIf="actual_production" class="row">
-                    <div class="col-12">
+                    <div class="col-md-6 col-sm-12">
                       <div class="row px-5 mb-2">
                         <strong> {{'Total Actual Production in Rabi season (in Qt.)' | translate}}</strong>
                       </div>
@@ -244,7 +244,7 @@
                         </ngx-charts-bar-vertical>
                       </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-6 col-sm-12">
                       <div class="row px-5 mb-2">
                         <strong> {{'Total Actual Production in Zayad season (in Qt.)' | translate}}</strong>
                       </div>
@@ -256,7 +256,7 @@
                         </ngx-charts-bar-vertical>
                       </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-6 col-sm-12">
                       <div class="row px-5 mb-2">
                         <strong> {{'Total Actual Production in Kharif season (in Qt.)'| translate}}</strong>
                       </div>
@@ -271,7 +271,7 @@
                   </div>
         
                   <div *ngIf="sales_production" class="row">
-                    <div class="col-12">
+                    <div class="col-md-6 col-sm-12">
                       <div class="row px-5 mb-2">
                         <strong> {{'Total Sales Production in Rabi season (in Qt.)' | translate}}</strong>
                       </div>
@@ -283,7 +283,7 @@
                         </ngx-charts-bar-vertical>
                       </div>
                     </div>
-                    <div class="col-12" >
+                    <div class="col-md-6 col-sm-12" >
                       <div class="row px-5 mb-2">
                         <strong> {{'Total Sales Production in Zayad season (in Qt.)' | translate}}</strong>
                       </div>
@@ -295,7 +295,7 @@
                         </ngx-charts-bar-vertical>
                       </div>
                     </div>
-                    <div class="col-12" >
+                    <div class="col-md-6 col-sm-12" >
                       <div class="row px-5 mb-2">
                         <strong> {{'Total Sales Production in Kharif season (in Qt.)' | translate}}</strong>
                       </div>

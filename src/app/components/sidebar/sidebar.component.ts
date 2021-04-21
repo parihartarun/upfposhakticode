@@ -12,11 +12,12 @@ export class SidebarComponent implements OnInit {
   public menuItemsCrops: any[];
   public isCollapsed = true;
   userRole: any;
+  username = '';
 
   constructor(private router: Router) { }
 
   ngOnInit() {
     this.userRole = localStorage.getItem('userRole');
-    console.log(this.userRole);
+    this.username = localStorage.getItem('username');
   }
 }

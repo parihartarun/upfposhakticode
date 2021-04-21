@@ -19,6 +19,7 @@ export class CropProductionComponent implements OnInit {
   seasons:Array<any>=[];
   p:number = 1;
   edit = false;
+  mqError:boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -197,4 +198,13 @@ export class CropProductionComponent implements OnInit {
     return this.productionForm.controls;
   }
 
+  checkMQ(i){
+    var mq = (120 * this.productionForm.value.actualQuantity) / 100;
+    this.mqError = false;
+    if(this.productionForm.value.marketableQuantity > mq){
+      this.mqError = true;
+      return true;
+    }
+    return false;
+  }
 }

@@ -98,9 +98,13 @@ export class ChcFmbService {
   deleteMachinery(id) {
     return this.http.delete<any>(this._url + 'chcfmb/machinery/' + id);
   }
-  getMachinaries(masterId) {
-    return this.http.get<any>(this._url + `chcfmb/machinery/getall/`+masterId).pipe(map((res: any) => {
-      return res;
+  getMachinaries(roleId, masterId) {
+    let data = {
+      "masterId":masterId,
+      "roleId":roleId
+    };
+    return  this.http.post<any>(this._url+'inputsupplier/machinery/getall', data).pipe(map((res:any)=>{
+        return res;
     }));
   }
 }

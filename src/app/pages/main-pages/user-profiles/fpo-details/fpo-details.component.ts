@@ -214,7 +214,7 @@ console.log(this.fpoId,"Id");
     });
   }
   getDashboardDetails(finYear) {
-    this.api.getDashboardData({fpoId:localStorage.getItem('masterId'), finYear: finYear}).subscribe(response => {
+    this.api.getDashboardData({fpoId:this.fpoId, finYear: finYear}).subscribe(response => {
       console.log(response);
       this.totals = response;
       this.setMarkatableProduction(response.fpoMarketableProduction);

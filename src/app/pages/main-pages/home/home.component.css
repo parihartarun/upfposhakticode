@@ -3,6 +3,11 @@
   background-color: #cfb000;
   padding: 1.2% 0px;
 }
+.title h2{
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 2px;
+}
 .mainTitle {
   width: 80%;
   margin: 0px auto;
@@ -762,6 +767,17 @@ app-auth-header {
       max-width: 100%;
       padding-top: 1%;
       margin-right: 0;
+    }
+    .title{
+      margin-left: 65px;
+    }
+    .logo {
+      position: absolute;
+      max-width: 150px;
+    }
+    .title h2{
+      color: #fff;
+      font-size: 17px;
     }
   }
 

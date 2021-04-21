@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChcFmbService } from '../../../../_services/chc_fmb/chc-fmb.service';
 import { Location } from '@angular/common';
+import { AppConfig  } from '../../../../app.config';
 
 @Component({
   selector: 'app-chcfmb-details',
@@ -37,7 +38,8 @@ export class ChcfmbDetailsComponent implements OnInit {
   }
 
   getMachinaries() {
-    this.api.getMachinaries(this.user_id).subscribe(response => {
+    this.api.getMachinaries(AppConfig.ROLE_CHCFMB, this.user_id).subscribe(response => {
+      console.log(response);
       this.machinery_data = response;
       this.machinery_object_length = Object.keys(this.machinery_data).length;
      })

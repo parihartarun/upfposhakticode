@@ -70,7 +70,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td class="nofounddata" *ngIf= "machinery_object_length == 0">{{'No Data Found' | translate}}</td>
+                                    <tr *ngIf= "machinery_object_length == 0">
+                                        <td class="nofounddata text-center" colspan="6">{{'No Data Found' | translate}}</td>
+                                    </tr>
                                     <tr
                                         *ngFor="let p of machinery_data | paginate: { itemsPerPage: 10, currentPage: currentPage };let i=index">
                                         <td>
