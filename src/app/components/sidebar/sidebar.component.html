@@ -63,7 +63,7 @@
               <i class="ni ni-single-02"></i>
               <span>{{'My profile' | translate}}</span>
             </a>
-            <a class="dropdown-item" (click)="changePassword(changepassowrd)">
+            <a class="dropdown-item" (click)="changePassword()">
               <i class="fa fa-key"></i>
               <span>{{'Change Password' | translate }}</span>
             </a>
@@ -230,12 +230,6 @@
             {{'License' | translate}}
           </a>
         </li>
-        <!-- <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
-          <a routerLinkActive="active" [routerLink]="['fpo/machinary-bank']" class="nav-link">
-            <i class="ni fa fa-university text-white"></i>
-            {{'Machinary Bank' | translate}}
-          </a>
-        </li> -->
         <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['fpo/storage-unit']" class="nav-link">
             <i class="ni fa fa-archive text-white"></i>
@@ -297,29 +291,6 @@
           </div>
               
       </li>
-        <!-- <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
-          <a routerLinkActive="active" class="nav-link">
-            <i class="ni fa fa-archive text-white"></i>
-            {{'Service/Products' | translate}}
-          </a>
-          <ul>
-            <li [routerLink]="['input-machinery']">
-                <a href="javascript:void(0);">Machinery Bank</a>
-            </li>
-            <li [routerLink]="['input-fertilizer']">
-              <a href="javascript:void(0);">Fertilizers Bank</a>
-            </li>
-            <li [routerLink]="['input-insect']">
-              <a href="javascript:void(0);">Insecticides Bank</a>
-            </li>
-            <li [routerLink]="['input-seed']">
-              <a href="javascript:void(0);">Seeds Bank</a>
-            </li>
-            <li [routerLink]="['fpo/services']">
-              <a href="javascript:void(0);">Others</a>
-            </li>
-         </ul>
-        </li> -->
         <li *ngIf="userRole != 'ROLE_BUYERSELLER' && userRole != 'ROLE_MIN' && userRole != 'ROLE_FARMER' && userRole == 'ROLE_FPC' && userRole != 'ROLE_CHCFMB' && userRole != 'ROLE_INPUTSUPPLIER'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['fpo/complaints']" class="nav-link">
             <i class="ni fa fa-archive text-white"></i>

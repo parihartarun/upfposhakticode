@@ -198,7 +198,7 @@ export class CropProductionComponent implements OnInit {
     return this.productionForm.controls;
   }
 
-  checkMQ(i){
+  checkMQ(){
     var mq = (120 * this.productionForm.value.actualQuantity) / 100;
     this.mqError = false;
     if(this.productionForm.value.marketableQuantity > mq){

@@ -35,11 +35,8 @@ export class FpoDetailsComponent implements OnInit {
   public clicked: boolean = true;
   public clicked1: boolean = false;
   public totals = {
-    otherFarmers: 0,
-    farmers: 0,
-    marginalFarmers: 0,
-    smallFarmers: 0,
-    land: 0,
+    totalFpoFarmer: 0,
+    landArea: 0
   };
   fpoId;
   view: any[] = [400, 400];

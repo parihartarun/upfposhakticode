@@ -26,8 +26,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngClass]="{ in: isOpen }">
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggeIn">
-      <div class="triangle-topright"></div>
-      <li class="nav-item" *ngIf="isHomePage!=='/' || isHomePage!=='/home'">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/">
           <span style="color: #474200;background: #e1cb00;padding: 6px;border-radius: 2px;">
             <i class="fas fa-home fa-1x" style="margin-top: 5px;"></i>
@@ -35,6 +34,7 @@
           {{'Home' | translate}} <span class="sr-only">(current)</span>
         </a>
       </li>
+      <div class="triangle-topright"></div>
       <li class="nav-item dropdown">
         <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
           <a class="languageText" ngbDropdownToggle>
@@ -82,6 +82,14 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto" *ngIf="isLoggeIn">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/">
+          <span style="color: #474200;background: #e1cb00;padding: 6px;border-radius: 2px;">
+            <i class="fas fa-home fa-1x" style="margin-top: 5px;"></i>
+          </span>
+          {{'Home' | translate}} <span class="sr-only">(current)</span>
+        </a>
+      </li>
       <div class="triangle-topright"></div>
       <li class="nav-item dropdown">
         <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
@@ -98,13 +106,13 @@
 
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" routerLink="/fpo_guidelines">
           <img class="nav-image" src="assets/image/img/fpomenu.png" />
           {{'FPO guidelines' | translate}} <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="#">
+        <a class="nav-link" routerLink="/schema">
           <img class="nav-image" src="assets/image/img/scemenu.png" />
           {{'Schemes' | translate}} <span class="sr-only">(current)</span>
         </a>
@@ -116,7 +124,6 @@
           {{'Logout' | translate}} <span class="sr-only">(current)</span>
         </a>
       </li>
-
     </ul>
 
   </div>
