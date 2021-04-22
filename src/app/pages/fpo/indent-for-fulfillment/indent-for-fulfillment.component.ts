@@ -43,6 +43,7 @@ export class IndentForFulfillmentComponent implements OnInit {
 
 
   constructor(private _productService: ProductService, private fb: FormBuilder, private modalService: NgbModal,public fpoService: FpoService, private toastr: ToastrService, private supplierService: InputSupplierService) {
+    this.userRole = localStorage.getItem('userRole');
     if (this.userRole == 'ROLE_FPC') {
       this.showTable.val = 'A';
     } else if (this.userRole == 'ROLE_CHCFMB') {

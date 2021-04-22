@@ -31,8 +31,6 @@ export class IndentRaisedComponent implements OnInit {
     roleId:''
   }
 
-
-
   constructor( public fpoService:FpoService,
     private _buyerService: BuyerSellerService,
     private toastr: ToastrService) {

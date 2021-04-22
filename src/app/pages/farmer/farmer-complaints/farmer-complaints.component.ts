@@ -60,10 +60,7 @@ export class FarmerComplaintsComponent implements OnInit {
         filePath: [''],
         uploadFile: [''],
         issueType: ['', [Validators.required]],
-        masterId: localStorage.getItem('masterId'),
-       
-
-
+        masterId: localStorage.getItem('masterId')
       })
     })
     if (this.roleType == "ROLE_FARMER") {
@@ -211,7 +208,7 @@ export class FarmerComplaintsComponent implements OnInit {
   }
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf" || ext.toLowerCase() == "gif") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" ||  ext.toLowerCase() == "jpg" || ext.toLowerCase()=="pdf" || ext.toLowerCase()=="doc" || ext.toLowerCase()=="docx" || ext.toLowerCase()=="txt") {
       return true;
     }
     else {

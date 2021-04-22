@@ -107,7 +107,7 @@ export class CropProductionComponent implements OnInit {
     console.log(data);
     this.api.addCropProduction(data).subscribe(response => {
       console.log(response);
-      this.toastr.success('Crop Production added successfully.');
+      this.toastr.success('Crop Production Added Successfully.');
       this.submitted = false;
       this.productionForm.reset();
       this.getCropProduction();
@@ -135,7 +135,7 @@ export class CropProductionComponent implements OnInit {
     delete data.cropId;
     console.log(data);
     this.api.updateCropProduction(data).subscribe(response => {
-      this.toastr.success('Crop Production Updated successfully.');
+      this.toastr.success('Crop Production Updated Successfully.');
         this.submitted = false;
         this.edit = false;
         this.productionForm.reset();
@@ -184,7 +184,7 @@ export class CropProductionComponent implements OnInit {
   confirmDelete(marketable_id){
     if(confirm("Are you sure to delete this item")) {
       this.api.deleteCropProduction(marketable_id).subscribe(response => {
-        this.toastr.success('Crop Production Deleted successfully.');
+        this.toastr.success('Crop Production Deleted Successfully.');
           this.getCropProduction();
         },
         err => {
