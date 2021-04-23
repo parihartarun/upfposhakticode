@@ -27,9 +27,9 @@
                           class="required">*</span></label>
                       <textarea class="form-control" formControlName="description" id="exampleFormControlTextarea12"
                         rows="3"></textarea>
-                    </div>
-                    <div *ngIf="submitted && formControls.description.errors" class="text-danger">
-                      <div *ngIf="formControls.description.errors.required">{{'description is required'|translate}}
+                      <div *ngIf="submitted && formControls.description.errors" class="text-danger">
+                        <div *ngIf="formControls.description.errors.required">{{'description is required'|translate}}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -39,14 +39,12 @@
                     <label class="form-control-label" for="input-first-name">
                       {{'Upload Circular'|translate}} <span class="required">*</span>
                     </label>
-                    <!--<small class="">
-                      (File format should be .jpg, .png, .jpeg and .pdf)
-                    </small>-->
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
                       formControlName="uploadFile" (change)="upload($event.target.files)" />
-                  </div>
-                  <div *ngIf="submitted && formControls.uploadFile.errors" class="text-danger">
-                    <div *ngIf="formControls.uploadFile.errors.required">{{'file is required'|translate}}</div>
+                      <div *ngIf="submitted && formControls.uploadFile.errors" class="text-danger">
+                        <div *ngIf="formControls.uploadFile.errors.required">{{'Choosing file is manadatory' | translate}}</div>
+                      </div>
+                      <div *ngIf="checkfileFormat" class="text-danger">{{'This type of files are not allowed.' | translate}} </div>
                   </div>
                 </div>
 
@@ -129,7 +127,7 @@
                     {{p.uploadDate | date:'dd/MM/yyyy'}}
                   </td>
                   <td>
-                    <a href="{{ p.filePath }}" download><i class="fas fa-file"></i></a>
+                    <a href="{{ p.filePath }}" target="_blank" download><i class="fas fa-file"></i></a>
                   </td>
 
                   <td class="text-right">

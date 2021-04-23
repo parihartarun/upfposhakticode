@@ -209,7 +209,7 @@ export class CropShowingDetailsComponent implements OnInit {
 
     this.api.addFarmerCropSowingDetails(data).subscribe(response => {
       console.log(response);
-      this.toastr.success('Crop sowing details added successfully.');
+      this.toastr.success('Crop Sowing Details Added Successfully.');
       this.submitted = false;
       this.cropSowingForm.reset();
       this.getCropSowingDetails();
@@ -285,7 +285,7 @@ export class CropShowingDetailsComponent implements OnInit {
     var data = this.cropSowingUpdateForm.value;
     this.api.updateFarmerCropSowingDetails(data).subscribe(response => {
       console.log(response);
-      this.toastr.success('Crop sowing details updated successfully.');
+      this.toastr.success('Crop Sowing Details Updated Successfully.');
       this.submitted = false;
       this.getCropSowingDetails();
     },
@@ -309,7 +309,7 @@ export class CropShowingDetailsComponent implements OnInit {
       this.api.deleteFarmerCropSowingDetails(id).subscribe(response => {
         this.getCropSowingDetails();
         if(response != ''){
-          this.toastr.success('Sowing details Deleted successfully.');
+          this.toastr.success('Crop Sowing Details Deleted Successfully.');
         }else{
           this.toastr.error('Error! While Deleting Crop Sowing.');
         }

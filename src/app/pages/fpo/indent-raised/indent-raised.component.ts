@@ -34,8 +34,9 @@ export class IndentRaisedComponent implements OnInit {
   constructor( public fpoService:FpoService,
     private _buyerService: BuyerSellerService,
     private toastr: ToastrService) {
-     
-   if(this.userRole == 'ROLE_FPC'){
+      this.userRole =localStorage.getItem('userRole');
+
+   if(this.userRole == 'ROLE_FPC' || this.userRole == 'ROLE_BUYERSELLER'){
     this.showTable.val = 'A';
    } else if(this.userRole == 'ROLE_CHCFMB'){
       this.showTable.val = 'D';
@@ -109,7 +110,7 @@ export class IndentRaisedComponent implements OnInit {
 
   cancelIndent(indentId){
     this._buyerService.deleteIndent(indentId).subscribe(data=>{
-      this.toastr.success('Successfully cancelled');
+      this.toastr.success('Indent Raised Cancelled Successfully');
       this.fpoService.getIndentByUserId(this.filterParams.masterId, this.filterParams.roleId).subscribe(dummy =>{
         console.log(dummy);  
         this.data = dummy;

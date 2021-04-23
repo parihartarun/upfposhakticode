@@ -36,7 +36,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
       cib_rc_issuedate: [''],
       cib_rc_number: [''],
       insecticide_type_id: ['', [Validators.required]],
-      file: ['', [Validators.required]],
+      file: [''],
       manufacturer_name: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
       input_supplier_id: localStorage.getItem('masterId')
@@ -80,7 +80,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
     formData.append('role', localStorage.getItem('roleRefId'));
     formData.append("vendor_id", localStorage.getItem('masterId'));
     this.inputinsectservice.addFpoInsecticide(formData).subscribe(res => {
-      this.toastr.success('Added Successfully.');
+      this.toastr.success('Insecticide/Pesticide Added Successfully.');
       this.submitted = false;
       this.insectForm.reset();
       this.getallinsecticidesdata();
@@ -102,7 +102,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
     formData.append("role ", localStorage.getItem('roleRefId'))
 
     this.inputinsectservice.addinsecticide(formData).subscribe(res => {
-      this.toastr.success('Added Successfully.');
+      this.toastr.success('Insecticide/Pesticide Added Successfully.');
       this.submitted = false;
       this.insectForm.reset();
       this.getallinsecticidesdata();
@@ -138,7 +138,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
 
     formData.append('id', this.id);
     this.inputinsectservice.updateinsecticide(this.id, formData).subscribe((res: any) => {
-      this.toastr.success(' updated successfully.');
+      this.toastr.success('Insecticide/Pesticide Updated Successfully.');
       this.insectForm.reset();
       this.isEdit = false;
       this.getallinsecticidesdata();
@@ -162,7 +162,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
 
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "jpg") {
       return true;
     }
     else {
@@ -173,7 +173,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
   confirmDelete(id) {
     if (confirm("Are you sure to delete this item.")) {
       this.inputinsectservice.deleteinsecticide(id).subscribe(response => {
-        this.toastr.success('Record Deleted Successfully.');
+        this.toastr.success('Insecticide/Pesticide Deleted Successfully.');
         this.getallinsecticidesdata();
       },
         err => {

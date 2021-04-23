@@ -91,12 +91,12 @@ export class PhotographsComponent implements OnInit {
     this.api.addPhotograph(formData).subscribe(response => {
       console.log(response);
       if(response.id != ''){
-        this.toastr.success('Photographs added successfully.');
+        this.toastr.success('Photographs Added Successfully.');
         this.submitted = false;
         this.photographForm.reset();
         this.getPhotographs();
       }else{
-          this.toastr.error('Error! While adding Photographs.');
+          this.toastr.error('Error! While Adding Photographs.');
       }
     },
       err => {
@@ -140,13 +140,13 @@ export class PhotographsComponent implements OnInit {
     this.api.updatePhotograph(this.photographForm.value.id,formData).subscribe(response => {
       console.log('update file res===>', response);
       if(response.id != ''){
-        this.toastr.success('Photographs updated successfully.');
+        this.toastr.success('Photographs Updated Successfully.');
         this.submitted = false;
         this.edit = false;
         this.photographForm.reset();
         this.getPhotographs();
       }else{
-          this.toastr.error('Error! While updating Photographs.');
+          this.toastr.error('Error! While Updating Photographs.');
       }
     },
       err => {

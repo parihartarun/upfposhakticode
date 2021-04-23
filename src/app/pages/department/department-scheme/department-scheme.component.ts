@@ -34,7 +34,7 @@ export class DepartmentSchemeComponent implements OnInit {
       description: ['', [Validators.required]],
       hindi_desc: [''],
       url: [''],
-      guideline_type: [''],
+      guideline_type: ['', [Validators.required]],
       title : [''],
       parent_department : [''],
     });

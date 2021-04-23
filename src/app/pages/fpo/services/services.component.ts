@@ -92,12 +92,12 @@ export class ServicesComponent implements OnInit {
     this.api.addService(formData).subscribe(response => {
       console.log(response);
       if (response.id != '') {
-        this.toastr.success('Service/Production added successfully.');
+        this.toastr.success('Services/Products (Others) Added Successfully.');
         this.submitted = false;
         this.serviceForm.reset();
         this.getServices();
       } else {
-        this.toastr.error('Error! While adding Service/Production.');
+        this.toastr.error('Error! While Adding Service/Product.');
       }
     },
       err => {
@@ -132,7 +132,7 @@ export class ServicesComponent implements OnInit {
 
     this.api.updateService(formData, this.serviceForm.value.id).subscribe(response => {
       console.log(response);
-      this.toastr.success('Service/Production updated successfully.');
+      this.toastr.success('Services/Products (Others) Updated Successfully.');
       this.submitted = false;
       this.edit = false;
       this.serviceForm.reset();
@@ -147,7 +147,7 @@ export class ServicesComponent implements OnInit {
   confirmDelete(id) {
     if (confirm("Are you sure to delete this item.")) {
       this.api.deleteService(id).subscribe(response => {
-        this.toastr.success('Service/Production Deleted successfully.');
+        this.toastr.success('Services/Products (Others) Deleted Successfully.');
         this.getServices();
       },
         err => {

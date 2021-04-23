@@ -8,3 +8,7 @@
    cursor: pointer;
 }
 
+.main-tabs .active{
+    background-color: #cfb000;
+    border-color: #cfb000;
+}

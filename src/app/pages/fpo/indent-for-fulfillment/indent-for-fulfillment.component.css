@@ -7,3 +7,7 @@
    box-shadow:12px 12px 21px 1px #ffd600;
    cursor: pointer;
 }
+.main-tabs .active{
+    background-color: #cfb000;
+    border-color: #cfb000;
+}

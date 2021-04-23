@@ -221,7 +221,7 @@
         <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['fpo/board-members']" class="nav-link">
             <i class="ni fa fa-users text-white"></i>
-            {{'Board Member' | translate}}
+            {{'Board Members' | translate}}
           </a>
         </li>
         <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
@@ -233,7 +233,7 @@
         <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
           <a routerLinkActive="active" [routerLink]="['fpo/storage-unit']" class="nav-link">
             <i class="ni fa fa-archive text-white"></i>
-            {{'Storage Unit' | translate}}
+            {{'Storage/ Processing Units' | translate}}
           </a>
         </li>
         <li *ngIf="userRole == 'ROLE_FPC'" class="nav-item">
@@ -258,31 +258,31 @@
           <!-- Submenu content -->
           <div id='submenu1' class="collapse sidebar-submenu">
             <li [routerLink]="['input-machinery']">
-              <a href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
+              <a routerLinkActive="active" href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
                   <i class="fa fa-university text-white"></i>
                   {{'Machinery/Equipment' | translate}}
               </a>
             </li>
             <li [routerLink]="['input-fertilizer']">
-              <a href="javascript:void(0);" class="list-group-item list-group-item-action nav-link ">
+              <a routerLinkActive="active" href="javascript:void(0);" class="list-group-item list-group-item-action nav-link ">
                 <i class="fa fa-university text-white"></i>
                   {{'Fertilizers' | translate}}
               </a>
             </li>
             <li [routerLink]="['input-insect']">
-              <a href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
+              <a routerLinkActive="active" href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
                 <i class="fa fa-university text-white"></i>
-                  {{'Insecticides' | translate}}
+                  {{'Insecticide/Pesticide' | translate}}
             </a>
             </li> 
             <li [routerLink]="['input-seed']">
-              <a href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
+              <a routerLinkActive="active" href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
                 <i class="fa fa-university text-white"></i>
                   {{'Seeds' | translate}}
             </a>
             </li> 
             <li [routerLink]="['fpo/services']">
-              <a href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
+              <a routerLinkActive="active" href="javascript:void(0);" class="list-group-item list-group-item-action nav-link">
                 <i class="fa fa-university text-white"></i>
                   {{'Others' | translate}}
             </a>

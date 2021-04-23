@@ -99,7 +99,7 @@ export class BoardMembersComponent implements OnInit {
       this.api.deleteBoardMember(id).subscribe(response => {
         this.getBoardMembers();
         if(response != ''){
-          this.toastr.success('Board Member Deleted successfully.');
+          this.toastr.success('Board Member Deleted Successfully.');
         }else{
           this.toastr.error('Error! While Deleting Board Member.');
         }
@@ -156,13 +156,13 @@ export class BoardMembersComponent implements OnInit {
     this.api.updateBoardMember(this.memberForm.value).subscribe(response => {
       console.log(response);
       if(response.id != ''){
-         this.toastr.success('Board Member updated successfully.');
+         this.toastr.success('Board Member Updated Successfully.');
         this.submitted = false;
         this.edit = false;
         this.memberForm.reset();
         this.getBoardMembers();
       }else{
-          this.toastr.error('Error! While updating Board Member.');
+          this.toastr.error('Error! While Updating Board Member.');
       }
     },
       err => {
@@ -190,7 +190,7 @@ export class BoardMembersComponent implements OnInit {
     });
     console.log(this.memberForm.value);
     this.api.addBoardMember(this.memberForm.value).subscribe(response => {
-      this.toastr.success('Board Member Added successfully.');
+      this.toastr.success('Board Member Added Successfully.');
       this.memberForm.reset();
       this.submitted = false;
       this.getBoardMembers();

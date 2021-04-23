@@ -156,7 +156,7 @@ export class AddFarmerComponent implements OnInit {
     console.log(this.fpoAddFarmerForm.value);
     this.fpo.registerFarmerByFpo(this.fpoAddFarmerForm.value).subscribe(response => {
       console.log(response);
-      if (response.message == "SuccessFully Saved!") {
+      if (response.message == "Farmer Details Added Successfully.") {
         this.toastr.success(response.message);
         this.fpoAddFarmerForm.reset();
         this.submitted = false;
@@ -226,7 +226,7 @@ export class AddFarmerComponent implements OnInit {
     console.log(this.fpoAddFarmerForm.value);
     this.fpo.updateFarmer(this.fpoAddFarmerForm.value).subscribe(response => {
       if(response.id != ''){
-        this.toastr.success('Farmer Detail Updated successfully.');
+        this.toastr.success('Farmer Details Updated Successfully.');
         this.submitted = false;
         this.edit = false;
         this.fpoAddFarmerForm.reset();
@@ -244,7 +244,7 @@ export class AddFarmerComponent implements OnInit {
   confirmDelete(id){
     if(confirm("Are you sure to delete this item.")) {
       this.fpo.deleteFarmer(id).subscribe(response => {
-        this.toastr.success('Farmer Deleted successfully.');
+        this.toastr.success('Farmer Details Deleted Successfully.');
         this.getFarmerDetailList();
       },
         err => {
@@ -257,7 +257,7 @@ export class AddFarmerComponent implements OnInit {
   getFarmerDataFromUpAgriPardarshi(){
     console.log(this.fpoAddFarmerForm.value);
     if(this.fpoAddFarmerForm.value.farmerLotNo == ''){
-      alert('Please enter Farmer Registration Number');
+      alert('Please Enter Farmer Registration Number');
       return;
     }
     this.api.getFarmerDataFromUpAgriPardarshi(this.fpoAddFarmerForm.value.farmerLotNo).subscribe(response => {

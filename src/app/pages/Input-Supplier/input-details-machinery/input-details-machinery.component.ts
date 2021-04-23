@@ -45,7 +45,7 @@ export class InputDetailsMachineryComponent implements OnInit {
     this.machineryForm = this.fb.group({
       manufacturer_name: [''],
       quantity: ['', [Validators.required]],
-      file: ['', [Validators.required]],
+      file: [''],
       machinery_name_id: ['', [Validators.required]],
       machinery_type_id: ['', [Validators.required]],
       input_supplier_id: localStorage.getItem('masterId'),
@@ -94,7 +94,7 @@ export class InputDetailsMachineryComponent implements OnInit {
 
     this.inputmachineryservice.addMachinery(formData).subscribe(res => {
       if (res != '') {
-        this.toastr.success(' Added Successfully.');
+        this.toastr.success('Machinery/Equipment Added Successfully.');
         this.submitted = false;
         this.isEdit = false;
         this.machineryForm.reset();
@@ -121,7 +121,7 @@ export class InputDetailsMachineryComponent implements OnInit {
       formData.append("role ", localStorage.getItem('userRole'))
       this.inputmachineryservice.addFPOMachinery(formData).subscribe(res => {
         if (res != '') {
-          this.toastr.success(' Added Succefully.');
+          this.toastr.success('Machinery/Equipment Added Successfully.');
           this.submitted = false;
           this.isEdit = false;
           this.machineryForm.reset();
@@ -168,11 +168,11 @@ export class InputDetailsMachineryComponent implements OnInit {
 
     this.inputmachineryservice.updateMachinery(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {
-        this.toastr.success('Machinery updated successfully.');
+        this.toastr.success('Machinery/Equipment Updated Successfully.');
         this.Machinerydata();
         this.resetForm();
       } else {
-        this.toastr.error('Something went wrong.');
+        this.toastr.error('Something Went Wrong.');
       }
     })
   }
@@ -195,7 +195,7 @@ export class InputDetailsMachineryComponent implements OnInit {
 
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "jpg") {
       return true;
     }
     else {
@@ -206,7 +206,7 @@ export class InputDetailsMachineryComponent implements OnInit {
   confirmDelete(id) {
     if (confirm("Are you sure to delete this item.")) {
       this.inputmachineryservice.deleteMachinery(id).subscribe(response => {
-        this.toastr.success('Record Deleted Successfully.');
+        this.toastr.success('Machinery/Equipment Deleted Successfully.');
         this.Machinerydata();
       },
         err => {

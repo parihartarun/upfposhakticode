@@ -38,7 +38,7 @@ export class InputDetailsSeedsComponent implements OnInit {
     this.userRole = localStorage.getItem('userRole');
     this.seedForm = this.fb.group({
       crop_id: ['', Validators.required],
-      file: ['', [Validators.required]],
+      file: [''],
       quantity: ['', Validators.required],
       variety_id: ['', Validators.required],
       certification_no: [''],
@@ -179,7 +179,7 @@ export class InputDetailsSeedsComponent implements OnInit {
 
   validateFile(name: String){
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "jpg") {
       return true;
     }
     else {
@@ -190,7 +190,7 @@ export class InputDetailsSeedsComponent implements OnInit {
   confirmDelete(id) {
     if (confirm("Are you sure to delete this item.")) {
       this.api.deleteseed(id).subscribe(response => {
-        this.toastr.success('Record Deleted Successfully.');
+        this.toastr.success('Seeds Deleted Successfully.');
         this.getAllSeeds();
       },
         err => {

@@ -83,7 +83,7 @@ addLicense() {
   this.api.addLicense(this.licenseForm.value).subscribe(response => {
     console.log(response)
     if(response.id != ''){
-        this.toastr.success('License Added successfully.');
+        this.toastr.success('License Added Successfully.');
         this.submitted = false;
         this.licenseForm.reset();
         this.getLicense();
@@ -136,7 +136,7 @@ updateLicense(){
   this.api.updateLicense(this.licenseForm.value).subscribe(response => {
     console.log(response);
     if(response.id != ''){
-      this.toastr.success('License Updated successfully.');
+      this.toastr.success('License Updated Successfully.');
       this.submitted = false;
       this.edit = false;
       this.licenseForm.reset();
@@ -156,7 +156,7 @@ confirmDelete(licenseId){
     this.api.deleteLicense(licenseId).subscribe(response => {
       console.log(response);
       if(response == true){
-        this.toastr.success('License Deleted successfully.');
+        this.toastr.success('License Deleted Successfully.');
         this.getLicense();
       }else{
           this.toastr.error('Error! While Deleting License.');

@@ -34,14 +34,12 @@ export class DepartmentUplaodCircularComponent implements OnInit {
   ngOnInit(): void {
     this.uploadCircularForm = this.formBuilder.group({
       description: ['', Validators.required],
-      uploadFile: [''],
-
+      uploadFile: ['', Validators.required],
     });
     this.getUploadCircular();
   }
 
   getUploadCircular() {
-
     this.api.getAllCircluarUpload().subscribe(cu => {
       console.log(cu);
       this.uploadCircular = cu;
@@ -55,8 +53,25 @@ export class DepartmentUplaodCircularComponent implements OnInit {
   }
   upload(files: FileList) {
     this.fileToUpload = files.item(0);
-    this.checkfileFormat = false;
+    if (!this.validateFile(files[0].name)) {
+      this.checkfileFormat = true;
+      this.myInputVariable.nativeElement.value = "";
+      this.uploadCircularForm.controls['uploadFile'].setValue('');
+      return;
+    }
+    else {
+      this.checkfileFormat = false;
+    }
+  }
 
+  validateFile(name: String) {
+    var ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" ||  ext.toLowerCase() == "jpg" || ext.toLowerCase()=="pdf" || ext.toLowerCase()=="doc" || ext.toLowerCase()=="docx" || ext.toLowerCase()=="txt") {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   addUploadCircular() {

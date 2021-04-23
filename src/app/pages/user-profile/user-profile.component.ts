@@ -101,7 +101,7 @@ constructor(private formBuilder: FormBuilder,
       console.log(response);
       if(response.id != ''){
         this.submitted = false;
-        this.toastr.success('Profile Updated successfully.');
+        this.toastr.success('FPO Profile Updated Successfully.');
       }else{
           this.toastr.error('Error! While Updating Profile.');
       }

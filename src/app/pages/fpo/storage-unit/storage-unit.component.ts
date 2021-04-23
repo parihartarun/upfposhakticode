@@ -116,7 +116,7 @@ export class StorageUnitComponent implements OnInit {
       this.storageunitservice.deleteStrotageUnit(equipmentId).subscribe(response => {
         console.log(response);
         if(response == true){
-          this.toastr.success('Storage Unit Deleted successfully.');
+          this.toastr.success('Storage Unit Deleted Successfully.');
         }else{
             this.toastr.error('Error! While Deleting Storage Unit.');
         }
@@ -180,7 +180,7 @@ export class StorageUnitComponent implements OnInit {
     delete finalData.packagingmachines;
     this.storageunitservice.updateStrotageUnit(finalData, finalData.id).subscribe(response => {
       console.log(response);
-      this.toastr.success('Storage unit updated successfully.');
+      this.toastr.success('Storage Unit Updated Successfully.');
       this.edit = false;
       this.resetForm();
       this.getStorageUnits();
@@ -248,7 +248,7 @@ export class StorageUnitComponent implements OnInit {
     }
     this.storageunitservice.addStrotageUnit(finalData).subscribe(response => {
       console.log(response);
-      this.toastr.success('Storage unit added successfully.');
+      this.toastr.success('Storage Unit Added Successfully.');
       this.resetForm();
       this.getStorageUnits();
     },

@@ -159,7 +159,7 @@ export class LandDetailsComponent implements OnInit {
         if(this.roleType == "ROLE_FPC") {
       this.fpoService.updateLandDetail(data).subscribe(response => {
               if (response.id != '') {
-                this.toastr.success('Land Detail Updated successfully.');
+                this.toastr.success('Land Detail Updated Successfully.');
                 this.submitted = false;
                 this.edit = false;
                 this.landDetailForm.reset();
@@ -176,7 +176,7 @@ export class LandDetailsComponent implements OnInit {
         else {
           this.farmerService.updateLandDetail(data).subscribe(response => {
             if (response.id != '') {
-              this.toastr.success('Land Detail Updated successfully.');
+              this.toastr.success('Land Detail Updated Successfully.');
               this.submitted = false;
               this.edit = false;
               this.landDetailForm.reset();
@@ -231,7 +231,7 @@ export class LandDetailsComponent implements OnInit {
       if (this.roleType == "ROLE_FPC") {
         this.fpoService.deletelandDetailById(landDetailId).subscribe(response => {
           if (response == true) {
-            this.toastr.success('Land Detail Deleted successfully.');
+            this.toastr.success('Land Detail Deleted Successfully.');
             this.getLandDetailList(this.master_id);
           } else {
             this.toastr.error('Error! While Deleting Land Detail.');
@@ -245,7 +245,7 @@ export class LandDetailsComponent implements OnInit {
       else {
         this.farmerService.deletelandDetailById(landDetailId).subscribe(response => {
           if (response == true) {
-            this.toastr.success('Land Detail Deleted successfully.');
+            this.toastr.success('Land Detail Deleted Successfully.');
             this.getFarmerLandDetailList(this.master_id);
           } else {
             this.toastr.error('Error! While Deleting Land Detail.');

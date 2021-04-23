@@ -39,7 +39,7 @@ export class DepartmentNotificationComponent implements OnInit {
 
       message: ['', [Validators.required]],
       fpo_id: ['', [Validators.required]],      
-        uploadFile: ['', [Validators.required]],
+        uploadFile: [''],
         dept_id: localStorage.getItem('masterId'),
     });
   }
@@ -100,7 +100,6 @@ export class DepartmentNotificationComponent implements OnInit {
       return;
     }
     else {
-
       this.checkfileFormat = false;
     }
   }
@@ -108,7 +107,7 @@ export class DepartmentNotificationComponent implements OnInit {
   
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" ||  ext.toLowerCase() == "jpg" || ext.toLowerCase()=="pdf" || ext.toLowerCase()=="doc" || ext.toLowerCase()=="docx" || ext.toLowerCase()=="txt") {
       return true;
     }
     else {

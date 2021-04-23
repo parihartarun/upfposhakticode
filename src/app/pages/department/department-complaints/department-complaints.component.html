@@ -179,7 +179,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col-12">
-              <h3 class="mb-0">{{'Complaints/ Suggestions' | translate}}</h3>
+              <h3 class="mb-0">{{'Complaints/ Suggestions By FPO' | translate}}</h3>
             </div>
             <!-- <div class="col-9">
               <from role="form" [formGroup]="fliterForm" style="width:100%">
@@ -277,7 +277,7 @@
                     <span *ngIf="!complaint.status">NA</span>
                   </td>
                   <td>
-                    <a download href="{{complaint.filepath}}" target="_blank">
+                    <a *ngIf="complaint.filepath" download href="{{complaint.filepath}}" target="_blank">
                       <i class="fas fa-file"></i>
                     </a>
                   </td>

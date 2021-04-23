@@ -21,31 +21,6 @@
           </div>
         </div>
         <hr class="m-0">
-        <!--<div class="card-body">
-          <div class="row">
-
-            <div class="col-4 mb-4">
-              <h4 class="mb-2">
-                {{'Name'|translate}} :
-              </h4>vishal
-            </div>
-
-            <div class="col-4 mb-4">
-              <h4 class="mb-2">
-                {{'Mobile' | translate}}:
-              </h4>8275518800
-            </div>
-
-            <div class="col-4 mb-4">
-              <h4 class="mb-2">
-                {{'Email'|translate}}:
-              </h4>v@gmial.com
-            </div>
-
-
-          </div>
-        </div>
-        <hr class="m-0">-->
         <div class="card-body" >
           <div class="row">
             <div class="col-12 mb-4">
@@ -104,7 +79,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">{{'Notifications Details'|translate}}</h3>
+              <h3 class="mb-0">{{'Notifications By Department'|translate}}</h3>
             </div>
 
           </div>
@@ -140,7 +115,7 @@
                   {{ notification.createDate  | date: 'dd/MM/yyyy'}}
                 </td>
                 <td>
-                  <a download href="{{notification.filePath}}" target="_blank">
+                  <a *ngIf="notification.filepath" download href="{{notification.filePath}}" target="_blank">
                     <i class="fas fa-file"></i>
                   </a>
                 </td>

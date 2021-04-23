@@ -47,12 +47,9 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>{{'Picture of Seeds' | translate}}<span class="required">*</span></label>
+                    <label>{{'Picture of Seeds' | translate}}</label>
                     <input type="file" id="input-first-name" formControlName="file"
                       (change)="upload($event.target.files)" class="form-control form-control-alternative">
-                      <div *ngIf="submitted && formControls.file.errors" class="text-danger">
-                        <div *ngIf="formControls.file.errors.required">{{'File is required'| translate}}</div>
-                      </div>
                   </div>
                 </div>
                 <div class="col-lg-6">

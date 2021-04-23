@@ -90,13 +90,13 @@ export class ComplaintsComponent implements OnInit {
     formData.append("fpo_id", localStorage.getItem('masterId'))
     this.api.addComplaint(formData).subscribe(response => {
       if (response!= '') {
-        this.toastr.success('Complaint Added Succefully.');
+        this.toastr.success('Complaints/Suggestion Added Successfully.');
         this.submitted = false;
         this.edit = false;
         this.complaintForm.reset();
         this.getComplaints();
       } else {
-        this.toastr.error('Error! While Add complaint.');
+        this.toastr.error('Error! While Add Complaints/Suggestion.');
       }
     });
   }
@@ -134,10 +134,10 @@ export class ComplaintsComponent implements OnInit {
   deleteCompliant(complaint) {
     this.api.deleteCompliant(complaint.id).subscribe(response => {
       if (response != '') {
-        this.toastr.success('Delete successfully');      
+        this.toastr.success('Complaints/Suggestion Deleted Successfully');      
         this.getComplaints();
       } else {
-        this.toastr.error('Error! While Add complaint.');
+        this.toastr.error('Error! While Add Complaints/Suggestion.');
       }    
     });
   }
@@ -171,12 +171,12 @@ export class ComplaintsComponent implements OnInit {
     this.api.updateComplaint(this.complaintStatusForm.value, formData).subscribe(response => {
       console.log(response);
       if (response.id != '') {
-        this.toastr.success('complians successfully.');
+        this.toastr.success('Complaints/Suggestion Updated Successfully.');
         this.submitted = false;
         this.edit = false;
         this.complaintForm.reset();
       } else {
-        this.toastr.error('Error! While Updating License.');
+        this.toastr.error('Error! While Updating Complaints/Suggestion.');
       }
       this.getComplaints();
     });

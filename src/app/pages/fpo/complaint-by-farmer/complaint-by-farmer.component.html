@@ -276,7 +276,7 @@
                   <span *ngIf="!complaint.status">NA</span>
                 </td>
                 <td>
-                  <a download href="{{complaint.filepath}}" target="_blank">
+                  <a *ngIf="complaint.filepath" download href="{{complaint.filepath}}" target="_blank">
                     <i class="fas fa-file"></i>
                   </a>
                 </td>

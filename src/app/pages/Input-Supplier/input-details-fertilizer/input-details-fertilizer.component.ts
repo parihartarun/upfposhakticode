@@ -126,7 +126,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
     this.inputsupplierfertiservice.getFpoFertilizer(formData).subscribe(res => {
       console.log('>>>>>>res here', res);
       
-      this.toastr.success('Added Successfully.');
+      this.toastr.success('Fertilizer Added Successfully.');
       this.submitted = false;
       this.isEdit = false;
       this.fertilizerForm.reset();
@@ -149,7 +149,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
       formData.append('name_id', this.fertilizerForm.value.name_id);
       formData.append("vendor_id ", localStorage.getItem('masterId'))
       this.inputsupplierfertiservice.addfertilizer(formData).subscribe(res => {
-        this.toastr.success('Added Successfully.');
+        this.toastr.success('Fertilizer Added Successfully.');
         this.submitted = false;
         this.isEdit = false;
         this.fertilizerForm.reset();
@@ -186,7 +186,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
     formData.append('id', this.id);
     this.inputsupplierfertiservice.updatefertilizer(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {
-        this.toastr.success('Fertilizer updated successfully.');
+        this.toastr.success('Fertilizer Updated Successfully.');
         this.getallfertilizer();
         this.resetForm();
       } else {
@@ -209,7 +209,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
 
   validateFile(name: String) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
-    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "pdf") {
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" || ext.toLowerCase() == "jpg") {
       return true;
     }
     else {
@@ -220,7 +220,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
   confirmDelete(id) {
     if (confirm("Are you sure to delete this item.")) {
       this.inputsupplierfertiservice.deletefertilizer(id).subscribe(response => {
-        this.toastr.success('Record Deleted Successfully.');
+        this.toastr.success('Fertilizer Deleted Successfully.');
         this.getallfertilizer();
       },
         err => {

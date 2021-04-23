@@ -85,7 +85,7 @@ export class SalesDetailsComponent implements OnInit {
     });
     console.log(this.salesForm.value);
     this.api.addFpoSalesInfo(this.salesForm.value).subscribe(response => {
-      this.toastr.success('Sales info added successfully.');
+      this.toastr.success('Sales Details Added Successfully.');
       this.submitted = false;
       this.edit = false;
       this.salesForm.reset();
@@ -125,7 +125,7 @@ export class SalesDetailsComponent implements OnInit {
         return;
     }
     this.api.updateFpoSalesInfo(this.salesForm.value).subscribe(response => {
-      this.toastr.success('Sales info Updated successfully.');
+      this.toastr.success('Sales Details Updated Successfully.');
       this.submitted = false;
       this.edit = false;
       this.salesForm.reset();
@@ -141,7 +141,7 @@ export class SalesDetailsComponent implements OnInit {
     if(confirm("Are you sure to delete this item")) {
       this.api.deleteFpoSalesInfo(id).subscribe(response => {
         this.getFpoSalesInfo();
-        this.toastr.success('Sales Info Deleted successfully.');
+        this.toastr.success('Sales Details Deleted Successfully.');
       },
         err => {
           console.log(err)
