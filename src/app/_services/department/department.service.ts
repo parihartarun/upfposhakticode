@@ -165,7 +165,10 @@ export class DepartmentService {
   }
 
   departViewReport(viewdata): Observable<any> {
-    return this.http.post<any>(this._url + 'api/department/getProductionReport', viewdata).pipe(map((res: any) => {
+    // return this.http.post<any>(this._url + 'api/department/getProductionReport', viewdata).pipe(map((res: any) => {
+    //   return res;
+    // }));
+    return this.http.post<any>(this._url + 'departmentDashboard/getDeptDashboardReport', viewdata).pipe(map((res: any) => {
       return res;
     }));
   }

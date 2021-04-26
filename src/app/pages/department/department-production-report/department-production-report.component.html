@@ -124,8 +124,6 @@
                   <th scope="col" class="sort" (click)="onClickOrderBy('crop_name')">{{'Crop Name' | translate}}</th>
                   <th scope="col" class="sort" (click)="onClickOrderBy('crop_veriety')">{{'Crop variety' | translate}}
                   </th>
-                  <th scope="col" class="sort" (click)="onClickOrderBy('total_farmers')">{{'Total Farmers' | translate}}
-                  </th>
                   <th scope="col" class="sort" (click)="onClickOrderBy('estimated_production')">
                     {{'Estimated Production (in Qt.)' | translate}}</th>
                   <th scope="col" class="sort" (click)="onClickOrderBy('actual_production')">
@@ -150,19 +148,16 @@
                     {{p.fpo_landline}}
                   </td>
                   <td>
-                    {{p.crop_name}}
+                    {{p.cropName}}
                   </td>
                   <td>
-                    {{p.crop_veriety}}
+                    {{p.verietyName}}
                   </td>
                   <td>
-                    {{p.total_farmers}}
+                    {{p.marketable}}
                   </td>
                   <td>
-                    {{p.estimated_production}}
-                  </td>
-                  <td>
-                    {{p.actual_production}}
+                    {{p.actualFpoProduction}}
                   </td>
                   <!--<td class="text-right">
                   <div ngbDropdown placement="bottom-right">

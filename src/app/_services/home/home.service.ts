@@ -26,5 +26,20 @@ export class HomeService {
       return res;
     }));
   }
+  getChcFmbs() {
+    return this.http.get<any>(this._url + 'home/fmbs').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getColdStorages() {
+    return this.http.get<any>(this._url + 'home/coldStorages').pipe(map((res: any) => {
+      return res;
+    }));
+  }
+  getSeedProcessingUnits() {
+    return this.http.get<any>(this._url + 'home/seedProcessing').pipe(map((res: any) => {
+      return res;
+    }));
+  }
  
 }

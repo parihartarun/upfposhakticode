@@ -19,6 +19,10 @@ export class HomeComponent implements OnInit {
   isLoggeIn = false;
   username = '';
   isHome = true;
+  fmbs=0;
+  coldStorages=0;
+  seedProcessing=0;
+
 
   private itemContainer: any;
   private scrollContainer: any;
@@ -74,10 +78,15 @@ export class HomeComponent implements OnInit {
      // console.log(c);
       $this.circluar = c
     })
-    setInterval(function () {
-      
-    }, 5000);
-   
+    this.api.getChcFmbs().subscribe(res => {
+      this.fmbs = res.fmbscount;
+    })
+    this.api.getColdStorages().subscribe(res => {
+      this.coldStorages = res.coldstorage;
+    })
+    this.api.getSeedProcessingUnits().subscribe(res => {
+      this.seedProcessing = res.seedprocessingunit
+    })
   }
   logout() {
     this.sharedService.isUserLoggedIn.next(false);

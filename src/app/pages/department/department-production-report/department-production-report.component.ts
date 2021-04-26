@@ -53,6 +53,7 @@ export class DepartmentProductionReportComponent implements OnInit {
     });
     // this.getProduction();
     this.getFinancialYears();
+    this.viewReport();
   }
 
   get formControls() {
@@ -64,6 +65,7 @@ export class DepartmentProductionReportComponent implements OnInit {
       if (resp <= 0) {
         this.toastr.error('data not available.');
       }
+      console.log(resp);
       this.reportData = resp;
     });
   }

@@ -386,7 +386,7 @@
   "Add Crop Production": "जमा करे",
   "FPO's Crop Productions": "एफपीओ फसल का उत्पादन",
   "Reset1": "दोबारा ठीक करना है",
-  "S.no": "क्रमांक",
+  "S.No": "क्रमांक",
   "Actions": "कार्रवाई",
   "Edit": "संपादित करें",
   "Delete": "हटाएं",
@@ -832,8 +832,8 @@
   "My FPO":"मेरे एफपीओ",
   "markatable surplus should be less than or equal to 20% more than actual yeild":"मार्किटेबल सरप्लस वास्तविक कम से कम 20% से अधिक या उसके बराबर होना चाहिए.",
   "markatable surplus should be less than or equal to 20% more than actual production":"मार्किटेबल सरप्लस वास्तविक कम से कम 20% से अधिक या उसके बराबर होना चाहिए.",
-  "Indent Raised":"Indent Raised",
-  "Indent For Fulfillment":"Indent For Fulfillment",
+  "Indent Raised":"मांगपत्र",
+  "Indent For Fulfillment":"आपूर्ति के लिए इंडेंट",
   "This type of files are not allowed":"इस प्रकार की फ़ाइलों की अनुमति नहीं है.",
   "Choosing file is manadatory":"फ़ाइल का चयन करना प्रबंधकीय है."
 }
