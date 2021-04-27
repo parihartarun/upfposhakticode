@@ -39,7 +39,7 @@ export class SupplierProfileComponent implements OnInit {
       mobile_number: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       inputSupplierType: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
-      districtRefId: ['', Validators.required],
+      distRefId: ['', Validators.required],
       blockRefId: ['', Validators.required],
       villageRefId:[''],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
@@ -75,7 +75,7 @@ export class SupplierProfileComponent implements OnInit {
         email: this.inputSupplierData.email,
         license_number: this.inputSupplierData.license_number, 
         blockRefId: this.inputSupplierData.block_id,
-        districtRefId: this.inputSupplierData.district_id,
+        distRefId: this.inputSupplierData.district_id,
         villageRefId:this.inputSupplierData.village_id,
         gstNumber: this.inputSupplierData.gst_number,
         pincode: this.inputSupplierData.pincode, 
@@ -86,7 +86,7 @@ export class SupplierProfileComponent implements OnInit {
 
   selectDistrict(districtId) {
     
-    this.profileForm.controls['districtRefId'].setValue(districtId);
+    this.profileForm.controls['distRefId'].setValue(districtId);
     this.api.getBlock(parseInt(districtId)).subscribe(blocks => {
       this.blocks = blocks;
       

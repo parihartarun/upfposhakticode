@@ -145,7 +145,7 @@ export class DepartmentSchemeComponent implements OnInit {
     formData.append('id', this.id);
     this.departmentService.editSchemes(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {
-        this.toastr.success('Schemes Updated successfully.');
+        this.toastr.success('Schemes Updated Successfully.');
         this.departmentService.getScheme();
         this.schemeForm.reset();
         this.isEdit = false;

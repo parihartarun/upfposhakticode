@@ -180,7 +180,7 @@ export class DepartmentGuidelineComponent implements OnInit {
   deleteGuideline(id) {
     this.departmentService.deleteGuideline(id).subscribe((res: any) => {
       if (res == true || res) {
-        this.toastr.success('Guideline Deleted successfully.');
+        this.toastr.success('Guideline Deleted Successfully.');
         this.departmentService.getGuideline();
       } else {
         this.toastr.error('Error! While Deleting Guideline.');
@@ -198,7 +198,7 @@ export class DepartmentGuidelineComponent implements OnInit {
     formData.append('id', this.id);
     this.departmentService.updateGuideline(this.id, formData).subscribe((res: any) => {
       if (res == true || res) {
-        this.toastr.success('Guideline updated successfully.');
+        this.toastr.success('Guideline Updated Successfully.');
         this.departmentService.getGuideline();
         this.guidelineForm.reset();
         this.isEdit = false;

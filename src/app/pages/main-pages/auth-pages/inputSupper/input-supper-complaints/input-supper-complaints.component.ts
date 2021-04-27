@@ -83,7 +83,7 @@ export class InputSupperComplaintsComponent implements OnInit {
     formData.append("masterId", localStorage.getItem('masterId'))
     this.api.addComplaint(formData).subscribe(response => {
       if (response != '') {
-        this.toastr.success('Complaint Added Succefully.');
+        this.toastr.success('Complaint Added Successfully.');
         this.submitted = false;
         this.edit = false;
         this.complaintForm.reset();

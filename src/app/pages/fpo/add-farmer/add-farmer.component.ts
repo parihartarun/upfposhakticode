@@ -155,17 +155,10 @@ export class AddFarmerComponent implements OnInit {
 
     console.log(this.fpoAddFarmerForm.value);
     this.fpo.registerFarmerByFpo(this.fpoAddFarmerForm.value).subscribe(response => {
-      console.log(response);
-      if (response.message == "Farmer Details Added Successfully.") {
-        this.toastr.success(response.message);
-        this.fpoAddFarmerForm.reset();
-        this.submitted = false;
-        this.getFarmerDetailList();
-      }
-      else {
-        this.toastr.error(response.message);
-      }
-      console.log(response);
+      this.toastr.success("Farmer Details Added Successfully.");
+      this.fpoAddFarmerForm.reset();
+      this.submitted = false;
+      this.getFarmerDetailList();
     },
       err => {
         console.log(err);
@@ -225,14 +218,10 @@ export class AddFarmerComponent implements OnInit {
     }    
     console.log(this.fpoAddFarmerForm.value);
     this.fpo.updateFarmer(this.fpoAddFarmerForm.value).subscribe(response => {
-      if(response.id != ''){
-        this.toastr.success('Farmer Details Updated Successfully.');
+      this.toastr.success('Farmer Details Updated Successfully.');
         this.submitted = false;
         this.edit = false;
         this.fpoAddFarmerForm.reset();
-      }else{
-          this.toastr.error('Error! While Updating Farmer.');
-      }
       this.getFarmerDetailList();
     },
       err => {

@@ -73,13 +73,13 @@ export class WarehouseComponent implements OnInit {
     if (this.warehouseForm.valid) {
       this.departmentService.addWarehouse(formData).subscribe((res: any) => {
         if (res == true || res) {
-          this.toastr.success(res.message);
+          this.toastr.success("Warehouse Added Successfully");
           this.warehouseForm.reset();
           this.getWarehouseAll();
           // this.isEdit = false;
           this.submitted = false;
         } else {
-          this.toastr.error('Error! While Updated Schemes.');
+          this.toastr.error('Error! While Adding Warehouse.');
         }
       });
     }
@@ -99,13 +99,13 @@ export class WarehouseComponent implements OnInit {
       formData.append("type", this.warehouseForm.get('type').value)
       this.departmentService.updateWarehouse(this.editabileId, formData).subscribe((res: any) => {
         if (res == true || res) {
-          this.toastr.success(res.message);
+          this.toastr.success("Warehouse Updated Successfully");
           this.warehouseForm.reset();
           this.getWarehouseAll();
           this.editabileId = null;
           // this.isEdit = false;
         } else {
-          this.toastr.error('Error! While Updated Schemes.');
+          this.toastr.error('Error! While Updating Warehouse.');
         }
       });
     }
@@ -136,13 +136,13 @@ export class WarehouseComponent implements OnInit {
   deleteWarehouse(id) {
     this.departmentService.deleteWarehouse(id).subscribe(res => {
       if (res == true || res) {
-        this.toastr.success(res.message);
+        this.toastr.success("Warehouse Deleted Successfully");
         this.warehouseForm.reset();
         this.getWarehouseAll();
         this.editabileId = null;
         // this.isEdit = false;
       } else {
-        this.toastr.error('Error! While Updated Schemes.');
+        this.toastr.error('Error! While deleting Warehouse.');
       }
     });
   }

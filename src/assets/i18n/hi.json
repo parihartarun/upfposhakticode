@@ -831,9 +831,19 @@
   "Go Back":"वापस जाओ",
   "My FPO":"मेरे एफपीओ",
   "markatable surplus should be less than or equal to 20% more than actual yeild":"मार्किटेबल सरप्लस वास्तविक कम से कम 20% से अधिक या उसके बराबर होना चाहिए.",
-  "markatable surplus should be less than or equal to 20% more than actual production":"मार्किटेबल सरप्लस वास्तविक कम से कम 20% से अधिक या उसके बराबर होना चाहिए.",
+  "markatable surplus should be less than or equal to 20% more than actual production.":"मार्किटेबल सरप्लस वास्तविक कम से कम 20% से अधिक या उसके बराबर होना चाहिए.",
   "Indent Raised":"मांगपत्र",
   "Indent For Fulfillment":"आपूर्ति के लिए इंडेंट",
   "This type of files are not allowed":"इस प्रकार की फ़ाइलों की अनुमति नहीं है.",
-  "Choosing file is manadatory":"फ़ाइल का चयन करना प्रबंधकीय है."
+  "Choosing file is manadatory":"फ़ाइल का चयन करना प्रबंधकीय है.",
+  "Indent Raised Machinery":"मांगपत्र मशीनरी",
+  "Indent Raised Insecticides":"मांगपत्र कीटनाशक",
+  "Indent Raised Seeds":"मांगपत्र बीज",
+  "Indent Raised Fertilizers":"मांगपत्र उर्वरक",
+  "Indent Raised Crops":"मांगपत्र फ़सलें",
+  "Indent For Fulfillment Machinery":"आपूर्ति के लिए इंडेंट मशीनरी",
+  "Indent For Fulfillment Insecticides":"आपूर्ति के लिए इंडेंट कीटनाशक",
+  "Indent For Fulfillment Seeds":"आपूर्ति के लिए इंडेंट बीज",
+  "Indent For Fulfillment Fertilizers":"आपूर्ति के लिए इंडेंट उर्वरक",
+  "Indent For Fulfillment Crops":"आपूर्ति के लिए इंडेंट फ़सलें"
 }

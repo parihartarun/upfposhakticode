@@ -84,12 +84,12 @@ export class DepartmentUplaodCircularComponent implements OnInit {
     formData.append('description ', this.uploadCircularForm.value.description);
     this.api.addUploadCircular(formData).subscribe(response => {
       if (response) {
-        this.toastr.success(response.message);
+        this.toastr.success("Circular Added Successfully.");
         this.submitted = false;
         this.uploadCircularForm.reset();
         this.getUploadCircular()
       } else {
-        this.toastr.error('Error! While Add complaint.');
+        this.toastr.error('Error! While Adding Circular.');
       }
     });
   }
@@ -103,12 +103,12 @@ export class DepartmentUplaodCircularComponent implements OnInit {
     formData.append('description ', this.uploadCircularForm.value.description);
     this.api.updateCircular(formData, this.uploadCircularForm.value).subscribe(response => {
       if (response) {
-        this.toastr.success(response.message);
+        this.toastr.success("Circular Updated Successfully.");
         this.submitted = false;
         this.uploadCircularForm.reset();
         this.getUploadCircular();
       } else {
-        this.toastr.error('Error! While Add complaint.');
+        this.toastr.error('Error! While updating Circular.');
       }
     });
   }
@@ -129,12 +129,8 @@ export class DepartmentUplaodCircularComponent implements OnInit {
   }
   deleteCicular(circular) {
     this.api.deleteCircular(circular.id).subscribe(response => {
-      if (response != '') {
-        this.toastr.success('Delete successfully');
-        this.getUploadCircular();
-      } else {
-        this.toastr.error('Error! While Add complaint.');
-      }
+      this.toastr.success('Circular Deleted Successfully');
+      this.getUploadCircular();
     });
   }
   onClickOrderBy(key: any) {

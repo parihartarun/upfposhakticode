@@ -42,14 +42,12 @@ export class InputSupplierRegisterComponent implements OnInit {
 
   }
   selectDistrict(districtId: any) {
-    this.registerForm.controls['districtRefId'].setValue(districtId.currentTarget.value);
-    this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(blocks => {
+    this.api.getBlock(parseInt(districtId)).subscribe(blocks => {
       this.blocks = blocks;
     })
   }
   selectBlock(blockId: any) {
-    this.registerForm.controls['blockRefId'].setValue(blockId.currentTarget.value);
-    this.api.getVillageByBlock(parseInt(blockId.currentTarget.value)).subscribe(v => {
+    this.api.getVillageByBlock(parseInt(blockId)).subscribe(v => {
       this.villages = v;
     })
 
@@ -143,7 +141,7 @@ export class InputSupplierRegisterComponent implements OnInit {
     this.api.registerInputSupplier(this.registerForm.value).subscribe(response => {
 
       if (response.message == "SuccessFully Saved!") {
-        this.toastr.success('Registration done successfully.');
+        this.toastr.success('Registration Done Successfully.');
         this.registerForm.reset();
         this._router.navigate(['/login'])
       }

@@ -87,7 +87,7 @@
                     <td class="text-right">
                       <div ngbDropdown placement="bottom-right">
                         <a class="btn btn-sm btn-primary" (click)="activeUSer(u)">
-                          {{'Active' | translate}}
+                          {{'Activate' | translate}}
                         </a>
                       </div>
                     </td>
@@ -156,6 +156,7 @@
                     </th>
                     <th scope="col" class="sort" (click)="onClickOrderByActive('fpo_email')">{{'Email' | translate}}
                     </th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -184,7 +185,7 @@
                       <div ngbDropdown placement="bottom-right">
                         <a class="btn btn-sm btn-primary" data-backdrop="static" data-keyboard="false"
                           data-toggle="modal" data-target="#myModal" (click)="DeActiveUSer(u)">
-                          {{'Deactive' | translate}}
+                          {{'Deactivate' | translate}}
                         </a>
                       </div>
                     </td>

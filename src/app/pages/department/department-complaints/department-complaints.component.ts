@@ -85,7 +85,7 @@ export class DepartmentComplaintsComponent implements OnInit {
         this.getComplaints();
         this.isViewComplaint = false;
       } else {
-        this.toastr.error('Error! While Add complaint.');
+        this.toastr.error('Error! While Adding Complaint.');
       }
     });
   }
@@ -102,10 +102,10 @@ export class DepartmentComplaintsComponent implements OnInit {
   deleteCompliant(complaint) {
     this.api.deleteCompliant(complaint.id).subscribe(response => {
       if (response != '') {
-        this.toastr.success('Delete successfully');
+        this.toastr.success('Complaint Deleted Successfully');
         this.getComplaints();
       } else {
-        this.toastr.error('Error! While Add complaint.');
+        this.toastr.error('Error! While Adding Complaint.');
       }
     });
   }

@@ -172,11 +172,11 @@
             </div> -->
           </div>
         </div>
+        <div class="card-body">
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col"></th>
                 <th scope="col">{{'SR. NO' | translate}}</th>
                 <th scope="col">{{'MEMBER NAME' | translate}}</th>
                 <th scope="col">{{"Father's/ Husband's Name" | translate}}</th>
@@ -189,9 +189,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let member of members | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
-                <td>
-                  <input type="checkbox">
-                </td>
                 <td>
                   {{(p-1) * 10 + i + 1}}
                 </td>
@@ -228,6 +225,7 @@
             </tbody>
           </table>
         </div>
+      </div>
         <div class="card-footer py-4">
           <nav aria-label="..." class="text-right">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>

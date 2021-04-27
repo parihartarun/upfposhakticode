@@ -98,7 +98,7 @@ export class DepartmentService {
   addGuideline(formData) {
     this.http.post<any>(this._url + 'fpoguidelines/uploadFPOGuideline', formData).subscribe((res: any) => {
       if (res == true || res) {
-        this.toastr.success('Guideline added successfully.');
+        this.toastr.success('Guideline Added Successfully.');
         this.getGuideline();
       } else {
         this.toastr.error('Something went wrong.');
@@ -124,7 +124,7 @@ export class DepartmentService {
   uploadSchemes(data) {
     this.http.post<any>(this._url + 'schemes', data).subscribe((res: any) => {
       if (res == true || res) {
-        this.toastr.success('Schemes added successfully.');
+        this.toastr.success('Schemes Added Successfully.');
         this.getScheme();
       } else {
         this.toastr.error('Something went wrong.');
@@ -134,7 +134,7 @@ export class DepartmentService {
   deleteSchemes(id) {
     this.http.delete<any>(this._url + 'schemes/' + id).subscribe((res: any) => {
       if (res == true || res) {
-        this.toastr.success('Schemes deleted successfully.');
+        this.toastr.success('Schemes Deleted Successfully.');
         this.getScheme();
       } else {
         this.toastr.error('Something went wrong.');

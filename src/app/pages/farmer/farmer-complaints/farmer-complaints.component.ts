@@ -129,7 +129,7 @@ export class FarmerComplaintsComponent implements OnInit {
       formData.append("farmer_id", localStorage.getItem('masterId'))
       formData.append("fpo_id ", this.fpoId)
       this.farmerService.addComplaint(this.complaintForm.value, formData).subscribe(response => {
-        this.toastr.success('Complaint Added Succefully.');
+        this.toastr.success('Complaint Added Successfully.');
         this.submitted = false;
         this.edit = false;
         this.complaintForm.reset();
@@ -140,13 +140,13 @@ export class FarmerComplaintsComponent implements OnInit {
       formData.append("masterId", localStorage.getItem('masterId'))
       this.inputSupplierService.addInputComplaint(this.complaintForm.value, formData).subscribe(response => {
         if (response != '') {
-          this.toastr.success('Complaint Added Succefully.');
+          this.toastr.success('Complaint Added Successfully.');
           this.submitted = false;
           this.edit = false;
           this.complaintForm.reset();
           this.getInputComplaints();
         } else {
-          this.toastr.error('Error! While Add complaint.');
+          this.toastr.error('Error! While Adding Complaint.');
         }
       });
     }
@@ -154,13 +154,13 @@ export class FarmerComplaintsComponent implements OnInit {
       formData.append("masterId", localStorage.getItem('masterId'))
       this.chcFmbService.addCHCComplaint(this.complaintForm.value, formData).subscribe(response => {
         if (response != '') {
-          this.toastr.success('Complaint Added Succefully.');
+          this.toastr.success('Complaint Added Successfully.');
           this.submitted = false;
           this.edit = false;
           this.complaintForm.reset();
           this.getCHCComplaints();
         } else {
-          this.toastr.error('Error! While Add complaint.');
+          this.toastr.error('Error! While Adding Complaint.');
         }
       });
 
@@ -169,13 +169,13 @@ export class FarmerComplaintsComponent implements OnInit {
       formData.append("masterId", localStorage.getItem('masterId'))
       this.buyerSellerService.addBuyerComplaint(this.complaintForm.value, formData).subscribe(response => {
         if (response != '') {
-          this.toastr.success('Complaint Added Succefully.');
+          this.toastr.success('Complaint Added Successfully.');
           this.submitted = false;
           this.edit = false;
           this.complaintForm.reset();
           this.getBuyerComplaints();
         } else {
-          this.toastr.error('Error! While Add complaint.');
+          this.toastr.error('Error! While Adding Complaint.');
         }
       });
 
@@ -218,7 +218,7 @@ export class FarmerComplaintsComponent implements OnInit {
   deleteCompliant(complaint) {
     this.api.deleteCompliant(complaint.id).subscribe(response => {
       if (response != '') {
-        this.toastr.success('Delete successfully');
+        this.toastr.success('Complaint Deleted Successfully');
         this.getComplaints();
       } else {
         this.toastr.error('Error! While Add complaint.');

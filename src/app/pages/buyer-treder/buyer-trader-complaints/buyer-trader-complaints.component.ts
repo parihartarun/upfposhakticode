@@ -82,13 +82,13 @@ export class BuyerTraderComplaintsComponent implements OnInit {
     formData.append("masterId", localStorage.getItem('masterId'))
     this.api.addComplaint(formData).subscribe(response => {
       if (response != '') {
-        this.toastr.success('Complaint Added Succefully.');
+        this.toastr.success('Complaint Added Successfully.');
         this.submitted = false;
         this.edit = false;
         this.complaintForm.reset();
         this.getComplaints();
       } else {
-        this.toastr.error('Error! While Add complaint.');
+        this.toastr.error('Error! While Adding Complaint.');
       }
     });
   }
@@ -126,7 +126,7 @@ export class BuyerTraderComplaintsComponent implements OnInit {
   deleteCompliant(complaint) {
     this.api.deleteCompliant(complaint.id).subscribe(response => {
       if (response != '') {
-        this.toastr.success('Delete successfully');
+        this.toastr.success('Complaint Deleted Successfully');
         this.getComplaints();
       } else {
         this.toastr.error('Error! While Add complaint.');

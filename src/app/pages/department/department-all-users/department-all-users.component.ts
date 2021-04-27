@@ -96,11 +96,11 @@ export class DepartmentAllUsersComponent implements OnInit {
     };
     this.api.updateActiveUser(activeUserData).subscribe(response => {
       if (response) {
-        this.toastr.success(response.message);
+        this.toastr.success("User Activated Successfully.");
 
         this.getAllUserDetails();
       } else {
-        this.toastr.error('Error! While Activate user.');
+        this.toastr.error('Error! While Activating user.');
       }
     });
   }
@@ -119,25 +119,13 @@ export class DepartmentAllUsersComponent implements OnInit {
     }
     this.api.updateUser(deactiveUserData).subscribe(response => {
       if (response) {
-        this.toastr.success(response.message);
+        this.toastr.success("User Deactivated Successfully.");
 
         this.getAllUserDetails();
       } else {
-        this.toastr.error('Error! While Deactivate user.');
+        this.toastr.error('Error! While Deactivating User.');
       }
     });
-  }
-
-  deleteCicular(user) {
-    this.api.deleteUser(user.id).subscribe(response => {
-      if (response != '') {
-        this.toastr.success('Delete successfully');
-        this.getAllUserDetails();
-      } else {
-        this.toastr.error('Error! While Add complaint.');
-      }
-    });
-
   }
 
   closeModal() {
