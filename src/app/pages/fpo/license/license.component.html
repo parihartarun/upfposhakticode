@@ -110,7 +110,6 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col"></th>
                 <th scope="col">{{'SR. NO' | translate}}</th>
                 <th scope="col">{{"License type" | translate}}</th>
                 <th scope="col">{{"Issued By" | translate}}</th>
@@ -122,9 +121,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let license of licenses | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
-                <td>
-                  <input type="checkbox">
-                </td>
                 <td>
                   {{(p-1) * 10 + i + 1}}
                 </td>

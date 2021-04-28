@@ -53,10 +53,12 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Picture of the Machinery' | translate}}</label>
-                                        <input type="file" id="input-first-name" formControlName="file"
-                                            (change)="upload($event.target.files)"
-                                            class="form-control form-control-alternative">
+                                        <label>{{'Rent/day' | translate}}<span class="required">*</span></label>
+                                        <input type="text" id="input-first-name" formControlName="rent_per_day"
+                                            class="form-control form-control-alternative" appOnlynumber>
+                                        <div *ngIf="submitted && formControls.rent_per_day.errors" class="text-danger">
+                                            <div *ngIf="formControls.rent_per_day.errors.required">{{'This field is required'| translate}}</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -85,6 +87,14 @@
                                     </div>
                                 </div>
 
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Picture of the Machinery' | translate}}</label>
+                                        <input type="file" id="input-first-name" formControlName="file"
+                                            (change)="upload($event.target.files)"
+                                            class="form-control form-control-alternative">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer py-4 text-center">
@@ -157,11 +167,12 @@
 
                         </tbody>
                     </table>
-                </div>
+
                 <div class="card-footer py-4">
                     <nav aria-label="..." class="text-right">
                         <pagination-controls (pageChange)="p = $event"></pagination-controls>
                     </nav>
+                </div>
                 </div>
             </div>
         </div>

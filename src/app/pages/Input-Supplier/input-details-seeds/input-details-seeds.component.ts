@@ -108,7 +108,8 @@ export class InputDetailsSeedsComponent implements OnInit {
     formData.append('valid_from', this.seedForm.value.valid_from);
     formData.append('valid_to', this.seedForm.value.valid_to);
     formData.append('variety_id', this.seedForm.value.variety_id);
-    formData.append("vendor_id ", localStorage.getItem('masterId'))
+    formData.append("vendor_id ", localStorage.getItem('masterId'));
+    formData.append('role', localStorage.getItem('roleRefId'));
     this.api.addseed(formData).subscribe(response => {
         this.toastr.success('Seeds Added Successfully.');
         this.submitted = false;

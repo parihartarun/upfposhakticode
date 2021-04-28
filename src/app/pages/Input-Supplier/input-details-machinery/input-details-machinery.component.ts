@@ -49,7 +49,8 @@ export class InputDetailsMachineryComponent implements OnInit {
       machinery_name_id: ['', [Validators.required]],
       machinery_type_id: ['', [Validators.required]],
       input_supplier_id: localStorage.getItem('masterId'),
-      specification: ['']
+      specification: [''],
+      rent_per_day:['', [Validators.required]]
     });
   }
 
@@ -89,8 +90,9 @@ export class InputDetailsMachineryComponent implements OnInit {
     formData.append('machinery_type_id', this.machineryForm.value.machinery_type_id);
     formData.append('quantity', this.machineryForm.value.quantity);
     formData.append('specification', this.machineryForm.value.specification);
-    formData.append("vendor_id ", localStorage.getItem('masterId'));
+    formData.append("vendor_id", localStorage.getItem('masterId'));
     formData.append("role ", localStorage.getItem('roleRefId'));
+    formData.append('rent_per_day', this.machineryForm.value.rent_per_day);
 
     this.inputmachineryservice.addMachinery(formData).subscribe(res => {
       if (res != '') {
@@ -118,7 +120,10 @@ export class InputDetailsMachineryComponent implements OnInit {
       formData.append('quantity', this.machineryForm.value.quantity);
       formData.append('specification', this.machineryForm.value.specification);
       formData.append("input_supplier_id ", localStorage.getItem('masterId'));
-      formData.append("role ", localStorage.getItem('userRole'))
+      formData.append("role ", localStorage.getItem('roleRefId'));
+      formData.append("vendor_id", localStorage.getItem('masterId'));
+      formData.append('rent_per_day', this.machineryForm.value.rent_per_day);
+
       this.inputmachineryservice.addFPOMachinery(formData).subscribe(res => {
         if (res != '') {
           this.toastr.success('Machinery/Equipment Added Successfully.');
@@ -141,6 +146,8 @@ export class InputDetailsMachineryComponent implements OnInit {
     this.machineryForm.get('machinery_type_id').patchValue(data.type_id);
     this.machineryForm.get('quantity').patchValue(data.quantity);
     this.machineryForm.get('specification').patchValue(data.technical_specs);
+    this.machineryForm.get('rent_per_day').patchValue(data.rent_per_day);
+
     setTimeout(() => {
       this.machineryForm.patchValue({
        'machinery_name_id':data.name_id

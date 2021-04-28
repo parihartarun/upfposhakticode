@@ -126,6 +126,7 @@
                 <th scope="col">{{'District Name' | translate}}</th>
                 <!--<th scope="col">{{'Request Date' | translate}}</th>-->
               <th scope="col">{{'Mobile' | translate}}</th>
+              <th></th>
               </tr>
             </thead>
             <tbody>
@@ -163,11 +164,11 @@
               </tr>
             </tbody>
           </table>
-        </div>
         <div class="card-footer py-4">
           <nav aria-label="..." class="text-right">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </nav>
+        </div>
         </div>
       </div>
     </div>

@@ -162,7 +162,6 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col"></th>
                 <th scope="col">{{'SR. NO' | translate}}</th>
                 <th scope="col">{{'Type of storage' | translate}}</th>
                 <th scope="col">{{'Address' | translate}}</th>
@@ -173,9 +172,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let unit of storageUnits | paginate: { itemsPerPage: 10, currentPage: p };index as i">
-                <td>
-                  <input type="checkbox">
-                </td>
                 <td>
                   {{(p-1) * 10 + i + 1}}
                 </td>
@@ -205,11 +201,11 @@
               </tr>
             </tbody>
           </table>
-        </div>
-        <div class="card-footer py-4">
-          <nav aria-label="..." class="text-right">
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
-          </nav>
+          <div class="card-footer py-4">
+            <nav aria-label="..." class="text-right">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </nav>
+          </div>
         </div>
       </div>
     </div>

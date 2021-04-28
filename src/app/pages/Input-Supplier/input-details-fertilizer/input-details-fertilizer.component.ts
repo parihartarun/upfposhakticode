@@ -147,6 +147,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
       formData.append('manufacturer_name', this.fertilizerForm.value.manufacturer_name);
       formData.append('type_id', this.fertilizerForm.value.type_id);
       formData.append('name_id', this.fertilizerForm.value.name_id);
+      formData.append('role', localStorage.getItem('roleRefId'));
       formData.append("vendor_id ", localStorage.getItem('masterId'))
       this.inputsupplierfertiservice.addfertilizer(formData).subscribe(res => {
         this.toastr.success('Fertilizer Added Successfully.');

@@ -34,7 +34,7 @@ export class DepartmentSalesReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.filterForm = this.formBuilder.group({
-      finYear: ['', Validators.required],
+      finYear: ['2020-2021', Validators.required],
       distId: ['', Validators.required],
       cropId: ['', Validators.required],
       seasonId: ['', Validators.required]
@@ -90,9 +90,6 @@ export class DepartmentSalesReportComponent implements OnInit {
 
   viewReport() {
     this.api.departViewReportSales(this.filterForm.value).subscribe(resp => {
-      if (resp <= 0) {
-        this.toastr.error('data not available.');
-      }
       this.salesReport = resp;
     });
   }

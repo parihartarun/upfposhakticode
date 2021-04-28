@@ -46,7 +46,7 @@ export class DepartmentProductionReportComponent implements OnInit {
     });
 
     this.productionReportForm = this.formBuilder.group({
-      finYear: ['', Validators.required],
+      finYear: ['2020-2021', Validators.required],
       distId: ['', Validators.required],
       cropId: ['', Validators.required],
       seasonId: ['', Validators.required]
@@ -79,7 +79,6 @@ export class DepartmentProductionReportComponent implements OnInit {
       console.log(response);
       this.finYears = response;
       this.productionReportForm.controls['finYear'].setValue(response[0]);
-
     },
       err => {
         console.log(err)

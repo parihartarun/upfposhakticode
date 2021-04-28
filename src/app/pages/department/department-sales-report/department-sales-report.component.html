@@ -34,7 +34,7 @@
                     <label class="form-control-label" for="input-last-name">{{'Season' | translate}}</label>
                     <select formControlName="seasonId" (change)="selectSeason($event)"
                       class="custom-control custom-select mb-3">
-                      <option value="">{{'Select Season' | translate}}</option>
+                      <option value="">{{'All Season' | translate}}</option>
                       <option *ngFor="let season of seasons" [value]="season.seasonId">{{season.season}}</option>
                     </select>
                   </div>
@@ -44,7 +44,7 @@
                     <label class="form-control-label" for="input-last-name">{{'District' | translate}}</label>
                     <select formControlName="distId" class="custom-control custom-select mb-3"
                       (change)="selectDistrict($event)">
-                      <option value="">{{'Select District' | translate}}</option>
+                      <option value="">{{'All District' | translate}}</option>
                       <option *ngFor="let district of districts" [value]="district.district_id">
                         {{district.district_name}}</option>
                     </select>
@@ -54,7 +54,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'Crops' | translate}}</label>
                     <select formControlName="cropId" class="custom-control custom-select mb-3">
-                      <option value="">{{'Select Crops' | translate}}</option>
+                      <option value="">{{'All Crops' | translate}}</option>
                       <option *ngFor="let crop of crops" [value]="crop.cropId">{{crop.cropName}}</option>
                     </select>
                   </div>

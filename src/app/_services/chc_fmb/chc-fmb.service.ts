@@ -81,14 +81,18 @@ export class ChcFmbService {
 
 
   addchcfmbMachinery(params) {
-    return this.http.post<any>(this._url + 'chcfmb/machinery', params);
+    return this.http.post<any>(this._url + 'inputsupplier/machinery/', params);
   }
   updatechcfmbMachinery(id, params) {
     return this.http.put<any>(this._url + 'chcfmb/machinery/' + id, params);
   }
 
-  getAllMachinery(masterId) {
-    this.http.get<any>(this._url + 'chcfmb/machinery/getall/' + masterId).subscribe((res: any) => {
+  getAllMachinery() {
+    let data = {
+      "masterId":localStorage.getItem('masterId'),
+      "roleId":localStorage.getItem('roleRefId')
+    };
+    this.http.post<any>(this._url + 'inputsupplier/machinery/getall', data).subscribe((res: any) => {
       if (res) {
         this.machineryList.next(res);
       }

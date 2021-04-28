@@ -36,7 +36,7 @@ export class MachineryComponent implements OnInit {
     this.gettypes();
   }
   getAllMachineryList() {
-    this.chcFmbService.getAllMachinery(this.masterId);
+    this.chcFmbService.getAllMachinery();
     console.log(this.machineryList);
   }
   public fieldArray: Array<any> = [];
@@ -77,7 +77,6 @@ export class MachineryComponent implements OnInit {
     }
   }
   addMachinery(machineryForm) {
-
     machineryForm.control.markAllAsTouched()
     if (machineryForm.valid) {
       const formData: FormData = new FormData();
@@ -96,13 +95,9 @@ export class MachineryComponent implements OnInit {
         formData.append('govt_scheme', this.formData.govt_scheme);
       }
       this.chcFmbService.addchcfmbMachinery(formData).subscribe((res: any) => {
-        if (res == true || res) {
-          this.toastr.success(res.message);
-          this.getAllMachineryList();
-          machineryForm.reset();
-        } else {
-          this.toastr.error('Something went wrong.');
-        }
+        this.toastr.success('Machinery Added Successfully.');
+        this.getAllMachineryList();
+        machineryForm.reset();
       });
     }
   }
