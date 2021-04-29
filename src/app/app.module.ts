@@ -64,6 +64,7 @@ import { IndentComponent } from './pages/common/indent/indent.component';
 import { TreeviewModule } from 'ngx-treeview';
 import { LoginModelPopupComponent } from './pages/common/login-model-popup/login-model-popup.component';
 import { OnlynumberDirective } from './directive/onlynumber.directive';
+import { DecimaNumberDirective } from './directive/decimalnumber.directive';
 import { NgMarqueeModule } from 'ng-marquee';
 import { FpoGuidelinesComponent } from './pages/main-pages/fpo-guidelines/fpo-guidelines.component';
 import { FarmerUserProfileComponent } from './pages/user-profile/farmer-user-profile/farmer-user-profile.component';
@@ -214,6 +215,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     IndentComponent,
     LoginModelPopupComponent,
     OnlynumberDirective,
+    DecimaNumberDirective,
     UppercaseDirective,
     FpoGuidelinesComponent,
     FarmerUserProfileComponent,

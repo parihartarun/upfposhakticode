@@ -223,6 +223,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     })
 
     this.fpoObserver.subscribe(data => {
+      console.log(data);
       this.fpolist = data;
 
     });
@@ -355,6 +356,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
   // open function for Insecticide Indent Form
   openOne(event, content, item): any {
+    console.log('one');
+
     console.log("Selected Items =" + JSON.stringify(item));
     this.currentitem = item;
     this.indentloading = false;
@@ -405,6 +408,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   //open function for Fertilizer indent form
 
   openTwo(event, content, item){
+    console.log('two');
+    console.log(item);
     this.currentitem = item;
     this.indentloading = false;
     this.currentfpoid = item.vendorid;
@@ -422,12 +427,12 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
            this.isAllowed = false;
           this.restrictMsg = "Not authorized to create indent on your own item"  
       }else{
-     //   this._inpSupService.getSupplierProfileData(item.inputsupplierid).subscribe(f => {
-     //     this.inpSupDetail = f;
-     //     console.log("InpSup Detail",this.inpSupDetail);
-     //     console.log("Current Item",this.currentitem);
+       this._inpSupService.getSupplierProfileData(item.vendorid).subscribe(f => {
+         this.inpSupDetail = f;
+         console.log("InpSup Detail",this.inpSupDetail);
+         console.log("Current Item",this.currentitem);
           this.createIndentFormFertilizer(this.currentitem);
-      //     })
+          })
       }
       this.modalService.open(content, { ariaLabelledBy: item.inputsupplierid }).result.then((result) => {
 
@@ -453,6 +458,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
  
   // Open Function for Seed Indent Form
   openThree(event, content, item){
+    console.log('three');
+
     this.currentitem = item;
     this.indentloading = false;
     this.currentitem = item;
@@ -504,6 +511,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
    // Open Function for Machinery indent Form
    // Restriciton for FPO needs clarity here
    openFour(event, content, item){
+    console.log('four');
 
     this.currentitem = item;
     this.indentloading = false;
@@ -583,7 +591,6 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     httpParams = httpParams.append("in", "" + this.parsearchType);
     httpParams = httpParams.append("val", "" + this.parval);
     this.selectedfilters.forEach(data => {
-
       switch (data.type) {
         case 'district':
           httpParams = httpParams.append("filterdist", "" + data.name);
@@ -598,10 +605,6 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
           httpParams = httpParams.append("fpo", "" + data.name);
           break;
       }
-
-
-
-
     });
 
 
@@ -715,10 +718,11 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
           this.isAllowed = false;
           this.restrictMsg = "Not authorized to create indent on your own item";  
         }else{
-           // this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
-             // this.inpSupDetail = f; 
+           this._inpSupService.getSupplierProfileData(this.currentfpoid).subscribe(f => {
+             console.log(this.inpSupDetail);
+              this.inpSupDetail = f; 
               this.createIndentFormFertilizer(this.currentitem);
-          //  })
+           })
         }
     }
 
@@ -851,7 +855,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
 
   // Indent Form for Fertilizers
   createIndentFormFertilizer(item){
-
+    console.log('Fertilizer Indent Form');
       this.indentForm = this.fb.group({
           companyName:[""],
           createdBy:localStorage.getItem('masterId'),

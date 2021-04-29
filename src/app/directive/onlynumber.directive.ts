@@ -35,7 +35,7 @@ export class OnlynumberDirective {
       (e.key === 'a' && e.metaKey === true) || // Allow: Cmd+A (Mac)
       (e.key === 'c' && e.metaKey === true) || // Allow: Cmd+C (Mac)
       (e.key === 'v' && e.metaKey === true) || // Allow: Cmd+V (Mac)
-      (e.key === 'x' && e.metaKey === true) // Allow: Cmd+X (Mac)
+      (e.key === 'x' && e.metaKey === true)// Allow: Cmd+X (Mac)
     ) {
       // let it happen, don't do anything
       return;

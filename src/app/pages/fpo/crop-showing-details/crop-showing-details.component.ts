@@ -72,7 +72,7 @@ export class CropShowingDetailsComponent implements OnInit {
 
   initItemRows() {
     return this.formBuilder.group({
-      sowingArea: ['', [Validators.required]],
+      sowingArea: ['', [Validators.required, Validators.pattern('/^\d+([,.]\d+)?$/')]],
       cropRefName: [undefined, [Validators.required]],
       verietyRef: [undefined,[Validators.required]],
       expectedYield:['', [Validators.required]],
