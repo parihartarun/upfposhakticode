@@ -41,6 +41,7 @@
                     </label>
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
                       formControlName="uploadFile" (change)="upload($event.target.files)" />
+                      <span *ngIf="isEdit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>
                       <div *ngIf="submitted && formControls.uploadFile.errors" class="text-danger">
                         <div *ngIf="formControls.uploadFile.errors.required">{{'Choosing file is manadatory' | translate}}</div>
                       </div>
@@ -53,7 +54,7 @@
                     <button *ngIf="!isEdit" type="button" class="btn btn-primary mt-2 text-right"
                       (click)="addUploadCircular()">{{'Save'|translate}}</button>
                     <button *ngIf="isEdit" type="button" class="btn btn-primary mt-2 text-right"
-                      (click)="upadateCircular()">{{'Edit'| translate}}</button>
+                      (click)="upadateCircular()">{{'Update Circular'| translate}}</button>
                     <button type="button" class="btn btn-warning mt-2 text-right"
                       (click)="reset()">{{'Reset' |translate }}</button>
                   </div>

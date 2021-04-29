@@ -22,7 +22,9 @@ export class InputDetailsInsecticidesComponent implements OnInit {
   isEdit = false;
   p:number = 1;
   userRole: string;
-
+  fileToEdit:string;
+  filePathToEdit:string;
+  
   constructor(private inputinsectservice: InputSupplierService,
     private fb: FormBuilder,
     private toastr: ToastrService) { }
@@ -113,15 +115,20 @@ export class InputDetailsInsecticidesComponent implements OnInit {
 
 
   editinsect(data) {
+    this.id = data.id;
+    console.log(data);  
+    this.isEdit = true;
+    if(data.file_path != null){
+      var pathParts = data.file_path.split("/");
+      this.fileToEdit = pathParts[pathParts.length - 1];
+      this.filePathToEdit = data.file_path;
+    }
     this.insectForm.get('insecticide_type_id').patchValue(data.type_id);
     this.insectForm.get('file').patchValue(data.file);
     this.insectForm.get('manufacturer_name').patchValue(data.manufacturer_name);
     this.insectForm.get('cib_rc_issuedate').patchValue(data.cib_rc_issuedate);
     this.insectForm.get('quantity').patchValue(data.quantity);
     this.insectForm.get('cib_rc_number').patchValue(data.cib_rc_no);
-    this.id = data.id;
-    console.log(data);  
-    this.isEdit = true;
   }
 
 

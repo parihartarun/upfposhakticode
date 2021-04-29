@@ -30,6 +30,12 @@ export class ProductionService {
     }));
   }
 
+  getFarmerParentDetails(farmerId) {
+    return this.http.get<any>(this._url + 'fpoCropSowing/getFarmerParentDetails/'+farmerId).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
   addFarmerCropSowingDetails(data){
     return this.http.post<any>(this._url + 'fpoCropSowing/addFarmerCropSowingDetails', data).pipe(map((res: any) => {
       return res;

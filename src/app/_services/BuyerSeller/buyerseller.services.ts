@@ -49,4 +49,28 @@ export class BuyerSellerService {
     }));
   }
 
+  cancelFertilizerIndent(id){
+    return this.http.put<any>(this._url + `inputSupplierIndent/fertilizer/updateStatus/${id}`,  {status:'cancelled'}).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  cancelSeedIndent(id){
+    return this.http.put<any>(this._url + `inputSupplierIndent/seedIndent/updateStatus/${id}`,  {status:'cancelled'}).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  cancelInsecticidesIndent(id){
+    return this.http.put<any>(this._url + `inputSupplierIndent/insecticides/updateStatus/${id}`,  {status:'cancelled'}).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
+  cancelMachineryIndent(id){
+    return this.http.put<any>(this._url + `inputSupplierIndent/machinery/updateStatus/${id}`,  {status:'cancelled'}).pipe(map((res: any) => {
+      return res;
+    }));
+  }
+
 }

@@ -26,6 +26,7 @@ export class FarmerNotifictionByFpoComponent implements OnInit {
 
   ngOnInit(): void {
     this._farmerService.getAllNotificationByFpo(localStorage.getItem('masterId')).subscribe(us => {
+      console.log(us);
       this.notifications = us;
     })
 

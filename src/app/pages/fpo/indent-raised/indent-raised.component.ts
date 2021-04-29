@@ -120,4 +120,28 @@ export class IndentRaisedComponent implements OnInit {
       });
     })
   }
+
+  cancelFertilizerIndent(indentId){
+    this._buyerService.cancelFertilizerIndent(indentId).subscribe(data=>{
+        this.toastr.success('Indent Raised Cancelled Successfully.');
+    })
+  }
+
+  cancelSeedIndent(indentId){
+    this._buyerService.cancelSeedIndent(indentId).subscribe(data=>{
+      this.toastr.success('Indent Raised Cancelled Successfully.');
+    })
+  }
+
+  cancelInsecticidesIndent(indentId){
+    this._buyerService.cancelInsecticidesIndent(indentId).subscribe(data=>{
+      this.toastr.success('Indent Raised Cancelled Successfully.');
+    })
+  }
+
+  cancelMachineryIndent(indentId){
+    this._buyerService.cancelMachineryIndent(indentId).subscribe(data=>{
+      this.toastr.success('Indent Raised Cancelled Successfully.');
+    })
+  }
 }

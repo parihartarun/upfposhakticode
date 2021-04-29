@@ -28,6 +28,8 @@ export class InputDetailsMachineryComponent implements OnInit {
   machinerynamelist: any;
   p:number = 1;  
   userRole: string;
+  fileToEdit:string;
+  filePathToEdit:string;
 
   constructor(private inputmachineryservice: InputSupplierService,
     private fb: FormBuilder,
@@ -42,16 +44,30 @@ export class InputDetailsMachineryComponent implements OnInit {
     this.Machinerydata();
     this.inputid = localStorage.getItem('masterId');
     this.userRole = localStorage.getItem('userRole');
-    this.machineryForm = this.fb.group({
-      manufacturer_name: [''],
-      quantity: ['', [Validators.required]],
-      file: [''],
-      machinery_name_id: ['', [Validators.required]],
-      machinery_type_id: ['', [Validators.required]],
-      input_supplier_id: localStorage.getItem('masterId'),
-      specification: [''],
-      rent_per_day:['', [Validators.required]]
-    });
+    if(this.userRole == 'ROLE_CHCFMB'){
+      this.machineryForm = this.fb.group({
+        manufacturer_name: [''],
+        quantity: ['', [Validators.required]],
+        file: [''],
+        machinery_name_id: ['', [Validators.required]],
+        machinery_type_id: ['', [Validators.required]],
+        input_supplier_id: localStorage.getItem('masterId'),
+        specification: [''],
+        rent_per_day:['', [Validators.required]]
+      });
+    }else{
+      this.machineryForm = this.fb.group({
+        manufacturer_name: [''],
+        quantity: ['', [Validators.required]],
+        file: [''],
+        machinery_name_id: ['', [Validators.required]],
+        machinery_type_id: ['', [Validators.required]],
+        input_supplier_id: localStorage.getItem('masterId'),
+        specification: [''],
+        rent_per_day:['']
+      });
+    }
+    
   }
 
   mtype() {
@@ -140,6 +156,14 @@ export class InputDetailsMachineryComponent implements OnInit {
   }
 
   editmachinery(data) {
+    console.log(data);
+    this.isEdit = true;
+    this.id = data.id;
+    if(data.file_path != null){
+      var pathParts = data.file_path.split("/");
+      this.fileToEdit = pathParts[pathParts.length - 1];
+      this.filePathToEdit = data.file_path;
+    }
     this.selectmachinaryname(data.type_id);
     this.machineryForm.get('file').patchValue(data.file);
     this.machineryForm.get('manufacturer_name').patchValue(data.manufacturer_name);
@@ -153,9 +177,6 @@ export class InputDetailsMachineryComponent implements OnInit {
        'machinery_name_id':data.name_id
       });
     }, 1000);
-    this.id = data.id;
-    console.log(data,"meditdata");
-    this.isEdit = true;
   }
 
   updatemachinery() {

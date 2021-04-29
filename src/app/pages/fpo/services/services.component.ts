@@ -22,7 +22,8 @@ export class ServicesComponent implements OnInit {
   edit = false;
   fileToUpload: File = null;
   baseUrl: string;
-
+  fileToEdit:string;
+  filePathToEdit:string;
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
@@ -107,13 +108,19 @@ export class ServicesComponent implements OnInit {
   }
 
   editService(service) {
+    console.log(service);
+    this.edit = true;
+    if(service.filePath != null){
+      var pathParts = service.filePath.split("/");
+      this.fileToEdit = pathParts[pathParts.length - 1];
+      this.filePathToEdit = service.filePath;
+    }
     this.serviceForm = this.formBuilder.group({
       servicename: [service.servicename, [Validators.required]],
       descriptions: [service.descriptions, [Validators.required]],
       file: [''],
       id: [service.id]
     });
-    this.edit = true;
     window.scroll(0, 0);
   }
 

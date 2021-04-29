@@ -142,6 +142,8 @@ export class CropShowingDetailsComponent implements OnInit {
   getFarmerDetails(farmerId){
     this.api.getFarmerDetailsForCropSowing(farmerId).subscribe(response => {
       console.log(response);
+      this.cropSowingForm.controls.baseland.patchValue('');
+        this.cropSowingForm.controls.guardianName.patchValue('');
       if(response != null){
         this.cropSowingForm.controls.baseland.patchValue(response.land_area);
         this.cropSowingForm.controls.guardianName.patchValue(response.parantsName);

@@ -25,7 +25,8 @@ export class InputDetailsSeedsComponent implements OnInit {
   p:number=1;
   userRole: string;
   inputid: any;
-
+  fileToEdit:string;
+  filePathToEdit:string;
   constructor(private fb: FormBuilder,
     private api: InputSupplierService,
     private fposervice: FpoService,
@@ -121,6 +122,14 @@ export class InputDetailsSeedsComponent implements OnInit {
   }
 
   editseed(data) {
+    this.id = data.id;
+    console.log(data);
+    this.isEdit = true;
+    if(data.file_path != null){
+      var pathParts = data.file_path.split("/");
+      this.fileToEdit = pathParts[pathParts.length - 1];
+      this.filePathToEdit = data.file_path;
+    }
     this.selectCrops(data.crop_Id);
     this.seedForm.get('file').patchValue(data.file);
     this.seedForm.get('certification_no').patchValue(data.certification_number);
@@ -134,9 +143,6 @@ export class InputDetailsSeedsComponent implements OnInit {
     setTimeout(() => {
       this.seedForm.get('variety_id'). patchValue(data.veriety_id);
     }, 1000);
-    this.id = data.id;
-    console.log(data);
-    this.isEdit = true;
   }
 
   updatseed() {

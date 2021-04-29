@@ -36,6 +36,9 @@ export class DepartmentGuidelineComponent implements OnInit {
   docRadio = '';
   fileRadio = '';
   selectedLang = 'en';
+  fileToEdit:string;
+  filePathToEdit:string;
+
   constructor(private formBuilder: FormBuilder, private toastr: ToastrService, public departmentService: DepartmentService) { }
 
   ngOnInit(): void {
@@ -153,6 +156,12 @@ export class DepartmentGuidelineComponent implements OnInit {
   }
 
   editGuideline(data) {
+    console.log(data);
+    if(data.filePath != null){
+      var pathParts = data.filePath.split("/");
+      this.fileToEdit = pathParts[pathParts.length - 1];
+      this.filePathToEdit = data.filePath;
+    }
     this.guidelineForm.get('guideline_type').patchValue(data.fpoGuidelineType);
     this.guidelineForm.get('file').patchValue(data.file);
     this.guidelineForm.get('h_file').patchValue(data.h_file);

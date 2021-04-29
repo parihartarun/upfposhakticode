@@ -23,6 +23,8 @@ export class DepartmentUplaodCircularComponent implements OnInit {
   isEdit = false;
   searchText = '';
   orderBy: { order: string, key: string } = { order: '', key: '' };
+  fileToEdit:string;
+  filePathToEdit:string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -118,7 +120,13 @@ export class DepartmentUplaodCircularComponent implements OnInit {
     this.uploadCircularForm.reset();
   }
   editCicular(circular) {
+    console.log(circular);
     this.isEdit = true;
+    if(circular.filePath != null){
+      var pathParts = circular.filePath.split("/");
+      this.fileToEdit = pathParts[pathParts.length - 1];
+      this.filePathToEdit = circular.filePath;
+    }
     this.uploadCircularForm = this.formBuilder.group({
       description: [circular.description, Validators.required],
       uploadFile: [''],

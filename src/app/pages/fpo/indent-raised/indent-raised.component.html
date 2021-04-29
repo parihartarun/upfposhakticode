@@ -121,7 +121,7 @@
                     <th scope="col">{{'Fulfillment Date'|translate}}</th>
                     <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
                     <th scope="col">{{'status'|translate}}</th>
-                    <th scope="col"></th>
+                    <th scope="col">{{'Action' | translate}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -190,6 +190,7 @@
                     <th scope="col">{{'Created on'|translate}}</th>
                     <th scope="col">{{'Enquiry Id'|translate}}</th>
                     <th scope="col">{{'status'|translate}}</th>
+                    <th scope="col">{{'Action' | translate}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -218,7 +219,14 @@
                     </td>
                      <td>
                         {{indent.status}}
-                    </td>         
+                    </td>    
+                    <td class="text-right" *ngIf="indent.status == 'active'">
+                      <div placement="bottom-right">
+                        <a class="btn btn-sm btn-primary" href="javascript:void(0)" (click)="cancelFertilizerIndent(indent.enqId)">
+                          Cancel
+                        </a>
+                      </div>
+                    </td>      
                   </tr>
                  
                 </tbody>
@@ -252,6 +260,7 @@
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Enquiry Id'|translate}}</th>
                     <th scope="col">{{'status'|translate}}</th>
+                    <th scope="col">{{'Action' | translate}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -280,7 +289,14 @@
                     </td>
                      <td>
                         {{indent.status}}
-                    </td>         
+                    </td>      
+                    <td class="text-right" *ngIf="indent.status == 'active'">
+                      <div placement="bottom-right">
+                        <a class="btn btn-sm btn-primary" href="javascript:void(0)" (click)="cancelSeedIndent(indent.enqId)">
+                          Cancel
+                        </a>
+                      </div>
+                    </td>    
                   </tr>
                 </tbody>
             </table> 
@@ -314,6 +330,7 @@
                     <th scope="col">{{'Created on'|translate}}</th>
                     <th scope="col">{{'Enquiry Id'|translate}}</th>
                     <th scope="col">{{'status'|translate}}</th>
+                    <th scope="col">{{'Action' | translate}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -351,7 +368,14 @@
                     </td>
                      <td>
                         {{indent.status}}
-                    </td>         
+                    </td>    
+                    <td class="text-right" *ngIf="indent.status == 'active'">
+                      <div placement="bottom-right">
+                        <a class="btn btn-sm btn-primary" href="javascript:void(0)" (click)="cancelInsecticidesIndent(indent.enqId)">
+                          Cancel
+                        </a>
+                      </div>
+                    </td>      
                   </tr>
                 </tbody>
             </table>  
@@ -386,6 +410,7 @@
                     <th scope="col">{{'Created on'|translate}}</th>
                     <th scope="col">{{'Enquiry Id'|translate}}</th>
                     <th scope="col">{{'status'|translate}}</th>
+                    <th scope="col">{{'Action' | translate}}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -417,7 +442,14 @@
                     </td>
                      <td>
                        {{indent.status}}
-                    </td>         
+                    </td>    
+                    <td class="text-right" *ngIf="indent.status == 'active'">
+                      <div placement="bottom-right">
+                        <a class="btn btn-sm btn-primary" href="javascript:void(0)" (click)="cancelMachineryIndent(indent.enqId)">
+                          Cancel
+                        </a>
+                      </div>
+                    </td>      
                   </tr>
                 </tbody>
             </table> 

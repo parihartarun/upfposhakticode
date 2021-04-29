@@ -37,6 +37,7 @@
                                     <div class="form-group">
                                         <label>{{'Picture of Insecticide/Pesticide' | translate}}</label>
                                         <input type="file"  formControlName="file" (change)="upload($event.target.files)" class="form-control form-control-alternative">
+                                        <span *ngIf="isEdit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">

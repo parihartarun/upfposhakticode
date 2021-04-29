@@ -68,9 +68,7 @@ export class LandDetailsComponent implements OnInit {
       this.getFarmerLandDetailList(this.master_id);
     }
     console.log(this.landDetailForm.value);
-    
     this.getFarmerDetailList();
-    
   }
 
   getFarmerDetailList(){
@@ -300,7 +298,7 @@ export class LandDetailsComponent implements OnInit {
 
   getFarmerDetails(farmerId){
     console.log(farmerId);
-    this.productionService.getFarmerDetailsForCropSowing(farmerId).subscribe(response => {
+    this.productionService.getFarmerParentDetails(farmerId).subscribe(response => {
       console.log(response);
       if(response != null){
         //this.landDetailForm.controls.land_area.patchValue(response.land_area);

@@ -184,7 +184,7 @@ export class AddFarmerComponent implements OnInit {
         ifscCode: [farmerDetails.ifscCode],
         parantsName: [farmerDetails.parantsName, Validators.required],
         pincode: [farmerDetails.pincode, [Validators.required, Validators.pattern("[0-9 ]{6}")]],        
-        userName: [farmerDetails.userName],
+        userName: [farmerDetails.userFar.userName],
         villRefId: [farmerDetails.villRefId, Validators.required],
         villagePanchayatId: [farmerDetails.villagePanchayatId, Validators.required],
         userFar: [farmerDetails.userFar],

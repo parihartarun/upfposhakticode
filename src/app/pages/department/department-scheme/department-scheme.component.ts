@@ -24,6 +24,8 @@ export class DepartmentSchemeComponent implements OnInit {
   docRadio = '';
   fileRadio = '';
   currentPage:number = 1;
+  fileToEdit:string;
+  filePathToEdit:string;
   constructor(private formBuilder: FormBuilder, public departmentService: DepartmentService, private toastr: ToastrService) { }
 
 
@@ -109,6 +111,11 @@ export class DepartmentSchemeComponent implements OnInit {
   }
   editSchemes(data) {
     console.log(data);
+    if(data.filePath != null){
+      var pathParts = data.filePath.split("/");
+      this.fileToEdit = pathParts[pathParts.length - 1];
+      this.filePathToEdit = data.filePath;
+    }
     this.schemeForm.get('parent_department').patchValue(data.parentDepartment);
     this.schemeForm.get('description').patchValue(data.description);
     this.schemeForm.get('title').patchValue(data.schemeType);

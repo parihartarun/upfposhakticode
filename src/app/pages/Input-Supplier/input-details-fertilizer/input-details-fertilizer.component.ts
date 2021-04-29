@@ -37,7 +37,8 @@ export class InputDetailsFertilizerComponent implements OnInit {
   isEdit = false;
   p:number = 1;  
   userRole: string;
-
+  fileToEdit:string;
+  filePathToEdit:string;
 
   constructor(private fb: FormBuilder,
     private inputsupplierfertiservice: InputSupplierService,
@@ -162,14 +163,20 @@ export class InputDetailsFertilizerComponent implements OnInit {
 
   editfertilizer(data) {
     console.log(data);
+    this.id = data.id;
+    this.isEdit = true;
+    if(data.file_path != null){
+      var pathParts = data.file_path.split("/");
+      this.fileToEdit = pathParts[pathParts.length - 1];
+      this.filePathToEdit = data.file_path;
+    }
     this.selectFertilizerType(data.type_id, data.name_id);
     this.fertilizerForm.get('fertilizer_grade').patchValue(data.fertilizer_grade);
     this.fertilizerForm.get('file').patchValue(data.file);
     this.fertilizerForm.get('type_id').patchValue(data.type_id);
     //this.fertilizerForm.get('name_id').patchValue(data.name_id);
     this.fertilizerForm.get('manufacturer_name').patchValue(data.manufacturer_name);
-    this.id = data.id;
-    this.isEdit = true;
+
   }
 
   updatefertilizer() {

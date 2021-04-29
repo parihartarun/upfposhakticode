@@ -1,0 +1,11 @@
+.custom-radio{
+    display: block;
+    margin-right: 20px;  
+  }
+
+  @media screen and (max-width: 480px) {
+    .custom-radio{
+      display: block; 
+    }
+  
+  }

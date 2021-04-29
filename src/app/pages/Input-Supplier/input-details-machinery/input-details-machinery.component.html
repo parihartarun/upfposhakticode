@@ -53,7 +53,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Rent/day' | translate}}<span class="required">*</span></label>
+                                        <label>{{'Rent/day' | translate}}<span *ngIf="this.userRole == 'ROLE_CHCFMB'" class="required">*</span></label>
                                         <input type="text" id="input-first-name" formControlName="rent_per_day"
                                             class="form-control form-control-alternative" appOnlynumber>
                                         <div *ngIf="submitted && formControls.rent_per_day.errors" class="text-danger">
@@ -93,6 +93,7 @@
                                         <input type="file" id="input-first-name" formControlName="file"
                                             (change)="upload($event.target.files)"
                                             class="form-control form-control-alternative">
+                                        <span *ngIf="isEdit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>
                                     </div>
                                 </div>
                             </div>

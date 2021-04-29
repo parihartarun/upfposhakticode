@@ -108,7 +108,6 @@ export class PhotographsComponent implements OnInit {
   editPhotograph(service){
     console.log(service);
     var pathParts = service.filePath.split("/");
-    console.log(pathParts);
     this.fileToEdit = pathParts[pathParts.length - 1];
     this.filePathToEdit = service.filePath;
     this.photographForm = this.formBuilder.group({
