@@ -30,6 +30,7 @@ export class InputDetailsMachineryComponent implements OnInit {
   userRole: string;
   fileToEdit:string;
   filePathToEdit:string;
+  goveScheme = 0;
 
   constructor(private inputmachineryservice: InputSupplierService,
     private fb: FormBuilder,
@@ -53,7 +54,9 @@ export class InputDetailsMachineryComponent implements OnInit {
         machinery_type_id: ['', [Validators.required]],
         input_supplier_id: localStorage.getItem('masterId'),
         specification: [''],
-        rent_per_day:['', [Validators.required]]
+        rent_per_day:['', [Validators.required]],
+        isGovernmentAssistance:['', Validators.required],
+        govt_scheme:['']
       });
     }else{
       this.machineryForm = this.fb.group({
@@ -64,10 +67,16 @@ export class InputDetailsMachineryComponent implements OnInit {
         machinery_type_id: ['', [Validators.required]],
         input_supplier_id: localStorage.getItem('masterId'),
         specification: [''],
-        rent_per_day:['']
+        rent_per_day:[''],
+        isGovernmentAssistance:['', Validators.required],
+        govt_scheme:['']
       });
     }
     
+  }
+
+  updateGovernmentScheme(val){
+    this.goveScheme =  val;
   }
 
   mtype() {
@@ -109,6 +118,7 @@ export class InputDetailsMachineryComponent implements OnInit {
     formData.append("vendor_id", localStorage.getItem('masterId'));
     formData.append("role ", localStorage.getItem('roleRefId'));
     formData.append('rent_per_day', this.machineryForm.value.rent_per_day);
+    formData.append('gove_scheme', this.machineryForm.value.gove_scheme);
 
     this.inputmachineryservice.addMachinery(formData).subscribe(res => {
       if (res != '') {
@@ -139,6 +149,7 @@ export class InputDetailsMachineryComponent implements OnInit {
       formData.append("role ", localStorage.getItem('roleRefId'));
       formData.append("vendor_id", localStorage.getItem('masterId'));
       formData.append('rent_per_day', this.machineryForm.value.rent_per_day);
+      formData.append('gove_scheme', this.machineryForm.value.gove_scheme);
 
       this.inputmachineryservice.addFPOMachinery(formData).subscribe(res => {
         if (res != '') {
@@ -171,7 +182,7 @@ export class InputDetailsMachineryComponent implements OnInit {
     this.machineryForm.get('quantity').patchValue(data.quantity);
     this.machineryForm.get('specification').patchValue(data.technical_specs);
     this.machineryForm.get('rent_per_day').patchValue(data.rent_per_day);
-
+    this.machineryForm.get('gove_scheme').patchValue(data.gove_scheme);
     setTimeout(() => {
       this.machineryForm.patchValue({
        'machinery_name_id':data.name_id

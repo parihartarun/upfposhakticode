@@ -35,9 +35,9 @@ export class WarehouseComponent implements OnInit {
     });
     this.warehouseForm = this.formBuilder.group({
       address: [''],
-      block_id: [undefined],
+      block_id: [0],
       capacity: ['', [Validators.required]],
-      district_id: [undefined],
+      district_id: [0],
       latitude: [''],
       longitude: [''],
       seed_processing: ['', [Validators.required]],

@@ -3,7 +3,7 @@
       <div class="header-body">
         <!-- Card stats -->
         <div class="row mb-2 main-tabs">
-          <div class="col"  *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_BUYERSELLER'">
+          <div class="col" >
             <div [ngClass]="{'active': showTable.val === 'A'}" class="card card-stats mb-3 mb-xl-0" (click)="showHiddenTable('A')"
             title="{{'Click to see Crops table' | translate}}">
               <div class="card-body">
@@ -16,7 +16,7 @@
               </div>
             </div>
           </div>
-          <div class="col" *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_INPUTSUPPLIER'">
+          <div class="col">
             <div [ngClass]="{'active': showTable.val === 'B'}"  class="card card-stats mb-3 mb-xl-0" (click)="showHiddenTable('B')"
             title="{{'Click to see Fertilizers table' | translate}}">
               <div class="card-body">
@@ -29,7 +29,7 @@
               </div>
             </div>
           </div>
-          <div class="col" *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_INPUTSUPPLIER'">
+          <div class="col">
             <div [ngClass]="{'active': showTable.val === 'C'}" class="card card-stats mb-3 mb-xl-0" (click)="showHiddenTable('C')"
             title="{{'Click to see Seeds table' | translate}}">
               <div class="card-body">
@@ -42,7 +42,7 @@
               </div>
             </div>
           </div>
-          <div class="col" *ngIf="userRole == 'ROLE_FPC' ||  userRole == 'ROLE_INPUTSUPPLIER' ">
+          <div class="col">
             <div [ngClass]="{'active': showTable.val === 'D'}" class="card card-stats mb-3 mb-xl-0" (click)="showHiddenTable('D')"
             title="{{'Click to see Insecticides table' | translate}}">
               <div class="card-body">
@@ -56,7 +56,7 @@
             </div>
             </div>
   
-          <div class="col" *ngIf="userRole == 'ROLE_FPC' || userRole == 'ROLE_INPUTSUPPLIER' || userRole == 'ROLE_CHCFMB'">
+          <div class="col">
             <div [ngClass]="{'active': showTable.val === 'E'}" class="card card-stats mb-4 mb-xl-0" (click)="showHiddenTable('E')"
             title="{{'Click to see Machinary table' | translate}}">
               <div class="card-body">
@@ -143,7 +143,7 @@
                  </td>
                  
                  <td>
-                     {{indent.fulfillmentDate}}
+                     {{indent.fulfillmentDate | date: 'dd/MM/yyyy'}}
                  </td>
                  <td>
                      {{indent.deliveryAddress}}
@@ -212,7 +212,7 @@
                        {{indent.contact_details}}
                     </td>
                     <td>
-                        {{indent.create_date_time}}
+                        {{indent.create_date_time | date: 'dd/MM/yyyy'}}
                     </td>
                     <td>
                         {{indent.enqId}}
@@ -340,7 +340,6 @@
                     </td>
                     <td>
                         {{indent.insecticide_type}}
-                     
                     </td>
                     <td>
                        
@@ -360,7 +359,7 @@
                
                     </td>
                     <td>
-                        {{indent.create_date_time}}
+                        {{indent.create_date_time | date: 'dd/MM/yyyy'}}
                    
                     </td>
                     <td>
@@ -435,7 +434,7 @@
                        {{indent.contact_details}}
                     </td>
                     <td>
-                        {{indent.create_date_time}}
+                        {{indent.create_date_time | date: 'dd/MM/yyyy'}}
                     </td>
                     <td>
                         {{indent.enqId}}

@@ -72,7 +72,7 @@ export class CropShowingDetailsComponent implements OnInit {
 
   initItemRows() {
     return this.formBuilder.group({
-      sowingArea: ['', [Validators.required, Validators.pattern('/^\d+([,.]\d+)?$/')]],
+      sowingArea: ['', [Validators.required]],
       cropRefName: [undefined, [Validators.required]],
       verietyRef: [undefined,[Validators.required]],
       expectedYield:['', [Validators.required]],
@@ -196,6 +196,7 @@ export class CropShowingDetailsComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     this.sowingError = false;
+    console.log(this.cropSowingForm.controls.list);
     if(this.cropSowingForm.controls.list.status == 'INVALID'){
       this.sowingError = true;
     }

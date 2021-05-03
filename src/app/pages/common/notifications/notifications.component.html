@@ -88,11 +88,11 @@
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
                     <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      Actions
+                      {{'Actions' | translate}}
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="viewNotifications(notification)">View</a>
-                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(notification)">Delete</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="viewNotifications(notification)">{{'View' | translate}}</a>
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="deleteCompliant(notification)">{{'Delete' | translate}}</a>
                     </div>
                   </div>
                 </td>

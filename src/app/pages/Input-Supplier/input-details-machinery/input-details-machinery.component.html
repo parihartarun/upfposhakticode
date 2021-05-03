@@ -96,6 +96,34 @@
                                         <span *ngIf="isEdit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-last-name">{{'Whether Govt.-assistance used in procurement of Equipment' |
+                                            translate}} <span class="required">*</span></label><br/>
+                                        <div class="custom-control custom-radio mb-3 ">
+                                            <input formControlName="isGovernmentAssistance" (change)="updateGovernmentScheme(1)"  value="True"  class="custom-control-input" id="customRadio5" type="radio">
+                                            <label class="custom-control-label" for="customRadio5">{{'Yes' | translate}}</label>
+                                        </div>
+                                        <div class="custom-control custom-radio mb-3">
+                                            <input formControlName="isGovernmentAssistance"  (change)="updateGovernmentScheme(0)" value="False" class="custom-control-input" id="customRadio6"  type="radio">
+                                            <label class="custom-control-label" for="customRadio6">{{'No' | translate}}</label>
+                                        </div>      
+                                        <div *ngIf="submitted && formControls.isGovernmentAssistance.errors" class="text-danger">
+                                            <div *ngIf="formControls.isGovernmentAssistance.errors.required">{{'This Field is required' | translate}}</div>
+                                        </div>            
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" *ngIf="goveScheme == 1">
+                                    <div class="form-group">
+                                      <label>{{'Govt. Scheme under which -assistance was provided' |
+                                                              translate}}</label>
+                                      <input type="text" id="govt" class="form-control form-control-alternative" name="govt scheme"
+                                      formControlName="govt_scheme">
+                                      <div *ngIf="submitted && formControls.govt_scheme.errors" class="text-danger">
+                                        <div *ngIf="formControls.govt_scheme.errors.required">{{'This field is required'| translate}}</div>
+                                    </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer py-4 text-center">

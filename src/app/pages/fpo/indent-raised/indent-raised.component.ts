@@ -47,20 +47,18 @@ export class IndentRaisedComponent implements OnInit {
    }
 
   ngOnInit() {
-     this.loading = true; 
+    this.loading = true; 
     this.filterParams.masterId = localStorage.getItem('masterId');
     this.filterParams.roleId = localStorage.getItem('roleRefId');
     this.userRole =localStorage.getItem('userRole');
     console.log("FilterParams",this.filterParams);  
-    if (this.userRole == 'ROLE_FPC' || this.userRole == 'ROLE_BUYERSELLER') { 
-        this.fpoService.getIndentByUserId(this.filterParams.masterId, this.filterParams.roleId).subscribe(dummy =>{
-          console.log(dummy);  
-          this.data = dummy;
-            this.indents =this.data;
-            this.totCrops =this.data.length;
-            this.loading =false;
-        });
-    }
+    this.fpoService.getIndentByUserId(this.filterParams.masterId, this.filterParams.roleId).subscribe(dummy =>{
+      console.log(dummy);  
+      this.data = dummy;
+        this.indents =this.data;
+        this.totCrops =this.data.length;
+        this.loading =false;
+    });
     this.fpoService.getRaisedIndent(this.filterParams).subscribe(dummy=>{
         this.data2 = dummy;
         // this.indents = this.data;
