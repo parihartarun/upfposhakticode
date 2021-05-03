@@ -42,7 +42,7 @@
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'District' | translate}}</label>
-                    <select formControlName="distId" class="custom-control custom-select mb-3"
+                    <select formControlName="distId" class="custom-control dist custom-select mb-3"
                       (change)="selectDistrict($event)">
                       <option value="">{{'All District' | translate}}</option>
                       <option *ngFor="let district of districts" [value]="district.district_id">

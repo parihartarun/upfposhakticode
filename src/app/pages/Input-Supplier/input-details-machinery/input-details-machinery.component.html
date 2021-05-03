@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Quantity' | translate}}<span class="required">*</span></label>
+                                        <label>{{'Quantity1' | translate}}<span class="required">*</span></label>
                                         <input type="text" id="input-first-name" formControlName="quantity"
                                             class="form-control form-control-alternative" appOnlynumber>
                                         <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
@@ -132,8 +132,9 @@
                             <tr>
                                 <th scope="col">{{'S.No' | translate}}</th>
                                 <th scope="col"> {{'Machinery Category' | translate}}</th>
+                                <th scope="col"> {{'Equipment Name' | translate}}</th>
                                 <th scope="col">{{'Machinery Manufacturer' | translate}}</th>
-                                <th scope="col">{{'Quantity' | translate}} </th>
+                                <th scope="col">{{'Quantity1' | translate}} </th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -144,6 +145,9 @@
                                 </td>
                                 <td>
                                     {{mdata.type}}
+                                </td>
+                                <td>
+                                    {{mdata.equpment_name}}
                                 </td>
                                 <td>
                                     {{mdata.manufacturer_name}}

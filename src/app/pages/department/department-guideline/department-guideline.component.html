@@ -46,12 +46,12 @@
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" (change)="seletDocType()" [ngModelOptions]="{standalone: true}"
                           [(ngModel)]="docRadio" name="inlineRadio" id="inlineRadio1" value="url">
-                        <label class="form-check-label" for="inlineRadio1">URL</label>
+                        <label class="form-check-label" for="inlineRadio1">{{'URL' | translate}}</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" (change)="seletDocType()" [ngModelOptions]="{standalone: true}"
                           [(ngModel)]="docRadio" name="inlineRadio" id="inlineRadio2" value="file">
-                        <label class="form-check-label" for="inlineRadio2">File Upload</label>
+                        <label class="form-check-label" for="inlineRadio2">{{'File Upload' | translate}}</label>
                       </div>
                     </label>
                     <div *ngIf="docError" class="text-danger">
@@ -69,17 +69,17 @@
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
                           [(ngModel)]="fileRadio" name="inlineRadioOptions" (change)="onLanguageChange('hi')" id="inlineRadio1" value="hindi_upload">
-                        <label class="form-check-label" for="inlineRadio1">Hindi Upload</label>
+                        <label class="form-check-label" for="inlineRadio1">{{'Hindi Upload' | translate}}</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
                           [(ngModel)]="fileRadio" name="inlineRadioOptions" (change)="onLanguageChange('en')"  id="inlineRadio2" value="english_upload">
-                        <label class="form-check-label" for="inlineRadio2">English Upload</label>
+                        <label class="form-check-label" for="inlineRadio2">{{'English Upload' | translate}}</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
                           [(ngModel)]="fileRadio" name="inlineRadioOptions" (change)="onLanguageChange('both')" id="inlineRadio2" value="both">
-                        <label class="form-check-label" for="inlineRadio2">Both</label>
+                        <label class="form-check-label" for="inlineRadio2">{{'Both' | translate}}</label>
                       </div>
                     </label>
                     <div *ngIf="fileError" class="text-danger">

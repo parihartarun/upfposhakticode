@@ -32,6 +32,20 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label> {{'Fertilizer grade' | translate}}<span class="required">*</span> </label>
+                                        <select class="form-control" formControlName="fertilizer_grade">
+                                            <option>A</option>
+                                            <option>B</option>
+                                            <option>C</option>
+                                        </select>
+                                        <div *ngIf="submitted && fertitype != '' && formControls.fertilizer_grade.errors" class="text-danger">
+                                            <div *ngIf="formControls.fertilizer_grade.errors.required">{{'This field is required'| translate}}</div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <div *ngIf="fertitype == '1'">
@@ -67,29 +81,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label> {{'Fertilizer grade' | translate}}<span class="required">*</span> </label>
-                                        <select class="form-control" formControlName="fertilizer_grade">
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>C</option>
-                                        </select>
-                                        <div *ngIf="submitted && fertitype != '' && formControls.fertilizer_grade.errors" class="text-danger">
-                                            <div *ngIf="formControls.fertilizer_grade.errors.required">{{'This field is required'| translate}}</div>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col-lg-6">
                                     <div *ngIf="subtype == 0" class="form-group">
                                         <label>{{'Other' | translate}}</label>
                                         <input type="text" id="input-first-name" formControlName="name_id" class="form-control form-control-alternative">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -106,6 +104,17 @@
                                         <label>{{'Picture of Fertilizer packets' | translate}}</label>
                                         <input type="file" id="input-first-name" formControlName="file" (change)="upload($event.target.files)" class="form-control form-control-alternative">
                                         <span *ngIf="isEdit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>{{'Quantity1' | translate}}<span class="required">*</span></label>
+                                        <input type="text" id="input-first-name" formControlName="quantity"
+                                            class="form-control form-control-alternative" appOnlynumber>
+                                        <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
+                                            <div *ngIf="formControls.quantity.errors.required">{{'This field is required'| translate}}</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

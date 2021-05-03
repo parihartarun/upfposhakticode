@@ -57,6 +57,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
       fertilizer_grade: ['', [Validators.required]],
       type_id: ['', [Validators.required]],
       file: [''],
+      quantity:[''],
       manufacturer_name: ['', [Validators.required]],
       name_id: ['', [Validators.required]],
       input_supplier_id: localStorage.getItem('masterId'),
@@ -122,6 +123,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
     formData.append('manufacturer_name', this.fertilizerForm.value.manufacturer_name);
     formData.append('type_id', this.fertilizerForm.value.type_id);
     formData.append('name_id', this.fertilizerForm.value.name_id);
+    formData.append('quantity', this.fertilizerForm.value.quantity);
     formData.append('role', localStorage.getItem('roleRefId'));
     formData.append("vendor_id", localStorage.getItem('masterId'));
     this.inputsupplierfertiservice.getFpoFertilizer(formData).subscribe(res => {
@@ -148,6 +150,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
       formData.append('manufacturer_name', this.fertilizerForm.value.manufacturer_name);
       formData.append('type_id', this.fertilizerForm.value.type_id);
       formData.append('name_id', this.fertilizerForm.value.name_id);
+      formData.append('quantity', this.fertilizerForm.value.quantity);
       formData.append('role', localStorage.getItem('roleRefId'));
       formData.append("vendor_id ", localStorage.getItem('masterId'))
       this.inputsupplierfertiservice.addfertilizer(formData).subscribe(res => {
@@ -174,6 +177,8 @@ export class InputDetailsFertilizerComponent implements OnInit {
     this.fertilizerForm.get('fertilizer_grade').patchValue(data.fertilizer_grade);
     this.fertilizerForm.get('file').patchValue(data.file);
     this.fertilizerForm.get('type_id').patchValue(data.type_id);
+    this.fertilizerForm.get('quantity').patchValue(data.quantity);
+
     //this.fertilizerForm.get('name_id').patchValue(data.name_id);
     this.fertilizerForm.get('manufacturer_name').patchValue(data.manufacturer_name);
 
@@ -189,7 +194,8 @@ export class InputDetailsFertilizerComponent implements OnInit {
     formData.append('fertilizer_grade', this.fertilizerForm.value.fertilizer_grade);
     formData.append('manufacturer_name', this.fertilizerForm.value.manufacturer_name);
     formData.append('type_id', this.fertilizerForm.value.type_id);
-    formData.append('name_id', this.fertilizerForm.value.name_id);
+    formData.append('name_id', this.fertilizerForm.value.name_id);    
+    formData.append('quantity', this.fertilizerForm.value.quantity);
     formData.append("vendor_id ", localStorage.getItem('masterId'))
     formData.append('id', this.id);
     this.inputsupplierfertiservice.updatefertilizer(this.id, formData).subscribe((res: any) => {
