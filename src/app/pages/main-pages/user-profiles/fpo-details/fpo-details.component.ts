@@ -16,7 +16,11 @@ export class FpoDetailsComponent implements OnInit {
   @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
   closeResult: string;
   fpo: any = {};
-  p: number = 0;
+  p: number = 1;
+  q: number = 1;
+  r: number = 1;
+  s: number = 1;
+  t: number = 1;
   License = [];
   boardMember: [];
   machinerary = [];
@@ -41,6 +45,7 @@ export class FpoDetailsComponent implements OnInit {
   fpoId;
   view: any[] = [400, 400];
   options = {};
+  orderBy:{order:string,key:string} ={order:'',key:''};
 
   public markatable_surplus = true;
   public actual_production = false;
@@ -132,6 +137,14 @@ console.log(this.fpoId,"Id");
     this.getFpoPhohto();
   }
 
+  onClickOrderBy( key:any ){
+    this.orderBy={
+      ...this.orderBy,
+      'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
+      'key': key
+    }
+  }
+
   getFinancialYears(){
     this.common.getFinancialYears().subscribe(response => {
       console.log(response);
@@ -205,6 +218,7 @@ console.log(this.fpoId,"Id");
 
   getFarmMachineryBankByFpo() {
     this.api.getFarmMachineryBankByFpo(this.fpoId).subscribe((res: any) => {
+      console.log(res);
       if (res) {
         this.machinerary = res;
       }

@@ -67,12 +67,12 @@
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
                           [(ngModel)]="docRadio" name="inlineRadio" id="inlineRadio1" value="url">
-                        <label class="form-check-label" for="inlineRadio1">URL</label>
+                        <label class="form-check-label" for="inlineRadio1">{{'URL' | translate}}</label>
                       </div>
                       <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
                           [(ngModel)]="docRadio" name="inlineRadio" id="inlineRadio2" value="file">
-                        <label class="form-check-label" for="inlineRadio2">File Upload</label>
+                        <label class="form-check-label" for="inlineRadio2">{{'File Upload' | translate}}</label>
                       </div>
                     </label>
                   </div>

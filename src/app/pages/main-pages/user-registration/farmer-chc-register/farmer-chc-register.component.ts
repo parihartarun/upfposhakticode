@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/_services/auth/auth.service';
   styleUrls: ['./farmer-chc-register.component.css']
 })
 export class FarmerChcRegisterComponent implements OnInit {
-
+  chcFmbName = 'Equipment Centre Name';
   registerForm: FormGroup;
   submitted = false;
   bsValue = new Date();
@@ -51,7 +51,7 @@ export class FarmerChcRegisterComponent implements OnInit {
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
-      allotmentNo: [''],
+      allotmentNo: ['', Validators.required],
       blockRefId: ['', Validators.required],     
       chcFmbName: ['', Validators.required],
       contactPerson: ['', Validators.required],      
@@ -137,6 +137,14 @@ export class FarmerChcRegisterComponent implements OnInit {
   }
   handleSuccess(e) {
     console.log("ReCaptcha", e);
+  }
+
+  changeType(type){
+    if(type == 'fmb'){
+      this.chcFmbName = 'SHG/FPO';
+    }else{
+      this.chcFmbName = 'Equipment Centre Name';
+    }
   }
 
 }

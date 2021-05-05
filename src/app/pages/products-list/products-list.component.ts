@@ -45,6 +45,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   machinetypes:any =[];
   inputSuppliers:any = [];
   fertilizerTypes:any =[]
+  chcFmbs:any = [];
   isDistrict: false;
   searchCriteria: Array<any> = [];
   fpoDetail: any;
@@ -90,6 +91,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     districtIds:[],
     inputSuppliersCategories:[],
     inputSupplierIds:[],
+    chcFmbIds:[],
 	  fertilizerTypeIds:[],
 	  brands:[],
 	  machineryTypes:[],
@@ -162,6 +164,7 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
   brandsObserver = this.fpoSearchService.brandsObserver.asObservable();
   machineryTypesObserver = this.fpoSearchService.machineryTypesObserver.asObservable();
   inputSupplierObserver = this.fpoSearchService.inputSupplierObserver.asObservable();
+  chcFmbObserver = this.fpoSearchService.chcFmbObserver.asObservable();
   fertilizerTypesObserver = this.fpoSearchService.fertilizerTypesObserver.asObservable();
 
   filteredData = [];
@@ -192,6 +195,9 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
         this.fpoSearchService.getBrands(this.parval,this.parsearchType);
         this.fpoSearchService.getInputSuppliers(this.parval,this.parsearchType);
         this.fpoSearchService.getFertilizerTypes(this.parval,this.parsearchType);
+        if(param.searchType == 'fmb'){
+          this.fpoSearchService.getChcFmb(this.parval,this.parsearchType);
+        }
          this.searchData();
       }
     });
@@ -220,6 +226,11 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.fertilizerTypesObserver.subscribe(data=>{
       this.fertilizerTypes = data;
       console.log("FErtilizer Types==>",this.fertilizerTypes);
+    })
+
+    this.chcFmbObserver.subscribe(data=>{
+      this.chcFmbs = data;
+      console.log("FErtilizer Types==>",this.chcFmbs);
     })
 
     this.fpoObserver.subscribe(data => {
@@ -633,6 +644,15 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       this.filterParams.inputSupplierIds.push(inputSupplier.id)
     }else{
       this.filterParams.inputSupplierIds.splice(this.filterParams.inputSupplierIds.indexOf(inputSupplier.id), 1);
+    }
+    this.searchData();
+  }
+
+  selectChcFmb(chcFmb:any){
+    if(chcFmb.is_active){
+      this.filterParams.chcFmbIds.push(chcFmb.id)
+    }else{
+      this.filterParams.chcFmbIds.splice(this.filterParams.chcFmbIds.indexOf(chcFmb.id), 1);
     }
     this.searchData();
   }

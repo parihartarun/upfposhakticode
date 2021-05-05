@@ -17,6 +17,7 @@ export class FpoSearchService {
   brandsObserver: BehaviorSubject<any> = new BehaviorSubject([]);
   machineryTypesObserver: BehaviorSubject<any> = new BehaviorSubject([]);
   inputSupplierObserver:BehaviorSubject<any> = new BehaviorSubject([]);
+  chcFmbObserver:BehaviorSubject<any> = new BehaviorSubject([]);
   fertilizerTypesObserver:BehaviorSubject<any> = new BehaviorSubject([]);
   districtListObserver:BehaviorSubject<any> = new BehaviorSubject([]);
 
@@ -71,6 +72,12 @@ export class FpoSearchService {
   getInputSuppliers(keyword,type){
     this.http.get<any>(this._url +`api/search/v2/filters/inputSuppliers?in=${type}&val=${keyword}`).subscribe((res:any)=>{
       this.inputSupplierObserver.next(res);
+    })
+  }
+
+  getChcFmb(keyword,type){
+    this.http.get<any>(this._url +`api/search/v2/filters/chcFmb?in=${type}&val=${keyword}`).subscribe((res:any)=>{
+      this.chcFmbObserver.next(res);
     })
   }
 

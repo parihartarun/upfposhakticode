@@ -6,9 +6,6 @@
         <h3></h3>
       </div> -->
       <div class="card-body">
-        <!-- <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
-          [options]="options" [data]="fpo" [columns]="fpoColumn">
-        </app-data-table> -->
         <div class="row p-3">
           <div class="table-responsive">
             <table class="table align-items-center table-flush">
@@ -170,147 +167,153 @@
             <div class="row">
               <div class="col-lg-9">
                 <div class="form-check">
-                  <label class="form-check-label" for="radio1"  >
-                    <input type="radio" class="form-check-input" name="optradio" value="surplus" (click)="showGraphs('markatable_surplus')" checked>
+                  <label class="form-check-label" for="radio1">
+                    <input type="radio" class="form-check-input" name="optradio" value="surplus"
+                      (click)="showGraphs('markatable_surplus')" checked>
                     {{'Marketable Surplus' | translate}} &nbsp;&nbsp;&nbsp;&nbsp;
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label" for="radio2">
-                    <input type="radio" class="form-check-input" name="optradio" value="production" (click)="showGraphs('actual_production')" >
+                    <input type="radio" class="form-check-input" name="optradio" value="production"
+                      (click)="showGraphs('actual_production')">
                     {{'Actual Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   </label>
                 </div>
                 <div class="form-check">
                   <label class="form-check-label" for="radio2">
-                    <input type="radio" class="form-check-input" name="optradio" value="sales" (click)="showGraphs('sales_production')">
+                    <input type="radio" class="form-check-input" name="optradio" value="sales"
+                      (click)="showGraphs('sales_production')">
                     {{'Sale Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   </label>
                 </div>
               </div>
-              </div> <br>
-        
-              <div class="card shadow">
-                <div class="card-body">
-                  <div *ngIf="markatable_surplus" class="row">
-                    <div class="col-md-6 col-sm-12">
-                      <div class="row px-5 mb-2">
-                        <strong> {{'Total Marketable Surplus in Rabi season (in Qt.)' | translate}}</strong>
-                      </div>
-                      <div class="row mb-4" style="border-bottom: solid;">
-                        <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="markatableProductionRabi"
-                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                          [legendTitle]="legendTitle" [legendPosition]="'below'">
-                        </ngx-charts-bar-vertical-2d>
-                      </div>
+            </div> <br>
+
+            <div class="card shadow">
+              <div class="card-body">
+                <div *ngIf="markatable_surplus" class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row px-5 mb-2">
+                      <strong> {{'Total Marketable Surplus in Rabi season (in Qt.)' | translate}}</strong>
                     </div>
-                    <div class="col-md-6 col-sm-12">
-                      <div class="row px-5 mb-2">
-                        <strong> {{'Total Marketable Surplus in Zayad season (in Qt.)' | translate}}</strong>
-                      </div>
-                      <div class="row mb-4" style="border-bottom: solid;">
-                        <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="markatableProductionZayad"
-                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                          [legendTitle]="legendTitle" [legendPosition]="'below'">
-                        </ngx-charts-bar-vertical-2d>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                      <div class="row px-5 mb-2">
-                        <strong> {{'Total Marketable Surplus in Kharif season (in Qt.)' | translate}}</strong>
-                      </div>
-                      <div class="row mb-4" style="border-bottom: solid;">
-                        <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="markatableProductionKharif"
-                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                          [legendTitle]="legendTitle" [legendPosition]="'below'">
-                        </ngx-charts-bar-vertical-2d>
-                      </div>
+                    <div class="row mb-4" style="border-bottom: solid;">
+                      <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme"
+                        [results]="markatableProductionRabi" [xAxis]="showXAxis" [yAxis]="showYAxis"
+                        [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [legendTitle]="legendTitle"
+                        [legendPosition]="'below'">
+                      </ngx-charts-bar-vertical-2d>
                     </div>
                   </div>
-            
-                  <div *ngIf="actual_production" class="row">
-                    <div class="col-md-6 col-sm-12">
-                      <div class="row px-5 mb-2">
-                        <strong> {{'Total Actual Production in Rabi season (in Qt.)' | translate}}</strong>
-                      </div>
-                      <div class="row mb-4" style="border-bottom: solid;">
-                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="actualProductionRabi"
-                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                          [legendTitle]="legendTitle" [legendPosition]="'below'">
-                        </ngx-charts-bar-vertical>
-                      </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row px-5 mb-2">
+                      <strong> {{'Total Marketable Surplus in Zayad season (in Qt.)' | translate}}</strong>
                     </div>
-                    <div class="col-md-6 col-sm-12">
-                      <div class="row px-5 mb-2">
-                        <strong> {{'Total Actual Production in Zayad season (in Qt.)' | translate}}</strong>
-                      </div>
-                      <div class="row mb-4" style="border-bottom: solid;">
-                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="actualProductionZayad"
-                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                          [legendTitle]="legendTitle" [legendPosition]="'below'">
-                        </ngx-charts-bar-vertical>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                      <div class="row px-5 mb-2">
-                        <strong> {{'Total Actual Production in Kharif season (in Qt.)'| translate}}</strong>
-                      </div>
-                      <div class="row mb-4" style="border-bottom: solid;">
-                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="actualProductionKharif"
-                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                          [legendTitle]="legendTitle" [legendPosition]="'below'">
-                        </ngx-charts-bar-vertical>
-                      </div>
+                    <div class="row mb-4" style="border-bottom: solid;">
+                      <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme"
+                        [results]="markatableProductionZayad" [xAxis]="showXAxis" [yAxis]="showYAxis"
+                        [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [legendTitle]="legendTitle"
+                        [legendPosition]="'below'">
+                      </ngx-charts-bar-vertical-2d>
                     </div>
                   </div>
-        
-                  <div *ngIf="sales_production" class="row">
-                    <div class="col-md-6 col-sm-12">
-                      <div class="row px-5 mb-2">
-                        <strong> {{'Total Sales Production in Rabi season (in Qt.)' | translate}}</strong>
-                      </div>
-                      <div class="row mb-4" style="border-bottom: solid;">
-                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionRabi"
-                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                          [legendTitle]="legendTitle" [legendPosition]="'below'">
-                        </ngx-charts-bar-vertical>
-                      </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row px-5 mb-2">
+                      <strong> {{'Total Marketable Surplus in Kharif season (in Qt.)' | translate}}</strong>
                     </div>
-                    <div class="col-md-6 col-sm-12" >
-                      <div class="row px-5 mb-2">
-                        <strong> {{'Total Sales Production in Zayad season (in Qt.)' | translate}}</strong>
-                      </div>
-                      <div class="row mb-4" style="border-bottom: solid;">
-                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionZayad"
-                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                          [legendTitle]="legendTitle" [legendPosition]="'below'">
-                        </ngx-charts-bar-vertical>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12" >
-                      <div class="row px-5 mb-2">
-                        <strong> {{'Total Sales Production in Kharif season (in Qt.)' | translate}}</strong>
-                      </div>
-                      <div class="row mb-4" style="border-bottom: solid;">
-                        <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionKharif"
-                          [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
-                          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
-                          [legendTitle]="legendTitle" [legendPosition]="'below'">
-                        </ngx-charts-bar-vertical>
-                      </div>
+                    <div class="row mb-4" style="border-bottom: solid;">
+                      <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme"
+                        [results]="markatableProductionKharif" [xAxis]="showXAxis" [yAxis]="showYAxis"
+                        [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [legendTitle]="legendTitle"
+                        [legendPosition]="'below'">
+                      </ngx-charts-bar-vertical-2d>
                     </div>
                   </div>
-        
                 </div>
+
+                <div *ngIf="actual_production" class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row px-5 mb-2">
+                      <strong> {{'Total Actual Production in Rabi season (in Qt.)' | translate}}</strong>
+                    </div>
+                    <div class="row mb-4" style="border-bottom: solid;">
+                      <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="actualProductionRabi"
+                        [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                        [legendTitle]="legendTitle" [legendPosition]="'below'">
+                      </ngx-charts-bar-vertical>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row px-5 mb-2">
+                      <strong> {{'Total Actual Production in Zayad season (in Qt.)' | translate}}</strong>
+                    </div>
+                    <div class="row mb-4" style="border-bottom: solid;">
+                      <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="actualProductionZayad"
+                        [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                        [legendTitle]="legendTitle" [legendPosition]="'below'">
+                      </ngx-charts-bar-vertical>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row px-5 mb-2">
+                      <strong> {{'Total Actual Production in Kharif season (in Qt.)'| translate}}</strong>
+                    </div>
+                    <div class="row mb-4" style="border-bottom: solid;">
+                      <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="actualProductionKharif"
+                        [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                        [legendTitle]="legendTitle" [legendPosition]="'below'">
+                      </ngx-charts-bar-vertical>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="sales_production" class="row">
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row px-5 mb-2">
+                      <strong> {{'Total Sales Production in Rabi season (in Qt.)' | translate}}</strong>
+                    </div>
+                    <div class="row mb-4" style="border-bottom: solid;">
+                      <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionRabi"
+                        [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                        [legendTitle]="legendTitle" [legendPosition]="'below'">
+                      </ngx-charts-bar-vertical>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row px-5 mb-2">
+                      <strong> {{'Total Sales Production in Zayad season (in Qt.)' | translate}}</strong>
+                    </div>
+                    <div class="row mb-4" style="border-bottom: solid;">
+                      <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionZayad"
+                        [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                        [legendTitle]="legendTitle" [legendPosition]="'below'">
+                      </ngx-charts-bar-vertical>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row px-5 mb-2">
+                      <strong> {{'Total Sales Production in Kharif season (in Qt.)' | translate}}</strong>
+                    </div>
+                    <div class="row mb-4" style="border-bottom: solid;">
+                      <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionKharif"
+                        [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                        [legendTitle]="legendTitle" [legendPosition]="'below'">
+                      </ngx-charts-bar-vertical>
+                    </div>
+                  </div>
+                </div>
+
               </div>
+            </div>
           </div>
         </div>
       </div>
@@ -320,6 +323,67 @@
   <div class="container">
     <div class="card shadow">
 
+      <div class="card mb-4">
+        <div class="p-4">
+          <div class="row">
+            <div class="col-md-9">
+              <h3 class="custom-table-title"> {{'Production Details (Annual)'|translate}} </h3>
+            </div>
+            <div class="col-md-3">
+              <input type="text" [id]="'search'" [(ngModel)]="searchText5" (input)="t=1" style="border-radius: 0;"
+                name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
+            </div>
+          </div>
+        </div>
+        <div class="card-body" *ngIf="productiondata">
+          <div class="row">
+            <div class="col-md-12 ">
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush ">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col" class="text-right">{{'SR. NO'|translate}}</th>
+                      <th scope="col" class="sort text-left" (click)="onClickOrderBy('crop_name')">
+                        {{'Crops' | translate}}</th>
+                      <th scope="col" class="sort text-center" (click)="onClickOrderBy('season_name')">
+                        {{"Season" | translate}}</th>
+                      <th scope="col" class="sort text-center" (click)="onClickOrderBy('total_markatable')">
+                        {{'Marketable Surplus (in Qt.)' | translate}}</th>
+                      <th scope="col" class="sort text-center" (click)="onClickOrderBy('total_sold')">
+                        {{'Quantity Sold (in Qt.)'|translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      *ngFor="let prod of productiondata | tableSearch:searchText5  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: t } let i=index">
+                      <td class="text-right">
+                        {{(t-1) * 10 + i + 1}}
+                      </td>
+                      <td class="text-left">
+                        {{prod.crop_name}}
+                      </td>
+                      <td class="text-center">
+                        {{prod.season_name}}
+                      </td>
+                      <td class="text-center">
+                        {{prod.total_markatable}}
+                      </td>
+                      <td class="text-center">
+                        {{prod.total_sold}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="card-footer py-4">
+                <nav aria-label="..." class="text-right">
+                  <pagination-controls (pageChange)="t = $event"></pagination-controls>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="card-header p-0">
         <h3 class="mb-0">{{'Production Details (Annual)' | translate}}</h3>
       </div>
@@ -339,177 +403,257 @@
       </div>
       <div class="card-body">
         <div class="card mb-4">
-
-          <div class="card-header p-0">
-            <h3 class="mb-0">{{'Board Members' | translate}}</h3>
+          <div class="p-4">
+            <div class="row">
+              <div class="col-md-9">
+                <h3 class="custom-table-title"> {{'Board Members'|translate}} </h3>
+              </div>
+              <div class="col-md-3">
+                <input type="text" [id]="'search'" [(ngModel)]="searchText1" (input)="p=1" style="border-radius: 0;"
+                  name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
+              </div>
+            </div>
           </div>
           <div class="card-body" *ngIf="fpo?.boardMember">
-            <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
-              [options]="options" [data]="fpo?.boardMember" [columns]="boardMemCol">
-            </app-data-table>
+            <div class="row">
+              <div class="col-md-12 ">
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush ">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col" class="text-right">{{'SR. NO'|translate}}</th>
+                        <th scope="col" class="sort text-left" (click)="onClickOrderBy('name')">
+                          {{'MEMBER NAME' | translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('designation')">
+                          {{"Designation" | translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('email')">
+                          {{'Email' | translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('contactNo')">
+                          {{'Mobile'|translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let b of fpo?.boardMember | tableSearch:searchText1  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
+                        <td class="text-right">
+                          {{(p-1) * 10 + i + 1}}
+                        </td>
+                        <td class="text-left">
+                          {{b.name}}
+                        </td>
+                        <td class="text-center">
+                          {{b.designation}}
+                        </td>
+                        <td class="text-center">
+                          {{b.email}}
+                        </td>
+                        <td class="text-center">
+                          {{b.contactNo}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer py-4">
+                  <nav aria-label="..." class="text-right">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </nav>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="card mb-4">
-          <div class="card-header p-0">
-            <h3 class="mb-0">{{'Warehouse / Cold Storage' | translate}}</h3>
+          <div class="p-4">
+            <div class="row">
+              <div class="col-md-9">
+                <h3 class="custom-table-title"> {{'Warehouse / Cold Storage'|translate}} </h3>
+              </div>
+              <div class="col-md-3">
+                <input type="text" [id]="'search'" [(ngModel)]="searchText2" (input)="q=1" style="border-radius: 0;"
+                  name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
-              [options]="options" [data]="coldStorage" [columns]="storageUnitCol">
-            </app-data-table>
+          <div class="card-body" *ngIf="coldStorage">
+            <div class="row">
+              <div class="col-md-12 ">
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush ">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col" class="text-right">{{'SR. NO'|translate}}</th>
+                        <th scope="col" class="sort text-left" (click)="onClickOrderBy('district_name')">
+                          {{'District' | translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('address')">
+                          {{"Storage Center Address" | translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('storageType')">
+                          {{'Storage Center Type' | translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('storageCapacity')">
+                          {{'Storage Capacity (in Mt.)'|translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('fascilities')">
+                            {{'Available Facilities'|translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let s of coldStorage | tableSearch:searchText2  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: q } let i=index">
+                        <td class="text-right">
+                          {{(q-1) * 10 + i + 1}}
+                        </td>
+                        <td class="text-left">
+                          {{s.district_name}}
+                        </td>
+                        <td class="text-center">
+                          {{s.address}}
+                        </td>
+                        <td class="text-center">
+                          {{s.storageType}}
+                        </td>
+                        <td class="text-center">
+                          {{s.storageCapacity}}
+                        </td>
+                        <td class="text-center">
+                          {{s.fascilities}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer py-4">
+                  <nav aria-label="..." class="text-right">
+                    <pagination-controls (pageChange)="q = $event"></pagination-controls>
+                  </nav>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="card mb-4">
-          <div class="card-header p-0">
-            <h3 class="mb-0">{{'Licenses' | translate}}</h3>
+          <div class="p-4">
+            <div class="row">
+              <div class="col-md-9">
+                <h3 class="custom-table-title"> {{'Licenses'|translate}} </h3>
+              </div>
+              <div class="col-md-3">
+                <input type="text" [id]="'search'" [(ngModel)]="searchText3" (input)="r=1" style="border-radius: 0;"
+                  name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
+              </div>
+            </div>
           </div>
           <div class="card-body" *ngIf="fpo?.fpoLicenceDetails">
-            <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
-              [options]="options" [data]="fpo?.fpoLicenceDetails" [columns]="licenseColumn">
-            </app-data-table>
+            <div class="row">
+              <div class="col-md-12 ">
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush ">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col" class="text-right">{{'SR. NO'|translate}}</th>
+                        <th scope="col" class="sort text-left" (click)="onClickOrderBy('licenceType')">
+                          {{'License Type' | translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('licenceIssuedBy')">
+                          {{"License Issued By" | translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('liceneceNumber')">
+                          {{'License Number' | translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('issuedate')">
+                          {{'License Issued Date'|translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('licenceValidTill')">
+                            {{'License Valid Till'|translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let l of fpo?.fpoLicenceDetails | tableSearch:searchText3  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: r } let i=index">
+                        <td class="text-right">
+                          {{(r-1) * 10 + i + 1}}
+                        </td>
+                        <td class="text-left">
+                          {{l.licenceType}}
+                        </td>
+                        <td class="text-center">
+                          {{l.licenceIssuedBy}}
+                        </td>
+                        <td class="text-center">
+                          {{l.liceneceNumber}}
+                        </td>
+                        <td class="text-center">
+                          {{l.issuedate}}
+                        </td>
+                        <td class="text-center">
+                          {{l.licenceValidTill}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer py-4">
+                  <nav aria-label="..." class="text-right">
+                    <pagination-controls (pageChange)="r = $event"></pagination-controls>
+                  </nav>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="card mb-4">
-
-          <div class="card-header p-0">
-            <h3 class="mb-0">{{'Farm Machinery Bank' | translate}}</h3>
+          <div class="p-4">
+            <div class="row">
+              <div class="col-md-9">
+                <h3 class="custom-table-title"> {{'Farm Machinery Bank'|translate}} </h3>
+              </div>
+              <div class="col-md-3">
+                <input type="text" [id]="'search'" [(ngModel)]="searchText4" (input)="s=1" style="border-radius: 0;"
+                  name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
+              </div>
+            </div>
           </div>
-          <div class="card-body">
-            <app-data-table tableClass="table table-striped table-bordered table-hover" [tableId]="'basic'"
-              [options]="options" [data]="machinerary" [columns]="machinaryBColumn">
-            </app-data-table>
+          <div class="card-body" *ngIf="machinerary">
+            <div class="row">
+              <div class="col-md-12 ">
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush ">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col" class="text-right">{{'SR. NO'|translate}}</th>
+                        <th scope="col" class="sort text-left" (click)="onClickOrderBy('equpment_name')">
+                          {{'Name of Equipment' | translate}}</th>
+                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('equpment_no')">
+                          {{"No. of Equipment" | translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let m of machinerary | tableSearch:searchText4  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: s } let i=index">
+                        <td class="text-right">
+                          {{(s-1) * 10 + i + 1}}
+                        </td>
+                        <td class="text-left">
+                          {{m.equpment_name}}
+                        </td>
+                        <td class="text-center">
+                          {{m.equpment_no}}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer py-4">
+                  <nav aria-label="..." class="text-right">
+                    <pagination-controls (pageChange)="s = $event"></pagination-controls>
+                  </nav>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
     <button class="btn btn-product-search mt-2 pull-right" (click)="goBack()">{{'Go Back' | translate }}</button>
   </div>
-
-
-
-
-
-
-
-  <br>
-
-  <div class="container">
-    <div class="row">
-      <!-- <div class="col-xl-4 mb-5 mb-xl-0">
-          <div class="card bg-gradient-default shadow">
-            <div class="card-header bg-transparent" style="height: 160PX;">
-              <div class="row align-items-center">
-                <div class="col-md-5">
-                  <h6 class="text-uppercase  ls-1 mb-1">{{'Total Markatable Surplus and Sold Quanyity with FPO for Rabi season(in Qt).' | translate}}</h6>
-                  <h2 class="text-white mb-0">{{'Sales value' | translate}}</h2>
-                </div>
-                <div class="col-md-7">
-                  <ul class="nav nav-pills justify-content-end" style="margin-bottom: 50px;">
-                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[0];updateOptions()" style="margin-bottom: 10px;">
-                      <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
-                        <span class="d-none d-md-block">Markatable Surplus</span>
-                        <span class="d-md-none">M</span>
-                      </a>
-                    </li>
-                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[1];updateOptions()" style="margin-right: 45px;">
-                      <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
-                        <span class="d-none d-md-block">{{'Sold' | translate}}</span>
-                        <span class="d-md-none">W</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-             
-              <div class="chart">
-                
-                <canvas id="chart-orders" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-      <!-- <div class="col-xl-4 mb-5 mb-xl-0">
-          <div class="card bg-gradient-default shadow">
-            <div class="card-header bg-transparent" style="height: 160PX;">
-              <div class="row align-items-center">
-                <div class="col-md-5">
-                  <h6 class="text-uppercase  ls-1 mb-1">{{'Total Markatable Surplus and Sold Quanyity with FPO for Rabi season(in Qt).' | translate}}</h6>
-                  <h2 class="text-white mb-0">{{'Sales value' | translate}}</h2>
-                </div>
-                <div class="col-md-7">
-                  <ul class="nav nav-pills justify-content-end" style="margin-bottom: 50px;"> 
-                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[0];updateOptions()" style="margin-bottom: 10px;">
-                      <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
-                        <span class="d-none d-md-block">Markatable Surplus</span>
-                        <span class="d-md-none">M</span>
-                      </a>
-                    </li>
-                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[1];updateOptions()" style="margin-right: 45px;">
-                      <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
-                        <span class="d-none d-md-block">{{'Sold' | translate}}</span>
-                        <span class="d-md-none">W</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-             
-              <div class="chart">
-                
-                <canvas id="chart-orders" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      <!-- <div class="col-xl-4 mb-5 mb-xl-0">
-          <div class="card bg-gradient-default shadow">
-            <div class="card-header bg-transparent" style="height: 160PX;">
-              <div class="row align-items-center">
-                <div class="col-md-5">
-                  <h6 class="text-uppercase  ls-1 mb-1">Total Marketable Surplus and Sold
-                    Quantity with FPO for Kharif season (in
-                    Qt.)
-                    </h6>
-                  <h2 class="text-white mb-0">{{'Sales value' | translate}}</h2>
-                </div>
-                <div class="col-md-7">
-                  <ul class="nav nav-pills justify-content-end" style="margin-bottom: 50px;">
-                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[0];updateOptions()" style="margin-bottom: 10px;">
-                      <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked===true}" data-toggle="tab" (click)="clicked=true;clicked1=false">
-                        <span class="d-none d-md-block">Markatable Surplus</span>
-                        <span class="d-md-none">M</span>
-                      </a>
-                    </li>
-                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales"  (click)="data=datasets[1];updateOptions()" style="margin-right: 45px;">
-                      <a href="javascript:void(0)" class="nav-link py-2 px-3" [ngClass]="{'active':clicked1===true}" data-toggle="tab" (click)="clicked=false;clicked1=true">
-                        <span class="d-none d-md-block">{{'Sold' | translate}}</span>
-                        <span class="d-md-none">W</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">             
-              <div class="chart">              
-                <canvas id="chart-orders" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>        -->
-      <div class="mb-10"></div>
-    </div>
-  </div>
-
-
 
   <ng-template #mymodal let-modal>
     <div class="modal-header">

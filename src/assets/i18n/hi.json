@@ -351,7 +351,7 @@
   "Firm Registration Number": "फर्म पंजीकरण संख्या",
   "Firm Registration Number is required": "फर्म पंजीकरण संख्या आवश्यकता है",
   "Allotment Number": "आवंटन संख्या",
-  "allotment number code is required": "आबंटन संख्या का आवश्यकता है",
+  "Allotment Number is required": "आबंटन संख्या का आवश्यकता है",
   "Shop Establishment (Reg. No.)": "दुकान की स्थापना (पंजीकरण संख्या)",
   "shop establishment is required": "दुकान की स्थापना (पंजीकरण संख्या) आवश्यकता है",
   "Input Supplier Name": "इनपुट प्रदाता का नाम",
@@ -854,5 +854,6 @@
   "Indent For Fulfillment Insecticides":"आपूर्ति के लिए इंडेंट कीटनाशक",
   "Indent For Fulfillment Seeds":"आपूर्ति के लिए इंडेंट बीज",
   "Indent For Fulfillment Fertilizers":"आपूर्ति के लिए इंडेंट उर्वरक",
-  "Indent For Fulfillment Crops":"आपूर्ति के लिए इंडेंट फ़सलें"
+  "Indent For Fulfillment Crops":"आपूर्ति के लिए इंडेंट फ़सलें",
+  "Agency-wise Number & Percentage of FPOs":"एजेंसी-वार संख्या और एफपीआर का प्रतिशत"
 }

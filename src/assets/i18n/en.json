@@ -368,7 +368,7 @@
   "Firm Registration Number": "Firm Registration Number",
   "Firm Registration Number is required": "Firm Registration Number is required",
   "Allotment Number": "Allotment Number",
-  "allotment number code is required": "Allotment Number is required",
+  "Allotment Number is required": "Allotment Number is required",
   "Shop Establishment (Reg. No.)": "Shop Establishment (Regn. No.)",
   "shop establishment is required": "Shop Establishment is required",
   "Input Supplier Name": "Input Supplier Name",
@@ -663,6 +663,7 @@
   "FPOs": "FPOs",
   "Total FPO": "Total FPO",
   "tnc is required": "Please accept terms and conditions",
+  "I agree to the terms and conditions.":"I agree to the terms and conditions.",
   "I agree to the terms and conditions. Click here to view in details": "I agree to the terms and conditions.",
   "Click here": "Click here",
   "to view in details": "To view in details",
@@ -835,5 +836,6 @@
   "Indent For Fulfillment Insecticides":"Indent For Fulfillment Insecticides",
   "Indent For Fulfillment Seeds":"Indent For Fulfillment Seeds",
   "Indent For Fulfillment Fertilizers":"Indent For Fulfillment Fertilizers",
-  "Indent For Fulfillment Crops":"Indent For Fulfillment Crops"
+  "Indent For Fulfillment Crops":"Indent For Fulfillment Crops",
+  "Agency-wise Number & Percentage of FPOs":"Agency-wise Number & Percentage of FPOs"
 }

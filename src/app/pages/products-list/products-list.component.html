@@ -128,6 +128,25 @@
             </div>
           </article> 
 
+          <article class="card-group-item my-2" *ngIf="chcFmbs?.length">
+            <header class="">
+              <h3 class="title">{{'CHC FMB' | translate }}</h3>
+            </header>
+            <div class="filter-content">
+              <div class="filterDistrict">
+                <form>
+                  <label class="form-check" *ngFor="let chcFmb of chcFmbs">
+                    <input class="form-check-input" type="checkbox" [value]="chcFmb.name" [name]="chcFmb.name"
+                      [(ngModel)]="chcFmb.is_active" (change)="selectChcFmb(chcFmb)">
+                    <span class="form-check-label">
+                      {{chcFmb.name}}
+                    </span>
+                  </label> <!-- form-check.// -->
+                </form>
+              </div> <!-- card-body.// -->
+            </div>
+          </article>
+
           
         </div>
         <!--End of Machinery-->
@@ -164,28 +183,6 @@
               (selectedChange)="onSelectedChange($event)">
             </ngx-treeview>
           </article>
-
-          <article class="card-group-item my-2" *ngIf="inputSuppliers?.length">
-            <header class="">
-              <h3 class="title">{{'Input Suppliers' | translate }}</h3>
-            </header>
-            <div class="filter-content">
-              <div class="filterDistrict">
-                <form>
-                  <label class="form-check" *ngFor="let inputSupplier of inputSuppliers">
-                    <input class="form-check-input" type="checkbox" [value]="inputSupplier.name" [name]="inputSupplier.name"
-                      [(ngModel)]="inputSupplier.is_active" (change)="selectInputSupplier(inputSupplier)">
-                    <span class="form-check-label">
-                      {{inputSupplier.name}}
-                    </span>
-                  </label> <!-- form-check.// -->
-                </form>
-              </div> <!-- card-body.// -->
-            </div>
-          </article>
-
-
-
         </div>
         <!--End of Seed-->
         <!--For Insecticide-->
@@ -208,26 +205,9 @@
                     </div> <!-- card-body.// -->
                   </div>
                 </article>
-                <article class="card-group-item my-2" *ngIf="inputSuppliers?.length">
-                  <header class="">
-                    <h3 class="title">{{'Input Suppliers' | translate }}</h3>
-                  </header>
-                  <div class="filter-content">
-                    <div class="filterDistrict">
-                      <form>
-                        <label class="form-check" *ngFor="let inputSupplier of inputSuppliers">
-                          <input class="form-check-input" type="checkbox" [value]="inputSupplier.name" [name]="inputSupplier.name"
-                            [(ngModel)]="inputSupplier.is_active" (change)="selectInputSupplier(inputSupplier)">
-                          <span class="form-check-label">
-                            {{inputSupplier.name}}
-                          </span>
-                        </label> <!-- form-check.// -->
-                      </form>
-                    </div> <!-- card-body.// -->
-                  </div>
-                </article>
 
         </div>
+
         <!--End of Insecticide-->
         <!--Start of Fertilizer-->
         <div class="card" *ngIf="(selectedDropdown==='fertilizer')">
@@ -243,24 +223,6 @@
                           [(ngModel)]="district.is_active" (change)="selectDistrct(district)">
                         <span class="form-check-label">
                           {{district.name}}
-                        </span>
-                      </label> <!-- form-check.// -->
-                    </form>
-                  </div> <!-- card-body.// -->
-                </div>
-              </article>
-              <article class="card-group-item my-2" *ngIf="inputSuppliers?.length">
-                <header class="">
-                  <h3 class="title">{{'Input Suppliers' | translate }}</h3>
-                </header>
-                <div class="filter-content">
-                  <div class="filterDistrict">
-                    <form>
-                      <label class="form-check" *ngFor="let inputSupplier of inputSuppliers">
-                        <input class="form-check-input" type="checkbox" [value]="inputSupplier.name" [name]="inputSupplier.name"
-                          [(ngModel)]="inputSupplier.is_active" (change)="selectInputSupplier(inputSupplier)">
-                        <span class="form-check-label">
-                          {{inputSupplier.name}}
                         </span>
                       </label> <!-- form-check.// -->
                     </form>
@@ -287,6 +249,27 @@
               </article>
         </div>
 
+        <div class="card" *ngIf="(selectedDropdown !=='crop')">
+          <article class="card-group-item my-2" *ngIf="inputSuppliers?.length">
+            <header class="">
+              <h3 class="title">{{'Input Suppliers' | translate }}</h3>
+            </header>
+            <div class="filter-content">
+              <div class="filterDistrict">
+                <form>
+                  <label class="form-check" *ngFor="let inputSupplier of inputSuppliers">
+                    <input class="form-check-input" type="checkbox" [value]="inputSupplier.name" [name]="inputSupplier.name"
+                      [(ngModel)]="inputSupplier.is_active" (change)="selectInputSupplier(inputSupplier)">
+                    <span class="form-check-label">
+                      {{inputSupplier.name}}
+                    </span>
+                  </label> <!-- form-check.// -->
+                </form>
+              </div> <!-- card-body.// -->
+            </div>
+          </article>
+        </div>
+
         <div class="card">
           <article class="card-group-item my-2" *ngIf="fpolist?.length">
             <header class="">
@@ -303,7 +286,6 @@
                     </span>
                   </label>
                 </form>
-
               </div> <!-- card-body.// -->
             </div>
           </article>

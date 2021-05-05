@@ -197,7 +197,7 @@
       <div *ngIf="markatable_surplus" class="row">
         <div class="col-12" *ngFor="let row of markatableProduction">
           <div class="row px-5 mb-0">
-            <strong> {{row.title}}</strong>
+            <strong> {{row.title | translate}}</strong>
           </div>
           <div class="row mb-4" style="border-bottom: solid;">
             <ngx-charts-bar-vertical-2d [view]="view" [scheme]="colorScheme" [results]="row.data"
@@ -212,7 +212,7 @@
       <div *ngIf="actual_production" class="row">
         <div class="col-12" *ngFor="let row of actualProduction">
           <div class="row px-5 mb-0">
-            <strong> {{row.title}}</strong>
+            <strong> {{row.title | translate}}</strong>
           </div>
           <div class="row mb-4" style="border-bottom: solid;">
             <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="row.data"
@@ -227,7 +227,7 @@
       <div *ngIf="sales_production" class="row">
         <div class="col-12" *ngFor="let row of salesProduction">
           <div class="row px-5 mb-0">
-            <strong> {{row.title}}</strong>
+            <strong> {{row.title | translate}}</strong>
           </div>
           <div class="row mb-4" style="border-bottom: solid;">
             <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="row.data"
@@ -245,7 +245,7 @@
 <div class="container-fluid mt--7 mb-7">
   <div class="card shadow">
     <div class="card-body">
-      <h4>Agency-wise Number & Percentage of FPOs</h4>
+      <h4>{{'Agency-wise Number & Percentage of FPOs' | translate}}</h4>
       <div style="display: block;">
         <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
         </canvas>
