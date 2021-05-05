@@ -21,6 +21,12 @@ export class FpoDetailsComponent implements OnInit {
   r: number = 1;
   s: number = 1;
   t: number = 1;
+  searchText1 = '';
+  searchText2 = '';
+  searchText3 = '';
+  searchText4 = '';
+  searchText5 = '';
+
   License = [];
   boardMember: [];
   machinerary = [];

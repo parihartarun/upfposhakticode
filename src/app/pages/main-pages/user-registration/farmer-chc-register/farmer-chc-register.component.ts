@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/_services/auth/auth.service';
 })
 export class FarmerChcRegisterComponent implements OnInit {
   chcFmbName = 'Equipment Centre Name';
+  docRadio = '';
   registerForm: FormGroup;
   submitted = false;
   bsValue = new Date();
