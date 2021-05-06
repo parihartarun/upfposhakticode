@@ -83,7 +83,7 @@ export class FarmerRegisterComponent implements OnInit {
       gender: ['', Validators.required],
       createdBy: 'ROLE_FARMER',
       deleted: [true],
-      enabled: [true],
+      enabled: [false],
       farmerMob: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       farmerName: ['', Validators.required],
       ifscCode: [''],

@@ -991,11 +991,11 @@
 
         <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
           <form role="form mt-1 p-1" [formGroup]="indentForm">
-            <div class="row">
+            <div class="row" *ngIf="inputSupplier">
               <div class="col-4 text-sm text-bold">{{' Name'| translate}}:</div>
               <div class="col-8 text-sm">{{inpSupDetail.inputSupplier.input_supplier_name}}</div>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="inputSupplier">
               <div class="col-4 text-sm text-bold">{{'Supplier Email'|translate}}:</div>
               <div class="col-8 text-sm ">{{inpSupDetail.inputSupplier.email}}</div>
             </div>

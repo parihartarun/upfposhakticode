@@ -62,6 +62,7 @@ export class DepartmentAllUsersComponent implements OnInit {
 
   getAllUserDetails() {
     this.api.getAllUser().subscribe(resp => {
+      console.log(resp);
       this.allData = resp;
       this.activeUsers = this.allData.filter(u => u.enabled == true);
       this.deActiveUsers = this.allData.filter(u => u.enabled == false);

@@ -32,9 +32,9 @@ export class IndentForFulfillmentComponent implements OnInit {
   closeResult: string;
   indentForm: FormGroup;
   currentItem: any;
-  p:number;
+  p: number;
   isQuantity = true;
-
+  indentFormType = '';
   filterParams = {
     masterId: '',
     roleId: ''
@@ -42,12 +42,12 @@ export class IndentForFulfillmentComponent implements OnInit {
 
 
 
-  constructor(private _productService: ProductService, private fb: FormBuilder, private modalService: NgbModal,public fpoService: FpoService, private toastr: ToastrService, private supplierService: InputSupplierService) {
+  constructor(private _productService: ProductService, private fb: FormBuilder, private modalService: NgbModal, public fpoService: FpoService, private toastr: ToastrService, private supplierService: InputSupplierService) {
     this.userRole = localStorage.getItem('userRole');
     if (this.userRole == 'ROLE_FPC') {
       this.showTable.val = 'A';
     } else if (this.userRole == 'ROLE_CHCFMB') {
-      this.showTable.val = 'D';
+      this.showTable.val = 'E';
     } else {
       this.showTable.val = 'B';
     }
@@ -121,42 +121,40 @@ export class IndentForFulfillmentComponent implements OnInit {
     }
   }
 
-  opendialog($event,content,item)
-  {    console.log(item);
+  opendialog($event, content, item, type) {
+    console.log(type);
     this.currentItem = item;
-
+    this.indentFormType = type;
     this.indentForm = this.fb.group({
-      status: [undefined,Validators.required],
-      soldQuantity:[item.quantity,[Validators.required,Validators.pattern('^\\s*(?=.*[0-9])\\d*(?:\\.\\d{1,2})?\\s*$')]],
-      reason: [""],     
+      status: [undefined, Validators.required],
+      soldQuantity: [item.quantity, [Validators.required, Validators.pattern('^\\s*(?=.*[0-9])\\d*(?:\\.\\d{1,2})?\\s*$')]],
+      reason: [""],
     })
 
     this.modalService.open(content);
-}
+  }
 
-save()
-{
-  console.log("data serializes - "+JSON.stringify(this.indentForm.value));
-  if(this.indentForm.value.status == 'rejected'){
-    this.indentForm.patchValue({
-      soldQuantity:0
+  save() {   
+    console.log("data serializes - " + JSON.stringify(this.indentForm.value));
+    if (this.indentForm.value.status == 'rejected') {
+      this.indentForm.patchValue({
+        soldQuantity: 0
+      })
+    }
+    if (this.indentForm.invalid) {
+      return;
+    }
+    this._productService.updateEnquiry(this.indentForm.value, this.currentItem.id).subscribe(data => {
+      this.modalService.dismissAll();
+      this.fpoService.getIndentByFpoId(this.filterParams.masterId).subscribe(dummy => {
+        console.log(dummy);
+        this.data = dummy;
+        this.indents = this.data;
+        this.totCrops = this.data.length;
+      });
     })
   }
-  if(this.indentForm.invalid){
-    return;
-  }
-this._productService.updateEnquiry(this.indentForm.value,this.currentItem.id).subscribe(data=>{
-console.log("Updated Successfully");
 
-this.modalService.dismissAll();
-this.fpoService.getIndentByFpoId(this.filterParams.masterId).subscribe(dummy => {
-  console.log(dummy);
-  this.data = dummy;
-  this.indents = this.data;
-  this.totCrops = this.data.length;
-});
-})
-}
   selectIndentSeeds(id, status) {
     let data = {
       "enqId": id,
@@ -272,10 +270,10 @@ this.fpoService.getIndentByFpoId(this.filterParams.masterId).subscribe(dummy => 
     );
   }
 
-  changeIndentStatus(status){
-    if(status == 'partially fulfilled'){
+  changeIndentStatus(status) {
+    if (status == 'partially fulfilled') {
       this.isQuantity = true;
-    }else if(status == 'rejected' || status == 'fulfilled'){
+    } else if (status == 'rejected' || status == 'fulfilled') {
       this.isQuantity = false;
     }
   }

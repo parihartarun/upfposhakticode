@@ -156,7 +156,7 @@
                 </td>
                 <td class="text-right">
                   <div placement="bottom-right" *ngIf="indent.status == 'Active'">
-                    <a class="btn btn-sm btn-primary" (click)="opendialog($event,detailform,indent)"
+                    <a class="btn btn-sm btn-primary" (click)="opendialog($event,detailform,indent, 'Crops')"
                       href="javascript:void(0)">
                       {{'Actions' | translate}}
                     </a>
@@ -187,6 +187,7 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">{{'SR. NO'|translate}}</th>
+                <th scope="col">{{'indentnumber' | translate}}</th>
                 <th scope="col">{{'Fertilizer Name'|translate}}</th>
                 <th scope="col">{{'Fertilizer grade'|translate}}</th>
                 <th scope="col">{{'Created By'|translate}}</th>
@@ -202,6 +203,9 @@
   
                 <td>
                   {{i+1}}
+                </td>
+                <td>
+                  {{indent.enquieryNumber}}
                 </td>
                 <td>
                   {{indent.fertilizer_name}}
@@ -226,16 +230,11 @@
                   {{indent.status}}
                 </td>
                 <td class="text-right" *ngIf="indent.status == 'active'">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                  <div placement="bottom-right">
+                    <a class="btn btn-sm btn-primary" (click)="opendialog($event,detailform,indent, 'Fertilizer')"
+                      href="javascript:void(0)">
                       {{'Actions' | translate}}
                     </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" value="fulfilled"
-                        (click)="selectIndentFertiliser(indent.enqId,'fulfilled')">{{'Accept'|translate}}</a>
-                      <a class="dropdown-item" href="javascript:void(0)" value="rejected"
-                        (click)="selectIndentFertiliser(indent.enqId,'rejected')">{{'Reject' |translate}}</a>
-                    </div>
                   </div>
                 </td>
               </tr>
@@ -264,6 +263,7 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">{{'SR. NO'|translate}}</th>
+                <th scope="col">{{'indentnumber' | translate}}</th>
               <th scope="col">{{'Crop Name' | translate}}</th>
               <th scope="col">{{"Crop Variety" | translate}}</th>
               <th scope="col">{{'Indent Qty' | translate}}</th>
@@ -278,6 +278,9 @@
               <tr *ngFor="let indent of indents2 | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                 <td>
                   {{i+1}}
+                </td>
+                <td>
+                  {{indent.enquieryNumber}}
                 </td>
                 <td>
                   {{indent.crop_name}}
@@ -302,17 +305,11 @@
                   {{indent.status}}
                 </td>
                 <td class="text-right" *ngIf="indent.status == 'active'">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                  <div placement="bottom-right">
+                    <a class="btn btn-sm btn-primary" (click)="opendialog($event,detailform,indent, 'Seeds')"
+                      href="javascript:void(0)">
                       {{'Actions' | translate}}
                     </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" value="fulfilled"
-                        (click)="selectIndentSeeds(indent.enqId,'fulfilled')">{{'Accept'|translate}}</a>
-                      <a class="dropdown-item" href="javascript:void(0)" value="rejected"
-                        (click)="selectIndentSeeds(indent.enqId,'rejected')">{{'Reject' |translate}}</a>
-    
-                    </div>
                   </div>
                 </td>
               </tr>
@@ -341,6 +338,7 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">{{'SR. NO'|translate}}</th>
+                <th scope="col">{{'indentnumber' | translate}}</th>
                 <th scope="col">{{'Insecticide Type' | translate}}</th>
                 <th scope="col">{{"Insecticide Name" | translate}}</th>
                 <th scope="col">{{'Indent Qty' | translate}}</th>
@@ -358,8 +356,10 @@
                   {{i+1}}
                 </td>
                 <td>
+                  {{indent.enquieryNumber}}
+                </td>
+                <td>
                   {{indent.insecticide_type}}
-    
                 </td>
                 <td>
     
@@ -391,14 +391,11 @@
                 </td>
                 <td class="text-right" *ngIf="indent.status == 'active'">
                   <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                      {{'Actions' | translate}}
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" value="fulfilled"
-                        (click)="selectIndentInsecticide(indent.enqId,'fulfilled')">{{'Accept'|translate}}</a>
-                      <a class="dropdown-item" href="javascript:void(0)" value="rejected"
-                        (click)="selectIndentInsecticide(indent.enqId,'rejected')">{{'Reject' |translate}}</a>
+                    <div placement="bottom-right" >
+                      <a class="btn btn-sm btn-primary" (click)="opendialog($event,detailform,indent, 'Insecticide')"
+                        href="javascript:void(0)">
+                        {{'Actions' | translate}}
+                      </a>
                     </div>
                   </div>
                 </td>
@@ -429,6 +426,7 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">{{'SR. NO'|translate}}</th>
+                <th scope="col">{{'indentnumber' | translate}}</th>
               <th scope="col">{{'Equipment Name' | translate}}</th>
               <th scope="col">{{"No. Of Days" | translate}}</th>
               <th scope="col">{{'Indent Qty' | translate}}</th>
@@ -444,6 +442,9 @@
               <tr *ngFor="let indent of indents5 | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                 <td>
                   {{i+1}}
+                </td>
+                <td>
+                  {{indent.enquieryNumber}}
                 </td>
                 <td>
                   {{indent.equpment_name}}
@@ -471,17 +472,11 @@
                   {{indent.status}}
                 </td>
                 <td class="text-right" *ngIf="indent.status == 'active'">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                  <div placement="bottom-right">
+                    <a class="btn btn-sm btn-primary" (click)="opendialog($event,detailform,indent, 'Machinery')"
+                      href="javascript:void(0)">
                       {{'Actions' | translate}}
                     </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)" value="fulfilled"
-                        (click)="selectIndentMachinery(indent.enqId,'fulfilled')">{{'Accept'|translate}}</a>
-                      <a class="dropdown-item" href="javascript:void(0)" value="rejected"
-                        (click)="selectIndentMachinery(indent.enqId,'rejected')">{{'Reject' |translate}}</a>
-    
-                    </div>
                   </div>
                 </td>
               </tr>
@@ -521,7 +516,7 @@
           </select>
         </div>
       </div>
-      <div class="form-group mb-3" *ngIf="isQuantity">
+      <div class="form-group mb-3" *ngIf="isQuantity && indentFormType == 'Crops'" >
         <label class="form-control-label" for="input-username">{{'Quantity to be fulfilled'|translate}}<span
             class="required">*</span></label>
         <div class="input-group input-group-alternative">
@@ -535,9 +530,25 @@
             formControlName="reason"></textarea>
         </div>
       </div>
-      <div class="text-center">
+      <div class="text-center" *ngIf="indentFormType == 'Crops'">
         <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"
           (click)="save()">{{'Send'|translate}}</button>
+      </div>
+      <div class="text-center" *ngIf="indentFormType == 'Fertilizer'">
+        <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"
+          (click)="save()">{{'Send'|translate}}</button>
+      </div>
+      <div class="text-center" *ngIf="indentFormType == 'Seeds'">
+        <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"
+          (click)="save()">{{'Send'|translate}}</button>
+      </div>
+      <div class="text-center" *ngIf="indentFormType == 'Insecticide'">
+        <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"
+          (click)="selectIndentInsecticide(currentItem.enqId, status)">{{'Send'|translate}}</button>
+      </div>
+      <div class="text-center" *ngIf="indentFormType == 'Machinery'">
+        <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"
+          (click)="selectIndentMachinery(currentItem.enqId, status)">{{'Send'|translate}}</button>
       </div>
     </form>
   </div>

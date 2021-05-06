@@ -66,7 +66,7 @@
                   <tr
                     *ngFor="let u of deActiveUsers | tableSearch:searchText  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                     <td>
-                      {{i+1}}
+                      {{ (p-1) * 10 + i + 1}}
                     </td>
                     <td>
                       {{u.fpo_name}}
@@ -160,7 +160,7 @@
                   <tr
                     *ngFor="let u of activeUsers  | tableSearch:searchTextActive  | sort:orderByActive   | paginate: { itemsPerPage: 10, currentPage: activePagination } let i=index">
                     <td>
-                      {{i+1}}
+                      {{ (activePagination-1) * 10 + i + 1}}
                     </td>
                     <td>
                       {{u.fpo_name}}

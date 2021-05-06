@@ -183,6 +183,7 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">{{'SR. NO'|translate}}</th>
+                    <th scope="col">{{'indentnumber' | translate}}</th>
                     <th scope="col">{{'Fertilizer Name'|translate}}</th>
                     <th scope="col">{{'Fertilizer grade'|translate}}</th>
                     <th scope="col">{{'Created By'|translate}}</th>
@@ -197,6 +198,9 @@
                   <tr *ngFor="let indent of indents3 | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                     <td>
                         {{i+1}}
+                    </td>
+                    <td>
+                      {{indent.enquieryNumber}}
                     </td>
                     <td>
                        {{indent.fertilizer_name}}
@@ -253,6 +257,7 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">{{'SR. NO'|translate}}</th>
+                    <th scope="col">{{'indentnumber' | translate}}</th>
                     <th scope="col">{{'Crop Name' | translate}}</th>
                     <th scope="col">{{"Crop Variety" | translate}}</th>
                     <th scope="col">{{'Indent Qty' | translate}}</th>
@@ -267,6 +272,9 @@
                   <tr *ngFor="let indent of indents2 | paginate: { itemsPerPage: 10, currentPage: p } let i=index"> 
                     <td>
                         {{i+1}}
+                    </td>
+                    <td>
+                      {{indent.enquieryNumber}}
                     </td>
                     <td>
                         {{indent.crop_name}}
@@ -322,6 +330,7 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">{{'SR. NO'|translate}}</th>
+                    <th scope="col">{{'indentnumber' | translate}}</th>
                     <th scope="col">{{'Insecticide Type' | translate}}</th>
                     <th scope="col">{{"Insecticide Name" | translate}}</th>
                     <th scope="col">{{'Indent Qty' | translate}}</th>
@@ -337,6 +346,9 @@
                   <tr *ngFor="let indent of indents4 | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                     <td>
                             {{i+1}}
+                    </td>
+                    <td>
+                      {{indent.enquieryNumber}}
                     </td>
                     <td>
                         {{indent.insecticide_type}}
@@ -401,6 +413,7 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">{{'SR. NO'|translate}}</th>
+                    <th scope="col">{{'indentnumber' | translate}}</th>
                     <th scope="col">{{'Equipment Name' | translate}}</th>
                     <th scope="col">{{"No. Of Days" | translate}}</th>
                     <th scope="col">{{'Indent Qty' | translate}}</th>
@@ -416,6 +429,9 @@
                   <tr *ngFor="let indent of indents5 | paginate: { itemsPerPage: 10, currentPage: p } let i=index">
                     <td>
                       {{i+1}}
+                    </td>
+                    <td>
+                      {{indent.enquieryNumber}}
                     </td>
                     <td>
                        {{indent.equpment_name}}
