@@ -138,3 +138,8 @@ th.sort:after {
 .table-flush{
     border: 1px solid #e9ecef;
 }
+@media (min-width: 768px){
+    .navbar-vertical.navbar-expand-md {
+        max-width: 272px !important;
+    }
+}
