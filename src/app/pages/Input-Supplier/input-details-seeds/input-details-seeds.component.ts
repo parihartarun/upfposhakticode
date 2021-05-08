@@ -217,4 +217,8 @@ export class InputDetailsSeedsComponent implements OnInit {
     this.isEdit = false;
   }
 
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+ }
+
 }

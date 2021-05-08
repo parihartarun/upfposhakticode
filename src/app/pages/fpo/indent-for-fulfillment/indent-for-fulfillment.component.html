@@ -508,7 +508,7 @@
         <label class="form-control-label" for="input-username">{{'status'|translate}}<span
             class="required">*</span></label>
         <div class="input-group input-group-alternative">
-          <select class="form-control" formControlName="status" (click)="changeIndentStatus($event.target.value)">
+          <select class="form-control" formControlName="status" (change)="changeIndentStatus($event.target.value)">
             <option [value]="undefined" selected disabled>{{'status'|translate}}</option>
             <option value="partially fulfilled">{{'partially fulfilled'|translate}}</option>
             <option value="fulfilled">{{'fulfilled'|translate}}</option>
@@ -532,23 +532,23 @@
       </div>
       <div class="text-center" *ngIf="indentFormType == 'Crops'">
         <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"
-          (click)="save()">{{'Send'|translate}}</button>
+          (click)="updateCropIndent()">{{'Send'|translate}}</button>
       </div>
       <div class="text-center" *ngIf="indentFormType == 'Fertilizer'">
         <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"
-          (click)="save()">{{'Send'|translate}}</button>
+          (click)="updateFertilizerIndent(currentItem.enqId)">{{'Send'|translate}}</button>
       </div>
       <div class="text-center" *ngIf="indentFormType == 'Seeds'">
         <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"
-          (click)="save()">{{'Send'|translate}}</button>
+          (click)="updateSeedsIndent(currentItem.enqId)">{{'Send'|translate}}</button>
       </div>
       <div class="text-center" *ngIf="indentFormType == 'Insecticide'">
         <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"
-          (click)="selectIndentInsecticide(currentItem.enqId, status)">{{'Send'|translate}}</button>
+          (click)="updateInsecticideIndent(currentItem.enqId)">{{'Send'|translate}}</button>
       </div>
       <div class="text-center" *ngIf="indentFormType == 'Machinery'">
         <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"
-          (click)="selectIndentMachinery(currentItem.enqId, status)">{{'Send'|translate}}</button>
+          (click)="updateMachinaryIndent(currentItem.enqId)">{{'Send'|translate}}</button>
       </div>
     </form>
   </div>

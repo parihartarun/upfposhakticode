@@ -65,7 +65,7 @@
                       <button *ngIf="edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="updateService()">
                         {{'Save' | translate}}
                       </button>
-                      <button class="btn btn-warning text-right">{{'Reset' | translate}}</button>
+                      <button class="btn btn-warning text-right" (click)="resetForm()">{{'Reset' | translate}}</button>
                     </div>
                   </div>
                   </form>

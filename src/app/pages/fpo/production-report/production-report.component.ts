@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
-
-
+import { CommonService } from 'src/app/_services/common/common.service';
 
 @Component({
   selector: 'app-production-report',
@@ -16,23 +15,41 @@ export class ProductionReportComponent implements OnInit {
   production:Array<any>=[];
   seasons:Array<any>=[];
   currentPage:number = 1;
+  finYears:[];
 
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
-    private route: Router
+    private route: Router,
+    private common:CommonService
   ) {}
 
   ngOnInit(): void {
     this.filterForm = this.formBuilder.group({
-      finYear: ['2020-2021'],
+      finYear: [''],
       seasonId: [0],
       fpoId:[localStorage.getItem('masterId')]
     });
-    this.getFarmerWiseProductionReport();
     this.getSeasonList();
+    this.getFinancialYears();
   }
 
+  getFinancialYears(){
+    this.common.getFinancialYears().subscribe(response => {
+      console.log(response);
+      this.finYears = response;
+      this.filterForm = this.formBuilder.group({
+        finYear: [response[0]],
+        seasonId: [0],
+        fpoId:[localStorage.getItem('masterId')]
+      });
+      this.getFarmerWiseProductionReport();
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
 
   getSeasonList(){
     this.api.getSeasonList().subscribe(

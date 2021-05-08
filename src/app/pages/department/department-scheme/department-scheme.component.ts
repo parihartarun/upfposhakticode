@@ -36,7 +36,6 @@ export class DepartmentSchemeComponent implements OnInit {
       description: ['', [Validators.required]],
       hindi_desc: [''],
       url: [''],
-      guideline_type: ['', [Validators.required]],
       title : [''],
       parent_department : [''],
     });
@@ -92,10 +91,9 @@ export class DepartmentSchemeComponent implements OnInit {
     this.currentPage = 1;
   }
   addSchemes() {
-
+    console.log(this.schemeForm);
     this.schemeForm.markAllAsTouched();
     if (this.schemeForm.valid) {
-
       const formData: FormData = new FormData();
       formData.append('file', this.fileToUpload);
       formData.append('description', this.schemeForm.value.description);

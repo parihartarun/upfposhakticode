@@ -57,7 +57,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
       fertilizer_grade: ['', [Validators.required]],
       type_id: ['', [Validators.required]],
       file: [''],
-      quantity:[''],
+      quantity:['', [Validators.required]],
       manufacturer_name: ['', [Validators.required]],
       name_id: ['', [Validators.required]],
       input_supplier_id: localStorage.getItem('masterId'),

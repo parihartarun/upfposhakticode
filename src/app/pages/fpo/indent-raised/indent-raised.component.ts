@@ -12,7 +12,7 @@ export class IndentRaisedComponent implements OnInit {
   showTable:any = {};
   loading:boolean=false;
   data:any;
-  data2:any;
+  indentsRaisedData:any;
   userRole:any;
   indents:any;
   indents2:any;
@@ -51,7 +51,11 @@ export class IndentRaisedComponent implements OnInit {
     this.filterParams.masterId = localStorage.getItem('masterId');
     this.filterParams.roleId = localStorage.getItem('roleRefId');
     this.userRole =localStorage.getItem('userRole');
-    console.log("FilterParams",this.filterParams);  
+    this.getIndentsForCrops();
+    this.getIndentsRaised();
+  }
+
+  getIndentsForCrops(){
     this.fpoService.getIndentByUserId(this.filterParams.masterId, this.filterParams.roleId).subscribe(dummy =>{
       console.log(dummy);  
       this.data = dummy;
@@ -59,26 +63,25 @@ export class IndentRaisedComponent implements OnInit {
         this.totCrops =this.data.length;
         this.loading =false;
     });
-    this.fpoService.getRaisedIndent(this.filterParams).subscribe(dummy=>{
-        this.data2 = dummy;
-        // this.indents = this.data;
-         this.indents2 =this.data2.seedIndent;
-         this.indents3 = this.data2.fertilizerIndent;
-         this.indents4=this.data2.insecticideIndent;
-         this.indents5 =this.data2.machineryIndent;
-         this.selected="";
-        // // Total values
-        // this.totCrops =this.data.length;
-         this.fertTot =this.data2.fertilizerIndent.length;
-         this.seedTot = this.data2.seedIndent.length;
-         this.insTot = this.data2.insecticideIndent.length;
-         this.machTot =this.data2.machineryIndent.length;
-         this.loading =false;
-    });
+  }
+
+  getIndentsRaised(){
+    this.fpoService.getRaisedIndent(this.filterParams).subscribe(res=>{
+      this.indentsRaisedData = res;
+       this.indents2 = res.seedIndent;
+       this.indents3 = res.fertilizerIndent;
+       this.indents4 = res.insecticideIndent;
+       this.indents5 = res.machineryIndent;
+       this.selected="";
+       this.fertTot = res.fertilizerIndent.length;
+       this.seedTot = res.seedIndent.length;
+       this.insTot = res.insecticideIndent.length;
+       this.machTot = res.machineryIndent.length;
+       this.loading =false;
+  });
   }
 
   showHiddenTable(elem){
-    console.log("Triggered");
       this.showTable.val = elem;
   }
 
@@ -88,21 +91,21 @@ export class IndentRaisedComponent implements OnInit {
       this.indents =this.data;
       }
       if(this.userRole !== 'ROLE_CHCFMB'){  
-          this.indents3 = this.data2.fertilizerIndent;
-          this.indents2 =this.data2.seedIndent;
-          this.indents4=this.data2.insecticideIndent;
+          this.indents3 = this.indentsRaisedData.fertilizerIndent;
+          this.indents2 =this.indentsRaisedData.seedIndent;
+          this.indents4=this.indentsRaisedData.insecticideIndent;
       }
-      this.indents5 =this.data2.machineryIndent;
+      this.indents5 =this.indentsRaisedData.machineryIndent;
     }else{
       if(this.userRole == 'ROLE_FPC'){
            this.indents = this.data.filter(dat => dat.status.toLowerCase() == val.toLowerCase() );
       }
       if(this.userRole !== 'ROLE_CHCFMB'){     
-      this.indents3 = this.data2.fertilizerIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
-      this.indents2 = this.data2.seedIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
-      this.indents4 = this.data2.insecticideIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
+      this.indents3 = this.indentsRaisedData.fertilizerIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
+      this.indents2 = this.indentsRaisedData.seedIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
+      this.indents4 = this.indentsRaisedData.insecticideIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
       }
-      this.indents5 =this.data2.machineryIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
+      this.indents5 =this.indentsRaisedData.machineryIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
     }
   }
 
@@ -122,24 +125,28 @@ export class IndentRaisedComponent implements OnInit {
   cancelFertilizerIndent(indentId){
     this._buyerService.cancelFertilizerIndent(indentId).subscribe(data=>{
         this.toastr.success('Indent Raised Cancelled Successfully.');
+        this.getIndentsRaised();
     })
   }
 
   cancelSeedIndent(indentId){
     this._buyerService.cancelSeedIndent(indentId).subscribe(data=>{
       this.toastr.success('Indent Raised Cancelled Successfully.');
+      this.getIndentsRaised();
     })
   }
 
   cancelInsecticidesIndent(indentId){
     this._buyerService.cancelInsecticidesIndent(indentId).subscribe(data=>{
       this.toastr.success('Indent Raised Cancelled Successfully.');
+      this.getIndentsRaised();
     })
   }
 
   cancelMachineryIndent(indentId){
     this._buyerService.cancelMachineryIndent(indentId).subscribe(data=>{
       this.toastr.success('Indent Raised Cancelled Successfully.');
+      this.getIndentsRaised();
     })
   }
 }

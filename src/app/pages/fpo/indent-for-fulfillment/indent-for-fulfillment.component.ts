@@ -16,7 +16,7 @@ export class IndentForFulfillmentComponent implements OnInit {
   showTable: any = {}
   loading: boolean = false;
   data: any;
-  data2: any;
+  allIndentsData: any;
   userRole: any;
   indents: any;
   indents2: any;
@@ -34,13 +34,12 @@ export class IndentForFulfillmentComponent implements OnInit {
   currentItem: any;
   p: number;
   isQuantity = true;
+  indentStatus = '';
   indentFormType = '';
   filterParams = {
     masterId: '',
     roleId: ''
   }
-
-
 
   constructor(private _productService: ProductService, private fb: FormBuilder, private modalService: NgbModal, public fpoService: FpoService, private toastr: ToastrService, private supplierService: InputSupplierService) {
     this.userRole = localStorage.getItem('userRole');
@@ -51,73 +50,73 @@ export class IndentForFulfillmentComponent implements OnInit {
     } else {
       this.showTable.val = 'B';
     }
-
   }
 
   ngOnInit() {
     this.loading = true;
     this.filterParams.masterId = localStorage.getItem('masterId');
     this.filterParams.roleId = localStorage.getItem('roleRefId');
-    console.log(localStorage.getItem('roleRefId'));
     this.userRole = localStorage.getItem('userRole');
-    console.log("FilterParams", this.filterParams);
+    this.getIndentsForFulfillment();
     if (this.userRole == 'ROLE_FPC') {
-      this.fpoService.getIndentByFpoId(this.filterParams.masterId).subscribe(dummy => {
-        console.log(dummy);
-        this.data = dummy;
-        this.indents = this.data;
-        this.totCrops = this.data.length;
-        this.loading = false;
-      });
+      this.getIndentsForCrops();
     }
-    this.fpoService.getFulfillIndent(this.filterParams).subscribe(dummy => {
-      this.data2 = dummy;
-      // this.indents = this.data;
-      if (this.userRole !== 'ROLE_CHCFMB') {
-        this.indents2 = this.data2.seedIndent;
-        this.indents3 = this.data2.fertilizerIndent;
-        this.indents4 = this.data2.insecticideIndent;
-      }
-      this.indents5 = this.data2.machineryIndent;
+  }
+
+  getIndentsForFulfillment(){
+    this.fpoService.getFulfillIndent(this.filterParams).subscribe(res => {
+      console.log(res);
+      this.allIndentsData = res;
+      this.indents5 = res.machineryIndent;
+      this.machTot = res.machineryIndent.length;
       this.selected = "";
-      // // Total values
-      // this.totCrops =this.data.length;
       if (this.userRole !== 'ROLE_CHCFMB') {
-        this.fertTot = this.data2.fertilizerIndent.length;
-        this.seedTot = this.data2.seedIndent.length;
-        this.insTot = this.data2.insecticideIndent.length;
+        this.indents2 = res.seedIndent;
+        this.indents3 = res.fertilizerIndent;
+        this.indents4 = res.insecticideIndent;
+        this.fertTot = res.fertilizerIndent.length;
+        this.seedTot = res.seedIndent.length;
+        this.insTot = res.insecticideIndent.length;
       }
-      this.machTot = this.data2.machineryIndent.length;
+      this.loading = false;
+    });
+  }
+
+  getIndentsForCrops(){
+    this.fpoService.getIndentByFpoId(this.filterParams.masterId).subscribe(dummy => {
+      console.log(dummy);
+      this.data = dummy;
+      this.indents = this.data;
+      this.totCrops = this.data.length;
       this.loading = false;
     });
   }
 
   showHiddenTable(elem) {
-    console.log("Triggered");
     this.showTable.val = elem;
   }
 
   onSelect(val) {
     if (val === "") {
+      this.indents5 = this.allIndentsData.machineryIndent;
       if (this.userRole == 'ROLE_FPC') {
         this.indents = this.data;
       }
       if (this.userRole !== 'ROLE_CHCFMB') {
-        this.indents3 = this.data2.fertilizerIndent;
-        this.indents2 = this.data2.seedIndent;
-        this.indents4 = this.data2.insecticideIndent;
+        this.indents3 = this.allIndentsData.fertilizerIndent;
+        this.indents2 = this.allIndentsData.seedIndent;
+        this.indents4 = this.allIndentsData.insecticideIndent;
       }
-      this.indents5 = this.data2.machineryIndent;
     } else {
+      this.indents5 = this.allIndentsData.machineryIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
       if (this.userRole == 'ROLE_FPC') {
         this.indents = this.data.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
       }
       if (this.userRole !== 'ROLE_CHCFMB') {
-        this.indents3 = this.data2.fertilizerIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
-        this.indents2 = this.data2.seedIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
-        this.indents4 = this.data2.insecticideIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
+        this.indents3 = this.allIndentsData.fertilizerIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
+        this.indents2 = this.allIndentsData.seedIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
+        this.indents4 = this.allIndentsData.insecticideIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
       }
-      this.indents5 = this.data2.machineryIndent.filter(dat => dat.status.toLowerCase() == val.toLowerCase());
     }
   }
 
@@ -130,12 +129,10 @@ export class IndentForFulfillmentComponent implements OnInit {
       soldQuantity: [item.quantity, [Validators.required, Validators.pattern('^\\s*(?=.*[0-9])\\d*(?:\\.\\d{1,2})?\\s*$')]],
       reason: [""],
     })
-
     this.modalService.open(content);
   }
 
-  save() {   
-    console.log("data serializes - " + JSON.stringify(this.indentForm.value));
+  updateCropIndent() {   
     if (this.indentForm.value.status == 'rejected') {
       this.indentForm.patchValue({
         soldQuantity: 0
@@ -147,7 +144,6 @@ export class IndentForFulfillmentComponent implements OnInit {
     this._productService.updateEnquiry(this.indentForm.value, this.currentItem.id).subscribe(data => {
       this.modalService.dismissAll();
       this.fpoService.getIndentByFpoId(this.filterParams.masterId).subscribe(dummy => {
-        console.log(dummy);
         this.data = dummy;
         this.indents = this.data;
         this.totCrops = this.data.length;
@@ -155,60 +151,15 @@ export class IndentForFulfillmentComponent implements OnInit {
     })
   }
 
-  selectIndentSeeds(id, status) {
+  updateFertilizerIndent(id) {
     let data = {
       "enqId": id,
-      "status": status
+      "status": this.indentStatus
     };
-    console.log('>>data', data);
-    this.supplierService.updateSeedIndent(data).subscribe(response => {
-      console.log('getIndentDetailsForSupplier>>>>>', response);
-      this.toastr.success('Indent Successfully Updated');
-      //   this.getIndentDetailsForSupplier();
-    },
-      err => {
-        console.log(err)
-      }
-    );
-  }
-
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-  selectIndentInsecticide(id, status) {
-    let data = {
-      "enqId": id,
-      "status": status
-    };
-    console.log('>>data', data);
-    this.supplierService.updateInsecticideIndent(data).subscribe(response => {
-      console.log('getIndentDetailsForSupplier>>>>>', response);
-      this.toastr.success('Indent Successfully Updated');
-      //  this.getIndentDetailsForSupplier();
-    },
-      err => {
-        console.log(err)
-      }
-    );
-  }
-
-  selectIndentFertiliser(id, status) {
-    let data = {
-      "enqId": id,
-      "status": status
-    };
-    console.log('>>datadata', data);
     this.supplierService.updateFertilizerIndent(data).subscribe(response => {
-      console.log('getIndentDetailsForSupplier>>>>>', response);
       this.toastr.success('Indent Successfully Updated');
-      this.getIndentDetailsForSupplier();
+      this.modalService.dismissAll();
+      this.getIndentsForFulfillment();
     },
       err => {
         console.log(err)
@@ -216,17 +167,16 @@ export class IndentForFulfillmentComponent implements OnInit {
     );
   }
 
-  selectIndentMachinery(id, status) {
+
+  updateSeedIndent(id) {
     let data = {
       "enqId": id,
-      "status": status
+      "status": this.indentStatus
     };
-    console.log('>>data', data);
-    this.supplierService.updateMachinaryIndent(data).subscribe(response => {
-      console.log('getIndentDetailsForSupplier>>>>>', response);
+    this.supplierService.updateSeedIndent(data).subscribe(response => {
       this.toastr.success('Indent Successfully Updated');
-      //  this.getIndentDetailsForSupplier();
-
+      this.modalService.dismissAll();
+      this.getIndentsForFulfillment();
     },
       err => {
         console.log(err)
@@ -234,35 +184,31 @@ export class IndentForFulfillmentComponent implements OnInit {
     );
   }
 
-  getIndentDetailsForSupplier() {
-    if (this.filterParams.roleId == 'ROLE_FPC') {
-      this.fpoService.getIndentByFpoId(this.filterParams.masterId).subscribe(dummy => {
-        this.data = dummy;
-        this.indents = this.data;
-        this.totCrops = this.data.length;
-        this.loading = false;
-      });
-    }
+  updateInsecticideIndent(id) {
+    let data = {
+      "enqId": id,
+      "status": this.indentStatus
+    };
+    this.supplierService.updateInsecticideIndent(data).subscribe(response => {
+      this.toastr.success('Indent Successfully Updated');
+      this.modalService.dismissAll();
+      this.getIndentsForFulfillment();
+    },
+      err => {
+        console.log(err)
+      }
+    );
+  }
 
-    this.fpoService.getFulfillIndent(this.filterParams).subscribe(dummy => {
-      this.data2 = dummy;
-      // this.indents = this.data;
-      if (this.userRole !== 'ROLE_CHCFMB') {
-        this.indents2 = this.data2.seedIndent;
-        this.indents3 = this.data2.fertilizerIndent;
-        this.indents4 = this.data2.insecticideIndent;
-      }
-      this.indents5 = this.data2.machineryIndent;
-      this.selected = "";
-      // // Total values
-      // this.totCrops =this.data.length;
-      if (this.userRole !== 'ROLE_CHCFMB') {
-        this.fertTot = this.data2.fertilizerIndent.length;
-        this.seedTot = this.data2.seedIndent.length;
-        this.insTot = this.data2.insecticideIndent.length;
-      }
-      this.machTot = this.data2.machineryIndent.length;
-      this.loading = false;
+  updateMachinaryIndent(id) {
+    let data = {
+      "enqId": id,
+      "status": this.indentStatus
+    };
+    this.supplierService.updateMachinaryIndent(data).subscribe(response => {
+      this.toastr.success('Indent Successfully Updated');
+      this.modalService.dismissAll();
+      this.getIndentsForFulfillment();
     },
       err => {
         console.log(err)
@@ -271,10 +217,22 @@ export class IndentForFulfillmentComponent implements OnInit {
   }
 
   changeIndentStatus(status) {
+    console.log(status);
+    this.indentStatus = status;
     if (status == 'partially fulfilled') {
       this.isQuantity = true;
     } else if (status == 'rejected' || status == 'fulfilled') {
       this.isQuantity = false;
+    }
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
     }
   }
 

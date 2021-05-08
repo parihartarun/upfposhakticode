@@ -24,10 +24,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'Financial year'|translate}}</label>
                     <select formControlName="finYear" class="custom-control custom-select mb-3">
-                      <option value="">{{'Select financial year'|translate}}</option>
-                      <option value="2019-2020">2019-2020</option>
-                      <option value="2020-2021" selected>2020-2021</option>
-                      <!-- <option>C</option> -->
+                      <option value="{{year}}" *ngFor="let year of finYears">{{year}}</option>
                     </select>
                   </div>
                 </div>
@@ -83,7 +80,7 @@
               <tr>
                 <th scope="col">{{'S.No' | translate}}</th>
                 <th scope="col">{{'Farmer Name'| translate}}</th>
-                <th scope="col">{{"Father's/ Husband's Name" | translate}}}</th>
+                <th scope="col">{{"Father's/ Husband's Name" | translate}}</th>
                 <th scope="col">{{'Season'|translate}}</th>
                 <th scope="col">{{'Crop Name'| translate}}</th>
                 <th scope="col">{{'Variety'|translate}}</th>

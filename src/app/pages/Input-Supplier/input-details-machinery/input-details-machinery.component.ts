@@ -182,12 +182,15 @@ export class InputDetailsMachineryComponent implements OnInit {
     this.machineryForm.get('quantity').patchValue(data.quantity);
     this.machineryForm.get('specification').patchValue(data.technical_specs);
     this.machineryForm.get('rent_per_day').patchValue(data.rent_per_day);
-    this.machineryForm.get('gove_scheme').patchValue(data.gove_scheme);
+    if(data.gove_scheme != ''){
+      this.machineryForm.get('isGovernmentAssistance').patchValue(true);
+      this.machineryForm.get('govt_scheme').patchValue(data.gove_scheme);
+    }
     setTimeout(() => {
       this.machineryForm.patchValue({
        'machinery_name_id':data.name_id
       });
-    }, 1000);
+    }, 2000);
   }
 
   updatemachinery() {

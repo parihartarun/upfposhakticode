@@ -81,13 +81,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Certificate-valid From' | translate}}</label>
-                    <input type="date" id="input-first-name" class="form-control" formControlName="valid_from">
+                    <input [max]="getToday()" type="date" id="input-first-name" class="form-control" formControlName="valid_from">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label>{{'Certificate-valid to' | translate}}</label>
-                    <input type="date" id="input-first-name" class="form-control" formControlName="valid_to">
+                    <input [min]="getToday()" type="date" id="input-first-name" class="form-control" formControlName="valid_to">
                   </div>
                 </div>
               </div>
