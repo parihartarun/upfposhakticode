@@ -20,7 +20,7 @@ export class ChcfmbProfileComponent implements OnInit {
   villages = [];
   userId: any;
   profileData: any;
-
+  chcFmbType = 'chc';
   constructor(
     private fb: FormBuilder, 
     private api: AuthService, 
@@ -49,7 +49,6 @@ export class ChcfmbProfileComponent implements OnInit {
       shopEstablishmentNumber: [''],
       userName: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9-_]{6,20}")]],
       chcFmbId: []
-
     });
     this.getUserData();
     
@@ -59,6 +58,7 @@ export class ChcfmbProfileComponent implements OnInit {
     this.chcService.getUserDetails(this.userId).subscribe(data=>{ 
       console.log(data.chcFmb);
       this.profileData = data.chcFmb;
+      this.chcFmbType = this.profileData.chcFmbType;
       
      this.api.getBlock(parseInt(this.profileData.district_id)).subscribe(block => {
         this.blocks = block;

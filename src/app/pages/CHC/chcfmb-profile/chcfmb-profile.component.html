@@ -26,8 +26,10 @@
                         <input type="hidden" formControlName="chcFmbId">
                         <div class="form-group row mb-3">
                             <div class="col-6">
-                                <label class="input-label">{{'Equipment Centre Name'|translate}} <span
-                                        class="required">*</span></label>
+                                <label class="input-label">
+                                    <span *ngIf="chcFmbType == 'chc'" >{{'Equipment Centre Name'|translate}} </span>
+                                    <span *ngIf="chcFmbType == 'fmb'" >{{'SHG/FPO'|translate}} </span>
+                                    <span class="required">*</span></label>
                                 <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"></span>

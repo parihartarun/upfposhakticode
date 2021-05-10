@@ -101,7 +101,7 @@ export class InputDetailsMachineryComponent implements OnInit {
   }
 
   addmachinery() {
-    console.log('>>>role', this.userRole);
+    console.log(this.machineryForm.value);
     if(this.userRole == 'ROLE_FPC'){
       this.submitted = true;
     if (this.machineryForm.invalid) {
@@ -118,7 +118,7 @@ export class InputDetailsMachineryComponent implements OnInit {
     formData.append("vendor_id", localStorage.getItem('masterId'));
     formData.append("role ", localStorage.getItem('roleRefId'));
     formData.append('rent_per_day', this.machineryForm.value.rent_per_day);
-    formData.append('gove_scheme', this.machineryForm.value.gove_scheme);
+    formData.append('govt_scheme', this.machineryForm.value.govt_scheme);
 
     this.inputmachineryservice.addMachinery(formData).subscribe(res => {
       if (res != '') {
@@ -149,7 +149,7 @@ export class InputDetailsMachineryComponent implements OnInit {
       formData.append("role ", localStorage.getItem('roleRefId'));
       formData.append("vendor_id", localStorage.getItem('masterId'));
       formData.append('rent_per_day', this.machineryForm.value.rent_per_day);
-      formData.append('gove_scheme', this.machineryForm.value.gove_scheme);
+      formData.append('govt_scheme', this.machineryForm.value.govt_scheme);
 
       this.inputmachineryservice.addFPOMachinery(formData).subscribe(res => {
         if (res != '') {
@@ -182,9 +182,13 @@ export class InputDetailsMachineryComponent implements OnInit {
     this.machineryForm.get('quantity').patchValue(data.quantity);
     this.machineryForm.get('specification').patchValue(data.technical_specs);
     this.machineryForm.get('rent_per_day').patchValue(data.rent_per_day);
-    if(data.gove_scheme != ''){
-      this.machineryForm.get('isGovernmentAssistance').patchValue(true);
-      this.machineryForm.get('govt_scheme').patchValue(data.gove_scheme);
+    this.machineryForm.get('isGovernmentAssistance').patchValue('0');
+    this.goveScheme = 0;
+    if(data.govtSchemeAssistant != '' && data.govtSchemeAssistant != null){
+      console.log('ss');
+      this.goveScheme = 1;
+      this.machineryForm.get('isGovernmentAssistance').patchValue('1');
+      this.machineryForm.get('govt_scheme').patchValue(data.govtSchemeAssistant);
     }
     setTimeout(() => {
       this.machineryForm.patchValue({

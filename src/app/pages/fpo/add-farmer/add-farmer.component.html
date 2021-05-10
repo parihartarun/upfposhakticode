@@ -106,7 +106,7 @@
                       <label class="custom-control-label" for="customRadio7">{{'Female'| translate}}</label>
                     </div> 
                     <div class="custom-control custom-radio mb-3">
-                      <input formControlName="gender" class="custom-control-input" id="customRadio8" type="radio">
+                      <input formControlName="gender" value="Other" class="custom-control-input" id="customRadio8" type="radio">
                       <label class="custom-control-label" for="customRadio8">{{'Other'| translate}}</label>
                     </div>
                     <div *ngIf="submitted && formControls.gender.errors" class="text-danger">

@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/_services/auth/auth.service';
 })
 export class FarmerChcRegisterComponent implements OnInit {
   chcFmbName = 'Equipment Centre Name';
-  docRadio = '';
+  docRadio = 'chc';
   registerForm: FormGroup;
   submitted = false;
   bsValue = new Date();
@@ -22,6 +22,7 @@ export class FarmerChcRegisterComponent implements OnInit {
   districts = [];
   blocks = [];
   villages = [];
+  type = 'chc';
   inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
   isBulkSupplyingCompany: boolean = true
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
@@ -110,6 +111,7 @@ export class FarmerChcRegisterComponent implements OnInit {
       shopEstablishmentNumber: "",
       user: user,     
       villageRefId: '',
+      chcFmbType:''
     }
     famerCHCFmb.allotmentNo = this.registerForm.value.allotmentNo;
     famerCHCFmb.blockRefId = this.registerForm.value.blockRefId;
@@ -125,6 +127,8 @@ export class FarmerChcRegisterComponent implements OnInit {
     famerCHCFmb.recaptcha = this.registerForm.value.recaptcha;
     famerCHCFmb.user = user;
     famerCHCFmb.villageRefId = this.registerForm.value.villageRefId;
+    famerCHCFmb.chcFmbType = this.type;
+    console.log(famerCHCFmb);
     this.api.registerCHCFmb(famerCHCFmb).subscribe(response => {
       if (response.message == "SuccessFully Saved!") {
         this.toastr.success('Registration done successfully.');
@@ -143,8 +147,10 @@ export class FarmerChcRegisterComponent implements OnInit {
   changeType(type){
     if(type == 'fmb'){
       this.chcFmbName = 'SHG/FPO';
+      this.type = type;
     }else{
       this.chcFmbName = 'Equipment Centre Name';
+      this.type = type;
     }
   }
 

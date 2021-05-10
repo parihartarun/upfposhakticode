@@ -101,11 +101,11 @@
                                         <label class="form-control-label" for="input-last-name">{{'Whether Govt.-assistance used in procurement of Equipment' |
                                             translate}} <span class="required">*</span></label><br/>
                                         <div class="custom-control custom-radio mb-3 ">
-                                            <input formControlName="isGovernmentAssistance" (change)="updateGovernmentScheme(1)"  value="True"  class="custom-control-input" id="customRadio5" type="radio">
+                                            <input formControlName="isGovernmentAssistance" (change)="updateGovernmentScheme(1)"  value="1"  class="custom-control-input" id="customRadio5" type="radio">
                                             <label class="custom-control-label" for="customRadio5">{{'Yes' | translate}}</label>
                                         </div>
                                         <div class="custom-control custom-radio mb-3">
-                                            <input formControlName="isGovernmentAssistance"  (change)="updateGovernmentScheme(0)" value="False" class="custom-control-input" id="customRadio6"  type="radio">
+                                            <input formControlName="isGovernmentAssistance"  (change)="updateGovernmentScheme(0)" value="0" class="custom-control-input" id="customRadio6"  type="radio">
                                             <label class="custom-control-label" for="customRadio6">{{'No' | translate}}</label>
                                         </div>      
                                         <div *ngIf="submitted && formControls.isGovernmentAssistance.errors" class="text-danger">
