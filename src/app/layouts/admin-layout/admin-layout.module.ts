@@ -21,6 +21,7 @@ import { DepartmentReportComponent } from '../../pages/department/department-rep
 import { DepartmentCircularsComponent } from '../../pages/department/department-circulars/department-circulars.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartsModule } from 'ng2-charts';
+import { ExcelService } from '../../_services/Excel/excel.service';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { ChartsModule } from 'ng2-charts';
     DepartmentReportComponent ,  
    
     DepartmentUserManagementComponent,
-  ]
+  ],
+  providers:[ExcelService]
 })
 
 export class AdminLayoutModule {}

@@ -160,4 +160,34 @@ export class AuthService {
     return this.http.post<any>(this._url + 'signin/password/reset', { ...data });
   }
 
+  validateFpoRegNumber(regNo){
+    return this.http.get<any>(this._url + `register/validateRegi/`+ regNo).pipe(map((v: any) => {
+      return v;
+    }));
+  
+  }
+
+  validateUserName(userName){
+    return this.http.get<any>(this._url + `home/checkuser/`+ userName).pipe(map((v: any) => {
+      return v;
+    }));
+  }
+
+  getCommoditiesDealIn(){
+    return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCommodity`).pipe(map((v: any) => {
+      return v;
+    }));
+  }
+
+  getRegisteredUnderOptions(){
+    return this.http.get<any>(this._url + `register/registeredunder`).pipe(map((v: any) => {
+      return v;
+    }));
+  }
+
+  getAgencies(){
+    return this.http.get<any>(this._url + `register/regiagency`).pipe(map((v: any) => {
+      return v;
+    }));
+  }
 }

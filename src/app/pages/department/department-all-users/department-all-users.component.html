@@ -42,7 +42,9 @@
                 <input type="text" [id]="'search'" [(ngModel)]="searchText" (input)="p=1" style="border-radius: 0;z-index: unset;"
                   name="search" placeholder="Search" autocomplete="off" class="form-control input-md" />
               </div>
-              <div>
+              <div class="col text-right">
+                <button class="btn btn-primary text-right mb-2">{{'Export PDF' | translate}}</button>
+                <button class="btn btn-warning text-right mb-2" (click)="exportAsXLSX()">{{'Export Excel' | translate}}</button>
               </div>
             </div>
             <div class="table-responsive">
@@ -51,7 +53,7 @@
                   <tr>
                     <th scope="col">{{'S.No' | translate}}</th>
                     <th scope="col" class="sort" (click)="onClickOrderBy('fpo_name')">{{'FPO Name' | translate}}</th>
-                    <th scope="col" class="sort" (click)="onClickOrderBy('user_name')">{{'User Name' | translate}}
+                    <th scope="col" class="sort" (click)="onClickOrderBy('user_name')">{{'Username' | translate}}
                     </th>
                     <th scope="col" class="sort" (click)="onClickOrderBy('district_name')">
                       {{'District Name' | translate}}
@@ -69,7 +71,7 @@
                       {{ (p-1) * 10 + i + 1}}
                     </td>
                     <td>
-                      {{u.fpo_name}}
+                      <a href="{{siteUrl}}fpo-details/{{u.user_id}}" target="_blank">{{u.fpo_name}}</a>
                     </td>
                     <td>
                       {{u.user_name}}
@@ -143,7 +145,7 @@
                     <th scope="col">{{'S.No' | translate}}</th>
                     <th scope="col" class="sort" (click)="onClickOrderByActive('fpo_name')">{{'FPO Name' | translate}}
                     </th>
-                    <th scope="col" class="sort" (click)="onClickOrderByActive('user_name')">{{'User Name' | translate}}
+                    <th scope="col" class="sort" (click)="onClickOrderByActive('user_name')">{{'Username' | translate}}
                     </th>
                     <th scope="col" class="sort" (click)="onClickOrderByActive('district_name')">
                       {{'District Name' | translate}}
@@ -163,7 +165,7 @@
                       {{ (activePagination-1) * 10 + i + 1}}
                     </td>
                     <td>
-                      {{u.fpo_name}}
+                      <a href="{{siteUrl}}fpo-details/{{u.user_id}}" target="_blank">{{u.fpo_name}}</a>
                     </td>
                     <td>
                       {{u.user_name}}

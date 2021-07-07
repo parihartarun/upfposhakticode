@@ -73,10 +73,9 @@ export class HomeComponent implements OnInit {
     this._fpo.getAllFpo().subscribe(fpo => {
       this.fpo = fpo.length;
     })
-    var $this = this;
-    $this.departmentService.getAllCircluarUpload().subscribe(c => {
+    this.departmentService.getAllCircluarUpload().subscribe(c => {
      // console.log(c);
-      $this.circluar = c
+      this.circluar = c
     })
     this.api.getChcFmbs().subscribe(res => {
       this.fmbs = res.fmbscount;

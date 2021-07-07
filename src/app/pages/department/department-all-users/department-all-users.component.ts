@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/_services/user/user.service';
-
+import { environment } from 'src/environments/environment';
+import { ExcelService } from '../../../_services/Excel/excel.service';
 
 @Component({
   selector: 'app-department-all-users',
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/_services/user/user.service';
   styleUrls: ['./department-all-users.component.css']
 })
 export class DepartmentAllUsersComponent implements OnInit {
-
+  siteUrl: string;
   submitted = false;
   activeUsers: Array<any> = [];
   deActiveUsers: Array<any> = [];
@@ -25,15 +26,45 @@ export class DepartmentAllUsersComponent implements OnInit {
   searchText = '';
   orderBy: { order: string, key: string } = { order: '', key: '' };
   activePagination = 1;
-
   searchTextActive = '';
   orderByActive: { order: string, key: string } = { order: '', key: '' };
+
+  title = 'exportExcelInAngular';
+  dataOfFootballers: any = [{
+    playerName: 'Cristiano Ronaldo',
+    playerCountry: 'Pourtgal',
+    playerClub: 'Juventus'
+  },
+  {
+    playerName: 'Lionel Messi',
+    playerCountry: 'Argentina',
+    playerClub: 'Barcelona'
+  },
+  {
+    playerName: 'Neymar Junior',
+    playerCountry: 'Brazil',
+    playerClub: 'PSG'
+  },
+  {
+  playerName: 'Tonni Kroos',
+  playerCountry: 'Germany',
+  playerClub: 'Real Madrid'
+  },
+  {
+    playerName: 'Paul Pogba',
+    playerCountry: 'France',
+    playerClub: 'Manchester United'
+  }];
+
   constructor(
     private formBuilder: FormBuilder,
     private api: UserService,
     private route: Router,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+    private excelService:ExcelService
+  ) { 
+    this.siteUrl = environment.siteUrl;
+  }
 
   ngOnInit(): void {
     this.reasonSelectedForm = this.formBuilder.group({
@@ -147,5 +178,9 @@ export class DepartmentAllUsersComponent implements OnInit {
       'order': this.orderByActive.order == 'asc' ? 'desc' : 'asc',
       'key': key
     };
+  }
+
+  exportAsXLSX():void {
+    this.excelService.exportAsExcelFile(this.dataOfFootballers, 'footballer_data');
   }
 }

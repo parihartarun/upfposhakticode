@@ -2,7 +2,7 @@
 
   <div class="form-group row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
-      <label class="input-label">{{'Farmer Registration Number (UP Agri Pardarshi)1'|translate}} </label>
+      <label class="input-label">{{'Farmer Registration Number (UP Agri Pardarshi)'|translate}} </label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
@@ -39,13 +39,15 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="userName">
+        <input class="form-control" type="text" formControlName="userName" (blur)="validateUserName($event.target.value)">
       </div>
       <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
         <div *ngIf="formControls.userName.errors.required">{{'username is required'|translate}}</div>
         <div *ngIf="formControls.userName.errors.pattern">{{'user name should be 6 to 20 character'|translate}}</div>
       </div>
-
+      <div *ngIf="invalidUserName" class="text-danger">
+        {{'User Name already taken'|translate}}
+      </div>
     </div>
 
   
@@ -79,18 +81,17 @@
     </div>
   
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
-      <label class="input-label">{{'Category1'|translate}} <span class="required">*</span></label>
+      <label class="input-label">{{'Category'|translate}} <span class="required">*</span></label>
       <div class="input-group input-group-alternative">
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
         <select class="form-control" formControlName="category">
           <option value="">{{'Select Category'| translate}}</option>
-          <option value="general">{{'General1'|translate}}</option>
-          <option value="obc">{{'OBC1'|translate}}</option>
-          <option value="sc">{{'SC1'| translate}}</option>
-          <option value="st">{{'ST1'|translate}}</option>
-          <option value="other">{{'OTHER1'|translate}}</option>
+          <option value="general">{{'General'|translate}}</option>
+          <option value="obc">{{'OBC'|translate}}</option>
+          <option value="sc">{{'SC'| translate}}</option>
+          <option value="st">{{'ST'|translate}}</option>
         </select>
       </div>
       <div *ngIf="submitted && formControls.category.errors" class="text-danger">
@@ -223,7 +224,17 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="password" formControlName="password">
+        <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" type="password" formControlName="password">
+        <div class="input-group-append">
+          <span class="input-group-text">
+            <i class="fa"
+            [ngClass]="{
+              'fa-eye-slash': !fieldTextType,
+              'fa-eye': fieldTextType
+            }"
+            (click)="toggleFieldTextType()"></i>
+          </span>
+       </div>
       </div>
       <div *ngIf="submitted && formControls.password.errors" class="text-danger">
         <div *ngIf="formControls.password.errors.required">{{'password is required'|translate}}</div>
@@ -241,7 +252,17 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="password" formControlName="confirmPassword">
+        <input [type]="fieldTextTypeCpwd ? 'text' : 'password'" class="form-control" type="password" formControlName="confirmPassword">
+        <div class="input-group-append">
+          <span class="input-group-text">
+            <i class="fa"
+            [ngClass]="{
+              'fa-eye-slash': !fieldTextTypeCpwd,
+              'fa-eye': fieldTextTypeCpwd
+            }"
+            (click)="toggleFieldTextTypeCpwd()"></i>
+          </span>
+       </div>
       </div>
       <div *ngIf="submitted && formControls.confirmPassword.errors" class="text-danger">
         <div *ngIf="formControls.confirmPassword.errors.required">{{'confirm password is required'|translate}}</div>
@@ -297,7 +318,7 @@
       </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
-      <ngx-recaptcha2 #captchaElem [siteKey]="'6Lev4jUaAAAAAFdB-YYoLKJucgHZzCC9Bd6ACzEs'"
+      <ngx-recaptcha2 #captchaElem [siteKey]="'6Lff1DAbAAAAAFQa6iec9pY-tgJn3wbNWibl1t3i'"
                       (success)="handleSuccess($event)" [useGlobalDomain]="false" formControlName="recaptcha">
       </ngx-recaptcha2>
     </div>

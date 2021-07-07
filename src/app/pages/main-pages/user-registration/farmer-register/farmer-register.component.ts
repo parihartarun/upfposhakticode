@@ -26,6 +26,10 @@ export class FarmerRegisterComponent implements OnInit {
   villages = [];
   banks = [];
   fpoList = [];
+  fieldTextType: boolean;
+  fieldTextTypeCpwd:boolean;
+  invalidUserName:boolean=false;
+
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router,
     private toastr: ToastrService,
     private fpoService: FpoService) {
@@ -63,6 +67,22 @@ export class FarmerRegisterComponent implements OnInit {
     this.registerForm.controls['villagePanchayatId'].setValue(villagePanchayatId.currentTarget.value);
     this.api.getVillage(parseInt(villagePanchayatId.currentTarget.value)).subscribe(v => {
       this.villages = v
+    })
+  }
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+  toggleFieldTextTypeCpwd(){
+    this.fieldTextTypeCpwd = !this.fieldTextTypeCpwd;
+  }
+
+  validateUserName(userName){
+    this.invalidUserName = false;
+    this.api.validateUserName(userName).subscribe(response => {
+      if(response.status !== "Accepted"){
+        this.invalidUserName = true;
+      }
     })
   }
 
@@ -110,7 +130,7 @@ export class FarmerRegisterComponent implements OnInit {
   register(): Observable<any> {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.registerForm.invalid) {
+    if (this.registerForm.invalid || this.invalidUserName == true) {
       return;
     }
     this.registerForm.value

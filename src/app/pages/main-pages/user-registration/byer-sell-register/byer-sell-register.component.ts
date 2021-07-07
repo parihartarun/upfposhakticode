@@ -29,6 +29,14 @@ export class ByerSellRegisterComponent implements OnInit {
   verieties = [];
   verietyIds = []
   _url: string;
+  fieldTextType: boolean;
+  fieldTextTypeCpwd:boolean;
+  invalidUserName:boolean=false;
+
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService, private http: HttpClient) {
     this._url = environment.baseUrl;
   }
@@ -38,7 +46,37 @@ export class ByerSellRegisterComponent implements OnInit {
       this.states = s
     })
     this.createRegisterForm();
+    this.getDropdownListItems();
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
   }
+
+  onItemSelect(item: any) {
+    console.log(item.item_id);
+    this.selectedItems.push(item.item_id);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+    this.selectedItems = items.map(item=>{
+      return item.item_id;
+    })
+  }
+
+  onItemDeselect(item:any){
+    this.selectedItems.splice(this.selectedItems.indexOf(item.item_id), 1);
+  }
+
+  onItemDeselectAll(){
+    this.selectedItems = [];
+  }
+
   selectState(stateId) {
     this.registerForm.controls['stateRefId'].setValue(stateId.currentTarget.value);
     this.api.getDistrictByState(parseInt(stateId.currentTarget.value)).subscribe(d => {
@@ -72,7 +110,6 @@ export class ByerSellRegisterComponent implements OnInit {
       panNumber: [''],
       companyCategory: [''],
       commdityDealsIn: [],
-      varietyDealsIn: [],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
       userBuyerSeller: [],
       tnc: ['', Validators.required],
@@ -90,12 +127,28 @@ export class ByerSellRegisterComponent implements OnInit {
   get password() {
     return this.registerForm.get('password');
   }
-  register() {
-    console.log('this.formControls',this.formControls);
-    
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+  toggleFieldTextTypeCpwd(){
+    this.fieldTextTypeCpwd = !this.fieldTextTypeCpwd;
+  }
+
+  validateUserName(userName){
+    this.invalidUserName = false;
+    this.api.validateUserName(userName).subscribe(response => {
+      if(response.status !== "Accepted"){
+        this.invalidUserName = true;
+      }
+    })
+  }
+
+  register() {    
+    console.log(this.selectedItems.toString());
     this.submitted = true;
     // stop here if form is invalid
-    if (this.registerForm.invalid) {
+    if (this.registerForm.invalid || this.invalidUserName == true) {
       return;
     }
     
@@ -108,8 +161,7 @@ export class ByerSellRegisterComponent implements OnInit {
     delete this.registerForm.value.userName;
     delete this.registerForm.value.confirmPassword;
     this.registerForm.value.userBuyerSeller = user;
-    this.registerForm.value.commdityDealsIn = this.cropids.toString();
-    this.registerForm.value.varietyDealsIn = this.verietyIds.toString();
+    this.registerForm.value.commdityDealsIn = this.selectedItems.toString();
     this.api.registerBuyerSeller(this.registerForm.value).subscribe(response => {
       if (response.message == "SuccessFully Saved!") {
         this.toastr.success('Registration done successfully.');
@@ -125,16 +177,27 @@ export class ByerSellRegisterComponent implements OnInit {
   handleSuccess(e) {
     console.log("ReCaptcha", e);
   }
-  //requestAutocompleteItems(text: string) {
-  //  this.api.getAllTags(text).subscribe(t => {
-  //    return t
-  //  })
-  //}
+
+  getDropdownListItems(){
+    let arr = [];
+    this.api.getCommoditiesDealIn().subscribe(response => {
+      console.log(response);
+      for (var key in response) {
+        var obj = {
+          item_id:key,
+          item_text:response[key]
+        }
+        arr.push(obj);
+      }
+      this.dropdownList = arr;
+    })
+  }
   public requestAutocompleteItems = (text: string): Observable<string[]> => {
  
     let arr = []
 
-    return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropsBySearch/${text}`).pipe(map((res: any) => {
+    return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCommodity`).pipe(map((res: any) => {
+      console.log(res);
       this.crops = res;     
         res.map(c => {
         arr.push(c.cropName)

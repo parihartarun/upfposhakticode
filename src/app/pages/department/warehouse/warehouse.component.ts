@@ -41,6 +41,7 @@ export class WarehouseComponent implements OnInit {
       latitude: [''],
       longitude: [''],
       seed_processing: ['', [Validators.required]],
+      wdraAcredited: ['', [Validators.required]],
       facilities: [[], [Validators.required]],
       type: ['', [Validators.required]],
     });
@@ -67,6 +68,7 @@ export class WarehouseComponent implements OnInit {
     formData.append("latitude", this.warehouseForm.get('latitude').value)
     formData.append("longitude", this.warehouseForm.get('longitude').value)
     formData.append("seed_processing", this.warehouseForm.get('seed_processing').value)
+    formData.append("wdraAcredited", this.warehouseForm.get('wdraAcredited').value)
     formData.append("facilities", this.warehouseForm.get('facilities').value.join(','));
     formData.append("type", this.warehouseForm.get('type').value)
 
@@ -95,6 +97,7 @@ export class WarehouseComponent implements OnInit {
       formData.append("latitude", this.warehouseForm.get('latitude').value)
       formData.append("longitude", this.warehouseForm.get('longitude').value)
       formData.append("seed_processing", this.warehouseForm.get('seed_processing').value)
+      formData.append("wdraAcredited", this.warehouseForm.get('wdraAcredited').value)
       formData.append("facilities", this.warehouseForm.get('facilities').value.join(','))
       formData.append("type", this.warehouseForm.get('type').value)
       this.departmentService.updateWarehouse(this.editabileId, formData).subscribe((res: any) => {
@@ -104,6 +107,7 @@ export class WarehouseComponent implements OnInit {
           this.getWarehouseAll();
           this.editabileId = null;
           // this.isEdit = false;
+          this.submitted = false;
         } else {
           this.toastr.error('Error! While Updating Warehouse.');
         }
@@ -116,6 +120,7 @@ export class WarehouseComponent implements OnInit {
     this.editabileId = null;
   }
   editWarehouse(row) {
+    console.log(row);
     window.scroll(0, 0);
     this.editabileId = row.id;
     this.warehouseForm.patchValue({
@@ -128,6 +133,7 @@ export class WarehouseComponent implements OnInit {
       latitude: row.latitude,
       longitude: row.longitude,
       seed_processing: row.is_seed_processing,
+      wdraAcredited: row.wdra_accredited,
       facilities: row.warehouse_facilities.split(','),
       type: row.warehouse_type
     });

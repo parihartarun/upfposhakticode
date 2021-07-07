@@ -10,7 +10,7 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'FPOs' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{totals.totalFpo | number: '1.0-0'}}
+                    {{fpo |  number:'1.0-2'}}
                   </span>
                 </div>
               </div>
@@ -24,7 +24,7 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Total Land (in Ha.)' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{totals.landArea | number}}
+                    {{farmerDetails.totalland |  number:'1.0-2'}}
                     <sub></sub></span>
                 </div>
               </div>
@@ -38,7 +38,7 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Farm Machinery Bank' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{totals.totalFpo | number}}
+                    {{fmbs |  number:'1.0-2'}}
                   </span>
                 </div>
               </div>
@@ -53,7 +53,7 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Seed Processing Unit' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{totals.landArea | number}}
+                    {{seedProcessing |  number:'1.0-2'}}
                   </span>
                 </div>
               </div>
@@ -70,14 +70,9 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Total Farmers' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{totals.totalfarmers | number}}
+                    {{farmerDetails.totalfarmers |  number:'1.0-2'}}
                   </span>
-
                 </div>
-                <!-- <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p> -->
               </div>
             </div>
           </div>
@@ -89,19 +84,10 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Marginal Farmers' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{totals.totalMarginalFarmer | number}}
+                    {{farmerDetails.marginalfarmers |  number:'1.0-2'}}
                   </span>
                 </div>
-                <!-- <div class="col-auto">
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                    <i class="fas fa-chart-bar"></i>
-                  </div>
-                </div> -->
               </div>
-              <!-- <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p> -->
             </div>
           </div>
         </div>
@@ -112,19 +98,10 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Small Farmers' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{totals.totalSmallFarmer | number}}
+                    {{farmerDetails.smalltotal |  number:'1.0-2'}}
                   </span>
                 </div>
-                <!-- <div class="col-auto">
-                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                    <i class="fas fa-chart-pie"></i>
-                  </div>
-                </div> -->
               </div>
-              <!-- <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p> -->
             </div>
           </div>
         </div>
@@ -136,19 +113,10 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Others Farmers' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{totals.totalOtherFarmer | number}}
+                    {{farmerDetails.bigfarmers |  number:'1.0-2'}}
                   </span>
                 </div>
-                <!-- <div class="col-auto">
-                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                    <i class="fas fa-chart-pie"></i>
-                  </div>
-                </div> -->
               </div>
-              <!-- <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p> -->
             </div>
           </div>
         </div>
@@ -253,83 +221,3 @@
     </div>
   </div>
 </div><br>
-<!-- 
-<div class="container-fluid mt--7 mb-7">
-  <div class="card shadow">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="form-group">
-            <label class="form-control-label">{{'District' | translate}} </label>
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"></span>
-              </div>
-              <select class="form-control">
-                <option value="">{{'Select District' | translate}}</option>
-                <option *ngFor="let district of districts" [value]="district.district_id">{{district.district_name}}</option>
-              </select>
-            </div>
-           
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="form-group">
-            <label class="form-control-label" for="input-last-name">{{'Crops' | translate}}</label>
-            <select   class="custom-control custom-select mb-3">
-              <option value="">{{'Select Crops' | translate}}</option>
-              <option  [value]=""></option>
-            </select>
-          </div>
-        </div>
-        <div class="col-lg-4"> 
-          <div class="form-group mt-4">
-            <button class="btn btn-primary mt-2 text-right" >{{'View Reports' | translate}}</button>
-          </div>
-        </div>
-      </div>
-      <br>
-      <h3>{{'Production Report' | translate}}</h3>
-
-      <div class="table-responsive">
-        <table class="table align-items-center table-flush">
-          <thead class="thead-light">
-            <tr>
-              <th scope="col">{{'District' | translate}}</th>
-              <th scope="col">{{'Crop Name' | translate}}</th>
-              <th scope="col">{{'Crop Variety' | translate}}</th>
-              <th scope="col">{{'Total FPO' | translate}}</th>
-              <th scope="col">{{'Estimated Production (in Qt.)' | translate}}</th>
-              <th scope="col">{{'Actual Production (in Qt.)' | translate}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let u of productions ; let i=index">
-              <td>
-                {{i+1}}
-              </td>
-              <td>
-                {{u.fpo_name}}
-              </td>
-              <td>
-                {{u.user_name}}
-              </td>
-              <td>
-                {{u.district_name}}
-              </td>
-              <td>
-                {{u.date_of_regi}}
-              </td>
-              <td>
-                {{u.fpo_email}}
-              </td>
-
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-
-    </div>
-  </div>
-</div> -->

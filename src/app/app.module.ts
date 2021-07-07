@@ -107,6 +107,8 @@ import { DepartmentUplaodCircularComponent } from './pages/department/department
 import { ChartsModule } from 'ng2-charts';
 import { FpoDashboardComponent } from './pages/fpo/dashboard/dashboard.component';
 import { HomeScreenComponent } from './pages/common/home-screen/home-screen.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ExcelService } from './_services/Excel/excel.service';
 
 import { TagInputModule } from 'ngx-chips';
 import { DepartmentAllComplaintsComponent } from './pages/department/department-all-complaints/department-all-complaints.component';
@@ -157,6 +159,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxCaptchaModule,
     NgxPaginationModule,
     BsDatepickerModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot(),
     NgMarqueeModule,
     NgxChartsModule,
     NgSelectModule,
@@ -278,7 +281,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [DatePipe, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    AuthGuardService, CanDeactivateGuard, SharedService],
+    AuthGuardService, CanDeactivateGuard, SharedService, ExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

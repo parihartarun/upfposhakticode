@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MustMatch } from 'src/app/_helpers/constomMatchValidor';
 import { AuthService } from 'src/app/_services/auth/auth.service';
-
-
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-fpo-register',
@@ -23,7 +22,11 @@ export class FpoRegisterComponent implements OnInit {
   agencies = [{ villageId: 1, villageName: "mumbai1" }];
   banks = [];
   today=new Date();
-
+  fieldTextType: boolean;
+  fieldTextTypeCpwd:boolean;
+  invalidRegNo:boolean=false;
+  invalidUserName:boolean=false;
+  regUnderOptions = [];
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -33,8 +36,25 @@ export class FpoRegisterComponent implements OnInit {
     this.api.getBank().subscribe(d => {
       this.banks = d
     })
-    this.createFpoRegisterForm()
+    this.createFpoRegisterForm();
+    this.getRegisteredUnderOptions();
+    this.getAgencies();
   }
+
+  getRegisteredUnderOptions(){
+    this.api.getRegisteredUnderOptions().subscribe(res => {
+      console.log(res);
+      this.regUnderOptions = res;
+    })
+  }
+
+  getAgencies(){
+    this.api.getAgencies().subscribe(res => {
+      console.log(res);
+      this.agencies = res;
+    })
+  }
+
   selectDistrict(districtId: any) {
     this.fpoRegisterForm.controls['distRefId'].setValue(districtId.currentTarget.value);
     this.api.getBlock(parseInt(districtId.currentTarget.value)).subscribe(block => {
@@ -53,6 +73,7 @@ export class FpoRegisterComponent implements OnInit {
   createFpoRegisterForm() {
     this.fpoRegisterForm = this.fb.group({
       agency: ['', Validators.required],
+      registeredUnder:['Company-Act'],
       fpoBankAccNo: ['', [Validators.pattern("[0-9 ]{11,16}")]],
       fpoBankName: [''],
       blockRef: ['', Validators.required],
@@ -80,11 +101,41 @@ export class FpoRegisterComponent implements OnInit {
     return this.fpoRegisterForm.controls;
   }
 
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+  toggleFieldTextTypeCpwd(){
+    this.fieldTextTypeCpwd = !this.fieldTextTypeCpwd;
+  }
+
+  validateFpoRegNumber(regNo){
+    console.log(this.fpoRegisterForm.value.registeredUnder);
+    this.invalidRegNo = false;
+    if(this.fpoRegisterForm.value.registeredUnder == 'Company-Act'){
+      this.api.validateFpoRegNumber(regNo).subscribe(response => {
+        console.log(response);
+        if(response.message != 'Valid'){
+          console.log('s');
+          this.invalidRegNo = true;
+        }
+      })
+    }
+  }
+
+  validateUserName(userName){
+    this.invalidUserName = false;
+    this.api.validateUserName(userName).subscribe(response => {
+      if(response.status !== "Accepted"){
+        this.invalidUserName = true;
+      }
+    })
+  }
+
   register() {
     console.log('this.formControls',this.formControls);
     this.submitted = true;
     // stop here if form is invalid
-    if (this.fpoRegisterForm.invalid) {
+    if (this.fpoRegisterForm.invalid || this.invalidUserName == true || this.invalidRegNo == true) {
       return;
     }
     let user = {

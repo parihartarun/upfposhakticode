@@ -27,6 +27,13 @@ export class InputSupplierRegisterComponent implements OnInit {
   isBulkSupplyingCompany: boolean = false;
   isCategoryDealIn = false;
   tempFertilizer = [{ name: 'Normal' }, { name: 'Organic' }, { name: 'Both' }]
+  fieldTextType: boolean;
+  fieldTextTypeCpwd:boolean;
+  invalidUserName:boolean=false;
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
   }
 
@@ -39,8 +46,52 @@ export class InputSupplierRegisterComponent implements OnInit {
     })
 
     this.createRegisterForm();
-
+    this.getDropdownListItems();
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
   }
+
+  onItemSelect(item: any) {
+    console.log(item.item_id);
+    this.selectedItems.push(item.item_id);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
+    this.selectedItems = items.map(item=>{
+      return item.item_id;
+    })
+  }
+
+  onItemDeselect(item:any){
+    this.selectedItems.splice(this.selectedItems.indexOf(item.item_id), 1);
+  }
+
+  onItemDeselectAll(){
+    this.selectedItems = [];
+  }
+
+  getDropdownListItems(){
+    let arr = [];
+    this.api.getCommoditiesDealIn().subscribe(response => {
+      console.log(response);
+      for (var key in response) {
+        var obj = {
+          item_id:key,
+          item_text:response[key]
+        }
+        arr.push(obj);
+      }
+      this.dropdownList = arr;
+    })
+  }
+
   selectDistrict(districtId: any) {
     this.api.getBlock(parseInt(districtId)).subscribe(blocks => {
       this.blocks = blocks;
@@ -55,6 +106,23 @@ export class InputSupplierRegisterComponent implements OnInit {
   selectVillage(villRefId: any) {
     this.registerForm.controls['villageRefId'].setValue(villRefId.currentTarget.value);
   }
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+  toggleFieldTextTypeCpwd(){
+    this.fieldTextTypeCpwd = !this.fieldTextTypeCpwd;
+  }
+
+  validateUserName(userName){
+    this.invalidUserName = false;
+    this.api.validateUserName(userName).subscribe(response => {
+      if(response.status !== "Accepted"){
+        this.invalidUserName = true;
+      }
+    })
+  }
+
   selectInputSupplierType(inputSupplierType: any) {
     if (parseInt(inputSupplierType.currentTarget.value) == 1) {
       this.isBulkSupplyingCompany = false;
@@ -87,7 +155,7 @@ export class InputSupplierRegisterComponent implements OnInit {
       distRefId: ['', Validators.required],
       deleted: [true],
       email: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
-      gstNumber: ['', [Validators.required,Validators.pattern("[0-9a-zA-Z]{0,100}")]],
+      gstNumber: ['', [Validators.pattern("[0-9a-zA-Z]{0,100}")]],
       mobile_number: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
       seed_id: [''],
@@ -120,11 +188,11 @@ export class InputSupplierRegisterComponent implements OnInit {
     return this.registerForm.get('password');
   }
   register() {
-    console.log('this.formControls',this.formControls);
+    console.log(this.selectedItems.toString());
     
     this.submitted = true;
     // stop here if form is invalid
-    if (this.registerForm.invalid) {
+    if (this.registerForm.invalid || this.invalidUserName == true) {
       return;
     }
     this.registerForm.value
@@ -137,7 +205,7 @@ export class InputSupplierRegisterComponent implements OnInit {
     delete this.registerForm.value.userName;
     delete this.registerForm.value.confirmPassword;
     this.registerForm.value.userInputSeller = user;
-    this.registerForm.value.categoryDealIn = this.categoryDeals.toString();
+    this.registerForm.value.categoryDealIn = this.selectedItems.toString();
     this.api.registerInputSupplier(this.registerForm.value).subscribe(response => {
 
       if (response.message == "SuccessFully Saved!") {

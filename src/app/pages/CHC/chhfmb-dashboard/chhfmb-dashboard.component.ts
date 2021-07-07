@@ -50,7 +50,7 @@ export class ChhfmbDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.chartOption = 'surplus';
     this.getDashboardDetails();
-    this.getIndentDetails();
+   // this.getIndentDetails();
   }
 
   getIndentDetails(){

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FpoService } from 'src/app/_services/fpo/fpo.service';
 import { CommonService } from 'src/app/_services/common/common.service';
+import { HomeService } from '../../../_services/home/home.service';
+import { DepartmentService } from '../../../_services/department/department.service';
 
 // import Chart from 'chart.js';
 
@@ -62,13 +64,42 @@ export class DepartmentDashboardComponent implements OnInit {
 
   public doughnutChartType = "doughnut";
 
-
-  constructor(private api: FpoService, private common:CommonService) { 
+  farmerDetails: any;
+  productionDetails: any;
+  fpo: any;
+  circluar: any;
+  fmbs=0;
+  coldStorages=0;
+  seedProcessing=0;
+  constructor(private api: FpoService, private deptService:DepartmentService, private common:CommonService, private homeService:HomeService) { 
   }
 
   ngOnInit() {
     this.getFinancialYears();
     this.getDashboardDetails('2020-2021');
+    this.homeService.getfarmerDetails().subscribe(h => {
+      this.farmerDetails = h
+    })
+    this.homeService.getProductionDetails().subscribe(p => {
+      console.log(p);
+      this.productionDetails = p
+    })
+    this.api.getAllFpo().subscribe(fpo => {
+      this.fpo = fpo.length;
+    })
+    this.deptService.getAllCircluarUpload().subscribe(c => {
+     // console.log(c);
+      this.circluar = c
+    })
+    this.homeService.getChcFmbs().subscribe(res => {
+      this.fmbs = res.fmbscount;
+    })
+    this.homeService.getColdStorages().subscribe(res => {
+      this.coldStorages = res.coldstorage;
+    })
+    this.homeService.getSeedProcessingUnits().subscribe(res => {
+      this.seedProcessing = res.seedprocessingunit
+    })
   }
 
   getFinancialYears(){
@@ -201,15 +232,15 @@ export class DepartmentDashboardComponent implements OnInit {
     
     this.actualProduction = [
       {
-        title: `Total Actual Production in Rabi (in Qt.)`,
+        title: `Total Actual Production in Rabi season (in Qt.)`,
         data: rabiData1
       },
       {
-        title: `Total Actual Production in Zayad (in Qt.)`,
+        title: `Total Actual Production in Zayad season (in Qt.)`,
         data: kharifData1
       },
       {
-        title: `Total Actual Production in Kharif (in Qt.)`,
+        title: `Total Actual Production in Kharif season (in Qt.)`,
         data:zayadData1
       }
     ];
@@ -253,15 +284,15 @@ export class DepartmentDashboardComponent implements OnInit {
     
     this.salesProduction = [
       {
-        title: `Total Sales Production in Rabi (in Qt.)`,
+        title: `Total Sales in Rabi season (in Qt.)`,
         data: rabiData2
       },
       {
-        title: `Total Sales Production in Zayad (in Qt.)`,
+        title: `Total Sales in Zayad season (in Qt.)`,
         data: kharifData2
       },
       {
-        title: `Total Sales Production in Kharif (in Qt.)`,
+        title: `Total Sales in Kharif season (in Qt.)`,
         data:zayadData2
       }
     ];

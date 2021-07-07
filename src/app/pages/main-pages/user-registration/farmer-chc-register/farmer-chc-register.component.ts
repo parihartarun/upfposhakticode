@@ -25,6 +25,10 @@ export class FarmerChcRegisterComponent implements OnInit {
   type = 'chc';
   inputSupplierTypes = [{ id: 1, name: 'Bulk supplying company' }, { id: 2, name: 'Retailer' }]
   isBulkSupplyingCompany: boolean = true
+  fieldTextType: boolean;
+  fieldTextTypeCpwd:boolean;
+  invalidUserName:boolean=false;
+
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService) {
   }
 
@@ -87,7 +91,7 @@ export class FarmerChcRegisterComponent implements OnInit {
   register() {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.registerForm.invalid) {
+    if (this.registerForm.invalid || this.invalidUserName == true) {
       return;
     }
     let user = {
@@ -142,6 +146,22 @@ export class FarmerChcRegisterComponent implements OnInit {
   }
   handleSuccess(e) {
     console.log("ReCaptcha", e);
+  }
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+  toggleFieldTextTypeCpwd(){
+    this.fieldTextTypeCpwd = !this.fieldTextTypeCpwd;
+  }
+
+  validateUserName(userName){
+    this.invalidUserName = false;
+    this.api.validateUserName(userName).subscribe(response => {
+      if(response.status !== "Accepted"){
+        this.invalidUserName = true;
+      }
+    })
   }
 
   changeType(type){
