@@ -27,7 +27,9 @@ export class FpoNotifiactionComponent implements OnInit {
     , private _departmentService: DepartmentService) { }
 
   ngOnInit(): void {
-    this.api.getAllFarmer().subscribe(us => {
+
+    // change API Call getAllFarmer()
+    this.api.getFarmerDetailList(localStorage.getItem('masterId')).subscribe(us => {
       this.farmers = us;
     })
     this.getNotificationByFPO();

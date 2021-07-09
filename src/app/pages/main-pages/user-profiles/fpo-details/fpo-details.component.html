@@ -184,7 +184,7 @@
                   <label class="form-check-label" for="radio2">
                     <input type="radio" class="form-check-input" name="optradio" value="sales"
                       (click)="showGraphs('sales_production')">
-                    {{'Sale Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {{'FPO Only Sales' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   </label>
                 </div>
               </div>
@@ -276,7 +276,7 @@
                 <div *ngIf="sales_production" class="row">
                   <div class="col-md-6 col-sm-12">
                     <div class="row px-5 mb-2">
-                      <strong> {{'Total Sales Production in Rabi season (in Qt.)' | translate}}</strong>
+                      <strong> {{'FPO Total Sales in Rabi season (in Qt.)' | translate}}</strong>
                     </div>
                     <div class="row mb-4" style="border-bottom: solid;">
                       <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionRabi"
@@ -288,7 +288,7 @@
                   </div>
                   <div class="col-md-6 col-sm-12">
                     <div class="row px-5 mb-2">
-                      <strong> {{'Total Sales Production in Zayad season (in Qt.)' | translate}}</strong>
+                      <strong> {{'FPO Total Sales in Zayad season (in Qt.)' | translate}}</strong>
                     </div>
                     <div class="row mb-4" style="border-bottom: solid;">
                       <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionZayad"
@@ -300,7 +300,7 @@
                   </div>
                   <div class="col-md-6 col-sm-12">
                     <div class="row px-5 mb-2">
-                      <strong> {{'Total Sales Production in Kharif season (in Qt.)' | translate}}</strong>
+                      <strong> {{'FPO Total Sales in Kharif season (in Qt.)' | translate}}</strong>
                     </div>
                     <div class="row mb-4" style="border-bottom: solid;">
                       <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionKharif"

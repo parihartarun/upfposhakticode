@@ -847,5 +847,9 @@
   "Pre-PFO Registration":"Pre-PFO Registration",
   "Post-PFO Registration":"Post-PFO Registration",
   "Select Guideline Type":"Select Guideline Type",
-  "Guideline type is required":"Guideline type is required"
+  "Guideline type is required":"Guideline type is required",
+  "FPO Only Sales": "Sales Info",
+  "FPO Total Sales in Rabi season (in Qt.)":"Total Sales in Rabi Season (in Qt.)",
+  "FPO Total Sales in Zayad season (in Qt.)":"Total Sales in Zayad Season (in Qt.)",
+  "FPO Total Sales in Kharif season (in Qt.)":"Total Sales in Kharif Season (in Qt.)"
 }

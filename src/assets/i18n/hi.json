@@ -862,5 +862,9 @@
   "Registered Under":"के तहत पंजीकृत",
   "Company Act":"कंपनी अधिनियम",
   "Society Act":"समाज अधिनियम",
-  "Small":"लघु"
+  "Small":"लघु",
+  "FPO Only Sales": "बिक्री",
+  "FPO Total Sales in Rabi season (in Qt.)":"रबी सीजन में कुल बिक्री (क्विन्टल में)",
+  "FPO Total Sales in Zayad season (in Qt.)":"ज़ैद सीजन में कुल बिक्री (क्विन्टल में)",
+  "FPO Total Sales in Kharif season (in Qt.)":"खरीफ सीजन में कुल बिक्री (क्विन्टल में)"
 }
