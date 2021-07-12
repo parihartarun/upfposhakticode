@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -629,6 +630,10 @@ export class FpoService {
     return this.http.put<any>(this._url + 'api/Farmer/deactivateFarmerUser', user).pipe(map((res: any) => {
       return res;
     }));
+  }
+
+  getFPOMachineryList(data: any): Observable<any>{
+    return this.http.post<any>(this._url + 'inputsupplier/machinery/getall', data)
   }
 
 }

@@ -851,5 +851,11 @@
   "FPO Only Sales": "Sales Info",
   "FPO Total Sales in Rabi season (in Qt.)":"Total Sales in Rabi Season (in Qt.)",
   "FPO Total Sales in Zayad season (in Qt.)":"Total Sales in Zayad Season (in Qt.)",
-  "FPO Total Sales in Kharif season (in Qt.)":"Total Sales in Kharif Season (in Qt.)"
+  "FPO Total Sales in Kharif season (in Qt.)":"Total Sales in Kharif Season (in Qt.)",
+  "Quantity (Kg)": "Quantity (Kg)",
+  "Created To": "Created To",
+  "Sold To": "Sold To",
+  "Sold To Placeholder": "Please enter sold to",
+  "Sold To required": "Sold to is required",
+  "Status of Complaint/ Suggestion (As per FPO)": "Status of Complaint/ Suggestion (As per FPO)"
 }

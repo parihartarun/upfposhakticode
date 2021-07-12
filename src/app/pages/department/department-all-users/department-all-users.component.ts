@@ -63,7 +63,7 @@ export class DepartmentAllUsersComponent implements OnInit {
     private toastr: ToastrService,
     private excelService:ExcelService
   ) { 
-    this.siteUrl = environment.siteUrl;
+    // this.siteUrl = environment.siteUrl;
   }
 
   ngOnInit(): void {

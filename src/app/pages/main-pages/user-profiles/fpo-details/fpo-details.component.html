@@ -610,24 +610,29 @@
                   <table class="table align-items-center table-flush ">
                     <thead class="thead-light">
                       <tr>
-                        <th scope="col" class="text-right">{{'SR. NO'|translate}}</th>
-                        <th scope="col" class="sort text-left" (click)="onClickOrderBy('equpment_name')">
+                        <th scope="col">{{'SR. NO'|translate}}</th>
+                        <th scope="col" class="sort" (click)="onClickOrderBy('type')">
+                          {{'Machinery Category' | translate}}</th>
+                        <th scope="col" class="sort" (click)="onClickOrderBy('equpment_name')">
                           {{'Name of Equipment' | translate}}</th>
-                        <th scope="col" class="sort text-center" (click)="onClickOrderBy('equpment_no')">
-                          {{"No. of Equipment" | translate}}</th>
+                        <th scope="col" class="sort" (click)="onClickOrderBy('quantity')">
+                          {{'Quantity1' | translate}}</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr
                         *ngFor="let m of machinerary | tableSearch:searchText4  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: s } let i=index">
-                        <td class="text-right">
+                        <td>
                           {{(s-1) * 10 + i + 1}}
                         </td>
-                        <td class="text-left">
+                        <td>
+                          {{m.type}}
+                        </td>
+                        <td>
                           {{m.equpment_name}}
                         </td>
-                        <td class="text-center">
-                          {{m.equpment_no}}
+                        <td>
+                          {{m.quantity}}
                         </td>
                       </tr>
                     </tbody>

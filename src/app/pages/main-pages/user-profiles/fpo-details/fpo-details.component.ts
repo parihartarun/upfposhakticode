@@ -223,7 +223,13 @@ console.log(this.fpoId,"Id");
 
 
   getFarmMachineryBankByFpo() {
-    this.api.getFarmMachineryBankByFpo(this.fpoId).subscribe((res: any) => {
+
+    let data = {
+      masterId: this.fpoId,
+      roleId: "4"
+    }
+
+    this.api.getFPOMachineryList(data).subscribe((res: any) => {
       console.log(res);
       if (res) {
         this.machinerary = res;

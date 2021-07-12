@@ -68,6 +68,33 @@
                   </div>
                 </div>
               </div>
+              <!-- /.row -->
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">{{'Sold To'|translate}}<span class="required">*</span></label>
+                    <input formControlName="companySoldTo" type="text" id="input-email" class="form-control form-control-alternative" [placeholder]="'Sold To Placeholder' | translate" >
+
+                    <div *ngIf="submitted && formControls.companySoldTo.errors" class="text-danger">
+                      <div *ngIf="formControls.companySoldTo.errors.required">{{'Sold To required'|translate}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="delLoc">{{'fpodeliveryaddr'|translate}}<span class="required">*</span></label>
+                    <!-- <input formControlName="delAddress" type="text" id="delLoc" class="form-control form-control-alternative" > -->
+                    <textarea class="form-control" id="input-delivery" placeholder="{{'enterfpodeliveryaddr'|translate}}"
+                    formControlName="deliveryAddress"></textarea>
+                    <div *ngIf="submitted && formControls.deliveryAddress.errors" class="text-danger">
+                      <div *ngIf="formControls.deliveryAddress.errors.required">{{'deleiveryrequired'| translate}}</div>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+
+
               <div class="card-footer py-4 text-center">
                 <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addFpoSalesInfo()">
                   {{'Save'| translate}}

@@ -866,5 +866,11 @@
   "FPO Only Sales": "बिक्री",
   "FPO Total Sales in Rabi season (in Qt.)":"रबी सीजन में कुल बिक्री (क्विन्टल में)",
   "FPO Total Sales in Zayad season (in Qt.)":"ज़ैद सीजन में कुल बिक्री (क्विन्टल में)",
-  "FPO Total Sales in Kharif season (in Qt.)":"खरीफ सीजन में कुल बिक्री (क्विन्टल में)"
+  "FPO Total Sales in Kharif season (in Qt.)":"खरीफ सीजन में कुल बिक्री (क्विन्टल में)",
+  "Quantity (Kg)": "मात्रा (किलोग्राम)",
+  "Created To": "किस हितधारक लिए बना",
+  "Sold To": "किसे बिक्री किया",
+  "Sold To Placeholder": "किसे बिक्री किया दर्ज करें",
+  "Sold To required": "किसे बिक्री किया आवश्यक है",
+  "Status of Complaint/ Suggestion (As per FPO)": "शिकायत की स्थिति / सुझाव (एफपीओ के अनुसार)"
 }

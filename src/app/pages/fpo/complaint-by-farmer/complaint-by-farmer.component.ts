@@ -83,7 +83,7 @@ export class ComplaintByFarmerComponent implements OnInit {
     const formData: FormData = new FormData();
  
     formData.append('id', this.complaintStatusForm.value.id);
-    formData.append('assign_to', this.complaintStatusForm.value.assign_to);
+    // formData.append('assign_to', this.complaintStatusForm.value.assign_to);
     formData.append('comment', this.complaintStatusForm.value.comment);
     formData.append('status', this.complaintStatusForm.value.status);
  
@@ -109,7 +109,7 @@ export class ComplaintByFarmerComponent implements OnInit {
   reset() {
     this.submitted = false;
     this.edit = false;
-    this.complaintForm.reset();
+    this.complaintStatusForm.reset();
   }
   close() {
     this.isViewComplaint = false;
@@ -133,8 +133,8 @@ export class ComplaintByFarmerComponent implements OnInit {
     let myDate = new Date();
     this.complaintStatusForm = this.formBuilder.group({
       id: [complaint.id],
-      assign_to: ['', [Validators.required]],
-      appointmentDate: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
+      // assign_to: ['', [Validators.required]],
+      // appointmentDate: this.datePipe.transform(new Date(), 'dd/MM/yyyy'),
       comment: ['', [Validators.required]],
       status: ['', [Validators.required]],
     });

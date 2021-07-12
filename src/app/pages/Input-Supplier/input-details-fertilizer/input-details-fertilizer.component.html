@@ -109,7 +109,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Quantity1' | translate}}<span class="required">*</span></label>
+                                        <label>{{'Quantity (Kg)' | translate}}<span class="required">*</span></label>
                                         <input type="text" id="input-first-name" formControlName="quantity"
                                             class="form-control form-control-alternative" appOnlynumber>
                                         <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
@@ -153,7 +153,7 @@
                                 <th scope="col">{{'S.No' | translate}}</th>
                                 <th scope="col"> {{'Fertilizer Type' | translate}}</th>
                                 <th scope="col">{{'Fetilizer Grade' | translate}}</th>
-                                <th scope="col">{{'Quantity1' | translate}}</th>
+                                <th scope="col">{{'Quantity (Kg)' | translate}}</th>
                                 <th scope="col">{{'Name of Manufacturer' | translate}}</th>
 
                                 <th scope="col"></th>
@@ -169,7 +169,7 @@
                                 <td>
                                     {{fdata.fertilizer_grade}}
                                 </td>
-                                <td>{{fdata.quantity}}</td>
+                                <td>{{fdata.quantity}} Kg</td>
                                 <td>
                                     {{fdata.manufacturer_name}}
                                 </td>
