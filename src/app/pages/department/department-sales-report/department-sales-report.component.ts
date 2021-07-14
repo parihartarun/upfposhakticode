@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/_services/department/department.service';
 import { CommonService } from 'src/app/_services/common/common.service';
+import { ExcelService } from '../../../_services/Excel/excel.service';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-department-sales-report',
@@ -29,7 +32,8 @@ export class DepartmentSalesReportComponent implements OnInit {
     private formBuilder: FormBuilder,
     private api: DepartmentService,
     private common: CommonService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private excelService:ExcelService
   ) { }
 
   ngOnInit(): void {
@@ -99,6 +103,58 @@ export class DepartmentSalesReportComponent implements OnInit {
       'order': this.orderBy.order == 'asc' ? 'desc' : 'asc',
       'key': key
     };
+  }
+
+  exportAsXLSX(data):void {
+    var sales = [];
+    data.forEach( (element) => {
+      var obj = {
+        'FPO Name' : element.fpo_name,
+        'District Name' : element.district_name,
+        'Crop Name' : element.crop_name,
+        'Crop Variety' : element.crop_veriety,
+        'Sold Quantity' : element.sold_quantity
+      }
+      sales.push(obj);
+    });
+    this.excelService.exportAsExcelFile(sales, 'Sales_Report');
+  }
+
+  createPdf(data) {
+    var sales = [];
+
+    var headers = [['FPO Name', 'District Name', 'Crop Name', 'Crop Variety', 'Sold Quantity']]
+    data.forEach( (element) => {
+      var arr = [element.fpo_name, 
+        element.district_name,
+        element.crop_name,
+        element.crop_veriety,
+        element.sold_quantity
+      ]
+      sales.push(arr);
+    });
+
+    var doc = new jsPDF();
+
+    doc.setFontSize(10);
+    //doc.text('Production Report', 11, 8);
+    doc.setFontSize(8);
+    doc.setTextColor(100);
+
+    (doc as any).autoTable({
+      head: headers,
+      body: sales,
+      theme: 'plain',
+      didDrawCell: data => {
+        console.log(data.column.index)
+      }
+    })
+
+    // below line for Open PDF document in new tab
+    //doc.output('dataurlnewwindow')
+
+    // below line for Download PDF document  
+    doc.save('sales_report.pdf');
   }
 
 }

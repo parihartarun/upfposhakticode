@@ -42,10 +42,7 @@ export class FarmerDashboardComponent implements OnInit {
   yAxisLabel: string = 'Quantity (in Qt.)';
   goBackUrl = '';
   colorScheme = {
-    domain: ['blue', '#ca1a1a']
-  };
-  colorScheme1 = {
-    domain: ['#a29974', '#ca1a1a', '#f9b605', '#0e6655']
+    domain: ['blue']
   };
 
   notifications = [];
@@ -163,7 +160,7 @@ export class FarmerDashboardComponent implements OnInit {
               "value": td[i].production
             }
           ];
-          zayadData.push(ob);
+          kharifData.push(ob);
       }
     }
     this.markatableProductionRabi = rabiData;

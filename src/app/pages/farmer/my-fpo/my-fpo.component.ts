@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ɵConsole } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { GetTranslationService } from 'src/app/_helpers/get-translation.service';
@@ -82,10 +82,7 @@ export class MyFpoComponent implements OnInit {
   multi = [];
   goBackUrl = '';
   colorScheme = {
-    domain: ['blue', '#ca1a1a']
-  };
-  colorScheme1 = {
-    domain: ['#a29974', '#ca1a1a', '#f9b605', '#0e6655']
+    domain: ['blue']
   };
   
   constructor(private modalService: NgbModal,
@@ -107,10 +104,9 @@ export class MyFpoComponent implements OnInit {
       this.goBackUrl = localStorage.getItem('fpoSearchUrl');
 
       this.api.getfpoDetialById(this.fpoId).subscribe((res: any) => {
-        if (res) {
           this.fpo = res;
-        }
-      });
+          console.log(res);
+        });
 
       this.api.getById(this.fpoId).subscribe(response => {
         this.data1 = response;

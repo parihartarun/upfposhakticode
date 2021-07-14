@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/_services/user/user.service';
 import { environment } from 'src/environments/environment';
 import { ExcelService } from '../../../_services/Excel/excel.service';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 @Component({
   selector: 'app-department-all-users',
@@ -28,33 +30,6 @@ export class DepartmentAllUsersComponent implements OnInit {
   activePagination = 1;
   searchTextActive = '';
   orderByActive: { order: string, key: string } = { order: '', key: '' };
-
-  title = 'exportExcelInAngular';
-  dataOfFootballers: any = [{
-    playerName: 'Cristiano Ronaldo',
-    playerCountry: 'Pourtgal',
-    playerClub: 'Juventus'
-  },
-  {
-    playerName: 'Lionel Messi',
-    playerCountry: 'Argentina',
-    playerClub: 'Barcelona'
-  },
-  {
-    playerName: 'Neymar Junior',
-    playerCountry: 'Brazil',
-    playerClub: 'PSG'
-  },
-  {
-  playerName: 'Tonni Kroos',
-  playerCountry: 'Germany',
-  playerClub: 'Real Madrid'
-  },
-  {
-    playerName: 'Paul Pogba',
-    playerCountry: 'France',
-    playerClub: 'Manchester United'
-  }];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -97,7 +72,6 @@ export class DepartmentAllUsersComponent implements OnInit {
       this.allData = resp;
       this.activeUsers = this.allData.filter(u => u.enabled == true);
       this.deActiveUsers = this.allData.filter(u => u.enabled == false);
-
     });
   }
 
@@ -180,7 +154,57 @@ export class DepartmentAllUsersComponent implements OnInit {
     };
   }
 
-  exportAsXLSX():void {
-    this.excelService.exportAsExcelFile(this.dataOfFootballers, 'footballer_data');
+  exportAsXLSX(data, userType):void {
+    var users = [];
+    data.forEach( (element) => {
+      var obj = {
+        'User Name' : element.user_name,
+        'FPO Name' : element.fpo_name,
+        'District Name' : element.district_name,
+        'Registration Date' : element.date_of_regi,
+        'FPO Landline' : element.fpo_landline,
+        'FPO Email' : element.fpo_email
+      }
+      users.push(obj);
+    });
+    this.excelService.exportAsExcelFile(users, 'All_'+userType+'_Users');
+  }
+
+  createPdf(data, userType) {
+    var userdata = [];
+
+    var headers = [['User Name', 'FPO Name', 'District Name', 'Registration Date', 'FPO Landline', 'FPO Email']]
+    data.forEach( (element) => {
+      var arr = [element.user_name, 
+        element.fpo_name,
+        element.district_name,
+        element.date_of_regi,
+        element.fpo_landline,
+        element.fpo_email
+      ]
+      userdata.push(arr);
+    });
+
+    var doc = new jsPDF();
+
+    doc.setFontSize(10);
+    //doc.text('Production Report', 11, 8);
+    doc.setFontSize(8);
+    doc.setTextColor(100);
+
+    (doc as any).autoTable({
+      head: headers,
+      body: userdata,
+      theme: 'plain',
+      didDrawCell: data => {
+        console.log(data.column.index)
+      }
+    })
+
+    // below line for Open PDF document in new tab
+    //doc.output('dataurlnewwindow')
+
+    // below line for Download PDF document  
+    doc.save(userType+'_user_report.pdf');
   }
 }

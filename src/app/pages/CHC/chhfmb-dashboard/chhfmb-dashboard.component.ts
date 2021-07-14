@@ -38,12 +38,9 @@ export class ChhfmbDashboardComponent implements OnInit {
 
   goBackUrl = '';
   colorScheme = {
-    domain: ['blue', '#ca1a1a']
+    domain: ['blue']
   };
-  colorScheme1 = {
-    domain: ['#a29974', '#ca1a1a', '#f9b605', '#0e6655']
-  };
-
+  
   constructor(private api:ChcFmbService) { 
   }
 

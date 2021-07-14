@@ -57,8 +57,8 @@
   <!-- Table -->
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary text-right mb-2">{{'Export PDF'|translate}}</button>
-      <button class="btn btn-warning text-right mb-2">{{'Export Excel'|translate}}</button>
+      <button class="btn btn-primary text-right mb-2" (click)="createPdf(production)">{{'Export PDF'|translate}}</button>
+      <button class="btn btn-warning text-right mb-2" (click)="exportAsXLSX(production)">{{'Export Excel'|translate}}</button>
     </div>
   </div>
   <div class="row">

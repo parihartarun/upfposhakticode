@@ -84,15 +84,15 @@
   <!-- Table -->
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary text-right mb-2">{{'Export PDF' | translate}}</button>
-      <button class="btn btn-warning text-right mb-2">{{'Export Excel' | translate}}</button>
+      <button class="btn btn-primary text-right mb-2" (click)="createPdf(reportData)">{{'Export PDF' | translate}}</button>
+      <button class="btn btn-warning text-right mb-2" (click)="exportAsXLSX(reportData)">{{'Export Excel' | translate}}</button>
     </div>
   </div>
   <div class="row">
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <div class="row">
+          <div class="row"> 
             <div class="col-9">
               <h3 class="mb-0">{{'Production Data' | translate}}</h3>
             </div>
@@ -110,7 +110,7 @@
             <div>
             </div>
           </div>
-          <div class="table-responsive">
+          <div class="table-responsive" #content>
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
@@ -134,7 +134,6 @@
               <tbody>
                 <tr
                   *ngFor="let p of reportData | tableSearch:searchText  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: p }">
-
                   <td>
                     {{p.district_name}}
                   </td>
