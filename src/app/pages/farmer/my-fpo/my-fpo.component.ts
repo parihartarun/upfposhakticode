@@ -38,7 +38,7 @@ export class MyFpoComponent implements OnInit {
   public actual_production = false;
   public sales_production = false;
 
-  public totals = {
+  public totals :any = {
     otherFarmers: 0,
     farmers: 0,
     marginalFarmers: 0,
@@ -143,12 +143,13 @@ export class MyFpoComponent implements OnInit {
       { key: 'licenceValidTill', title: 'Licenses To' },
     ];
     this.machinaryBColumn = [
+      { key: 'type', title: 'Machinery Category' },
       { key: 'equpment_name', title: 'Name Of Equipment' },
-      { key: 'equpment_no', title: 'No Of Equipment' },
+      { key: 'quantity', title: 'Quantity1' },
     ];
     this.productionColumn = [
       { key: 'crop_name', title: 'Crops' },
-      { key: 'season_name', title: 'Season' },
+      { key: 'veriety', title: 'Crop Variety' },
       { key: 'total_markatable', title: 'Marketable Surplus 2021 (In Qt.)' },
       { key: 'total_sold', title: 'SOLD QUANTITY 2021 (IN QT.)' },
     ];
@@ -181,7 +182,12 @@ export class MyFpoComponent implements OnInit {
 
 
   getFarmMachineryBankByFpo() {
-    this.api.getFarmMachineryBankByFpo(this.fpoId).subscribe((res: any) => {
+    let data = {
+      masterId: this.fpoId,
+      roleId: "4"
+    }
+
+    this.api.getFPOMachineryList(data).subscribe((res: any) => {
       if (res) {
         this.machinerary = res;
       }

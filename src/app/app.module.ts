@@ -134,6 +134,7 @@ import { TermsConditionComponent } from './pages/footer-content/terms-condition/
 import { DistrictListComponent } from './pages/district-list/district-list.component';
 import { IndentRaisedComponent } from './pages/fpo/indent-raised/indent-raised.component';
 import { IndentForFulfillmentComponent } from './pages/fpo/indent-for-fulfillment/indent-for-fulfillment.component';
+import { AlphaNumericDirective } from './directive/form-input/alpha-numeric.directive';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -273,7 +274,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ListFilterPipe,
     DistrictListComponent,
     IndentRaisedComponent,
-    IndentForFulfillmentComponent, 
+    IndentForFulfillmentComponent,
+    AlphaNumericDirective, 
 
   ],
   exports: [

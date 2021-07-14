@@ -21,6 +21,12 @@ export class LicenseComponent implements OnInit {
   edit = false;
   licensesTypes:Array<any> = [];
 
+  // related to files upload
+  checkfileFormat = false;
+  fileToUpload: File = null;
+  fileToEdit:string;
+  filePathToEdit:string;
+
   constructor(
     private formBuilder: FormBuilder,
     private api: FpoService,
@@ -37,7 +43,8 @@ export class LicenseComponent implements OnInit {
       licenceValidTill: [''],
       fpoRefId:localStorage.getItem('masterId'),
       masterId:localStorage.getItem('masterId'),
-      id:['']
+      id:[''],
+      licenceFile:['', [Validators.required]]
     });
     this.getLicense();
     this.getLicenseTypes();
@@ -80,11 +87,26 @@ addLicense() {
     fpoRefId:localStorage.getItem('masterId'),
     masterId:localStorage.getItem('masterId')
   });
-  this.api.addLicense(this.licenseForm.value).subscribe(response => {
+
+  // console.log(this.licenseForm.value);
+
+  let value = this.licenseForm.value;
+
+  let formData = new FormData();
+  formData.append('licenceType', value.licenceType);
+  formData.append('liceneceNumber', value.liceneceNumber);
+  formData.append('issuedate', value.issuedate);
+  formData.append('licenceValidTill', value.licenceValidTill);
+  formData.append('fpoRefId', value.fpoRefId);
+  formData.append('masterId', value.masterId);
+  formData.append('file', this.fileToUpload);
+
+  this.api.addLicense(formData).subscribe(response => {
     console.log(response)
     if(response.id != ''){
         this.toastr.success('License Added Successfully.');
         this.submitted = false;
+        this.fileToUpload = null;
         this.licenseForm.reset();
         this.getLicense();
     }else{
@@ -98,6 +120,13 @@ addLicense() {
 }
 
 editLicense(license){
+
+  if(license.filePath != null){
+    var pathParts = license.filePath.split("/");
+    this.fileToEdit = pathParts[pathParts.length - 1];
+    this.filePathToEdit = license.filePath;
+  }
+
   console.log(license);
   this.licenseForm = this.formBuilder.group({
     licenceType: [license.licenceType, [Validators.required]],
@@ -107,7 +136,8 @@ editLicense(license){
     licenceValidTill: [license.licenceValidTill],
     fpoRefId:localStorage.getItem('masterId'),
     masterId:localStorage.getItem('masterId'),
-    id:[license.id]
+    id:[license.id],
+    licenceFile:['']
   });
   //this.licenseForm.get('issuedate').patchValue(this.formatDate(license.issuedate));
   //this.licenseForm.get('licenceValidTill').patchValue(this.formatDate(license.licenceValidTill));
@@ -133,12 +163,15 @@ updateLicense(){
   if (this.licenseForm.invalid) {
       return;
   }
-  this.api.updateLicense(this.licenseForm.value).subscribe(response => {
+
+
+  this.api.updateLicense(this.licenseForm.value, this.licenseForm.value.id).subscribe(response => {
     console.log(response);
     if(response.id != ''){
       this.toastr.success('License Updated Successfully.');
       this.submitted = false;
       this.edit = false;
+      this.fileToUpload = null;
       this.licenseForm.reset();
     }else{
         this.toastr.error('Error! While Updating License.');
@@ -177,6 +210,31 @@ resetForm(){
 
 get formControls(){
   return this.licenseForm.controls;
+}
+
+handleFileInput(files: FileList) {
+  console.log(files);
+  this.fileToUpload = files.item(0);
+
+  if (!this.validateFile(files[0].name)) {
+    this.checkfileFormat = true;
+    this.fileToUpload = null;
+    this.licenseForm.get('licenceFile').setValue('');
+    return;
+  }
+  else {
+    this.checkfileFormat = false;
+  }
+}
+
+validateFile(name: String) {
+  let ext = name.substring(name.lastIndexOf('.') + 1);
+  if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpg" || ext.toLowerCase() == "jpeg") {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 }

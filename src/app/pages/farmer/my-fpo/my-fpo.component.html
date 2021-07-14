@@ -1,5 +1,5 @@
   <!-- Page Content -->
-  <section class="py-5">
+  <section class="py-5 container-fluid">
     <div class="container">
       <div class="card card-profile shadow py-0 mt-3">
         <!-- <div class="card-header p-0">
@@ -16,6 +16,7 @@
                   <tr>
                     <th scope="col">{{'FPO Name' | translate}}</th>
                     <th scope="col">{{'Email' | translate}}</th>
+                    <th scope="col">{{'Mobile' | translate}}</th>
                     <th scope="col">{{'Agency (associated with)' | translate}}</th>
                     <th scope="col">{{'Address' | translate}}</th>
                   </tr>
@@ -27,6 +28,9 @@
                     </td>
                     <td>
                       {{fpo.fpoEmail}}
+                    </td>
+                    <td>
+                      {{fpo.fpolandLine}}
                     </td>
                     <td>
                       {{fpo.agency}}
@@ -68,7 +72,7 @@
                   <div class="number text-center" style="margin: 10px;">
                     <h3>
                       <small>
-                        {{fpo.totalfarmers}}</small>
+                        {{totals.totalFpoFarmer}}</small>
                       <br>
                       <small> {{'Total Farmers' | translate}}</small>
                       <br>
@@ -86,7 +90,7 @@
                   <div class="number text-center" style="margin: 10px;">
                     <h3>
                       <small>
-                        {{fpo.totalland}}</small>
+                        {{totals.landArea}}</small>
                       <br>
                       <small> {{'Total Land (in Ha.)' | translate}}</small>
                       <br>
@@ -183,7 +187,7 @@
                   <div class="form-check">
                     <label class="form-check-label" for="radio2">
                       <input type="radio" class="form-check-input" name="optradio" value="sales" (click)="showGraphs('sales_production')">
-                      {{'Sale Production' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      {{'FPO Only Sales' | translate}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </label>
                   </div>
                 </div>
@@ -272,7 +276,7 @@
                     <div *ngIf="sales_production" class="row">
                       <div class="col-md-6 col-sm-12">
                         <div class="row px-5 mb-2">
-                          <strong> {{'Total Sales Production in Rabi season (in Qt.)' | translate}}</strong>
+                          <strong> {{'FPO Total Sales in Rabi season (in Qt.)' | translate}}</strong>
                         </div>
                         <div class="row mb-4" style="border-bottom: solid;">
                           <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionRabi"
@@ -284,7 +288,7 @@
                       </div>
                       <div class="col-md-6 col-sm-12" >
                         <div class="row px-5 mb-2">
-                          <strong> {{'Total Sales Production in Zayad season (in Qt.)' | translate}}</strong>
+                          <strong> {{'FPO Total Sales in Zayad season (in Qt.)' | translate}}</strong>
                         </div>
                         <div class="row mb-4" style="border-bottom: solid;">
                           <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionZayad"
@@ -296,7 +300,7 @@
                       </div>
                       <div class="col-md-6 col-sm-12" >
                         <div class="row px-5 mb-2">
-                          <strong> {{'Total Sales Production in Kharif season (in Qt.)' | translate}}</strong>
+                          <strong> {{'FPO Total Sales in Kharif season (in Qt.)' | translate}}</strong>
                         </div>
                         <div class="row mb-4" style="border-bottom: solid;">
                           <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme1" [results]="salesProductionKharif"

@@ -215,6 +215,10 @@ export class CropShowingDetailsComponent implements OnInit {
       this.toastr.success('Crop Sowing Details Added Successfully.');
       this.submitted = false;
       this.cropSowingForm.reset();
+
+      // this.formArr.clear();
+      // this.addNewRow();
+
       this.getCropSowingDetails();
     },
       err => {

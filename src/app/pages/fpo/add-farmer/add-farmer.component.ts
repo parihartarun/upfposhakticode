@@ -85,7 +85,7 @@ export class AddFarmerComponent implements OnInit {
   
   createFpoFarmerForm() {
     this.fpoAddFarmerForm = this.fb.group({
-        farmerLotNo:['', Validators.required],
+        farmerLotNo:[''], // Validators.required
         accountNo : [''],
         bankRefId: [''],
         blockRef:['', Validators.required],
@@ -100,7 +100,7 @@ export class AddFarmerComponent implements OnInit {
         parantsName: ['', Validators.required],
         pincode: ['', [Validators.required, Validators.pattern("[0-9 ]{6}")]],
         stateref: 0,
-        userName: [''],
+        userName: ['', Validators.required],
         userRefId: localStorage.getItem('userId'),
         villRefId: ['', Validators.required],
         villagePanchayatId: ['', Validators.required],
@@ -184,7 +184,7 @@ export class AddFarmerComponent implements OnInit {
         ifscCode: [farmerDetails.ifscCode],
         parantsName: [farmerDetails.parantsName, Validators.required],
         pincode: [farmerDetails.pincode, [Validators.required, Validators.pattern("[0-9 ]{6}")]],        
-        userName: [farmerDetails.userFar.userName],
+        userName: [farmerDetails.userFar.userName, Validators.required],
         villRefId: [farmerDetails.villRefId, Validators.required],
         villagePanchayatId: [farmerDetails.villagePanchayatId, Validators.required],
         userFar: [farmerDetails.userFar],

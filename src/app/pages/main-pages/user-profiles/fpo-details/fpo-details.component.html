@@ -346,7 +346,7 @@
                       <th scope="col" class="sort text-left" (click)="onClickOrderBy('crop_name')">
                         {{'Crops' | translate}}</th>
                       <th scope="col" class="sort text-center" (click)="onClickOrderBy('season_name')">
-                        {{"Season" | translate}}</th>
+                        {{"Crop Variety" | translate}}</th>
                       <th scope="col" class="sort text-center" (click)="onClickOrderBy('total_markatable')">
                         {{'Marketable Surplus (in Qt.)' | translate}}</th>
                       <th scope="col" class="sort text-center" (click)="onClickOrderBy('total_sold')">
@@ -363,7 +363,7 @@
                         {{prod.crop_name}}
                       </td>
                       <td class="text-center">
-                        {{prod.season_name}}
+                        {{prod.veriety}}
                       </td>
                       <td class="text-center">
                         {{prod.total_markatable}}

@@ -73,6 +73,17 @@
                     </div>   
                   </div>
                 </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-cotrol-lable" for="licenceFile">{{'Upload Photo' | translate}}<span class="required">*</span></label>
+                    <input formControlName="licenceFile" (change)="handleFileInput($event.target.files)" type="file" id="licenceFile" class="form-control form-control-alternative" accept="image/*">
+                      <!-- <span *ngIf="edit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span> -->
+                      <div *ngIf="submitted && formControls.licenceFile.errors" class="text-danger">
+                        <div *ngIf="formControls.licenceFile.errors.required">{{'File is required' | translate}}</div>
+                      </div>
+                      <div *ngIf="checkfileFormat" class="text-danger">{{'only png,jpeg,jpg format is allow'| translate}}</div>
+                  </div>
+                </div>
               </div>
 
               <div class="card-footer py-4 text-center">
@@ -116,6 +127,7 @@
                 <th scope="col">{{"License Number" | translate}}</th>
                 <th scope="col">{{"Issued Date" | translate}}</th>
                 <th scope="col">{{"Valid Till Date" | translate}}</th>
+                <th scope="col">{{"File" | translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -138,6 +150,11 @@
                 </td>
                 <td>
                   {{license.licenceValidTill}}
+                </td>
+                <td>
+                  <a download href="{{license.filePath}}" target="_blank">
+                    <i style=" height:20px; width:30px"  class="fas fa-file"></i>
+                  </a>             
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">

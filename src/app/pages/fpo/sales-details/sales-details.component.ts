@@ -107,6 +107,8 @@ export class SalesDetailsComponent implements OnInit {
       cropRefName: [sale.crop_id, [Validators.required]],
       verietyId: [sale.veriety_id, [Validators.required]],
       soldQuantity: [sale.sold_quantity, [Validators.required]],
+      companySoldTo: [sale.soldTo, [Validators.required]],
+      deliveryAddress: [sale.delAddress, [Validators.required]],
       fpoId:localStorage.getItem('masterId'),
       masterId:localStorage.getItem('masterId'),
       id:[sale.id]

@@ -190,8 +190,8 @@ export class FpoService {
     }));
   }
 
-  updateLicense(data) {
-    return this.http.put<any>(this._url + 'api/fpo/license/updateLicense/' + data.id, data).pipe(map((res: any) => {
+  updateLicense(data, id) {
+    return this.http.put<any>(this._url + 'api/fpo/license/updateLicense/' + id, data).pipe(map((res: any) => {
       return res;
     }));
   }
