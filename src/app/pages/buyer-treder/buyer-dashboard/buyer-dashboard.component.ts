@@ -51,7 +51,7 @@ export class BuyerDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.chartOption = 'surplus';
     this.getFinancialYears();
-    this.getDashboardDetails('2020-2021');
+    this.getDashboardDetails();
   }
 
   getFinancialYears(){
@@ -66,7 +66,7 @@ export class BuyerDashboardComponent implements OnInit {
   }
 
 
-  getDashboardDetails(finYear) {
+  getDashboardDetails() {
     this.buyerService.getDashboardData(localStorage.getItem('masterId')).subscribe(response => {
       console.log(response);
       this.totals = response;

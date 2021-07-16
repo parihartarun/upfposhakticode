@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../../_services/shared/shared.service';
+import { AppConfig  } from '../../../app.config';
 
 @Component({
   selector: 'app-auth-header',
@@ -77,4 +78,20 @@ export class AuthHeaderComponent implements OnInit {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
+  navigateToDashboard(){
+    let roleId = parseInt(localStorage.getItem('roleRefId'));
+    if( roleId === AppConfig.ROLE_DEPARTMENT){
+      this.route.navigate(['/department/dashboard']);
+    }else if(roleId === AppConfig.ROLE_FPO){
+      this.route.navigate(['/fpo/dashboard']);
+    }else if(roleId === AppConfig.ROLE_FARMER){
+      this.route.navigate(['/farmer/dashboard']);
+    }else if(roleId === AppConfig.ROLE_INPUT_SUPPLIER){
+      this.route.navigate(['/input-supplier/dashboard']);
+    }else if(roleId === AppConfig.ROLE_CHCFMB){
+      this.route.navigate(['/chcfmb/dashboard']);
+    }else if(roleId === AppConfig.ROLE_BUYER){
+      this.route.navigate(['/buyer/dashboard']);
+    }
+  }
 }

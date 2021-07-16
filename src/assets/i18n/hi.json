@@ -876,5 +876,8 @@
   "Training of Directors of Farmer Producer Companies": "फार्मर प्रोडूसर कंपनियों के निदेशकों का प्रशिक्षण",
   "Indent Quantity":"इंडेंट मात्रा",
   "Seed Name": "बीज का नाम",
-  "Seed Variety": "बीज की विविधता"
+  "Seed Variety": "बीज की विविधता",
+  "only png, jpg, jpeg, pdf, doc, docx, txt format with 2MB file size allowed": "केवल 2MB फ़ाइल आकार के साथ png, jpg, jpeg, pdf, doc, docx, txt प्रारूप की अनुमति है",
+  "only xlsx, xls, pdf, doc, docx format with 2MB file size allowed": "केवल 2MB फ़ाइल आकार के साथ xlsx, xls, pdf, doc, docx प्रारूप की अनुमति है",
+  "only png, jpg, jpeg format with 2MB file size allowed": "केवल 2MB फ़ाइल आकार के साथ png, jpg, jpeg प्रारूप की अनुमति है"
 }

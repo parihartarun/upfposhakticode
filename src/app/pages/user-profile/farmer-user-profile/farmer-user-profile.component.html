@@ -32,9 +32,7 @@
               <div class="col-6">
                 <label class="input-label">{{'Farmer Name1'|translate}} <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <input class="form-control" type="text" formControlName="farmerName">
                 </div>
                 <div *ngIf="submitted && formControls.farmerName.errors" class="text-danger">
@@ -45,10 +43,8 @@
 
                 <label class="input-label">{{'Username'|translate}}<span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
-                  <input class="form-control" type="text" formControlName="userName">
+                  
+                  <input class="form-control" type="text" formControlName="userName" readonly>
                 </div>
                 <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
                   <div *ngIf="formControls.userName.errors.required">{{'username is required'|translate}}</div>
@@ -64,9 +60,7 @@
                 <label class="input-label">{{"Farmer's Father/ Husband Name"|translate}}<span
                     class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <input class="form-control" type="text" formControlName="parantsName">
                 </div>
                 <div *ngIf="submitted && formControls.parantsName.errors" class="text-danger">
@@ -78,9 +72,7 @@
 
                 <label class="input-label">{{'Mobile' | translate}}<span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <input class="form-control" type="text" formControlName="farmerMob" appOnlynumber>
                 </div>
                 <div *ngIf="submitted && formControls.farmerMob.errors" class="text-danger">
@@ -100,9 +92,7 @@
               <div class="col-6">
                 <label class="input-label">{{'Category1'|translate}} <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <select class="form-control" formControlName="category">
                     <option value="">{{'Select Category'| translate}}</option>
                     <option value="General">{{'General1'|translate}}</option>
@@ -119,9 +109,7 @@
               <div class="col-6">
                 <label class="input-label">{{'Gender'|translate}} <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <select class="form-control" formControlName="gender">
                     <option value="">{{'Select Gender'|translate}}</option>
                     <option value="Male">{{'Male'|translate}}</option>
@@ -137,9 +125,7 @@
               <div class="col-6">
                 <label class="input-label">{{'District1'|translate}} <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <select class="form-control" formControlName="distRefId" (change)="selectDistrict($event)">
                     <option value="">{{'SelectDistrict1'|translate}}</option>
                     <option *ngFor="let district of districtlist" [value]="district.district_id">
@@ -155,9 +141,7 @@
               <div class="col-6">
                 <label class="input-label">{{'Block1'|translate}} <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <select class="form-control" formControlName="blockRef" (change)="selectBlock($event)">
                     <option value="">{{'Select Block'| translate}} </option>
                     <option *ngFor="let block of blocks" [value]="block.id">{{block.blockName}}</option>
@@ -174,9 +158,7 @@
               <div class="col-6">
                 <label class="input-label">{{'Gram Panchayat1'|translate}} <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <select class="form-control" formControlName="villagePanchayatId"
                     (change)="selectGramPanchayat($event)">
                     <option value="">{{'Select Gram Panchayat'|translate}} </option>
@@ -193,9 +175,7 @@
               <div class="col-6">
                 <label class="input-label">{{'Village'|translate}} <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <select class="form-control" formControlName="villRefId">
                     <option value="">{{'Select Village'|translate}} </option>
                     <option *ngFor="let village of villages" [value]="village.villageId">{{village.villageName}}
@@ -213,9 +193,7 @@
               <div class="col-6">
                 <label class="input-label">{{'FPO'|translate}} <span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <select class="form-control" formControlName="fpoRefId">
                     <option value="">{{'Select FPO'|translate}} </option>
                     <option *ngFor="let fpo of fpoList" [value]="fpo.fpoId">{{fpo.fpoName}}
@@ -229,9 +207,7 @@
               <div class="col-6">
                 <label class="input-label">{{'Pincode'|translate}}<span class="required">*</span></label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <input class="form-control" type="text" formControlName="pincode" appOnlynumber>
                 </div>
                 <div *ngIf="submitted && formControls.pincode.errors" class="text-danger">
@@ -250,9 +226,7 @@
               <div class="col-6">
                 <label class="input-label">{{'Bank Name'|translate}}</label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <select class="form-control" formControlName="bankRefId">
                     <option value="">{{'Select Bank Name'|translate}}</option>
                     <option *ngFor="let bank of banks" [value]="bank.bankId">{{bank.bankName}}</option>
@@ -262,9 +236,7 @@
               <div class="col-6">
                 <label class="input-label">{{'Bank Account Number1'|translate}}r</label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <input class="form-control" type="text" formControlName="accountNo" appOnlynumber>
                 </div>
               </div>
@@ -275,9 +247,7 @@
               <div class="col-6">
                 <label class="input-label">{{'IFSC'|translate}}</label>
                 <div class="input-group input-group-alternative">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"></span>
-                  </div>
+                  
                   <input class="form-control" type="text" formControlName="ifscCode">
                 </div>
               </div>

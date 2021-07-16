@@ -122,6 +122,7 @@
                     <th scope="col">{{'Quantity Required'|translate}}</th>
                     <th scope="col">{{'Fulfillment Date'|translate}}</th>
                     <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
+                    <th scope="col">{{'Remark'|translate}}</th>
                     <th scope="col">{{'status'|translate}}</th>
                     <th scope="col">{{'Actions' | translate}}</th>
                   </tr>
@@ -150,6 +151,9 @@
                  <td>
                      {{indent.deliveryAddress}}
                  </td>
+                 <td>
+                    {{indent.remark}}
+                </td>
                   <td>
                      {{indent.status}}
                  </td>     
@@ -192,7 +196,8 @@
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Created on'|translate}}</th>
                     <th scope="col">{{'Fulfillment Date'|translate}}</th>
-                    <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
+                    <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
+                    <th scope="col">{{'Remark'|translate}}</th>
                     <th scope="col">{{'status'|translate}}</th>
                     <th scope="col">{{'Actions' | translate}}</th>
                   </tr>
@@ -224,9 +229,12 @@
                     <td>
                         {{indent.fulfilmentDate | date: 'dd/MM/yyyy'}}
                     </td>
-                    <!-- <td>
-                        {{indent.enqId}}
-                    </td> -->
+                    <td>
+                      {{indent.deliveryAddress}}
+                    </td>
+                    <td>
+                      {{indent.remark}}
+                    </td>
                      <td>
                         {{indent.status}}
                     </td>    
@@ -267,11 +275,12 @@
                     <th scope="col">{{'Seed Name' | translate}}</th>
                     <th scope="col">{{"Seed Variety" | translate}}</th>
                     <th scope="col">{{'Indent Qty' | translate}}</th>
-                    <th scope="col">{{'Created To'|translate}}</th>
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Created on'|translate}}</th>
+                    <th scope="col">{{'Created To'|translate}}</th>
                     <th scope="col">{{'Fulfillment Date'|translate}}</th>
-                    <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
+                    <th scope="col">{{'fpodeliveryaddr' | translate}}</th>
+                    <th scope="col">{{'Remark'|translate}}</th>
                     <th scope="col">{{'status'|translate}}</th>
                     <th scope="col">{{'Actions' | translate}}</th>
                   </tr>
@@ -294,21 +303,23 @@
                         {{indent.indentQty}}
                     </td>
                     <td>
+                      {{indent.mobile}}
+                   </td>
+                   <td>
+                                           {{indent.created_date | date: 'dd/MM/yyyy'}}
+                                        </td>
+                    <td>
                         {{indent.created_to}}
                     </td>
-                    
                     <td>
-                       {{indent.mobile}}
-                    </td>
+                      {{indent.fufilment_date | date: 'dd/MM/yyyy'}}
+                  </td>
+                  <td>
+                    {{indent.deliveryAddress}}
+                  </td>
                     <td>
-                       {{indent.created_date | date: 'dd/MM/yyyy'}}
-                    </td>
-                    <td>
-                       {{indent.fufilment_date | date: 'dd/MM/yyyy'}}
-                    </td>
-                    <!-- <td>
-                        {{indent.enqId}}
-                    </td> -->
+                      {{indent.remark}}
+                  </td>
                      <td>
                         {{indent.status}}
                     </td>      
@@ -352,7 +363,8 @@
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Created on'|translate}}</th>
                     <th scope="col">{{'Fulfillment Date'|translate}}</th>
-                    <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
+                    <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
+                    <th scope="col">{{'Remark' | translate}}</th>
                     <th scope="col">{{'status'|translate}}</th>
                     <th scope="col">{{'Actions' | translate}}</th>
                   </tr>
@@ -390,12 +402,12 @@
                    
                     </td>
                     <td>
-                        {{indent.fulfilmentDate | date: 'dd/MM/yyyy'}}
-                   
-                    </td>
-                    <td>
-                        {{indent.enqId}}
-                    </td>
+                      {{indent.fulfilmentDate | date: 'dd/MM/yyyy'}}
+                  </td>
+                  <td>
+                    {{indent.deliveryAddress}}
+                  </td>
+                    <td>{{indent.remark}}</td>
                      <td>
                         {{indent.status}}
                     </td>    
@@ -440,7 +452,8 @@
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Created on'|translate}}</th>
                     <th scope="col">{{'Fulfillment Date'|translate}}</th>
-                    <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
+                    <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
+                    <th scope="col">{{'Remark' | translate}}</th>
                     <th scope="col">{{'status'|translate}}</th>
                     <th scope="col">{{'Actions' | translate}}</th>
                   </tr>
@@ -473,11 +486,14 @@
                         {{indent.create_date_time | date: 'dd/MM/yyyy'}}
                     </td>
                     <td>
-                        {{indent.fulfilmentDate | date: 'dd/MM/yyyy'}}
+                      {{indent.fulfilmentDate | date: 'dd/MM/yyyy'}}
+                  </td>
+                  <td>
+                    {{indent.deliveryAddress}}
+                  </td>
+                    <td>
+                      {{indent.remark}}
                     </td>
-                    <!-- <td>
-                        {{indent.enqId}}
-                    </td> -->
                      <td>
                        {{indent.status}}
                     </td>    

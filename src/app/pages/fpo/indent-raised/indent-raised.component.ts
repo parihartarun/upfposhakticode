@@ -110,43 +110,53 @@ export class IndentRaisedComponent implements OnInit {
   }
 
   cancelIndent(indentId){
-    this._buyerService.deleteIndent(indentId).subscribe(data=>{
-      this.toastr.success('Indent Raised Cancelled Successfully');
-      this.fpoService.getIndentByUserId(this.filterParams.masterId, this.filterParams.roleId).subscribe(dummy =>{
-        console.log(dummy);  
-        this.data = dummy;
-          this.indents =this.data;
-          this.totCrops =this.data.length;
-          this.loading =false;
-      });
-    })
+    if(confirm("Are you sure to cancel this indent?")) {
+      this._buyerService.deleteIndent(indentId).subscribe(data=>{
+        this.toastr.success('Indent Raised Cancelled Successfully');
+        this.fpoService.getIndentByUserId(this.filterParams.masterId, this.filterParams.roleId).subscribe(dummy =>{
+          console.log(dummy);  
+          this.data = dummy;
+            this.indents =this.data;
+            this.totCrops =this.data.length;
+            this.loading =false;
+        });
+      })
+    }
   }
 
   cancelFertilizerIndent(indentId){
-    this._buyerService.cancelFertilizerIndent(indentId).subscribe(data=>{
-        this.toastr.success('Indent Raised Cancelled Successfully.');
-        this.getIndentsRaised();
-    })
+    if(confirm("Are you sure to cancel this indent?")) {
+      this._buyerService.cancelFertilizerIndent(indentId).subscribe(data=>{
+          this.toastr.success('Indent Raised Cancelled Successfully.');
+          this.getIndentsRaised();
+      })
+    }
   }
 
   cancelSeedIndent(indentId){
-    this._buyerService.cancelSeedIndent(indentId).subscribe(data=>{
-      this.toastr.success('Indent Raised Cancelled Successfully.');
-      this.getIndentsRaised();
-    })
+    if(confirm("Are you sure to cancel this indent?")) {
+      this._buyerService.cancelSeedIndent(indentId).subscribe(data=>{
+        this.toastr.success('Indent Raised Cancelled Successfully.');
+        this.getIndentsRaised();
+      })
+    }
   }
 
   cancelInsecticidesIndent(indentId){
-    this._buyerService.cancelInsecticidesIndent(indentId).subscribe(data=>{
-      this.toastr.success('Indent Raised Cancelled Successfully.');
-      this.getIndentsRaised();
-    })
+    if(confirm("Are you sure to cancel this indent?")) {
+      this._buyerService.cancelInsecticidesIndent(indentId).subscribe(data=>{
+        this.toastr.success('Indent Raised Cancelled Successfully.');
+        this.getIndentsRaised();
+      })
+    }
   }
 
   cancelMachineryIndent(indentId){
-    this._buyerService.cancelMachineryIndent(indentId).subscribe(data=>{
-      this.toastr.success('Indent Raised Cancelled Successfully.');
-      this.getIndentsRaised();
-    })
+    if(confirm("Are you sure to cancel this indent?")) {
+      this._buyerService.cancelMachineryIndent(indentId).subscribe(data=>{
+        this.toastr.success('Indent Raised Cancelled Successfully.');
+        this.getIndentsRaised();
+      })
+    }
   }
 }

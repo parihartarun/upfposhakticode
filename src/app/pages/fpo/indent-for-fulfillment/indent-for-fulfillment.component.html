@@ -196,7 +196,7 @@
                 <th scope="col">{{'Contact Details'|translate}}</th>
                 <th scope="col">{{'Created on'|translate}}</th>
                 <th scope="col">{{'Fulfillment Date'|translate}}</th>
-                <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
+                <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
                 <th scope="col">{{'status'|translate}}</th>
                 <th scope="col">{{'Actions' | translate}}</th>
               </tr>
@@ -226,12 +226,12 @@
                 <td>
                   {{indent.create_date_time | date: 'dd/MM/yyyy'}}
                 </td>
-                <td>
+                 <td>
                   {{indent.fulfilmentDate | date: 'dd/MM/yyyy'}}
                 </td>
-                <!-- <td>
-                  {{indent.enqId}}
-                </td> -->
+                <td>
+                  {{indent.deliveryAddress}}
+                </td>
                 <td>
                   {{indent.status}}
                 </td>
@@ -276,7 +276,7 @@
               <th scope="col">{{'Created By'|translate}}</th>
               <th scope="col">{{'Contact Details'|translate}}</th>
               <th scope="col">{{'Fulfillment Date'|translate}}</th>
-              <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
+              <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
               <th scope="col">{{'status'|translate}}</th>
               <th scope="col">{{'Actions' | translate}}</th>
               </tr>
@@ -305,15 +305,12 @@
                 <td>
                   {{indent.contact_details}}
                 </td>
-                <td>
-                  {{indent.created_date | date: 'dd/MM/yyyy'}}
-                </td>
-                <td>
+                 <td>
                   {{indent.fufilment_date | date: 'dd/MM/yyyy'}}
                 </td>
-                <!-- <td>
-                  {{indent.enqId}}
-                </td> -->
+                <td>
+                  {{indent.deliveryAddress}}
+                </td>
                 <td>
                   {{indent.status}}
                 </td>
@@ -359,7 +356,7 @@
                 <th scope="col">{{'Contact Details'|translate}}</th>
                 <th scope="col">{{'Created on'|translate}}</th>
                 <th scope="col">{{'Fulfillment Date'|translate}}</th>
-                <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
+                <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
                 <th scope="col">{{'status'|translate}}</th>
                 <th scope="col">{{'Actions' | translate}}</th>
               </tr>
@@ -396,13 +393,12 @@
                   {{indent.create_date_time | date: 'dd/MM/yyyy'}}
     
                 </td>
-                <td>
+                 <td>
                   {{indent.fulfilmentDate | date: 'dd/MM/yyyy'}}
-             
                 </td>
-                <!-- <td>
-                  {{indent.enqId}}
-                </td> -->
+                <td>             
+                  {{indent.deliveryAddress}}
+                </td>
                 <td>
                   {{indent.status}}
     
@@ -452,7 +448,7 @@
               <th scope="col">{{'Contact Details'|translate}}</th>
               <th scope="col">{{'Created on'|translate}}</th>
               <th scope="col">{{'Fulfillment Date'|translate}}</th>
-              <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
+                <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
               <th scope="col">{{'status'|translate}}</th>
               <th scope="col">{{'Actions' | translate}}</th>
               </tr>
@@ -484,8 +480,11 @@
                 <td>
                   {{indent.create_date_time | date: 'dd/MM/yyyy'}}
                 </td>
-                <td>
+                 <td>
                   {{indent.fulfilmentDate | date: 'dd/MM/yyyy'}}
+                </td>
+                <td>
+                  {{indent.deliveryAddress}}
                 </td>
                 <!-- <td>
                   {{indent.enqId}}

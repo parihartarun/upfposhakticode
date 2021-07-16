@@ -35,7 +35,9 @@
                                
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Picture of Insecticide/Pesticide' | translate}}</label>
+                                        <label>{{'Upload Photo' | translate}}
+                                            <span class="text-xs ml-2 file-format-msg">({{'only png, jpg, jpeg format with 2MB file size allowed' | translate}})</span>
+                                        </label>
                                         <input type="file"  formControlName="file" (change)="upload($event.target.files)" class="form-control form-control-alternative">
                                         <span *ngIf="isEdit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>
                                     </div>

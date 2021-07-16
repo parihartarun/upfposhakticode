@@ -4,6 +4,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { GetTranslationService } from 'src/app/_helpers/get-translation.service';
 import { FpoService } from '../../../_services/fpo/fpo.service';
 import { FarmerService } from 'src/app/_services/farmer/farmer.service';
+import { CommonService } from 'src/app/_services/common/common.service';
 
 @Component({
   selector: 'app-my-fpo',
@@ -89,7 +90,8 @@ export class MyFpoComponent implements OnInit {
     public getTranslationService: GetTranslationService,
     private api: FpoService, 
     private _activatedroute: ActivatedRoute,
-    private farmerService: FarmerService) { }
+    private farmerService: FarmerService,
+    private common:CommonService) { }
 
   ngOnInit(): void {
     this.farmerService.getFarmerProfileByUsername(localStorage.getItem('masterId')).subscribe(data => {
@@ -111,9 +113,14 @@ export class MyFpoComponent implements OnInit {
       this.api.getById(this.fpoId).subscribe(response => {
         this.data1 = response;
       });
-
       this.getFpoPhohto();
-      this.getDashboardDetails('2020-2021');
+      this.common.getFinancialYears().subscribe(response => {
+        this.getDashboardDetails(response[0]);
+      },
+        err => {
+          console.log(err)
+        }
+      );
     })
   }
   async setColumnHeader() {

@@ -75,7 +75,10 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-cotrol-lable" for="licenceFile">{{'Upload Photo' | translate}}<span class="required">*</span></label>
+                    <label class="form-cotrol-lable" for="licenceFile">
+                      {{'Upload Photo' | translate}}<span class="required">*</span>
+                      <span class="text-xs ml-2 file-format-msg">({{'only png, jpg, jpeg format with 2MB file size allowed' | translate}})</span>
+                    </label>
                     <input formControlName="licenceFile" (change)="handleFileInput($event.target.files)" type="file" id="licenceFile" class="form-control form-control-alternative" accept="image/*">
                       <span *ngIf="edit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>
                       <div *ngIf="submitted && formControls.licenceFile.errors" class="text-danger">

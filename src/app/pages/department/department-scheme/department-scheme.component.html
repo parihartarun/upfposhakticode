@@ -116,10 +116,11 @@
                   </div>
                 </div>
 
-                <div class="col-lg-6"  *ngIf="fileRadio==='both' || fileRadio==='hindi_upload'">
+                <div class="col-lg-12"  *ngIf="fileRadio==='both' || fileRadio==='hindi_upload'">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
                       {{'Hindi Upload Document' | translate}} <span class="required">*</span>
+                      <span class="text-xs ml-2 file-format-msg">({{'only xlsx, xls, pdf, doc, docx format with 2MB file size allowed' | translate}})</span>
                     </label>
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
                       formControlName="hindi_desc" (change)="uploadHindi($event.target.files)" />
@@ -133,10 +134,11 @@
                 </div>
 
 
-                <div class="col-lg-6" *ngIf="fileRadio==='both' || fileRadio==='english_upload'">
+                <div class="col-lg-12" *ngIf="fileRadio==='both' || fileRadio==='english_upload'">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
                       {{'English Upload Document' | translate}} <span class="required">*</span>
+                      <span class="text-xs ml-2 file-format-msg">({{'only xlsx, xls, pdf, doc, docx format with 2MB file size allowed' | translate}})</span>
                     </label>
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
                       formControlName="file" (change)="upload($event.target.files)" />

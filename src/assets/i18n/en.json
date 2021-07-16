@@ -862,5 +862,9 @@
   "Indent Quantity": "Indent Quantity",
   "SR. NO": "SR. NO",
   "Seed Name": "Seed Name",
-  "Seed Variety": "Seed Variety"
+  "Seed Variety": "Seed Variety",
+  "only png, jpg, jpeg, pdf, doc, docx, txt format with 2MB file size allowed": "only png, jpg, jpeg, pdf, doc, docx, txt format with 2MB file size allowed",
+  "only xlsx, xls, pdf, doc, docx format with 2MB file size allowed": "only xlsx, xls, pdf, doc, docx format with 2MB file size allowed",
+  "only png, jpg, jpeg format with 2MB file size allowed": "only png, jpg, jpeg format with 2MB file size allowed"
+
 }

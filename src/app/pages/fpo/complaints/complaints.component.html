@@ -237,6 +237,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
                       {{'Attach File' | translate}}
+                      <span class="text-xs ml-2 file-format-msg">({{'only png, jpg, jpeg, pdf, doc, docx, txt format with 2MB file size allowed' | translate}})</span>
                     </label>
                     <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative" formControlName="uploadFile" (change)="upload($event.target.files)" />
                     <div *ngIf="checkfileFormat" class="text-danger">{{'This type of files are not allowed.' | translate}} </div>

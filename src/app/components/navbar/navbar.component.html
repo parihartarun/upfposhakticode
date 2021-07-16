@@ -27,13 +27,13 @@
             <span>{{'My profile' | translate}}</span>
           </a>
 
-          <a *ngIf="userRole == 'ROLE_FARMER'" routerLinkActive="active" [routerLink]="['/fpo/farmer-user-profile']"
+          <a *ngIf="userRole == 'ROLE_FARMER'" routerLinkActive="active" [routerLink]="['farmer-user-profile']"
             class="dropdown-item">
             <i class="ni ni-single-02"></i>
             <span>{{'My profile' | translate}}</span>
           </a>
           <a *ngIf="userRole == 'ROLE_BUYERSELLER'" routerLinkActive="active"
-            [routerLink]="['/indent_history/buyer-user-profile']" class="dropdown-item">
+            [routerLink]="['buyer-user-profile']" class="dropdown-item">
             <i class="ni ni-single-02"></i>
             <span>{{'My profile' | translate}}</span>
           </a>

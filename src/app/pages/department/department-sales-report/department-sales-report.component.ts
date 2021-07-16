@@ -38,7 +38,7 @@ export class DepartmentSalesReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.filterForm = this.formBuilder.group({
-      finYear: ['2020-2021', Validators.required],
+      finYear: ['', Validators.required],
       distId: ['', Validators.required],
       cropId: ['', Validators.required],
       seasonId: ['', Validators.required]

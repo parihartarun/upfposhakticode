@@ -58,7 +58,9 @@ export class ChcfmbProfileComponent implements OnInit {
     this.chcService.getUserDetails(this.userId).subscribe(data=>{ 
       console.log(data.chcFmb);
       this.profileData = data.chcFmb;
-      this.chcFmbType = this.profileData.chcFmbType;
+      if(this.profileData.chcFmbType != null){
+        this.chcFmbType = this.profileData.chcFmbType;
+      }
       
      this.api.getBlock(parseInt(this.profileData.district_id)).subscribe(block => {
         this.blocks = block;

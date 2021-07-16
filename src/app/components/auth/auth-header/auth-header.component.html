@@ -49,17 +49,23 @@
         </div>
 
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!isLoggeIn"> 
         <a class="nav-link" routerLink="/fpo_guidelines">
           <img class="nav-image" src="assets/image/img/fpomenu.png" />
           {{'FPO guidelines' | translate}} <span class="sr-only">(current)</span>
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!isLoggeIn">
         <a class="nav-link" routerLink="/schema">
           <img class="nav-image" src="assets/image/img/scemenu.png" />
           {{'Schemes' | translate}} <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggeIn">
+        <a class="nav-link" href="javascript:void(0)" (click)="navigateToDashboard()">
+          <img class="nav-image" src="assets/image/img/signup.png" />
+          {{'Dashboard' | translate}} <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item" *ngIf="!isLoggeIn">
@@ -81,6 +87,7 @@
         </a>
       </li>
     </ul>
+
     <ul class="navbar-nav ml-auto" *ngIf="isLoggeIn">
       <li class="nav-item">
         <a class="nav-link" routerLink="/">
@@ -105,7 +112,7 @@
         </div>
 
       </li>
-      <li class="nav-item">
+      <li class="nav-item" >
         <a class="nav-link" routerLink="/fpo_guidelines">
           <img class="nav-image" src="assets/image/img/fpomenu.png" />
           {{'FPO guidelines' | translate}} <span class="sr-only">(current)</span>
@@ -115,6 +122,13 @@
         <a class="nav-link" routerLink="/schema">
           <img class="nav-image" src="assets/image/img/scemenu.png" />
           {{'Schemes' | translate}} <span class="sr-only">(current)</span>
+        </a>
+      </li>
+
+     <li class="nav-item" *ngIf="isLoggeIn">
+        <a class="nav-link" href="javascript:void(0)" (click)="navigateToDashboard()">
+          <img class="nav-image" src="assets/image/img/signup.png" />
+          {{'Dashboard' | translate}} <span class="sr-only">(current)</span>
         </a>
       </li>
 

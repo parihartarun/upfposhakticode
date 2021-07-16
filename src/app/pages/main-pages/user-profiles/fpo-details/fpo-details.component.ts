@@ -133,7 +133,6 @@ console.log(this.fpoId,"Id");
 
       this.chartOption = 'surplus';
       this.getFinancialYears();
-      this.getDashboardDetails('2020-2021');
     });
 
     this.getFpoPhohto();
@@ -151,6 +150,7 @@ console.log(this.fpoId,"Id");
     this.common.getFinancialYears().subscribe(response => {
       console.log(response);
       this.finYears = response;
+      this.getDashboardDetails(response[0]);
     },
       err => {
         console.log(err)

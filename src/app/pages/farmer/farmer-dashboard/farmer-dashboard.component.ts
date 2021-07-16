@@ -72,7 +72,7 @@ export class FarmerDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getFinancialYears();
-    this.getDashboardDetails('2020-2021');
+    this.getDashboardDetails();
     this.getNotifications();
   }
 
@@ -101,7 +101,7 @@ export class FarmerDashboardComponent implements OnInit {
     );
   }
 
-  getDashboardDetails(finYear) {
+  getDashboardDetails() {
     this.api.getFarmerDashboardData(localStorage.getItem('masterId')).subscribe(response => {
       console.log(response);
       this.totals = response;

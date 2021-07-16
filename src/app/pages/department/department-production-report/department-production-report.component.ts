@@ -48,15 +48,14 @@ export class DepartmentProductionReportComponent implements OnInit {
     this.api.getSeason().subscribe(s => {
       this.seasons = s;
     });
-
+    // this.getProduction();
+    this.getFinancialYears();
     this.productionReportForm = this.formBuilder.group({
-      finYear: ['2020-2021', Validators.required],
+      finYear: ['', Validators.required],
       distId: ['', Validators.required],
       cropId: ['', Validators.required],
       seasonId: ['', Validators.required]
     });
-    // this.getProduction();
-    this.getFinancialYears();
     this.viewReport();
   }
 

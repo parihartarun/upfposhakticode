@@ -29,7 +29,7 @@
 
 
       <div class="collapse navbar-collapse" id="navbarToggleExternalContent" [ngClass]="{ in: isOpen }">
-        <ul class="navbar-nav ml-auto" *ngIf="!isLoggeIn">
+        <ul class="navbar-nav ml-auto">
           <div class="triangle-topright"></div>
           <li class="nav-item dropdown">
             <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
@@ -45,13 +45,13 @@
             </div>
 
           </li>
-          <li class="nav-item">
+          <li class="nav-item" >
             <a class="nav-link" routerLink="/fpo_guidelines">
               <img class="nav-image" src="assets/image/img/fpomenu.png" />
               {{'FPO guidelines' | translate}} <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" >
             <a class="nav-link" routerLink="/schema">
               <img class="nav-image" src="assets/image/img/scemenu.png" />
               {{'Schemes' | translate}} <span class="sr-only">(current)</span>
@@ -63,52 +63,26 @@
               {{'Login' | translate}} <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="!isLoggeIn">
             <a class="nav-link" routerLink="/register">
               <img class="nav-image" src="assets/image/img/signup.png" />
               {{'Sign Up' | translate}} <span class="sr-only">(current)</span>
             </a>
           </li>
-        </ul>
-        <ul class="navbar-nav ml-auto login" *ngIf="isLoggeIn">
-          <div class="triangle-topright"></div>
-          <li class="nav-item dropdown">
-            <div ngbDropdown placement="bottom-left" class="menu_langauge_btn">
-              <a class="languageText" ngbDropdownToggle>
-                <img class="nav-image nav-image1" src="assets/image/img/language.png" />
-                {{'Language' | translate}}
-                <img class="arrowImage" src="assets/image/img/arrodwon.png" alt="logo">
-              </a>
-              <div ngbDropdownMenu class="dropdown-menu-md">
-                <a class="dropdown-item" (click)="useLanguage('hi')">{{'Hindi' | translate}}</a>
-                <a class="dropdown-item" (click)="useLanguage('en')">{{'English' | translate}}</a>
-              </div>
-            </div>
-
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/fpo_guidelines">
-              <img class="nav-image" src="assets/image/img/fpomenu.png" />
-              {{'FPO guidelines' | translate}} <span class="sr-only">(current)</span>
+          <li class="nav-item" *ngIf="isLoggeIn">
+            <a class="nav-link" href="javascript:void(0)" (click)="navigateToDashboard()">
+              <img class="nav-image" src="assets/image/img/signup.png" />
+              {{'Dashboard' | translate}} <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/schema">
-              <img class="nav-image" src="assets/image/img/scemenu.png" />
-              {{'Schemes' | translate}} <span class="sr-only">(current)</span>
-            </a>
-          </li>
-
+    
           <li class="nav-item" *ngIf="isLoggeIn">
             <a class="nav-link" href="javascript:void(0)" (click)="logout()">
               <img class="nav-image" src="assets/image/img/signup.png" />
               {{'Logout' | translate}} <span class="sr-only">(current)</span>
             </a>
           </li>
-
         </ul>
-
-
       </div>
     </nav>
     <div class="container-fluid">
