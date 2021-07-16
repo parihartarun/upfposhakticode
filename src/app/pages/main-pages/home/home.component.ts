@@ -38,6 +38,22 @@ export class HomeComponent implements OnInit {
   productionDetails: any;
   fpo: any;
   circluar: any;
+
+  _dashboardCount = {
+    land: 0,
+    farmers: 0,
+    small_farmers: 0,
+    marginal_farmers: 0,
+    oth_farmers: 0,
+    fpcs: 0,
+    fmbs: 0,
+    storage_centers: 0,
+    production_rabi: 0,
+    production_kharif: 0,
+    production_zayad: 0,
+    spu: 0
+  }
+
   constructor(public sharedService:SharedService, private route: Router, private _activatedroute: ActivatedRoute, public translate: TranslateService, private api: HomeService,
     private _fpo: FpoService, private departmentService: DepartmentService) {
       if(localStorage.getItem('language')){
@@ -61,31 +77,36 @@ export class HomeComponent implements OnInit {
     this.slides = [
       { image: 'assets/image/img/slider/1.jpg', text: 'Connect with buyers and exporters' },
       { image: 'assets/image/img/slider/3.jpg', text: 'Get information about FPO registration' },
-      { image: 'assets/image/img/slider/4.jpg', text: 'Get information about seeds, fertilizers, agricultural implements etc' }
+      { image: 'assets/image/img/slider/4.jpg', text: 'Get information about seeds, fertilizers, agricultural implements etc' },
+      { image: 'assets/image/img/slider/5.png', text: 'Training of Directors of Farmer Producer Companies' }
     ];
-    this.api.getfarmerDetails().subscribe(h => {
-      this.farmerDetails = h
-    })
-    this.api.getProductionDetails().subscribe(p => {
-      console.log(p);
-      this.productionDetails = p
-    })
-    this._fpo.getAllFpo().subscribe(fpo => {
-      this.fpo = fpo.length;
-    })
+
+    // get all counters data
+    this.getCountersData();
+
+    // this.api.getfarmerDetails().subscribe(h => {
+    //   this.farmerDetails = h
+    // })
+    // this.api.getProductionDetails().subscribe(p => {
+    //   console.log(p);
+    //   this.productionDetails = p
+    // })
+    // this._fpo.getAllFpo().subscribe(fpo => {
+    //   this.fpo = fpo.length;
+    // })
     this.departmentService.getAllCircluarUpload().subscribe(c => {
      // console.log(c);
       this.circluar = c
     })
-    this.api.getChcFmbs().subscribe(res => {
-      this.fmbs = res.fmbscount;
-    })
-    this.api.getColdStorages().subscribe(res => {
-      this.coldStorages = res.coldstorage;
-    })
-    this.api.getSeedProcessingUnits().subscribe(res => {
-      this.seedProcessing = res.seedprocessingunit
-    })
+    // this.api.getChcFmbs().subscribe(res => {
+    //   this.fmbs = res.fmbscount;
+    // })
+    // this.api.getColdStorages().subscribe(res => {
+    //   this.coldStorages = res.coldstorage;
+    // })
+    // this.api.getSeedProcessingUnits().subscribe(res => {
+    //   this.seedProcessing = res.seedprocessingunit
+    // })
   }
   logout() {
     this.sharedService.isUserLoggedIn.next(false);
@@ -128,4 +149,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  getCountersData(){
+    this.api.getHomeCountersData().subscribe(response => {
+      console.log(response, 'response')
+      this._dashboardCount = response;
+    })
+  }
 }

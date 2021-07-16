@@ -275,8 +275,8 @@
               </div>
               <img class="set_span_titel_image" src="assets/image/img/bg_box2.png" alt="" style="">
             </div>
-            <div class="tile_nember" *ngIf="fpo">
-              {{fpo |  number:'1.0-2'}}
+            <div class="tile_nember">
+              {{_dashboardCount?.fpcs |  number:'1.0-2'}}
             </div>
 
           </div>
@@ -294,8 +294,8 @@
                 <img _ngcontent-cnf-c175="" _ngcontent-vcn-c149="" src="assets/image/img/logo.png" class="logo-image">
               </div>
             </div>
-            <div class="tile_nember" *ngIf="farmerDetails">
-              {{farmerDetails.totalfarmers |  number:'1.0-2'}}
+            <div class="tile_nember">
+              {{_dashboardCount?.farmers |  number:'1.0-2'}}
             </div>
 
           </div>
@@ -318,22 +318,22 @@
                 <tbody>
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Marginal'|translate}}</td>
-                    <td class="table_tile_number" *ngIf="farmerDetails">
-                      {{farmerDetails.marginalfarmers |  number:'1.0-2'}}
+                    <td class="table_tile_number">
+                      {{_dashboardCount?.marginal_farmers |  number:'1.0-2'}}
                       <!-- </a> -->
                     </td>
                   </tr>
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Small' |translate}}</td>
-                    <td class="table_tile_number" *ngIf="farmerDetails">
-                      {{farmerDetails.smalltotal |  number:'1.0-2'}}
+                    <td class="table_tile_number">
+                      {{_dashboardCount?.small_farmers |  number:'1.0-2'}}
                       <!-- </a> -->
                     </td>
                   </tr>
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Others'| translate}}</td>
-                    <td class="table_tile_number" *ngIf="farmerDetails">
-                      {{farmerDetails.bigfarmers |  number:'1.0-2'}}
+                    <td class="table_tile_number">
+                      {{_dashboardCount?.oth_farmers |  number:'1.0-2'}}
                       <!-- </a> -->
                     </td>
                   </tr>
@@ -357,8 +357,8 @@
                 <img _ngcontent-cnf-c175="" _ngcontent-vcn-c149="" src="assets/image/img/logo.png" class="logo-image">
               </div>
             </div>
-            <div class="tile_nember" *ngIf="farmerDetails">
-              {{farmerDetails.totalland |  number:'1.0-2'}}
+            <div class="tile_nember">
+              {{_dashboardCount?.land |  number:'1.0-2'}}
             </div>
           </div>
           <!-- Land tile end -->
@@ -377,26 +377,26 @@
               </div>
             </div>
             <div>
-              <table rowspacing="20" style="width: 99%;" *ngIf="productionDetails">
+              <table rowspacing="20" style="width: 99%;">
                 <tbody>
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Rabi' | translate }}</td>
                     <td class="table_tile_number">
-                      {{productionDetails.rabiprod |  number:'1.0-2'}}
+                      {{_dashboardCount?.production_rabi |  number:'1.0-2'}}
                     </td>
                   </tr>
 
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Zayd' | translate}}</td>
                     <td class="table_tile_number">
-                      {{productionDetails.zayadprod |  number:'1.0-2'}}
+                      {{_dashboardCount?.production_zayad |  number:'1.0-2'}}
                     </td>
                   </tr>
 
                   <tr class="table_tile_tr">
                     <td class="table_tile_text">{{'Kharif' | translate}}</td>
                     <td class="table_tile_number">
-                      {{productionDetails.kharifprod |  number:'1.0-2' }}
+                      {{_dashboardCount?.production_kharif |  number:'1.0-2' }}
                     </td>
                   </tr>
 
@@ -423,7 +423,7 @@
               </div>
             </div>
             <div class="tile_nember">
-              {{fmbs |  number:'1.0-2'}}
+              {{_dashboardCount?.fmbs |  number:'1.0-2'}}
             </div>
 
           </div>
@@ -441,7 +441,7 @@
               </div>
             </div>
             <div class="tile_nember">
-              {{coldStorages |  number:'1.0-2'}}
+              {{_dashboardCount?.storage_centers |  number:'1.0-2'}}
             </div>
 
           </div>
@@ -460,7 +460,7 @@
             </div>
             <div class="tile_nember">
               <!--<img src="img/storage.png" alt="" class="set_box_image">-->
-              {{seedProcessing |  number:'1.0-2'}}
+              {{_dashboardCount?.spu |  number:'1.0-2'}}
             </div>
 
           </div>

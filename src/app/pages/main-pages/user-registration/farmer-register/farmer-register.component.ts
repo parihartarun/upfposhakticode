@@ -120,6 +120,7 @@ export class FarmerRegisterComponent implements OnInit {
       tnc: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       upBSMId: [""],
+      email: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
     }, {
       validator: MustMatch('password', 'confirmPassword'),
 

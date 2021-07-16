@@ -24,7 +24,7 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Total Land (in Ha.)' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{farmerDetails.totalland |  number:'1.0-2'}}
+                    {{farmerDetails?.totalland |  number:'1.0-2'}}
                     <sub></sub></span>
                 </div>
               </div>
@@ -70,7 +70,7 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Total Farmers' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{farmerDetails.totalfarmers |  number:'1.0-2'}}
+                    {{farmerDetails?.totalfarmers |  number:'1.0-2'}}
                   </span>
                 </div>
               </div>
@@ -84,7 +84,7 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Marginal Farmers' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{farmerDetails.marginalfarmers |  number:'1.0-2'}}
+                    {{farmerDetails?.marginalfarmers |  number:'1.0-2'}}
                   </span>
                 </div>
               </div>
@@ -98,7 +98,7 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Small Farmers' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{farmerDetails.smalltotal |  number:'1.0-2'}}
+                    {{farmerDetails?.smalltotal |  number:'1.0-2'}}
                   </span>
                 </div>
               </div>
@@ -113,7 +113,7 @@
                 <div class="col">
                   <h5 class="card-title text-uppercase text-muted mb-0">{{'Others Farmers' | translate}}</h5>
                   <span class="h2 font-weight-bold mb-0">
-                    {{farmerDetails.bigfarmers |  number:'1.0-2'}}
+                    {{farmerDetails?.bigfarmers |  number:'1.0-2'}}
                   </span>
                 </div>
               </div>

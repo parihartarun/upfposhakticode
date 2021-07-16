@@ -83,8 +83,10 @@
                     <select class="form-control" id="sel1" [(ngModel)]="selected" (ngModelChange)="onSelect(selected)">
                       <option value="">All</option>
                       <option value="active">Active</option>
-                      <option value="reject">Rejected</option>
+                      <option value="rejected">Rejected</option>
                       <option value="fulfilled">Fullfilled</option>
+                      <option value="cancelled">Cancelled</option>
+                      <option value="partially fulfilled">Partially Fullfilled</option>
                     </select>                
                   </div>
                 </div>
@@ -100,7 +102,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-  
+          {{showTable.val}}
         <div class="card shadow" *ngIf="showTable.val === 'A'">
           <div class="card-header border-0">
             <div class="row">
@@ -189,7 +191,8 @@
                     <th scope="col">{{'Created To'|translate}}</th>
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Created on'|translate}}</th>
-                    <th scope="col">{{'Enquiry Id'|translate}}</th>
+                    <th scope="col">{{'Fulfillment Date'|translate}}</th>
+                    <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
                     <th scope="col">{{'status'|translate}}</th>
                     <th scope="col">{{'Actions' | translate}}</th>
                   </tr>
@@ -219,8 +222,11 @@
                         {{indent.create_date_time | date: 'dd/MM/yyyy'}}
                     </td>
                     <td>
-                        {{indent.enqId}}
+                        {{indent.fulfilmentDate | date: 'dd/MM/yyyy'}}
                     </td>
+                    <!-- <td>
+                        {{indent.enqId}}
+                    </td> -->
                      <td>
                         {{indent.status}}
                     </td>    
@@ -258,12 +264,14 @@
                   <tr>
                     <th scope="col">{{'SR. NO'|translate}}</th>
                     <th scope="col">{{'indentnumber' | translate}}</th>
-                    <th scope="col">{{'Crop Name' | translate}}</th>
-                    <th scope="col">{{"Crop Variety" | translate}}</th>
+                    <th scope="col">{{'Seed Name' | translate}}</th>
+                    <th scope="col">{{"Seed Variety" | translate}}</th>
                     <th scope="col">{{'Indent Qty' | translate}}</th>
                     <th scope="col">{{'Created To'|translate}}</th>
                     <th scope="col">{{'Contact Details'|translate}}</th>
-                    <th scope="col">{{'Enquiry Id'|translate}}</th>
+                    <th scope="col">{{'Created on'|translate}}</th>
+                    <th scope="col">{{'Fulfillment Date'|translate}}</th>
+                    <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
                     <th scope="col">{{'status'|translate}}</th>
                     <th scope="col">{{'Actions' | translate}}</th>
                   </tr>
@@ -293,8 +301,14 @@
                        {{indent.mobile}}
                     </td>
                     <td>
-                        {{indent.enqId}}
+                       {{indent.created_date | date: 'dd/MM/yyyy'}}
                     </td>
+                    <td>
+                       {{indent.fufilment_date | date: 'dd/MM/yyyy'}}
+                    </td>
+                    <!-- <td>
+                        {{indent.enqId}}
+                    </td> -->
                      <td>
                         {{indent.status}}
                     </td>      
@@ -337,7 +351,8 @@
                     <th scope="col">{{'Created To'|translate}}</th>
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Created on'|translate}}</th>
-                    <th scope="col">{{'Enquiry Id'|translate}}</th>
+                    <th scope="col">{{'Fulfillment Date'|translate}}</th>
+                    <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
                     <th scope="col">{{'status'|translate}}</th>
                     <th scope="col">{{'Actions' | translate}}</th>
                   </tr>
@@ -372,6 +387,10 @@
                     </td>
                     <td>
                         {{indent.create_date_time | date: 'dd/MM/yyyy'}}
+                   
+                    </td>
+                    <td>
+                        {{indent.fulfilmentDate | date: 'dd/MM/yyyy'}}
                    
                     </td>
                     <td>
@@ -420,7 +439,8 @@
                     <th scope="col">{{'Created To'|translate}}</th>
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Created on'|translate}}</th>
-                    <th scope="col">{{'Enquiry Id'|translate}}</th>
+                    <th scope="col">{{'Fulfillment Date'|translate}}</th>
+                    <!-- <th scope="col">{{'Enquiry Id'|translate}}</th> -->
                     <th scope="col">{{'status'|translate}}</th>
                     <th scope="col">{{'Actions' | translate}}</th>
                   </tr>
@@ -453,8 +473,11 @@
                         {{indent.create_date_time | date: 'dd/MM/yyyy'}}
                     </td>
                     <td>
-                        {{indent.enqId}}
+                        {{indent.fulfilmentDate | date: 'dd/MM/yyyy'}}
                     </td>
+                    <!-- <td>
+                        {{indent.enqId}}
+                    </td> -->
                      <td>
                        {{indent.status}}
                     </td>    

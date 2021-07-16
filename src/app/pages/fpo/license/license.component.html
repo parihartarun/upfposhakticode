@@ -77,7 +77,7 @@
                   <div class="form-group">
                     <label class="form-cotrol-lable" for="licenceFile">{{'Upload Photo' | translate}}<span class="required">*</span></label>
                     <input formControlName="licenceFile" (change)="handleFileInput($event.target.files)" type="file" id="licenceFile" class="form-control form-control-alternative" accept="image/*">
-                      <!-- <span *ngIf="edit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span> -->
+                      <span *ngIf="edit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>
                       <div *ngIf="submitted && formControls.licenceFile.errors" class="text-danger">
                         <div *ngIf="formControls.licenceFile.errors.required">{{'File is required' | translate}}</div>
                       </div>
@@ -127,7 +127,7 @@
                 <th scope="col">{{"License Number" | translate}}</th>
                 <th scope="col">{{"Issued Date" | translate}}</th>
                 <th scope="col">{{"Valid Till Date" | translate}}</th>
-                <th scope="col">{{"File" | translate}}</th>
+                <th scope="col">{{"File1" | translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>

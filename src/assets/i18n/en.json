@@ -475,9 +475,9 @@
   "zerotonintynine": "0 - 99",
   "hundredtohundrednintynine": "100 - 199",
   "morethan200": "More than 200",
-  "enterfpodeliveryaddr": "Please enter Delivery Address.",
-  "fpodeliveryaddr": "Delivery Address.",
-  "deleiveryrequired": "Delivery Address is required.",
+  "enterfpodeliveryaddr": "Please enter Delivery Address",
+  "fpodeliveryaddr": "Delivery Address",
+  "deleiveryrequired": "Delivery Address is required",
   "Indent Form": "Indent Form",
   "Estimated Production (in Qt.)": "Estimated Production (in Qt.)",
   "Sales Data": "Sales Data",
@@ -510,7 +510,7 @@
   "User Management": "User Management",
   "All-Users": "All-Users",
   "Description": "Description",
-  "Cropveriety": "Crop Veriety",
+  "Cropveriety": "Crop Variety",
   "Seeds": "Seeds",
   "Fertilizer": "Fertilizer",
   "Fertilizers":"Fertilizers",
@@ -857,5 +857,10 @@
   "Sold To": "Sold To",
   "Sold To Placeholder": "Please enter sold to",
   "Sold To required": "Sold to is required",
-  "Status of Complaint/ Suggestion (As per FPO)": "Status of Complaint/ Suggestion (As per FPO)"
+  "Status of Complaint/ Suggestion (As per FPO)": "Status of Complaint/ Suggestion (As per FPO)",
+  "Training of Directors of Farmer Producer Companies": "Training of Directors of Farmer Producer Companies",
+  "Indent Quantity": "Indent Quantity",
+  "SR. NO": "SR. NO",
+  "Seed Name": "Seed Name",
+  "Seed Variety": "Seed Variety"
 }

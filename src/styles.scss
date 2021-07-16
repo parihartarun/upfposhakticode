@@ -141,5 +141,6 @@ th.sort:after {
 @media (min-width: 768px){
     .navbar-vertical.navbar-expand-md {
         max-width: 275px !important;
+        z-index: 1;
     }
 }

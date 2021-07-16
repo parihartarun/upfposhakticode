@@ -95,6 +95,7 @@ addLicense() {
   let formData = new FormData();
   formData.append('licenceType', value.licenceType);
   formData.append('liceneceNumber', value.liceneceNumber);
+  formData.append('licenceIssuedBy', value.licenceIssuedBy);
   formData.append('issuedate', value.issuedate);
   formData.append('licenceValidTill', value.licenceValidTill);
   formData.append('fpoRefId', value.fpoRefId);
@@ -121,6 +122,7 @@ addLicense() {
 
 editLicense(license){
 
+  this.filePathToEdit = null;
   if(license.filePath != null){
     var pathParts = license.filePath.split("/");
     this.fileToEdit = pathParts[pathParts.length - 1];
@@ -164,8 +166,20 @@ updateLicense(){
       return;
   }
 
+  let value = this.licenseForm.value;
 
-  this.api.updateLicense(this.licenseForm.value, this.licenseForm.value.id).subscribe(response => {
+  let formData = new FormData();
+  formData.append('licenceType', value.licenceType);
+  formData.append('liceneceNumber', value.liceneceNumber);
+  formData.append('licenceIssuedBy', value.licenceIssuedBy);
+  formData.append('issuedate', value.issuedate);
+  formData.append('licenceValidTill', value.licenceValidTill);
+  formData.append('fpoRefId', value.fpoRefId);
+  formData.append('masterId', value.masterId);
+  formData.append('id', value.id);
+  formData.append('file', this.fileToUpload);
+
+  this.api.updateLicense(formData, this.licenseForm.value.id).subscribe(response => {
     console.log(response);
     if(response.id != ''){
       this.toastr.success('License Updated Successfully.');

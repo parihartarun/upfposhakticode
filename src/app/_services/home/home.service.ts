@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -40,6 +41,10 @@ export class HomeService {
     return this.http.get<any>(this._url + 'home/seedProcessing').pipe(map((res: any) => {
       return res;
     }));
+  }
+
+  getHomeCountersData():Observable<any> {
+    return this.http.get<any>(this._url + 'home/homepageData')
   }
  
 }
