@@ -819,6 +819,7 @@
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="col-12">
             <div class="form-group">
@@ -830,7 +831,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary mr-3">create indent</button>
-        <button type="button" class="btn btn-primary">Close</button>
+        <button type="button" class="btn btn-primary">{{'close' | translate}</button>
       </div>
     </ng-template>
     <!--Input Suppliers Insecticide Modal Input-->
@@ -1496,3 +1497,20 @@
   </div>
 
 </section>
+<!--MODAL-->
+<div class="modal fade" id="tncModal" role="dialog">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="term-text">Terms and Condition</h3>
+        <button type="button" class="close term-text" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <app-terms-condition></app-terms-condition>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-yellow btn-sm term-text " data-dismiss="modal">{{'close' | translate}</button>
+      </div>
+    </div>
+  </div>
+</div>

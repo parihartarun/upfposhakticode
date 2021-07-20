@@ -103,7 +103,6 @@ export class FarmerDashboardComponent implements OnInit {
 
   getDashboardDetails() {
     this.api.getFarmerDashboardData(localStorage.getItem('masterId')).subscribe(response => {
-      console.log(response);
       this.totals = response;
       this.setExpectedProduction(response.expectedYeildRabi, response.expectedYeildZayad, response.expectedYeildKhrif);
       this.setActualProduction(response.actualYeildRabi, response.actualYeildZayad, response.actualYeildKharif);

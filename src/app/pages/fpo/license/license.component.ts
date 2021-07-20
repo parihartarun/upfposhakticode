@@ -77,7 +77,7 @@ export class LicenseComponent implements OnInit {
   }
 
 addLicense() {
-  console.log(this.licenseForm);
+
   this.submitted = true;
   // stop here if form is invalid
   if (this.licenseForm.invalid) {
@@ -92,6 +92,7 @@ addLicense() {
 
   let value = this.licenseForm.value;
 
+  console.log(value); 
   let formData = new FormData();
   formData.append('licenceType', value.licenceType);
   formData.append('liceneceNumber', value.liceneceNumber);
@@ -243,7 +244,7 @@ handleFileInput(files: FileList) {
 
 validateFile(name: String) {
   let ext = name.substring(name.lastIndexOf('.') + 1);
-  if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpg" || ext.toLowerCase() == "jpeg") {
+  if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" ||  ext.toLowerCase() == "jpg" || ext.toLowerCase()=="pdf" || ext.toLowerCase()=="doc" || ext.toLowerCase()=="docx" || ext.toLowerCase()=="txt") {
     return true;
   }
   else {
