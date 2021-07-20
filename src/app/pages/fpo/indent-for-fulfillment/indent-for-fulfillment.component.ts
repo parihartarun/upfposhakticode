@@ -121,7 +121,7 @@ export class IndentForFulfillmentComponent implements OnInit {
   }
 
   opendialog($event, content, item, type) {
-    console.log(type);
+    console.log(item);
     this.currentItem = item;
     this.indentFormType = type;
     this.indentForm = this.fb.group({
@@ -141,9 +141,11 @@ export class IndentForFulfillmentComponent implements OnInit {
     if (this.indentForm.invalid) {
       return;
     }
-    this._productService.updateEnquiry(this.indentForm.value, this.currentItem.id).subscribe(data => {
+    console.log(this.currentItem);
+    this._productService.updateEnquiry(this.indentForm.value, this.currentItem.enid).subscribe(data => {
       this.modalService.dismissAll();
       this.fpoService.getIndentByFpoId(this.filterParams.masterId).subscribe(dummy => {
+        this.toastr.success('Indent Successfully Updated');
         this.data = dummy;
         this.indents = this.data;
         this.totCrops = this.data.length;

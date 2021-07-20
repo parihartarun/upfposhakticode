@@ -26,7 +26,7 @@
                     <label class="form-control-label" for="input-username">{{'License Type' | translate}}<span class="required">*</span></label>
                     <select formControlName="licenceType" class="form-control form-control-alternative">
                       <option value="">{{'Select License Type'|translate}}</option>
-                      <option value="{{licensesType.licenseName}}" *ngFor="let licensesType of licensesTypes">{{licensesType.licenseName}}</option>
+                      <option value="{{licensesType.id}}" *ngFor="let licensesType of licensesTypes">{{licensesType.licenseName}}</option>
                     </select>
                     <div *ngIf="submitted && formControls.licenceType.errors" class="text-danger">
                       <div *ngIf="formControls.licenceType.errors.required">{{'License Type is required' | translate}}</div>
@@ -46,15 +46,6 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">{{'License Number' | translate}}<span class="required">*</span></label>
-                    <input formControlName="liceneceNumber" type="text" id="input-email" class="form-control form-control-alternative" >
-                    <div *ngIf="submitted && formControls.liceneceNumber.errors" class="text-danger">
-                      <div *ngIf="formControls.liceneceNumber.errors.required">{{'License Number is required' | translate}}</div>
-                    </div>   
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
                     <label class="form-control-label" for="input-email">{{'License Issued Date' | translate}}</label>
                     <input formControlName="issuedate" type="date" [max]="getToday()" id="input-email" class="form-control form-control-alternative" >
                     <div *ngIf="submitted && formControls.issuedate.errors" class="text-danger">
@@ -62,8 +53,6 @@
                     </div>   
                   </div>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">{{'License Valid Till' | translate}}</label>
@@ -73,22 +62,33 @@
                     </div>   
                   </div>
                 </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">{{'License Number' | translate}}<span class="required">*</span></label>
+                    <input formControlName="liceneceNumber" type="text" id="input-email" class="form-control form-control-alternative" >
+                    <div *ngIf="submitted && formControls.liceneceNumber.errors" class="text-danger">
+                      <div *ngIf="formControls.liceneceNumber.errors.required">{{'License Number is required' | translate}}</div>
+                    </div>   
+                  </div>
+                </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-cotrol-lable" for="licenceFile">
-                      {{'Upload Photo' | translate}}<span class="required">*</span>
-                      <span class="text-xs ml-2 file-format-msg">({{'only png, jpg, jpeg format with 2MB file size allowed' | translate}})</span>
+                      {{'Upload License' | translate}}<span class="required">*</span>
+                      <span class="text-xs ml-2 file-format-msg">({{'only png, jpg, jpeg, pdf, doc, docx, txt format with 2MB file size allowed' | translate}})</span>
                     </label>
-                    <input formControlName="licenceFile" (change)="handleFileInput($event.target.files)" type="file" id="licenceFile" class="form-control form-control-alternative" accept="image/*">
+                    <input formControlName="licenceFile" (change)="handleFileInput($event.target.files)" type="file" id="licenceFile" class="form-control form-control-alternative">
                       <span *ngIf="edit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>
                       <div *ngIf="submitted && formControls.licenceFile.errors" class="text-danger">
-                        <div *ngIf="formControls.licenceFile.errors.required">{{'File is required' | translate}}</div>
+                        <div *ngIf="formControls.licenceFile.errors.required && !checkfileFormat">{{'File is required' | translate}}</div>
                       </div>
-                      <div *ngIf="checkfileFormat" class="text-danger">{{'only png,jpeg,jpg format is allow'| translate}}</div>
+                      <div *ngIf="checkfileFormat" class="text-danger">{{'Please upload correct file type and size'| translate}}</div>
                   </div>
                 </div>
               </div>
-
               <div class="card-footer py-4 text-center">
                 <button *ngIf="!edit" type="button" class="btn btn-yellow btn-primary my-4" (click)="addLicense()">
                   {{'Save' | translate}}

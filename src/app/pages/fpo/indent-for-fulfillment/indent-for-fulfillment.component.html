@@ -121,6 +121,8 @@
                 <th scope="col">{{'indentnumber'|translate}}</th>
                 <th scope="col">{{'Crop Name'|translate}}</th>
                 <th scope="col">{{'Crop Variety'|translate}}</th>
+                <th scope="col">{{'Created By'|translate}}</th>
+                <th scope="col">{{'Contact Details'|translate}}</th>
                 <th scope="col">{{'Quantity Required'|translate}}</th>
                 <th scope="col">{{'Fulfillment Date'|translate}}</th>
                 <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
@@ -138,17 +140,22 @@
                   {{indent.enquieryNumber}}
                 </td>
                 <td>
-                  {{indent.cropMaster.cropName}}
+                  {{indent.cropName}}
                 </td>
                 <td>
-                  {{indent.cropVeriety.verietyName}}
+                  {{indent.verietyName}}
+                </td>
+                <td>
+                    {{indent.createdBy}}
+                </td>
+                <td>
+                  {{indent.mobile}}
                 </td>
                 <td>
                   {{indent.quantity}}
                 </td>
-    
                 <td>
-                  {{indent.fulfillmentDate | date: 'dd/MM/yyyy'}}
+                  {{indent.fulfillmentdate | date: 'dd/MM/yyyy'}}
                 </td>
                 <td>
                   {{indent.deliveryAddress}}
@@ -561,7 +568,7 @@
       </div>
       <div class="text-center" *ngIf="indentFormType == 'Seeds'">
         <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"
-          (click)="updateSeedsIndent(currentItem.enqId)">{{'Send'|translate}}</button>
+          (click)="updateSeedIndent(currentItem.enqId)">{{'Send'|translate}}</button>
       </div>
       <div class="text-center" *ngIf="indentFormType == 'Insecticide'">
         <button type="submit" class="btn btn-login btn-product-search btn-primary my-4"

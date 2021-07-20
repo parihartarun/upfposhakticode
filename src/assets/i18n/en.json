@@ -156,6 +156,7 @@
   "Reset": "Reset",
   "Save": "Save",
   "Add License": "Add License",
+  "Upload License":"Upload License",
   "License Type": "License Type",
   "License Type is required": "License Type is required",
   "License Issued By": "License Issued By",
@@ -242,6 +243,7 @@
   "navText": "Registration",
   "indentnumber": "Indent Number",
   "quintal": "Qt.",
+
   "UPFPO Shakti": "UPFPO Shakti",
   "Sales Details": "Sales Details",
   "Sale Production": "Sales Info",
@@ -853,6 +855,7 @@
   "FPO Total Sales in Zayad season (in Qt.)":"Total Sales in Zayad Season (in Qt.)",
   "FPO Total Sales in Kharif season (in Qt.)":"Total Sales in Kharif Season (in Qt.)",
   "Quantity (Kg)": "Quantity (Kg)",
+  "Kg":"Kg",
   "Created To": "Created To",
   "Sold To": "Sold To",
   "Sold To Placeholder": "Please enter sold to",
@@ -866,5 +869,6 @@
   "only png, jpg, jpeg, pdf, doc, docx, txt format with 2MB file size allowed": "only png, jpg, jpeg, pdf, doc, docx, txt format with 2MB file size allowed",
   "only xlsx, xls, pdf, doc, docx format with 2MB file size allowed": "only xlsx, xls, pdf, doc, docx format with 2MB file size allowed",
   "only png, jpg, jpeg format with 2MB file size allowed": "only png, jpg, jpeg format with 2MB file size allowed",
-  "Upload Registration Certificate": "Upload Registration Certificate"
+  "Upload Registration Certificate": "Upload Registration Certificate",
+  "Please upload correct file type and size":"Please upload correct file type and size"
 }

@@ -102,7 +102,6 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-          {{showTable.val}}
         <div class="card shadow" *ngIf="showTable.val === 'A'">
           <div class="card-header border-0">
             <div class="row">
@@ -119,7 +118,9 @@
                     <th scope="col">{{'indentnumber'|translate}}</th>
                     <th scope="col">{{'Crop Name'|translate}}</th>
                     <th scope="col">{{'Cropveriety'|translate}}</th>
-                    <th scope="col">{{'Quantity Required'|translate}}</th>
+                    <th scope="col">{{'Created To'|translate}}</th>
+                    <th scope="col">{{'Contact Details'|translate}}</th>
+                    <th scope="col">{{'Indent Qty' | translate}}({{'quintal' | translate}})</th>
                     <th scope="col">{{'Fulfillment Date'|translate}}</th>
                     <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
                     <th scope="col">{{'Remark'|translate}}</th>
@@ -136,17 +137,23 @@
                      {{indent.enquieryNumber}}
                  </td>
                  <td>
-                     {{indent.cropMaster.cropName}}
+                     {{indent.cropName}}
                  </td>
                  <td>
-                     {{indent.cropVeriety.verietyName}}
+                     {{indent.verietyName}}
                  </td>
+                 <td>
+                    {{indent.createdBy}}
+                </td>
+                <td>
+                  {{indent.mobile}}
+                </td>
                  <td>
                      {{indent.quantity}}
                  </td>
                  
                  <td>
-                     {{indent.fulfillmentDate | date: 'dd/MM/yyyy'}}
+                     {{indent.fulfillmentdate | date: 'dd/MM/yyyy'}}
                  </td>
                  <td>
                      {{indent.deliveryAddress}}
@@ -159,7 +166,7 @@
                  </td>     
                  <td class="text-right" *ngIf="indent.status == 'Active'">
                     <div placement="bottom-right">
-                      <a class="btn btn-sm btn-primary" href="javascript:void(0)" (click)="cancelIndent(indent.id)">
+                      <a class="btn btn-sm btn-primary" href="javascript:void(0)" (click)="cancelIndent(indent.enid)">
                         {{'Cancel' | translate}}
                       </a>
                     </div>
@@ -192,6 +199,7 @@
                     <th scope="col">{{'indentnumber' | translate}}</th>
                     <th scope="col">{{'Fertilizer Name'|translate}}</th>
                     <th scope="col">{{'Fertilizer grade'|translate}}</th>
+                    <th scope="col">{{'Indent Qty' | translate}}({{'Kg' | translate}})</th>
                     <th scope="col">{{'Created To'|translate}}</th>
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Created on'|translate}}</th>
@@ -216,6 +224,9 @@
                     <td>
                         {{indent.fertilizer_grade}}
                     </td>
+                    <td>
+                      {{indent.indentQty}}
+                  </td>
                     <td>
                         {{indent.created_to}}
                     </td>
@@ -274,7 +285,7 @@
                     <th scope="col">{{'indentnumber' | translate}}</th>
                     <th scope="col">{{'Seed Name' | translate}}</th>
                     <th scope="col">{{"Seed Variety" | translate}}</th>
-                    <th scope="col">{{'Indent Qty' | translate}}</th>
+                    <th scope="col">{{'Indent Qty' | translate}}({{'Kg' | translate}})</th>
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Created on'|translate}}</th>
                     <th scope="col">{{'Created To'|translate}}</th>
@@ -358,7 +369,7 @@
                     <th scope="col">{{'indentnumber' | translate}}</th>
                     <th scope="col">{{'Insecticide Type' | translate}}</th>
                     <th scope="col">{{"Insecticide Name" | translate}}</th>
-                    <th scope="col">{{'Indent Qty' | translate}}</th>
+                    <th scope="col">{{'Indent Qty' | translate}}({{'Kg' | translate}})</th>
                     <th scope="col">{{'Created To'|translate}}</th>
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Created on'|translate}}</th>
