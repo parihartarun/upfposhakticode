@@ -118,6 +118,7 @@
                     <th scope="col">{{'indentnumber'|translate}}</th>
                     <th scope="col">{{'Crop Name'|translate}}</th>
                     <th scope="col">{{'Cropveriety'|translate}}</th>
+                    <th scope="col">{{'Created To'|translate}}</th>
                     <th scope="col">{{'Contact Details'|translate}}</th>
                     <th scope="col">{{'Indent Qty' | translate}}({{'quintal' | translate}})</th>
                     <th scope="col">{{'Fulfillment Date'|translate}}</th>
@@ -141,6 +142,9 @@
                  <td>
                      {{indent.verietyName}}
                  </td>
+                 <td>
+                    {{indent.createdBy}}
+                </td>
                 <td>
                   {{indent.mobile}}
                 </td>
@@ -162,7 +166,7 @@
                  </td>     
                  <td class="text-right" *ngIf="indent.status == 'Active'">
                     <div placement="bottom-right">
-                      <a class="btn btn-sm btn-primary" href="javascript:void(0)" (click)="cancelIndent(indent.id)">
+                      <a class="btn btn-sm btn-primary" href="javascript:void(0)" (click)="cancelIndent(indent.enid)">
                         {{'Cancel' | translate}}
                       </a>
                     </div>
