@@ -180,12 +180,12 @@ export class ByerSellRegisterComponent implements OnInit {
 
   getDropdownListItems(){
     let arr = [];
-    this.api.getCommoditiesDealIn().subscribe(response => {
+    this.api.getCommoditiesDealInForBuyer().subscribe(response => {
       console.log(response);
-      for (var key in response) {
+      for (var item of response) {
         var obj = {
-          item_id:key,
-          item_text:response[key]
+          item_id:item.cropId,
+          item_text:item.cropName
         }
         arr.push(obj);
       }
