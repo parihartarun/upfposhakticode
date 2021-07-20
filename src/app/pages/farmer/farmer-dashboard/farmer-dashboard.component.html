@@ -78,7 +78,7 @@
       </div>
         <div class="col-lg-3">
           <div class="form-group">
-            <select class="custom-control custom-select" ng-model="fin_year" (change)="getDashboardDetails($event.target.value)">
+            <select class="custom-control custom-select" ng-model="fin_year" (change)="getDashboardDetails()">
               <option value="{{year}}" *ngFor="let year of finYears">{{year}}</option>
             </select>
           </div>

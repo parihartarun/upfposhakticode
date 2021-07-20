@@ -1273,6 +1273,10 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
     this.modalService.dismissAll();
   }
 
+  openTermsModal(content){
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg', centered: true});
+  }
+
 }
 
 

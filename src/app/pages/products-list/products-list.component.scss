@@ -232,3 +232,7 @@ header > h3{
     display: none;
   }
 }
+
+.btn-link:focus {
+  box-shadow: none;
+}
