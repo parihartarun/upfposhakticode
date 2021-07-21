@@ -173,6 +173,12 @@ export class AuthService {
     }));
   }
 
+  getCommoditiesDealInForBuyer(){
+    return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCropDetails`).pipe(map((v: any) => {
+      return v;
+    }));
+  }
+
   getCommoditiesDealIn(){
     return this.http.get<any>(this._url + `api/v1/cropMasterDetails/getCommodity`).pipe(map((v: any) => {
       return v;
