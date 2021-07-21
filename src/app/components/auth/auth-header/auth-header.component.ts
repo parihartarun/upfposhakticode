@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../../_services/shared/shared.service';
 import { AppConfig  } from '../../../app.config';
+import { LanguageService } from 'src/app/_services/language.service';
 
 @Component({
   selector: 'app-auth-header',
@@ -28,7 +29,8 @@ export class AuthHeaderComponent implements OnInit {
   isDropdownOpen = false;
   navText: any
   isHomePage = ''
-  constructor(public sharedService:SharedService, public translate: TranslateService, private route: Router, private _activatedroute: ActivatedRoute) {
+  constructor(public sharedService:SharedService, public translate: TranslateService, private route: Router, private _activatedroute: ActivatedRoute,
+    private languageService: LanguageService) {
     console.log(localStorage.getItem('language'));
     this.sharedService.isUserLoggedIn.subscribe( value => {
       console.log(value);
@@ -45,6 +47,7 @@ export class AuthHeaderComponent implements OnInit {
   useLanguage(language: string) {
     this.translate.use(language);
     localStorage.setItem('language', language);
+    this.languageService.changeLang(language);
   }
 
   ngOnInit(): void {

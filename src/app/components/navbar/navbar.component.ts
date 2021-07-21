@@ -8,6 +8,7 @@ import { MustMatch } from 'src/app/_helpers/constomMatchValidor';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../_services/shared/shared.service';
+import { LanguageService } from 'src/app/_services/language.service';
 
 @Component({
   selector: 'app-navbar',
@@ -27,7 +28,7 @@ export class NavbarComponent implements OnInit {
   userstring = ""
   constructor(public sharedService:SharedService, private fb: FormBuilder, location: Location, private toastr: ToastrService,
     private authService: AuthService, private element: ElementRef, private router: Router,
-    private modalService: NgbModal, public translate: TranslateService) {
+    private modalService: NgbModal, public translate: TranslateService, private languageService: LanguageService) {
     this.location = location;
     if (localStorage.getItem('language')) {
       translate.setDefaultLang(localStorage.getItem('language'));
@@ -38,10 +39,11 @@ export class NavbarComponent implements OnInit {
   }
 
   useLanguage(language: string) {
-    console.log(language);
+    console.log(language, 'navbar');
     this.translate.use(language);
     localStorage.setItem('language', language);
     this.toggleNavbar();
+    this.languageService.changeLang(language);
   }
 
   toggleNavbar() {

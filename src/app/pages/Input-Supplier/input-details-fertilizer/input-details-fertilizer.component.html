@@ -28,7 +28,7 @@
                                             </option>
                                         </select>
                                         <div *ngIf="submitted && formControls.type_id.errors" class="text-danger">
-                                            <div *ngIf="formControls.type_id.errors.required">{{'This field is required'| translate}}</div>
+                                            <div *ngIf="formControls.type_id.errors.required">{{'This Field is required'| translate}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                             <option>C</option>
                                         </select>
                                         <div *ngIf="submitted && fertitype != '' && formControls.fertilizer_grade.errors" class="text-danger">
-                                            <div *ngIf="formControls.fertilizer_grade.errors.required">{{'This field is required'| translate}}</div>
+                                            <div *ngIf="formControls.fertilizer_grade.errors.required">{{'This Field is required'| translate}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                         </div>
                                         <div *ngIf="fertitype == '1' || fertitype == '2' || fertitype == '3'">
                                             <div *ngIf="submitted && formControls.name_id.errors" class="text-danger">
-                                                <div *ngIf="formControls.name_id.errors.required">{{'This field is required'| translate}}</div>
+                                                <div *ngIf="formControls.name_id.errors.required">{{'This Field is required'| translate}}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@
                                         <label>{{'Name of Manufacturer' | translate}} <span class="required">*</span></label>
                                         <input type="text" id="input-first-name" formControlName="manufacturer_name" class="form-control form-control-alternative">
                                         <div *ngIf="submitted && fertitype != '' && formControls.manufacturer_name.errors" class="text-danger">
-                                            <div *ngIf="formControls.manufacturer_name.errors.required">{{'This field is required'| translate}}</div>
+                                            <div *ngIf="formControls.manufacturer_name.errors.required">{{'This Field is required'| translate}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@
                                         <input type="text" id="input-first-name" formControlName="quantity"
                                             class="form-control form-control-alternative" appOnlynumber>
                                         <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
-                                            <div *ngIf="formControls.quantity.errors.required">{{'This field is required'| translate}}</div>
+                                            <div *ngIf="formControls.quantity.errors.required">{{'This Field is required'| translate}}</div>
                                         </div>
                                     </div>
                                 </div>

@@ -133,6 +133,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
       this.submitted = false;
       this.isEdit = false;
       this.fertilizerForm.reset();
+      this.fertitype = null;
      this.getallfertilizer();
     });
     }
@@ -158,6 +159,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
         this.submitted = false;
         this.isEdit = false;
         this.fertilizerForm.reset();
+        this.fertitype = null;
         this.getallfertilizer();
       });
     }
@@ -179,7 +181,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
     this.fertilizerForm.get('type_id').patchValue(data.type_id);
     this.fertilizerForm.get('quantity').patchValue(data.quantity);
 
-    //this.fertilizerForm.get('name_id').patchValue(data.name_id);
+    this.fertilizerForm.get('name_id').patchValue(data.name_id);
     this.fertilizerForm.get('manufacturer_name').patchValue(data.manufacturer_name);
 
   }
@@ -250,6 +252,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
 
   resetForm(){
     this.fertilizerForm.reset();
+    this.fertitype = null;
     this.submitted = false;
     this.isEdit = false;
   }
