@@ -61,6 +61,7 @@
                     <th scope="col" class="sort" (click)="onClickOrderBy('date_of_regi')">{{'Request Date' | translate}}
                     </th>
                     <th scope="col" class="sort" (click)="onClickOrderBy('fpo_email')">{{'Email' | translate}}</th>
+                    <th scope="col">{{ 'File1' | translate}}</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
@@ -85,13 +86,19 @@
                     <td>
                       {{u.fpo_email}}
                     </td>
+                    <td>
+                      <a download href="{{u.file_path}}" target="_blank" *ngIf="u.file_path">
+                        <i style=" height:20px; width:30px"  class="fas fa-file"></i>
+                      </a>             
+                    </td>
 
                     <td class="text-right">
                       <div ngbDropdown placement="bottom-right">
                         <a class="btn btn-sm btn-primary" (click)="activeUSer(u)">
                           {{'Activate' | translate}}
                         </a>
-                        <a class="btn btn-sm btn-warning">
+                        <a class="btn btn-sm btn-warning" data-backdrop="static" data-keyboard="false"
+                        data-toggle="modal" data-target="#myModal" (click)="DeActiveUSer(u)">
                           {{'Deactivate' | translate}}
                         </a>
                       </div>
@@ -162,6 +169,7 @@
                     </th>
                     <th scope="col" class="sort" (click)="onClickOrderByActive('fpo_email')">{{'Email' | translate}}
                     </th>
+                    <th scope="col">{{ 'File1' | translate}}</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -186,7 +194,11 @@
                     <td>
                       {{u.fpo_email}}
                     </td>
-
+                    <td>
+                      <a download href="{{u.file_path}}" target="_blank" *ngIf="u.file_path">
+                        <i style=" height:20px; width:30px"  class="fas fa-file"></i>
+                      </a>             
+                    </td>
                     <td class="text-right">
                       <div ngbDropdown placement="bottom-right">
                         <a class="btn btn-sm btn-primary" data-backdrop="static" data-keyboard="false"

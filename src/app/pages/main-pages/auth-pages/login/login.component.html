@@ -45,7 +45,17 @@
                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                       </div>
                       <input formControlName="password" class="form-control" placeholder="{{'password' | translate}}"
-                        type="password">
+                        [type]="fieldTextType ? 'text' : 'password'">
+                        <div class="input-group-append">
+                          <span class="input-group-text">
+                            <i class="fa"
+                            [ngClass]="{
+                              'fa-eye-slash': !fieldTextType,
+                              'fa-eye': fieldTextType
+                            }"
+                            (click)="toggleFieldTextType()"></i>
+                          </span>
+                       </div>
                     </div>
                     <div *ngIf="submitted && formControls.password.errors" class="text-danger">
                       <div *ngIf="formControls.password.errors.required">{{'Password is required' | translate}}</div>

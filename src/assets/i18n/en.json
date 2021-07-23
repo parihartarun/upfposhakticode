@@ -98,7 +98,7 @@
   "Create new account": "Create new account",
   "Password": "Password",
   "username": "Username",
-  "Please enter registered email address to reset your password": "Please enter registered email address to reset your password",
+  "Please enter registered email address to reset your password": "Please enter registered email address / mobile no. to reset your password",
   "Email is required": "Email is required",
   "Send password reset email": "Send password reset email",
   "Login now": "Login now",
@@ -327,7 +327,7 @@
   "Already have an account?": "Already have an account?",
   "Login here": "Login here",
   "Farmer Registration Number (UP Agri Pardarshi)": "Farmer Registration Number (UP Agri Pardarshi)",
-  "Fetch from UP Agri Pardashi": "Fetch from UP Agri Pardashi",
+  "Fetch from UP Agri Pardashi": "Fetch from UP Agri Pardarshi",
   "Farmer Name1": "Farmer Name",
   "Farmer's Father/ Husband Name": "Farmer's Father/ Husband Name",
   "farmer's father/ husband Name is required": "Farmer's father/ husband Name is required",
@@ -818,7 +818,7 @@
   "Machinery Indents":"Machinery Indents",
   "Seeds Indents":"Seeds Indents",
   "Machinery Manufacturer":"Machinery Manufacturer",
-  "Fetch from UP AgriPardashi":"Fetch from UP AgriPardashi",
+  "Fetch from UP AgriPardashi":"Fetch from UP Agri Pardarshi",
   "IFSC Code should be 11 digit":"IFSC Code should be 11 digit",
   "Total Machinaries":"Total Machineries",
   "Machinaries":"Machineries",
@@ -874,5 +874,9 @@
   "Please upload correct file type and size":"Please upload correct file type and size",
   "Seed Name is required": "Seed Name is required",
   "Seed Variety is required": "Seed Variety is required",
-  "Seed Quantity is required": "Seed Quantity is required"
+  "Seed Quantity is required": "Seed Quantity is required",
+  "Quoted Price": "Quoted Price",
+  "User Name already taken" : "Username already taken, please enter a different one",
+  "WDRA accredited warehouses?": "WDRA accredited warehouses?",
+  "Provided Registration number is already taken" : "Provided Registration number is already taken"
 }

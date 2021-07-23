@@ -53,7 +53,8 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Rent/day' | translate}}<span *ngIf="this.userRole == 'ROLE_CHCFMB'" class="required">*</span></label>
+                                        <label *ngIf="this.userRole !== 'ROLE_INPUTSUPPLIER'">{{'Rent/day' | translate}}<span *ngIf="this.userRole == 'ROLE_CHCFMB'" class="required">*</span></label>
+                                        <label *ngIf="this.userRole == 'ROLE_INPUTSUPPLIER'">{{'Quoted Price' | translate}}</label>
                                         <input type="text" id="input-first-name" formControlName="rent_per_day"
                                             class="form-control form-control-alternative" appOnlynumber>
                                         <div *ngIf="submitted && formControls.rent_per_day.errors" class="text-danger">

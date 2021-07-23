@@ -48,7 +48,8 @@ export class StorageUnitComponent implements OnInit {
       packagingmachines:[false],
       fpoRefId:localStorage.getItem('masterId'),
       masterId:localStorage.getItem('masterId'),
-      id:['']
+      id:[''],
+      wdraAcredited: ['', [Validators.required]]
     });  
     
     this.getStorageUnits();
@@ -149,6 +150,7 @@ export class StorageUnitComponent implements OnInit {
       fpoRefId:localStorage.getItem('masterId'),
       masterId:localStorage.getItem('masterId'),
       id:[equipment.collectionId],
+      wdraAcredited: [equipment.wdra_accredited ]
     });
     setTimeout(()=>{
       this.storageUnitForm.patchValue({

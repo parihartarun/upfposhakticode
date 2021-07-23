@@ -161,9 +161,13 @@ export class DepartmentAllUsersComponent implements OnInit {
         'User Name' : element.user_name,
         'FPO Name' : element.fpo_name,
         'District Name' : element.district_name,
+        'Block' : element.block_name,
         'Registration Date' : element.date_of_regi,
-        'FPO Landline' : element.fpo_landline,
-        'FPO Email' : element.fpo_email
+        'FPO Contact No' : element.fpo_landline,
+        'FPO Email' : element.fpo_email, 
+        'FPO Registration No' : element.fpo_lot_no, 
+        'FPO Address' : element.fpo_address, 
+        'Pincode' : element.pincode, 
       }
       users.push(obj);
     });
@@ -173,14 +177,20 @@ export class DepartmentAllUsersComponent implements OnInit {
   createPdf(data, userType) {
     var userdata = [];
 
-    var headers = [['User Name', 'FPO Name', 'District Name', 'Registration Date', 'FPO Landline', 'FPO Email']]
+    var headers = [['User Name', 
+    'FPO Name', 
+    'District Name', 
+    'Registration Date', 
+    'FPO Contact No', 
+    'FPO Email'
+    ]]
     data.forEach( (element) => {
       var arr = [element.user_name, 
         element.fpo_name,
         element.district_name,
         element.date_of_regi,
         element.fpo_landline,
-        element.fpo_email
+        element.fpo_email,
       ]
       userdata.push(arr);
     });

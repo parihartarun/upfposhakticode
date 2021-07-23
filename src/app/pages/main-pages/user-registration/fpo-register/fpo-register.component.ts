@@ -27,6 +27,13 @@ export class FpoRegisterComponent implements OnInit {
   invalidRegNo:boolean=false;
   invalidUserName:boolean=false;
   regUnderOptions = [];
+  regNoErrMsg:string = '';
+
+  // related to files upload
+  checkfileFormat = false;
+  fileToUpload: File = null;
+  fileToEdit:string;
+
   constructor(private fb: FormBuilder, private api: AuthService, private _router: Router, private toastr: ToastrService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -92,7 +99,9 @@ export class FpoRegisterComponent implements OnInit {
       userFpo: [],
       tnc: ['', Validators.required],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', Validators.required],
+      file : ['', Validators.required],
+      certId: []
     }, {
       validator: MustMatch('password', 'confirmPassword'),
     });
@@ -111,9 +120,11 @@ export class FpoRegisterComponent implements OnInit {
   validateFpoRegNumber(regNo){
     console.log(this.fpoRegisterForm.value.registeredUnder);
     this.invalidRegNo = false;
+    this.regNoErrMsg = '';
     if(this.fpoRegisterForm.value.registeredUnder == 'Company-Act'){
       this.api.validateFpoRegNumber(regNo).subscribe(response => {
         console.log(response);
+        this.regNoErrMsg = response.message.trim();
         if(response.message != 'Valid'){
           console.log('s');
           this.invalidRegNo = true;
@@ -138,6 +149,20 @@ export class FpoRegisterComponent implements OnInit {
     if (this.fpoRegisterForm.invalid || this.invalidUserName == true || this.invalidRegNo == true) {
       return;
     }
+    
+    this.certificateUpload();
+  }
+
+  certificateUpload() {
+    let formData = new FormData();
+    formData.append('file', this.fileToUpload);
+    this.api.uploadCertificate(formData).subscribe(response => {
+      this.fpoRegisterForm.get('certId').setValue(response.id);
+      this.registerUserSave();
+    })
+  }
+
+  registerUserSave() {
     let user = {
       userName: this.fpoRegisterForm.value.userName,
       password: this.fpoRegisterForm.value.password,
@@ -148,6 +173,9 @@ export class FpoRegisterComponent implements OnInit {
     delete this.fpoRegisterForm.value.password;
     delete this.fpoRegisterForm.value.userName;
     delete this.fpoRegisterForm.value.confirmPassword;
+    // delete file
+    delete this.fpoRegisterForm.value.file;
+
     let date = new Date(this.fpoRegisterForm.value.dateOfRegistration);
     //let newdate = this.newUYDate(date);
     this.fpoRegisterForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd/MM/yyyy'); //whatever format you need. 
@@ -180,6 +208,31 @@ export class FpoRegisterComponent implements OnInit {
     mm = (parseInt(mm) - 1).toString(); // January is 0
 
     return new Date(dd - mm - yyyy);
+  }
+
+  handleFileInput(files: FileList) {
+    console.log(files);
+    this.fileToUpload = files.item(0);
+  
+    if (!this.validateFile(files[0].name)) {
+      this.checkfileFormat = true;
+      this.fileToUpload = null;
+      this.fpoRegisterForm.get('file').setValue('');
+      return;
+    }
+    else {
+      this.checkfileFormat = false;
+    }
+  }
+  
+  validateFile(name: String) {
+    let ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" ||  ext.toLowerCase() == "jpg" || ext.toLowerCase()=="pdf" || ext.toLowerCase()=="doc" || ext.toLowerCase()=="docx" || ext.toLowerCase()=="txt") {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
 }

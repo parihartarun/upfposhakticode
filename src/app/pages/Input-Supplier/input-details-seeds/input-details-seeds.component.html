@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label>{{'Quantity' | translate}}<span class="required">*</span></label>
+                    <label>{{'Quantity (Kg)' | translate}}<span class="required">*</span></label>
                     <input type="text" id="input-first-name" class="form-control" formControlName="quantity" required>
                     <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
                       <div *ngIf="formControls.quantity.errors.required">{{'Seed Quantity is required'| translate}}</div>
@@ -129,7 +129,7 @@
                 <th scope="col">{{'S.No' | translate}}</th>
                 <th scope="col"> {{'Seed Name' | translate}}</th>
                 <th scope="col">{{'Seed Variety' | translate}}</th>
-                <th scope="col">{{'Quantity' | translate}}</th>
+                <th scope="col">{{'Quantity (Kg)' | translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -145,7 +145,7 @@
                   {{sdata.crop_veriety}}
                 </td>
                 <td>
-                  {{sdata.quantity}} (Qt.)
+                  {{sdata.quantity}} (Kg)
                 </td>
                 <td class="text-center">
                   <div ngbDropdown placement="bottom-center">

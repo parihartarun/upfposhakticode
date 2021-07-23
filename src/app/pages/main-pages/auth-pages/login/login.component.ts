@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   userRole: any;
   userId: any;
+  fieldTextType: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private api: AuthService,
@@ -71,5 +72,9 @@ export class LoginComponent implements OnInit {
   }
   handleSuccess(e) {
     console.log("ReCaptcha", e);
+  }
+  
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
   }
 }

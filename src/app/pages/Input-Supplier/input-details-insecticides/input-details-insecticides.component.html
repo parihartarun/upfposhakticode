@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>{{'Quantity' | translate}} <span class="required">*</span></label>
+                                        <label>{{'Quantity (Kg)' | translate}} <span class="required">*</span></label>
                                         <input type="text" id="input-first-name" formControlName="quantity" class="form-control form-control-alternative">
                                         <div *ngIf="submitted && formControls.quantity.errors" class="text-danger">
                                             <div *ngIf="formControls.quantity.errors.required">{{'This field is required'| translate}}</div>
@@ -110,8 +110,7 @@
                                 <th scope="col">{{'S.No' | translate}}</th>
                                 <th scope="col"> {{'Insecticdes Type' | translate}}</th>
                                 <th scope="col">{{'Name of Manufacturer' | translate}}</th>
-                                <th scope="col">{{'Quantity' 
-                                    | translate}} </th>
+                                <th scope="col">{{'Quantity (Kg)' | translate}} </th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>

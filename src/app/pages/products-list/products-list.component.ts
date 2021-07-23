@@ -841,8 +841,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       createdbyUserId:localStorage.getItem('userId'),
       createdbyRoleId:localStorage.getItem('roleRefId'),
       createdBy:[0],
-      masterId: [0]
-
+      masterId: [0],
+      tnc: ['', Validators.required]
     })
   }
   get formControls() {
@@ -867,7 +867,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
         status:["active"],
         userId:localStorage.getItem('userId'),
         masterUserId:[item.userid],
-        masterRoleId:[item.roleid]   
+        masterRoleId:[item.roleid],
+        tnc: ['', Validators.required]
     })
 
 
@@ -897,7 +898,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
           status:["active"],
           userId:localStorage.getItem('userId'), 
           masterUserId:[item.userid],
-          masterRoleId:[item.roleid]
+          masterRoleId:[item.roleid],
+          tnc: ['', Validators.required]
       })
 
   }
@@ -922,7 +924,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
         status:["active"],
         userId:localStorage.getItem('userId'),
         masterUserId:[item.userid],
-        masterRoleId:[item.roleid]
+        masterRoleId:[item.roleid],
+        tnc: ['', Validators.required]
       })
   }
 
@@ -944,7 +947,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
           status:["active"],
           userId:localStorage.getItem('userId'),
           masterUserId:[item.userid],
-          masterRoleId:[item.roleid]
+          masterRoleId:[item.roleid],
+          tnc: ['', Validators.required]
         })
    }
 
@@ -966,7 +970,8 @@ export class ProductsListComponent implements AfterViewInit, OnInit {
       status:["active"],
       userId:localStorage.getItem('userId'),
       masterUserId:[item.userid],
-      masterRoleId:[item.roleid]
+      masterRoleId:[item.roleid],
+      tnc: ['', Validators.required]
     })
    }
 

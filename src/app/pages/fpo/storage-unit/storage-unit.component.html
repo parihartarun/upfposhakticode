@@ -64,6 +64,31 @@
                   </div>
                 </div>
               </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label"
+                        for="input-last-name">{{'WDRA accredited warehouses?' | translate}} <span
+                          class="required">*</span></label><br />
+                      <div class="custom-control custom-radio mb-3 ">
+                        <input formControlName="wdraAcredited" value="Yes" class="custom-control-input"
+                          id="accreditedYes" type="radio">
+                        <label class="custom-control-label" for="accreditedYes">{{'Yes' | translate}}</label>
+                      </div>
+                      <div class="custom-control custom-radio mb-3">
+                        <input formControlName="wdraAcredited" value="No" class="custom-control-input" id="accreditedNo"
+                          type="radio">
+                        <label class="custom-control-label" for="accreditedNo">{{'No' | translate}}</label>
+                      </div>
+                      <div *ngIf="submitted && formControls.wdraAcredited.errors" class="text-danger">
+                        <div *ngIf="formControls.wdraAcredited.errors.required">
+                          {{'This Field is required' | translate}}</div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">

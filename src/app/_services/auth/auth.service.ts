@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   sendForgotPasswordEmail(data) {
-    return this.http.post<any>(this._url + 'signin', data).pipe(map((res: any) => {
+    return this.http.post<any>(this._url + 'signin/forgot/password', data).pipe(map((res: any) => {
       return res;
     }));
   }
@@ -195,5 +195,9 @@ export class AuthService {
     return this.http.get<any>(this._url + `register/regiagency`).pipe(map((v: any) => {
       return v;
     }));
+  }
+
+  uploadCertificate(data):Observable<any> {
+    return this.http.post<any>(this._url + 'register/uploadCert', data);
   }
 }

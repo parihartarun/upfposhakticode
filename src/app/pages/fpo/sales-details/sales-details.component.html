@@ -136,6 +136,8 @@
                 <th scope="col">{{'Crop Name'| translate}}</th>
                 <th scope="col">{{'Variety'|translate}}</th>
                 <th scope="col">{{'Quantity Sold'|translate}}</th>
+                <th scope="col">{{'Sold To'| translate}}</th>
+                <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -155,6 +157,12 @@
                 </td>
                 <td>
                   {{sale.sold_quantity}}
+                </td>
+                <td>
+                  {{sale.soldTo}}
+                </td>
+                <td>
+                  {{sale.delAddress}}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
