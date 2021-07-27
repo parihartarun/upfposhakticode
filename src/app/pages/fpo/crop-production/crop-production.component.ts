@@ -155,7 +155,7 @@ export class CropProductionComponent implements OnInit {
 
   editCropProduction(production){
     console.log(production);
-    console.log(localStorage.getItem('userrole'));
+    // console.log(localStorage.getItem('userRole'));
     this.getCropsBySeasonId(production.season_id);
     this.getCropVarietiesByCropId(production.crop_id);
     this.productionForm = this.formBuilder.group({

@@ -95,18 +95,11 @@ export class DepartmentService {
       }
     })
   }
+  
   addGuideline(formData) {
-    this.http.post<any>(this._url + 'fpoguidelines/uploadFPOGuideline', formData).subscribe((res: any) => {
-      if (res == true || res) {
-        this.toastr.success('Guideline Added Successfully.');
-        this.getGuideline();
-      } else {
-        this.toastr.error('Something went wrong.');
-      }
-
-
-    })
+    return this.http.post<any>(this._url + 'fpoguidelines/uploadFPOGuideline', formData)
   }
+
   updateGuideline(id, data) {
     return this.http.put<any>(this._url + 'fpoguidelines/' + id
       , data);

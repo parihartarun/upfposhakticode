@@ -191,7 +191,7 @@ export class LandDetailsComponent implements OnInit {
   }
 
   editLandDetail(landDetail){
-    console.log(localStorage.getItem('userrole'));
+    // console.log(localStorage.getItem('userRole'));
     if (this.roleType == "ROLE_FPC") {
       this.landDetailForm = this.formBuilder.group({
         farmerId: [landDetail.farmerId, [Validators.required]],

@@ -27,6 +27,8 @@ export class AddFarmerComponent implements OnInit {
   p:number = 1;  
   edit=false;
 
+  invalidUserName:boolean = false;
+
   constructor(private fb: FormBuilder, private api: AuthService, private fpo :FpoService ,private _router: Router,private toastr:ToastrService) { }
 
   ngOnInit(): void {
@@ -92,7 +94,7 @@ export class AddFarmerComponent implements OnInit {
         category: ['', Validators.required],
         distRefId: ['', Validators.required],
         gender: ['', Validators.required],
-        createdBy:localStorage.getItem('userrole'),
+        createdBy:localStorage.getItem('userRole'),
         enabled: [true],
         farmerMob: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
         farmerName: ['', Validators.required],
@@ -139,7 +141,7 @@ export class AddFarmerComponent implements OnInit {
     this.fpoAddFarmerForm.patchValue({
       fpoRefId: localStorage.getItem('masterId'),
       userRefId: localStorage.getItem('userId'),
-      createdBy:localStorage.getItem('userrole')
+      createdBy:localStorage.getItem('userRole')
     });
     let user = {
       //userName: this.generate_radom_string(),
@@ -191,10 +193,11 @@ export class AddFarmerComponent implements OnInit {
         stateref: 0,
         fpoRefId: localStorage.getItem('masterId'),
         userRefId: localStorage.getItem('userId'),
-        createdBy:localStorage.getItem('userrole'),
+        createdBy: [farmerDetails.createdBy],
         enabled: [true],
         password: ['12345678'],
-        confirmPassword: ['12345678']
+        confirmPassword: ['12345678'],
+        updatedBy: localStorage.getItem('userRole'),
     }, {
         validator: MustMatch('password', 'confirmPassword')
        
@@ -207,6 +210,7 @@ export class AddFarmerComponent implements OnInit {
       });
     }, 1000);
     this.edit = true;
+
     window.scroll(0,0);
   }
 
@@ -281,5 +285,18 @@ export class AddFarmerComponent implements OnInit {
     this.fpoAddFarmerForm.reset();
     this.submitted = false;
     this.edit = false;
+  }
+
+  validateUserName(value){
+    console.log(value)
+    this.invalidUserName = false;
+    let userName = typeof value == 'string' ?  value.trim() : value;
+    if(userName != '') {
+      this.api.validateUserName(userName).subscribe(response => {
+        if(response.status !== "Accepted"){
+          this.invalidUserName = true;
+        }
+      })
+    }
   }
 }

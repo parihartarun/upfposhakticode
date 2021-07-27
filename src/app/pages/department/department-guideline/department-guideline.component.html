@@ -1,7 +1,5 @@
 <div class="header pb-7 pt-5 pt-md-8">
-  <div class="container-fluid">
-
-  </div>
+  <div class="container-fluid"></div>
 </div>
 <!-- Page content -->
 <div class="container-fluid mt--7 mp-7">
@@ -11,7 +9,7 @@
         <div class="card-header border-0">
           <div class="row">
             <div class="col-9">
-              <h3 class="mb-0">{{'Guideline' | translate}}</h3>
+              <h3 class="mb-0">{{ "Guideline" | translate }}</h3>
             </div>
           </div>
         </div>
@@ -21,19 +19,31 @@
               <div class="row">
                 <div class="col-lg-8">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">{{'Guideline Type' |
-                                            translate}} <span class="required">*</span></label>
-                    <select formControlName="guideline_type" class="custom-control custom-select mb-1">
-                      <option value="null" disabled>
-                        {{'Select Guideline Type' | translate}}</option>
+                    <label class="form-control-label" for="input-last-name"
+                      >{{ "Guideline Type" | translate }}
+                      <span class="required">*</span></label
+                    >
+                    <select
+                      formControlName="guideline_type"
+                      class="custom-control custom-select mb-1"
+                    >
+                      <option value="" disabled>
+                        {{ "Select Guideline Type" | translate }}
+                      </option>
                       <option [value]="'PREREGISTRATION'">
-                        {{'Pre-PFO Registration' | translate}}</option>
+                        {{ "Pre-FPO Registration" | translate }}
+                      </option>
                       <option [value]="'POSTREGISTRATION'">
-                        {{'Post-PFO Registration' | translate}}</option>
+                        {{ "Post-FPO Registration" | translate }}
+                      </option>
                     </select>
-                    <div *ngIf="typeValidation.invalid && (typeValidation.dirty || typeValidation.touched)"
-                      class="text-danger">
-                      <div>{{'Guideline type is required' | translate}}</div>
+                    <div
+                      *ngIf="submitted && formControls.guideline_type.errors"
+                      class="text-danger"
+                    >
+                      <span>
+                        {{ "Guideline type is required" | translate }}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -41,154 +51,290 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
-                      {{'Documents' | translate}}
+                      {{ "Documents" | translate }}
                       <span class="required">*</span> :
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" (change)="seletDocType()" [ngModelOptions]="{standalone: true}"
-                          [(ngModel)]="docRadio" name="inlineRadio" id="inlineRadio1" value="url">
-                        <label class="form-check-label" for="inlineRadio1">{{'URL' | translate}}</label>
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          formControlName="doc_type"
+                          (change)="onChangeDocumentType()"
+                          id="urlRadio"
+                          value="url"
+                        />
+                        <label class="form-check-label" for="urlRadio">{{
+                          "URL" | translate
+                        }}</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" (change)="seletDocType()" [ngModelOptions]="{standalone: true}"
-                          [(ngModel)]="docRadio" name="inlineRadio" id="inlineRadio2" value="file">
-                        <label class="form-check-label" for="inlineRadio2">{{'File Upload' | translate}}</label>
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          formControlName="doc_type"
+                          (change)="onChangeDocumentType()"
+                          id="fileRadio"
+                          value="file"
+                        />
+                        <label class="form-check-label" for="fileRadio">{{
+                          "File Upload" | translate
+                        }}</label>
                       </div>
                     </label>
-                    <div *ngIf="docError" class="text-danger">
-                    <div>{{'Document is required' | translate}}</div>
-                  </div>
-                  </div>
-                </div>
-
-
-                <div class="col-lg-12" *ngIf="docRadio==='file'">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">
-                      {{'File' | translate}}
-                      <span class="required">*</span> :
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
-                          [(ngModel)]="fileRadio" name="inlineRadioOptions" (change)="onLanguageChange('hi')" id="inlineRadio1" value="hindi_upload">
-                        <label class="form-check-label" for="inlineRadio1">{{'Hindi Upload' | translate}}</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
-                          [(ngModel)]="fileRadio" name="inlineRadioOptions" (change)="onLanguageChange('en')"  id="inlineRadio2" value="english_upload">
-                        <label class="form-check-label" for="inlineRadio2">{{'English Upload' | translate}}</label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" [ngModelOptions]="{standalone: true}"
-                          [(ngModel)]="fileRadio" name="inlineRadioOptions" (change)="onLanguageChange('both')" id="inlineRadio2" value="both">
-                        <label class="form-check-label" for="inlineRadio2">{{'Both' | translate}}</label>
-                      </div>
-                    </label>
-                    <div *ngIf="fileError" class="text-danger">
-                      <div>{{'Document Type is required' | translate}}</div>
+                    <div
+                      *ngIf="submitted && docControl.errors"
+                      class="text-danger"
+                    >
+                      <div>{{ "Document is required" | translate }}</div>
                     </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-12" *ngIf="docRadio==='url'">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">
-                      {{'URL' | translate}}
-                      <!-- <span class="required">*</span> -->
-                    </label>
-                    <input #myInput type="text" class="form-control form-control-alternative" formControlName="url"
-                      placeholder="www.google.com/" />
-                    <div *ngIf="urlError" class="text-danger">
-                      <div>{{'URL is required' | translate}}</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-12" *ngIf="fileRadio==='both' || fileRadio==='hindi_upload'">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">
-                      {{'Hindi Upload Document' | translate}}
-                      <!-- <span class="required">*</span> -->
-                      <span class="text-xs ml-2 file-format-msg">({{'only xlsx, xls, pdf, doc, docx format with 15MB file size allowed' | translate}})</span>
-                    </label>
-                    <input type="file" id="input-first-name" class="form-control form-control-alternative"
-                      formControlName="h_file" (change)="uploadHindi($event.target.files)" />
-                    <!-- <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
-                      class="text-danger">
-                      <div>{{'Upload document is required' | translate}}</div>
-                    </div> -->
-                  </div>
-                </div>
-
-                <div class="col-lg-12" *ngIf="fileRadio==='both' || fileRadio==='english_upload'">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">
-                      {{'English Upload Document' | translate}}
-                      <!-- <span class="required">*</span> -->
-                      <span class="text-xs ml-2 file-format-msg">({{'only xlsx, xls, pdf, doc, docx format with 15MB file size allowed' | translate}})</span>
-                    </label>
-                    <input #myInput type="file" id="input-first-name" class="form-control form-control-alternative"
-                      formControlName="file" (change)="upload($event.target.files)" />
-                    <!-- <div *ngIf="docValidation.invalid && (docValidation.dirty || docValidation.touched)"
-                      class="text-danger">
-                      <div>{{'Upload document is required' | translate}}</div>
-                    </div> -->
-                  </div>
-                </div>
-                <div class="col-lg-12" *ngIf="isEdit">
-                  <div class="form-group">
-                    <span><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>
-                  </div>
-                </div>
-
-                <div class="col-lg-12" *ngIf="fileUploadError">
-                  <div class="form-group">
-                    <div class="text-danger">
-                    <div>{{'Choosing file is manadatory' | translate}}</div>
-                  </div>
-                  </div>
-                </div>
-               
-                <div class="col-lg-12" *ngIf="fileRadio==='both' || fileRadio==='hindi_upload'">
-                  <div class="form-group">
-                    <div class="form-group mb-1">
-                      <label class="form-control-label" for="">{{'Hindi Description' | translate}}
-                        <!-- <span class="required">*</span> -->
-                      </label>
-                      <textarea class="form-control" formControlName="hindi_desc" rows="3"></textarea>
-                    </div>
-                    <!-- <div *ngIf="descValidation.invalid && (descValidation.dirty || descValidation.touched)"
-                      class="text-danger">
-                      <div>{{'Description is required'| translate}}</div>
-                    </div> -->
-                  </div>
-                </div>
-
-                <div class="col-lg-12" *ngIf="fileRadio==='both' || fileRadio==='english_upload'">
-                  <div class="form-group">
-                    <div class="form-group mb-1">
-                      <label class="form-control-label" for="">{{'English Description' | translate}}
-                        <!-- <span class="required">*</span> -->
-                      </label>
-                      <textarea class="form-control" formControlName="description" rows="3"></textarea>
-                    </div>
-                    <!-- <div *ngIf="descValidation.invalid && (descValidation.dirty || descValidation.touched)"
-                      class="text-danger">
-                      <div>{{'Description is required'| translate}}</div>
-                    </div> -->
                   </div>
                 </div>
 
                 <div class="col-lg-12">
                   <div class="form-group">
-                    <button *ngIf="!isEdit" class="btn btn-primary text-right" (click)="addGuideline()">
-                      {{'Add Guideline' | translate}}</button>
-                    <button *ngIf="isEdit" class="btn btn-primary text-right" (click)="updateGuideline()">
-                      {{'Update Guideline' | translate}}</button>
-                    <button *ngIf="isEdit" class="btn btn-primary text-right"
-                      (click)="isEdit=false;guidelineForm.reset();">
-                      {{'Cancel' | translate}}</button>
+                    <label class="form-control-label" for="input-first-name">
+                      {{ "Language" | translate }}
+                      <span class="required">*</span> :
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          formControlName="lang"
+                          (change)="onLanguageChange('hi')"
+                          id="hindiLangRadio"
+                          value="hi"
+                        />
+                        <label class="form-check-label" for="hindiLangRadio">{{
+                          "Hindi" | translate
+                        }}</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          formControlName="lang"
+                          (change)="onLanguageChange('en')"
+                          id="enLangRadio"
+                          value="en"
+                        />
+                        <label class="form-check-label" for="enLangRadio">{{
+                          "English" | translate
+                        }}</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          formControlName="lang"
+                          (change)="onLanguageChange('both')"
+                          id="bothLangRadio"
+                          value="both"
+                        />
+                        <label class="form-check-label" for="bothLangRadio">{{
+                          "Both" | translate
+                        }}</label>
+                      </div>
+                    </label>
+                    <div
+                      *ngIf="submitted && langControl.errors"
+                      class="text-danger"
+                    >
+                      <div>{{ "Document Type is required" | translate }}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12" *ngIf="docControl.value === 'url'">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
+                      {{ "URL" | translate }}
+                      <span class="required">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-alternative"
+                      formControlName="url"
+                      placeholder="www.google.com/"
+                    />
+                    <div
+                      *ngIf="submitted && urlControl.errors"
+                      class="text-danger"
+                    >
+                      <div>{{ "URL is required" | translate }}</div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="col-lg-12"
+                  *ngIf="
+                    docControl.value === 'file' &&
+                    (langControl.value === 'both' || langControl.value === 'hi')
+                  "
+                >
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
+                      {{ "Hindi Upload Document" | translate }}
+                      <!-- <span class="required">*</span> -->
+                      <span class="text-xs ml-2 file-format-msg"
+                        >({{
+                          "only xlsx, xls, pdf, doc, docx format with 15MB file size allowed"
+                            | translate
+                        }})</span
+                      >
+                    </label>
+                    <input
+                      type="file"
+                      class="form-control form-control-alternative"
+                      formControlName="h_file"
+                      (change)="uploadHindi($event.target.files)"
+                    />
+                    <div
+                      *ngIf="submitted && formControls.h_file.errors"
+                      class="text-danger"
+                    >
+                      <div>{{ "Upload document is required" | translate }}</div>
+                    </div>
+                  </div>
+                  <div class="form-group" *ngIf="isEdit">
+                    <span
+                      ><a href="{{ filePathToHiEdit }}" target="_blank">{{
+                        fileToHiEdit
+                      }}</a></span
+                    >
+                  </div>
+                </div>
+
+                <div
+                  class="col-lg-12"
+                  *ngIf="
+                    docControl.value === 'file' &&
+                    (langControl.value === 'both' || langControl.value === 'en')
+                  "
+                >
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-first-name">
+                      {{ "English Upload Document" | translate }}
+                      <!-- <span class="required">*</span> -->
+                      <span class="text-xs ml-2 file-format-msg"
+                        >({{
+                          "only xlsx, xls, pdf, doc, docx format with 15MB file size allowed"
+                            | translate
+                        }})</span
+                      >
+                    </label>
+                    <input
+                      type="file"
+                      id="input-first-name"
+                      class="form-control form-control-alternative"
+                      formControlName="file"
+                      (change)="upload($event.target.files)"
+                    />
+                    <div
+                      *ngIf="submitted && formControls.file.errors"
+                      class="text-danger"
+                    >
+                      <div>{{ "Upload document is required" | translate }}</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group" *ngIf="isEdit">
+                    <span
+                      ><a href="{{ filePathToEdit }}" target="_blank">{{
+                        fileToEdit
+                      }}</a></span
+                    >
+                  </div>
+                </div>
+
+                <!-- <div class="col-lg-12" *ngIf="fileUploadError">
+                  <div class="form-group">
+                    <div class="text-danger">
+                      <div>{{ "Choosing file is manadatory" | translate }}</div>
+                    </div>
+                  </div>
+                </div> -->
+
+                <div
+                  class="col-lg-12"
+                  *ngIf="
+                    langControl.value === 'both' || langControl.value === 'hi'
+                  "
+                >
+                  <div class="form-group">
+                    <div class="form-group mb-1">
+                      <label class="form-control-label" for=""
+                        >{{ "Hindi Description" | translate }}
+                        <span class="required">*</span>
+                      </label>
+                      <textarea
+                        class="form-control"
+                        formControlName="hindi_desc"
+                        rows="3"
+                      ></textarea>
+                    </div>
+
+                    <div
+                      *ngIf="submitted && descHiControl.errors"
+                      class="text-danger"
+                    >
+                      <div>{{ "Description is required" | translate }}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="col-lg-12"
+                  *ngIf="
+                    langControl.value === 'both' || langControl.value === 'en'
+                  "
+                >
+                  <div class="form-group">
+                    <div class="form-group mb-1">
+                      <label class="form-control-label" for=""
+                        >{{ "English Description" | translate }}
+                        <span class="required">*</span>
+                      </label>
+                      <textarea
+                        class="form-control"
+                        formControlName="description"
+                        rows="3"
+                      ></textarea>
+                    </div>
+
+                    <div
+                      *ngIf="submitted && descEnControl.errors"
+                      class="text-danger"
+                    >
+                      <div>{{ "Description is required" | translate }}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <button
+                      *ngIf="!isEdit"
+                      class="btn btn-primary text-right"
+                      (click)="addGuideline()"
+                    >
+                      {{ "Add Guideline" | translate }}
+                    </button>
+                    <button
+                      *ngIf="isEdit"
+                      class="btn btn-primary text-right"
+                      (click)="updateGuideline()"
+                    >
+                      {{ "Update Guideline" | translate }}
+                    </button>
+                    <button
+                      *ngIf="isEdit"
+                      class="btn btn-primary text-right"
+                      (click)="resetForm()"
+                    >
+                      {{ "Cancel" | translate }}
+                    </button>
                   </div>
                 </div>
               </div>
-
             </div>
           </form>
         </div>
@@ -204,87 +350,136 @@
       <div class="card shadow">
         <div class="card-header border-0 cust-head">
           <div>
-            <h3 class="mb-0">{{'Guidelines' | translate}}</h3>
+            <h3 class="mb-0">{{ "Guidelines" | translate }}</h3>
           </div>
         </div>
         <div class="card-body">
           <div class="border border-dark">
             <div class="cust-head mx-3 p-3">
               <div class="mr-2">
-                <input type="text" [id]="'search_'+tableId" [(ngModel)]="searchText" (input)="onInputSearch()"
-                  style="border-radius: 0;" name="search" placeholder="Search" autocomplete="off"
-                  class="form-control input-md" />
+                <input
+                  type="text"
+                  [id]="'search_' + tableId"
+                  [(ngModel)]="searchText"
+                  (input)="onInputSearch()"
+                  style="border-radius: 0"
+                  name="search"
+                  placeholder="Search"
+                  autocomplete="off"
+                  class="form-control input-md"
+                />
               </div>
               <div>
-                <select class="custom-control custom-select" name="filterByType" [(ngModel)]="filterByType"
-                  (change)="getGuidelineByType();p=1" style="border-radius: 0;">
+                <select
+                  class="custom-control custom-select"
+                  name="filterByType"
+                  [(ngModel)]="filterByType"
+                  (change)="getGuidelineByType(); p = 1"
+                  style="border-radius: 0"
+                >
                   <option value="null" disabled>
-                    {{'Select Guideline Type' | translate}}</option>
+                    {{ "Select Guideline Type" | translate }}
+                  </option>
                   <option value="">
-                    {{'All' | translate}}</option>
+                    {{ "All" | translate }}
+                  </option>
                   <option [value]="'PREREGISTRATION'">
-                    {{'Pre-PFO Registration' | translate}}</option>
+                    {{ "Pre-FPO Registration" | translate }}
+                  </option>
                   <option [value]="'POSTREGISTRATION'">
-                    {{'Post-PFO Registration' | translate}}</option>
+                    {{ "Post-FPO Registration" | translate }}
+                  </option>
                 </select>
               </div>
             </div>
             <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-              <thead class="">
-                <tr>
-                  <th scope="col">{{'SR. NO' | translate}}</th>
-                  <th scope="col" class="sort" (click)="onClickOrderBy('description')">{{'Description' | translate}}
-                  </th>
-                  <th scope="col" class="sort" (click)="onClickOrderBy('uploadDate')">{{'Date' | translate}}</th>
-                  <th scope="col">{{'View Details' | translate}}</th>
-                  <th scope="col">{{'Actions' | translate}}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  *ngFor="let p of (guideLineList | async) | tableSearch:searchText  | sort:orderBy  | paginate: { itemsPerPage: 10, currentPage: currentPage };let i=index">
-                  <td>
-                    {{(currentPage-1) * 10 + i + 1}}
-                  </td>
-                  <td>
-                    {{p.description}}
-                  </td>
-                  <td *ngIf="!!p.uploadDate">
-                    {{p.uploadDate | date: 'dd/MM/yyyy'}}
-                  </td>
-                  <td *ngIf="!!!p.uploadDate">
-                    {{p.createDate | date: 'dd/MM/yyyy'}}
-                  </td>
-                  <td>
-                    <a target="_blank" href="{{p.filePath}}" download><img src="./assets/image/img/pdficon.png"
-                        style=" height:20px; width:30px"></a>
-
-                  </td>
-                  <td class="text-center">
-                    <div ngbDropdown placement="bottom-center">
-                      <a class="btn btn-sm btn-primary" ngbDropdownToggle>
-                        {{'Actions' | translate}}
-                      </a>
-                      <div ngbDropdownMenu class=" dropdown-menu-center dropdown-menu-arrow">
-                        <a class="dropdown-item" (click)="editGuideline(p)">{{'Edit' |
-                                                    translate}}</a>
-                        <a class="dropdown-item" (click)="deleteGuideline(p.id)">{{'Delete' |
-                                                    translate}}</a>
+              <table class="table table-bordered table-striped">
+                <thead class="">
+                  <tr>
+                    <th scope="col">{{ "SR. NO" | translate }}</th>
+                    <th
+                      scope="col"
+                      class="sort"
+                      (click)="onClickOrderBy('description')"
+                    >
+                      {{ "Description" | translate }}
+                    </th>
+                    <th
+                      scope="col"
+                      class="sort"
+                      (click)="onClickOrderBy('uploadDate')"
+                    >
+                      {{ "Date" | translate }}
+                    </th>
+                    <th scope="col">{{ "View Details" | translate }}</th>
+                    <th scope="col">{{ "Actions" | translate }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let p of guideLineList
+                        | async
+                        | tableSearch: searchText
+                        | sort: orderBy
+                        | paginate
+                          : { itemsPerPage: 10, currentPage: currentPage };
+                      let i = index
+                    "
+                  >
+                    <td>
+                      {{ (currentPage - 1) * 10 + i + 1 }}
+                    </td>
+                    <td>
+                      {{ p.description }}
+                    </td>
+                    <td *ngIf="!!p.uploadDate">
+                      {{ p.uploadDate | date: "dd/MM/yyyy" }}
+                    </td>
+                    <td *ngIf="!!!p.uploadDate">
+                      {{ p.createDate | date: "dd/MM/yyyy" }}
+                    </td>
+                    <td>
+                      <a target="_blank" href="{{ p.filePath }}" download
+                        ><img
+                          src="./assets/image/img/pdficon.png"
+                          style="height: 20px; width: 30px"
+                      /></a>
+                    </td>
+                    <td class="text-center">
+                      <div ngbDropdown placement="bottom-center">
+                        <a class="btn btn-sm btn-primary" ngbDropdownToggle>
+                          {{ "Actions" | translate }}
+                        </a>
+                        <div
+                          ngbDropdownMenu
+                          class="dropdown-menu-center dropdown-menu-arrow"
+                        >
+                          <a class="dropdown-item" (click)="editGuideline(p)">{{
+                            "Edit" | translate
+                          }}</a>
+                          <a
+                            class="dropdown-item"
+                            (click)="deleteGuideline(p.id)"
+                            >{{ "Delete" | translate }}</a
+                          >
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>   
-            <div class="card-footer py-4">
-              <nav aria-label="..." class="text-right">
-                <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
-              </nav>
-            </div>            
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="card-footer py-4">
+                <nav aria-label="..." class="text-right">
+                  <pagination-controls
+                    (pageChange)="currentPage = $event"
+                  ></pagination-controls>
+                </nav>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>

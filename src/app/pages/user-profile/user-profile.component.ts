@@ -40,6 +40,10 @@ constructor(private formBuilder: FormBuilder,
       fpoIFSC: [''],
       fpoBankAccNo: [''],
       fpoId: [''],
+
+      registeredUnder:[{value: '', disabled: true}],
+      fpoRegistrationNo: [{value: '', disabled: true}],
+      dateOfRegistration: [{value: '', disabled: true}]
     });
 
     this.usernamestring=localStorage.getItem('username');
@@ -59,6 +63,10 @@ constructor(private formBuilder: FormBuilder,
         fpoIFSC: [data.fpoIFSC],
         fpoBankAccNo: [data.fpoBankAccNo],
         fpoId: [data.fpoId],
+
+        registeredUnder:[data.registeredUnder],
+        fpoRegistrationNo: [data.fpoRegistrationNo],
+        dateOfRegistration: [data.dateOfRegistration]
       });
       setTimeout(()=>{  
         this.profileForm.get("blockRef").setValue(data.blockRef);

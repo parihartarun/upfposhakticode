@@ -43,7 +43,7 @@ export class AlphaNumericDirective {
     }
 
     const regex = /\w/; // allow [a-zA-Z0-9]
-    console.log(!regex.test(e.key))
+    // console.log(!regex.test(e.key))
     if (!regex.test(e.key)) {
       e.preventDefault();
     }
