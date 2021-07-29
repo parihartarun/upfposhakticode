@@ -115,14 +115,7 @@ export class DepartmentService {
     })
   }
   uploadSchemes(data) {
-    this.http.post<any>(this._url + 'schemes', data).subscribe((res: any) => {
-      if (res == true || res) {
-        this.toastr.success('Schemes Added Successfully.');
-        this.getScheme();
-      } else {
-        this.toastr.error('Something went wrong.');
-      }
-    })
+    return this.http.post<any>(this._url + 'schemes', data)
   }
   deleteSchemes(id) {
     this.http.delete<any>(this._url + 'schemes/' + id).subscribe((res: any) => {

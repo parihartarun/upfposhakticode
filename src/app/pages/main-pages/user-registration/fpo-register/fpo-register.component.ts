@@ -86,7 +86,7 @@ export class FpoRegisterComponent implements OnInit {
       blockRef: ['', Validators.required],
       fpoName: ['', [Validators.required]],
       distRefId: ['', Validators.required],
-      fpoRegistrationNo: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]{0,100}')]],
+      fpoLotNo: ['', [Validators.required, Validators.pattern('[0-9a-zA-Z]{0,100}')]],
       deleted: [true],
       fpolandLine: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
       fpoEmail: ['', [Validators.required, Validators.pattern(/^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+\.[aA-zZ]{2,4}$/)]],
@@ -178,7 +178,7 @@ export class FpoRegisterComponent implements OnInit {
 
     let date = new Date(this.fpoRegisterForm.value.dateOfRegistration);
     //let newdate = this.newUYDate(date);
-    this.fpoRegisterForm.value.dateOfRegistration = this.datePipe.transform(date, 'dd/MM/yyyy'); //whatever format you need. 
+    this.fpoRegisterForm.value.dateOfRegistration = this.datePipe.transform(date, 'yyyy-MM-dd'); //whatever format you need. 
     this.api.registerFPO(this.fpoRegisterForm.value).subscribe(response => {
 
       if (response.message == "SuccessFully Saved!") {

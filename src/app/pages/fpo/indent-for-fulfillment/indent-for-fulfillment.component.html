@@ -123,7 +123,7 @@
                 <th scope="col">{{'Crop Variety'|translate}}</th>
                 <th scope="col">{{'Created By'|translate}}</th>
                 <th scope="col">{{'Contact Details'|translate}}</th>
-                <th scope="col">{{'Quantity Required'|translate}}</th>
+                <th scope="col">{{'Quantity Required'|translate}} {{"in Qt"|translate}}</th>
                 <th scope="col">{{'Fulfillment Date'|translate}}</th>
                 <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
                 <th scope="col">{{'status'|translate}}</th>
@@ -204,6 +204,7 @@
                 <th scope="col">{{'Created on'|translate}}</th>
                 <th scope="col">{{'Fulfillment Date'|translate}}</th>
                 <th scope="col">{{'fpodeliveryaddr'|translate}}</th>
+                <th scope="col">{{'Indent Qty' | translate}} {{"Kg" |translate}}</th>
                 <th scope="col">{{'status'|translate}}</th>
                 <th scope="col">{{'Actions' | translate}}</th>
               </tr>
@@ -238,6 +239,9 @@
                 </td>
                 <td>
                   {{indent.deliveryAddress}}
+                </td>
+                <td>
+                  {{indent.indentQty}}
                 </td>
                 <td>
                   {{indent.status}}
@@ -279,7 +283,7 @@
                 <th scope="col">{{'indentnumber' | translate}}</th>
               <th scope="col">{{'Seed Name' | translate}}</th>
               <th scope="col">{{"Seed Variety" | translate}}</th>
-              <th scope="col">{{'Indent Qty' | translate}}</th>
+              <th scope="col">{{'Indent Qty' | translate}} {{"Kg" |translate}}</th>
               <th scope="col">{{'Created By'|translate}}</th>
               <th scope="col">{{'Contact Details'|translate}}</th>
               <th scope="col">{{'Fulfillment Date'|translate}}</th>
@@ -358,7 +362,7 @@
                 <th scope="col">{{'indentnumber' | translate}}</th>
                 <th scope="col">{{'Insecticide Type' | translate}}</th>
                 <th scope="col">{{"Insecticide Name" | translate}}</th>
-                <th scope="col">{{'Indent Qty' | translate}}</th>
+                <th scope="col">{{'Indent Qty' | translate}} {{"Kg" |translate}}</th>
                 <th scope="col">{{'Created By'|translate}}</th>
                 <th scope="col">{{'Contact Details'|translate}}</th>
                 <th scope="col">{{'Created on'|translate}}</th>

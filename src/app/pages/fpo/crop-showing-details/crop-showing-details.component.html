@@ -164,6 +164,11 @@
                       <span class="required">{{'Some of the fields of sowing details are empty or invalid.' | translate}}</span>
                     </div>
                   </div>
+                  <div class="row" *ngIf="totalLandError">
+                    <div class="col-lg-12 text-center">
+                      <span class="required">{{'Sowing area can not be greater than Total land' | translate}}</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="card-footer py-4 text-center">

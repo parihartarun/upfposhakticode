@@ -34,7 +34,7 @@ export class ChhfmbDashboardComponent implements OnInit {
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
   showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Quantity (in Qt.)';
+  yAxisLabel: string = 'Quantity';
 
   goBackUrl = '';
   colorScheme = {

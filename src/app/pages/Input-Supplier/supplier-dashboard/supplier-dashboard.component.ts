@@ -37,7 +37,8 @@ export class SupplierDashboardComponent implements OnInit {
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
   showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Quantity (in Qt.)';
+  yAxisLabelMachinery = 'Quantity';
+  yAxisLabel: string = 'Quantity (in Kg.)';
 
   goBackUrl = '';
   colorScheme = {

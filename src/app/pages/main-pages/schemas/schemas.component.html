@@ -58,21 +58,24 @@
                                             {{i+1}}
                                         </td>
                                         <td>
-                                            {{schema.description}}
+                                            {{(currentLang == 'en') ? schema.description : schema.hindiDescription}}
                                         </td>
                                         <td>
                                             {{schema.createDate | date: 'dd/MM/yyyy'}}
                                         </td>
                                         <td>
+                                            <ng-container *ngIf="schema.docType == 'url'">
                                              <a target="_blank" href="{{schema.url}}"><img
                                                 src="./assets/image/img/url.png"
                                                 style=" height:20px; width:20px"></a>
-                                           
+                                            </ng-container>
                                         </td>
                                         <td>
-                                            <a target="_blank" href="{{baseUrl}}{{schema.filePath}}"><img
+                                            <ng-container *ngIf="schema.docType == 'file'">
+                                                <a target="_blank" [href]="currentLang == 'en' ? schema.filePath : schema.hinFilepath"><img
                                                     src="./assets/image/img/pdficon.png"
                                                     style=" height:20px; width:20px"></a>
+                                            </ng-container>
                                         </td>
                                     </tr>
                                 </tbody>

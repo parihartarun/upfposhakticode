@@ -110,11 +110,32 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-3">
                   <div class="form-group">
                     <label class="input-label">{{'FPO Registration No'|translate}}<span class="required">*</span></label>
-                    <input class="form-control" type="text" formControlName="fpoRegistrationNo" >
+                    <input class="form-control" type="text" formControlName="fpoLotNo" >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="input-label">{{'FPO Contact No' |translate}}<span class="required">*</span></label>
+                    <input class="form-control" type="text" formControlName="fpolandLine">
+                    <div *ngIf="submitted && formControls.fpolandLine.errors" class="text-danger">
+                      <div *ngIf="formControls.fpolandLine.errors.required">{{'fpo contact is required'|translate}}</div>
+                      <span *ngIf="formControls.fpolandLine.errors.pattern">{{'mobile number should be 10 digit'|translate}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="input-label">{{"Registration Certificate" |translate}}</label>
+                    <div *ngIf="filePath && filePath != ''">
+                      <a [href]="filePath" target="_blank">{{"View Certificate" |translate}}</a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            
             <hr class="my-4" />
             <!-- Address -->
             <h6 class="heading-small text-muted mb-4">{{'Contact information'|translate}}</h6>

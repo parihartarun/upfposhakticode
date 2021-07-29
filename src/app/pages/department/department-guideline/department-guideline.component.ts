@@ -70,6 +70,7 @@ export class DepartmentGuidelineComponent implements OnInit {
   onChangeDocumentType() {
     let docTypeValue = this.docControl.value;
     this.urlControl.clearValidators();
+    this.langControl.setValue('');
     if (docTypeValue == 'url') {
       this.urlControl.setValidators(Validators.required);
     }
@@ -242,6 +243,11 @@ export class DepartmentGuidelineComponent implements OnInit {
     // this.guidelineForm.get('file').patchValue(data.file);
     // this.guidelineForm.get('h_file').patchValue(data.h_file);
 
+    this.descEnControl.clearValidators();
+    this.descHiControl.clearValidators();
+    this.guidelineForm.get('file').clearValidators();
+    this.guidelineForm.get('h_file').clearValidators();
+
     if (data.doc_type == 'url') {
       this.guidelineForm.get('url').patchValue(data.url);
     }
@@ -258,6 +264,8 @@ export class DepartmentGuidelineComponent implements OnInit {
 
     this.descEnControl.updateValueAndValidity();
     this.descHiControl.updateValueAndValidity();
+    this.guidelineForm.get('file').updateValueAndValidity();
+    this.guidelineForm.get('h_file').updateValueAndValidity();
 
     this.id = data.id;
     this.isEdit = true;

@@ -278,7 +278,8 @@ export class LandDetailsComponent implements OnInit {
 
   selectFarmer(farmer) {
     let registrationNumber = this.FarmerLists.find(f => f.farmerId == Number(farmer.currentTarget.value));
-    console.log(); 
+    console.log(farmer.currentTarget.value, registrationNumber);
+    this.landDetailForm.patchValue({ land_area: "0" });
     if(registrationNumber.upBSMId != null){
       this.getFarmerDetailFarmerformUpPardarshi(registrationNumber.upBSMId);
     }
@@ -292,6 +293,8 @@ export class LandDetailsComponent implements OnInit {
           this.landDetailForm.patchValue({
             land_area:response.land_area
           });
+        }else {
+          this.landDetailForm.patchValue({ land_area: "0" });
         }
       })
   }

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,10 +19,13 @@ districtlist:any=[];
 blocklist:any=[];
 banks:any=[];
 submitted = false;
+
+filePath:string = '';
 constructor(private formBuilder: FormBuilder,
     private api: FpoService,
     private auth: AuthService,
-    private toastr:ToastrService)
+    private toastr:ToastrService,
+    private datePipe: DatePipe)
     { }
 
   ngOnInit() {
@@ -42,8 +46,9 @@ constructor(private formBuilder: FormBuilder,
       fpoId: [''],
 
       registeredUnder:[{value: '', disabled: true}],
-      fpoRegistrationNo: [{value: '', disabled: true}],
-      dateOfRegistration: [{value: '', disabled: true}]
+      fpoLotNo: [{value: '', disabled: true}],
+      dateOfRegistration: ['', [Validators.required]],
+      fpolandLine: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]],
     });
 
     this.usernamestring=localStorage.getItem('username');
@@ -63,11 +68,17 @@ constructor(private formBuilder: FormBuilder,
         fpoIFSC: [data.fpoIFSC],
         fpoBankAccNo: [data.fpoBankAccNo],
         fpoId: [data.fpoId],
-
+        dateOfRegistration: [new Date(data.dateOfRegistration), [Validators.required]],
         registeredUnder:[data.registeredUnder],
-        fpoRegistrationNo: [data.fpoRegistrationNo],
-        dateOfRegistration: [data.dateOfRegistration]
+        fpoLotNo: [data.fpoLotNo],
+        
+        fpolandLine: [data.fpolandLine],
       });
+
+      
+
+      this.filePath = (data.file_path) ? data.file_path : null;
+
       setTimeout(()=>{  
         this.profileForm.get("blockRef").setValue(data.blockRef);
       }, 1000);
@@ -103,6 +114,11 @@ constructor(private formBuilder: FormBuilder,
         return;
     }
     console.log(this.profileForm.value);
+
+    let date = new Date(this.profileForm.value.dateOfRegistration);
+    //let newdate = this.newUYDate(date);
+    this.profileForm.value.dateOfRegistration = this.datePipe.transform(date, 'yyyy-MM-dd');
+
     var data = this.profileForm.value;
     console.log(data);
     this.api.updateProfile(data).subscribe(response => {

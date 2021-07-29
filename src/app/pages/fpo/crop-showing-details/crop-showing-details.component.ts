@@ -16,6 +16,8 @@ export class CropShowingDetailsComponent implements OnInit {
   //cropSowingData: BehaviorSubject<any> = new BehaviorSubject([]);
   cropSowingData:Array<any>=[];
 
+  totalLandError:boolean = false;
+
   cropSowingForm: FormGroup;
   cropSowingUpdateForm: FormGroup;
   farmerForm:FormGroup;
@@ -193,9 +195,11 @@ export class CropShowingDetailsComponent implements OnInit {
   }
 
   addSowingDetails(){
+    
     this.submitted = true;
     // stop here if form is invalid
     this.sowingError = false;
+    this.totalLandError = false;
     console.log(this.cropSowingForm.controls.list);
     if(this.cropSowingForm.controls.list.status == 'INVALID'){
       this.sowingError = true;
@@ -204,6 +208,13 @@ export class CropShowingDetailsComponent implements OnInit {
     if (this.cropSowingForm.invalid) {
         return;
     }
+
+    if(!this.checkSowingArea()) {
+      this.totalLandError = true;
+      return;
+    }
+
+    
 
     this.cropSowingForm.patchValue({
       masterId:localStorage.getItem('masterId')
@@ -225,6 +236,20 @@ export class CropShowingDetailsComponent implements OnInit {
         console.log(err)
       }
     );
+  }
+
+  checkSowingArea() {
+    let baseLand =  this.cropSowingForm.get('baseland').value;
+
+    let total = 0;
+    console.log(this.cropSowingForm.value.list)
+    this.cropSowingForm.value.list.forEach(element => {
+      total += parseFloat(element.sowingArea)
+    });
+
+    console.log(total, parseFloat(baseLand) <= total);
+    return total <=  parseFloat(baseLand) ;
+    
   }
 
   checkMQ(i){

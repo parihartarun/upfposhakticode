@@ -153,7 +153,7 @@
                       type="text"
                       class="form-control form-control-alternative"
                       formControlName="url"
-                      placeholder="www.google.com/"
+                      placeholder="http://www.upfposhakti.com/"
                     />
                     <div
                       *ngIf="submitted && urlControl.errors"
@@ -173,7 +173,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
                       {{ "Hindi Upload Document" | translate }}
-                      <!-- <span class="required">*</span> -->
+                      <span class="required">*</span>
                       <span class="text-xs ml-2 file-format-msg"
                         >({{
                           "only xlsx, xls, pdf, doc, docx format with 15MB file size allowed"
@@ -213,7 +213,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">
                       {{ "English Upload Document" | translate }}
-                      <!-- <span class="required">*</span> -->
+                      <span class="required">*</span>
                       <span class="text-xs ml-2 file-format-msg"
                         >({{
                           "only xlsx, xls, pdf, doc, docx format with 15MB file size allowed"
@@ -431,7 +431,7 @@
                       {{ (currentPage - 1) * 10 + i + 1 }}
                     </td>
                     <td>
-                      {{ p.description }}
+                      {{ p.description ? p.description : p.hindiDescription}}
                     </td>
                     <td *ngIf="!!p.uploadDate">
                       {{ p.uploadDate | date: "dd/MM/yyyy" }}

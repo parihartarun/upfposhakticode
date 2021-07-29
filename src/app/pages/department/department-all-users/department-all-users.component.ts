@@ -158,6 +158,8 @@ export class DepartmentAllUsersComponent implements OnInit {
     var users = [];
     data.forEach( (element) => {
       var obj = {
+        "Registered Under": element.registered_under,
+        "Agency (Associated with) ": element.agency,
         'User Name' : element.user_name,
         'FPO Name' : element.fpo_name,
         'District Name' : element.district_name,

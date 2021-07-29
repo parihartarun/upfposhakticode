@@ -156,7 +156,7 @@ export class InputDetailsInsecticidesComponent implements OnInit {
     this.fileToUpload = files.item(0);
     if (!this.validateFile(files[0].name)) {
       this.checkfileFormat = true;
-      this.myInputVariable.nativeElement.value = "";
+      // this.myInputVariable.nativeElement.value = "";
       this.insectForm.controls['file'].setValue('');
       return;
     }

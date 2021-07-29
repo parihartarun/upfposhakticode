@@ -29,7 +29,7 @@
           <option value="">
             {{'select Agency' |translate}}
           </option>
-          <option value="NABARD" *ngFor="let agency of agencies">{{agency}}</option>
+          <option [value]="agency" *ngFor="let agency of agencies">{{agency}}</option>
         </select>
       </div>
       <div *ngIf="submitted && formControls.agency.errors" class="text-danger">
@@ -106,13 +106,13 @@
         <div class="input-group-prepend">
           <span class="input-group-text"></span>
         </div>
-        <input class="form-control" type="text" formControlName="fpoRegistrationNo" (blur)="validateFpoRegNumber($event.target.value)">
+        <input class="form-control" type="text" formControlName="fpoLotNo" (blur)="validateFpoRegNumber($event.target.value)">
       </div>
-      <div *ngIf="submitted && formControls.fpoRegistrationNo.errors" class="text-danger">
-        <div *ngIf="formControls.fpoRegistrationNo.errors.required">
+      <div *ngIf="submitted && formControls.fpoLotNo.errors" class="text-danger">
+        <div *ngIf="formControls.fpoLotNo.errors.required">
           {{'fpo registration number is required'|translate}}
         </div>
-        <div *ngIf="formControls.fpoRegistrationNo.errors.pattern">
+        <div *ngIf="formControls.fpoLotNo.errors.pattern">
           {{'Invalid fpo registration number' | translate}}
         </div>
       </div>
@@ -334,7 +334,7 @@
         <app-terms-condition></app-terms-condition>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-yellow btn-sm term-text " data-dismiss="modal">{{'close' | translate}</button>
+        <button type="button" class="btn btn-yellow btn-sm term-text " data-dismiss="modal">{{'close' | translate}}</button>
       </div>
     </div>
     

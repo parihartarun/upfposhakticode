@@ -651,10 +651,10 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'Indent Quantity'|translate}}({{'quintal' | translate}})<span
+              <label class="form-control-label" for="input-username">{{'Indent Quantity'|translate}} ({{'quintal' | translate}})<span
                   class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="{{'Indent Quantity' | translate }}" type="text"
+                <input class="form-control" placeholder="{{'Indent Quantity' | translate }} ({{'quintal' | translate}})" type="text"
                   formControlName="quantity">
               </div>
               <div *ngIf="!submitted && formControls.quantity.touched && formControls.quantity.errors"
@@ -759,8 +759,8 @@
           </div>
           <div class="col-lg-6">
             <div class="form-group">
-              <label>{{'Quantity' | translate}} ({{'Kg' | translate}})<span class="required">*</span></label>
-              <input type="text" id="input-first-name" placeholder="Quantity"
+              <label>{{'Indent Quantity' | translate}} ({{'Kg' | translate}})<span class="required">*</span></label>
+              <input type="text" id="input-first-name" placeholder="{{'Indent Quantity' | translate }} ({{'Kg' | translate}})"
                 class="form-control form-control-alternative">
             </div>
           </div>
@@ -879,12 +879,12 @@
         <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
           <form role="form mt-1 p-1" [formGroup]="indentForm">
             <div class="row">
-              <div class="col-3 text-sm text-bold">{{' Name'| translate}}:</div>
-              <div class="col-9 text-sm">{{currentitem.vendorname}}</div>
+              <div class="col-4 text-sm text-bold">{{'Name'| translate}}:</div>
+              <div class="col-8 text-sm">{{currentitem.vendorname}}</div>
             </div>
             <div class="row">
-              <div class="col-3 text-sm text-bold">{{'Supplier Email1'|translate}}:</div>
-              <div class="col-9 text-sm ">{{currentitem.vendorEmail}}</div>
+              <div class="col-4 text-sm text-bold">{{'Supplier Email'|translate}}:</div>
+              <div class="col-8 text-sm ">{{currentitem.vendorEmail}}</div>
             </div>
             <div class="form-group mb-3">
             </div>
@@ -904,10 +904,10 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'Indent Quantity'|translate}}{{'Kg' | translate}}<span
+              <label class="form-control-label" for="input-username">{{'Indent Quantity'|translate}} ({{'Kg' | translate}})<span
                   class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text"
+                <input class="form-control" placeholder="{{'Indent Quantity'|translate}} ({{'Kg' | translate}})" type="text"
                   formControlName="indentQty">
               </div>
               <div *ngIf="!submitted && formControls.indentQty.touched && formControls.indentQty.errors"
@@ -1013,7 +1013,7 @@
         <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
           <form role="form mt-1 p-1" [formGroup]="indentForm">
             <div class="row" *ngIf="inputSupplier">
-              <div class="col-4 text-sm text-bold">{{' Name'| translate}}:</div>
+              <div class="col-4 text-sm text-bold">{{'Name'| translate}}:</div>
               <div class="col-8 text-sm">{{inpSupDetail.inputSupplier.input_supplier_name}}</div>
             </div>
             <div class="row" *ngIf="inputSupplier">
@@ -1045,10 +1045,10 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'Indent Quantity'|translate}}{{'Kg' | translate}}<span
+              <label class="form-control-label" for="input-username">{{'Indent Quantity'|translate}} ({{'Kg' | translate}})<span
                   class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text"
+                <input class="form-control" placeholder="{{'Indent Quantity'|translate}} ({{'Kg' | translate}})" type="text"
                   formControlName="indentQty">
               </div>
               <div *ngIf="!submitted && formControls.indentQty.touched && formControls.indentQty.errors"
@@ -1154,7 +1154,7 @@
         <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
           <form role="form mt-1 p-1" [formGroup]="indentForm">
             <div class="row">
-              <div class="col-4 text-sm text-bold">{{' Name'| translate}}:</div>
+              <div class="col-4 text-sm text-bold">{{'Name'| translate}}:</div>
               <div class="col-8 text-sm">{{currentitem.vendorname}}</div>
             </div>
             <div class="row">
@@ -1182,10 +1182,10 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <label class="form-control-label" for="input-username">{{'Indent Quantity'|translate}}{{'Kg' | translate}}<span
+              <label class="form-control-label" for="input-username">{{'Indent Quantity'|translate}} ({{'Kg' | translate}})<span
                   class="required">*</span></label>
               <div class="input-group input-group-alternative">
-                <input class="form-control" placeholder="{{'Quantity' | translate }}" type="text"
+                <input class="form-control" placeholder="{{'Indent Quantity'|translate}} ({{'Kg' | translate}})" type="text"
                   formControlName="indentQty">
               </div>
               <div *ngIf="!submitted && formControls.indentQty.touched && formControls.indentQty.errors"
@@ -1290,7 +1290,7 @@
         <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
           <form role="form mt-1 p-1" [formGroup]="indentForm">
             <div class="row">
-              <div class="col-4 text-sm text-bold">{{' Name'| translate}}:</div>
+              <div class="col-4 text-sm text-bold">{{'Name'| translate}}:</div>
               <div class="col-8 text-sm">{{currentitem.vendorname}}</div>
             </div>
             <div class="row">
@@ -1440,7 +1440,7 @@
         <div class="modal-body mt-1 pt-1" *ngIf="indentForm && !indentloading && !indentcreated">
           <form role="form mt-1 p-1" [formGroup]="indentForm">
             <div class="row">
-              <div class="col-4 text-sm text-bold">{{' Name'| translate}}:</div>
+              <div class="col-4 text-sm text-bold">{{'Name'| translate}}:</div>
               <div class="col-8 text-sm">{{chcSupDetail.chcFmb.user_name}}</div>
             </div>
             <div class="row">
@@ -1572,6 +1572,6 @@
     
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-yellow btn-sm term-text " (click)="modal.close()">Close</button>
+    <button type="button" class="btn btn-yellow btn-sm term-text " (click)="modal.close()">{{'close'|translate}}</button>
   </div>
 </ng-template>

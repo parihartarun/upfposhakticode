@@ -13,8 +13,8 @@ export class schemaService {
       this._url = environment.baseUrl;
     }
 
-  getDashboardData(type){
-    return  this.http.get<any>(this._url+`schemes/`+type).pipe(map((res:any)=>{
+  getDashboardData(type, lang){
+    return  this.http.get<any>(this._url+`schemes/${type}/${lang}`).pipe(map((res:any)=>{
       return res;
     }));
   }
