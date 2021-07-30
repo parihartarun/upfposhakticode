@@ -402,7 +402,14 @@
                       class="sort"
                       (click)="onClickOrderBy('description')"
                     >
-                      {{ "Description" | translate }}
+                      {{ "English Description" | translate }}
+                    </th>
+                    <th
+                      scope="col"
+                      class="sort"
+                      (click)="onClickOrderBy('hindiDescription')"
+                    >
+                    {{ "Hindi Description" | translate }}
                     </th>
                     <th
                       scope="col"
@@ -411,7 +418,9 @@
                     >
                       {{ "Date" | translate }}
                     </th>
-                    <th scope="col">{{ "View Details" | translate }}</th>
+                    <th scope="col">{{ "URL" | translate }}</th>
+                    <th scope="col">{{ "English File" | translate }}</th>
+                    <th scope="col">{{ "Hindi File" | translate }}</th>
                     <th scope="col">{{ "Actions" | translate }}</th>
                   </tr>
                 </thead>
@@ -431,7 +440,10 @@
                       {{ (currentPage - 1) * 10 + i + 1 }}
                     </td>
                     <td>
-                      {{ p.description ? p.description : p.hindiDescription}}
+                      {{ p.description }}
+                    </td>
+                    <td>
+                      {{  p.hindiDescription }}
                     </td>
                     <td *ngIf="!!p.uploadDate">
                       {{ p.uploadDate | date: "dd/MM/yyyy" }}
@@ -440,7 +452,21 @@
                       {{ p.createDate | date: "dd/MM/yyyy" }}
                     </td>
                     <td>
-                      <a target="_blank" href="{{ p.filePath }}" download
+                      <ng-container *ngIf="url && url != ''">
+                        <a target="_blank" href="{{p.url}}"><img
+                           src="./assets/image/img/url.png"
+                           style=" height:20px; width:20px"></a>
+                       </ng-container>
+                    </td>
+                    <td>
+                      <a target="_blank" href="{{ p.filePath }}" download *ngIf=" p.filePath"
+                        ><img
+                          src="./assets/image/img/pdficon.png"
+                          style="height: 20px; width: 30px"
+                      /></a>
+                    </td>
+                    <td>
+                      <a target="_blank" href="{{ p.hinFilePath }}" download *ngIf="p.hinFilePath"
                         ><img
                           src="./assets/image/img/pdficon.png"
                           style="height: 20px; width: 30px"

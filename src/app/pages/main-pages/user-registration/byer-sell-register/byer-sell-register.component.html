@@ -267,10 +267,7 @@
         </div>
         <select class="form-control" formControlName="companyCategory">
           <option value="">{{'Select Company Category'|translate}}</option>
-          <option value="register under the society acts">{{'register under the society acts'|translate}}</option>
-          <option value="register under the company acts">{{'register under the company acts'|translate}}</option>
-          <option value="register under the company acts">{{'Private Limited'|translate}}</option>
-          <option value="register under the company acts">{{'Sole Proprietorship'|translate}}</option>
+          <option [value]="item" *ngFor="let item of companyCategoryList">{{item |translate}}</option>
         </select>
       </div>
     </div>

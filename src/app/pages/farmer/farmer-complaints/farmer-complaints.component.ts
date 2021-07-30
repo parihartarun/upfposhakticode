@@ -69,8 +69,10 @@ export class FarmerComplaintsComponent implements OnInit {
     if (this.roleType == "ROLE_INPUTSUPPLIER") {
       this.getInputComplaints();
     }
-    if (this.roleType == "ROLE_CHCFMB") { }
-    this.getCHCComplaints();
+    if (this.roleType == "ROLE_CHCFMB") { 
+      this.getCHCComplaints();
+    }
+    
   }
 
   getComplaints() {

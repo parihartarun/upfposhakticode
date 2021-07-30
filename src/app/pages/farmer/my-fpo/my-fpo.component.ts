@@ -132,8 +132,7 @@ export class MyFpoComponent implements OnInit {
       { key: 'contactNo', title: 'Mobile' },
     ];
     this.storageUnitCol = [
-      { key: 'district', title: 'District' },
-      { key: 'address', title: 'Storage Center Address' },
+      { key: 'address', title: 'Storage Center Address' }, //  { key: 'district', title: 'District' },
       { key: 'storageType', title: 'Storage Center Type' },
       { key: 'storageCapacity', title: 'Storage Capacity (in Mt.)' },
       { key: 'fascilities', title: 'Available Facilities' }

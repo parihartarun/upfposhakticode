@@ -200,4 +200,10 @@ export class AuthService {
   uploadCertificate(data):Observable<any> {
     return this.http.post<any>(this._url + 'register/uploadCert', data);
   }
+
+  getCompanyCategory(){
+    return this.http.get<any>(this._url + `register/compcategory`).pipe(map((v: any) => {
+      return v;
+    }));
+  }
 }

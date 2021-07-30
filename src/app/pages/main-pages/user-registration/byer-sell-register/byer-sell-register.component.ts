@@ -33,6 +33,8 @@ export class ByerSellRegisterComponent implements OnInit {
   fieldTextTypeCpwd:boolean;
   invalidUserName:boolean=false;
 
+  companyCategoryList = [];
+
   dropdownList = [];
   selectedItems = [];
   dropdownSettings = {};
@@ -42,6 +44,7 @@ export class ByerSellRegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.api.getState().subscribe(s => {
       this.states = s
     })
@@ -56,6 +59,7 @@ export class ByerSellRegisterComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+    this.getCompanyCategory();
   }
 
   onItemSelect(item: any) {
@@ -271,5 +275,12 @@ export class ByerSellRegisterComponent implements OnInit {
     this.verietyIds = this.verietyIds.filter(item => item != filterverieties[0].verietyId)
   
     console.log("Fire Removed");
+  }
+
+  getCompanyCategory(){
+    this.api.getCompanyCategory().subscribe(response => {
+      console.log(response)
+      this.companyCategoryList = response
+    })
   }
 }

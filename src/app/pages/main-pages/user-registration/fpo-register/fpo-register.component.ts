@@ -25,6 +25,8 @@ export class FpoRegisterComponent implements OnInit {
   fieldTextType: boolean;
   fieldTextTypeCpwd:boolean;
   invalidRegNo:boolean=false;
+  // check only for regular Expression
+  invalidRegExp: boolean = false;
   invalidUserName:boolean=false;
   regUnderOptions = [];
   regNoErrMsg:string = '';
@@ -120,8 +122,14 @@ export class FpoRegisterComponent implements OnInit {
   validateFpoRegNumber(regNo){
     console.log(this.fpoRegisterForm.value.registeredUnder);
     this.invalidRegNo = false;
+    this.invalidRegExp = false;
     this.regNoErrMsg = '';
     if(this.fpoRegisterForm.value.registeredUnder == 'Company-Act'){
+      // let regExp = new RegExp('^([L|U]{1})([0-9]{5})([A-Za-z]{2})([0-9]{4})([A-Za-z]{3})([0-9]{6})$');
+      // if(!regExp.test(regNo)) {
+      //   this.invalidRegNo = true;
+      //   return
+      // }
       this.api.validateFpoRegNumber(regNo).subscribe(response => {
         console.log(response);
         this.regNoErrMsg = response.message.trim();
