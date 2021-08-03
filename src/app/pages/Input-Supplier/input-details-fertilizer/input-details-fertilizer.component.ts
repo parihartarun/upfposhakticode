@@ -54,7 +54,7 @@ export class InputDetailsFertilizerComponent implements OnInit {
     this.inputid = localStorage.getItem('masterId');
     this.userRole = localStorage.getItem('userRole');
     this.fertilizerForm = this.fb.group({
-      fertilizer_grade: ['', [Validators.required]],
+      fertilizer_grade: [''],
       type_id: ['', [Validators.required]],
       file: [''],
       quantity:['', [Validators.required]],

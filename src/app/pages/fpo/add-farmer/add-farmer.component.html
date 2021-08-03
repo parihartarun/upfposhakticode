@@ -60,6 +60,9 @@
                   <div class="form-group">
                     <label class="form-control-label" for="input-farmerName">{{"Username" | translate}} <span class="required">*</span></label> 
                     <input type="text" formControlName="userName" id="input-farmerName" class="form-control" (change)="validateUserName($event.target.value)" alphaNumeric [attr.disabled]="this.edit ? 'disabled' : null">
+                    <div class="text-muted">
+                      <small>{{"This field once submitted cannot be changed later" | translate}}</small>
+                    </div>
                     <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
                       <div *ngIf="formControls.userName.errors.required">{{'username is required'| translate}}</div>
                     </div>

@@ -78,7 +78,7 @@
                   <div class="form-group">
                     <label class="form-cotrol-lable" for="licenceFile">
                       {{'Upload License' | translate}}<span class="required">*</span>
-                      <span class="text-xs ml-2 file-format-msg">({{'only png, jpg, jpeg, pdf, doc, docx, txt format with 2MB file size allowed' | translate}})</span>
+                      <span class="text-xs ml-2 file-format-msg">({{'only png, jpg, jpeg, pdf format with 2MB file size allowed' | translate}})</span>
                     </label>
                     <input formControlName="licenceFile" (change)="handleFileInput($event.target.files)" type="file" id="licenceFile" class="form-control form-control-alternative">
                       <span *ngIf="edit"><a href="{{filePathToEdit}}" target="_blank">{{fileToEdit}}</a></span>

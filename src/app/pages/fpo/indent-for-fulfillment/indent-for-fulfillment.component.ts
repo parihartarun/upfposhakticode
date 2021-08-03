@@ -156,7 +156,8 @@ export class IndentForFulfillmentComponent implements OnInit {
   updateFertilizerIndent(id) {
     let data = {
       "enqId": id,
-      "status": this.indentStatus
+      "status": this.indentStatus,
+      'reason': this.indentForm.get('reason').value
     };
     this.supplierService.updateFertilizerIndent(data).subscribe(response => {
       this.toastr.success('Indent Successfully Updated');
@@ -173,7 +174,8 @@ export class IndentForFulfillmentComponent implements OnInit {
   updateSeedIndent(id) {
     let data = {
       "enqId": id,
-      "status": this.indentStatus
+      "status": this.indentStatus,
+      'reason': this.indentForm.get('reason').value
     };
     this.supplierService.updateSeedIndent(data).subscribe(response => {
       this.toastr.success('Indent Successfully Updated');
@@ -189,7 +191,8 @@ export class IndentForFulfillmentComponent implements OnInit {
   updateInsecticideIndent(id) {
     let data = {
       "enqId": id,
-      "status": this.indentStatus
+      "status": this.indentStatus,
+      'reason': this.indentForm.get('reason').value
     };
     this.supplierService.updateInsecticideIndent(data).subscribe(response => {
       this.toastr.success('Indent Successfully Updated');
@@ -205,7 +208,8 @@ export class IndentForFulfillmentComponent implements OnInit {
   updateMachinaryIndent(id) {
     let data = {
       "enqId": id,
-      "status": this.indentStatus
+      "status": this.indentStatus,
+      'reason': this.indentForm.get('reason').value
     };
     this.supplierService.updateMachinaryIndent(data).subscribe(response => {
       this.toastr.success('Indent Successfully Updated');

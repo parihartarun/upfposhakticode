@@ -16,6 +16,8 @@ import { SupplierDetailsComponent } from '../../pages/main-pages/user-profiles/s
 import { ChcfmbDetailsComponent } from '../../pages/main-pages/user-profiles/chcfmb-details/chcfmb-details.component';
 import {ViewAllNotificationsComponent} from '../../pages/view-all-notifications/view-all-notifications.component';
 import {DistrictListComponent} from '../../pages/district-list/district-list.component';
+import { TechnologyListComponent } from 'src/app/pages/technology-list/technology-list.component';
+import { TechnologyDetailComponent } from 'src/app/pages/technology-detail/technology-detail.component';
 
 export const AuthLayoutRoutes: Routes = [
 
@@ -27,6 +29,8 @@ export const AuthLayoutRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   //{ path: 'home', component: HomeDummyComponent },
   { path: 'products/:val/:searchType', component: ProductsListComponent },
+  { path: 'technology/:val/:searchType', component: TechnologyListComponent },
+  { path: 'technology-details', component: TechnologyDetailComponent },
   {path:'dist/:val/:searchType', component:DistrictListComponent},
   { path: 'farmer-register', component: FarmerRegisterComponent },
   { path: 'fpo-register', component: FpoRegisterComponent },

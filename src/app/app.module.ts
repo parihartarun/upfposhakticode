@@ -135,6 +135,8 @@ import { DistrictListComponent } from './pages/district-list/district-list.compo
 import { IndentRaisedComponent } from './pages/fpo/indent-raised/indent-raised.component';
 import { IndentForFulfillmentComponent } from './pages/fpo/indent-for-fulfillment/indent-for-fulfillment.component';
 import { AlphaNumericDirective } from './directive/form-input/alpha-numeric.directive';
+import { TechnologyListComponent } from './pages/technology-list/technology-list.component';
+import { TechnologyDetailComponent } from './pages/technology-detail/technology-detail.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -275,7 +277,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     DistrictListComponent,
     IndentRaisedComponent,
     IndentForFulfillmentComponent,
-    AlphaNumericDirective, 
+    AlphaNumericDirective,
+    TechnologyListComponent,
+    TechnologyDetailComponent, 
 
   ],
   exports: [

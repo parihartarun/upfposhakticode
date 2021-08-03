@@ -7,8 +7,9 @@ export const environment = {
   //baseUrl: 'http://52.178.39.78/',
  //baseUrl:'https://api-upfposhakti.azurewebsites.net/',
  baseUrl:'http://20.86.192.171/fpoapp/',
- siteUrl:'http://20.86.192.171/upfpo/'
+ siteUrl:'http://20.86.192.171/upfpo/',
   //baseUrl: 'http://localhost:80/',
+  // baseUrl:'https://www.upfposhakti.com/fpoapp/',
 };
 
 /*

@@ -1,0 +1,279 @@
+searchIcon {
+  display: none;
+}
+.searchText {
+  display: block;
+}
+.text-xsm {
+  font-size: 9px;
+}
+.text-sm {
+  font-size: 12px;
+}
+.suc-img {
+  height: 150px;
+  width: 150px;
+}
+.loader-container {
+  min-height: 500px;
+  max-height: 500px;
+  max-width: inherit;
+}
+.search-text {
+  width: 59%;
+  float: left;
+  height: 50px;
+}
+.btn-indent {
+  font-size: 0.975rem;
+  padding: 0.375rem 1rem;
+  line-height: 1.5;
+}
+/*
+    .search-text{
+        width: 80%;
+        float: left;
+        height: 50px;
+    }
+  */
+.text-bold {
+  font-weight: bold;
+}
+.text-sm {
+  font-size: small;
+}
+.text-upfpo {
+  color: #926e00 !important;
+}
+.yellotext {
+  color: #926e00;
+  font-size: large;
+}
+.fatalimg {
+  height: 150px;
+  width: 150px;
+}
+
+.btn.btn-default.dropdown-toggle {
+  color: #000;
+  background-color: #fff;
+  border-color: #fff;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.search-btn {
+  width: 20%;
+  float: left;
+  height: 50px;
+}
+.card {
+  padding: 15px;
+}
+.card-title {
+  margin-bottom: 0.25rem;
+}
+.card-body {
+  padding: 0.7rem;
+}
+.horizontal-product img {
+  height: 120px;
+  object-fit: cover;
+}
+.filter-box {
+  display: inline-block;
+  padding: 5px 10px;
+}
+.filter-text {
+  background: #fff;
+  padding: 3px 10px;
+  border: 1px solid #dedada;
+}
+.filter-remove {
+  padding: 3px 10px;
+  background: #ca3d3d;
+  color: #fff;
+}
+a {
+  color: #32325d;
+}
+.upfpo-pills {
+  border-radius: 15px;
+  font-size: 11px;
+  width: fit-content;
+  height: min-content;
+  padding: 3px 5px;
+  background: #c59608e3;
+  color: rgba(255, 255, 255, 0.815);
+}
+.overflow-pills-container {
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.unwrap {
+  white-space: nowrap;
+}
+.overflow-pills-container::-webkit-scrollbar {
+  display: none;
+}
+
+.containerMain {
+  background-color: #f8f9fe;
+}
+.filterDistrict {
+  max-height: 345px;
+  overflow-y: auto;
+}
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+.box_shadow {
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+}
+.card_2 {
+  background-color: #fff;
+  padding: 20px;
+}
+.card_2 > h1 {
+  font-size: 1rem;
+  color: #4d575d;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  padding-bottom: 10px;
+}
+.card_2 > p {
+  font-size: 14px;
+  color: #606262;
+}
+.gray_color1 {
+  padding: 0rem 0rem;
+  background-color: #fff;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+.gray_color1 > img {
+  width: 100%;
+  height: 115px;
+  max-width: 180px;
+  border: 1px solid #d4720d;
+}
+.mcq {
+  width: 100%;
+  float: left;
+}
+.mcq > ul {
+  list-style-type: none;
+  margin: 8px 0px 0px;
+  padding: 0px 0px;
+  width: 100%;
+  float: left;
+}
+.mcq > ul > li > span {
+  font-weight: 500;
+  color: #606262;
+  font-size: 0.9rem;
+  width: 100%;
+}
+.mcq > ul > li {
+  float: left;
+  width: 100%;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #606262;
+  border-bottom: 1px solid #f9f9f9;
+  padding: 4px 0px;
+}
+.mcq > ul > li:last-child {
+  border-bottom: none;
+}
+.mcq > ul > li > a {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #606262;
+  margin: 0px 20px 0px 0px;
+}
+.mcq > ul > li > a > span {
+  margin-right: 3px;
+}
+.mcq_txt {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #606262;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+header > h3 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  padding-bottom: 10px;
+}
+
+.form-check-label {
+  font-weight: 500;
+  color: #525f7f;
+  font-size: 1rem;
+}
+/* We need to use ::ng-deep to overcome view encapsulation */
+::ng-deep {
+  .custom-slider .ngx-slider .ngx-slider-bar {
+    background: #ffe4d1;
+    height: 2px;
+  }
+  .custom-slider .ngx-slider .ngx-slider-selection {
+    background: orange;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer {
+    width: 8px;
+    height: 16px;
+    top: auto; /* to remove the default positioning */
+    bottom: 0;
+    background-color: #333;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-pointer:after {
+    display: none;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-bubble {
+    bottom: 14px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-limit {
+    font-weight: bold;
+    color: orange;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-tick {
+    width: 1px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #ffe4d1;
+    top: -1px;
+  }
+
+  .custom-slider .ngx-slider .ngx-slider-tick.ngx-slider-selected {
+    background: orange;
+  }
+}
+
+.changetopoint {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchIcon {
+    display: block;
+  }
+  .searchText {
+    display: none;
+  }
+}
+
+.btn-link:focus {
+  box-shadow: none;
+}

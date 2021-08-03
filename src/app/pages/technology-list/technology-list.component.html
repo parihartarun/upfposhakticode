@@ -1,0 +1,244 @@
+<!-- <p>technology-list works!</p> -->
+
+<!-- Page Content -->
+<section class="pb-3 containerMain">
+  <div class="container">
+    <div class="row mb-3 d-flex justify-content-center p-2">
+      <div class="col-md-8 col-lg-8 col-sm-12">
+        <div
+          class="d-flex mx-3 align-items-end justify-content-center"
+          style="border: solid"
+        >
+          <div class="dropdown d-inline searchDropDown">
+            <select
+              class="btn d-inline btn-default search-btn dropdown-toggle"
+              id="searchin"
+              name="SearchIn"
+              style="width: 100%; border-right: solid; border-radius: 0"
+              [(ngModel)]="filterParams.in"
+            >
+              <option value="crop">{{ "Crop" | translate }}</option>
+              <option value="insecticide">
+                {{ "Insecticides" | translate }}
+              </option>
+              <option value="seed">{{ "Seeds" | translate }}</option>
+              <option value="fmb">{{ "machinery" | translate }}</option>
+              <option value="fertilizer">
+                {{ "Fertilizers" | translate }}
+              </option>
+              <option value="districts">{{ "District1" | translate }}</option>
+              <option value="technology">{{ "Technology" | translate }}</option>
+            </select>
+          </div>
+
+          <input
+            type="text"
+            class="form-control d-inline search-text"
+            name="topSearch"
+            style="border-radius: 0"
+            placeholder="{{ 'searchplaceholder' | translate }}"
+            [(ngModel)]="filterParams.val"
+          />
+
+          <!-- (click)="fetchnewData();" -->
+          <button
+            class="btn d-inline btn-block btn-product-search active search-btn"
+            role="button"
+            aria-pressed="true"
+            style="border-radius: 0"
+            [disabled]="filterParams.val.length === 0"
+            (click)="onClickSearch()"
+          >
+            <span class="searchText">{{ "Search" | translate }}</span>
+            <!-- <span class="searchIcon"
+              ><i class="fa fa-search" aria-hidden="true"></i
+            ></span> -->
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <div class="col-md-3">
+        <!-- *ngIf="(selectedDropdown==='crop')" -->
+        <div class="card">
+          <article class="card-group-item my-2" *ngIf="stageOfProd?.length">
+            <header class="">
+              <h3 class="title">
+                {{ "Relevant stage of production" | translate }}
+              </h3>
+            </header>
+            <div class="filter-content">
+              <div class="filterDistrict">
+                <form>
+                  <label class="form-check" *ngFor="let item of stageOfProd">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="item.name"
+                      [name]="item.name"
+                      disabled
+                    />
+                    <!-- 
+                      [(ngModel)]="item.is_active"
+                           (change)="selectDistrct(district)" -->
+                    <span class="form-check-label">
+                      {{ item.name }}
+                    </span>
+                  </label>
+                </form>
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+        </div>
+
+        <div class="card">
+          <article class="card-group-item my-2" *ngIf="priceList?.length">
+            <header class="">
+              <h3 class="title">
+                {{ "Price" | translate }}
+              </h3>
+            </header>
+            <div class="filter-content">
+              <div class="filterDistrict">
+                <form>
+                  <label
+                    class="form-check"
+                    *ngFor="let item of priceList; let i = index"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="item.name"
+                      [name]="'price_' + i"
+                      disabled
+                    />
+                    <!-- 
+                       [(ngModel)]="item.is_active"
+                             (change)="selectDistrct(district)" -->
+                    <span class="form-check-label">
+                      {{ item.name }}
+                    </span>
+                  </label>
+                </form>
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+        </div>
+      </div>
+      <!-- /.col-md-3 -->
+      <div class="col-md-9">
+        <div class="row">
+          <!--  -->
+          <div
+            class="col-md-6"
+            *ngFor="
+              let item of filteredData
+                | paginate: { itemsPerPage: 6, currentPage: p }
+            "
+          >
+            <!-- card_2 -->
+            <!-- *ngIf="selectedDropdown === 'crop'" -->
+            <div class="card card-stats box_shadow" style="height: 100%">
+              <div class="card-header py-1">
+                <div class="changetopoint" (click)="setItemDetails(item)">
+                  <h2>{{ item.technologyName }}</h2>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-4 col-sm-4">
+                    <div class="gray_color1 d-flex justify-content-center">
+                      <img [src]="item.filePath" [alt]="item.fileName" />
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-sm-8">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="mcq">
+                          <ul>
+                            <!-- <li>
+                              <span
+                                ><i
+                                  class="fas fa-caret-right"
+                                  aria-hidden="true"
+                                ></i>
+                                {{ "Technology Name" | translate }}:
+                              </span>
+                              <strong> {{ item.technologyName }}</strong>
+                            </li> -->
+                            <li>
+                              <span
+                                ><i
+                                  class="fas fa-caret-right"
+                                  aria-hidden="true"
+                                ></i>
+                                {{ "Price" | translate }}:
+                              </span>
+                              <strong> {{ item.prize }}</strong>
+                            </li>
+                            <li>
+                              <span
+                                ><i
+                                  class="fas fa-caret-right"
+                                  aria-hidden="true"
+                                ></i>
+                                {{ "Key Offering" | translate }}:
+                              </span>
+                              <strong> {{ item.keyOffering }}</strong>
+                            </li>
+                            <li>
+                              <span
+                                ><i
+                                  class="fas fa-caret-right"
+                                  aria-hidden="true"
+                                ></i>
+                                {{
+                                  "Relevant stage of production" | translate
+                                }}:
+                              </span>
+                              <strong> {{ item.stageOfProd }}</strong>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="row mt-2">
+                  <div class="col-12 d-flex justify-content-end">
+                    <button
+                      class="mx-0 btn btn-indent btn-primary"
+                      type="button"
+                      style="border-radius: 5px; color: #fff"
+                      disabled
+                    >
+                     
+                      {{ "createindent" | translate }}
+                    </button>
+                  </div>
+                </div> -->
+              </div>
+              <!-- /.card-body -->
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-12">
+            <div class="card-footer text-right">
+              <pagination-controls
+                (pageChange)="p = $event"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>

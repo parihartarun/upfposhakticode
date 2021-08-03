@@ -1,0 +1,196 @@
+<section>
+  <div class="container my-4">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header text-center">
+            <h2>
+              {{ techItem.technologyName }}
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-4 col-sm-4">
+                <div class="gray_color1 d-flex justify-content-center">
+                  <img
+                    [src]="techItem?.filePath"
+                    [alt]="techItem?.fileName"
+                    class="img-fluid"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-8 col-sm-8">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="mcq">
+                      <ul class="tech-list">
+                        <!-- <li>
+                                        <span
+                                          ><i
+                                            class="fas fa-caret-right"
+                                            aria-hidden="true"
+                                          ></i>
+                                          {{ "Technology Name" | translate }}:
+                                        </span>
+                                        <strong> {{ item.technologyName }}</strong>
+                                      </li> -->
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Price" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.prize }}</strong>
+                        </li>
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Key Offering" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.keyOffering }}</strong>
+                        </li>
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Relevant stage of production" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.stageOfProd }}</strong>
+                        </li>
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Woman Friendly" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.womanFriendly }}</strong>
+                        </li>
+
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Contact Person" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.contactPerson }}</strong>
+                        </li>
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Designations" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.designation }}</strong>
+                        </li>
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Email" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.email }}</strong>
+                        </li>
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Key Crops" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.keyCrops }}</strong>
+                        </li>
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Mobile" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.phone }}</strong>
+                        </li>
+
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Technology Category First" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.techFirstCategory }}</strong>
+                        </li>
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Technology Category Second" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.techSecondCategory }}</strong>
+                        </li>
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Technology Provider" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.techProvider }}</strong>
+                        </li>
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Unit" | translate }}:
+                          </span>
+                          <strong> {{ techItem?.unit }}</strong>
+                        </li>
+
+                        <li>
+                          <span
+                            ><i
+                              class="fas fa-caret-right"
+                              aria-hidden="true"
+                            ></i>
+                            {{ "Technology Brief" | translate }}:
+                          </span>
+                          <!-- <strong> {{ techItem?.techBrief }}</strong> -->
+                          <ul class="brief-list">
+                            <li *ngFor="let item of techBriefList">
+                              <strong> {{ item }} </strong>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -86,5 +86,9 @@ export class FpoSearchService {
       this.fertilizerTypesObserver.next(res);
     })
   }
+
+  getTechSearchList(data) {
+    return this.http.put<any>(this._url +`home/techSearch`, data)
+  }
   
 }

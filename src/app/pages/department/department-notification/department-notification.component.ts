@@ -75,7 +75,7 @@ export class DepartmentNotificationComponent implements OnInit {
      this._departmentService.sendNotifiaction(this.NotificationsForm.value, formData).subscribe(response => {
        console.log(response);
        if (response.id != '') {
-         this.toastr.success('Notification Send successfully.');
+         this.toastr.success('Notification Sent successfully.');
          this.submitted = false;
          // this.edit = false;
          this.NotificationsForm.reset();

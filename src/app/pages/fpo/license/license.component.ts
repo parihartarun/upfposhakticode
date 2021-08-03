@@ -244,7 +244,7 @@ handleFileInput(files: FileList) {
 
 validateFile(name: String) {
   let ext = name.substring(name.lastIndexOf('.') + 1);
-  if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" ||  ext.toLowerCase() == "jpg" || ext.toLowerCase()=="pdf" || ext.toLowerCase()=="doc" || ext.toLowerCase()=="docx" || ext.toLowerCase()=="txt") {
+  if (ext.toLowerCase() == 'png' || ext.toLowerCase() == "jpeg" ||  ext.toLowerCase() == "jpg" || ext.toLowerCase()=="pdf" ) {
     return true;
   }
   else {

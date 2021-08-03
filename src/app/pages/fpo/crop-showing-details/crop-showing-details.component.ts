@@ -17,6 +17,8 @@ export class CropShowingDetailsComponent implements OnInit {
   cropSowingData:Array<any>=[];
 
   totalLandError:boolean = false;
+  updateTotalLandError:boolean = false;
+  updateSowingError:boolean = false;
 
   cropSowingForm: FormGroup;
   cropSowingUpdateForm: FormGroup;
@@ -262,6 +264,23 @@ export class CropShowingDetailsComponent implements OnInit {
     return false;
   }
 
+
+  checkUpdateMQ(){
+    var mq = (120 * this.cropSowingUpdateForm.value.actualYield) / 100;
+    if(this.cropSowingUpdateForm.value.marketableQuantity > mq){
+      return true;
+    }
+    return false;
+  }
+
+
+  checkSowingAreaUpdate() {
+    let baseLand =  this.cropSowingUpdateForm.get('baseland').value;
+    let sowingArea = this.cropSowingUpdateForm.get('sowingArea').value
+
+    return parseFloat(sowingArea) <=  parseFloat(baseLand);
+  }
+
   reset(){
     this.submitted = false;
     this.cropSowingForm.reset();
@@ -270,6 +289,7 @@ export class CropShowingDetailsComponent implements OnInit {
 
 
   editCropSowingDetails(data, content){
+    this.updateTotalLandError = false;
     console.log(data);
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', size: 'lg'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -314,12 +334,18 @@ export class CropShowingDetailsComponent implements OnInit {
         return;
     }
 
+    if(!this.checkSowingAreaUpdate()) {
+      this.updateTotalLandError = true;
+      return;
+    }
+
     var data = this.cropSowingUpdateForm.value;
     this.api.updateFarmerCropSowingDetails(data).subscribe(response => {
       console.log(response);
       this.toastr.success('Crop Sowing Details Updated Successfully.');
       this.submitted = false;
       this.getCropSowingDetails();
+      this.modalService.dismissAll();
     },
       err => {
         console.log(err)

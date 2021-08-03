@@ -41,6 +41,9 @@
         </div>
         <input class="form-control" type="text" formControlName="userName" (blur)="validateUserName($event.target.value)" alphaNumeric>
       </div>
+      <div class="text-muted">
+        <small>{{"This field once submitted cannot be changed later" | translate}}</small>
+      </div>
       <div *ngIf="submitted && formControls.userName.errors" class="text-danger">
         <div *ngIf="formControls.userName.errors.required">{{'username is required'|translate}}</div>
         <div *ngIf="formControls.userName.errors.pattern">{{'user name should be 6 to 20 character'|translate}}</div>

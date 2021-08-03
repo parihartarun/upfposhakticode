@@ -125,6 +125,10 @@ export class HomeComponent implements OnInit {
       this.route.navigate(['/dist', this.data['searchValue'], this.data['searchType']]);  
       return;
     }
+    if(this.data['searchType'] === 'technology') {
+      this.route.navigate(['/technology', this.data['searchValue'], this.data['searchType']]);  
+      return;
+    }
     this.route.navigate(['/products', this.data['searchValue'], this.data['searchType']]);
   }
   selectValue() {

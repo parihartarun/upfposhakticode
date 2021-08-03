@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">{{'Total Land' | translate}}({{'in Ha' | translate}})</label>
+                    <label class="form-control-label" for="input-email">{{'Total Land (in Ha.)' | translate}}</label>
                     <input readonly formControlName="baseland" type="text" id="input-email" class="form-control form-control-alternative">
                   </div>
                 </div>
@@ -326,7 +326,7 @@
             </div>
             <div class="col-lg-6">
               <div class="form-group">
-                <label class="form-control-label" for="input-email">{{'Total Land' | translate}}({{'in Ha' | translate}})</label>
+                <label class="form-control-label" for="input-email">{{'Total Land (in Ha.)' | translate}}</label>
                 <input readonly formControlName="baseland" type="text" id="input-email" class="form-control form-control-alternative">
               </div>
             </div>
@@ -392,7 +392,19 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="row" *ngIf="checkUpdateMQ()">
+                  <div class="col-lg-12 text-center">
+                    <span class="required">{{'markatable surplus should be less than or equal to 20% more than actual production.' | translate}}</span>
+                  </div>
+                </div>
+                <div class="row" *ngIf="updateTotalLandError">
+                  <div class="col-lg-12 text-center">
+                    <span class="required">{{'Sowing area can not be greater than Total land' | translate}}</span>
+                  </div>
+                </div>
               </div>
+
             <div class="card-footer py-4 text-center">
               <button type="button" class="btn btn-yellow btn-primary my-4" (click)="updateSowingDetails()">
                 {{'Update Crop Sowing' | translate}}

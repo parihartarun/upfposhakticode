@@ -1,0 +1,20 @@
+.tech-list {
+  list-style: none;
+}
+
+.tech-list li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.brief-list {
+  display: inline-flex;
+  flex-direction: column;
+  list-style: none;
+  padding-left: 3px;
+}
+
+.brief-list li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
