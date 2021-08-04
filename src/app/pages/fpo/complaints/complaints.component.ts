@@ -218,7 +218,7 @@ export class ComplaintsComponent implements OnInit {
     if (status == 0) {
       return "OPEN"
     } else if (status == 1) {
-      return "ASSOGNED"
+      return "ASSIGNED"
     }
     else if (status == 2) {
       return "RESOLVED"
