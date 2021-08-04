@@ -917,5 +917,8 @@
   "Price": "Price (in Rs.)",
   "Key Offering": "Key Offering",
   "Technology Name": "Technology Name",
-  "Unit": "Unit"
+  "Unit": "Unit",
+  "TechCategory": "Category",
+  "Key Feature": "Key Feature",
+  "Contact Detail" : "Contact Detail"
 }

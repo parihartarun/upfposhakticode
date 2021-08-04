@@ -917,10 +917,13 @@
   "Registered Under, FPO Registration No, Upload Registration Certificate, User Name this fields once submitted cannot be changed later": "एक बार सबमिट करने के बाद पंजीकरण अधिनियम, पंजीकरण संख्या, पंजीकरण प्रमाणपत्र और उपयोगकर्ता नाम को बाद में नहीं बदला जा सकता",
   "Technology Brief": "प्रौद्योगिकी के बारे में संक्षिप्त",
   "Technology Provider": "प्रौद्योगिकी प्रदाता",
-  "Technology Category Second": "तकनीक द्वितीय श्रेणी",
+  "Technology Category Second": "प्रौद्योगिकी द्वितीय श्रेणी",
   "Technology Category First": "प्रौद्योगिकी पहली श्रेणी",
   "Key Crops": "प्रमुख फसलें",
   "Woman Friendly": "महिलाओं के अनुकूल",
   "Price": "कीमत (रुपये में)",
-  "Unit": "इकाई"
+  "Unit": "इकाई",
+  "TechCategory": "श्रेणी",
+  "Key Feature": "प्रमुख विशेषता",
+  "Contact Detail" : "संपर्क विवरण"
 }

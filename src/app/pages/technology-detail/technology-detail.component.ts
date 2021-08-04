@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,11 +10,15 @@ export class TechnologyDetailComponent implements OnInit {
   techItem: any = {};
   techBriefList = [];
 
-  constructor() {}
+  constructor(private location: Location) {}
 
   ngOnInit(): void {
     this.techItem = JSON.parse(sessionStorage.getItem('technology'));
 
     if (this.techItem) this.techBriefList = this.techItem.techBrief.split(',');
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

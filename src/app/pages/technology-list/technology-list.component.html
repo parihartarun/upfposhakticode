@@ -61,39 +61,6 @@
 
     <div class="row">
       <div class="col-md-3">
-        <!-- *ngIf="(selectedDropdown==='crop')" -->
-        <div class="card">
-          <article class="card-group-item my-2" *ngIf="stageOfProd?.length">
-            <header class="">
-              <h3 class="title">
-                {{ "Relevant stage of production" | translate }}
-              </h3>
-            </header>
-            <div class="filter-content">
-              <div class="filterDistrict">
-                <form>
-                  <label class="form-check" *ngFor="let item of stageOfProd">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [value]="item.name"
-                      [name]="item.name"
-                      disabled
-                    />
-                    <!-- 
-                      [(ngModel)]="item.is_active"
-                           (change)="selectDistrct(district)" -->
-                    <span class="form-check-label">
-                      {{ item.name }}
-                    </span>
-                  </label>
-                </form>
-              </div>
-              <!-- card-body.// -->
-            </div>
-          </article>
-        </div>
-
         <div class="card">
           <article class="card-group-item my-2" *ngIf="priceList?.length">
             <header class="">
@@ -113,6 +80,102 @@
                       type="checkbox"
                       [value]="item.name"
                       [name]="'price_' + i"
+                      [(ngModel)]="item.is_active"
+                      (change)="selectPrice(item)"
+                    />
+                    <span class="form-check-label">
+                      {{ item.name }}
+                    </span>
+                  </label>
+                </form>
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+        </div>
+        <div class="card">
+          <article class="card-group-item my-2" *ngIf="priceList?.length">
+            <header class="">
+              <h3 class="title">
+                {{ "Type" | translate }}
+              </h3>
+            </header>
+            <div class="filter-content">
+              <div class="filterDistrict">
+                <form>
+                  <label
+                    class="form-check"
+                    *ngFor="let item of typeList; let i = index"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="item.name"
+                      [name]="'type_' + i"
+                      [(ngModel)]="item.is_active"
+                      (change)="selectType(item)"
+                    />
+                    <span class="form-check-label">
+                      {{ item.name }}
+                    </span>
+                  </label>
+                </form>
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+        </div>
+
+        <div class="card">
+          <article class="card-group-item my-2" *ngIf="stageOfProd?.length">
+            <header class="">
+              <h3 class="title">
+                {{ "Relevant stage of production" | translate }}
+              </h3>
+            </header>
+            <div class="filter-content">
+              <div class="filterDistrict">
+                <form>
+                  <label class="form-check" *ngFor="let item of stageOfProd">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="item.name"
+                      [name]="item.name"
+                      [(ngModel)]="item.is_active"
+                      (change)="selectStageOfProd(item)"
+                      disabled
+                    />
+                    <span class="form-check-label">
+                      {{ item.name }}
+                    </span>
+                  </label>
+                </form>
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+        </div>
+
+        <div class="card">
+          <article class="card-group-item my-2" *ngIf="priceList?.length">
+            <header class="">
+              <h3 class="title">
+                {{ "TechCategory" | translate }}
+              </h3>
+            </header>
+            <div class="filter-content">
+              <div class="filterDistrict">
+                <form>
+                  <label
+                    class="form-check"
+                    *ngFor="let item of categoryList; let i = index"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="item.name"
+                      [name]="'category_' + i"
                       disabled
                     />
                     <!-- 
@@ -229,10 +292,25 @@
 
         <div class="row mt-4">
           <div class="col-md-12">
-            <div class="card-footer text-right">
-              <pagination-controls
-                (pageChange)="p = $event"
-              ></pagination-controls>
+            <div class="card-footer">
+              <div class="text-right">
+                <pagination-controls
+                  (pageChange)="p = $event"
+                ></pagination-controls>
+              </div>
+
+              <div
+                *ngIf="!!!filteredData?.length"
+                class="p-5 d-flex justify-content-center align-items-center"
+              >
+                <img class="fatalimg" src="assets/image/img/sad.jpg" />
+              </div>
+              <div
+                *ngIf="!!!filteredData?.length"
+                class="d-flex justify-content-center yellotext"
+              >
+                {{ "noitemsfound" | translate }}
+              </div>
             </div>
           </div>
         </div>
